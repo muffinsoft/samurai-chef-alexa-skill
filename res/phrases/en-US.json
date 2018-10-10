@@ -1,0 +1,8 @@
+{
+  "welcome" : "Welcome to Samurai Chef! Say cook sushi to start cooking",
+  "welcomeCard" : "Samurai Chef",
+  "fallback" : "We cannot do that right now",
+  "actionDescription" : "Let's start cooking sushi. If we give you a fish, say Slice! If it's a vegetable, say Chop! If it’s rice, say Boil. And if it’s seaseed, say Roll!. And if he accidentally throw you not food, say No!",
+  "actionApprove" : "Very well! The next is",
+  "actionFail" : "Ouch!"
+}

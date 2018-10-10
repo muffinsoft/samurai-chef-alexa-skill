@@ -1,0 +1,130 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "samurai chef",
+      "intents": [
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "SushiSliceIntent",
+          "slots": [
+            {
+              "name": "action",
+              "type": "ACTION"
+            }
+          ],
+          "samples": [
+            "cook sushi",
+            "{action}"
+          ]
+        },
+        {
+          "name": "DummyIntent",
+          "slots": [
+            {
+              "name": "part",
+              "type": "DummyPart",
+              "samples": [
+                "I want some {part}"
+              ]
+            }
+          ],
+          "samples": [
+            "please take me to some {part}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "ACTION",
+          "values": [
+            {
+              "name": {
+                "value": "slice"
+              }
+            },
+            {
+              "name": {
+                "value": "chop"
+              }
+            },
+            {
+              "name": {
+                "value": "boil"
+              }
+            },
+            {
+              "name": {
+                "value": "roll"
+              }
+            },
+            {
+              "name": {
+                "value": "no"
+              }
+            }
+          ]
+        },
+        {
+          "name": "DummyPart",
+          "values": [
+            {
+              "name": {
+                "value": "whatever"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "DummyIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "part",
+              "type": "DummyPart",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.323516811559.863715167340"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.323516811559.863715167340",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Could you please say what you want?"
+          }
+        ]
+      }
+    ]
+  }
+}
