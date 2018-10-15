@@ -25,11 +25,23 @@
         </resources>
     </build>
 
+    <repositories>
+        <repository>
+            <id>inner-skills-sdk-mvn-repo</id>
+            <url>https://raw.github.com/muffinsoft/inner-skills-sdk/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
-            <groupId>com.amazon.alexa</groupId>
-            <artifactId>ask-sdk</artifactId>
-            <version>2.7.1</version>
+            <groupId>com.muffinsoft</groupId>
+            <artifactId>inner-skills-sdk</artifactId>
+            <version>0.1.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
 </project>

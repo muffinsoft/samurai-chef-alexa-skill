@@ -3,11 +3,11 @@ package com.muffinsoft.alexa.skills.samuraichef;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiCancelandStopIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiHelpIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiLaunchRequestHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiSessionEndedRequestHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SushiSliceIntentHandler;
-import com.muffinsoft.alexa.skills.samuraichef.handlers.CancelandStopIntentHandler;
-import com.muffinsoft.alexa.skills.samuraichef.handlers.HelpIntentHandler;
-import com.muffinsoft.alexa.skills.samuraichef.handlers.LaunchRequestHandler;
-import com.muffinsoft.alexa.skills.samuraichef.handlers.SessionEndedRequestHandler;
 
 public class SamuraiChefStreamHandler extends SkillStreamHandler {
 
@@ -21,11 +21,11 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
 
         return Skills.standard()
                 .addRequestHandlers(
-                        new CancelandStopIntentHandler(),
-                        new HelpIntentHandler(),
-                        new LaunchRequestHandler(),
+                        new SamuraiCancelandStopIntentHandler(),
+                        new SamuraiHelpIntentHandler(),
+                        new SamuraiLaunchRequestHandler(),
                         new SushiSliceIntentHandler(),
-                        new SessionEndedRequestHandler())
+                        new SamuraiSessionEndedRequestHandler())
                 .withSkillId(amazonSkillId)
                 .build();
     }
