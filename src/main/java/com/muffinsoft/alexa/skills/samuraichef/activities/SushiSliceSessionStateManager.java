@@ -1,4 +1,4 @@
-package com.muffinsoft.alexa.skills.samuraichef.game;
+package com.muffinsoft.alexa.skills.samuraichef.activities;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
@@ -6,6 +6,7 @@ import com.muffinsoft.alexa.sdk.game.BaseSessionStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -21,7 +22,9 @@ import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstant
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.SUCCESS_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.SUSHI_SLICE_DEMO_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.SUSHI_SLICE_DEMO_PHRASE_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.SUSHI_SLICE_INTRO_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.SUSHI_SLICE_INTRO_PHRASE_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.USERNAME;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.USERNAME_PLACEHOLDER;
 
@@ -47,7 +50,7 @@ public class SushiSliceSessionStateManager extends BaseSessionStateManager {
 
     @Override
     protected void initializeGame() {
-        sessionAttributes = new HashMap<>();
+        sessionAttributes = attributesManager.getSessionAttributes() == null ? new HashMap<>() : attributesManager.getSessionAttributes();
         sessionAttributes.put(STATE_PHASE, StatePhase.INTRO);
         sessionAttributes.put(STATE_ITERATION, 0);
         sessionAttributes.put(MISTAKES_COUNT, 0);
@@ -111,6 +114,26 @@ public class SushiSliceSessionStateManager extends BaseSessionStateManager {
         return dialog;
     }
 
+    private DialogItem getIntroDialog() {
+        int count = Integer.parseInt(phraseManager.getValueByKey(SUSHI_SLICE_INTRO_PHRASE_COUNT));
+        StringBuilder dialog = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            dialog.append(phraseManager.getValueByKey(SUSHI_SLICE_INTRO_PHRASE + i));
+        }
+        this.statePhase = StatePhase.DEMO;
+        return new DialogItem(dialog.toString(), false, slotName, true);
+    }
+
+    private DialogItem getDemoDialog() {
+        int count = Integer.parseInt(phraseManager.getValueByKey(SUSHI_SLICE_DEMO_PHRASE_COUNT));
+        StringBuilder dialog = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            dialog.append(phraseManager.getValueByKey(SUSHI_SLICE_DEMO_PHRASE + i));
+        }
+        this.statePhase = StatePhase.PHASE_1;
+        return new DialogItem(dialog.toString(), false, slotName, true);
+    }
+
     private DialogItem getSuccessDialog() {
         String speechText = "<emphasis level=\"reduced\">";
         this.successCount++;
@@ -131,21 +154,6 @@ public class SushiSliceSessionStateManager extends BaseSessionStateManager {
         }
     }
 
-    private DialogItem getDemoDialog() {
-        this.statePhase = StatePhase.PHASE_1;
-        return new DialogItem(phraseManager.getValueByKey(SUSHI_SLICE_DEMO_PHRASE), false, slotName, true);
-    }
-
-    private DialogItem getIntroDialog() {
-
-        if (stateIteration == 0) {
-            userName = userReply;
-            sessionAttributes.put(USERNAME, userName);
-        }
-        this.statePhase = StatePhase.DEMO;
-        return new DialogItem(phraseManager.getValueByKey(SUSHI_SLICE_INTRO_PHRASE), false, slotName, true);
-    }
-
     private void updateSession() {
         sessionAttributes.put(MISTAKES_COUNT, mistakesCount);
         sessionAttributes.put(SUCCESS_COUNT, successCount);
@@ -164,12 +172,5 @@ public class SushiSliceSessionStateManager extends BaseSessionStateManager {
         sessionAttributes.put(PREVIOUS_INGREDIENTS, this.previousIngredients);
         sessionAttributes.put(INGREDIENT_REACTION, ingredientsManager.getValueByKey(nextIngredient));
         return speechText + " " + nextIngredient + "!";
-    }
-
-    private enum StatePhase {
-        INTRO,
-        DEMO,
-        PHASE_1,
-        PHASE_2
     }
 }

@@ -1,8 +1,21 @@
 {
-  "welcome" : "Welcome to Samurai Chef! Say cook sushi to start cooking",
+  "intro0" : "Hey, I’m Ben!  What’s your name?",
+  "intro1" : "Glad you’ve come over! I love playdates!! And today, I’ve got something so cool, so different for us to do.  Follow me",
   "welcomeCard" : "Samurai Chef",
   "fallback" : "We cannot do that right now",
   "failurePhrase" : "Ouch!",
-  "sushiSliceDemoPhrase": "<emphasis level=\"reduced\">Fish!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Slice!</emphasis><break time=\"2s\"/><emphasis level=\"reduced\">Seaweed!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Roll!</emphasis><break time=\"2s\"/><emphasis level=\"reduced\">Carrot!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Chop!</emphasis><break time=\"2s\"/><emphasis level=\"reduced\">Rice!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Boil!</emphasis><break time=\"2s\"/><emphasis level=\"reduced\">Shoe!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">No!</emphasis><break time=\"2s\"/><emphasis level=\"strong\">Now it’s your turn, Ben’s friend.</emphasis>",
-  "sushiSliceIntroPhrase": "<emphasis level=\"reduced\">Hi, Sensei Sushi! This is my friend USERNAME_PLACEHOLDER. We can’t wait to start.</emphasis><break time=\"2s\"/><emphasis level=\"strong\">Nice to meet you, Ben’s friend! You came just in time.  Adachi, my new samurai worker know how to slice and chop.  But that all he know.  He must be told exactly what to do and then he do it! But I am busy with customers and cannot stand here the whole time and tell him what to do. Dohh-shee-yohh</emphasis>"
+  "sushiSliceDemoPhraseCount": 6,
+  "sushiSliceDemoPhrase0": "<emphasis level=\"reduced\">Fish!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Slice!</emphasis><break time=\"2s\"/>",
+  "sushiSliceDemoPhrase1": "<emphasis level=\"reduced\">Seaweed!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Roll!</emphasis><break time=\"2s\"/>",
+  "sushiSliceDemoPhrase2": "<emphasis level=\"reduced\">Carrot!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Chop!</emphasis><break time=\"2s\"/>",
+  "sushiSliceDemoPhrase3": "<emphasis level=\"reduced\">Rice!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Boil!</emphasis><break time=\"2s\"/>",
+  "sushiSliceDemoPhrase4": "<emphasis level=\"reduced\">Shoe!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">No!</emphasis><break time=\"2s\"/>",
+  "sushiSliceDemoPhrase5": "<emphasis level=\"strong\">Now it’s your turn, Ben’s friend.</emphasis><break time=\"1s\"/>",
+  "sushiSliceIntroPhraseCount": 6,
+  "sushiSliceIntroPhrase0": "<emphasis level=\"reduced\">Hi, Sensei Sushi! This is my friend USERNAME_PLACEHOLDER. We can’t wait to start.</emphasis><break time=\"2s\"/>",
+  "sushiSliceIntroPhrase1": "<emphasis level=\"strong\">Nice to meet you, Ben’s friend! You came just in time.  Adachi, my new samurai worker know how to slice and chop.  But that all he know.  He must be told exactly what to do and then he do it! But I am busy with customers and cannot stand here the whole time and tell him what to do. Dohh-shee-yohh</emphasis>",
+  "sushiSliceIntroPhrase2": "<emphasis level=\"reduced\">We are here to help, Sensei. I will take out the food, and my friend USERNAME_PLACEHOLDER will tell Adachi what to do.</emphasis><break time=\"2s\"/>",
+  "sushiSliceIntroPhrase3": "<emphasis level=\"strong\">That is a good idea, Ben.  You take out the food and I will show your friend how to instruct Adachi.</emphasis><break time=\"2s\"/>",
+  "sushiSliceIntroPhrase4": "<emphasis level=\"strong\">If Ben give you fish, say \"Slice!\" If it's a vegetable,  say \"Chop!\". If it’s rice, say \"Boil\".  And if it’s seaseed, say \"Roll!\".  And if he accidentally throw you not food, say \"No!\".</emphasis><break time=\"2s\"/>",
+  "sushiSliceIntroPhrase5": "<emphasis level=\"strong\">Sensei will show you now.</emphasis><break time=\"2s\"/>"
 }

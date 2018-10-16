@@ -8,18 +8,20 @@ import com.muffinsoft.alexa.sdk.game.SessionStateManager;
 import com.muffinsoft.alexa.sdk.handlers.ActionIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.game.SushiSliceSessionStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
+import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceSessionStateManager;
 
 import java.util.Map;
 
 import static com.amazon.ask.request.Predicates.intentName;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.ACTIVITY;
 
-public class SushiSliceIntentHandler extends ActionIntentHandler {
+public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
     private final PhraseManager phraseManager;
     private final IngredientsManager ingredientsManager;
 
-    public SushiSliceIntentHandler(PhraseManager phraseManager, IngredientsManager ingredientsManager) {
+    public SamuraiActionIntentHandler(PhraseManager phraseManager, IngredientsManager ingredientsManager) {
         this.phraseManager = phraseManager;
         this.ingredientsManager = ingredientsManager;
     }
@@ -37,7 +39,19 @@ public class SushiSliceIntentHandler extends ActionIntentHandler {
 
         Map<String, Slot> slots = intentRequest.getIntent().getSlots();
 
-        return new SushiSliceSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager);
+        Activities currentActivity = getCurrentActivity(input);
+
+        switch (currentActivity) {
+            case SUSHI_SLICE:
+                return new SushiSliceSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager);
+            default:
+                return new SushiSliceSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager);
+        }
+    }
+
+    private Activities getCurrentActivity(HandlerInput input) {
+        String rawActivity = String.valueOf(input.getAttributesManager().getSessionAttributes().getOrDefault(ACTIVITY, "SUSHI_SLICE"));
+        return Activities.valueOf(rawActivity);
     }
 
     @Override
