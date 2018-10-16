@@ -6,6 +6,7 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.game.SessionStateManager;
 import com.muffinsoft.alexa.sdk.handlers.ActionIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.game.SushiSliceSessionStateManager;
 
@@ -14,6 +15,14 @@ import java.util.Map;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class SushiSliceIntentHandler extends ActionIntentHandler {
+
+    private final PhraseManager phraseManager;
+    private final IngredientsManager ingredientsManager;
+
+    public SushiSliceIntentHandler(PhraseManager phraseManager, IngredientsManager ingredientsManager) {
+        this.phraseManager = phraseManager;
+        this.ingredientsManager = ingredientsManager;
+    }
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -28,7 +37,7 @@ public class SushiSliceIntentHandler extends ActionIntentHandler {
 
         Map<String, Slot> slots = intentRequest.getIntent().getSlots();
 
-        return new SushiSliceSessionStateManager(slots, input.getAttributesManager());
+        return new SushiSliceSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager);
     }
 
     @Override
@@ -39,6 +48,6 @@ public class SushiSliceIntentHandler extends ActionIntentHandler {
 
     @Override
     public String getSimpleCard() {
-        return PhraseManager.getPhrase("welcomeCard");
+        return phraseManager.getValueByKey("welcomeCard");
     }
 }

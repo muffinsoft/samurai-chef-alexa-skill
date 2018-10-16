@@ -21,10 +21,10 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
 
         return Skills.standard()
                 .addRequestHandlers(
-                        new SamuraiCancelandStopIntentHandler(),
-                        new SamuraiHelpIntentHandler(),
-                        new SamuraiLaunchRequestHandler(),
-                        new SushiSliceIntentHandler(),
+                        new SamuraiCancelandStopIntentHandler(DependenciesContainer.providePhraseManager()),
+                        new SamuraiHelpIntentHandler(DependenciesContainer.providePhraseManager()),
+                        new SamuraiLaunchRequestHandler(DependenciesContainer.providePhraseManager()),
+                        new SushiSliceIntentHandler(DependenciesContainer.providePhraseManager(), DependenciesContainer.provideIngredientsManager()),
                         new SamuraiSessionEndedRequestHandler())
                 .withSkillId(amazonSkillId)
                 .build();

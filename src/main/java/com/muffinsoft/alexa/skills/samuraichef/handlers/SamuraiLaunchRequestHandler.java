@@ -5,13 +5,20 @@ import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 
 public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
 
+    private final PhraseManager phraseManager;
+
+    public SamuraiLaunchRequestHandler(PhraseManager phraseManager) {
+        super();
+        this.phraseManager = phraseManager;
+    }
+
     @Override
     public String getPhrase() {
-        return PhraseManager.getPhrase("welcome");
+        return phraseManager.getValueByKey("welcome");
     }
 
     @Override
     public String getSimpleCard() {
-        return PhraseManager.getPhrase("welcomeCard");
+        return phraseManager.getValueByKey("welcomeCard");
     }
 }

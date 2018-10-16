@@ -2,7 +2,7 @@
   "welcome" : "Welcome to Samurai Chef! Say cook sushi to start cooking",
   "welcomeCard" : "Samurai Chef",
   "fallback" : "We cannot do that right now",
-  "actionDescription" : "Let's start cooking sushi. If we give you a fish, say Slice! If it's a vegetable, say Chop! If it’s rice, say Boil. And if it’s seaseed, say Roll!. And if he accidentally throw you not food, say No!",
-  "actionApprove" : "Very well! The next is",
-  "actionFail" : "Ouch!"
+  "failurePhrase" : "Ouch!",
+  "sushiSliceDemoPhrase": "<emphasis level=\"reduced\">Fish!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Slice!</emphasis><break time=\"2s\"/><emphasis level=\"reduced\">Seaweed!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Roll!</emphasis><break time=\"2s\"/><emphasis level=\"reduced\">Carrot!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Chop!</emphasis><break time=\"2s\"/><emphasis level=\"reduced\">Rice!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">Boil!</emphasis><break time=\"2s\"/><emphasis level=\"reduced\">Shoe!</emphasis><break time=\"1s\"/><emphasis level=\"strong\">No!</emphasis><break time=\"2s\"/><emphasis level=\"strong\">Now it’s your turn, Ben’s friend.</emphasis>",
+  "sushiSliceIntroPhrase": "<emphasis level=\"reduced\">Hi, Sensei Sushi! This is my friend USERNAME_PLACEHOLDER. We can’t wait to start.</emphasis><break time=\"2s\"/><emphasis level=\"strong\">Nice to meet you, Ben’s friend! You came just in time.  Adachi, my new samurai worker know how to slice and chop.  But that all he know.  He must be told exactly what to do and then he do it! But I am busy with customers and cannot stand here the whole time and tell him what to do. Dohh-shee-yohh</emphasis>"
 }

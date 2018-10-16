@@ -1,49 +1,47 @@
 package com.muffinsoft.alexa.skills.samuraichef.content;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.muffinsoft.alexa.sdk.content.BaseContentManager;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
-public class IngredientsManager {
+public class IngredientsManager extends BaseContentManager<String> {
 
-    private static final Logger logger = LoggerFactory.getLogger(IngredientsManager.class);
-
-    private static final String PATH = "phrases/ingredients.json";
-
-    private static Map<String, String> ingredients;
-
-    static {
-        File file = new File(PATH);
-        try {
-            ingredients = new ObjectMapper().readValue(file, new TypeReference<HashMap<String, String>>() {
-            });
-        }
-        catch (IOException e) {
-            logger.error("Exception", e);
-        }
+    public IngredientsManager(String path) {
+        super(path);
     }
 
-    public static String getIngredient() {
+    public String getNextIngredient(LinkedList<String> previousIngredients) {
 
+        List<String> ingredientsList = new ArrayList<>(getContainer().keySet());
+
+        if (previousIngredients.isEmpty()) {
+            return getRandomIngredientFromList(ingredientsList);
+        }
+        else {
+            HashSet<String> uniqueIngredients = new HashSet<>(previousIngredients);
+            if (previousIngredients.size() - uniqueIngredients.size() >= 2) {
+
+                List<String> updateIngredientList = ingredientsList.stream()
+                        .filter(ingredient -> !uniqueIngredients.contains(ingredient))
+                        .collect(Collectors.toList());
+
+                return getRandomIngredientFromList(updateIngredientList);
+            }
+            else {
+                return getRandomIngredientFromList(ingredientsList);
+            }
+        }
+
+    }
+
+    private String getRandomIngredientFromList(List<String> ingredients) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-
-        List<String> ingredientsList = new ArrayList<>(ingredients.keySet());
-
-        int nextIngredient = random.nextInt(ingredients.size());
-
-        return ingredientsList.get(nextIngredient);
-    }
-
-    public static String getIngredientResponse(String key) {
-        return ingredients.get(key);
+        int nextIngredient = random.nextInt(getContainer().size());
+        return ingredients.get(nextIngredient);
     }
 }

@@ -5,6 +5,13 @@ import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 
 public class SamuraiCancelandStopIntentHandler extends CancelandStopIntentHandler {
 
+    private final PhraseManager phraseManager;
+
+    public SamuraiCancelandStopIntentHandler(PhraseManager phraseManager) {
+        super();
+        this.phraseManager = phraseManager;
+    }
+
     @Override
     public String getPhrase() {
         return "Bye Bye";
@@ -12,6 +19,6 @@ public class SamuraiCancelandStopIntentHandler extends CancelandStopIntentHandle
 
     @Override
     public String getSimpleCard() {
-        return PhraseManager.getPhrase("welcomeCard");
+        return phraseManager.getValueByKey("welcomeCard");
     }
 }
