@@ -24,7 +24,7 @@
           "samples": []
         },
         {
-          "name": "SushiSliceIntent",
+          "name": "SamuraiActionIntent",
           "slots": [
             {
               "name": "action",
@@ -32,7 +32,7 @@
             }
           ],
           "samples": [
-            "cook sushi",
+            "cooking",
             "{action}"
           ]
         },

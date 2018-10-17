@@ -5,26 +5,32 @@ import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.ACTIVITY;
+import static com.muffinsoft.alexa.sdk.content.BaseConstants.USERNAME;
+import static com.muffinsoft.alexa.sdk.content.BaseConstants.USERNAME_PLACEHOLDER;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.INGREDIENT_REACTION;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.MISTAKES_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.PREVIOUS_INGREDIENTS;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.SUCCESS_COUNT;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.USERNAME;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.USERNAME_PLACEHOLDER;
 
-public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateManager {
+public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
-    public SushiSliceSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager) {
+    private String currentIngredientReaction;
+    private String userName;
+    private LinkedList<String> previousIngredients;
+    private StatePhase statePhase;
+    private int successCount;
+    private int mistakesCount;
+    private Long questionTime;
+
+    public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager) {
         super(slots, attributesManager, phraseManager, ingredientsManager);
     }
 
@@ -35,10 +41,10 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
         statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.get(STATE_PHASE)));
         successCount = (int) sessionAttributes.get(SUCCESS_COUNT);
         mistakesCount = (int) sessionAttributes.get(MISTAKES_COUNT);
+        questionTime = (Long) sessionAttributes.get(QUESTION_TIME);
         userName = String.valueOf(sessionAttributes.get(USERNAME));
         Object ingredient = sessionAttributes.get(INGREDIENT_REACTION);
         currentIngredientReaction = ingredient != null ? String.valueOf(ingredient) : null;
-        currentActivity = Activities.valueOf(String.valueOf(sessionAttributes.get(ACTIVITY)));
     }
 
     @Override
@@ -54,6 +60,7 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
 
         DialogItem dialog;
 
+
         if (this.statePhase == StatePhase.INTRO) {
             dialog = getIntroDialog(this.currentActivity);
         }
@@ -62,21 +69,25 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
         }
         else {
 
-            if (Objects.equals(currentIngredientReaction, userReply)) {
-                dialog = getSuccessDialog();
-            }
-            else {
-                dialog = getFailureDialog(null);
-            }
-
-            if (this.successCount == 5) {
+            if (this.successCount == 10) {
                 this.statePhase = StatePhase.PHASE_2;
             }
 
-            if (this.successCount == 10) {
-                this.statePhase = StatePhase.WIN;
-                dialog = getWinDialog();
+            long answerTime = System.currentTimeMillis();
+
+            if (Objects.equals(currentIngredientReaction, userReply)) {
+                if (questionTime == null || questionTime - answerTime < 3000) {
+                    dialog = getSuccessDialog();
+                }
+                else {
+                    dialog = getFailureDialog("<emphasis level=\"reduced\">Too long!");
+                }
             }
+            else {
+                dialog = getFailureDialog("<emphasis level=\"reduced\">Wrong!");
+            }
+
+            sessionAttributes.put(QUESTION_TIME, System.currentTimeMillis());
         }
 
         String responseText = dialog.getResponseText().replace(USERNAME_PLACEHOLDER, userName);

@@ -1,7 +1,9 @@
 {
-  "fish" : "slice",
-  "carrot" : "chop",
-  "rice" : "boil",
-  "seaweed" : "roll",
-  "shoe" : "no"
+  "SUSHI_SLICE": {
+    "fish": "slice",
+    "carrot": "chop",
+    "rice": "boil",
+    "seaweed": "roll",
+    "shoe": "no"
+  }
 }

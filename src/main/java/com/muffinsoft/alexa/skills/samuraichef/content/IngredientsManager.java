@@ -1,26 +1,30 @@
 package com.muffinsoft.alexa.skills.samuraichef.content;
 
 import com.muffinsoft.alexa.sdk.content.BaseContentManager;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
-public class IngredientsManager extends BaseContentManager<String> {
+public class IngredientsManager extends BaseContentManager<Map<String, String>> {
 
     public IngredientsManager(String path) {
         super(path);
     }
 
-    public String getNextIngredient(LinkedList<String> previousIngredients) {
+    public String getNextIngredient(Activities activity, LinkedList<String> previousIngredients) {
 
-        List<String> ingredientsList = new ArrayList<>(getContainer().keySet());
+        Map<String, String> ingredients = getValueByKey(activity.name());
+
+        List<String> ingredientsList = new ArrayList<>(ingredients.keySet());
 
         if (previousIngredients.isEmpty()) {
-            return getRandomIngredientFromList(ingredientsList);
+            return getRandomIngredientFromList(activity, ingredientsList);
         }
         else {
             HashSet<String> uniqueIngredients = new HashSet<>(previousIngredients);
@@ -30,18 +34,17 @@ public class IngredientsManager extends BaseContentManager<String> {
                         .filter(ingredient -> !uniqueIngredients.contains(ingredient))
                         .collect(Collectors.toList());
 
-                return getRandomIngredientFromList(updateIngredientList);
+                return getRandomIngredientFromList(activity, updateIngredientList);
             }
             else {
-                return getRandomIngredientFromList(ingredientsList);
+                return getRandomIngredientFromList(activity, ingredientsList);
             }
         }
-
     }
 
-    private String getRandomIngredientFromList(List<String> ingredients) {
+    private String getRandomIngredientFromList(Activities activity, List<String> ingredients) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        int nextIngredient = random.nextInt(getContainer().size());
+        int nextIngredient = random.nextInt(getValueByKey(activity.name()).size());
         return ingredients.get(nextIngredient);
     }
 }
