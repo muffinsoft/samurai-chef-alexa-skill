@@ -16,10 +16,8 @@ import java.util.Objects;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.INGREDIENT_REACTION;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.MISTAKES_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.PREVIOUS_INGREDIENTS;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.SUCCESS_COUNT;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.USERNAME;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.USERNAME_PLACEHOLDER;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.INTRO;
@@ -42,7 +40,6 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
         statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.getOrDefault(STATE_PHASE, INTRO)));
         successCount = (int) sessionAttributes.getOrDefault(SUCCESS_COUNT, 0);
         mistakesCount = (int) sessionAttributes.getOrDefault(MISTAKES_COUNT, 0);
-        userName = String.valueOf(sessionAttributes.get(USERNAME));
         Object ingredient = sessionAttributes.getOrDefault(INGREDIENT_REACTION, null);
         currentIngredientReaction = ingredient != null ? String.valueOf(ingredient) : null;
     }
@@ -52,7 +49,6 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
         sessionAttributes.put(MISTAKES_COUNT, mistakesCount);
         sessionAttributes.put(SUCCESS_COUNT, successCount);
         sessionAttributes.put(STATE_PHASE, statePhase);
-        sessionAttributes.put(QUESTION_TIME, System.currentTimeMillis());
     }
 
     @Override

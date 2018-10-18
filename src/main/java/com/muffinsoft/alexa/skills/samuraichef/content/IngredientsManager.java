@@ -19,32 +19,32 @@ public class IngredientsManager extends BaseContentManager<Map<String, String>> 
 
     public String getNextIngredient(Activities activity, LinkedList<String> previousIngredients) {
 
-        Map<String, String> ingredients = getValueByKey(activity.name());
+        Map<String, String> ingredientsByActivity = getValueByKey(activity.name());
 
-        List<String> ingredientsList = new ArrayList<>(ingredients.keySet());
+        List<String> ingredientsList = new ArrayList<>(ingredientsByActivity.keySet());
 
         if (previousIngredients.isEmpty()) {
-            return getRandomIngredientFromList(activity, ingredientsList);
+            return getRandomIngredientFromList(ingredientsList);
         }
         else {
             HashSet<String> uniqueIngredients = new HashSet<>(previousIngredients);
-            if (previousIngredients.size() - uniqueIngredients.size() >= 2) {
+            if (previousIngredients.size() - uniqueIngredients.size() >= 1) {
 
                 List<String> updateIngredientList = ingredientsList.stream()
                         .filter(ingredient -> !uniqueIngredients.contains(ingredient))
                         .collect(Collectors.toList());
 
-                return getRandomIngredientFromList(activity, updateIngredientList);
+                return getRandomIngredientFromList(updateIngredientList);
             }
             else {
-                return getRandomIngredientFromList(activity, ingredientsList);
+                return getRandomIngredientFromList(ingredientsList);
             }
         }
     }
 
-    private String getRandomIngredientFromList(Activities activity, List<String> ingredients) {
+    private String getRandomIngredientFromList(List<String> ingredients) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        int nextIngredient = random.nextInt(getValueByKey(activity.name()).size());
+        int nextIngredient = random.nextInt(ingredients.size());
         return ingredients.get(nextIngredient);
     }
 }

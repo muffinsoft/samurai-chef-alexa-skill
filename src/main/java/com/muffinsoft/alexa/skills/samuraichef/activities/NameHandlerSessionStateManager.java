@@ -15,7 +15,6 @@ import static com.muffinsoft.alexa.sdk.content.BaseConstants.USERNAME;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.FIRST_TIME_ASKING;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.INTRO_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.MISTAKES_COUNT;
 
 public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
@@ -49,7 +48,7 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
 
         DialogItem dialogItem;
 
-        if (userName == null && userReply == null) {
+        if (userName == null) {
             sessionAttributes.put(ACTIVITY, Activities.NAME_HANDLER);
             if (firstTimeAsking) {
                 dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHRASE + 0), false, SlotName.ACTION.text);
@@ -60,14 +59,9 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
             }
         }
         else {
-            if (userReply != null) {
-                sessionAttributes.put(USERNAME, userReply);
-            }
-            else {
-                sessionAttributes.put(USERNAME, userName);
-            }
+            sessionAttributes.put(USERNAME, userName);
             sessionAttributes.put(ACTIVITY, activitiesManager.getNextActivity(Activities.NAME_HANDLER));
-            dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHRASE + 2), false, SlotName.NAME.text);
+            dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHRASE + 2), false, SlotName.ACTION.text);
         }
 
         return dialogItem;

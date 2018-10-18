@@ -12,7 +12,6 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.muffinsoft.alexa.sdk.content.BaseConstants.USERNAME;
 import static com.muffinsoft.alexa.sdk.content.BaseConstants.USERNAME_PLACEHOLDER;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.INGREDIENT_REACTION;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.MISTAKES_COUNT;
@@ -23,12 +22,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstant
 
 public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
-    private String currentIngredientReaction;
-    private String userName;
-    private LinkedList<String> previousIngredients;
-    private StatePhase statePhase;
-    private int successCount;
-    private int mistakesCount;
     private Long questionTime;
 
     public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager) {
@@ -44,7 +37,6 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
         successCount = (int) sessionAttributes.get(SUCCESS_COUNT);
         mistakesCount = (int) sessionAttributes.get(MISTAKES_COUNT);
         questionTime = (Long) sessionAttributes.get(QUESTION_TIME);
-        userName = String.valueOf(sessionAttributes.get(USERNAME));
         Object ingredient = sessionAttributes.get(INGREDIENT_REACTION);
         currentIngredientReaction = ingredient != null ? String.valueOf(ingredient) : null;
     }

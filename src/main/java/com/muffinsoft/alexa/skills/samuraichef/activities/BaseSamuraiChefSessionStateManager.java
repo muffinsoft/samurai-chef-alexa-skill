@@ -25,14 +25,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected final PhraseManager phraseManager;
     private final IngredientsManager ingredientsManager;
 
-    String currentIngredientReaction;
-    String userName;
-    LinkedList<String> previousIngredients;
-    StatePhase statePhase;
-    int successCount;
-    int mistakesCount;
+    protected String currentIngredientReaction;
+    protected LinkedList<String> previousIngredients;
+    protected StatePhase statePhase;
+    protected int successCount;
+    protected int mistakesCount;
 
-    Activities currentActivity;
+    protected Activities currentActivity;
 
 
     BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager) {
@@ -60,7 +59,8 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         StringBuilder dialog = new StringBuilder();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 4; i < count; i++) {
+//        for (int i = 0; i < count; i++) {
             dialog.append(phraseManager.getValueByKey(activity.getTitle() + "IntroPhrase" + i));
             dialog.append(" ");
         }
@@ -117,11 +117,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected String nextIngredient(String speechText) {
         String nextIngredient = ingredientsManager.getNextIngredient(this.currentActivity, this.previousIngredients);
         this.previousIngredients.addFirst(nextIngredient);
-        if (this.previousIngredients.size() > 2) {
+        if (this.previousIngredients.size() > 3) {
             this.previousIngredients.removeLast();
         }
+        Map<String, String> valueByKey = ingredientsManager.getValueByKey(currentActivity.name());
+        String reaction = valueByKey.get(nextIngredient);
         sessionAttributes.put(PREVIOUS_INGREDIENTS, this.previousIngredients);
-        sessionAttributes.put(INGREDIENT_REACTION, ingredientsManager.getValueByKey(nextIngredient));
+        sessionAttributes.put(INGREDIENT_REACTION, reaction);
         return speechText + " " + nextIngredient + "!";
     }
 }
