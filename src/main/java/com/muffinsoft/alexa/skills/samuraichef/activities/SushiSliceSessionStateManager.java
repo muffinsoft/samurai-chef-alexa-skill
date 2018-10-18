@@ -12,7 +12,6 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.INGREDIENT_REACTION;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.MISTAKES_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.PREVIOUS_INGREDIENTS;
@@ -26,19 +25,19 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
 
     public SushiSliceSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager) {
         super(slots, attributesManager, phraseManager, ingredientsManager);
+        currentActivity = Activities.SUSHI_SLICE;
     }
 
     @Override
     protected void populateActivityVariables() {
         //noinspection unchecked
-        previousIngredients = (LinkedList<String>) sessionAttributes.get(PREVIOUS_INGREDIENTS);
-        statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.get(STATE_PHASE)));
-        successCount = (int) sessionAttributes.get(SUCCESS_COUNT);
-        mistakesCount = (int) sessionAttributes.get(MISTAKES_COUNT);
+        previousIngredients = (LinkedList<String>) sessionAttributes.getOrDefault(PREVIOUS_INGREDIENTS, new LinkedList<String>());
+        statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.getOrDefault(STATE_PHASE, StatePhase.INTRO)));
+        successCount = (int) sessionAttributes.getOrDefault(SUCCESS_COUNT, 0);
+        mistakesCount = (int) sessionAttributes.getOrDefault(MISTAKES_COUNT, 0);
         userName = String.valueOf(sessionAttributes.get(USERNAME));
-        Object ingredient = sessionAttributes.get(INGREDIENT_REACTION);
+        Object ingredient = sessionAttributes.getOrDefault(INGREDIENT_REACTION, null);
         currentIngredientReaction = ingredient != null ? String.valueOf(ingredient) : null;
-        currentActivity = Activities.valueOf(String.valueOf(sessionAttributes.get(ACTIVITY)));
     }
 
     @Override

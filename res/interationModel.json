@@ -28,12 +28,27 @@
           "slots": [
             {
               "name": "action",
-              "type": "ACTION"
+              "type": "ACTION",
+              "samples": [
+                "{action}"
+              ]
+            },
+            {
+              "name": "name",
+              "type": "AMAZON.DE_FIRST_NAME",
+              "samples": [
+                "my name is {name}",
+                "i am {name}",
+                "{name}"
+              ]
             }
           ],
           "samples": [
             "cooking",
-            "{action}"
+            "{action}",
+            "my name is {name}",
+            "i am {name}",
+            "{name}"
           ]
         },
         {
@@ -78,7 +93,25 @@
             },
             {
               "name": {
-                "value": "no"
+                "value": "no",
+                "synonyms": [
+                  "nope",
+                  "I do not",
+                  "no thank you"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "yes",
+                "synonyms": [
+                  "yep",
+                  "yeah",
+                  "I do",
+                  "yes please",
+                  "you know it",
+                  "of course"
+                ]
               }
             }
           ]

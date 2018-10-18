@@ -5,6 +5,7 @@ import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 
 import java.util.LinkedList;
@@ -32,6 +33,7 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
 
     public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager) {
         super(slots, attributesManager, phraseManager, ingredientsManager);
+        this.currentActivity = Activities.JUICE_WARRIOR;
     }
 
     @Override

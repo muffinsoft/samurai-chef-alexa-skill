@@ -52,39 +52,41 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     DialogItem getIntroDialog(Activities activity) {
 
-        String countKey = activity.name() + "_INTRO_PHRASE_COUNT";
+        String countKey = activity.getTitle() + "IntroPhraseCount";
 
-        int count = Integer.parseInt(phraseManager.getValueByKey(countKey));
+        String countValue = phraseManager.getValueByKey(countKey);
+
+        int count = Integer.parseInt(countValue);
 
         StringBuilder dialog = new StringBuilder();
 
 
         for (int i = 0; i < count; i++) {
-            dialog.append(phraseManager.getValueByKey(activity.name() + "_INTRO_PHRASE" + i));
+            dialog.append(phraseManager.getValueByKey(activity.getTitle() + "IntroPhrase" + i));
         }
 
         this.statePhase = StatePhase.DEMO;
 
-        return new DialogItem(dialog.toString(), false, slotName, true);
+        return new DialogItem(dialog.toString(), false, actionSlotName, true);
     }
 
     DialogItem getWinDialog() {
-        return new DialogItem(phraseManager.getValueByKey("wonPhrase"), true, slotName, true);
+        return new DialogItem(phraseManager.getValueByKey("wonPhrase"), true, actionSlotName, true);
     }
 
     DialogItem getDemoDialog(Activities activity) {
 
-        String countKey = activity.name() + "_DEMO_PHRASE_COUNT";
+        String countKey = activity.getTitle() + "DemoPhraseCount";
 
         int count = Integer.parseInt(phraseManager.getValueByKey(countKey));
 
         StringBuilder dialog = new StringBuilder();
 
         for (int i = 0; i < count; i++) {
-            dialog.append(phraseManager.getValueByKey(activity.name() + "_DEMO_PHRASE" + i));
+            dialog.append(phraseManager.getValueByKey(activity.getTitle() + "DemoPhrase" + i));
         }
         this.statePhase = StatePhase.PHASE_1;
-        return new DialogItem(dialog.toString(), false, slotName, true);
+        return new DialogItem(dialog.toString(), false, actionSlotName, true);
     }
 
     DialogItem getSuccessDialog() {
@@ -92,7 +94,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         this.successCount++;
         speechText = nextIngredient(speechText);
         speechText += "</emphasis>";
-        return new DialogItem(speechText, false, slotName);
+        return new DialogItem(speechText, false, actionSlotName);
     }
 
     DialogItem getFailureDialog(String speechText) {
@@ -103,10 +105,10 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         if (this.mistakesCount < 3) {
             speechText = nextIngredient(speechText);
             speechText += "</emphasis>";
-            return new DialogItem(speechText, false, slotName);
+            return new DialogItem(speechText, false, actionSlotName);
         }
         else {
-            return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE), false, slotName);
+            return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE), false, actionSlotName);
         }
     }
 

@@ -47,16 +47,27 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
         Activities currentActivity = getCurrentActivity(input);
 
+        System.out.println("CURRENT ACTIVITY: " + currentActivity.name());
+
+        SessionStateManager stateManager;
+
         switch (currentActivity) {
             case NAME_HANDLER:
-                return new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager);
+                stateManager = new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager);
+                break;
             case SUSHI_SLICE:
-                return new SushiSliceSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager);
+                stateManager = new SushiSliceSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager);
+                break;
             case JUICE_WARRIOR:
-                return new JuiceWarriorSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager);
+                stateManager = new JuiceWarriorSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager);
+                break;
             default:
                 throw new IllegalStateException("Exception while handling activity: " + currentActivity);
         }
+
+        System.out.println("SESSION STATE MANAGER: " + stateManager.getClass());
+
+        return stateManager;
     }
 
     private Activities getCurrentActivity(HandlerInput input) {
