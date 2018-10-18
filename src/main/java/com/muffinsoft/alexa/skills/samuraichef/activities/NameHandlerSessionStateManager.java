@@ -13,11 +13,15 @@ import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.content.BaseConstants.USERNAME;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.ACTIVITY;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.FIRST_TIME_ASKING;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.INTRO_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.MISTAKES_COUNT;
 
 public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
     private final ActivitiesManager activitiesManager;
+
+    private boolean firstTimeAsking;
 
     public NameHandlerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager) {
         super(slots, attributesManager, phraseManager, null);
@@ -32,12 +36,12 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
 
     @Override
     protected void populateActivityVariables() {
-
+        this.firstTimeAsking = (boolean) sessionAttributes.getOrDefault(FIRST_TIME_ASKING, true);
     }
 
     @Override
     protected void updateSessionAttributes() {
-
+        sessionAttributes.put(FIRST_TIME_ASKING, firstTimeAsking);
     }
 
     @Override
@@ -47,7 +51,13 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
 
         if (userName == null && userReply == null) {
             sessionAttributes.put(ACTIVITY, Activities.NAME_HANDLER);
-            dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHRASE + 0), false, SlotName.NAME.text);
+            if (firstTimeAsking) {
+                dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHRASE + 0), false, SlotName.ACTION.text);
+                firstTimeAsking = false;
+            }
+            else {
+                dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHRASE + 1), false, SlotName.ACTION.text);
+            }
         }
         else {
             if (userReply != null) {
@@ -57,7 +67,7 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
                 sessionAttributes.put(USERNAME, userName);
             }
             sessionAttributes.put(ACTIVITY, activitiesManager.getNextActivity(Activities.NAME_HANDLER));
-            dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHRASE + 1), false, SlotName.ACTION.text);
+            dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHRASE + 2), false, SlotName.NAME.text);
         }
 
         return dialogItem;

@@ -3,6 +3,7 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
@@ -20,6 +21,12 @@ import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstant
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.SUCCESS_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.USERNAME;
 import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.USERNAME_PLACEHOLDER;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.INTRO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_0;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
 public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
@@ -32,7 +39,7 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
     protected void populateActivityVariables() {
         //noinspection unchecked
         previousIngredients = (LinkedList<String>) sessionAttributes.getOrDefault(PREVIOUS_INGREDIENTS, new LinkedList<String>());
-        statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.getOrDefault(STATE_PHASE, StatePhase.INTRO)));
+        statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.getOrDefault(STATE_PHASE, INTRO)));
         successCount = (int) sessionAttributes.getOrDefault(SUCCESS_COUNT, 0);
         mistakesCount = (int) sessionAttributes.getOrDefault(MISTAKES_COUNT, 0);
         userName = String.valueOf(sessionAttributes.get(USERNAME));
@@ -53,11 +60,21 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
 
         DialogItem dialog;
 
-        if (this.statePhase == StatePhase.INTRO) {
+        if (this.statePhase == INTRO) {
             dialog = getIntroDialog(this.currentActivity);
         }
-        else if (this.statePhase == StatePhase.DEMO) {
-            dialog = getDemoDialog(this.currentActivity);
+        else if (this.statePhase == DEMO) {
+            if (userReply.equals("no")) {
+                dialog = getReadyToStartDialog();
+            }
+            else {
+                dialog = getDemoDialog(this.currentActivity);
+            }
+        }
+        else if (this.statePhase == PHASE_0) {
+            String speechText = nextIngredient();
+            this.statePhase = PHASE_1;
+            dialog = new DialogItem(speechText, false, SlotName.ACTION.text);
         }
         else {
 
@@ -69,11 +86,11 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
             }
 
             if (this.successCount == 5) {
-                this.statePhase = StatePhase.PHASE_2;
+                this.statePhase = PHASE_2;
             }
 
             if (this.successCount == 10) {
-                this.statePhase = StatePhase.WIN;
+                this.statePhase = WIN;
                 dialog = getWinDialog();
             }
         }
@@ -82,5 +99,10 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
         dialog.setResponseText(responseText);
 
         return dialog;
+    }
+
+    private DialogItem getReadyToStartDialog() {
+        this.statePhase = PHASE_0;
+        return new DialogItem(phraseManager.getValueByKey("readyToStart"), false, actionSlotName, true);
     }
 }

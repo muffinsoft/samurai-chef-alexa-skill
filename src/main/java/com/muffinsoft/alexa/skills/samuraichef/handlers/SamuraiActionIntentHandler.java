@@ -65,7 +65,7 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
                 throw new IllegalStateException("Exception while handling activity: " + currentActivity);
         }
 
-        System.out.println("SESSION STATE MANAGER: " + stateManager.getClass());
+        System.out.println("SESSION STATE MANAGER: " + stateManager.getClass().getSimpleName());
 
         return stateManager;
     }

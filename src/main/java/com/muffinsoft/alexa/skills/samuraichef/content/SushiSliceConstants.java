@@ -10,6 +10,7 @@ public class SushiSliceConstants extends BaseConstants {
      */
     public static final String INGREDIENT_REACTION = "ingredientReaction";
     public static final String PREVIOUS_INGREDIENTS = "previousIngredients";
+    public static final String FIRST_TIME_ASKING = "firstTimeAsking";
     public static final String STATE_PHASE = "statePhase";
     public static final String MISTAKES_COUNT = "mistakesCount";
     public static final String SUCCESS_COUNT = "successCount";
@@ -22,10 +23,10 @@ public class SushiSliceConstants extends BaseConstants {
     public static final String SUSHI_SLICE_DEMO_PHRASE = "sushiSliceDemoPhrase";
     public static final String SUSHI_SLICE_DEMO_PHRASE_COUNT = "sushiSliceIntroPhraseCount";
 
-    public static final String JUICE_WARRIOR_INTRO_PHRASE = "sushiSliceIntroPhrase";
-    public static final String JUICE_WARRIOR_INTRO_PHRASE_COUNT = "sushiSliceDemoPhraseCount";
-    public static final String JUICE_WARRIOR_DEMO_PHRASE = "sushiSliceDemoPhrase";
-    public static final String JUICE_WARRIOR_DEMO_PHRASE_COUNT = "sushiSliceIntroPhraseCount";
+    public static final String JUICE_WARRIOR_INTRO_PHRASE = "juiceWarriorIntroPhrase";
+    public static final String JUICE_WARRIOR_INTRO_PHRASE_COUNT = "juiceWarriorDemoPhraseCount";
+    public static final String JUICE_WARRIOR_DEMO_PHRASE = "juiceWarriorDemoPhrase";
+    public static final String JUICE_WARRIOR_DEMO_PHRASE_COUNT = "juiceWarriorIntroPhraseCount";
 
 
     public static final String INTRO_PHRASE = "intro";

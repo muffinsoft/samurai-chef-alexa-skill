@@ -60,14 +60,14 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         StringBuilder dialog = new StringBuilder();
 
-
         for (int i = 0; i < count; i++) {
             dialog.append(phraseManager.getValueByKey(activity.getTitle() + "IntroPhrase" + i));
+            dialog.append(" ");
         }
 
         this.statePhase = StatePhase.DEMO;
 
-        return new DialogItem(dialog.toString(), false, actionSlotName, true);
+        return new DialogItem(dialog.toString(), false, actionSlotName);
     }
 
     DialogItem getWinDialog() {
@@ -84,27 +84,25 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         for (int i = 0; i < count; i++) {
             dialog.append(phraseManager.getValueByKey(activity.getTitle() + "DemoPhrase" + i));
+            dialog.append(" ");
         }
-        this.statePhase = StatePhase.PHASE_1;
+        this.statePhase = StatePhase.PHASE_0;
         return new DialogItem(dialog.toString(), false, actionSlotName, true);
     }
 
     DialogItem getSuccessDialog() {
-        String speechText = "<emphasis level=\"reduced\">";
         this.successCount++;
-        speechText = nextIngredient(speechText);
-        speechText += "</emphasis>";
+        String speechText = nextIngredient();
         return new DialogItem(speechText, false, actionSlotName);
     }
 
     DialogItem getFailureDialog(String speechText) {
         if (speechText == null) {
-            speechText = "<emphasis level=\"reduced\">Wrong!";
+            speechText = "Wrong!";
         }
         this.mistakesCount++;
         if (this.mistakesCount < 3) {
             speechText = nextIngredient(speechText);
-            speechText += "</emphasis>";
             return new DialogItem(speechText, false, actionSlotName);
         }
         else {
@@ -112,7 +110,11 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         }
     }
 
-    private String nextIngredient(String speechText) {
+    protected String nextIngredient() {
+        return nextIngredient("");
+    }
+
+    protected String nextIngredient(String speechText) {
         String nextIngredient = ingredientsManager.getNextIngredient(this.currentActivity, this.previousIngredients);
         this.previousIngredients.addFirst(nextIngredient);
         if (this.previousIngredients.size() > 2) {
