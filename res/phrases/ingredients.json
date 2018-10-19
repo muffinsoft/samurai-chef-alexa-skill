@@ -13,8 +13,15 @@
     "chopsticks": "stop don't drop"
   },
   "WORD_BOARD_KARATE": {
-    "corn" : "kick",
-    "hat" : "hayaaa",
-    "pencil" : "punch"
+    "corn": "kick",
+    "hat": "hayaaa",
+    "pencil": "punch"
+  },
+  "FOOD_TASTER": {
+    "soup" : "slurp",
+    "sushi" : "gulp",
+    "tea" : "sip",
+    "ice cream" : "lick",
+    "wasabi peas" : "crunch"
   }
 }

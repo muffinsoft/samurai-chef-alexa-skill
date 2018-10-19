@@ -31,7 +31,7 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
 
             if (this.successCount == 2) {
                 this.statePhase = PHASE_2;
-                dialog = getSuccessDialog(phraseManager.getValueByKey("moveToPhase2"));
+                dialog = getSuccessDialog(phraseManager.getValueByKey("sushiSliceMoveToPhase2"));
             }
             else {
                 dialog = getSuccessDialog();

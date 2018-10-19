@@ -11,34 +11,41 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefSessionConstants.QUESTION_TIME;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.JUICE_WARRIOR;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.FOOD_TASTER;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
-public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionStateManager {
+public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
     private Long questionTime;
 
-    public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager, ActivitiesManager activitiesManager) {
+    public FoodTasterSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager, ActivitiesManager activitiesManager) {
         super(slots, attributesManager, phraseManager, ingredientsManager, activitiesManager);
-        this.currentActivity = JUICE_WARRIOR;
+        this.currentActivity = FOOD_TASTER;
     }
 
     @Override
     protected DialogItem getActivePhaseDialog() {
-
         DialogItem dialog;
 
         long answerTime = System.currentTimeMillis();
 
         if (Objects.equals(currentIngredientReaction, userReply)) {
 
-            long answerLimit = 7500;
+            long answerLimit = this.statePhase == PHASE_1 ? 15000 : 7500;
 
             if (questionTime == null || answerTime - questionTime < answerLimit) {
 
                 this.successCount++;
 
-                dialog = getSuccessDialog();
+                if (this.successCount == 2) {
+                    this.statePhase = PHASE_2;
+                    dialog = getSuccessDialog(phraseManager.getValueByKey("foodTasterMoveToPhase2"));
+                }
+                else {
+                    dialog = getSuccessDialog();
+                }
             }
             else {
                 dialog = getFailureDialog("Too long!");

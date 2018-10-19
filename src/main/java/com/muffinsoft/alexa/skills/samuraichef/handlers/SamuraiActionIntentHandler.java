@@ -6,6 +6,7 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.SessionStateManager;
 import com.muffinsoft.alexa.sdk.handlers.ActionIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.activities.FoodTasterSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.JuiceWarriorSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.NameHandlerSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceSessionStateManager;
@@ -62,6 +63,9 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
                 break;
             case WORD_BOARD_KARATE:
                 stateManager = new WordBoardKarateSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager, activitiesManager);
+                break;
+            case FOOD_TASTER:
+                stateManager = new FoodTasterSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager, activitiesManager);
                 break;
             default:
                 throw new IllegalStateException("Exception while handling activity: " + currentActivity);
