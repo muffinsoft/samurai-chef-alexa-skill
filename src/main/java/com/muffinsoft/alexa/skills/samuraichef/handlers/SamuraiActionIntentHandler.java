@@ -47,8 +47,6 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
         Activities currentActivity = getCurrentActivity(input);
 
-        System.out.println("CURRENT ACTIVITY: " + currentActivity.name());
-
         SessionStateManager stateManager;
 
         switch (currentActivity) {
@@ -64,8 +62,6 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
             default:
                 throw new IllegalStateException("Exception while handling activity: " + currentActivity);
         }
-
-        System.out.println("SESSION STATE MANAGER: " + stateManager.getClass().getSimpleName());
 
         return stateManager;
     }

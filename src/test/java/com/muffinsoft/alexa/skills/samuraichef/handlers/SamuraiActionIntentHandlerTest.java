@@ -32,6 +32,7 @@ class SamuraiActionIntentHandlerTest {
                 .withRequestEnvelope(RequestEnvelope.builder()
                         .withSession(Session.builder()
                                 .withSessionId("test session")
+                                .withNew(false)
                                 .build()
                         )
                         .withRequest(IntentRequest.builder().withIntent(
@@ -91,7 +92,10 @@ class SamuraiActionIntentHandlerTest {
 
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
-        Map<String, Slot> slots = Collections.singletonMap("action", Slot.builder().withValue("yes").build());
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put("action", Slot.builder().withValue("yes").build());
+        slots.put("name", Slot.builder().withValue("Alex").build());
+
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SushiSliceConstants.USERNAME, "test");
         sessionAttributes.put(SushiSliceConstants.ACTIVITY, Activities.SUSHI_SLICE);
@@ -108,7 +112,9 @@ class SamuraiActionIntentHandlerTest {
 
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
-        Map<String, Slot> slots = Collections.singletonMap("action", Slot.builder().withValue("yes").build());
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put("action", Slot.builder().withValue("yes").build());
+        slots.put("name", Slot.builder().withValue("Alex").build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SushiSliceConstants.USERNAME, "test");
@@ -127,22 +133,19 @@ class SamuraiActionIntentHandlerTest {
 
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
-        Map<String, Slot> slots = Collections.singletonMap("action", Slot.builder().withValue("boil").build());
-
-        List<String> ingredients = new LinkedList<>();
-        ingredients.add("rice");
-        ingredients.add("rice");
-        ingredients.add("shoe");
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put("action", Slot.builder().withValue("no").build());
+        slots.put("name", Slot.builder().withValue("Alex").build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SushiSliceConstants.USERNAME, "test");
         sessionAttributes.put(SushiSliceConstants.ACTIVITY, Activities.SUSHI_SLICE);
-        sessionAttributes.put(SushiSliceConstants.INGREDIENT_REACTION, "boil");
-        sessionAttributes.put(SushiSliceConstants.PREVIOUS_INGREDIENTS, ingredients);
         sessionAttributes.put(SushiSliceConstants.MISTAKES_COUNT, 0);
         sessionAttributes.put(SushiSliceConstants.SUCCESS_COUNT, 0);
         sessionAttributes.put(SushiSliceConstants.FIRST_TIME_ASKING, false);
+        sessionAttributes.put(SushiSliceConstants.USERNAME, "Alex");
+        sessionAttributes.put(SushiSliceConstants.PREVIOUS_INGREDIENT, "shoe");
         sessionAttributes.put(SushiSliceConstants.STATE_PHASE, StatePhase.PHASE_1);
+        sessionAttributes.put(SushiSliceConstants.INGREDIENT_REACTION, "no");
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 

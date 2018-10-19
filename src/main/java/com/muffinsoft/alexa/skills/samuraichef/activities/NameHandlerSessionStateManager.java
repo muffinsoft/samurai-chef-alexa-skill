@@ -34,6 +34,11 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
     }
 
     @Override
+    protected DialogItem getActivePhaseDialog() {
+        return null;
+    }
+
+    @Override
     protected void populateActivityVariables() {
         this.firstTimeAsking = (boolean) sessionAttributes.getOrDefault(FIRST_TIME_ASKING, true);
     }

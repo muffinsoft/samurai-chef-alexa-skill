@@ -8,6 +8,7 @@
   "failurePhrase" : "You lose current round. Would you like to try again or start new mission?",
   "wonPhrase" : "You won current round. Would you like to try again or start new mission?",
   "readyToStart" : "Ready to start?",
+  "moveToPhase2" : "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!",
   "sushiSliceDemoPhraseCount": "6",
   "sushiSliceDemoPhrase0": "Fish! Slice!<break time=\"1s\"/>",
   "sushiSliceDemoPhrase1": "Seaweed! Roll!<break time=\"1s\"/>",

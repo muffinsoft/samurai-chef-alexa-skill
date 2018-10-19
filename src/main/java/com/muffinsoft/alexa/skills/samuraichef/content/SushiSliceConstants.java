@@ -9,7 +9,7 @@ public class SushiSliceConstants extends BaseConstants {
      * outside of the program, thus the values can be chosen freely.
      */
     public static final String INGREDIENT_REACTION = "ingredientReaction";
-    public static final String PREVIOUS_INGREDIENTS = "previousIngredients";
+    public static final String PREVIOUS_INGREDIENT = "previousIngredient";
     public static final String FIRST_TIME_ASKING = "firstTimeAsking";
     public static final String STATE_PHASE = "statePhase";
     public static final String MISTAKES_COUNT = "mistakesCount";
