@@ -13,9 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.content.BaseConstants.USERNAME;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.ACTIVITY;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.FIRST_TIME_ASKING;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.INTRO_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.ACTIVITY;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.FIRST_TIME_ASKING;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.INTRO_PHRASE;
 
 public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
@@ -68,10 +68,5 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
         }
 
         return dialogItem;
-    }
-
-    @Override
-    protected void calculateProgress() {
-
     }
 }

@@ -11,22 +11,25 @@ import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import static com.muffinsoft.alexa.sdk.content.BaseConstants.USERNAME_PLACEHOLDER;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.ACTIVITY;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.FAILURE_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.INGREDIENT_REACTION;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.MISTAKES_COUNT;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.PREVIOUS_INGREDIENT;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.ROUND_COUNT;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.STAR_COUNT;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.STATE_PHASE;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.STRIPE_COUNT;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.SUCCESS_COUNT;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.ACTIVITY;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.FAILURE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.FINISHED_ROUNDS;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.INGREDIENT_REACTION;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.MISTAKES_COUNT;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.PREVIOUS_INGREDIENT;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.STAR_COUNT;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.STATE_PHASE;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.STRIPE_COUNT;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.SUCCESS_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE;
@@ -45,7 +48,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected StatePhase statePhase;
     protected int successCount;
     protected int mistakesCount;
-    protected int roundCount;
+    protected Set<String> finishedRounds;
     protected int stripeCount;
     protected int starCount;
 
@@ -61,12 +64,14 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     @Override
     protected void populateActivityVariables() {
+        //noinspection unchecked
+        Collection<String> rounds = (Collection<String>) sessionAttributes.get(FINISHED_ROUNDS);
+        finishedRounds = rounds == null ? new HashSet<>() : new HashSet<>(rounds);
         previousIngredient = String.valueOf(sessionAttributes.get(PREVIOUS_INGREDIENT));
         statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.getOrDefault(STATE_PHASE, INTRO)));
         successCount = (int) sessionAttributes.getOrDefault(SUCCESS_COUNT, 0);
         mistakesCount = (int) sessionAttributes.getOrDefault(MISTAKES_COUNT, 0);
         starCount = (int) sessionAttributes.getOrDefault(STAR_COUNT, 0);
-        roundCount = (int) sessionAttributes.getOrDefault(ROUND_COUNT, 0);
         stripeCount = (int) sessionAttributes.getOrDefault(STRIPE_COUNT, 0);
         Object ingredient = sessionAttributes.getOrDefault(INGREDIENT_REACTION, null);
         currentIngredientReaction = ingredient != null ? String.valueOf(ingredient) : null;
@@ -86,7 +91,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         sessionAttributes.put(MISTAKES_COUNT, mistakesCount);
         sessionAttributes.put(SUCCESS_COUNT, successCount);
         sessionAttributes.put(STATE_PHASE, statePhase);
-        sessionAttributes.put(ROUND_COUNT, roundCount);
+        sessionAttributes.put(FINISHED_ROUNDS, finishedRounds);
         sessionAttributes.put(STRIPE_COUNT, stripeCount);
         sessionAttributes.put(STAR_COUNT, starCount);
     }
@@ -151,7 +156,17 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         return dialog;
     }
 
-    protected abstract void calculateProgress();
+    protected void calculateProgress() {
+        finishedRounds.add(this.currentActivity.name());
+        if (finishedRounds.size() == 4) {
+            this.stripeCount += 1;
+            this.finishedRounds = new HashSet<>();
+            if (this.stripeCount == 4) {
+                this.starCount += 1;
+                this.stripeCount = 0;
+            }
+        }
+    }
 
     protected DialogItem startNewMission() {
         Activities nextActivity = activitiesManager.getNextActivity(Activities.NAME_HANDLER);
@@ -189,7 +204,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     protected DialogItem getWinDialog() {
         this.statePhase = WIN;
-        return new DialogItem(phraseManager.getValueByKey("wonPhrase"), true, actionSlotName, true);
+        return new DialogItem(phraseManager.getValueByKey("wonPhrase"), false, actionSlotName, true);
     }
 
     protected DialogItem getDemoDialog(Activities activity) {
@@ -229,7 +244,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     protected DialogItem getLoseRoundDialog() {
-        return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE), false, actionSlotName);
+        return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE), false, actionSlotName, true);
     }
 
     protected DialogItem getReadyToStartDialog() {

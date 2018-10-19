@@ -8,15 +8,13 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Session;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.skills.samuraichef.DependenciesContainer;
-import com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants;
+import com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -97,8 +95,8 @@ class SamuraiActionIntentHandlerTest {
         slots.put("name", Slot.builder().withValue("Alex").build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SushiSliceConstants.USERNAME, "test");
-        sessionAttributes.put(SushiSliceConstants.ACTIVITY, Activities.SUSHI_SLICE);
+        sessionAttributes.put(SamuraiChefConstants.USERNAME, "test");
+        sessionAttributes.put(SamuraiChefConstants.ACTIVITY, Activities.SUSHI_SLICE);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
@@ -117,9 +115,9 @@ class SamuraiActionIntentHandlerTest {
         slots.put("name", Slot.builder().withValue("Alex").build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SushiSliceConstants.USERNAME, "test");
-        sessionAttributes.put(SushiSliceConstants.ACTIVITY, Activities.SUSHI_SLICE);
-        sessionAttributes.put(SushiSliceConstants.STATE_PHASE, StatePhase.PHASE_0);
+        sessionAttributes.put(SamuraiChefConstants.USERNAME, "test");
+        sessionAttributes.put(SamuraiChefConstants.ACTIVITY, Activities.SUSHI_SLICE);
+        sessionAttributes.put(SamuraiChefConstants.STATE_PHASE, StatePhase.PHASE_0);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
@@ -138,14 +136,14 @@ class SamuraiActionIntentHandlerTest {
         slots.put("name", Slot.builder().withValue("Alex").build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SushiSliceConstants.ACTIVITY, Activities.SUSHI_SLICE);
-        sessionAttributes.put(SushiSliceConstants.MISTAKES_COUNT, 0);
-        sessionAttributes.put(SushiSliceConstants.SUCCESS_COUNT, 0);
-        sessionAttributes.put(SushiSliceConstants.FIRST_TIME_ASKING, false);
-        sessionAttributes.put(SushiSliceConstants.USERNAME, "Alex");
-        sessionAttributes.put(SushiSliceConstants.PREVIOUS_INGREDIENT, "shoe");
-        sessionAttributes.put(SushiSliceConstants.STATE_PHASE, StatePhase.PHASE_1);
-        sessionAttributes.put(SushiSliceConstants.INGREDIENT_REACTION, "no");
+        sessionAttributes.put(SamuraiChefConstants.ACTIVITY, Activities.SUSHI_SLICE);
+        sessionAttributes.put(SamuraiChefConstants.MISTAKES_COUNT, 0);
+        sessionAttributes.put(SamuraiChefConstants.SUCCESS_COUNT, 0);
+        sessionAttributes.put(SamuraiChefConstants.FIRST_TIME_ASKING, false);
+        sessionAttributes.put(SamuraiChefConstants.USERNAME, "Alex");
+        sessionAttributes.put(SamuraiChefConstants.PREVIOUS_INGREDIENT, "shoe");
+        sessionAttributes.put(SamuraiChefConstants.STATE_PHASE, StatePhase.PHASE_1);
+        sessionAttributes.put(SamuraiChefConstants.INGREDIENT_REACTION, "no");
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 

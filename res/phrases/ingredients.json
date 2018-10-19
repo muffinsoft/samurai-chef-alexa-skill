@@ -11,5 +11,10 @@
     "milk": "splash a dash",
     "ice": "punch and crunch",
     "chopsticks": "stop don't drop"
+  },
+  "WORD_BOARD_KARATE": {
+    "corn" : "kick",
+    "hat" : "hayaaa",
+    "pencil" : "punch"
   }
 }

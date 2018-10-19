@@ -11,13 +11,11 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
+public class WordBoardKarateSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
-public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateManager {
-
-    public SushiSliceSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager, ActivitiesManager activitiesManager) {
+    WordBoardKarateSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager, ActivitiesManager activitiesManager) {
         super(slots, attributesManager, phraseManager, ingredientsManager, activitiesManager);
-        currentActivity = Activities.SUSHI_SLICE;
+        this.currentActivity = Activities.WORD_BOARD_KARATE;
     }
 
     @Override
@@ -29,13 +27,7 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
 
             this.successCount++;
 
-            if (this.successCount == 2) {
-                this.statePhase = PHASE_2;
-                dialog = getSuccessDialog(phraseManager.getValueByKey("moveToPhase2"));
-            }
-            else {
-                dialog = getSuccessDialog();
-            }
+            dialog = getSuccessDialog();
         }
         else {
             this.mistakesCount++;
@@ -52,15 +44,5 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
         }
 
         return dialog;
-    }
-
-    @Override
-    protected void populateActivityVariables() {
-        super.populateActivityVariables();
-    }
-
-    @Override
-    protected void updateSessionAttributes() {
-        super.updateSessionAttributes();
     }
 }

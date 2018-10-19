@@ -17,7 +17,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import java.util.Map;
 
 import static com.amazon.ask.request.Predicates.intentName;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.ACTIVITY;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.NAME_HANDLER;
 
 public class SamuraiActionIntentHandler extends ActionIntentHandler {

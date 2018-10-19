@@ -6,7 +6,7 @@
   "intro1" : "Sorry, I don't understand you! Can you repeat, what’s your name?",
   "intro2" : "Glad you’ve come over! I love playdates! And today, I’ve got something so cool, so different for us to do. Would you like to follow me?",
   "failurePhrase" : "You lose current round. Would you like to try again or start new mission?",
-  "wonPhrase" : "You won current round. Would you like to try again or start new mission?",
+  "wonPhrase" : "You won current round. Would you like to start new mission?",
   "readyToStart" : "Ready to start?",
   "moveToPhase2" : "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!",
   "sushiSliceDemoPhraseCount": "6",
@@ -30,5 +30,13 @@
   "juiceWarriorDemoPhrase1": "Milk! Splash a dash!<break time=\"1s\"/>",
   "juiceWarriorDemoPhrase2": "Ice! Punch and crunch!<break time=\"1s\"/>",
   "juiceWarriorDemoPhrase3": "Chopsticks! Stop, don't drop!<break time=\"1s\"/>",
-  "juiceWarriorDemoPhrase4": "Now it’s your turn, Ben’s friend. Ready to start?"
+  "juiceWarriorDemoPhrase4": "Now it’s your turn, Ben’s friend. Ready to start?",
+  "wordBoardKarateIntroPhraseCount": "3",
+  "wordBoardKarateIntroPhrase0": "Now that we've cooked some meals and even stuffed our bellies, lets burn that energy with some karate!",
+  "wordBoardKarateIntroPhrase1": "I'll hold up a wooden board with a word on it. To break it, you have to shout a karate word that begins with the same sound.  If it begins with a “K” sound, shout “Kick”; if it begins with a “H” sound, shout “Hayaaa!”; if it begins with a “P” sound, shout “Punch.” ",
+  "wordBoardKarateIntroPhrase2": "Want Sensei Sushi to try first?",
+  "wordBoardKarateDemoPhraseCount": "3",
+  "wordBoardKarateDemoPhrase0": "Corn! Kick!<break time=\"1s\"/>",
+  "wordBoardKarateDemoPhrase1": "Hat! Hayaaa!<break time=\"1s\"/>",
+  "wordBoardKarateDemoPhrase2": "Pencil! Punch!<break time=\"1s\"/>"
 }

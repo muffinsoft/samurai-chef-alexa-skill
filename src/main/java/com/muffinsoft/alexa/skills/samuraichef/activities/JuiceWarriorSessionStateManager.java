@@ -11,7 +11,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstants.QUESTION_TIME;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
@@ -70,15 +70,6 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
         }
 
         return dialog;
-    }
-
-    @Override
-    protected void calculateProgress() {
-        this.roundCount += 1;
-        if (roundCount == 4) {
-            this.roundCount = 0;
-            this.stripeCount += 1;
-        }
     }
 
     @Override
