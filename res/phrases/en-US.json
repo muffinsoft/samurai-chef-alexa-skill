@@ -25,9 +25,10 @@
   "sushiSliceIntroPhrase5": "Would you like to see how Sensei do it?",
   "juiceWarriorIntroPhraseCount": "1",
   "juiceWarriorIntroPhrase0" : "A bus full of hefty sumo wrestlers have just arrived! The good news is they've already eaten...phew! They're all here for nutritious juices. Since Sensei will need more than his blender to make all their orders, let's help! When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it. Should Sensei and I show you what to do?",
-  "juiceWarriorDemoPhraseCount" : "4",
+  "juiceWarriorDemoPhraseCount" : "5",
   "juiceWarriorDemoPhrase0": "Carrot! Slice and dice!<break time=\"1s\"/>",
   "juiceWarriorDemoPhrase1": "Milk! Splash a dash!<break time=\"1s\"/>",
   "juiceWarriorDemoPhrase2": "Ice! Punch and crunch!<break time=\"1s\"/>",
-  "juiceWarriorDemoPhrase3": "Chopsticks! Stop, don't drop!<break time=\"1s\"/>"
+  "juiceWarriorDemoPhrase3": "Chopsticks! Stop, don't drop!<break time=\"1s\"/>",
+  "juiceWarriorDemoPhrase4": "Now it’s your turn, Ben’s friend. Ready to start?"
 }

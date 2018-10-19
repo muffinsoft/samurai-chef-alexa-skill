@@ -29,7 +29,7 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
 
             this.successCount++;
 
-            if (this.successCount == 3) {
+            if (this.successCount == 2) {
                 this.statePhase = PHASE_2;
                 dialog = getSuccessDialog(phraseManager.getValueByKey("moveToPhase2"));
             }
@@ -39,7 +39,7 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
         }
         else {
             this.mistakesCount++;
-            if (this.mistakesCount < 3) {
+            if (this.mistakesCount < 2) {
                 dialog = getFailureDialog("Wrong!");
             }
             else {
