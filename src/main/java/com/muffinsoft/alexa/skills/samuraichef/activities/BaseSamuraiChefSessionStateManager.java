@@ -169,7 +169,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     protected DialogItem startNewMission() {
-        Activities nextActivity = activitiesManager.getNextActivity(Activities.NAME_HANDLER);
+        Activities nextActivity = activitiesManager.getNextActivity(this.currentActivity);
         sessionAttributes.put(ACTIVITY, nextActivity);
         return getIntroDialog(nextActivity);
     }
