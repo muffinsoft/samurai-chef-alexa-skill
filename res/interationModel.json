@@ -93,6 +93,22 @@
             },
             {
               "name": {
+                "value": "again",
+                "synonyms": [
+                  "try again"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "mission",
+                "synonyms": [
+                  "new mission"
+                ]
+              }
+            },
+            {
+              "name": {
                 "value": "no",
                 "synonyms": [
                   "no no",
@@ -113,6 +129,26 @@
                   "you know it",
                   "of course"
                 ]
+              }
+            },
+            {
+              "name": {
+                "value": "slice and dice"
+              }
+            },
+            {
+              "name": {
+                "value": "splash a dash"
+              }
+            },
+            {
+              "name": {
+                "value": "punch and crunch"
+              }
+            },
+            {
+              "name": {
+                "value": "stop, don't drop"
               }
             }
           ]

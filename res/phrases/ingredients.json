@@ -5,5 +5,11 @@
     "rice": "boil",
     "seaweed": "roll",
     "shoe": "no"
+  },
+  "JUICE_WARRIOR": {
+    "carrot": "slice and dice",
+    "milk": "splash a dash",
+    "ice": "punch and crunch",
+    "chopsticks": "stop, don't drop"
   }
 }

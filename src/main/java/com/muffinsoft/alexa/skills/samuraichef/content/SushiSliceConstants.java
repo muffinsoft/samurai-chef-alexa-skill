@@ -13,6 +13,9 @@ public class SushiSliceConstants extends BaseConstants {
     public static final String FIRST_TIME_ASKING = "firstTimeAsking";
     public static final String STATE_PHASE = "statePhase";
     public static final String MISTAKES_COUNT = "mistakesCount";
+    public static final String ROUND_COUNT = "roundCount";
+    public static final String STRIPE_COUNT = "stripeCount";
+    public static final String STAR_COUNT = "starCount";
     public static final String SUCCESS_COUNT = "successCount";
     public static final String QUESTION_TIME = "questionTime";
     public static final String ACTIVITY = "activity";

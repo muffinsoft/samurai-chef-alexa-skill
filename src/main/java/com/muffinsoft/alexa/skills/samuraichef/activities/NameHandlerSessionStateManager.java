@@ -5,6 +5,7 @@ import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 
@@ -18,13 +19,10 @@ import static com.muffinsoft.alexa.skills.samuraichef.content.SushiSliceConstant
 
 public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
-    private final ActivitiesManager activitiesManager;
-
     private boolean firstTimeAsking;
 
-    public NameHandlerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager) {
-        super(slots, attributesManager, phraseManager, null);
-        this.activitiesManager = activitiesManager;
+    public NameHandlerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager, ActivitiesManager activitiesManager) {
+        super(slots, attributesManager, phraseManager, ingredientsManager, activitiesManager);
         this.currentActivity = Activities.NAME_HANDLER;
     }
 
@@ -70,5 +68,10 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
         }
 
         return dialogItem;
+    }
+
+    @Override
+    protected void calculateProgress() {
+
     }
 }

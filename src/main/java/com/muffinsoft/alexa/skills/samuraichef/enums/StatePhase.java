@@ -6,5 +6,6 @@ public enum StatePhase {
     PHASE_0,
     PHASE_1,
     PHASE_2,
-    WIN
+    WIN,
+    LOSE
 }
