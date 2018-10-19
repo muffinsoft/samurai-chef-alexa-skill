@@ -175,7 +175,12 @@
             },
             {
               "name": {
-                "value": "hayaaaa"
+                "value": "hayaaaa",
+                "synonyms": [
+                  "hayaaa",
+                  "haya",
+                  "hi"
+                ]
               }
             },
             {

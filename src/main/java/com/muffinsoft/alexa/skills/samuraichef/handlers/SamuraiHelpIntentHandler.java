@@ -14,7 +14,7 @@ public class SamuraiHelpIntentHandler extends HelpIntentHandler {
 
     @Override
     public String getPhrase() {
-        return "I am here to give details";
+        return "Here is description";
     }
 
     @Override

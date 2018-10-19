@@ -21,10 +21,10 @@
   "sushiSliceIntroPhrase1": "Nice to meet you, Ben’s friend! You came just in time. Adachi, my new samurai worker know how to slice and chop.  But that all he know.  He must be told exactly what to do and then he do it! But I am busy with customers and cannot stand here the whole time and tell him what to do. Dohh-shee-yohh.",
   "sushiSliceIntroPhrase2": "We are here to help, Sensei. I will take out the food, and my friend __USERNAME__ will tell Adachi what to do.<break time=\"1s\"/>",
   "sushiSliceIntroPhrase3": "That is a good idea, Ben.  You take out the food and I will show your friend how to instruct Adachi.<break time=\"1s\"/>",
-  "sushiSliceIntroPhrase4": "If Ben give you fish, say \"Slice!\" If it's a vegetable,  say \"Chop!\". If it’s rice, say \"Boil\".  And if it’s seaseed, say \"Roll!\".  And if he accidentally throw you not food, say \"No!\".",
+  "sushiSliceIntroPhrase4": "If Ben give you fish, say \"Slice!\" If it's a vegetable, say \"Chop!\". If it’s rice, say \"Boil\". And if it’s seaseed, say \"Roll!\". And if he accidentally throw you not food, say \"No!\".",
   "sushiSliceIntroPhrase5": "Would you like to see how Sensei do it?",
   "juiceWarriorIntroPhraseCount": "1",
-  "juiceWarriorIntroPhrase0" : "A bus full of hefty sumo wrestlers have just arrived! The good news is they've already eaten...phew! They're all here for nutritious juices. Since Sensei will need more than his blender to make all their orders, let's help! When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it. Should Sensei and I show you what to do?",
+  "juiceWarriorIntroPhrase0" : "A bus full of hefty sumo wrestlers have just arrived! The good news is they've already eaten... phew! They're all here for nutritious juices. Since Sensei will need more than his blender to make all their orders, let's help! When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it. Should Sensei and I show you what to do?",
   "juiceWarriorDemoPhraseCount" : "5",
   "juiceWarriorDemoPhrase0": "Carrot! Slice and dice!<break time=\"1s\"/>",
   "juiceWarriorDemoPhrase1": "Milk! Splash a dash!<break time=\"1s\"/>",
@@ -35,8 +35,9 @@
   "wordBoardKarateIntroPhrase0": "Now that we've cooked some meals and even stuffed our bellies, lets burn that energy with some karate!",
   "wordBoardKarateIntroPhrase1": "I'll hold up a wooden board with a word on it. To break it, you have to shout a karate word that begins with the same sound.  If it begins with a “K” sound, shout “Kick”; if it begins with a “H” sound, shout “Hayaaa!”; if it begins with a “P” sound, shout “Punch.” ",
   "wordBoardKarateIntroPhrase2": "Want Sensei Sushi to try first?",
-  "wordBoardKarateDemoPhraseCount": "3",
+  "wordBoardKarateDemoPhraseCount": "4",
   "wordBoardKarateDemoPhrase0": "Corn! Kick!<break time=\"1s\"/>",
   "wordBoardKarateDemoPhrase1": "Hat! Hayaaa!<break time=\"1s\"/>",
-  "wordBoardKarateDemoPhrase2": "Pencil! Punch!<break time=\"1s\"/>"
+  "wordBoardKarateDemoPhrase2": "Pencil! Punch!<break time=\"1s\"/>",
+  "wordBoardKarateDemoPhrase3": "Now it’s your turn, Ben’s friend. Ready to start?"
 }

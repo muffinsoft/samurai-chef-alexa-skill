@@ -6,18 +6,18 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 
 import java.util.Map;
 import java.util.Objects;
 
+import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
 
 public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
     public SushiSliceSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager, ActivitiesManager activitiesManager) {
         super(slots, attributesManager, phraseManager, ingredientsManager, activitiesManager);
-        currentActivity = Activities.SUSHI_SLICE;
+        currentActivity = SUSHI_SLICE;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
         }
         else {
             this.mistakesCount++;
-            if (this.mistakesCount < 2) {
+            if (this.mistakesCount < 3) {
                 dialog = getFailureDialog("Wrong!");
             }
             else {
@@ -52,15 +52,5 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
         }
 
         return dialog;
-    }
-
-    @Override
-    protected void populateActivityVariables() {
-        super.populateActivityVariables();
-    }
-
-    @Override
-    protected void updateSessionAttributes() {
-        super.updateSessionAttributes();
     }
 }

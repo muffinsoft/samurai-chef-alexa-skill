@@ -6,16 +6,17 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 
 import java.util.Map;
 import java.util.Objects;
 
+import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.WORD_BOARD_KARATE;
+
 public class WordBoardKarateSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
-    WordBoardKarateSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager, ActivitiesManager activitiesManager) {
+    public WordBoardKarateSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager, ActivitiesManager activitiesManager) {
         super(slots, attributesManager, phraseManager, ingredientsManager, activitiesManager);
-        this.currentActivity = Activities.WORD_BOARD_KARATE;
+        this.currentActivity = WORD_BOARD_KARATE;
     }
 
     @Override
@@ -31,7 +32,7 @@ public class WordBoardKarateSessionStateManager extends BaseSamuraiChefSessionSt
         }
         else {
             this.mistakesCount++;
-            if (this.mistakesCount < 2) {
+            if (this.mistakesCount < 3) {
                 dialog = getFailureDialog("Wrong!");
             }
             else {

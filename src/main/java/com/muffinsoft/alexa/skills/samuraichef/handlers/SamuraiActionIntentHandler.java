@@ -9,6 +9,7 @@ import com.muffinsoft.alexa.sdk.handlers.ActionIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.activities.JuiceWarriorSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.NameHandlerSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceSessionStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
@@ -17,7 +18,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import java.util.Map;
 
 import static com.amazon.ask.request.Predicates.intentName;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.ACTIVITY;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefSessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.NAME_HANDLER;
 
 public class SamuraiActionIntentHandler extends ActionIntentHandler {
@@ -58,6 +59,9 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
                 break;
             case JUICE_WARRIOR:
                 stateManager = new JuiceWarriorSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager, activitiesManager);
+                break;
+            case WORD_BOARD_KARATE:
+                stateManager = new WordBoardKarateSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager, activitiesManager);
                 break;
             default:
                 throw new IllegalStateException("Exception while handling activity: " + currentActivity);

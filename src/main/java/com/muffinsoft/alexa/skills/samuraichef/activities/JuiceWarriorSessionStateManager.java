@@ -6,13 +6,12 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 
 import java.util.Map;
 import java.util.Objects;
 
-import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefConstants.QUESTION_TIME;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE;
+import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefSessionConstants.QUESTION_TIME;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.JUICE_WARRIOR;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
@@ -23,7 +22,7 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
 
     public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager, ActivitiesManager activitiesManager) {
         super(slots, attributesManager, phraseManager, ingredientsManager, activitiesManager);
-        this.currentActivity = Activities.JUICE_WARRIOR;
+        this.currentActivity = JUICE_WARRIOR;
     }
 
     @Override
@@ -55,11 +54,10 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
         }
         else {
             this.mistakesCount++;
-            if (this.mistakesCount < 2) {
+            if (this.mistakesCount < 3) {
                 dialog = getFailureDialog("Wrong!");
             }
             else {
-                this.statePhase = LOSE;
                 dialog = getLoseRoundDialog();
             }
         }
@@ -70,6 +68,12 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
         }
 
         return dialog;
+    }
+
+    @Override
+    protected void resetRoundProgress() {
+        super.resetRoundProgress();
+        this.questionTime = null;
     }
 
     @Override
