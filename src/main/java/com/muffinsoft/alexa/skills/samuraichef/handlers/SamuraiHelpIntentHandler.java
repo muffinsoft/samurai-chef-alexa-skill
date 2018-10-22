@@ -1,15 +1,18 @@
 package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
 import com.muffinsoft.alexa.sdk.handlers.HelpIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 
 public class SamuraiHelpIntentHandler extends HelpIntentHandler {
 
     private final PhraseManager phraseManager;
+    private final CardManager cardManager;
 
-    public SamuraiHelpIntentHandler(PhraseManager phraseManager) {
+    public SamuraiHelpIntentHandler(CardManager cardManager, PhraseManager phraseManager) {
         super();
         this.phraseManager = phraseManager;
+        this.cardManager = cardManager;
     }
 
     @Override
@@ -19,6 +22,6 @@ public class SamuraiHelpIntentHandler extends HelpIntentHandler {
 
     @Override
     public String getSimpleCard() {
-        return phraseManager.getValueByKey("welcomeCard");
+        return cardManager.getValueByKey("welcome");
     }
 }

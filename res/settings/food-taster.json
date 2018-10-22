@@ -1,0 +1,20 @@
+{
+  "name": "FOOD_TASTER",
+  "levels": [
+    {
+      "number": 0,
+      "wonSuccessCount": 5,
+      "phaseTwoSuccessCount": 2,
+      "timeLimitPhaseOneInMillis": 12000,
+      "timeLimitPhaseTwoInMillis": 6000,
+      "maxMistakeCount": 2,
+      "ingredients": {
+        "soup" : "slurp",
+        "sushi" : "gulp",
+        "tea" : "sip",
+        "ice cream" : "lick",
+        "wasabi peas" : "crunch"
+      }
+    }
+  ]
+}

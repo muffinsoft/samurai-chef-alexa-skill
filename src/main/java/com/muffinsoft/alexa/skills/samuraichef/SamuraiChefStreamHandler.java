@@ -4,10 +4,12 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiActionIntentHandler;
-import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiCancelandStopIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiCancelIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiFallbackIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiHelpIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiLaunchRequestHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiSessionEndedRequestHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiStopIntentHandler;
 
 public class SamuraiChefStreamHandler extends SkillStreamHandler {
 
@@ -21,10 +23,12 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
 
         return Skills.standard()
                 .addRequestHandlers(
-                        new SamuraiCancelandStopIntentHandler(DependenciesContainer.providePhraseManager()),
-                        new SamuraiHelpIntentHandler(DependenciesContainer.providePhraseManager()),
-                        new SamuraiLaunchRequestHandler(DependenciesContainer.providePhraseManager()),
-                        new SamuraiActionIntentHandler(DependenciesContainer.providePhraseManager(), DependenciesContainer.provideIngredientsManager(), DependenciesContainer.provideActivitiesManager()),
+                        new SamuraiCancelIntentHandler(DependenciesContainer.provideCardManager(), DependenciesContainer.providePhraseManager()),
+                        new SamuraiStopIntentHandler(DependenciesContainer.provideCardManager(), DependenciesContainer.providePhraseManager()),
+                        new SamuraiFallbackIntentHandler(DependenciesContainer.provideCardManager(), DependenciesContainer.providePhraseManager()),
+                        new SamuraiHelpIntentHandler(DependenciesContainer.provideCardManager(), DependenciesContainer.providePhraseManager()),
+                        new SamuraiLaunchRequestHandler(DependenciesContainer.provideCardManager(), DependenciesContainer.providePhraseManager()),
+                        new SamuraiActionIntentHandler(DependenciesContainer.providePhraseManager(), DependenciesContainer.provideActivitiesManager(), DependenciesContainer.provideCardManager(), DependenciesContainer.provideIngredientsManager()),
                         new SamuraiSessionEndedRequestHandler())
                 .withSkillId(amazonSkillId)
                 .build();

@@ -13,12 +13,16 @@ public class ActivitiesManager extends BaseContentManager<Integer> {
 
     public Activities getNextActivity(Activities currentActivity) {
 
-        Integer currentValue = getValueByKey(currentActivity.name());
+        Integer valueByKey = getValueByKey(currentActivity.name());
 
-        int searchedValue = currentValue + 1;
+        int searchedOderValue = valueByKey + 1;
 
-        for (Map.Entry entry : getContainer().entrySet()) {
-            if ((Integer) entry.getValue() == searchedValue) {
+        if (searchedOderValue > Activities.values().length - 1) {
+            searchedOderValue = 1;
+        }
+
+        for (Map.Entry<String, Integer> entry : getContainer().entrySet()) {
+            if (entry.getValue() == searchedOderValue) {
                 return Activities.valueOf(String.valueOf(entry.getKey()));
             }
         }

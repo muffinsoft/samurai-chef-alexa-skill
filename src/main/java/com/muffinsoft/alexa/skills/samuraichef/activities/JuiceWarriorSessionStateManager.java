@@ -4,22 +4,28 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.Objects;
 
-import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefSessionConstants.QUESTION_TIME;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.JUICE_WARRIOR;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
 public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
+    private static final Logger logger = LoggerFactory.getLogger(JuiceWarriorSessionStateManager.class);
+
     private Long questionTime;
 
-    public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, IngredientsManager ingredientsManager, ActivitiesManager activitiesManager) {
-        super(slots, attributesManager, phraseManager, ingredientsManager, activitiesManager);
+    public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager) {
+        super(slots, attributesManager, phraseManager, activitiesManager, levelManager);
         this.currentActivity = JUICE_WARRIOR;
     }
 
@@ -32,7 +38,7 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
 
         if (Objects.equals(currentIngredientReaction, userReply)) {
 
-            long answerLimit = 7500;
+            long answerLimit = level.getTimeLimitPhaseOneInMillis();
 
             if (questionTime == null || answerTime - questionTime < answerLimit) {
 
@@ -41,20 +47,20 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
                 dialog = getSuccessDialog();
             }
             else {
-                dialog = getFailureDialog("Too long!");
+                dialog = getFailureDialog(TOO_LONG_PHRASE);
             }
         }
         else {
             this.mistakesCount++;
-            if (this.mistakesCount < 3) {
-                dialog = getFailureDialog("Wrong!");
+            if (this.mistakesCount < level.getMaxMistakeCount()) {
+                dialog = getFailureDialog(WRONG_PHRASE);
             }
             else {
                 dialog = getLoseRoundDialog();
             }
         }
 
-        if (this.successCount == 5) {
+        if (this.successCount == level.getWonSuccessCount()) {
             this.statePhase = WIN;
             dialog = getWinDialog();
         }

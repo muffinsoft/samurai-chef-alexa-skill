@@ -1,0 +1,17 @@
+{
+  "name": "JUICE_WARRIOR",
+  "levels": [
+    {
+      "number": 0,
+      "wonSuccessCount": 5,
+      "timeLimitPhaseOneInMillis": 10000,
+      "maxMistakeCount": 2,
+      "ingredients": {
+        "carrot": "slice and dice",
+        "milk": "splash a dash",
+        "ice": "punch and crunch",
+        "chopsticks": "stop don't drop"
+      }
+    }
+  ]
+}

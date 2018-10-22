@@ -1,8 +1,8 @@
-package com.muffinsoft.alexa.skills.samuraichef.content;
+package com.muffinsoft.alexa.skills.samuraichef.constants;
 
 import com.muffinsoft.alexa.sdk.content.BaseConstants;
 
-public class SamuraiChefSessionConstants extends BaseConstants {
+public class SessionConstants extends BaseConstants {
 
     /**
      * Below are keys for session attributes.
@@ -24,6 +24,8 @@ public class SamuraiChefSessionConstants extends BaseConstants {
     public static final String ACTIVITY = "activity";
 
     public static final String STRIPE_COUNT = "stripeCount";
+
+    public static final String LEVEL_COUNT = "levelCount";
 
     public static final String STAR_COUNT = "starCount";
 

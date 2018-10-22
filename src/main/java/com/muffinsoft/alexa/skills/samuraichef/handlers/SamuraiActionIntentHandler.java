@@ -12,26 +12,33 @@ import com.muffinsoft.alexa.skills.samuraichef.activities.NameHandlerSessionStat
 import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.IngredientsManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
 import static com.amazon.ask.request.Predicates.intentName;
-import static com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefSessionConstants.ACTIVITY;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.NAME_HANDLER;
 
 public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
-    private final PhraseManager phraseManager;
-    private final ActivitiesManager activitiesManager;
-    private final IngredientsManager ingredientsManager;
+    private static final Logger logger = LoggerFactory.getLogger(SamuraiActionIntentHandler.class);
 
-    public SamuraiActionIntentHandler(PhraseManager phraseManager, IngredientsManager ingredientsManager, ActivitiesManager activitiesManager) {
+    private final PhraseManager phraseManager;
+    private final CardManager cardManager;
+    private final ActivitiesManager activitiesManager;
+    private final LevelManager levelManager;
+
+    public SamuraiActionIntentHandler(PhraseManager phraseManager, ActivitiesManager activitiesManager, CardManager cardManager, LevelManager levelManager) {
         this.phraseManager = phraseManager;
-        this.ingredientsManager = ingredientsManager;
         this.activitiesManager = activitiesManager;
+        this.cardManager = cardManager;
+        this.levelManager = levelManager;
     }
 
     @Override
@@ -51,21 +58,23 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
         SessionStateManager stateManager;
 
+        logger.info("Going to handle activity " + currentActivity);
+
         switch (currentActivity) {
             case NAME_HANDLER:
-                stateManager = new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager, activitiesManager);
+                stateManager = new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
                 break;
             case SUSHI_SLICE:
-                stateManager = new SushiSliceSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager, activitiesManager);
+                stateManager = new SushiSliceSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
                 break;
             case JUICE_WARRIOR:
-                stateManager = new JuiceWarriorSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager, activitiesManager);
+                stateManager = new JuiceWarriorSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
                 break;
             case WORD_BOARD_KARATE:
-                stateManager = new WordBoardKarateSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager, activitiesManager);
+                stateManager = new WordBoardKarateSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
                 break;
             case FOOD_TASTER:
-                stateManager = new FoodTasterSessionStateManager(slots, input.getAttributesManager(), phraseManager, ingredientsManager, activitiesManager);
+                stateManager = new FoodTasterSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
                 break;
             default:
                 throw new IllegalStateException("Exception while handling activity: " + currentActivity);
@@ -81,12 +90,11 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
     @Override
     public String getPhrase() {
-        // not used in current version
         return null;
     }
 
     @Override
     public String getSimpleCard() {
-        return phraseManager.getValueByKey("welcomeCard");
+        return cardManager.getValueByKey("welcome");
     }
 }

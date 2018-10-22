@@ -1,17 +1,15 @@
 package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
-import com.muffinsoft.alexa.sdk.handlers.LaunchRequestHandler;
+import com.muffinsoft.alexa.sdk.handlers.StopIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WELCOME_PHRASE;
-
-public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
+public class SamuraiStopIntentHandler extends StopIntentHandler {
 
     private final PhraseManager phraseManager;
     private final CardManager cardManager;
 
-    public SamuraiLaunchRequestHandler(CardManager cardManager, PhraseManager phraseManager) {
+    public SamuraiStopIntentHandler(CardManager cardManager, PhraseManager phraseManager) {
         super();
         this.phraseManager = phraseManager;
         this.cardManager = cardManager;
@@ -19,12 +17,11 @@ public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
 
     @Override
     public String getPhrase() {
-        return phraseManager.getValueByKey(WELCOME_PHRASE);
+        return "Cancel last action";
     }
 
     @Override
     public String getSimpleCard() {
         return cardManager.getValueByKey("welcome");
     }
-
 }

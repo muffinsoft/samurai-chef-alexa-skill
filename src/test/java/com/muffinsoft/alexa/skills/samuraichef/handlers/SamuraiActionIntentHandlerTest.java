@@ -8,7 +8,7 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Session;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.skills.samuraichef.DependenciesContainer;
-import com.muffinsoft.alexa.skills.samuraichef.content.SamuraiChefSessionConstants;
+import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import org.junit.jupiter.api.Test;
@@ -49,7 +49,7 @@ class SamuraiActionIntentHandlerTest {
     }
 
     private SamuraiActionIntentHandler createActionIntentHandlerInstance() {
-        return new SamuraiActionIntentHandler(DependenciesContainer.providePhraseManager(), DependenciesContainer.provideIngredientsManager(), DependenciesContainer.provideActivitiesManager());
+        return new SamuraiActionIntentHandler(DependenciesContainer.providePhraseManager(), DependenciesContainer.provideActivitiesManager(), DependenciesContainer.provideCardManager(), DependenciesContainer.provideIngredientsManager());
     }
 
     @Test
@@ -95,8 +95,8 @@ class SamuraiActionIntentHandlerTest {
         slots.put("name", Slot.builder().withValue("Alex").build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SamuraiChefSessionConstants.USERNAME, "test");
-        sessionAttributes.put(SamuraiChefSessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
+        sessionAttributes.put(SessionConstants.USERNAME, "test");
+        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
@@ -115,8 +115,8 @@ class SamuraiActionIntentHandlerTest {
         slots.put("name", Slot.builder().withValue("Alex").build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SamuraiChefSessionConstants.USERNAME, "test");
-        sessionAttributes.put(SamuraiChefSessionConstants.ACTIVITY, Activities.WORD_BOARD_KARATE);
+        sessionAttributes.put(SessionConstants.USERNAME, "test");
+        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.WORD_BOARD_KARATE);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
@@ -135,9 +135,9 @@ class SamuraiActionIntentHandlerTest {
         slots.put("name", Slot.builder().withValue("Alex").build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SamuraiChefSessionConstants.USERNAME, "test");
-        sessionAttributes.put(SamuraiChefSessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
-        sessionAttributes.put(SamuraiChefSessionConstants.STATE_PHASE, StatePhase.PHASE_0);
+        sessionAttributes.put(SessionConstants.USERNAME, "test");
+        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.PHASE_0);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
@@ -156,14 +156,14 @@ class SamuraiActionIntentHandlerTest {
         slots.put("name", Slot.builder().withValue("Alex").build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SamuraiChefSessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
-        sessionAttributes.put(SamuraiChefSessionConstants.MISTAKES_COUNT, 0);
-        sessionAttributes.put(SamuraiChefSessionConstants.SUCCESS_COUNT, 0);
-        sessionAttributes.put(SamuraiChefSessionConstants.FIRST_TIME_ASKING, false);
-        sessionAttributes.put(SamuraiChefSessionConstants.USERNAME, "Alex");
-        sessionAttributes.put(SamuraiChefSessionConstants.PREVIOUS_INGREDIENT, "shoe");
-        sessionAttributes.put(SamuraiChefSessionConstants.STATE_PHASE, StatePhase.PHASE_1);
-        sessionAttributes.put(SamuraiChefSessionConstants.INGREDIENT_REACTION, "no");
+        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
+        sessionAttributes.put(SessionConstants.MISTAKES_COUNT, 0);
+        sessionAttributes.put(SessionConstants.SUCCESS_COUNT, 0);
+        sessionAttributes.put(SessionConstants.FIRST_TIME_ASKING, false);
+        sessionAttributes.put(SessionConstants.USERNAME, "Alex");
+        sessionAttributes.put(SessionConstants.PREVIOUS_INGREDIENT, "shoe");
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.PHASE_1);
+        sessionAttributes.put(SessionConstants.INGREDIENT_REACTION, "no");
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 

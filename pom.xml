@@ -29,7 +29,7 @@
         <dependency>
             <groupId>com.muffinsoft</groupId>
             <artifactId>inner-skills-sdk</artifactId>
-            <version>0.1.5-SNAPSHOT</version>
+            <version>0.1.6-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -38,11 +38,24 @@
             <version>5.3.1</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
             <version>2.23.0</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.11.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.11.1</version>
         </dependency>
     </dependencies>
 

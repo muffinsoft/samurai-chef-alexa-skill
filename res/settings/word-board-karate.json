@@ -1,0 +1,15 @@
+{
+  "name": "WORD_BOARD_KARATE",
+  "levels": [
+    {
+      "number": 0,
+      "wonSuccessCount": 5,
+      "maxMistakeCount": 2,
+      "ingredients": {
+        "corn": "kick",
+        "hat": "hayaaa",
+        "pencil": "punch"
+      }
+    }
+  ]
+}
