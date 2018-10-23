@@ -13,5 +13,21 @@
         "chopsticks": "stop don't drop"
       }
     }
-  ]
+  ],
+  "speeches": {
+    "0": {
+      "intro": [
+        "A bus full of hefty sumo wrestlers have just arrived! The good news is they've already eaten... phew! They're all here for nutritious juices. Since Sensei will need more than his blender to make all their orders, let's help! When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it. Should Sensei and I show you what to do?"
+      ],
+      "shouldRunDemo": true,
+      "demo": [
+        "Carrot! Slice and dice!",
+        "Milk! Splash a dash!",
+        "Ice! Punch and crunch!",
+        "Chopsticks! Stop, don't drop!",
+        "Now it’s your turn, Ben’s friend. Ready to start?"
+      ],
+      "moveToPhaseTwo": null
+    }
+  }
 }

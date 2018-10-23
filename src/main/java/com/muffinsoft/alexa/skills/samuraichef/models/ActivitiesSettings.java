@@ -1,11 +1,13 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
 import java.util.List;
+import java.util.Map;
 
-public class IngredientsByLevel {
+public class ActivitiesSettings {
 
     private String name;
     private List<Level> levels;
+    private Map<String, Speech> speeches;
 
     public String getName() {
         return name;
@@ -24,11 +26,23 @@ public class IngredientsByLevel {
     }
 
     public Level getLevel(int level) {
-        for(Level it : levels ) {
-            if(it.getNumber() == level) {
+        for (Level it : levels) {
+            if (it.getNumber() == level) {
                 return it;
             }
         }
         throw new IllegalStateException("Can't find level with number " + level);
+    }
+
+    public Map<String, Speech> getSpeeches() {
+        return speeches;
+    }
+
+    public void setSpeeches(Map<String, Speech> speeches) {
+        this.speeches = speeches;
+    }
+
+    public Speech getSpeech(int number) {
+        return speeches.get(String.valueOf(number));
     }
 }

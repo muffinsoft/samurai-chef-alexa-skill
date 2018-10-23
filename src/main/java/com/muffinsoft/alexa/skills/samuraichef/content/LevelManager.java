@@ -3,9 +3,10 @@ package com.muffinsoft.alexa.skills.samuraichef.content;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
+import com.muffinsoft.alexa.skills.samuraichef.models.ActivitiesSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
-import com.muffinsoft.alexa.skills.samuraichef.models.IngredientsByLevel;
 import com.muffinsoft.alexa.skills.samuraichef.models.Level;
+import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class LevelManager {
     private static final String WORD_BOARD_KARATE = "settings/word-board-karate.json";
     private static final String FOOD_TASTER = "settings/food-taster.json";
 
-    private final Map<Activities, IngredientsByLevel> ingredientsByActivity;
+    private final Map<Activities, ActivitiesSettings> ingredientsByActivity;
 
     public LevelManager() {
 
@@ -28,13 +29,13 @@ public class LevelManager {
 
         ContentLoader contentLoader = new ContentLoader();
 
-        ingredientsByActivity.put(Activities.SUSHI_SLICE, contentLoader.loadContent(new IngredientsByLevel(), SUSHI_SLICE, new TypeReference<IngredientsByLevel>() {
+        ingredientsByActivity.put(Activities.SUSHI_SLICE, contentLoader.loadContent(new ActivitiesSettings(), SUSHI_SLICE, new TypeReference<ActivitiesSettings>() {
         }));
-        ingredientsByActivity.put(Activities.JUICE_WARRIOR, contentLoader.loadContent(new IngredientsByLevel(), JUICE_WARRIOR, new TypeReference<IngredientsByLevel>() {
+        ingredientsByActivity.put(Activities.JUICE_WARRIOR, contentLoader.loadContent(new ActivitiesSettings(), JUICE_WARRIOR, new TypeReference<ActivitiesSettings>() {
         }));
-        ingredientsByActivity.put(Activities.WORD_BOARD_KARATE, contentLoader.loadContent(new IngredientsByLevel(), WORD_BOARD_KARATE, new TypeReference<IngredientsByLevel>() {
+        ingredientsByActivity.put(Activities.WORD_BOARD_KARATE, contentLoader.loadContent(new ActivitiesSettings(), WORD_BOARD_KARATE, new TypeReference<ActivitiesSettings>() {
         }));
-        ingredientsByActivity.put(Activities.FOOD_TASTER, contentLoader.loadContent(new IngredientsByLevel(), FOOD_TASTER, new TypeReference<IngredientsByLevel>() {
+        ingredientsByActivity.put(Activities.FOOD_TASTER, contentLoader.loadContent(new ActivitiesSettings(), FOOD_TASTER, new TypeReference<ActivitiesSettings>() {
         }));
     }
 
@@ -61,8 +62,15 @@ public class LevelManager {
 
     public Level getLevelForActivity(Activities currentActivity, int level) {
 
-        IngredientsByLevel ingredientsByLevel = ingredientsByActivity.get(currentActivity);
+        ActivitiesSettings activitiesSettings = ingredientsByActivity.get(currentActivity);
 
-        return ingredientsByLevel.getLevel(level);
+        return activitiesSettings.getLevel(level);
+    }
+
+    public Speech getSpeechForActivityByNumber(Activities currentActivity, int number) {
+
+        ActivitiesSettings activitiesSettings = ingredientsByActivity.get(currentActivity);
+
+        return activitiesSettings.getSpeech(number);
     }
 }

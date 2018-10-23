@@ -8,7 +8,6 @@ import com.muffinsoft.alexa.sdk.activities.SessionStateManager;
 import com.muffinsoft.alexa.sdk.handlers.ActionIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.activities.FoodTasterSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.JuiceWarriorSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.NameHandlerSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
@@ -23,7 +22,7 @@ import java.util.Map;
 
 import static com.amazon.ask.request.Predicates.intentName;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.NAME_HANDLER;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
 
 public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
@@ -61,9 +60,9 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
         logger.info("Going to handle activity " + currentActivity);
 
         switch (currentActivity) {
-            case NAME_HANDLER:
-                stateManager = new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
-                break;
+//            case NAME_HANDLER:
+//                stateManager = new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
+//                break;
             case SUSHI_SLICE:
                 stateManager = new SushiSliceSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
                 break;
@@ -84,7 +83,7 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
     }
 
     private Activities getCurrentActivity(HandlerInput input) {
-        String rawActivity = String.valueOf(input.getAttributesManager().getSessionAttributes().getOrDefault(ACTIVITY, NAME_HANDLER.name()));
+        String rawActivity = String.valueOf(input.getAttributesManager().getSessionAttributes().getOrDefault(ACTIVITY, SUSHI_SLICE.name()));
         return Activities.valueOf(rawActivity);
     }
 

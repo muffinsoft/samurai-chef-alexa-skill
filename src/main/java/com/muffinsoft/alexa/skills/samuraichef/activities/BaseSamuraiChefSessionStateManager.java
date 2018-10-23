@@ -13,6 +13,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
 import com.muffinsoft.alexa.skills.samuraichef.models.Level;
+import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,15 +23,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static com.muffinsoft.alexa.sdk.content.BaseConstants.USERNAME_PLACEHOLDER;
 import static com.muffinsoft.alexa.sdk.model.SlotName.ACTION;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.DEMO_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.DEMO_PHRASE_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.DEMO_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE_RETRY_ONLY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.INTRO_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.INTRO_PHRASE_COUNT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE_RETRY_ONLY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_PHRASE;
@@ -41,6 +39,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.LEVEL_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.MISTAKES_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.PREVIOUS_INGREDIENT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STRIPE_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.SUCCESS_COUNT;
@@ -55,18 +54,19 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private static final Logger logger = LoggerFactory.getLogger(BaseSessionStateManager.class);
     protected final PhraseManager phraseManager;
-    final ActivitiesManager activitiesManager;
     protected final LevelManager levelManager;
+    final ActivitiesManager activitiesManager;
     Activities currentActivity;
     StatePhase statePhase;
     String currentIngredientReaction;
     int successCount;
     int mistakesCount;
+    int currentLevel;
+    Level level;
     private String previousIngredient;
     private Set<String> finishedRounds;
     private int stripeCount;
-    int currentLevel;
-    Level level;
+    private int starCount;
 
     BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager) {
         super(slots, attributesManager);
@@ -85,6 +85,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         successCount = (int) sessionAttributes.getOrDefault(SUCCESS_COUNT, 0);
         mistakesCount = (int) sessionAttributes.getOrDefault(MISTAKES_COUNT, 0);
         stripeCount = (int) sessionAttributes.getOrDefault(STRIPE_COUNT, 0);
+        starCount = (int) sessionAttributes.getOrDefault(STAR_COUNT, 0);
         currentLevel = (int) sessionAttributes.getOrDefault(LEVEL_COUNT, 0);
         Object ingredient = sessionAttributes.getOrDefault(INGREDIENT_REACTION, null);
         currentIngredientReaction = ingredient != null ? String.valueOf(ingredient) : null;
@@ -103,6 +104,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         sessionAttributes.put(STATE_PHASE, statePhase);
         sessionAttributes.put(FINISHED_ROUNDS, finishedRounds);
         sessionAttributes.put(STRIPE_COUNT, stripeCount);
+        sessionAttributes.put(STAR_COUNT, starCount);
         sessionAttributes.put(LEVEL_COUNT, level);
         logger.debug("Session attributes on the end of handling: " + this.sessionAttributes.toString());
     }
@@ -126,7 +128,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         if (this.statePhase == INTRO) {
 
-            dialog = getIntroDialog(this.currentActivity);
+            dialog = getIntroDialog(this.currentActivity, currentLevel);
         }
 
         else if (this.statePhase == DEMO) {
@@ -135,7 +137,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
                 dialog = getReadyToStartDialog();
             }
             else {
-                dialog = getDemoDialog(this.currentActivity);
+                dialog = getDemoDialog(this.currentActivity, this.currentLevel);
             }
         }
 
@@ -149,7 +151,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         else if (this.statePhase == LOSE) {
             if (UserReplyComparator.compare(userReply, UserReplies.AGAIN)) {
                 resetRoundProgress();
-                dialog = getIntroDialog(this.currentActivity);
+                dialog = getIntroDialog(this.currentActivity, currentLevel);
             }
             else if (UserReplyComparator.compare(userReply, UserReplies.MISSION)) {
                 resetRoundProgress();
@@ -171,42 +173,54 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             dialog = getActivePhaseDialog();
         }
 
-        String responseText = dialog.getResponseText().replace(USERNAME_PLACEHOLDER, userName);
-        dialog.setResponseText(responseText);
+//        String responseText = dialog.getResponseText().replace(USERNAME_PLACEHOLDER, userName);
+        dialog.setResponseText(dialog.getRepromtText());
 
         return dialog;
     }
 
     private void calculateProgress() {
         finishedRounds.add(this.currentActivity.name());
-        if (finishedRounds.size() == Activities.values().length - 2) {
+        if (finishedRounds.size() == Activities.values().length - 1) {
             this.stripeCount += 1;
             this.finishedRounds = new HashSet<>();
+            if (stripeCount % 3 == 0) {
+                this.currentLevel += 1;
+            }
+            if (this.stripeCount == 3) {
+                this.starCount += 1;
+            }
         }
     }
 
     private DialogItem startNewMission() {
         Activities nextActivity = activitiesManager.getNextActivity(this.currentActivity);
+        boolean validCondition = finishedRounds.contains(nextActivity.getTitle());
+        while (!validCondition) {
+            nextActivity = activitiesManager.getNextActivity(nextActivity);
+            validCondition = finishedRounds.contains(nextActivity.getTitle());
+        }
         sessionAttributes.put(ACTIVITY, nextActivity);
-        return getIntroDialog(nextActivity);
+        return getIntroDialog(nextActivity, currentLevel);
     }
 
-    private DialogItem getIntroDialog(Activities activity) {
+    private DialogItem getIntroDialog(Activities activity, int number) {
 
-        String countKey = activity.getTitle() + INTRO_PHRASE_COUNT;
-
-        String countValue = phraseManager.getValueByKey(countKey);
-
-        int count = Integer.parseInt(countValue);
+        Speech speech = levelManager.getSpeechForActivityByNumber(activity, number);
 
         StringBuilder dialog = new StringBuilder();
 
-        for (int i = 0; i < count; i++) {
-            dialog.append(phraseManager.getValueByKey(activity.getTitle() + INTRO_PHRASE + i));
+        for (String partOfSpeech : speech.getIntro()) {
+            dialog.append(partOfSpeech);
             dialog.append(" ");
         }
 
-        this.statePhase = DEMO;
+        if (speech.isShouldRunDemo()) {
+            this.statePhase = DEMO;
+        }
+        else {
+            this.statePhase = PHASE_0;
+        }
 
         return new DialogItem(dialog.toString(), false, actionSlotName);
     }
@@ -216,19 +230,19 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         return new DialogItem(phraseManager.getValueByKey(WON_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(WON_REPROMPT_PHRASE));
     }
 
-    private DialogItem getDemoDialog(Activities activity) {
+    private DialogItem getDemoDialog(Activities activity, int number) {
 
-        String countKey = activity.getTitle() + DEMO_PHRASE_COUNT;
-
-        int count = Integer.parseInt(phraseManager.getValueByKey(countKey));
+        Speech speech = levelManager.getSpeechForActivityByNumber(activity, number);
 
         StringBuilder dialog = new StringBuilder();
 
-        for (int i = 0; i < count; i++) {
-            dialog.append(phraseManager.getValueByKey(activity.getTitle() + DEMO_PHRASE + i));
+        for (String partOfSpeech : speech.getDemo()) {
+            dialog.append(partOfSpeech);
             dialog.append(" ");
         }
+
         this.statePhase = PHASE_0;
+
         return new DialogItem(dialog.toString(), false, actionSlotName, true, phraseManager.getValueByKey(activity.getTitle() + DEMO_REPROMPT_PHRASE));
     }
 
@@ -242,10 +256,6 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         return new DialogItem(speechText, false, actionSlotName);
     }
 
-    protected DialogItem getFailureDialog() {
-        return getFailureDialog("");
-    }
-
     DialogItem getFailureDialog(String speechText) {
         String ingredient = nextIngredient();
         speechText = speechText + " " + ingredient;
@@ -254,7 +264,12 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     DialogItem getLoseRoundDialog() {
         this.statePhase = LOSE;
-        return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE));
+        if (this.finishedRounds.size() == Activities.values().length - 1) {
+            return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE_RETRY_ONLY), false, actionSlotName, true, phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE_RETRY_ONLY));
+        }
+        else {
+            return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE));
+        }
     }
 
     private DialogItem getReadyToStartDialog() {

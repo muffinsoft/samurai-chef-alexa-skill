@@ -18,7 +18,7 @@ public class ActivitiesManager extends BaseContentManager<Integer> {
         int searchedOderValue = valueByKey + 1;
 
         if (searchedOderValue > Activities.values().length - 1) {
-            searchedOderValue = 1;
+            searchedOderValue = 0;
         }
 
         for (Map.Entry<String, Integer> entry : getContainer().entrySet()) {

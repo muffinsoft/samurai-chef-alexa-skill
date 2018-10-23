@@ -18,7 +18,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.INTRO_PHASE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FIRST_TIME_ASKING;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.NAME_HANDLER;
+//import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.NAME_HANDLER;
 
 public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
@@ -28,7 +28,7 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
 
     public NameHandlerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager) {
         super(slots, attributesManager, phraseManager, activitiesManager, levelManager);
-        this.currentActivity = NAME_HANDLER;
+//        this.currentActivity = NAME_HANDLER;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
         DialogItem dialogItem;
 
         if (userName == null) {
-            sessionAttributes.put(ACTIVITY, NAME_HANDLER);
+//            sessionAttributes.put(ACTIVITY, NAME_HANDLER);
             if (firstTimeAsking) {
                 dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHASE_PHRASE + 0), false, ACTION.text, true, phraseManager.getValueByKey(INTRO_PHASE_REPROMPT_PHRASE + 0));
                 firstTimeAsking = false;
@@ -65,7 +65,7 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
         }
         else {
             sessionAttributes.put(USERNAME, userName);
-            sessionAttributes.put(ACTIVITY, activitiesManager.getNextActivity(NAME_HANDLER));
+//            sessionAttributes.put(ACTIVITY, activitiesManager.getNextActivity(NAME_HANDLER));
             dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHASE_PHRASE + 2), false, ACTION.text);
         }
 

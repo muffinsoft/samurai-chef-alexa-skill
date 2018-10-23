@@ -6,13 +6,13 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.Objects;
 
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FOOD_TASTER_MOVE_TO_SECOND_PHASE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
@@ -49,7 +49,8 @@ public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateMa
 
                 if (this.successCount == this.level.getPhaseTwoSuccessCount()) {
                     this.statePhase = PHASE_2;
-                    dialog = getSuccessDialog(phraseManager.getValueByKey(FOOD_TASTER_MOVE_TO_SECOND_PHASE_PHRASE));
+                    Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
+                    dialog = getSuccessDialog(speech.getMoveToPhaseTwo());
                 }
                 else {
                     dialog = getSuccessDialog();

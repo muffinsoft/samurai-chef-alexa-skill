@@ -9,12 +9,29 @@
       "timeLimitPhaseTwoInMillis": 6000,
       "maxMistakeCount": 2,
       "ingredients": {
-        "soup" : "slurp",
-        "sushi" : "gulp",
-        "tea" : "sip",
-        "ice cream" : "lick",
-        "wasabi peas" : "crunch"
+        "soup": "slurp",
+        "sushi": "gulp",
+        "tea": "sip",
+        "ice cream": "lick",
+        "wasabi peas": "crunch"
       }
     }
-  ]
+  ],
+  "speeches": {
+    "0": {
+      "intro": [
+        "Imagine if we became giant sumo wrestlers! Let's see who can eat the most food the fastest to become super heavy! Since Sensei loves it when his cooks show passion for eating, he has agreed to provide the food… but we must follow strict Japanese etiquette.",
+        "If we get soup, say 'Slurp!'. If it's sushi, say 'Gulp!' to gulp it down in one bite. If we get wasabi peas, say 'Crunch!' to chomp it good. If it's tea, say 'Sip!'. If we get mochi ice cream, say 'Lick!' to lick it up. We'll take turns eating to see who eats the most! Want to watch Lily and I try first?"
+      ],
+      "shouldRunDemo": true,
+      "demo": [
+        "Soup! Slurp!",
+        "Sushi! Gulp!",
+        "Tea! Sip!",
+        "Ice Cream! Lick!",
+        "Wasabi peas! Crunch!"
+      ],
+      "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+    }
+  }
 }

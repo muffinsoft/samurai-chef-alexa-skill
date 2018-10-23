@@ -14,5 +14,27 @@
         "shoe": "no"
       }
     }
-  ]
+  ],
+  "speeches": {
+    "0": {
+      "intro": [
+        "Hi, Sensei Sushi! This is my friend. We can’t wait to start.",
+        "Nice to meet you, Ben’s friend! You came just in time. Adachi, my new samurai worker know how to slice and chop.  But that all he know.  He must be told exactly what to do and then he do it! But I am busy with customers and cannot stand here the whole time and tell him what to do. Dohh-shee-yohh.",
+        "We are here to help, Sensei. I will take out the food, and my friend will tell Adachi what to do.",
+        "That is a good idea, Ben. You take out the food and I will show your friend how to instruct Adachi.",
+        "If Ben give you fish, say 'Slice!' If it's a vegetable, say 'Chop!'. If it’s rice, say 'Boil'. And if it’s seaseed, say 'Roll!'. And if he accidentally throw you not food, say 'No!'.",
+        "Would you like to see how Sensei do it?"
+      ],
+      "shouldRunDemo": true,
+      "demo": [
+        "Fish! Slice!",
+        "Seaweed! Roll!",
+        "Carrot! Chop!",
+        "Rice! Boil!",
+        "Shoe! No!",
+        "Now it’s your turn, Ben’s friend. Ready to start?"
+      ],
+      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+    }
+  }
 }
