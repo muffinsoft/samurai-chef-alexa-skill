@@ -50,6 +50,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE_RETRY_ONLY;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_0;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
@@ -60,7 +61,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected final PhraseManager phraseManager;
     protected final PowerUpsManager powerUpsManager;
     protected final LevelManager levelManager;
-    final ActivitiesManager activitiesManager;
+    private final ActivitiesManager activitiesManager;
     Activities currentActivity;
     StatePhase statePhase;
     String currentIngredientReaction;
@@ -162,13 +163,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             dialog = new DialogItem(speechText, false, ACTION.text);
         }
 
-        else if (this.statePhase == LOSE) {
+        else if (this.statePhase == LOSE || this.statePhase == LOSE_RETRY_ONLY) {
             resetWinInARow();
             if (UserReplyComparator.compare(userReply, UserReplies.AGAIN)) {
                 resetRoundProgress();
                 dialog = getIntroDialog(this.currentActivity, currentLevel);
             }
-            else if (UserReplyComparator.compare(userReply, UserReplies.MISSION)) {
+            else if (this.statePhase == LOSE && UserReplyComparator.compare(userReply, UserReplies.MISSION)) {
                 resetRoundProgress();
                 dialog = startNewMission();
             }
@@ -197,7 +198,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     private void calculatePowerUpsProgress() {
-        if (this.winInARowCount % 3 == 0) {
+        if (this.winInARowCount % 2 == 0) {
             String powerUps = powerUpsManager.getNextRandomItem(this.earnedPowerUps);
             this.earnedPowerUps.add(powerUps);
         }
@@ -233,21 +234,21 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         }
         sessionAttributes.put(ACTIVITY, nextActivity);
         if (isJustStripeUp) {
-            return getCongratulationDialog(nextActivity, currentLevel);
+            return getCongratulationDialog(currentLevel);
         }
         else {
             return getIntroDialog(nextActivity, currentLevel);
         }
     }
 
-    private DialogItem getCongratulationDialog(Activities activity, int number) {
+    private DialogItem getCongratulationDialog(int number) {
 
         String congrats = phraseManager.getValueByKey(CONGRATULATION_PHRASE);
 
         StringBuilder dialog = new StringBuilder(congrats);
         dialog.append(" ");
 
-        Speech speech = levelManager.getSpeechForActivityByNumber(activity, number);
+        Speech speech = levelManager.getSpeechForActivityByNumber(Activities.SUSHI_SLICE, number);
 
         for (String partOfSpeech : speech.getIntro()) {
             dialog.append(partOfSpeech);
@@ -344,11 +345,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     DialogItem getLoseRoundDialog() {
-        this.statePhase = LOSE;
+
         if (this.finishedRounds.size() == Activities.values().length - 1) {
+            this.statePhase = LOSE_RETRY_ONLY;
             return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE_RETRY_ONLY), false, actionSlotName, true, phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE_RETRY_ONLY));
         }
         else {
+            this.statePhase = LOSE;
             return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE));
         }
     }
