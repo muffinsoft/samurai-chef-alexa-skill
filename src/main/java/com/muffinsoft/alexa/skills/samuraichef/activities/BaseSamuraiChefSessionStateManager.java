@@ -217,9 +217,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             this.isJustStripeUp = true;
             this.stripeCount += 1;
             this.finishedRounds = new HashSet<>();
-            if (stripeCount % 2 == 0) {
-                this.currentLevel += 1;
-            }
+            this.currentLevel += 1;
             if (this.stripeCount % 3 == 0) {
                 this.starCount += 1;
             }
@@ -247,6 +245,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         String congrats = phraseManager.getValueByKey(CONGRATULATION_PHRASE);
 
         StringBuilder dialog = new StringBuilder(congrats);
+        dialog.append(" ");
 
         Speech speech = levelManager.getSpeechForActivityByNumber(activity, number);
 
