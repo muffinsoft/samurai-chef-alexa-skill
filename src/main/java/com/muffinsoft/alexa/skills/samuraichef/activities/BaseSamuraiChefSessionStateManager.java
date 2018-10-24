@@ -198,7 +198,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private void calculatePowerUpsProgress() {
         if (this.winInARowCount % 3 == 0) {
-            String powerUps = powerUpsManager.getNextRandomForActivity(this.currentActivity);
+            String powerUps = powerUpsManager.getNextRandomItem(this.earnedPowerUps);
             this.earnedPowerUps.add(powerUps);
         }
     }
@@ -261,6 +261,10 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             this.statePhase = PHASE_0;
         }
 
+        if (this.statePhase == PHASE_0 && !this.earnedPowerUps.isEmpty()) {
+            dialog = appendEquipment(dialog);
+        }
+
         return new DialogItem(dialog.toString(), false, actionSlotName);
     }
 
@@ -282,7 +286,24 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             this.statePhase = PHASE_0;
         }
 
+        if (this.statePhase == PHASE_0 && !this.earnedPowerUps.isEmpty()) {
+            dialog = appendEquipment(dialog);
+        }
+
         return new DialogItem(dialog.toString(), false, actionSlotName);
+    }
+
+    private StringBuilder appendEquipment(StringBuilder dialog) {
+
+        dialog.append(" You can equip the next power-ups ");
+
+        for (String powerUp : this.earnedPowerUps) {
+            dialog.append(powerUp).append(" ");
+        }
+
+        dialog.append("in the next version");
+
+        return dialog;
     }
 
     DialogItem getWinDialog() {
