@@ -8,6 +8,7 @@ import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
@@ -38,11 +39,13 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INGREDIENT_REACTION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.LEVEL_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.MISTAKES_COUNT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.POWER_UPS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.PREVIOUS_INGREDIENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STRIPE_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.SUCCESS_COUNT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.WIN_IN_A_ROW_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE;
@@ -54,6 +57,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private static final Logger logger = LoggerFactory.getLogger(BaseSessionStateManager.class);
     protected final PhraseManager phraseManager;
+    protected final PowerUpsManager powerUpsManager;
     protected final LevelManager levelManager;
     final ActivitiesManager activitiesManager;
     Activities currentActivity;
@@ -65,21 +69,27 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     Level level;
     private String previousIngredient;
     private Set<String> finishedRounds;
+    private Set<String> earnedPowerUps;
     private int stripeCount;
     private int starCount;
+    private int winInARowCount;
 
-    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager) {
+    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
         super(slots, attributesManager);
         this.phraseManager = phraseManager;
         this.activitiesManager = activitiesManager;
         this.levelManager = levelManager;
+        this.powerUpsManager = powerUpsManager;
     }
 
     @Override
     protected void populateActivityVariables() {
         //noinspection unchecked
         Collection<String> rounds = (Collection<String>) sessionAttributes.get(FINISHED_ROUNDS);
+        //noinspection unchecked
+        Collection<String> powerUps = (Collection<String>) sessionAttributes.get(POWER_UPS);
         finishedRounds = rounds == null ? new HashSet<>() : new HashSet<>(rounds);
+        earnedPowerUps = powerUps == null ? new HashSet<>() : new HashSet<>(powerUps);
         previousIngredient = String.valueOf(sessionAttributes.get(PREVIOUS_INGREDIENT));
         statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.getOrDefault(STATE_PHASE, INTRO)));
         successCount = (int) sessionAttributes.getOrDefault(SUCCESS_COUNT, 0);
@@ -87,6 +97,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         stripeCount = (int) sessionAttributes.getOrDefault(STRIPE_COUNT, 0);
         starCount = (int) sessionAttributes.getOrDefault(STAR_COUNT, 0);
         currentLevel = (int) sessionAttributes.getOrDefault(LEVEL_COUNT, 0);
+        winInARowCount = (int) sessionAttributes.getOrDefault(WIN_IN_A_ROW_COUNT, 0);
         Object ingredient = sessionAttributes.getOrDefault(INGREDIENT_REACTION, null);
         currentIngredientReaction = ingredient != null ? String.valueOf(ingredient) : null;
         logger.debug("Session attributes on the start of handling: " + this.sessionAttributes.toString());
@@ -106,6 +117,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         sessionAttributes.put(STRIPE_COUNT, stripeCount);
         sessionAttributes.put(STAR_COUNT, starCount);
         sessionAttributes.put(LEVEL_COUNT, level);
+        sessionAttributes.put(WIN_IN_A_ROW_COUNT, winInARowCount);
         logger.debug("Session attributes on the end of handling: " + this.sessionAttributes.toString());
     }
 
@@ -149,6 +161,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         }
 
         else if (this.statePhase == LOSE) {
+            resetWinInARow();
             if (UserReplyComparator.compare(userReply, UserReplies.AGAIN)) {
                 resetRoundProgress();
                 dialog = getIntroDialog(this.currentActivity, currentLevel);
@@ -163,7 +176,9 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         }
 
         else if (this.statePhase == WIN) {
-            calculateProgress();
+            addWinInARow();
+            calculateLevelProgress();
+            calculatePowerUpsProgress();
             resetRoundProgress();
             dialog = startNewMission();
         }
@@ -179,12 +194,27 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         return dialog;
     }
 
-    private void calculateProgress() {
+    private void calculatePowerUpsProgress() {
+        if(this.winInARowCount % 3 == 0) {
+            String powerUps = powerUpsManager.getNextRandomForActivity(this.currentActivity);
+            this.earnedPowerUps.add(powerUps);
+        }
+    }
+
+    private void resetWinInARow() {
+        this.winInARowCount = 0;
+    }
+
+    private void addWinInARow() {
+        this.winInARowCount += 1;
+    }
+
+    private void calculateLevelProgress() {
         finishedRounds.add(this.currentActivity.name());
         if (finishedRounds.size() == Activities.values().length - 1) {
             this.stripeCount += 1;
             this.finishedRounds = new HashSet<>();
-            if (stripeCount % 3 == 0) {
+            if (stripeCount % 2 == 0) {
                 this.currentLevel += 1;
             }
             if (this.stripeCount == 3) {

@@ -6,6 +6,7 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,8 +25,8 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
 
     private Long questionTime;
 
-    public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager) {
-        super(slots, attributesManager, phraseManager, activitiesManager, levelManager);
+    public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
+        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
         this.currentActivity = JUICE_WARRIOR;
     }
 

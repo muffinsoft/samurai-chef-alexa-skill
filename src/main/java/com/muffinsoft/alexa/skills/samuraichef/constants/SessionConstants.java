@@ -27,7 +27,11 @@ public class SessionConstants extends BaseConstants {
 
     public static final String LEVEL_COUNT = "levelCount";
 
+    public static final String WIN_IN_A_ROW_COUNT = "winInARowCount";
+
     public static final String STAR_COUNT = "starCount";
 
     public static final String FINISHED_ROUNDS = "finishedRounds";
+
+    public static final String POWER_UPS = "powerUps";
 }

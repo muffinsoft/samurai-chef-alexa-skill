@@ -7,7 +7,7 @@ import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Session;
 import com.amazon.ask.model.Slot;
-import com.muffinsoft.alexa.skills.samuraichef.DependenciesContainer;
+import com.muffinsoft.alexa.skills.samuraichef.IoC;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
@@ -49,7 +49,7 @@ class SamuraiActionIntentHandlerTest {
     }
 
     private SamuraiActionIntentHandler createActionIntentHandlerInstance() {
-        return new SamuraiActionIntentHandler(DependenciesContainer.providePhraseManager(), DependenciesContainer.provideActivitiesManager(), DependenciesContainer.provideCardManager(), DependenciesContainer.provideIngredientsManager());
+        return new SamuraiActionIntentHandler(IoC.providePhraseManager(), IoC.provideActivitiesManager(), IoC.provideCardManager(), IoC.provideIngredientsManager(), IoC.providePowerUpsManager());
     }
 
     @Test

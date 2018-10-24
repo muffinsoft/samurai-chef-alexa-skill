@@ -6,6 +6,7 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +20,8 @@ public class WordBoardKarateSessionStateManager extends BaseSamuraiChefSessionSt
 
     private static final Logger logger = LoggerFactory.getLogger(WordBoardKarateSessionStateManager.class);
 
-    public WordBoardKarateSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager) {
-        super(slots, attributesManager, phraseManager, activitiesManager, levelManager);
+    public WordBoardKarateSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
+        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
         this.currentActivity = WORD_BOARD_KARATE;
     }
 

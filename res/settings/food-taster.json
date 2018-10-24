@@ -5,6 +5,19 @@
       "number": 0,
       "wonSuccessCount": 5,
       "phaseTwoSuccessCount": 2,
+      "timeLimitPhaseOneInMillis": 15000,
+      "timeLimitPhaseTwoInMillis": 7500,
+      "maxMistakeCount": 2,
+      "ingredients": {
+        "soup": "slurp",
+        "sushi": "gulp",
+        "tea": "sip"
+      }
+    },
+    {
+      "number": 0,
+      "wonSuccessCount": 5,
+      "phaseTwoSuccessCount": 2,
       "timeLimitPhaseOneInMillis": 12000,
       "timeLimitPhaseTwoInMillis": 6000,
       "maxMistakeCount": 2,

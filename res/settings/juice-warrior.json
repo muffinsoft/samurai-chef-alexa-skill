@@ -4,6 +4,17 @@
     {
       "number": 0,
       "wonSuccessCount": 5,
+      "timeLimitPhaseOneInMillis": 12000,
+      "maxMistakeCount": 2,
+      "ingredients": {
+        "carrot": "slice and dice",
+        "milk": "splash a dash",
+        "ice": "punch and crunch"
+      }
+    },
+    {
+      "number": 1,
+      "wonSuccessCount": 5,
       "timeLimitPhaseOneInMillis": 10000,
       "maxMistakeCount": 2,
       "ingredients": {

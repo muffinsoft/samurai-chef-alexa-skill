@@ -23,12 +23,12 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
 
         return Skills.standard()
                 .addRequestHandlers(
-                        new SamuraiCancelIntentHandler(DependenciesContainer.provideCardManager(), DependenciesContainer.providePhraseManager()),
-                        new SamuraiStopIntentHandler(DependenciesContainer.provideCardManager(), DependenciesContainer.providePhraseManager()),
-                        new SamuraiFallbackIntentHandler(DependenciesContainer.provideCardManager(), DependenciesContainer.providePhraseManager()),
-                        new SamuraiHelpIntentHandler(DependenciesContainer.provideCardManager(), DependenciesContainer.providePhraseManager()),
-                        new SamuraiLaunchRequestHandler(DependenciesContainer.provideCardManager(), DependenciesContainer.providePhraseManager()),
-                        new SamuraiActionIntentHandler(DependenciesContainer.providePhraseManager(), DependenciesContainer.provideActivitiesManager(), DependenciesContainer.provideCardManager(), DependenciesContainer.provideIngredientsManager()),
+                        new SamuraiCancelIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
+                        new SamuraiStopIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
+                        new SamuraiFallbackIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
+                        new SamuraiHelpIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
+                        new SamuraiLaunchRequestHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
+                        new SamuraiActionIntentHandler(IoC.providePhraseManager(), IoC.provideActivitiesManager(), IoC.provideCardManager(), IoC.provideIngredientsManager(), IoC.providePowerUpsManager()),
                         new SamuraiSessionEndedRequestHandler())
                 .withSkillId(amazonSkillId)
                 .build();

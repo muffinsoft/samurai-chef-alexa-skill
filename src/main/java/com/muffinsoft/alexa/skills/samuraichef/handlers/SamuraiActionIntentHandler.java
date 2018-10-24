@@ -14,6 +14,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,12 +33,14 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
     private final CardManager cardManager;
     private final ActivitiesManager activitiesManager;
     private final LevelManager levelManager;
+    private final PowerUpsManager powerUpsManager;
 
-    public SamuraiActionIntentHandler(PhraseManager phraseManager, ActivitiesManager activitiesManager, CardManager cardManager, LevelManager levelManager) {
+    public SamuraiActionIntentHandler(PhraseManager phraseManager, ActivitiesManager activitiesManager, CardManager cardManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
         this.phraseManager = phraseManager;
         this.activitiesManager = activitiesManager;
         this.cardManager = cardManager;
         this.levelManager = levelManager;
+        this.powerUpsManager = powerUpsManager;
     }
 
     @Override
@@ -61,19 +64,19 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
         switch (currentActivity) {
 //            case NAME_HANDLER:
-//                stateManager = new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
+//                stateManager = new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager, powerUpsManager);
 //                break;
             case SUSHI_SLICE:
-                stateManager = new SushiSliceSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
+                stateManager = new SushiSliceSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager, powerUpsManager);
                 break;
             case JUICE_WARRIOR:
-                stateManager = new JuiceWarriorSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
+                stateManager = new JuiceWarriorSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager, powerUpsManager);
                 break;
             case WORD_BOARD_KARATE:
-                stateManager = new WordBoardKarateSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
+                stateManager = new WordBoardKarateSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager, powerUpsManager);
                 break;
             case FOOD_TASTER:
-                stateManager = new FoodTasterSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager);
+                stateManager = new FoodTasterSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager, powerUpsManager);
                 break;
             default:
                 throw new IllegalStateException("Exception while handling activity: " + currentActivity);

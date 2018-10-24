@@ -10,6 +10,15 @@
         "hat": "hayaaa",
         "pencil": "punch"
       }
+    },
+    {
+      "number": 1,
+      "wonSuccessCount": 5,
+      "maxMistakeCount": 2,
+      "ingredients": {
+        "corn": "kick",
+        "pencil": "punch"
+      }
     }
   ],
   "speeches": {

@@ -9,6 +9,17 @@
       "ingredients": {
         "fish": "slice",
         "carrot": "chop",
+        "rice": "boil"
+      }
+    },
+    {
+      "number": 1,
+      "wonSuccessCount": 5,
+      "phaseTwoSuccessCount": 2,
+      "maxMistakeCount": 2,
+      "ingredients": {
+        "fish": "slice",
+        "carrot": "chop",
         "rice": "boil",
         "seaweed": "roll",
         "shoe": "no"
