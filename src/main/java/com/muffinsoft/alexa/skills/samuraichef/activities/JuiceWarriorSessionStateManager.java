@@ -48,13 +48,13 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
                 dialog = getSuccessDialog();
             }
             else {
-                dialog = getFailureDialog(TOO_LONG_PHRASE);
+                dialog = getFailureDialog(phraseManager.getValueByKey(TOO_LONG_PHRASE));
             }
         }
         else {
             this.mistakesCount++;
             if (this.mistakesCount < level.getMaxMistakeCount()) {
-                dialog = getFailureDialog(WRONG_PHRASE);
+                dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
             }
             else {
                 dialog = getLoseRoundDialog();

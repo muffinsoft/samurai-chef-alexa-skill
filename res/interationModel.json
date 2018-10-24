@@ -33,6 +33,10 @@
                 "{action}"
               ]
             }
+          ],
+          "samples": [
+            "cooking",
+            "{action}"
           ]
         },
         {

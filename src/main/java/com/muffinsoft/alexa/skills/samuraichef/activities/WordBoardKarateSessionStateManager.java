@@ -39,7 +39,7 @@ public class WordBoardKarateSessionStateManager extends BaseSamuraiChefSessionSt
         else {
             this.mistakesCount++;
             if (this.mistakesCount < level.getMaxMistakeCount()) {
-                dialog = getFailureDialog(WRONG_PHRASE);
+                dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
             }
             else {
                 dialog = getLoseRoundDialog();

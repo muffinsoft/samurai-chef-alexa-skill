@@ -3,11 +3,10 @@
   "levels": [
     {
       "number": 0,
-      "wonSuccessCount": 5,
-      "maxMistakeCount": 2,
+      "wonSuccessCount": 4,
+      "maxMistakeCount": 3,
       "ingredients": {
         "corn": "kick",
-        "hat": "hayaaa",
         "pencil": "punch"
       }
     },
@@ -17,6 +16,7 @@
       "maxMistakeCount": 2,
       "ingredients": {
         "corn": "kick",
+        "hat": "hayaaa",
         "pencil": "punch"
       }
     }
@@ -35,6 +35,16 @@
         "Pencil! Punch!",
         "Now it’s your turn, Ben’s friend. Ready to start?"
       ],
+      "moveToPhaseTwo": null
+    },
+    "1": {
+      "intro": [
+        "Now that we've cooked some meals and even stuffed our bellies, lets burn that energy with some karate!",
+        "I'll hold up a wooden board with a word on it. To break it, you have to shout a karate word that begins with the same sound. If it begins with a 'K' sound, shout 'Kick'; if it begins with a 'H' sound, shout 'Hayaaa!'; if it begins with a 'P' sound, shout 'Punch.'",
+        "Now it’s your turn, Ben’s friend. Ready to start?"
+      ],
+      "shouldRunDemo": false,
+      "demo": [],
       "moveToPhaseTwo": null
     }
   }

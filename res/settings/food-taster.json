@@ -3,15 +3,14 @@
   "levels": [
     {
       "number": 0,
-      "wonSuccessCount": 5,
-      "phaseTwoSuccessCount": 2,
+      "wonSuccessCount": 4,
+      "phaseTwoSuccessCount": 3,
       "timeLimitPhaseOneInMillis": 15000,
       "timeLimitPhaseTwoInMillis": 7500,
       "maxMistakeCount": 2,
       "ingredients": {
         "soup": "slurp",
-        "sushi": "gulp",
-        "tea": "sip"
+        "sushi": "gulp"
       }
     },
     {
@@ -42,8 +41,18 @@
         "Sushi! Gulp!",
         "Tea! Sip!",
         "Ice Cream! Lick!",
-        "Wasabi peas! Crunch!"
+        "Wasabi peas! Crunch!",
+        "Now it’s your turn, Ben’s friend. Ready to start?"
       ],
+      "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+    },
+    "1": {
+      "intro": [
+        "Imagine if we became giant sumo wrestlers! Let's see who can eat the most food the fastest to become super heavy! Since Sensei loves it when his cooks show passion for eating, he has agreed to provide the food… but we must follow strict Japanese etiquette.",
+        "If we get soup, say 'Slurp!'. If it's sushi, say 'Gulp!' to gulp it down in one bite. If we get wasabi peas, say 'Crunch!' to chomp it good. If it's tea, say 'Sip!'. If we get mochi ice cream, say 'Lick!' to lick it up. We'll take turns eating to see who eats the most! Now it’s your turn, Ben’s friend. Ready to start?"
+      ],
+      "shouldRunDemo": false,
+      "demo": [],
       "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
     }
   }

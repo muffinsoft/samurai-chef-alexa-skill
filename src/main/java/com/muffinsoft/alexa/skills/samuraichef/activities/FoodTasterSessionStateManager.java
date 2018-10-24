@@ -58,13 +58,13 @@ public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateMa
                 }
             }
             else {
-                dialog = getFailureDialog(TOO_LONG_PHRASE);
+                dialog = getFailureDialog(phraseManager.getValueByKey(TOO_LONG_PHRASE));
             }
         }
         else {
             this.mistakesCount++;
             if (this.mistakesCount < this.level.getMaxMistakeCount()) {
-                dialog = getFailureDialog(WRONG_PHRASE);
+                dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
             }
             else {
                 dialog = getLoseRoundDialog();

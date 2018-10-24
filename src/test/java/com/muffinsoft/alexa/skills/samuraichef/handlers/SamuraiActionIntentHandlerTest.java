@@ -13,8 +13,10 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -86,43 +88,87 @@ class SamuraiActionIntentHandlerTest {
     }
 
     @Test
-    void moveFromNameHandlingToSushiSliceActivity() {
+    void moveBetweenActivitiesAfterWin() {
 
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
         Map<String, Slot> slots = new HashMap<>();
         slots.put("action", Slot.builder().withValue("yes").build());
-        slots.put("name", Slot.builder().withValue("Alex").build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.USERNAME, "test");
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.WIN);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
-        Optional<Response> intro1response = handler.handle(input);
+        Optional<Response> response = handler.handle(input);
 
-        intro1response.isPresent();
+        response.isPresent();
     }
 
     @Test
-    void moveFromNameHandlingToKarateActivity() {
+    void moveBetweenActivitiesAfterLoseWithFilledFinishedActivities() {
+
+        SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
+
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put("action", Slot.builder().withValue("mission").build());
+
+        List<String> finishedActivities = Collections.singletonList(Activities.JUICE_WARRIOR.name());
+
+        Map<String, Object> sessionAttributes = new HashMap<>();
+        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.LOSE);
+        sessionAttributes.put(SessionConstants.FINISHED_ROUNDS, finishedActivities);
+
+        HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
+
+        Optional<Response> response = handler.handle(input);
+
+        response.isPresent();
+    }
+
+    @Test
+    void moveFromLastToFirstActivityAfterWin() {
 
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
         Map<String, Slot> slots = new HashMap<>();
         slots.put("action", Slot.builder().withValue("yes").build());
-        slots.put("name", Slot.builder().withValue("Alex").build());
+
+        List<String> finishedActivities = Arrays.asList(Activities.SUSHI_SLICE.name(), Activities.JUICE_WARRIOR.name(), Activities.WORD_BOARD_KARATE.name());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.USERNAME, "test");
-        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.WORD_BOARD_KARATE);
+        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.FOOD_TASTER);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.WIN);
+        sessionAttributes.put(SessionConstants.WIN_IN_A_ROW_COUNT, 2);
+        sessionAttributes.put(SessionConstants.STRIPE_COUNT, 5);
+        sessionAttributes.put(SessionConstants.FINISHED_ROUNDS, finishedActivities);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
-        Optional<Response> intro1response = handler.handle(input);
+        Optional<Response> response = handler.handle(input);
 
-        intro1response.isPresent();
+        response.isPresent();
+    }
+
+    @Test
+    void moveFromLastToFirstActivityAfterLose() {
+
+        SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
+
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put("action", Slot.builder().withValue("mission").build());
+
+        Map<String, Object> sessionAttributes = new HashMap<>();
+        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.FOOD_TASTER);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.LOSE);
+
+        HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
+
+        Optional<Response> response = handler.handle(input);
+
+        response.isPresent();
     }
 
     @Test
@@ -135,7 +181,6 @@ class SamuraiActionIntentHandlerTest {
         slots.put("name", Slot.builder().withValue("Alex").build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.USERNAME, "test");
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.PHASE_0);
 
@@ -160,7 +205,7 @@ class SamuraiActionIntentHandlerTest {
         sessionAttributes.put(SessionConstants.MISTAKES_COUNT, 0);
         sessionAttributes.put(SessionConstants.SUCCESS_COUNT, 0);
         sessionAttributes.put(SessionConstants.FIRST_TIME_ASKING, false);
-        sessionAttributes.put(SessionConstants.USERNAME, "Alex");
+//        sessionAttributes.put(SessionConstants.USERNAME, "Alex");
         sessionAttributes.put(SessionConstants.PREVIOUS_INGREDIENT, "shoe");
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.PHASE_1);
         sessionAttributes.put(SessionConstants.INGREDIENT_REACTION, "no");

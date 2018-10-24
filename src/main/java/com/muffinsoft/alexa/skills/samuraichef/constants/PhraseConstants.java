@@ -5,6 +5,7 @@ public class PhraseConstants {
     public static final String TOO_LONG_PHRASE = "tooLongPhrase";
     public static final String WRONG_PHRASE = "wrongPhrase";
     public static final String WELCOME_PHRASE = "welcomePhrase";
+    public static final String CONGRATULATION_PHRASE = "congratulationPhrase";
     public static final String FALLBACK_PHRASE = "fallbackPhrase";
     public static final String INTRO_PHASE_PHRASE = "intro";
     public static final String INTRO_PHASE_REPROMPT_PHRASE = "introRePrompt";

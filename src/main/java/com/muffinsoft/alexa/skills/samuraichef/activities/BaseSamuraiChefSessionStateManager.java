@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.muffinsoft.alexa.sdk.model.SlotName.ACTION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.CONGRATULATION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.DEMO_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE_RETRY_ONLY;
@@ -73,6 +74,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     private int stripeCount;
     private int starCount;
     private int winInARowCount;
+    private boolean isJustStripeUp = false;
 
     BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
         super(slots, attributesManager);
@@ -116,7 +118,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         sessionAttributes.put(FINISHED_ROUNDS, finishedRounds);
         sessionAttributes.put(STRIPE_COUNT, stripeCount);
         sessionAttributes.put(STAR_COUNT, starCount);
-        sessionAttributes.put(LEVEL_COUNT, level);
+        sessionAttributes.put(LEVEL_COUNT, currentLevel);
         sessionAttributes.put(WIN_IN_A_ROW_COUNT, winInARowCount);
         logger.debug("Session attributes on the end of handling: " + this.sessionAttributes.toString());
     }
@@ -189,13 +191,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         }
 
 //        String responseText = dialog.getResponseText().replace(USERNAME_PLACEHOLDER, userName);
-        dialog.setResponseText(dialog.getRepromtText());
+        dialog.setResponseText(dialog.getResponseText());
 
         return dialog;
     }
 
     private void calculatePowerUpsProgress() {
-        if(this.winInARowCount % 3 == 0) {
+        if (this.winInARowCount % 3 == 0) {
             String powerUps = powerUpsManager.getNextRandomForActivity(this.currentActivity);
             this.earnedPowerUps.add(powerUps);
         }
@@ -211,13 +213,14 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private void calculateLevelProgress() {
         finishedRounds.add(this.currentActivity.name());
-        if (finishedRounds.size() == Activities.values().length - 1) {
+        if (finishedRounds.size() == Activities.values().length) {
+            this.isJustStripeUp = true;
             this.stripeCount += 1;
             this.finishedRounds = new HashSet<>();
             if (stripeCount % 2 == 0) {
                 this.currentLevel += 1;
             }
-            if (this.stripeCount == 3) {
+            if (this.stripeCount % 3 == 0) {
                 this.starCount += 1;
             }
         }
@@ -225,13 +228,41 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private DialogItem startNewMission() {
         Activities nextActivity = activitiesManager.getNextActivity(this.currentActivity);
-        boolean validCondition = finishedRounds.contains(nextActivity.getTitle());
-        while (!validCondition) {
+        boolean invalidCondition = finishedRounds.contains(nextActivity.name());
+        while (invalidCondition) {
             nextActivity = activitiesManager.getNextActivity(nextActivity);
-            validCondition = finishedRounds.contains(nextActivity.getTitle());
+            invalidCondition = finishedRounds.contains(nextActivity.getTitle());
         }
         sessionAttributes.put(ACTIVITY, nextActivity);
-        return getIntroDialog(nextActivity, currentLevel);
+        if (isJustStripeUp) {
+            return getCongratulationDialog(nextActivity, currentLevel);
+        }
+        else {
+            return getIntroDialog(nextActivity, currentLevel);
+        }
+    }
+
+    private DialogItem getCongratulationDialog(Activities activity, int number) {
+
+        String congrats = phraseManager.getValueByKey(CONGRATULATION_PHRASE);
+
+        StringBuilder dialog = new StringBuilder(congrats);
+
+        Speech speech = levelManager.getSpeechForActivityByNumber(activity, number);
+
+        for (String partOfSpeech : speech.getIntro()) {
+            dialog.append(partOfSpeech);
+            dialog.append(" ");
+        }
+
+        if (speech.isShouldRunDemo()) {
+            this.statePhase = DEMO;
+        }
+        else {
+            this.statePhase = PHASE_0;
+        }
+
+        return new DialogItem(dialog.toString(), false, actionSlotName);
     }
 
     private DialogItem getIntroDialog(Activities activity, int number) {
