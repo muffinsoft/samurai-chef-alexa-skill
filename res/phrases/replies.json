@@ -14,5 +14,36 @@
   "AGAIN": [
     "again",
     "try again"
+  ],
+  "SUSHI_BLADE": [
+    "sushi blade",
+    "blade"
+  ],
+  "CUISINE_KATANA": [
+    "cuisine katana",
+    "katana"
+  ],
+  "SUPER_SPATULE": [
+    "super spatula",
+    "spatula"
+  ],
+  "SECRET_SAUCE": [
+    "secret sauce",
+    "sauce"
+  ],
+  "CHEF_HAT": [
+    "chef hat",
+    "hat"
+  ],
+  "KARATE_GI": [
+    "karate gi",
+    "gi"
+  ],
+  "HACHIMAKI": [
+    "hachimaki"
+  ],
+  "SUMO_MAWASHI": [
+    "sumo mawashi",
+    "mawashi"
   ]
 }

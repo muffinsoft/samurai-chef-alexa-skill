@@ -225,6 +225,67 @@
               "name": {
                 "value": "crunch"
               }
+            },
+            {
+              "name": {
+                "value": "blade",
+                "synonyms": [
+                  "sushi blade"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "katana",
+                "synonyms": [
+                  "cuisine katana"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "spatula",
+                "synonyms": [
+                  "super spatula"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "sauce",
+                "synonyms": [
+                  "secret sauce"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "hat",
+                "synonyms": [
+                  "chef hat"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "gi",
+                "synonyms": [
+                  "karate gi"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "hachimaki"
+              }
+            },
+            {
+              "name": {
+                "value": "mawashi",
+                "synonyms": [
+                  "sumo mawashi"
+                ]
+              }
             }
           ]
         },

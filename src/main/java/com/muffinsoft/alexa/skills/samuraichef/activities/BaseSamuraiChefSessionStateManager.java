@@ -435,21 +435,54 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private DialogItem wearEquipmentDialog() {
 
-        Equipments equipment = Equipments.CHEF_HAT;
+        String equipment = getEquipmentFromUserRequest();
 
-        String equipedPowerUp = equipment.name();
+        String readyToStartPhrase = phraseManager.getValueByKey(READY_TO_START_PHRASE);
 
-        earnedPowerUps.remove(equipedPowerUp);
+        if(equipment == null) {
+            this.statePhase = READY_PHASE;
+            return new DialogItem(readyToStartPhrase, false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
+        }
 
-        this.sessionAttributes.put(EQUIPED_POWER_UP, equipedPowerUp);
+        earnedPowerUps.remove(equipment);
+
+        this.sessionAttributes.put(EQUIPED_POWER_UP, equipment);
 
         this.statePhase = READY_PHASE;
 
         String justWear = phraseManager.getValueByKey(JUST_WEAR_PHRASE);
 
-        String readyToStartPhrase = phraseManager.getValueByKey(READY_TO_START_PHRASE);
+        return new DialogItem(justWear + " " + powerUpsManager.getValueByKey(equipment) + " " + readyToStartPhrase, false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
+    }
 
-        return new DialogItem(justWear + " " + powerUpsManager.getValueByKey(equipment.name()) + " " + readyToStartPhrase, false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
+    private String getEquipmentFromUserRequest() {
+        if (UserReplyComparator.compare(userReply, UserReplies.SUSHI_BLADE)) {
+            return Equipments.SUSHI_BLADE.name();
+        }
+        else if (UserReplyComparator.compare(userReply, UserReplies.CHEF_HAT)) {
+            return Equipments.CHEF_HAT.name();
+        }
+        else if (UserReplyComparator.compare(userReply, UserReplies.CUISINE_KATANA)) {
+            return Equipments.CUISINE_KATANA.name();
+        }
+        else if (UserReplyComparator.compare(userReply, UserReplies.SUPER_SPATULE)) {
+            return Equipments.SUPER_SPATULE.name();
+        }
+        else if (UserReplyComparator.compare(userReply, UserReplies.SECRET_SAUCE)) {
+            return Equipments.SECRET_SAUCE.name();
+        }
+        else if (UserReplyComparator.compare(userReply, UserReplies.KARATE_GI)) {
+            return Equipments.KARATE_GI.name();
+        }
+        else if (UserReplyComparator.compare(userReply, UserReplies.HACHIMAKI)) {
+            return Equipments.HACHIMAKI.name();
+        }
+        else if (UserReplyComparator.compare(userReply, UserReplies.SUMO_MAWASHI)) {
+            return Equipments.SUMO_MAWASHI.name();
+        }
+        else {
+            return null;
+        }
     }
 
     private DialogItem getWearEquipmentDialog() {
