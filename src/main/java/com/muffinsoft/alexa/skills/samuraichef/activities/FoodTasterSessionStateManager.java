@@ -7,6 +7,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.RewardManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +29,8 @@ public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateMa
 
     protected Long questionTime;
 
-    public FoodTasterSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
-        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+    public FoodTasterSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, RewardManager rewardManager) {
+        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
         this.currentActivity = FOOD_TASTER;
     }
 

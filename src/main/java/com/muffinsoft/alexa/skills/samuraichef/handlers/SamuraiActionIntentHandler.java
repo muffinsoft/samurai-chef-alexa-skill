@@ -27,6 +27,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.RewardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
 import org.slf4j.Logger;
@@ -49,13 +50,15 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
     private final ActivitiesManager activitiesManager;
     private final LevelManager levelManager;
     private final PowerUpsManager powerUpsManager;
+    private final RewardManager rewardManager;
 
-    public SamuraiActionIntentHandler(PhraseManager phraseManager, ActivitiesManager activitiesManager, CardManager cardManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
+    public SamuraiActionIntentHandler(PhraseManager phraseManager, ActivitiesManager activitiesManager, CardManager cardManager, LevelManager levelManager, PowerUpsManager powerUpsManager, RewardManager rewardManager) {
         this.phraseManager = phraseManager;
         this.activitiesManager = activitiesManager;
         this.cardManager = cardManager;
         this.levelManager = levelManager;
         this.powerUpsManager = powerUpsManager;
+        this.rewardManager = rewardManager;
     }
 
     @Override
@@ -106,16 +109,16 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new FoodTasterSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new FoodTasterSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             case SUPER_SPATULE:
             case SECRET_SAUCE:
             case CHEF_HAT:
-                return new FoodTasterCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new FoodTasterCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             case KARATE_GI:
             case HACHIMAKI:
-                return new FoodTasterSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new FoodTasterSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             case SUMO_MAWASHI:
-                return new FoodTasterDoubleActionSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new FoodTasterDoubleActionSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
@@ -125,14 +128,14 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new WordBoardKarateSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new WordBoardKarateSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             case SUPER_SPATULE:
             case SECRET_SAUCE:
             case CHEF_HAT:
-                return new WordBoardKarateCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new WordBoardKarateCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             case KARATE_GI:
             case HACHIMAKI:
-                return new WordBoardKarateSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new WordBoardKarateSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
@@ -142,17 +145,17 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new SushiSliceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new SushiSliceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             case SUSHI_BLADE:
             case CUISINE_KATANA:
-                return new SushiSliceMoreEarnSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new SushiSliceMoreEarnSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             case SUPER_SPATULE:
             case SECRET_SAUCE:
             case CHEF_HAT:
-                return new SushiSliceCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new SushiSliceCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             case KARATE_GI:
             case HACHIMAKI:
-                return new SushiSliceSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new SushiSliceSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
@@ -162,17 +165,17 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new JuiceWarriorSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new JuiceWarriorSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             case SUSHI_BLADE:
             case CUISINE_KATANA:
-                return new JuiceWarriorMoreEarnSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new JuiceWarriorMoreEarnSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             case SUPER_SPATULE:
             case SECRET_SAUCE:
             case CHEF_HAT:
-                return new JuiceWarriorCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new JuiceWarriorCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             case KARATE_GI:
             case HACHIMAKI:
-                return new JuiceWarriorSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+                return new JuiceWarriorSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }

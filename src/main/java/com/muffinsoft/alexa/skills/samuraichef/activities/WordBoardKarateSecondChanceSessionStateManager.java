@@ -7,6 +7,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.RewardManager;
 
 import java.util.Map;
 import java.util.Objects;
@@ -16,8 +17,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 
 public class WordBoardKarateSecondChanceSessionStateManager extends WordBoardKarateSessionStateManager {
 
-    public WordBoardKarateSecondChanceSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
-        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+    public WordBoardKarateSecondChanceSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, RewardManager rewardManager) {
+        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
     }
 
     @Override

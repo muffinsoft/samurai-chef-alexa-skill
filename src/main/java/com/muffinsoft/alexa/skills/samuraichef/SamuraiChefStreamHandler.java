@@ -28,7 +28,7 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
                         new SamuraiFallbackIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
                         new SamuraiHelpIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
                         new SamuraiLaunchRequestHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
-                        new SamuraiActionIntentHandler(IoC.providePhraseManager(), IoC.provideActivitiesManager(), IoC.provideCardManager(), IoC.provideIngredientsManager(), IoC.providePowerUpsManager()),
+                        new SamuraiActionIntentHandler(IoC.providePhraseManager(), IoC.provideActivitiesManager(), IoC.provideCardManager(), IoC.provideIngredientsManager(), IoC.providePowerUpsManager(), IoC.provideRewardManager()),
                         new SamuraiSessionEndedRequestHandler())
                 .withSkillId(amazonSkillId)
                 .build();

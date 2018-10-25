@@ -51,7 +51,7 @@ class SamuraiActionIntentHandlerTest {
     }
 
     private SamuraiActionIntentHandler createActionIntentHandlerInstance() {
-        return new SamuraiActionIntentHandler(IoC.providePhraseManager(), IoC.provideActivitiesManager(), IoC.provideCardManager(), IoC.provideIngredientsManager(), IoC.providePowerUpsManager());
+        return new SamuraiActionIntentHandler(IoC.providePhraseManager(), IoC.provideActivitiesManager(), IoC.provideCardManager(), IoC.provideIngredientsManager(), IoC.providePowerUpsManager(), IoC.provideRewardManager());
     }
 
     @Test

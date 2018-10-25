@@ -7,6 +7,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.RewardManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 
 import java.util.Map;
@@ -18,8 +19,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
 
 public class SushiSliceCorrectAnswerSessionStateManager extends SushiSliceSessionStateManager {
 
-    public SushiSliceCorrectAnswerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
-        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
+    public SushiSliceCorrectAnswerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, RewardManager rewardManager) {
+        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
     }
 
     @SuppressWarnings("Duplicates")

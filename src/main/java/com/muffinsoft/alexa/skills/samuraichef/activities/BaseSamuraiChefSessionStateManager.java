@@ -10,6 +10,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.RewardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
@@ -66,6 +67,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected final PhraseManager phraseManager;
     final LevelManager levelManager;
     private final PowerUpsManager powerUpsManager;
+    private final RewardManager rewardManager;
     private final ActivitiesManager activitiesManager;
     Activities currentActivity;
     StatePhase statePhase;
@@ -82,12 +84,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     private int winInARowCount;
     private boolean isJustStripeUp = false;
 
-    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
+    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, RewardManager rewardManager) {
         super(slots, attributesManager);
         this.phraseManager = phraseManager;
         this.activitiesManager = activitiesManager;
         this.levelManager = levelManager;
         this.powerUpsManager = powerUpsManager;
+        this.rewardManager = rewardManager;
     }
 
     @Override
@@ -219,7 +222,10 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     private void calculatePowerUpsProgress() {
-        if (this.winInARowCount % 2 == 0) {
+
+        int winInARowCount = rewardManager.getContainer().getWinInARowCount();
+
+        if (this.winInARowCount % winInARowCount == 0) {
             Equipments equipment = powerUpsManager.getNextRandomItem(this.earnedPowerUps);
             this.earnedPowerUps.add(equipment.name());
         }
@@ -235,12 +241,22 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private void calculateLevelProgress() {
         finishedRounds.add(this.currentActivity.name());
+
         if (finishedRounds.size() == Activities.values().length) {
+
             this.isJustStripeUp = true;
             this.stripeCount += 1;
             this.finishedRounds = new HashSet<>();
-            this.currentLevel += 1;
-            if (this.stripeCount % 3 == 0) {
+
+            int stripesToLevelCount = rewardManager.getContainer().getStripesToLevelCount();
+
+            if (this.stripeCount % stripesToLevelCount == 0) {
+                this.currentLevel += 1;
+            }
+
+            int stripesToStarCount = rewardManager.getContainer().getStripesToStarCount();
+
+            if (this.stripeCount % stripesToStarCount == 0) {
                 this.starCount += 1;
             }
         }
