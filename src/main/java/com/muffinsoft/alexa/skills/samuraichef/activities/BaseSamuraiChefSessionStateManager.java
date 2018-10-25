@@ -4,12 +4,14 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseSessionStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.skills.samuraichef.components.ActivityEquipmentFilter;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
@@ -31,11 +33,13 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE_RETRY_ONLY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE_RETRY_ONLY;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.EQUIPED_POWER_UP;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_ROUNDS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INGREDIENT_REACTION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.LEVEL_COUNT;
@@ -48,19 +52,20 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.SUCCESS_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.WIN_IN_A_ROW_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.EQUIPMENT_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE_RETRY_ONLY;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_0;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.READY_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
 abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManager {
 
     private static final Logger logger = LoggerFactory.getLogger(BaseSessionStateManager.class);
     protected final PhraseManager phraseManager;
-    protected final PowerUpsManager powerUpsManager;
-    protected final LevelManager levelManager;
+    final LevelManager levelManager;
+    private final PowerUpsManager powerUpsManager;
     private final ActivitiesManager activitiesManager;
     Activities currentActivity;
     StatePhase statePhase;
@@ -121,6 +126,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         sessionAttributes.put(STAR_COUNT, starCount);
         sessionAttributes.put(LEVEL_COUNT, currentLevel);
         sessionAttributes.put(WIN_IN_A_ROW_COUNT, winInARowCount);
+        sessionAttributes.put(POWER_UPS, earnedPowerUps);
         logger.debug("Session attributes on the end of handling: " + this.sessionAttributes.toString());
     }
 
@@ -149,14 +155,29 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         else if (this.statePhase == DEMO) {
 
             if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
-                dialog = getReadyToStartDialog();
+                if (isAvailablePowerUpsForActivity()) {
+                    dialog = getWearEquipmentDialog();
+                }
+                else {
+                    dialog = getReadyToStartDialog();
+                }
             }
             else {
                 dialog = getDemoDialog(this.currentActivity, this.currentLevel);
             }
         }
 
-        else if (this.statePhase == PHASE_0) {
+        else if (this.statePhase == EQUIPMENT_PHASE) {
+
+            if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
+                dialog = getReadyToStartDialog();
+            }
+            else {
+                dialog = wearEquipmentDialog();
+            }
+        }
+
+        else if (this.statePhase == READY_PHASE) {
 
             String speechText = nextIngredient();
             this.statePhase = PHASE_1;
@@ -199,8 +220,8 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private void calculatePowerUpsProgress() {
         if (this.winInARowCount % 2 == 0) {
-            String powerUps = powerUpsManager.getNextRandomItem(this.earnedPowerUps);
-            this.earnedPowerUps.add(powerUps);
+            Equipments equipment = powerUpsManager.getNextRandomItem(this.earnedPowerUps);
+            this.earnedPowerUps.add(equipment.name());
         }
     }
 
@@ -259,10 +280,10 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             this.statePhase = DEMO;
         }
         else {
-            this.statePhase = PHASE_0;
+            this.statePhase = READY_PHASE;
         }
 
-        if (this.statePhase == PHASE_0 && !this.earnedPowerUps.isEmpty()) {
+        if (this.statePhase == READY_PHASE && isAvailablePowerUpsForActivity()) {
             dialog = appendEquipment(dialog);
         }
 
@@ -282,32 +303,66 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         if (speech.isShouldRunDemo()) {
             this.statePhase = DEMO;
+            dialog = appendDemo(dialog);
+        }
+        else if (isAvailablePowerUpsForActivity()) {
+            this.statePhase = EQUIPMENT_PHASE;
+            dialog = appendEquipment(dialog);
         }
         else {
-            this.statePhase = PHASE_0;
-        }
-
-        if (this.statePhase == PHASE_0 && !this.earnedPowerUps.isEmpty()) {
-            dialog = appendEquipment(dialog);
+            this.statePhase = READY_PHASE;
+            dialog = appendReadyToStart(dialog);
         }
 
         return new DialogItem(dialog.toString(), false, actionSlotName);
     }
 
+    private StringBuilder appendDemo(StringBuilder dialog) {
+
+        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
+
+        dialog.append(" ").append(speech.getShouldRunDemoPhrase());
+
+        return dialog;
+    }
+
+    private StringBuilder appendReadyToStart(StringBuilder dialog) {
+
+        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
+
+        dialog.append(" ").append(speech.getReadyToStartPhrase());
+
+        return dialog;
+    }
+
+    private boolean isAvailablePowerUpsForActivity() {
+        if (this.earnedPowerUps.isEmpty()) {
+            return false;
+        }
+        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.earnedPowerUps, this.currentActivity);
+        return !filteredEquipment.isEmpty();
+    }
+
     private StringBuilder appendEquipment(StringBuilder dialog) {
 
-        dialog.append(" You can equip the next power-ups ");
+        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
 
-        for (String powerUp : this.earnedPowerUps) {
-            dialog.append(powerUp).append(" ");
+        dialog.append(" ").append(speech.getListOfEquipmentPhrase());
+
+        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.earnedPowerUps, this.currentActivity);
+
+        for (String powerUp : filteredEquipment) {
+            String description = powerUpsManager.getValueByKey(powerUp);
+            dialog.append(description).append(" ");
         }
 
-        dialog.append("in the next version");
+        dialog.append(speech.getWantWearEquipmentPhrase());
 
         return dialog;
     }
 
     DialogItem getWinDialog() {
+        sessionAttributes.remove(EQUIPED_POWER_UP);
         this.statePhase = WIN;
         return new DialogItem(phraseManager.getValueByKey(WON_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(WON_REPROMPT_PHRASE));
     }
@@ -323,9 +378,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             dialog.append(" ");
         }
 
-        this.statePhase = PHASE_0;
+        this.statePhase = READY_PHASE;
 
         return new DialogItem(dialog.toString(), false, actionSlotName, true, phraseManager.getValueByKey(activity.getTitle() + DEMO_REPROMPT_PHRASE));
+    }
+
+    DialogItem getRepromptSuccessDialog() {
+        return new DialogItem(this.previousIngredient, false, actionSlotName);
     }
 
     DialogItem getSuccessDialog() {
@@ -346,6 +405,8 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     DialogItem getLoseRoundDialog() {
 
+        sessionAttributes.remove(EQUIPED_POWER_UP);
+
         if (this.finishedRounds.size() == Activities.values().length - 1) {
             this.statePhase = LOSE_RETRY_ONLY;
             return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE_RETRY_ONLY), false, actionSlotName, true, phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE_RETRY_ONLY));
@@ -356,8 +417,49 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         }
     }
 
+    private DialogItem wearEquipmentDialog() {
+
+        Equipments equipment = Equipments.CHEF_HAT;
+
+        String equipedPowerUp = equipment.name();
+
+        earnedPowerUps.remove(equipedPowerUp);
+
+        this.sessionAttributes.put(EQUIPED_POWER_UP, equipedPowerUp);
+
+        this.statePhase = READY_PHASE;
+
+        String justWear = phraseManager.getValueByKey(JUST_WEAR_PHRASE);
+
+        String readyToStartPhrase = phraseManager.getValueByKey(READY_TO_START_PHRASE);
+
+        return new DialogItem(justWear + " " + powerUpsManager.getValueByKey(equipment.name()) + " " + readyToStartPhrase, false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
+    }
+
+    private DialogItem getWearEquipmentDialog() {
+
+        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
+
+        StringBuilder dialog = new StringBuilder();
+
+        dialog.append(" ").append(speech.getListOfEquipmentPhrase());
+
+        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.earnedPowerUps, this.currentActivity);
+
+        for (String powerUp : filteredEquipment) {
+            String description = powerUpsManager.getValueByKey(powerUp);
+            dialog.append(description).append(" ");
+        }
+
+        dialog.append(speech.getWantWearEquipmentPhrase());
+
+        this.statePhase = EQUIPMENT_PHASE;
+
+        return new DialogItem(dialog.toString(), false, actionSlotName, true, dialog.toString());
+    }
+
     private DialogItem getReadyToStartDialog() {
-        this.statePhase = PHASE_0;
+        this.statePhase = READY_PHASE;
         return new DialogItem(phraseManager.getValueByKey(READY_TO_START_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
     }
 

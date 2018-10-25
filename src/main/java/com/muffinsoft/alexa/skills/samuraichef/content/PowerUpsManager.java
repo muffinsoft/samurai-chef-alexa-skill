@@ -1,31 +1,37 @@
 package com.muffinsoft.alexa.skills.samuraichef.content;
 
 import com.muffinsoft.alexa.sdk.content.BaseContentManager;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
-import static com.muffinsoft.alexa.skills.samuraichef.constants.ItemConstants.EQUIPMENT;
-
-public class PowerUpsManager extends BaseContentManager<List<String>> {
+public class PowerUpsManager extends BaseContentManager<String> {
 
     public PowerUpsManager(String path) {
         super(path);
     }
 
-    public String getNextRandomItem(Set<String> alreadyExists) {
+    public Equipments getNextRandomItem(Set<String> alreadyExists) {
 
-        List<String> allEquipmentByActivity = getValueByKey(EQUIPMENT);
+        List<Equipments> allEquipment = Arrays.asList(Equipments.values());
 
-        allEquipmentByActivity.removeAll(alreadyExists);
+        List<Equipments> exists = alreadyExists.stream().map(Equipments::valueOf).collect(Collectors.toList());
 
-        return getRandomEquipmentFromList(allEquipmentByActivity);
+        allEquipment.removeAll(exists);
+
+        return getRandomEquipmentFromList(allEquipment);
     }
 
-    private String getRandomEquipmentFromList(List<String> equipments) {
+    private Equipments getRandomEquipmentFromList(List<Equipments> equipments) {
+
         ThreadLocalRandom random = ThreadLocalRandom.current();
+
         int nextIngredient = random.nextInt(equipments.size());
+
         return equipments.get(nextIngredient);
     }
 }

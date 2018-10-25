@@ -12,9 +12,14 @@ public enum StatePhase {
     DEMO,
 
     /**
+     * We are waiting for user's response yes/no on question "do you want to equip smth?"
+     */
+    EQUIPMENT_PHASE,
+
+    /**
      * We are waiting for user's response yes/no on question "ready to start?"
      */
-    PHASE_0,
+    READY_PHASE,
 
     /**
      * Active phase of the activity

@@ -8,6 +8,10 @@ public class Speech {
     private boolean shouldRunDemo;
     private List<String> demo;
     private String moveToPhaseTwo;
+    private String shouldRunDemoPhrase;
+    private String readyToStartPhrase;
+    private String listOfEquipmentPhrase;
+    private String wantWearEquipmentPhrase;
 
     public List<String> getIntro() {
         return intro;
@@ -39,5 +43,37 @@ public class Speech {
 
     public void setMoveToPhaseTwo(String moveToPhaseTwo) {
         this.moveToPhaseTwo = moveToPhaseTwo;
+    }
+
+    public String getShouldRunDemoPhrase() {
+        return shouldRunDemoPhrase;
+    }
+
+    public void setShouldRunDemoPhrase(String shouldRunDemoPhrase) {
+        this.shouldRunDemoPhrase = shouldRunDemoPhrase;
+    }
+
+    public String getListOfEquipmentPhrase() {
+        return listOfEquipmentPhrase;
+    }
+
+    public void setListOfEquipmentPhrase(String listOfEquipmentPhrase) {
+        this.listOfEquipmentPhrase = listOfEquipmentPhrase;
+    }
+
+    public String getReadyToStartPhrase() {
+        return readyToStartPhrase;
+    }
+
+    public void setReadyToStartPhrase(String readyToStartPhrase) {
+        this.readyToStartPhrase = readyToStartPhrase;
+    }
+
+    public String getWantWearEquipmentPhrase() {
+        return wantWearEquipmentPhrase;
+    }
+
+    public void setWantWearEquipmentPhrase(String wantWearEquipmentPhrase) {
+        this.wantWearEquipmentPhrase = wantWearEquipmentPhrase;
     }
 }

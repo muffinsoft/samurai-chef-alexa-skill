@@ -9,6 +9,8 @@ public class SessionConstants extends BaseConstants {
      */
     public static final String INGREDIENT_REACTION = "ingredientReaction";
 
+    public static final String EQUIPED_POWER_UP = "equipedPowerUp";
+
     public static final String PREVIOUS_INGREDIENT = "previousIngredient";
 
     public static final String FIRST_TIME_ASKING = "firstTimeAsking";

@@ -182,7 +182,7 @@ class SamuraiActionIntentHandlerTest {
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
-        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.PHASE_0);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.READY_PHASE);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 

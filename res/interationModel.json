@@ -161,6 +161,8 @@
                 "value": "hayaaa",
                 "synonyms": [
                   "hayaaaa",
+                  "hayaaa",
+                  "hayaa",
                   "haya",
                   "hi"
                 ]
@@ -198,7 +200,10 @@
             },
             {
               "name": {
-                "value": "slurp"
+                "value": "slurp",
+                "synonyms": [
+                  "stop"
+                ]
               }
             },
             {

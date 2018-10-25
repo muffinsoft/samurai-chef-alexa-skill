@@ -16,6 +16,7 @@ public class PhraseConstants {
     public static final String FAILURE_PHRASE_RETRY_ONLY = "failurePhraseRetry";
     public static final String FAILURE_REPROMPT_PHRASE = "failureRePromptPhrase";
     public static final String FAILURE_REPROMPT_PHRASE_RETRY_ONLY = "failureRePromptPhraseRetry";
+    public static final String JUST_WEAR_PHRASE = "justWearPhrase";
     public static final String READY_TO_START_PHRASE = "readyToStartPhrase";
     public static final String READY_TO_START_REPROMPT_PHRASE = "readyToStartRePromptPhrase";
 }

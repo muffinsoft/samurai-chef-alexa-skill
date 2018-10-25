@@ -8,31 +8,24 @@ import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.FOOD_TASTER;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.EQUIPED_POWER_UP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
-public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateManager {
+public class FoodTasterSecondChanceSessionStateManager extends FoodTasterSessionStateManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(FoodTasterSessionStateManager.class);
-
-    protected Long questionTime;
-
-    public FoodTasterSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
+    public FoodTasterSecondChanceSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager) {
         super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager);
-        this.currentActivity = FOOD_TASTER;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     protected DialogItem getActivePhaseDialog() {
 
@@ -62,12 +55,19 @@ public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateMa
             }
         }
         else {
-            this.mistakesCount++;
-            if (this.mistakesCount < this.level.getMaxMistakeCount()) {
-                dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
+            boolean isPresent = sessionAttributes.containsKey(EQUIPED_POWER_UP);
+            if (isPresent) {
+                sessionAttributes.remove(EQUIPED_POWER_UP);
+                dialog = getRepromptSuccessDialog();
             }
             else {
-                dialog = getLoseRoundDialog();
+                this.mistakesCount++;
+                if (this.mistakesCount < level.getMaxMistakeCount()) {
+                    dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
+                }
+                else {
+                    dialog = getLoseRoundDialog();
+                }
             }
         }
 
@@ -77,23 +77,5 @@ public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateMa
         }
 
         return dialog;
-    }
-
-    @Override
-    protected void resetRoundProgress() {
-        super.resetRoundProgress();
-        this.questionTime = null;
-    }
-
-    @Override
-    protected void populateActivityVariables() {
-        super.populateActivityVariables();
-        questionTime = (Long) sessionAttributes.get(QUESTION_TIME);
-    }
-
-    @Override
-    protected void updateSessionAttributes() {
-        super.updateSessionAttributes();
-        sessionAttributes.put(QUESTION_TIME, System.currentTimeMillis());
     }
 }
