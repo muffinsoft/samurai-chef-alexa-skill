@@ -1,7 +1,7 @@
 package com.muffinsoft.alexa.skills.samuraichef.enums;
 
 public enum Activities {
-//    NAME_HANDLER("intro"),
+    //    NAME_HANDLER("intro"),
     SUSHI_SLICE("sushiSlice"),
     JUICE_WARRIOR("juiceWarrior"),
     WORD_BOARD_KARATE("wordBoardKarate"),

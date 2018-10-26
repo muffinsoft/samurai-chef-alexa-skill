@@ -1,6 +1,8 @@
 package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
+import com.amazon.ask.attributes.persistence.PersistenceAdapter;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.amazon.ask.exception.PersistenceException;
 import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.RequestEnvelope;
@@ -41,6 +43,7 @@ class SamuraiActionIntentHandlerTest {
                                         .build()
                         ).build())
                         .build())
+                .withPersistenceAdapter(new MockPersistenceAdapter())
                 .build();
 
         if (sessionAttributes != null && !sessionAttributes.isEmpty()) {
@@ -119,7 +122,6 @@ class SamuraiActionIntentHandlerTest {
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.LOSE);
-        sessionAttributes.put(SessionConstants.FINISHED_ROUNDS, finishedActivities);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
@@ -141,9 +143,6 @@ class SamuraiActionIntentHandlerTest {
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.FOOD_TASTER);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.WIN);
-        sessionAttributes.put(SessionConstants.WIN_IN_A_ROW_COUNT, 2);
-        sessionAttributes.put(SessionConstants.STRIPE_COUNT, 5);
-        sessionAttributes.put(SessionConstants.FINISHED_ROUNDS, finishedActivities);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
@@ -202,18 +201,25 @@ class SamuraiActionIntentHandlerTest {
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
-        sessionAttributes.put(SessionConstants.MISTAKES_COUNT, 0);
-        sessionAttributes.put(SessionConstants.SUCCESS_COUNT, 0);
-        sessionAttributes.put(SessionConstants.FIRST_TIME_ASKING, false);
-//        sessionAttributes.put(SessionConstants.USERNAME, "Alex");
-        sessionAttributes.put(SessionConstants.PREVIOUS_INGREDIENT, "shoe");
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.PHASE_1);
-        sessionAttributes.put(SessionConstants.INGREDIENT_REACTION, "no");
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
         Optional<Response> response = handler.handle(input);
 
         response.isPresent();
+    }
+
+    private class MockPersistenceAdapter implements PersistenceAdapter {
+
+        @Override
+        public Optional<Map<String, Object>> getAttributes(RequestEnvelope envelope) throws PersistenceException {
+            return Optional.empty();
+        }
+
+        @Override
+        public void saveAttributes(RequestEnvelope envelope, Map<String, Object> attributes) throws PersistenceException {
+
+        }
     }
 }

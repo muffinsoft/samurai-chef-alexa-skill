@@ -33,13 +33,13 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
 
         DialogItem dialog;
 
-        if (Objects.equals(currentIngredientReaction, userReply)) {
+        if (Objects.equals(this.activityProgress.getCurrentIngredientReaction(), userReply)) {
 
-            this.successCount++;
+            this.activityProgress.iterateSuccessCount();
 
-            if (this.successCount == level.getPhaseTwoSuccessCount()) {
+            if (this.activityProgress.getSuccessCount() == level.getPhaseTwoSuccessCount()) {
                 this.statePhase = PHASE_2;
-                Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
+                Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
                 dialog = getSuccessDialog(speech.getMoveToPhaseTwo());
             }
             else {
@@ -47,8 +47,8 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
             }
         }
         else {
-            this.mistakesCount++;
-            if (this.mistakesCount < level.getMaxMistakeCount()) {
+            this.activityProgress.iterateMistakeCount();
+            if (this.activityProgress.getMistakesCount() < level.getMaxMistakeCount()) {
                 dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
             }
             else {
@@ -56,7 +56,7 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
             }
         }
 
-        if (this.successCount == level.getWonSuccessCount()) {
+        if (this.activityProgress.getSuccessCount() == level.getWonSuccessCount()) {
             dialog = getWinDialog();
         }
 

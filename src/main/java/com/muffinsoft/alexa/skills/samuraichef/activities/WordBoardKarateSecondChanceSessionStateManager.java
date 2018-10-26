@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.EQUIPED_POWER_UP;
 
 public class WordBoardKarateSecondChanceSessionStateManager extends WordBoardKarateSessionStateManager {
 
@@ -21,26 +20,26 @@ public class WordBoardKarateSecondChanceSessionStateManager extends WordBoardKar
         super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     protected DialogItem getActivePhaseDialog() {
 
         DialogItem dialog;
 
-        if (Objects.equals(currentIngredientReaction, userReply)) {
+        if (Objects.equals(this.activityProgress.getCurrentIngredientReaction(), userReply)) {
 
-            this.successCount++;
+            this.activityProgress.iterateSuccessCount();
 
             dialog = getSuccessDialog();
         }
         else {
-            boolean isPresent = sessionAttributes.containsKey(EQUIPED_POWER_UP);
-            if (isPresent) {
-                sessionAttributes.remove(EQUIPED_POWER_UP);
+            if (this.userProgress.isPowerUpEquipped()) {
+                this.userProgress.removePowerUp();
                 dialog = getRepromptSuccessDialog();
             }
             else {
-                this.mistakesCount++;
-                if (this.mistakesCount < level.getMaxMistakeCount()) {
+                this.activityProgress.iterateMistakeCount();
+                if (this.activityProgress.getMistakesCount() < level.getMaxMistakeCount()) {
                     dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
                 }
                 else {
@@ -49,7 +48,7 @@ public class WordBoardKarateSecondChanceSessionStateManager extends WordBoardKar
             }
         }
 
-        if (this.successCount == level.getWonSuccessCount()) {
+        if (this.activityProgress.getSuccessCount() == level.getWonSuccessCount()) {
             dialog = getWinDialog();
         }
 

@@ -15,15 +15,16 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
+import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
 import com.muffinsoft.alexa.skills.samuraichef.models.Level;
 import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
+import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -40,18 +41,10 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.EQUIPED_POWER_UP;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_ROUNDS;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INGREDIENT_REACTION;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.LEVEL_COUNT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.MISTAKES_COUNT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.POWER_UPS;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.PREVIOUS_INGREDIENT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.DEBUG_MESSAGE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STRIPE_COUNT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.SUCCESS_COUNT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.WIN_IN_A_ROW_COUNT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.EQUIPMENT_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.INTRO;
@@ -64,25 +57,19 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManager {
 
     private static final Logger logger = LoggerFactory.getLogger(BaseSessionStateManager.class);
+
     protected final PhraseManager phraseManager;
-    final LevelManager levelManager;
+    protected final LevelManager levelManager;
+
     private final PowerUpsManager powerUpsManager;
     private final RewardManager rewardManager;
     private final ActivitiesManager activitiesManager;
-    Activities currentActivity;
-    StatePhase statePhase;
-    String currentIngredientReaction;
-    int successCount;
-    int mistakesCount;
-    int currentLevel;
-    Level level;
-    private String previousIngredient;
-    private Set<String> finishedRounds;
-    private Set<String> earnedPowerUps;
-    private int stripeCount;
-    private int starCount;
-    private int winInARowCount;
-    private boolean isJustStripeUp = false;
+
+    protected Activities currentActivity;
+    protected StatePhase statePhase;
+    protected Level level;
+    protected UserProgress userProgress;
+    protected ActivityProgress activityProgress;
 
     BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, RewardManager rewardManager) {
         super(slots, attributesManager);
@@ -95,22 +82,15 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     @Override
     protected void populateActivityVariables() {
-        //noinspection unchecked
-        Collection<String> rounds = (Collection<String>) sessionAttributes.get(FINISHED_ROUNDS);
-        //noinspection unchecked
-        Collection<String> powerUps = (Collection<String>) sessionAttributes.get(POWER_UPS);
-        finishedRounds = rounds == null ? new HashSet<>() : new HashSet<>(rounds);
-        earnedPowerUps = powerUps == null ? new HashSet<>() : new HashSet<>(powerUps);
-        previousIngredient = String.valueOf(sessionAttributes.get(PREVIOUS_INGREDIENT));
+
         statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.getOrDefault(STATE_PHASE, INTRO)));
-        successCount = (int) sessionAttributes.getOrDefault(SUCCESS_COUNT, 0);
-        mistakesCount = (int) sessionAttributes.getOrDefault(MISTAKES_COUNT, 0);
-        stripeCount = (int) sessionAttributes.getOrDefault(STRIPE_COUNT, 0);
-        starCount = (int) sessionAttributes.getOrDefault(STAR_COUNT, 0);
-        currentLevel = (int) sessionAttributes.getOrDefault(LEVEL_COUNT, 0);
-        winInARowCount = (int) sessionAttributes.getOrDefault(WIN_IN_A_ROW_COUNT, 0);
-        Object ingredient = sessionAttributes.getOrDefault(INGREDIENT_REACTION, null);
-        currentIngredientReaction = ingredient != null ? String.valueOf(ingredient) : null;
+
+        LinkedHashMap rawUserProgress = (LinkedHashMap) sessionAttributes.get(USER_PROGRESS);
+        userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress();
+
+        LinkedHashMap rawActivityProgress = (LinkedHashMap) sessionAttributes.get(ACTIVITY_PROGRESS);
+        activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
+
         logger.debug("Session attributes on the start of handling: " + this.sessionAttributes.toString());
     }
 
@@ -119,26 +99,26 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         this.sessionAttributes = new HashMap<>();
     }
 
+//    @Override
+//    protected void updatePersistentAttributes() {
+//        persistentAttributes.put(USER_PROGRESS, this.userProgress);
+//    }
+
     @Override
     protected void updateSessionAttributes() {
-        sessionAttributes.put(MISTAKES_COUNT, mistakesCount);
-        sessionAttributes.put(SUCCESS_COUNT, successCount);
+        sessionAttributes.put(USER_PROGRESS, this.userProgress);
+        sessionAttributes.put(ACTIVITY_PROGRESS, this.activityProgress);
         sessionAttributes.put(STATE_PHASE, statePhase);
-        sessionAttributes.put(FINISHED_ROUNDS, finishedRounds);
-        sessionAttributes.put(STRIPE_COUNT, stripeCount);
-        sessionAttributes.put(STAR_COUNT, starCount);
-        sessionAttributes.put(LEVEL_COUNT, currentLevel);
-        sessionAttributes.put(WIN_IN_A_ROW_COUNT, winInARowCount);
-        sessionAttributes.put(POWER_UPS, earnedPowerUps);
+        sessionAttributes.put(ACTIVITY, currentActivity);
+        if (!debugMessage.toString().isEmpty()) {
+            sessionAttributes.put(DEBUG_MESSAGE, debugMessage.toString());
+        }
         logger.debug("Session attributes on the end of handling: " + this.sessionAttributes.toString());
     }
 
-    protected void resetRoundProgress() {
+    protected void resetActivityProgress() {
         this.statePhase = INTRO;
-        this.mistakesCount = 0;
-        this.successCount = 0;
-        this.previousIngredient = null;
-        this.currentIngredientReaction = null;
+        this.activityProgress.reset();
     }
 
     protected abstract DialogItem getActivePhaseDialog();
@@ -148,11 +128,11 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         DialogItem dialog;
 
-        level = levelManager.getLevelForActivity(this.currentActivity, currentLevel);
+        level = levelManager.getLevelForActivity(this.currentActivity, this.userProgress.getCurrentLevel());
 
         if (this.statePhase == INTRO) {
 
-            dialog = getIntroDialog(this.currentActivity, currentLevel);
+            dialog = getIntroDialog(this.currentActivity, this.userProgress.getCurrentLevel());
         }
 
         else if (this.statePhase == DEMO) {
@@ -166,7 +146,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
                 }
             }
             else {
-                dialog = getDemoDialog(this.currentActivity, this.currentLevel);
+                dialog = getDemoDialog(this.currentActivity, this.userProgress.getCurrentLevel());
             }
         }
 
@@ -190,12 +170,12 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         else if (this.statePhase == LOSE || this.statePhase == LOSE_RETRY_ONLY) {
             resetWinInARow();
             if (UserReplyComparator.compare(userReply, UserReplies.AGAIN)) {
-                resetRoundProgress();
-                dialog = getIntroDialog(this.currentActivity, currentLevel);
+                resetActivityProgress();
+                dialog = getIntroDialog(this.currentActivity, this.userProgress.getCurrentLevel());
             }
             else if (this.statePhase == LOSE && UserReplyComparator.compare(userReply, UserReplies.MISSION)) {
-                resetRoundProgress();
-                dialog = startNewMission();
+                resetActivityProgress();
+                dialog = startNewMissionDialog();
             }
             else {
                 dialog = getLoseRoundDialog();
@@ -206,8 +186,8 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             addWinInARow();
             calculateLevelProgress();
             calculatePowerUpsProgress();
-            resetRoundProgress();
-            dialog = startNewMission();
+            resetActivityProgress();
+            dialog = startNewMissionDialog();
         }
 
         else {
@@ -215,7 +195,6 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             dialog = getActivePhaseDialog();
         }
 
-//        String responseText = dialog.getResponseText().replace(USERNAME_PLACEHOLDER, userName);
         dialog.setResponseText(dialog.getResponseText());
 
         return dialog;
@@ -225,56 +204,61 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         int winInARowCount = rewardManager.getContainer().getWinInARowCount();
 
-        if (this.winInARowCount % winInARowCount == 0) {
-            Equipments equipment = powerUpsManager.getNextRandomItem(this.earnedPowerUps);
-            this.earnedPowerUps.add(equipment.name());
+        if (this.userProgress.getWinInARowCount() % winInARowCount == 0) {
+            Equipments equipment = powerUpsManager.getNextRandomItem(this.userProgress.getEarnedPowerUps());
+            this.userProgress.getEarnedPowerUps().add(equipment.name());
         }
     }
 
     private void resetWinInARow() {
-        this.winInARowCount = 0;
+        this.userProgress.setWinInARowCount(0);
     }
 
     private void addWinInARow() {
-        this.winInARowCount += 1;
+        this.userProgress.increaseWinInARow();
     }
 
     private void calculateLevelProgress() {
-        finishedRounds.add(this.currentActivity.name());
+        this.userProgress.getFinishedRounds().add(this.currentActivity.name());
 
-        if (finishedRounds.size() == Activities.values().length) {
+        if (this.userProgress.getFinishedRounds().size() == Activities.values().length) {
 
-            this.isJustStripeUp = true;
-            this.stripeCount += 1;
-            this.finishedRounds = new HashSet<>();
+            this.activityProgress.setJustStripeUp(true);
+            this.userProgress.iterateStripeCount();
+            this.userProgress.resetFinishRounds();
 
             int stripesToLevelCount = rewardManager.getContainer().getStripesToLevelCount();
 
-            if (this.stripeCount % stripesToLevelCount == 0) {
-                this.currentLevel += 1;
+            if (this.userProgress.getStripeCount() % stripesToLevelCount == 0) {
+                this.userProgress.iterateLevel();
             }
 
             int stripesToStarCount = rewardManager.getContainer().getStripesToStarCount();
 
-            if (this.stripeCount % stripesToStarCount == 0) {
-                this.starCount += 1;
+            if (this.userProgress.getStripeCount() % stripesToStarCount == 0) {
+                this.userProgress.iterateStarCount();
             }
         }
     }
 
-    private DialogItem startNewMission() {
+    private DialogItem startNewMissionDialog() {
+
         Activities nextActivity = activitiesManager.getNextActivity(this.currentActivity);
-        boolean invalidCondition = finishedRounds.contains(nextActivity.name());
+
+        boolean invalidCondition = this.userProgress.getFinishedRounds().contains(nextActivity.name());
+
         while (invalidCondition) {
             nextActivity = activitiesManager.getNextActivity(nextActivity);
-            invalidCondition = finishedRounds.contains(nextActivity.getTitle());
+            invalidCondition = this.userProgress.getFinishedRounds().contains(nextActivity.getTitle());
         }
-        sessionAttributes.put(ACTIVITY, nextActivity);
-        if (isJustStripeUp) {
-            return getCongratulationDialog(currentLevel);
+
+        currentActivity = nextActivity;
+
+        if (this.activityProgress.isJustStripeUp()) {
+            return getCongratulationDialog(this.userProgress.getCurrentLevel());
         }
         else {
-            return getIntroDialog(nextActivity, currentLevel);
+            return getIntroDialog(nextActivity, this.userProgress.getCurrentLevel());
         }
     }
 
@@ -335,7 +319,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private StringBuilder appendDemo(StringBuilder dialog) {
 
-        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
+        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
 
         dialog.append(" ").append(speech.getShouldRunDemoPhrase());
 
@@ -344,7 +328,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private StringBuilder appendReadyToStart(StringBuilder dialog) {
 
-        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
+        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
 
         dialog.append(" ").append(speech.getReadyToStartPhrase());
 
@@ -352,20 +336,20 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     private boolean isAvailablePowerUpsForActivity() {
-        if (this.earnedPowerUps.isEmpty()) {
+        if (this.userProgress.getEarnedPowerUps().isEmpty()) {
             return false;
         }
-        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.earnedPowerUps, this.currentActivity);
+        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.userProgress.getEarnedPowerUps(), this.currentActivity);
         return !filteredEquipment.isEmpty();
     }
 
     private StringBuilder appendEquipment(StringBuilder dialog) {
 
-        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
+        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
 
         dialog.append(" ").append(speech.getListOfEquipmentPhrase());
 
-        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.earnedPowerUps, this.currentActivity);
+        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.userProgress.getEarnedPowerUps(), this.currentActivity);
 
         for (String powerUp : filteredEquipment) {
             String description = powerUpsManager.getValueByKey(powerUp);
@@ -378,7 +362,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     DialogItem getWinDialog() {
-        sessionAttributes.remove(EQUIPED_POWER_UP);
+        this.userProgress.removePowerUp();
         this.statePhase = WIN;
         return new DialogItem(phraseManager.getValueByKey(WON_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(WON_REPROMPT_PHRASE));
     }
@@ -395,12 +379,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         }
 
         this.statePhase = READY_PHASE;
+        dialog = appendReadyToStart(dialog);
 
         return new DialogItem(dialog.toString(), false, actionSlotName, true, phraseManager.getValueByKey(activity.getTitle() + DEMO_REPROMPT_PHRASE));
     }
 
     DialogItem getRepromptSuccessDialog() {
-        return new DialogItem(this.previousIngredient, false, actionSlotName);
+        return new DialogItem(this.activityProgress.getPreviousIngredient(), false, actionSlotName);
     }
 
     DialogItem getSuccessDialog() {
@@ -421,9 +406,9 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     DialogItem getLoseRoundDialog() {
 
-        sessionAttributes.remove(EQUIPED_POWER_UP);
+        this.userProgress.removePowerUp();
 
-        if (this.finishedRounds.size() == Activities.values().length - 1) {
+        if (this.userProgress.getFinishedRounds().size() == Activities.values().length - 1) {
             this.statePhase = LOSE_RETRY_ONLY;
             return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE_RETRY_ONLY), false, actionSlotName, true, phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE_RETRY_ONLY));
         }
@@ -439,14 +424,14 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         String readyToStartPhrase = phraseManager.getValueByKey(READY_TO_START_PHRASE);
 
-        if(equipment == null) {
+        if (equipment == null) {
             this.statePhase = READY_PHASE;
             return new DialogItem(readyToStartPhrase, false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
         }
 
-        earnedPowerUps.remove(equipment);
+        this.userProgress.getEarnedPowerUps().remove(equipment);
 
-        this.sessionAttributes.put(EQUIPED_POWER_UP, equipment);
+        this.userProgress.setEquippedPowerUp(equipment);
 
         this.statePhase = READY_PHASE;
 
@@ -487,13 +472,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private DialogItem getWearEquipmentDialog() {
 
-        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
+        Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
 
         StringBuilder dialog = new StringBuilder();
 
         dialog.append(" ").append(speech.getListOfEquipmentPhrase());
 
-        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.earnedPowerUps, this.currentActivity);
+        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.userProgress.getEarnedPowerUps(), this.currentActivity);
 
         for (String powerUp : filteredEquipment) {
             String description = powerUpsManager.getValueByKey(powerUp);
@@ -514,10 +499,10 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private String nextIngredient() {
 
-        IngredientReaction nextIngredient = levelManager.getNextIngredient(this.level, this.previousIngredient);
+        IngredientReaction nextIngredient = levelManager.getNextIngredient(this.level, this.activityProgress.getPreviousIngredient());
 
-        sessionAttributes.put(PREVIOUS_INGREDIENT, nextIngredient.getIngredient());
-        sessionAttributes.put(INGREDIENT_REACTION, nextIngredient.getUserReply());
+        this.activityProgress.setCurrentIngredientReaction(nextIngredient.getUserReply());
+        this.activityProgress.setPreviousIngredient(nextIngredient.getIngredient());
 
         return nextIngredient.getIngredient();
     }

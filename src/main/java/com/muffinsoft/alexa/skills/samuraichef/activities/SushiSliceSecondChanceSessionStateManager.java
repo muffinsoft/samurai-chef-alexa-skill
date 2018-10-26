@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.EQUIPED_POWER_UP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
 
 public class SushiSliceSecondChanceSessionStateManager extends SushiSliceSessionStateManager {
@@ -29,13 +28,13 @@ public class SushiSliceSecondChanceSessionStateManager extends SushiSliceSession
 
         DialogItem dialog;
 
-        if (Objects.equals(currentIngredientReaction, userReply)) {
+        if (Objects.equals(this.activityProgress.getCurrentIngredientReaction(), userReply)) {
 
-            this.successCount++;
+            this.activityProgress.iterateSuccessCount();
 
-            if (this.successCount == level.getPhaseTwoSuccessCount()) {
+            if (this.activityProgress.getSuccessCount() == level.getPhaseTwoSuccessCount()) {
                 this.statePhase = PHASE_2;
-                Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
+                Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
                 dialog = getSuccessDialog(speech.getMoveToPhaseTwo());
             }
             else {
@@ -43,14 +42,13 @@ public class SushiSliceSecondChanceSessionStateManager extends SushiSliceSession
             }
         }
         else {
-            boolean isPresent = sessionAttributes.containsKey(EQUIPED_POWER_UP);
-            if (isPresent) {
-                sessionAttributes.remove(EQUIPED_POWER_UP);
+            if (this.userProgress.isPowerUpEquipped()) {
+                this.userProgress.removePowerUp();
                 dialog = getRepromptSuccessDialog();
             }
             else {
-                this.mistakesCount++;
-                if (this.mistakesCount < level.getMaxMistakeCount()) {
+                this.activityProgress.iterateMistakeCount();
+                if (this.activityProgress.getMistakesCount() < level.getMaxMistakeCount()) {
                     dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
                 }
                 else {
@@ -59,7 +57,7 @@ public class SushiSliceSecondChanceSessionStateManager extends SushiSliceSession
             }
         }
 
-        if (this.successCount == level.getWonSuccessCount()) {
+        if (this.activityProgress.getSuccessCount() == level.getWonSuccessCount()) {
             dialog = getWinDialog();
         }
 

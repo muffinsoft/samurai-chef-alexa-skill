@@ -18,15 +18,13 @@ import static com.muffinsoft.alexa.sdk.model.SlotName.ACTION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FALLBACK_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.INTRO_PHASE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.INTRO_PHASE_REPROMPT_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FIRST_TIME_ASKING;
 //import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.NAME_HANDLER;
 
 public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
     private static final Logger logger = LoggerFactory.getLogger(NameHandlerSessionStateManager.class);
 
-    private boolean firstTimeAsking;
+    private String userName;
 
     public NameHandlerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, RewardManager rewardManager) {
         super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
@@ -41,13 +39,11 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
     @Override
     protected void populateActivityVariables() {
         super.populateActivityVariables();
-        this.firstTimeAsking = (boolean) sessionAttributes.getOrDefault(FIRST_TIME_ASKING, true);
     }
 
     @Override
     protected void updateSessionAttributes() {
         super.updateSessionAttributes();
-        sessionAttributes.put(FIRST_TIME_ASKING, firstTimeAsking);
     }
 
     @Override
@@ -56,19 +52,11 @@ public class NameHandlerSessionStateManager extends BaseSamuraiChefSessionStateM
         DialogItem dialogItem;
 
         if (userName == null) {
-//            sessionAttributes.put(ACTIVITY, NAME_HANDLER);
-            if (firstTimeAsking) {
-                dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHASE_PHRASE + 0), false, ACTION.text, true, phraseManager.getValueByKey(INTRO_PHASE_REPROMPT_PHRASE + 0));
-                firstTimeAsking = false;
-            }
-            else {
-                dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHASE_PHRASE + 1), false, ACTION.text, true, phraseManager.getValueByKey(INTRO_PHASE_REPROMPT_PHRASE + 0));
-            }
+            dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHASE_PHRASE + 0), false, ACTION.text, true, phraseManager.getValueByKey(INTRO_PHASE_REPROMPT_PHRASE + 0));
         }
         else {
             sessionAttributes.put(USERNAME, userName);
-//            sessionAttributes.put(ACTIVITY, activitiesManager.getNextActivity(NAME_HANDLER));
-            dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHASE_PHRASE + 2), false, ACTION.text);
+            dialogItem = new DialogItem(phraseManager.getValueByKey(INTRO_PHASE_PHRASE + 1), false, ACTION.text);
         }
 
         return dialogItem;

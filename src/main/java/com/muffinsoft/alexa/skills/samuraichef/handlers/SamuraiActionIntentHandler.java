@@ -5,6 +5,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Slot;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.SessionStateManager;
 import com.muffinsoft.alexa.sdk.handlers.ActionIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.activities.FoodTasterCorrectAnswerSessionStateManager;
@@ -30,16 +31,17 @@ import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.RewardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
+import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static com.amazon.ask.request.Predicates.intentName;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.EQUIPED_POWER_UP;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.Equipments.EMPTY_SLOT;
 
 public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
@@ -76,7 +78,13 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
         Activities currentActivity = getCurrentActivity(input);
 
-        Equipments currentEquipment = getCurrentPowerUp(input);
+//        UserProgress currentUserProgress = getCurrentUserProgress(input);
+
+        Equipments currentEquipment = Equipments.EMPTY_SLOT;
+
+//        if (currentUserProgress.isPowerUpEquipped()) {
+//            currentEquipment = Equipments.valueOf(currentUserProgress.getEquippedPowerUp());
+//        }
 
         SessionStateManager stateManager;
 
@@ -181,9 +189,21 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
         }
     }
 
-    private Equipments getCurrentPowerUp(HandlerInput input) {
-        String rawPowerUp = String.valueOf(input.getAttributesManager().getSessionAttributes().getOrDefault(EQUIPED_POWER_UP, EMPTY_SLOT.name()));
-        return Equipments.valueOf(rawPowerUp);
+    private UserProgress getCurrentUserProgress(HandlerInput input) {
+
+        try {
+            LinkedHashMap rawRequest = (LinkedHashMap) input.getAttributesManager().getSessionAttributes().get(USER_PROGRESS);
+
+            if (rawRequest == null) {
+                return new UserProgress();
+            }
+            else {
+                return new ObjectMapper().convertValue(rawRequest, UserProgress.class);
+            }
+        }
+        catch (Exception e) {
+            return new UserProgress();
+        }
     }
 
     private Activities getCurrentActivity(HandlerInput input) {

@@ -31,15 +31,15 @@ public class WordBoardKarateSessionStateManager extends BaseSamuraiChefSessionSt
 
         DialogItem dialog;
 
-        if (Objects.equals(currentIngredientReaction, userReply)) {
+        if (Objects.equals(this.activityProgress.getCurrentIngredientReaction(), userReply)) {
 
-            this.successCount++;
+            this.activityProgress.iterateSuccessCount();
 
             dialog = getSuccessDialog();
         }
         else {
-            this.mistakesCount++;
-            if (this.mistakesCount < level.getMaxMistakeCount()) {
+            this.activityProgress.iterateMistakeCount();
+            if (this.activityProgress.getMistakesCount() < level.getMaxMistakeCount()) {
                 dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
             }
             else {
@@ -47,7 +47,7 @@ public class WordBoardKarateSessionStateManager extends BaseSamuraiChefSessionSt
             }
         }
 
-        if (this.successCount == level.getWonSuccessCount()) {
+        if (this.activityProgress.getSuccessCount() == level.getWonSuccessCount()) {
             dialog = getWinDialog();
         }
 

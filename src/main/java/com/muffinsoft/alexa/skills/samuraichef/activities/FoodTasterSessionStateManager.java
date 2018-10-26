@@ -34,6 +34,7 @@ public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateMa
         this.currentActivity = FOOD_TASTER;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     protected DialogItem getActivePhaseDialog() {
 
@@ -41,17 +42,17 @@ public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateMa
 
         long answerTime = System.currentTimeMillis();
 
-        if (Objects.equals(currentIngredientReaction, userReply)) {
+        if (Objects.equals(this.activityProgress.getCurrentIngredientReaction(), userReply)) {
 
             long answerLimit = this.statePhase == PHASE_1 ? this.level.getTimeLimitPhaseOneInMillis() : this.level.getTimeLimitPhaseTwoInMillis();
 
             if (questionTime == null || answerTime - questionTime < answerLimit) {
 
-                this.successCount++;
+                this.activityProgress.iterateSuccessCount();
 
-                if (this.successCount == this.level.getPhaseTwoSuccessCount()) {
+                if (this.activityProgress.getSuccessCount() == this.level.getPhaseTwoSuccessCount()) {
                     this.statePhase = PHASE_2;
-                    Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.currentLevel);
+                    Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
                     dialog = getSuccessDialog(speech.getMoveToPhaseTwo());
                 }
                 else {
@@ -63,8 +64,8 @@ public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateMa
             }
         }
         else {
-            this.mistakesCount++;
-            if (this.mistakesCount < this.level.getMaxMistakeCount()) {
+            this.activityProgress.iterateMistakeCount();
+            if (this.activityProgress.getMistakesCount() < this.level.getMaxMistakeCount()) {
                 dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
             }
             else {
@@ -72,7 +73,7 @@ public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateMa
             }
         }
 
-        if (this.successCount == this.level.getWonSuccessCount()) {
+        if (this.activityProgress.getSuccessCount() == this.level.getWonSuccessCount()) {
             this.statePhase = WIN;
             dialog = getWinDialog();
         }
@@ -81,8 +82,8 @@ public class FoodTasterSessionStateManager extends BaseSamuraiChefSessionStateMa
     }
 
     @Override
-    protected void resetRoundProgress() {
-        super.resetRoundProgress();
+    protected void resetActivityProgress() {
+        super.resetActivityProgress();
         this.questionTime = null;
     }
 

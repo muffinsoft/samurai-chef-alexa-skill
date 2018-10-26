@@ -14,7 +14,6 @@ import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.EQUIPED_POWER_UP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
 public class JuiceWarriorCorrectAnswerSessionStateManager extends JuiceWarriorSessionStateManager {
@@ -31,13 +30,13 @@ public class JuiceWarriorCorrectAnswerSessionStateManager extends JuiceWarriorSe
 
         long answerTime = System.currentTimeMillis();
 
-        if (Objects.equals(currentIngredientReaction, userReply)) {
+        if (Objects.equals(this.activityProgress.getCurrentIngredientReaction(), userReply)) {
 
             long answerLimit = level.getTimeLimitPhaseOneInMillis();
 
             if (questionTime == null || answerTime - questionTime < answerLimit) {
 
-                this.successCount++;
+                this.activityProgress.iterateSuccessCount();
 
                 dialog = getSuccessDialog();
             }
@@ -46,14 +45,13 @@ public class JuiceWarriorCorrectAnswerSessionStateManager extends JuiceWarriorSe
             }
         }
         else {
-            boolean isPresent = sessionAttributes.containsKey(EQUIPED_POWER_UP);
-            if (isPresent) {
-                sessionAttributes.remove(EQUIPED_POWER_UP);
+            if (this.userProgress.isPowerUpEquipped()) {
+                this.userProgress.removePowerUp();
                 dialog = getSuccessDialog();
             }
             else {
-                this.mistakesCount++;
-                if (this.mistakesCount < level.getMaxMistakeCount()) {
+                this.activityProgress.iterateMistakeCount();
+                if (this.activityProgress.getMistakesCount() < level.getMaxMistakeCount()) {
                     dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
                 }
                 else {
@@ -62,7 +60,7 @@ public class JuiceWarriorCorrectAnswerSessionStateManager extends JuiceWarriorSe
             }
         }
 
-        if (this.successCount == level.getWonSuccessCount()) {
+        if (this.activityProgress.getSuccessCount() == level.getWonSuccessCount()) {
             this.statePhase = WIN;
             dialog = getWinDialog();
         }

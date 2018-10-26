@@ -38,13 +38,13 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
 
         long answerTime = System.currentTimeMillis();
 
-        if (Objects.equals(currentIngredientReaction, userReply)) {
+        if (Objects.equals(this.activityProgress.getCurrentIngredientReaction(), userReply)) {
 
             long answerLimit = level.getTimeLimitPhaseOneInMillis();
 
             if (questionTime == null || answerTime - questionTime < answerLimit) {
 
-                this.successCount++;
+                this.activityProgress.iterateSuccessCount();
 
                 dialog = getSuccessDialog();
             }
@@ -53,8 +53,8 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
             }
         }
         else {
-            this.mistakesCount++;
-            if (this.mistakesCount < level.getMaxMistakeCount()) {
+            this.activityProgress.iterateMistakeCount();
+            if (this.activityProgress.getMistakesCount() < level.getMaxMistakeCount()) {
                 dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
             }
             else {
@@ -62,7 +62,7 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
             }
         }
 
-        if (this.successCount == level.getWonSuccessCount()) {
+        if (this.activityProgress.getSuccessCount() == level.getWonSuccessCount()) {
             this.statePhase = WIN;
             dialog = getWinDialog();
         }
@@ -71,8 +71,8 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
     }
 
     @Override
-    protected void resetRoundProgress() {
-        super.resetRoundProgress();
+    protected void resetActivityProgress() {
+        super.resetActivityProgress();
         this.questionTime = null;
     }
 
