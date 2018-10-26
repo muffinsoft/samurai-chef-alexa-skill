@@ -72,12 +72,17 @@
         "Now that we've cooked some meals and even stuffed our bellies, lets burn that energy with some karate!",
         "I'll hold up a wooden board with a word on it. To break it, you have to shout a karate word that begins with the same sound. If it begins with a 'K' sound, shout 'Kick'; if it begins with a 'H' sound, shout 'Hayaaa!'; if it begins with a 'P' sound, shout 'Punch.'"
       ],
-      "shouldRunDemo": false,
-      "shouldRunDemoPhrase": null,
+      "shouldRunDemo": true,
+      "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
       "listOfEquipmentPhrase": "You can use the next power-ups: ",
       "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
-      "demo": [],
+      "demo": [
+        "Corn! Kick!",
+        "Hat! Hayaaa!",
+        "Pencil! Punch!",
+        "Gun! Glok!"
+      ],
       "moveToPhaseTwo": null
     }
   }
