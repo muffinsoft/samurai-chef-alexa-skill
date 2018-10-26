@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.USED_EQUIPMENT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
@@ -56,6 +57,7 @@ public class FoodTasterCorrectAnswerSessionStateManager extends FoodTasterSessio
         }
         else {
             if (this.userProgress.isPowerUpEquipped()) {
+                this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE);
                 this.userProgress.removePowerUp();
                 dialog = getSuccessDialog();
             }

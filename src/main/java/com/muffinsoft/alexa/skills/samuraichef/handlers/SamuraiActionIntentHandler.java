@@ -41,7 +41,6 @@ import java.util.Map;
 import static com.amazon.ask.request.Predicates.intentName;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
 
 public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
@@ -78,13 +77,13 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
         Activities currentActivity = getCurrentActivity(input);
 
-//        UserProgress currentUserProgress = getCurrentUserProgress(input);
+        UserProgress currentUserProgress = getCurrentUserProgress(input);
 
         Equipments currentEquipment = Equipments.EMPTY_SLOT;
 
-//        if (currentUserProgress.isPowerUpEquipped()) {
-//            currentEquipment = Equipments.valueOf(currentUserProgress.getEquippedPowerUp());
-//        }
+        if (currentUserProgress.isPowerUpEquipped()) {
+            currentEquipment = Equipments.valueOf(currentUserProgress.getEquippedPowerUp());
+        }
 
         SessionStateManager stateManager;
 
@@ -191,23 +190,13 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
     private UserProgress getCurrentUserProgress(HandlerInput input) {
 
-        try {
-            LinkedHashMap rawRequest = (LinkedHashMap) input.getAttributesManager().getSessionAttributes().get(USER_PROGRESS);
-
-            if (rawRequest == null) {
-                return new UserProgress();
-            }
-            else {
-                return new ObjectMapper().convertValue(rawRequest, UserProgress.class);
-            }
-        }
-        catch (Exception e) {
-            return new UserProgress();
-        }
+        LinkedHashMap rawUserProgress = (LinkedHashMap) input.getAttributesManager().getSessionAttributes().get(USER_PROGRESS);
+        return rawUserProgress != null ? new ObjectMapper().convertValue(rawUserProgress, UserProgress.class) : new UserProgress();
     }
 
     private Activities getCurrentActivity(HandlerInput input) {
-        String rawActivity = String.valueOf(input.getAttributesManager().getSessionAttributes().getOrDefault(ACTIVITY, SUSHI_SLICE.name()));
+        Activities firstActivity = activitiesManager.getFirstActivity();
+        String rawActivity = String.valueOf(input.getAttributesManager().getSessionAttributes().getOrDefault(ACTIVITY, firstActivity.name()));
         return Activities.valueOf(rawActivity);
     }
 

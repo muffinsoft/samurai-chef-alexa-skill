@@ -3,6 +3,9 @@ package com.muffinsoft.alexa.skills.samuraichef.constants;
 public class PhraseConstants {
 
     public static final String TOO_LONG_PHRASE = "tooLongPhrase";
+    public static final String USED_EQUIPMENT_PHRASE = "usedEquipmentPhrase";
+    public static final String LEVEL_REACHED_PHRASE = "levelReachedPhrase";
+    public static final String STAR_REACHED_PHRASE = "starReachedPhrase";
     public static final String WRONG_PHRASE = "wrongPhrase";
     public static final String WELCOME_PHRASE = "welcomePhrase";
     public static final String CONGRATULATION_PHRASE = "congratulationPhrase";

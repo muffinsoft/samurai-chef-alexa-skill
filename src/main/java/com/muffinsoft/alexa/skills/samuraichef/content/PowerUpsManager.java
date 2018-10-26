@@ -17,9 +17,16 @@ public class PowerUpsManager extends BaseContentManager<String> {
 
     public Equipments getNextRandomItem(Set<String> alreadyExists) {
 
-        List<Equipments> allEquipment = Arrays.asList(Equipments.values());
 
-        List<Equipments> exists = alreadyExists.stream().map(Equipments::valueOf).collect(Collectors.toList());
+        List<Equipments> allEquipment = Arrays.stream(Equipments.values())
+                .filter(equipment -> equipment != Equipments.EMPTY_SLOT)
+                .collect(Collectors.toList());
+
+        allEquipment.remove(Equipments.EMPTY_SLOT);
+
+        List<Equipments> exists = alreadyExists.stream()
+                .map(Equipments::valueOf)
+                .collect(Collectors.toList());
 
         allEquipment.removeAll(exists);
 

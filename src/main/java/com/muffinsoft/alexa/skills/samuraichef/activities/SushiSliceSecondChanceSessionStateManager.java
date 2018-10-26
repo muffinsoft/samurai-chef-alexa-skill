@@ -13,6 +13,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.USED_EQUIPMENT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
 
@@ -44,6 +45,7 @@ public class SushiSliceSecondChanceSessionStateManager extends SushiSliceSession
         else {
             if (this.userProgress.isPowerUpEquipped()) {
                 this.userProgress.removePowerUp();
+                this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE);
                 dialog = getRepromptSuccessDialog();
             }
             else {

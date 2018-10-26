@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.USED_EQUIPMENT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
@@ -47,6 +48,7 @@ public class JuiceWarriorCorrectAnswerSessionStateManager extends JuiceWarriorSe
         else {
             if (this.userProgress.isPowerUpEquipped()) {
                 this.userProgress.removePowerUp();
+                this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE);
                 dialog = getSuccessDialog();
             }
             else {

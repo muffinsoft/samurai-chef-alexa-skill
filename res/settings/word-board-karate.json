@@ -22,12 +22,13 @@
     },
     {
       "number": 2,
-      "wonSuccessCount": 5,
+      "wonSuccessCount": 6,
       "maxMistakeCount": 1,
       "ingredients": {
         "corn": "kick",
         "hat": "hayaaa",
-        "pencil": "punch"
+        "pencil": "punch",
+        "ginger": "glok"
       }
     }
   ],

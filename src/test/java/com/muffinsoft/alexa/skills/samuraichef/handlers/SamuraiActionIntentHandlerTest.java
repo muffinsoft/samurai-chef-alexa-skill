@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -58,39 +59,6 @@ class SamuraiActionIntentHandlerTest {
     }
 
     @Test
-    void emptyRequest() {
-        SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
-
-        Map<String, Slot> slots = new HashMap<>();
-
-        slots.put("action", Slot.builder().withValue("test").build());
-
-        HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, null);
-
-        Optional<Response> handle = handler.handle(input);
-
-        handle.isPresent();
-    }
-
-    @Test
-    void nameHandlingRequest() {
-
-        SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
-
-        HandlerInput input = createInputWithSlotsAndSessionAttributes(null, null);
-
-        Optional<Response> intro0response = handler.handle(input);
-
-        Map<String, Slot> slots = Collections.singletonMap("action", Slot.builder().withValue("username").build());
-
-        input = createInputWithSlotsAndSessionAttributes(slots, null);
-
-        Optional<Response> intro1response = handler.handle(input);
-
-        intro1response.isPresent();
-    }
-
-    @Test
     void moveBetweenActivitiesAfterWin() {
 
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
@@ -98,9 +66,44 @@ class SamuraiActionIntentHandlerTest {
         Map<String, Slot> slots = new HashMap<>();
         slots.put("action", Slot.builder().withValue("yes").build());
 
+        Map<String, Object> userProgress = new LinkedHashMap<>();
+        userProgress.put("stripeCount", 0);
+        userProgress.put("starCount", 0);
+        userProgress.put("winInARowCount", 1);
+        userProgress.put("currentLevel", 0);
+        userProgress.put("finishedRounds", new String[]{Activities.SUSHI_SLICE.name()});
+
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
+        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.JUICE_WARRIOR);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.WIN);
+        sessionAttributes.put(SessionConstants.USER_PROGRESS, userProgress);
+
+        HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
+
+        Optional<Response> response = handler.handle(input);
+
+        response.isPresent();
+    }
+
+    @Test
+    void moveBetweenActivitiesAfterWinWithoutDemo() {
+
+        SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
+
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put("action", Slot.builder().withValue("yes").build());
+
+        Map<String, Object> userProgress = new LinkedHashMap<>();
+        userProgress.put("stripeCount", 0);
+        userProgress.put("starCount", 0);
+        userProgress.put("winInARowCount", 1);
+        userProgress.put("currentLevel", 2);
+        userProgress.put("finishedRounds", new String[]{Activities.SUSHI_SLICE.name()});
+
+        Map<String, Object> sessionAttributes = new HashMap<>();
+        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.JUICE_WARRIOR);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.WIN);
+        sessionAttributes.put(SessionConstants.USER_PROGRESS, userProgress);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 

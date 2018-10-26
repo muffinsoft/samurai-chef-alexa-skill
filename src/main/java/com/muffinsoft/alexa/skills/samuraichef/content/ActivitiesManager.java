@@ -28,4 +28,17 @@ public class ActivitiesManager extends BaseContentManager<Integer> {
         }
         return currentActivity;
     }
+
+    public Activities getFirstActivity() {
+
+        String possibleActivity = null;
+        int minimalValue = 0;
+
+        for (Map.Entry<String, Integer> entry : getContainer().entrySet()) {
+            if (entry.getValue() <= minimalValue) {
+                possibleActivity = entry.getKey();
+            }
+        }
+        return Activities.valueOf(possibleActivity);
+    }
 }

@@ -12,6 +12,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.RewardManager;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.USED_EQUIPMENT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
 
 public class WordBoardKarateSecondChanceSessionStateManager extends WordBoardKarateSessionStateManager {
@@ -35,6 +36,7 @@ public class WordBoardKarateSecondChanceSessionStateManager extends WordBoardKar
         else {
             if (this.userProgress.isPowerUpEquipped()) {
                 this.userProgress.removePowerUp();
+                this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE);
                 dialog = getRepromptSuccessDialog();
             }
             else {

@@ -36,8 +36,10 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE_RETRY_ONLY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.LEVEL_REACHED_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_REPROMPT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.STAR_REACHED_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
@@ -70,6 +72,8 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected Level level;
     protected UserProgress userProgress;
     protected ActivityProgress activityProgress;
+
+    protected String dialogPrefix = null;
 
     BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, RewardManager rewardManager) {
         super(slots, attributesManager);
@@ -195,7 +199,10 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             dialog = getActivePhaseDialog();
         }
 
-        dialog.setResponseText(dialog.getResponseText());
+        if (dialogPrefix != null) {
+            String responseText = dialog.getResponseText();
+            dialog.setResponseText(dialogPrefix + responseText);
+        }
 
         return dialog;
     }
@@ -206,7 +213,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         if (this.userProgress.getWinInARowCount() % winInARowCount == 0) {
             Equipments equipment = powerUpsManager.getNextRandomItem(this.userProgress.getEarnedPowerUps());
-            this.userProgress.getEarnedPowerUps().add(equipment.name());
+            this.userProgress.addEquipment(equipment.name());
         }
     }
 
@@ -219,7 +226,8 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     private void calculateLevelProgress() {
-        this.userProgress.getFinishedRounds().add(this.currentActivity.name());
+
+        this.userProgress.addFinishedRound(this.currentActivity.name());
 
         if (this.userProgress.getFinishedRounds().size() == Activities.values().length) {
 
@@ -227,15 +235,19 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             this.userProgress.iterateStripeCount();
             this.userProgress.resetFinishRounds();
 
+            this.currentActivity = activitiesManager.getFirstActivity();
+
             int stripesToLevelCount = rewardManager.getContainer().getStripesToLevelCount();
 
             if (this.userProgress.getStripeCount() % stripesToLevelCount == 0) {
+                this.dialogPrefix = phraseManager.getValueByKey(LEVEL_REACHED_PHRASE);
                 this.userProgress.iterateLevel();
             }
 
             int stripesToStarCount = rewardManager.getContainer().getStripesToStarCount();
 
             if (this.userProgress.getStripeCount() % stripesToStarCount == 0) {
+                this.dialogPrefix = phraseManager.getValueByKey(STAR_REACHED_PHRASE);
                 this.userProgress.iterateStarCount();
             }
         }
@@ -303,7 +315,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         if (speech.isShouldRunDemo()) {
             this.statePhase = DEMO;
-            dialog = appendDemo(dialog);
+            dialog = appendShouldRunDemo(dialog);
         }
         else if (isAvailablePowerUpsForActivity()) {
             this.statePhase = EQUIPMENT_PHASE;
@@ -317,7 +329,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         return new DialogItem(dialog.toString(), false, actionSlotName);
     }
 
-    private StringBuilder appendDemo(StringBuilder dialog) {
+    private StringBuilder appendShouldRunDemo(StringBuilder dialog) {
 
         Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
 
@@ -356,7 +368,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             dialog.append(description).append(" ");
         }
 
-        dialog.append(speech.getWantWearEquipmentPhrase());
+        dialog.append(". ").append(speech.getWantWearEquipmentPhrase());
 
         return dialog;
     }
@@ -378,8 +390,14 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             dialog.append(" ");
         }
 
-        this.statePhase = READY_PHASE;
-        dialog = appendReadyToStart(dialog);
+        if (isAvailablePowerUpsForActivity()) {
+            this.statePhase = EQUIPMENT_PHASE;
+            dialog = appendEquipment(dialog);
+        }
+        else {
+            this.statePhase = READY_PHASE;
+            dialog = appendReadyToStart(dialog);
+        }
 
         return new DialogItem(dialog.toString(), false, actionSlotName, true, phraseManager.getValueByKey(activity.getTitle() + DEMO_REPROMPT_PHRASE));
     }
@@ -429,15 +447,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             return new DialogItem(readyToStartPhrase, false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
         }
 
-        this.userProgress.getEarnedPowerUps().remove(equipment);
-
-        this.userProgress.setEquippedPowerUp(equipment);
+        this.userProgress.equipPowerUp(equipment);
 
         this.statePhase = READY_PHASE;
 
         String justWear = phraseManager.getValueByKey(JUST_WEAR_PHRASE);
 
-        return new DialogItem(justWear + " " + powerUpsManager.getValueByKey(equipment) + " " + readyToStartPhrase, false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
+        return new DialogItem(justWear + " " + powerUpsManager.getValueByKey(equipment) + ". " + readyToStartPhrase, false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
     }
 
     private String getEquipmentFromUserRequest() {

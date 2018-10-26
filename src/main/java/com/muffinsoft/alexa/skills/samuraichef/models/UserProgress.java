@@ -100,4 +100,17 @@ public class UserProgress {
     public void removePowerUp() {
         this.equippedPowerUp = null;
     }
+
+    public void addEquipment(String name) {
+        this.earnedPowerUps.add(name);
+    }
+
+    public void addFinishedRound(String name) {
+        this.finishedRounds.add(name);
+    }
+
+    public void equipPowerUp(String equipment) {
+        this.earnedPowerUps.remove(equipment);
+        this.equippedPowerUp = equipment;
+    }
 }

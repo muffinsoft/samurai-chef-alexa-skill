@@ -29,11 +29,11 @@
     },
     {
       "number": 2,
-      "wonSuccessCount": 5,
+      "wonSuccessCount": 6,
       "phaseTwoSuccessCount": 2,
       "timeLimitPhaseOneInMillis": 12000,
       "timeLimitPhaseTwoInMillis": 6000,
-      "maxMistakeCount": 2,
+      "maxMistakeCount": 1,
       "ingredients": {
         "soup": "slurp",
         "sushi": "gulp",
