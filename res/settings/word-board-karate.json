@@ -4,7 +4,7 @@
     {
       "number": 0,
       "wonSuccessCount": 4,
-      "maxMistakeCount": 3,
+      "maxMistakeCount": 2,
       "ingredients": {
         "corn": "kick",
         "pencil": "punch"
@@ -36,7 +36,7 @@
     "0": {
       "intro": [
         "Now that we've cooked some meals and even stuffed our bellies, lets burn that energy with some karate!",
-        "I'll hold up a wooden board with a word on it. To break it, you have to shout a karate word that begins with the same sound. If it begins with a 'K' sound, shout 'Kick'; if it begins with a 'H' sound, shout 'Hayaaa!'; if it begins with a 'P' sound, shout 'Punch.'"
+        "I'll hold up a wooden board with a word on it. To break it, you have to shout a karate word that begins with the same sound. If it begins with a 'K' sound, shout 'Kick'; if it begins with a 'H' sound, shout 'Hayaaa!'; if it begins with a 'P' sound, shout 'Punch'; if it begins with a 'G' sound, shout 'Glok'."
       ],
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
@@ -46,14 +46,15 @@
       "demo": [
         "Corn! Kick!",
         "Hat! Hayaaa!",
-        "Pencil! Punch!"
+        "Pencil! Punch!",
+        "Ginger! Glok!"
       ],
       "moveToPhaseTwo": null
     },
     "1": {
       "intro": [
         "Now that we've cooked some meals and even stuffed our bellies, lets burn that energy with some karate!",
-        "I'll hold up a wooden board with a word on it. To break it, you have to shout a karate word that begins with the same sound. If it begins with a 'K' sound, shout 'Kick'; if it begins with a 'H' sound, shout 'Hayaaa!'; if it begins with a 'P' sound, shout 'Punch.'"
+        "I'll hold up a wooden board with a word on it. To break it, you have to shout a karate word that begins with the same sound. If it begins with a 'K' sound, shout 'Kick'; if it begins with a 'H' sound, shout 'Hayaaa!'; if it begins with a 'P' sound, shout 'Punch'; if it begins with a 'G' sound, shout 'Glok'."
       ],
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
@@ -63,7 +64,8 @@
       "demo": [
         "Corn! Kick!",
         "Hat! Hayaaa!",
-        "Pencil! Punch!"
+        "Pencil! Punch!",
+        "Ginger! Glok!"
       ],
       "moveToPhaseTwo": null
     },

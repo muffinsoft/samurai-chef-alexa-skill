@@ -1,5 +1,6 @@
 {
-  "stripesToStarCount": 3,
+  "stripesToStarCount": 1,
   "winInARowCount": 2,
-  "stripesToLevelCount": 1
+  "stripesToLevelCount": 1,
+  "maxStarCount": 2
 }

@@ -17,5 +17,6 @@
   "justWearPhrase": "You've just wear",
   "usedEquipmentPhrase": "You spent your equipment.",
   "levelReachedPhrase": "Congratulations! You reach next level!",
-  "starReachedPhrase": "Congratulations! You earn one more start!"
+  "starReachedPhrase": "Congratulations! You earn one more start!",
+  "gameFinishedPhrase": "Congratulations! You've just get the maximum reward!"
 }

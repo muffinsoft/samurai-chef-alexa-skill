@@ -8,6 +8,8 @@ public class RewardContainer {
 
     private int stripesToLevelCount;
 
+    private int maxStarCount;
+
 
     public int getStripesToStarCount() {
         return stripesToStarCount;
@@ -31,5 +33,13 @@ public class RewardContainer {
 
     public void setStripesToLevelCount(int stripesToLevelCount) {
         this.stripesToLevelCount = stripesToLevelCount;
+    }
+
+    public int getMaxStarCount() {
+        return maxStarCount;
+    }
+
+    public void setMaxStarCount(int maxStarCount) {
+        this.maxStarCount = maxStarCount;
     }
 }

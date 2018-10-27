@@ -35,6 +35,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE_RETRY_ONLY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE_RETRY_ONLY;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.GAME_FINISHED_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.LEVEL_REACHED_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
@@ -74,6 +75,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected ActivityProgress activityProgress;
 
     protected String dialogPrefix = null;
+    private boolean gameIsComplete = false;
 
     BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, RewardManager rewardManager) {
         super(slots, attributesManager);
@@ -191,7 +193,12 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             calculateLevelProgress();
             calculatePowerUpsProgress();
             resetActivityProgress();
-            dialog = startNewMissionDialog();
+            if (gameIsComplete) {
+                dialog = gameIsFinishedDialog();
+            }
+            else {
+                dialog = startNewMissionDialog();
+            }
         }
 
         else {
@@ -250,7 +257,15 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
                 this.dialogPrefix = phraseManager.getValueByKey(STAR_REACHED_PHRASE);
                 this.userProgress.iterateStarCount();
             }
+
+            if (this.userProgress.getStarCount() == rewardManager.getContainer().getMaxStarCount()) {
+                this.gameIsComplete = true;
+            }
         }
+    }
+
+    private DialogItem gameIsFinishedDialog() {
+        return new DialogItem(phraseManager.getValueByKey(GAME_FINISHED_PHRASE), true);
     }
 
     private DialogItem startNewMissionDialog() {

@@ -14,6 +14,7 @@ public class PhraseConstants {
     public static final String INTRO_PHASE_REPROMPT_PHRASE = "introRePrompt";
     public static final String DEMO_REPROMPT_PHRASE = "DemoRePromptPhrase";
     public static final String WON_PHRASE = "wonPhrase";
+    public static final String GAME_FINISHED_PHRASE = "gameFinishedPhrase";
     public static final String WON_REPROMPT_PHRASE = "wonRePromptPhrase";
     public static final String FAILURE_PHRASE = "failurePhrase";
     public static final String FAILURE_PHRASE_RETRY_ONLY = "failurePhraseRetry";
