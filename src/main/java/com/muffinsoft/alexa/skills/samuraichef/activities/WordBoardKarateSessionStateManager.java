@@ -17,7 +17,7 @@ import java.util.Objects;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.WORD_BOARD_KARATE;
 
-public class WordBoardKarateSessionStateManager extends BaseSamuraiChefSessionStateManager {
+public class WordBoardKarateSessionStateManager extends BaseActivePhaseSamuraiChefSessionStateManager {
 
     private static final Logger logger = LoggerFactory.getLogger(WordBoardKarateSessionStateManager.class);
 

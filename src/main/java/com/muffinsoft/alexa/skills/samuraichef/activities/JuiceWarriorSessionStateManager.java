@@ -12,15 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
-import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.JUICE_WARRIOR;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
-public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionStateManager {
+public class JuiceWarriorSessionStateManager extends BaseActivePhaseSamuraiChefSessionStateManager {
 
     private static final Logger logger = LoggerFactory.getLogger(JuiceWarriorSessionStateManager.class);
 
@@ -32,42 +29,21 @@ public class JuiceWarriorSessionStateManager extends BaseSamuraiChefSessionState
     }
 
     @Override
-    protected DialogItem getActivePhaseDialog() {
-
-        DialogItem dialog;
+    protected DialogItem handleSuccess() {
 
         long answerTime = System.currentTimeMillis();
 
-        if (Objects.equals(this.activityProgress.getCurrentIngredientReaction(), userReply)) {
+        long answerLimit = level.getTimeLimitPhaseOneInMillis();
 
-            long answerLimit = level.getTimeLimitPhaseOneInMillis();
+        if (questionTime == null || answerTime - questionTime < answerLimit) {
 
-            if (questionTime == null || answerTime - questionTime < answerLimit) {
+            this.activityProgress.iterateSuccessCount();
 
-                this.activityProgress.iterateSuccessCount();
-
-                dialog = getSuccessDialog();
-            }
-            else {
-                dialog = getFailureDialog(phraseManager.getValueByKey(TOO_LONG_PHRASE));
-            }
+            return getSuccessDialog();
         }
         else {
-            this.activityProgress.iterateMistakeCount();
-            if (this.activityProgress.getMistakesCount() < level.getMaxMistakeCount()) {
-                dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
-            }
-            else {
-                dialog = getLoseRoundDialog();
-            }
+            return getFailureDialog(phraseManager.getValueByKey(TOO_LONG_PHRASE));
         }
-
-        if (this.activityProgress.getSuccessCount() == level.getWonSuccessCount()) {
-            this.statePhase = WIN;
-            dialog = getWinDialog();
-        }
-
-        return dialog;
     }
 
     @Override

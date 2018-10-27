@@ -13,13 +13,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
-import java.util.Objects;
 
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
 
-public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateManager {
+public class SushiSliceSessionStateManager extends BaseActivePhaseSamuraiChefSessionStateManager {
 
     private static final Logger logger = LoggerFactory.getLogger(SushiSliceSessionStateManager.class);
 
@@ -29,37 +27,17 @@ public class SushiSliceSessionStateManager extends BaseSamuraiChefSessionStateMa
     }
 
     @Override
-    protected DialogItem getActivePhaseDialog() {
+    protected DialogItem handleSuccess() {
 
-        DialogItem dialog;
+        this.activityProgress.iterateSuccessCount();
 
-        if (Objects.equals(this.activityProgress.getCurrentIngredientReaction(), userReply)) {
-
-            this.activityProgress.iterateSuccessCount();
-
-            if (this.activityProgress.getSuccessCount() == level.getPhaseTwoSuccessCount()) {
-                this.statePhase = PHASE_2;
-                Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
-                dialog = getSuccessDialog(speech.getMoveToPhaseTwo());
-            }
-            else {
-                dialog = getSuccessDialog();
-            }
+        if (this.activityProgress.getSuccessCount() == level.getPhaseTwoSuccessCount()) {
+            this.statePhase = PHASE_2;
+            Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
+            return getSuccessDialog(speech.getMoveToPhaseTwo());
         }
         else {
-            this.activityProgress.iterateMistakeCount();
-            if (this.activityProgress.getMistakesCount() < level.getMaxMistakeCount()) {
-                dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
-            }
-            else {
-                dialog = getLoseRoundDialog();
-            }
+            return getSuccessDialog();
         }
-
-        if (this.activityProgress.getSuccessCount() == level.getWonSuccessCount()) {
-            dialog = getWinDialog();
-        }
-
-        return dialog;
     }
 }
