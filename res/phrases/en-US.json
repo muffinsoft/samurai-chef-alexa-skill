@@ -1,5 +1,6 @@
 {
   "welcomePhrase": "Glad you’ve come over! I love playdates! And today, I’ve got something so cool, so different for us to do. Would you like to follow me?",
+  "welcomeBackPhrase": "Welcome back! Would you like to follow me?",
   "congratulationPhrase": "You just won a stripe!",
   "fallbackPhrase": "We cannot do that right now",
   "wrongPhrase": "Wrong!",

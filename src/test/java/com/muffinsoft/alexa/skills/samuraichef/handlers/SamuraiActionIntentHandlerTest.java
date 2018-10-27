@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.JUICE_WARRIOR;
+
 class SamuraiActionIntentHandlerTest {
 
     private HandlerInput createInputWithSlotsAndSessionAttributes(Map<String, Slot> slots, Map<String, Object> sessionAttributes) {
@@ -67,6 +69,7 @@ class SamuraiActionIntentHandlerTest {
         slots.put("action", Slot.builder().withValue("yes").build());
 
         Map<String, Object> userProgress = new LinkedHashMap<>();
+        userProgress.put("lastActivity", JUICE_WARRIOR.name());
         userProgress.put("stripeCount", 0);
         userProgress.put("starCount", 0);
         userProgress.put("winInARowCount", 1);
@@ -74,7 +77,7 @@ class SamuraiActionIntentHandlerTest {
         userProgress.put("finishedRounds", new String[]{Activities.SUSHI_SLICE.name()});
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.JUICE_WARRIOR);
+        sessionAttributes.put(SessionConstants.ACTIVITY, JUICE_WARRIOR);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.WIN);
         sessionAttributes.put(SessionConstants.USER_PROGRESS, userProgress);
 
@@ -94,6 +97,7 @@ class SamuraiActionIntentHandlerTest {
         slots.put("action", Slot.builder().withValue("yes").build());
 
         Map<String, Object> userProgress = new LinkedHashMap<>();
+        userProgress.put("lastActivity", JUICE_WARRIOR.name());
         userProgress.put("stripeCount", 0);
         userProgress.put("starCount", 0);
         userProgress.put("winInARowCount", 1);
@@ -101,7 +105,7 @@ class SamuraiActionIntentHandlerTest {
         userProgress.put("finishedRounds", new String[]{Activities.SUSHI_SLICE.name()});
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.JUICE_WARRIOR);
+        sessionAttributes.put(SessionConstants.ACTIVITY, JUICE_WARRIOR);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.WIN);
         sessionAttributes.put(SessionConstants.USER_PROGRESS, userProgress);
 
@@ -120,7 +124,7 @@ class SamuraiActionIntentHandlerTest {
         Map<String, Slot> slots = new HashMap<>();
         slots.put("action", Slot.builder().withValue("mission").build());
 
-        List<String> finishedActivities = Collections.singletonList(Activities.JUICE_WARRIOR.name());
+        List<String> finishedActivities = Collections.singletonList(JUICE_WARRIOR.name());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
@@ -141,7 +145,7 @@ class SamuraiActionIntentHandlerTest {
         Map<String, Slot> slots = new HashMap<>();
         slots.put("action", Slot.builder().withValue("yes").build());
 
-        List<String> finishedActivities = Arrays.asList(Activities.SUSHI_SLICE.name(), Activities.JUICE_WARRIOR.name(), Activities.WORD_BOARD_KARATE.name());
+        List<String> finishedActivities = Arrays.asList(Activities.SUSHI_SLICE.name(), JUICE_WARRIOR.name(), Activities.WORD_BOARD_KARATE.name());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.FOOD_TASTER);

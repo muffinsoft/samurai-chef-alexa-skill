@@ -35,12 +35,15 @@ import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static com.amazon.ask.request.Predicates.intentName;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS_DB;
 
 public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
@@ -75,9 +78,18 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
         Map<String, Slot> slots = intentRequest.getIntent().getSlots();
 
-        Activities currentActivity = getCurrentActivity(input);
+        handlePersistentAttributes(input);
 
         UserProgress currentUserProgress = getCurrentUserProgress(input);
+
+        Activities currentActivity;
+
+        if (currentUserProgress.isJustCreated()) {
+            currentActivity = getCurrentActivity(input);
+        }
+        else {
+            currentActivity = Activities.valueOf(currentUserProgress.getLastActivity());
+        }
 
         Equipments currentEquipment = Equipments.EMPTY_SLOT;
 
@@ -191,13 +203,39 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
     private UserProgress getCurrentUserProgress(HandlerInput input) {
 
         LinkedHashMap rawUserProgress = (LinkedHashMap) input.getAttributesManager().getSessionAttributes().get(USER_PROGRESS);
-        return rawUserProgress != null ? new ObjectMapper().convertValue(rawUserProgress, UserProgress.class) : new UserProgress();
+
+        return rawUserProgress != null ? new ObjectMapper().convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
     }
 
     private Activities getCurrentActivity(HandlerInput input) {
+
         Activities firstActivity = activitiesManager.getFirstActivity();
+
         String rawActivity = String.valueOf(input.getAttributesManager().getSessionAttributes().getOrDefault(ACTIVITY, firstActivity.name()));
         return Activities.valueOf(rawActivity);
+    }
+
+    private void handlePersistentAttributes(HandlerInput input) {
+
+        if (input.getAttributesManager().getPersistentAttributes().containsKey(USER_PROGRESS_DB)) {
+
+            Map<String, Object> sessionAttributes = input.getAttributesManager().getSessionAttributes();
+            if (sessionAttributes == null) {
+                sessionAttributes = new HashMap<>();
+            }
+            if (!sessionAttributes.containsKey(USER_PROGRESS)) {
+
+                String jsonInString = String.valueOf(input.getAttributesManager().getPersistentAttributes().get(USER_PROGRESS_DB));
+
+                try {
+                    LinkedHashMap linkedHashMap = new ObjectMapper().readValue(jsonInString, LinkedHashMap.class);
+                    sessionAttributes.put(USER_PROGRESS, linkedHashMap);
+                }
+                catch (IOException e) {
+                    throw new IllegalStateException(e.getMessage(), e);
+                }
+            }
+        }
     }
 
     @Override

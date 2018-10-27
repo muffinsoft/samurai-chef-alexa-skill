@@ -2,6 +2,7 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.muffinsoft.alexa.sdk.activities.BaseSessionStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.components.ActivityEquipmentFilter;
@@ -48,6 +49,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.DEBUG_MESSAGE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.EQUIPMENT_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.INTRO;
@@ -92,7 +94,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.getOrDefault(STATE_PHASE, INTRO)));
 
         LinkedHashMap rawUserProgress = (LinkedHashMap) sessionAttributes.get(USER_PROGRESS);
-        userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress();
+        userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
 
         LinkedHashMap rawActivityProgress = (LinkedHashMap) sessionAttributes.get(ACTIVITY_PROGRESS);
         activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
@@ -105,13 +107,20 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         this.sessionAttributes = new HashMap<>();
     }
 
-//    @Override
-//    protected void updatePersistentAttributes() {
-//        persistentAttributes.put(USER_PROGRESS, this.userProgress);
-//    }
+    @Override
+    protected void updatePersistentAttributes() {
+        try {
+            String json = mapper.writeValueAsString(this.userProgress);
+            persistentAttributes.put(USER_PROGRESS_DB, json);
+        }
+        catch (JsonProcessingException e) {
+            throw new IllegalStateException(e.getMessage(), e);
+        }
+    }
 
     @Override
     protected void updateSessionAttributes() {
+        this.userProgress.setLastActivity(this.currentActivity.name());
         sessionAttributes.put(USER_PROGRESS, this.userProgress);
         sessionAttributes.put(ACTIVITY_PROGRESS, this.activityProgress);
         sessionAttributes.put(STATE_PHASE, statePhase);
@@ -186,6 +195,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             else {
                 dialog = getLoseRoundDialog();
             }
+            savePersistentAttributes();
         }
 
         else if (this.statePhase == WIN) {
@@ -199,6 +209,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             else {
                 dialog = startNewMissionDialog();
             }
+            savePersistentAttributes();
         }
 
         else {
@@ -229,7 +240,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     private void addWinInARow() {
-        this.userProgress.increaseWinInARow();
+        this.userProgress.iterateWinInARow();
     }
 
     private void calculateLevelProgress() {
@@ -280,6 +291,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         }
 
         currentActivity = nextActivity;
+        this.userProgress.setLastActivity(nextActivity.name());
 
         if (this.activityProgress.isJustStripeUp()) {
             return getCongratulationDialog(this.userProgress.getCurrentLevel());

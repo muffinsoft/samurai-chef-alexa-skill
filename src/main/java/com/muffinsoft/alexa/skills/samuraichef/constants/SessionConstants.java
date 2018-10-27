@@ -1,12 +1,7 @@
 package com.muffinsoft.alexa.skills.samuraichef.constants;
 
-import com.muffinsoft.alexa.sdk.content.BaseConstants;
+public class SessionConstants {
 
-public class SessionConstants extends BaseConstants {
-
-    /**
-     * Below are keys for session attributes.
-     */
     public static final String STATE_PHASE = "statePhase";
 
     public static final String DEBUG_MESSAGE = "debugMessage";
@@ -16,6 +11,8 @@ public class SessionConstants extends BaseConstants {
     public static final String ACTIVITY = "activity";
 
     public static final String USER_PROGRESS = "userProgress";
+
+    public static final String USER_PROGRESS_DB = "userProgressDB";
 
     public static final String ACTIVITY_PROGRESS = "activityProgress";
 }

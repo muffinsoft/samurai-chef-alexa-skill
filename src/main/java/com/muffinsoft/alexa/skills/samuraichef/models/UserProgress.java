@@ -15,6 +15,15 @@ public class UserProgress {
     private int winInARowCount = 0;
     private int currentLevel = 0;
     private String equippedPowerUp = "";
+    private String lastActivity;
+    private boolean justCreated = false;
+
+    public UserProgress() {
+    }
+
+    public UserProgress(boolean isNew) {
+        this.justCreated = isNew;
+    }
 
     public Set<String> getFinishedRounds() {
         return finishedRounds;
@@ -64,23 +73,28 @@ public class UserProgress {
         this.currentLevel = currentLevel;
     }
 
-    public void increaseWinInARow() {
+    public void iterateWinInARow() {
+        this.justCreated = false;
         this.winInARowCount += 1;
     }
 
     public void iterateStripeCount() {
+        this.justCreated = false;
         this.stripeCount += 1;
     }
 
     public void resetFinishRounds() {
+        this.justCreated = false;
         this.finishedRounds = new HashSet<>();
     }
 
     public void iterateLevel() {
+        this.justCreated = false;
         this.currentLevel += 1;
     }
 
     public void iterateStarCount() {
+        this.justCreated = false;
         this.starCount += 1;
     }
 
@@ -98,19 +112,39 @@ public class UserProgress {
     }
 
     public void removePowerUp() {
+        this.justCreated = false;
         this.equippedPowerUp = null;
     }
 
     public void addEquipment(String name) {
+        this.justCreated = false;
         this.earnedPowerUps.add(name);
     }
 
     public void addFinishedRound(String name) {
+        this.justCreated = false;
         this.finishedRounds.add(name);
     }
 
     public void equipPowerUp(String equipment) {
+        this.justCreated = false;
         this.earnedPowerUps.remove(equipment);
         this.equippedPowerUp = equipment;
+    }
+
+    public String getLastActivity() {
+        return lastActivity;
+    }
+
+    public void setLastActivity(String lastActivity) {
+        this.lastActivity = lastActivity;
+    }
+
+    public boolean isJustCreated() {
+        return justCreated;
+    }
+
+    public void setJustCreated(boolean justCreated) {
+        this.justCreated = justCreated;
     }
 }
