@@ -3,7 +3,6 @@ package com.muffinsoft.alexa.skills.samuraichef;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import com.amazon.ask.attributes.persistence.impl.DynamoDbPersistenceAdapter;
 import com.muffinsoft.alexa.sdk.handlers.ResponseExceptionHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiActionIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiCancelIntentHandler;
@@ -25,12 +24,12 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
 
         return Skills.standard()
                 .addRequestHandlers(
+                        new SamuraiActionIntentHandler(IoC.provideActivitiesManager(), IoC.provideCardManager(), IoC.provideSessionStateFabric()),
                         new SamuraiCancelIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
-                        new SamuraiStopIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
                         new SamuraiFallbackIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
                         new SamuraiHelpIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
                         new SamuraiLaunchRequestHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
-                        new SamuraiActionIntentHandler(IoC.providePhraseManager(), IoC.provideActivitiesManager(), IoC.provideCardManager(), IoC.provideIngredientsManager(), IoC.providePowerUpsManager(), IoC.provideRewardManager()),
+                        new SamuraiStopIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
                         new SamuraiSessionEndedRequestHandler())
                 .addExceptionHandler(new ResponseExceptionHandler())
                 .withSkillId(amazonSkillId)

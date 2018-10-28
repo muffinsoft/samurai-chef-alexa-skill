@@ -4,6 +4,8 @@ import com.muffinsoft.alexa.sdk.handlers.HelpIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 
+import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
+
 public class SamuraiHelpIntentHandler extends HelpIntentHandler {
 
     private final PhraseManager phraseManager;
@@ -22,6 +24,6 @@ public class SamuraiHelpIntentHandler extends HelpIntentHandler {
 
     @Override
     public String getSimpleCard() {
-        return cardManager.getValueByKey("welcome");
+        return cardManager.getValueByKey(WELCOME_CARD);
     }
 }

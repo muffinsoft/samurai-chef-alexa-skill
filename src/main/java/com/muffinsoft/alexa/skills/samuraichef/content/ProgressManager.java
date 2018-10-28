@@ -4,11 +4,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.models.RewardContainer;
 
-public class RewardManager {
+public class ProgressManager {
 
     private RewardContainer container;
 
-    public RewardManager(String path) {
+    public ProgressManager(String path) {
         this.container = new ContentLoader().loadContent(this.container, path, new TypeReference<RewardContainer>() {
         });
     }

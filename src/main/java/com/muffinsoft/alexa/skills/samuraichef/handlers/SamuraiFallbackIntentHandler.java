@@ -4,6 +4,8 @@ import com.muffinsoft.alexa.sdk.handlers.FallbackIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 
+import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
+
 public class SamuraiFallbackIntentHandler extends FallbackIntentHandler {
 
     private final PhraseManager phraseManager;
@@ -22,6 +24,6 @@ public class SamuraiFallbackIntentHandler extends FallbackIntentHandler {
 
     @Override
     public String getSimpleCard() {
-        return cardManager.getValueByKey("fallback");
+        return cardManager.getValueByKey(WELCOME_CARD);
     }
 }

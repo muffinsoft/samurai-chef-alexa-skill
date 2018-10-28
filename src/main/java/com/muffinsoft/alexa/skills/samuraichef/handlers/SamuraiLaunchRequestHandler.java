@@ -8,6 +8,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 
 import java.util.Optional;
 
+import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WELCOME_BACK_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WELCOME_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS_DB;
@@ -27,6 +28,7 @@ public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
     public Optional<Response> handle(HandlerInput input) {
 
         String simpleCard = this.getSimpleCard();
+
         String speechText;
 
         if (input.getAttributesManager().getPersistentAttributes().containsKey(USER_PROGRESS_DB)) {
@@ -50,7 +52,7 @@ public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
 
     @Override
     public String getSimpleCard() {
-        return cardManager.getValueByKey("welcome");
+        return cardManager.getValueByKey(WELCOME_CARD);
     }
 
 }

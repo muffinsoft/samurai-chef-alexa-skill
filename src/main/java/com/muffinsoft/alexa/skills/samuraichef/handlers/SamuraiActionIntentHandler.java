@@ -8,27 +8,9 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.SessionStateManager;
 import com.muffinsoft.alexa.sdk.handlers.ActionIntentHandler;
-import com.muffinsoft.alexa.skills.samuraichef.activities.FoodTasterCorrectAnswerSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.FoodTasterDoubleActionSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.FoodTasterSecondChanceSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.FoodTasterSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.JuiceWarriorCorrectAnswerSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.JuiceWarriorMoreEarnSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.JuiceWarriorSecondChanceSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.JuiceWarriorSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceCorrectAnswerSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceMoreEarnSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceSecondChanceSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateCorrectAnswerSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateSecondChanceSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateSessionStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.RewardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
@@ -41,6 +23,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static com.amazon.ask.request.Predicates.intentName;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS_DB;
@@ -49,20 +32,14 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(SamuraiActionIntentHandler.class);
 
-    private final PhraseManager phraseManager;
     private final CardManager cardManager;
     private final ActivitiesManager activitiesManager;
-    private final LevelManager levelManager;
-    private final PowerUpsManager powerUpsManager;
-    private final RewardManager rewardManager;
+    private final SessionStateFabric stateManagerFabric;
 
-    public SamuraiActionIntentHandler(PhraseManager phraseManager, ActivitiesManager activitiesManager, CardManager cardManager, LevelManager levelManager, PowerUpsManager powerUpsManager, RewardManager rewardManager) {
-        this.phraseManager = phraseManager;
+    public SamuraiActionIntentHandler(ActivitiesManager activitiesManager, CardManager cardManager, SessionStateFabric stateManagerFabric) {
         this.activitiesManager = activitiesManager;
         this.cardManager = cardManager;
-        this.levelManager = levelManager;
-        this.powerUpsManager = powerUpsManager;
-        this.rewardManager = rewardManager;
+        this.stateManagerFabric = stateManagerFabric;
     }
 
     @Override
@@ -97,107 +74,11 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
             currentEquipment = Equipments.valueOf(currentUserProgress.getEquippedPowerUp());
         }
 
-        SessionStateManager stateManager;
+        SessionStateManager stateManager = stateManagerFabric.createFromRequest(currentActivity, currentEquipment, slots, input.getAttributesManager());
 
         logger.info("Going to handle activity " + currentActivity + " with equipment " + currentEquipment);
 
-        switch (currentActivity) {
-//            case NAME_HANDLER:
-//                stateManager = new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager, powerUpsManager);
-//                break;
-            case SUSHI_SLICE:
-                stateManager = createSushiSliceSessionStateManager(currentEquipment, slots, input.getAttributesManager());
-                break;
-            case JUICE_WARRIOR:
-                stateManager = createJuiceWarriorSessionStateManager(currentEquipment, slots, input.getAttributesManager());
-                break;
-            case WORD_BOARD_KARATE:
-                stateManager = createWordBoardKarateSessionStateManager(currentEquipment, slots, input.getAttributesManager());
-                break;
-            case FOOD_TASTER:
-                stateManager = createFoodTasterSessionStateManager(currentEquipment, slots, input.getAttributesManager());
-                break;
-            default:
-                throw new IllegalStateException("Exception while handling activity: " + currentActivity);
-        }
-
         return stateManager;
-    }
-
-    private FoodTasterSessionStateManager createFoodTasterSessionStateManager(Equipments currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
-
-        switch (currentEquipment) {
-            case EMPTY_SLOT:
-                return new FoodTasterSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            case SUPER_SPATULE:
-            case SECRET_SAUCE:
-            case CHEF_HAT:
-                return new FoodTasterCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            case KARATE_GI:
-            case HACHIMAKI:
-                return new FoodTasterSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            case SUMO_MAWASHI:
-                return new FoodTasterDoubleActionSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            default:
-                throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
-        }
-    }
-
-    private WordBoardKarateSessionStateManager createWordBoardKarateSessionStateManager(Equipments currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
-
-        switch (currentEquipment) {
-            case EMPTY_SLOT:
-                return new WordBoardKarateSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            case SUPER_SPATULE:
-            case SECRET_SAUCE:
-            case CHEF_HAT:
-                return new WordBoardKarateCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            case KARATE_GI:
-            case HACHIMAKI:
-                return new WordBoardKarateSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            default:
-                throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
-        }
-    }
-
-    private SushiSliceSessionStateManager createSushiSliceSessionStateManager(Equipments currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
-
-        switch (currentEquipment) {
-            case EMPTY_SLOT:
-                return new SushiSliceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            case SUSHI_BLADE:
-            case CUISINE_KATANA:
-                return new SushiSliceMoreEarnSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            case SUPER_SPATULE:
-            case SECRET_SAUCE:
-            case CHEF_HAT:
-                return new SushiSliceCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            case KARATE_GI:
-            case HACHIMAKI:
-                return new SushiSliceSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            default:
-                throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
-        }
-    }
-
-    private JuiceWarriorSessionStateManager createJuiceWarriorSessionStateManager(Equipments currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
-
-        switch (currentEquipment) {
-            case EMPTY_SLOT:
-                return new JuiceWarriorSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            case SUSHI_BLADE:
-            case CUISINE_KATANA:
-                return new JuiceWarriorMoreEarnSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            case SUPER_SPATULE:
-            case SECRET_SAUCE:
-            case CHEF_HAT:
-                return new JuiceWarriorCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            case KARATE_GI:
-            case HACHIMAKI:
-                return new JuiceWarriorSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, rewardManager);
-            default:
-                throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
-        }
     }
 
     private UserProgress getCurrentUserProgress(HandlerInput input) {
@@ -217,15 +98,19 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
     private void handlePersistentAttributes(HandlerInput input) {
 
-        if (input.getAttributesManager().getPersistentAttributes().containsKey(USER_PROGRESS_DB)) {
+        AttributesManager attributesManager = input.getAttributesManager();
 
-            Map<String, Object> sessionAttributes = input.getAttributesManager().getSessionAttributes();
-            if (sessionAttributes == null) {
-                sessionAttributes = new HashMap<>();
-            }
-            if (!sessionAttributes.containsKey(USER_PROGRESS)) {
+        if (!attributesManager.getSessionAttributes().containsKey(USER_PROGRESS)) {
 
-                String jsonInString = String.valueOf(input.getAttributesManager().getPersistentAttributes().get(USER_PROGRESS_DB));
+            if (attributesManager.getPersistentAttributes().containsKey(USER_PROGRESS_DB)) {
+
+                Map<String, Object> sessionAttributes = attributesManager.getSessionAttributes();
+
+                if (sessionAttributes == null) {
+                    sessionAttributes = new HashMap<>();
+                }
+
+                String jsonInString = String.valueOf(attributesManager.getPersistentAttributes().get(USER_PROGRESS_DB));
 
                 try {
                     LinkedHashMap linkedHashMap = new ObjectMapper().readValue(jsonInString, LinkedHashMap.class);
@@ -245,6 +130,6 @@ public class SamuraiActionIntentHandler extends ActionIntentHandler {
 
     @Override
     public String getSimpleCard() {
-        return cardManager.getValueByKey("welcome");
+        return cardManager.getValueByKey(WELCOME_CARD);
     }
 }

@@ -11,7 +11,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.RewardManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.ProgressManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
@@ -67,7 +67,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected final LevelManager levelManager;
 
     private final PowerUpsManager powerUpsManager;
-    private final RewardManager rewardManager;
+    private final ProgressManager progressManager;
     private final ActivitiesManager activitiesManager;
 
     protected Activities currentActivity;
@@ -79,13 +79,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected String dialogPrefix = null;
     private boolean gameIsComplete = false;
 
-    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, RewardManager rewardManager) {
+    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
         super(slots, attributesManager);
         this.phraseManager = phraseManager;
         this.activitiesManager = activitiesManager;
         this.levelManager = levelManager;
         this.powerUpsManager = powerUpsManager;
-        this.rewardManager = rewardManager;
+        this.progressManager = progressManager;
     }
 
     @Override
@@ -131,13 +131,6 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         logger.debug("Session attributes on the end of handling: " + this.sessionAttributes.toString());
     }
 
-    protected void resetActivityProgress() {
-        this.statePhase = INTRO;
-        this.activityProgress.reset();
-    }
-
-    protected abstract DialogItem getActivePhaseDialog();
-
     @Override
     public DialogItem nextResponse() {
 
@@ -145,89 +138,153 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         level = levelManager.getLevelForActivity(this.currentActivity, this.userProgress.getCurrentLevel());
 
-        if (this.statePhase == INTRO) {
-
-            dialog = getIntroDialog(this.currentActivity, this.userProgress.getCurrentLevel());
-        }
-
-        else if (this.statePhase == DEMO) {
-
-            if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
-                if (isAvailablePowerUpsForActivity()) {
-                    dialog = getWearEquipmentDialog();
-                }
-                else {
-                    dialog = getReadyToStartDialog();
-                }
-            }
-            else {
-                dialog = getDemoDialog(this.currentActivity, this.userProgress.getCurrentLevel());
-            }
-        }
-
-        else if (this.statePhase == EQUIPMENT_PHASE) {
-
-            if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
-                dialog = getReadyToStartDialog();
-            }
-            else {
-                dialog = wearEquipmentDialog();
-            }
-        }
-
-        else if (this.statePhase == READY_PHASE) {
-
-            String speechText = nextIngredient();
-            this.statePhase = PHASE_1;
-            dialog = new DialogItem(speechText, false, ACTION.text);
-        }
-
-        else if (this.statePhase == LOSE || this.statePhase == LOSE_RETRY_ONLY) {
-            resetWinInARow();
-            if (UserReplyComparator.compare(userReply, UserReplies.AGAIN)) {
-                resetActivityProgress();
+        switch (this.statePhase) {
+            case INTRO:
                 dialog = getIntroDialog(this.currentActivity, this.userProgress.getCurrentLevel());
-            }
-            else if (this.statePhase == LOSE && UserReplyComparator.compare(userReply, UserReplies.MISSION)) {
-                resetActivityProgress();
-                dialog = startNewMissionDialog();
-            }
-            else {
-                dialog = getLoseRoundDialog();
-            }
-            savePersistentAttributes();
+                break;
+            case DEMO:
+                dialog = handleDemoPhase();
+                break;
+            case EQUIPMENT_PHASE:
+                dialog = handleEquipmentPhase();
+                break;
+            case READY_PHASE:
+                dialog = handleReadyToStartPhase();
+                break;
+            case LOSE:
+                dialog = handleLosePhase();
+                break;
+            case LOSE_RETRY_ONLY:
+                dialog = handleLoseRetryOnlyPhase();
+                break;
+            case WIN:
+                dialog = handleWinPhase();
+                break;
+            default:
+                dialog = getActivePhaseDialog();
         }
 
-        else if (this.statePhase == WIN) {
-            addWinInARow();
-            calculateLevelProgress();
-            calculatePowerUpsProgress();
-            resetActivityProgress();
-            if (gameIsComplete) {
-                dialog = gameIsFinishedDialog();
-            }
-            else {
-                dialog = startNewMissionDialog();
-            }
-            savePersistentAttributes();
-        }
-
-        else {
-
-            dialog = getActivePhaseDialog();
-        }
-
-        if (dialogPrefix != null) {
-            String responseText = dialog.getResponseText();
-            dialog.setResponseText(dialogPrefix + responseText);
-        }
+        dialog = checkOnAdditions(dialog);
 
         return dialog;
     }
 
+    protected void resetActivityProgress() {
+        this.statePhase = INTRO;
+        this.activityProgress.reset();
+    }
+
+    protected abstract DialogItem getActivePhaseDialog();
+
+    private DialogItem checkOnAdditions(DialogItem dialog) {
+
+        if (dialogPrefix != null) {
+
+            String responseText = dialog.getResponseText();
+
+            dialog.setResponseText(dialogPrefix + responseText);
+        }
+        return dialog;
+    }
+
+    private DialogItem handleWinPhase() {
+
+        DialogItem dialog;
+
+        addWinInARow();
+        calculateLevelProgress();
+        calculatePowerUpsProgress();
+        resetActivityProgress();
+        if (gameIsComplete) {
+            dialog = gameIsFinishedDialog();
+        }
+        else {
+            dialog = startNewMissionDialog();
+        }
+        savePersistentAttributes();
+
+        return dialog;
+    }
+
+    private DialogItem handleLoseRetryOnlyPhase() {
+
+        DialogItem dialog;
+
+
+        resetWinInARow();
+
+        if (UserReplyComparator.compare(userReply, UserReplies.AGAIN) || UserReplyComparator.compare(userReply, UserReplies.YES)) {
+            resetActivityProgress();
+            dialog = getIntroDialog(this.currentActivity, this.userProgress.getCurrentLevel());
+        }
+        else {
+            dialog = getLoseRoundDialog();
+        }
+        savePersistentAttributes();
+
+        return dialog;
+    }
+
+    private DialogItem handleLosePhase() {
+
+        DialogItem dialog;
+
+        resetWinInARow();
+
+        if (UserReplyComparator.compare(userReply, UserReplies.AGAIN)) {
+            resetActivityProgress();
+            dialog = getIntroDialog(this.currentActivity, this.userProgress.getCurrentLevel());
+        }
+        else if (this.statePhase == LOSE && UserReplyComparator.compare(userReply, UserReplies.MISSION)) {
+            resetActivityProgress();
+            dialog = startNewMissionDialog();
+        }
+        else {
+            dialog = getLoseRoundDialog();
+        }
+        savePersistentAttributes();
+
+        return dialog;
+    }
+
+    private DialogItem handleReadyToStartPhase() {
+
+        String speechText = nextIngredient();
+
+        this.statePhase = PHASE_1;
+
+        return new DialogItem(speechText, false, ACTION.text);
+    }
+
+    private DialogItem handleEquipmentPhase() {
+
+        if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
+            return getReadyToStartDialog();
+        }
+        else {
+            return wearEquipmentDialog();
+        }
+    }
+
+    private DialogItem handleDemoPhase() {
+
+        if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
+
+            if (isAvailablePowerUpsForActivity()) {
+                return getWearEquipmentDialog();
+            }
+            else {
+                return getReadyToStartDialog();
+            }
+        }
+        else {
+            return getDemoDialog(this.currentActivity, this.userProgress.getCurrentLevel());
+        }
+    }
+
     private void calculatePowerUpsProgress() {
 
-        int winInARowCount = rewardManager.getContainer().getWinInARowCount();
+        int winInARowCount = progressManager.getContainer().getWinInARowCount();
 
         if (this.userProgress.getWinInARowCount() % winInARowCount == 0) {
             Equipments equipment = powerUpsManager.getNextRandomItem(this.userProgress.getEarnedPowerUps());
@@ -255,21 +312,21 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
             this.currentActivity = activitiesManager.getFirstActivity();
 
-            int stripesToLevelCount = rewardManager.getContainer().getStripesToLevelCount();
+            int stripesToLevelCount = progressManager.getContainer().getStripesToLevelCount();
 
             if (this.userProgress.getStripeCount() % stripesToLevelCount == 0) {
                 this.dialogPrefix = phraseManager.getValueByKey(LEVEL_REACHED_PHRASE);
                 this.userProgress.iterateLevel();
             }
 
-            int stripesToStarCount = rewardManager.getContainer().getStripesToStarCount();
+            int stripesToStarCount = progressManager.getContainer().getStripesToStarCount();
 
             if (this.userProgress.getStripeCount() % stripesToStarCount == 0) {
                 this.dialogPrefix = phraseManager.getValueByKey(STAR_REACHED_PHRASE);
                 this.userProgress.iterateStarCount();
             }
 
-            if (this.userProgress.getStarCount() == rewardManager.getContainer().getMaxStarCount()) {
+            if (this.userProgress.getStarCount() == progressManager.getContainer().getMaxStarCount()) {
                 this.gameIsComplete = true;
             }
         }

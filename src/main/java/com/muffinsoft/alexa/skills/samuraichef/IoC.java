@@ -1,11 +1,12 @@
 package com.muffinsoft.alexa.skills.samuraichef;
 
+import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.RewardManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.ProgressManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.UserReplyManager;
 
 public class IoC {
@@ -16,7 +17,8 @@ public class IoC {
     private static final UserReplyManager userReplyManager;
     private static final LevelManager levelManager;
     private static final PowerUpsManager powerUpsManager;
-    private static final RewardManager rewardManager;
+    private static final ProgressManager progressManager;
+    private static final SessionStateFabric sessionStateFabric;
 
     static {
         activitiesManager = new ActivitiesManager("settings/activities.json");
@@ -24,8 +26,9 @@ public class IoC {
         cardManager = new CardManager("phrases/cards.json");
         userReplyManager = new UserReplyManager("phrases/replies.json");
         powerUpsManager = new PowerUpsManager("settings/power-ups.json");
-        rewardManager = new RewardManager("settings/reward.json");
+        progressManager = new ProgressManager("settings/progress.json");
         levelManager = new LevelManager();
+        sessionStateFabric = new SessionStateFabric(phraseManager, activitiesManager, levelManager, powerUpsManager, progressManager);
     }
 
     public static PhraseManager providePhraseManager() {
@@ -52,7 +55,11 @@ public class IoC {
         return powerUpsManager;
     }
 
-    public static RewardManager provideRewardManager() {
-        return rewardManager;
+    public static ProgressManager provideRewardManager() {
+        return progressManager;
+    }
+
+    public static SessionStateFabric provideSessionStateFabric() {
+        return sessionStateFabric;
     }
 }
