@@ -1,6 +1,6 @@
 {
   "name": "FOOD_TASTER",
-  "levels": [
+  "stripes": [
     {
       "number": 0,
       "wonSuccessCount": 4,

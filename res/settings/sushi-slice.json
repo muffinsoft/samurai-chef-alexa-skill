@@ -1,6 +1,6 @@
 {
   "name": "SUSHI_SLICE",
-  "levels": [
+  "stripes": [
     {
       "number": 0,
       "wonSuccessCount": 4,

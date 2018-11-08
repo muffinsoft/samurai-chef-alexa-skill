@@ -5,7 +5,7 @@ import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivitiesSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
-import com.muffinsoft.alexa.skills.samuraichef.models.Level;
+import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
 import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 
 import java.util.ArrayList;
@@ -39,9 +39,9 @@ public class LevelManager {
         }));
     }
 
-    public IngredientReaction getNextIngredient(Level level, String previousIngredient) {
+    public IngredientReaction getNextIngredient(Stripe stripe, String previousIngredient) {
 
-        Map<String, String> ingredientsByActivity = level.getIngredients();
+        Map<String, String> ingredientsByActivity = stripe.getIngredients();
 
         List<String> ingredientsList = new ArrayList<>(ingredientsByActivity.keySet());
 
@@ -60,11 +60,11 @@ public class LevelManager {
         return ingredients.get(nextIngredient);
     }
 
-    public Level getLevelForActivity(Activities currentActivity, int level) {
+    public Stripe getLevelForActivity(Activities currentActivity, int level) {
 
         ActivitiesSettings activitiesSettings = ingredientsByActivity.get(currentActivity);
 
-        return activitiesSettings.getLevel(level);
+        return activitiesSettings.getStripe(level);
     }
 
     public Speech getSpeechForActivityByNumber(Activities currentActivity, int number) {

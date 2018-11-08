@@ -1,6 +1,6 @@
 {
   "name": "WORD_BOARD_KARATE",
-  "levels": [
+  "stripes": [
     {
       "number": 0,
       "wonSuccessCount": 4,

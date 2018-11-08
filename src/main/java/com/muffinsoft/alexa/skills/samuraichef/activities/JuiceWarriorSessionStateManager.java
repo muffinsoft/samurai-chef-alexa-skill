@@ -3,7 +3,6 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
@@ -23,8 +22,8 @@ public class JuiceWarriorSessionStateManager extends BaseActivePhaseSamuraiChefS
 
     protected Long questionTime;
 
-    public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
-        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, progressManager);
+    public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
+        super(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
         this.currentActivity = JUICE_WARRIOR;
     }
 
@@ -33,7 +32,7 @@ public class JuiceWarriorSessionStateManager extends BaseActivePhaseSamuraiChefS
 
         long answerTime = System.currentTimeMillis();
 
-        long answerLimit = level.getTimeLimitPhaseOneInMillis();
+        long answerLimit = stripe.getTimeLimitPhaseOneInMillis();
 
         if (questionTime == null || answerTime - questionTime < answerLimit) {
 

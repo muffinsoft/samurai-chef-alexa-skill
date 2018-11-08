@@ -12,8 +12,6 @@ public class UserProgress {
     private Set<String> earnedPowerUps = new HashSet<>();
     private int stripeCount = 0;
     private int starCount = 0;
-    private int winInARowCount = 0;
-    private int currentLevel = 0;
     private String equippedPowerUp = "";
     private String lastActivity;
     private boolean justCreated = false;
@@ -57,27 +55,6 @@ public class UserProgress {
         this.starCount = starCount;
     }
 
-    public int getWinInARowCount() {
-        return winInARowCount;
-    }
-
-    public void setWinInARowCount(int winInARowCount) {
-        this.winInARowCount = winInARowCount;
-    }
-
-    public int getCurrentLevel() {
-        return currentLevel;
-    }
-
-    public void setCurrentLevel(int currentLevel) {
-        this.currentLevel = currentLevel;
-    }
-
-    public void iterateWinInARow() {
-        this.justCreated = false;
-        this.winInARowCount += 1;
-    }
-
     public void iterateStripeCount() {
         this.justCreated = false;
         this.stripeCount += 1;
@@ -86,11 +63,6 @@ public class UserProgress {
     public void resetFinishRounds() {
         this.justCreated = false;
         this.finishedRounds = new HashSet<>();
-    }
-
-    public void iterateLevel() {
-        this.justCreated = false;
-        this.currentLevel += 1;
     }
 
     public void iterateStarCount() {

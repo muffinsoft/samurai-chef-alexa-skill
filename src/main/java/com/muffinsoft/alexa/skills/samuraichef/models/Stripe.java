@@ -2,7 +2,7 @@ package com.muffinsoft.alexa.skills.samuraichef.models;
 
 import java.util.Map;
 
-public class Level {
+public class Stripe {
 
     private int number;
     private Integer wonSuccessCount;

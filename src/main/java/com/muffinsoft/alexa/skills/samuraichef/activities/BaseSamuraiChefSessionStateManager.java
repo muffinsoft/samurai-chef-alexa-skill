@@ -7,7 +7,6 @@ import com.muffinsoft.alexa.sdk.activities.BaseSessionStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.components.ActivityEquipmentFilter;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
-import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
@@ -18,7 +17,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
-import com.muffinsoft.alexa.skills.samuraichef.models.Level;
+import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
 import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.slf4j.Logger;
@@ -68,21 +67,19 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private final PowerUpsManager powerUpsManager;
     private final ProgressManager progressManager;
-    private final ActivitiesManager activitiesManager;
 
     protected Activities currentActivity;
     protected StatePhase statePhase;
-    protected Level level;
+    protected Stripe stripe;
     protected UserProgress userProgress;
     protected ActivityProgress activityProgress;
 
     protected String dialogPrefix = null;
     private boolean gameIsComplete = false;
 
-    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
+    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
         super(slots, attributesManager);
         this.phraseManager = phraseManager;
-        this.activitiesManager = activitiesManager;
         this.levelManager = levelManager;
         this.powerUpsManager = powerUpsManager;
         this.progressManager = progressManager;
@@ -136,7 +133,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         DialogItem dialog;
 
-        level = levelManager.getLevelForActivity(this.currentActivity, this.userProgress.getCurrentLevel());
+        stripe = levelManager.getLevelForActivity(this.currentActivity, this.userProgress.getCurrentLevel());
 
         switch (this.statePhase) {
             case INTRO:
@@ -209,7 +206,6 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     private DialogItem handleLoseRetryOnlyPhase() {
 
         DialogItem dialog;
-
 
         resetWinInARow();
 
@@ -599,7 +595,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private String nextIngredient() {
 
-        IngredientReaction nextIngredient = levelManager.getNextIngredient(this.level, this.activityProgress.getPreviousIngredient());
+        IngredientReaction nextIngredient = levelManager.getNextIngredient(this.stripe, this.activityProgress.getPreviousIngredient());
 
         this.activityProgress.setCurrentIngredientReaction(nextIngredient.getUserReply());
         this.activityProgress.setPreviousIngredient(nextIngredient.getIngredient());

@@ -3,7 +3,6 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
@@ -21,8 +20,8 @@ public class WordBoardKarateSessionStateManager extends BaseActivePhaseSamuraiCh
 
     private static final Logger logger = LoggerFactory.getLogger(WordBoardKarateSessionStateManager.class);
 
-    public WordBoardKarateSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
-        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, progressManager);
+    public WordBoardKarateSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
+        super(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
         this.currentActivity = WORD_BOARD_KARATE;
     }
 
@@ -39,7 +38,7 @@ public class WordBoardKarateSessionStateManager extends BaseActivePhaseSamuraiCh
         }
         else {
             this.activityProgress.iterateMistakeCount();
-            if (this.activityProgress.getMistakesCount() < level.getMaxMistakeCount()) {
+            if (this.activityProgress.getMistakesCount() < stripe.getMaxMistakeCount()) {
                 dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
             }
             else {
@@ -47,7 +46,7 @@ public class WordBoardKarateSessionStateManager extends BaseActivePhaseSamuraiCh
             }
         }
 
-        if (this.activityProgress.getSuccessCount() == level.getWonSuccessCount()) {
+        if (this.activityProgress.getSuccessCount() == stripe.getWonSuccessCount()) {
             dialog = getWinDialog();
         }
 

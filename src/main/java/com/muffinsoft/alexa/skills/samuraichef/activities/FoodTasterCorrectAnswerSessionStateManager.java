@@ -3,7 +3,6 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
@@ -20,8 +19,8 @@ public class FoodTasterCorrectAnswerSessionStateManager extends FoodTasterSessio
 
     private static final Logger logger = LoggerFactory.getLogger(FoodTasterCorrectAnswerSessionStateManager.class);
 
-    public FoodTasterCorrectAnswerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
-        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, progressManager);
+    public FoodTasterCorrectAnswerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
+        super(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
     }
 
     @Override
@@ -35,7 +34,7 @@ public class FoodTasterCorrectAnswerSessionStateManager extends FoodTasterSessio
         }
         else {
             this.activityProgress.iterateMistakeCount();
-            if (this.activityProgress.getMistakesCount() < level.getMaxMistakeCount()) {
+            if (this.activityProgress.getMistakesCount() < stripe.getMaxMistakeCount()) {
                 return getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
             }
             else {

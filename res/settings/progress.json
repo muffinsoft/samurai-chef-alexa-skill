@@ -1,6 +1,33 @@
 {
+  "levels": [
+    {
+      "title": "LOW",
+      "activities": {
+        "SUSHI_SLICE": 0,
+        "JUICE_WARRIOR": 1,
+        "WORD_BOARD_KARATE": 2,
+        "FOOD_TASTER": 3
+      }
+    },
+    {
+      "title": "MEDIUM",
+      "activities": {
+        "SUSHI_SLICE": 0,
+        "JUICE_WARRIOR": 1,
+        "WORD_BOARD_KARATE": 2,
+        "FOOD_TASTER": 3
+      }
+    },
+    {
+      "title": "HIGH",
+      "activities": {
+        "SUSHI_SLICE": 0,
+        "JUICE_WARRIOR": 1,
+        "WORD_BOARD_KARATE": 2,
+        "FOOD_TASTER": 3
+      }
+    }
+  ],
   "stripesToStarCount": 1,
-  "winInARowCount": 2,
-  "stripesToLevelCount": 1,
-  "maxStarCount": 3
+  "maxStarCount": 15
 }

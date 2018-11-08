@@ -6,7 +6,7 @@ import java.util.Map;
 public class ActivitiesSettings {
 
     private String name;
-    private List<Level> levels;
+    private List<Stripe> stripes;
     private Map<String, Speech> speeches;
 
     public String getName() {
@@ -17,21 +17,21 @@ public class ActivitiesSettings {
         this.name = name;
     }
 
-    public List<Level> getLevels() {
-        return levels;
+    public List<Stripe> getStripes() {
+        return stripes;
     }
 
-    public void setLevels(List<Level> levels) {
-        this.levels = levels;
+    public void setStripes(List<Stripe> stripes) {
+        this.stripes = stripes;
     }
 
-    public Level getLevel(int level) {
-        for (Level it : levels) {
-            if (it.getNumber() == level) {
+    public Stripe getStripe(int number) {
+        for (Stripe it : stripes) {
+            if (it.getNumber() == number) {
                 return it;
             }
         }
-        throw new IllegalStateException("Can't find level with number " + level);
+        throw new IllegalStateException("Can't find stripe with number " + number);
     }
 
     public Map<String, Speech> getSpeeches() {
