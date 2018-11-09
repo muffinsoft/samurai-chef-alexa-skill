@@ -43,7 +43,7 @@ public class FoodTasterSessionStateManager extends BaseActivePhaseSamuraiChefSes
 
             if (this.activityProgress.getSuccessCount() == this.stripe.getPhaseTwoSuccessCount()) {
                 this.statePhase = PHASE_2;
-                Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
+                Speech speech = levelManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
                 return getSuccessDialog(speech.getMoveToPhaseTwo());
             }
             else {

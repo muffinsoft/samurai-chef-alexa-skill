@@ -32,7 +32,7 @@ public class SushiSliceSessionStateManager extends BaseActivePhaseSamuraiChefSes
 
         if (this.activityProgress.getSuccessCount() == stripe.getPhaseTwoSuccessCount()) {
             this.statePhase = PHASE_2;
-            Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
+            Speech speech = levelManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
             return getSuccessDialog(speech.getMoveToPhaseTwo());
         }
         else {

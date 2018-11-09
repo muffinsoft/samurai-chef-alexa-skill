@@ -48,7 +48,7 @@ public class IoC {
         return powerUpsManager;
     }
 
-    public static ProgressManager provideRewardManager() {
+    public static ProgressManager provideProgressManager() {
         return progressManager;
     }
 

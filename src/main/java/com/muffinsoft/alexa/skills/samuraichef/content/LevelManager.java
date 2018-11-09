@@ -67,7 +67,7 @@ public class LevelManager {
         return activitiesSettings.getStripe(level);
     }
 
-    public Speech getSpeechForActivityByNumber(Activities currentActivity, int number) {
+    public Speech getSpeechForActivityByStripeNumber(Activities currentActivity, int number) {
 
         ActivitiesSettings activitiesSettings = ingredientsByActivity.get(currentActivity);
 

@@ -39,10 +39,5 @@ public enum StatePhase {
     /**
      * We are waiting for user's response try again / start new mission.
      */
-    LOSE,
-
-    /**
-     * We are waiting for user's response try again
-     */
-    LOSE_RETRY_ONLY
+    LOSE
 }

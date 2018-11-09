@@ -4,6 +4,7 @@ public class ActivityProgress {
     private String currentIngredientReaction = "";
     private int successCount = 0;
     private int mistakesCount = 0;
+    private int successInRow = 0;
     private String previousIngredient = "";
     private boolean isJustStripeUp = false;
 
@@ -61,5 +62,13 @@ public class ActivityProgress {
 
     public void iterateMistakeCount() {
         this.mistakesCount += 1;
+    }
+
+    public int getSuccessInRow() {
+        return successInRow;
+    }
+
+    public void setSuccessInRow(int successInRow) {
+        this.successInRow = successInRow;
     }
 }
