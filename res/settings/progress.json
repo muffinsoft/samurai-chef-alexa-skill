@@ -11,18 +11,18 @@
         "FOOD_TASTER": 3
       },
       "stripeIntrosByNumber": {
-        "0": "1",
-        "1": "2",
-        "2": "3",
-        "3": "4",
-        "4": "5"
+        "0": "Stripe intro #1",
+        "1": "Stripe intro #2",
+        "2": "Stripe intro #3",
+        "3": "Stripe intro #4",
+        "4": "Stripe intro #5"
       },
       "stripeOutrosByNumber": {
-        "0": "1",
-        "1": "2",
-        "2": "3",
-        "3": "4",
-        "4": "5"
+        "0": "Stripe outro #1",
+        "1": "Stripe outro #2",
+        "2": "Stripe outro #3",
+        "3": "Stripe outro #4",
+        "4": "Stripe outro #5"
       }
     },
     {
@@ -36,18 +36,18 @@
         "FOOD_TASTER": 3
       },
       "stripeIntrosByNumber": {
-        "0": "1",
-        "1": "2",
-        "2": "3",
-        "3": "4",
-        "4": "5"
+        "0": "Stripe intro #1",
+        "1": "Stripe intro #2",
+        "2": "Stripe intro #3",
+        "3": "Stripe intro #4",
+        "4": "Stripe intro #5"
       },
       "stripeOutrosByNumber": {
-        "0": "1",
-        "1": "2",
-        "2": "3",
-        "3": "4",
-        "4": "5"
+        "0": "Stripe outro #1",
+        "1": "Stripe outro #2",
+        "2": "Stripe outro #3",
+        "3": "Stripe outro #4",
+        "4": "Stripe outro #5"
       }
     },
     {
@@ -61,11 +61,11 @@
         "FOOD_TASTER": 3
       },
       "stripeIntrosByNumber": {
-        "0": "1",
-        "1": "2",
-        "2": "3",
-        "3": "4",
-        "4": "5"
+        "0": "Stripe intro #1",
+        "1": "Stripe intro #2",
+        "2": "Stripe intro #3",
+        "3": "Stripe intro #4",
+        "4": "Stripe intro #5"
       },
       "stripeOutrosByNumber": {
         "0": "1",
@@ -76,7 +76,7 @@
       }
     }
   ],
-  "successInRowForPowerUp": 7,
+  "successInRowForPowerUp": 6,
   "stripesAtMissionCount": 5,
   "maxStarCount": 15
 }

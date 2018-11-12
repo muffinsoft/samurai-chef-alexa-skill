@@ -1,5 +1,6 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 
 import java.util.Arrays;
@@ -7,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ActivityProgress {
+
     private String currentIngredientReaction = "";
     private int successCount = 0;
     private int mistakesCount = 0;
@@ -45,6 +47,14 @@ public class ActivityProgress {
 
     public void setPreviousIngredient(String previousIngredient) {
         this.previousIngredient = previousIngredient;
+    }
+
+    public String getActivePowerUp() {
+        return activePowerUp;
+    }
+
+    public void setActivePowerUp(String activePowerUp) {
+        this.activePowerUp = activePowerUp;
     }
 
     public void reset() {
@@ -95,6 +105,7 @@ public class ActivityProgress {
         }
     }
 
+    @JsonIgnore
     public boolean isPowerUpEquipped() {
         return this.activePowerUp != null && !this.activePowerUp.isEmpty();
     }
@@ -107,6 +118,7 @@ public class ActivityProgress {
         return this.activePowerUp;
     }
 
+    @JsonIgnore
     public PowerUps equipIfAvailable() {
         if (existingPowerUps.isEmpty()) {
             return null;

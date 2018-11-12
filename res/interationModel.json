@@ -101,6 +101,7 @@
               "name": {
                 "value": "no",
                 "synonyms": [
+                  "oh no",
                   "no no",
                   "nope",
                   "I do not",
@@ -228,17 +229,31 @@
             },
             {
               "name": {
-                "value": "sauce",
+                "value": "low",
                 "synonyms": [
-                  "secret sauce"
+                  "low",
+                  "first",
+                  "one"
                 ]
               }
             },
             {
               "name": {
-                "value": "hat",
+                "value": "medium",
                 "synonyms": [
-                  "chef hat"
+                  "medium",
+                  "second",
+                  "two"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "high",
+                "synonyms": [
+                  "high",
+                  "third",
+                  "three"
                 ]
               }
             }

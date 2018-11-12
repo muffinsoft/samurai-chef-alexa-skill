@@ -21,53 +21,8 @@ public class FoodTasterSessionStateManager extends BaseActivePhaseSamuraiChefSes
 
     private static final Logger logger = LoggerFactory.getLogger(FoodTasterSessionStateManager.class);
 
-    protected Long questionTime;
-
     public FoodTasterSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, PowerUpsManager powerUpsManager, MissionManager missionManager) {
         super(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
         this.currentActivity = FOOD_TASTER;
-    }
-
-    @Override
-    protected DialogItem handleSuccess() {
-
-        long answerTime = System.currentTimeMillis();
-
-        long answerLimit = this.statePhase == PHASE_1 ? this.stripe.getTimeLimitPhaseOneInMillis() : this.stripe.getTimeLimitPhaseTwoInMillis();
-
-        if (questionTime == null || answerTime - questionTime < answerLimit) {
-
-            this.activityProgress.iterateSuccessCount();
-
-//            if (this.activityProgress.getSuccessCount() == this.stripe.getPhaseTwoSuccessCount()) {
-//                this.statePhase = PHASE_2;
-//                Speech speech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
-//                return getSuccessDialog(speech.getMoveToPhaseTwo());
-//            }
-//            else {
-            return getSuccessDialog();
-//            }
-        }
-        else {
-            return getFailureDialog(phraseManager.getValueByKey(TOO_LONG_PHRASE));
-        }
-    }
-
-    @Override
-    protected void resetActivityProgress() {
-        super.resetActivityProgress();
-        this.questionTime = null;
-    }
-
-    @Override
-    protected void populateActivityVariables() {
-        super.populateActivityVariables();
-        questionTime = (Long) sessionAttributes.get(QUESTION_TIME);
-    }
-
-    @Override
-    protected void updateSessionAttributes() {
-        super.updateSessionAttributes();
-        sessionAttributes.put(QUESTION_TIME, System.currentTimeMillis());
     }
 }

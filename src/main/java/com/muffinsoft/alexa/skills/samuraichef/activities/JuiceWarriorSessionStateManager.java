@@ -36,9 +36,7 @@ public class JuiceWarriorSessionStateManager extends BaseActivePhaseSamuraiChefS
 
         if (questionTime == null || answerTime - questionTime < answerLimit) {
 
-            this.activityProgress.iterateSuccessCount();
-
-            return getSuccessDialog();
+            return super.handleSuccess();
         }
         else {
             return getFailureDialog(phraseManager.getValueByKey(TOO_LONG_PHRASE));

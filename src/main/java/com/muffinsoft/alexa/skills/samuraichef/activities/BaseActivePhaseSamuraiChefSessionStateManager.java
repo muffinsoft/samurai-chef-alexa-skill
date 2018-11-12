@@ -56,6 +56,8 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
 
     protected DialogItem handleMistakeWithSecondChance() {
 
+        this.activityProgress.resetSuccessInRow();
+
         if (this.activityProgress.isPowerUpEquipped()) {
 
             this.activityProgress.removePowerUp();
@@ -77,6 +79,8 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
     }
 
     protected DialogItem handleMistakeWithCorrectAnswer() {
+
+        this.activityProgress.resetSuccessInRow();
 
         if (this.activityProgress.isPowerUpEquipped()) {
 
