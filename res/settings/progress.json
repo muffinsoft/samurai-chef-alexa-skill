@@ -1,6 +1,81 @@
 {
-  "stripesToStarCount": 1,
-  "winInARowCount": 2,
-  "stripesToLevelCount": 1,
-  "maxStarCount": 3
+  "missions": [
+    {
+      "title": "LOW",
+      "missionIntro": "This is first mission intro",
+      "missionOutro": "This is first mission outro",
+      "activitiesOrder": {
+        "SUSHI_SLICE": 0,
+        "JUICE_WARRIOR": 1,
+        "WORD_BOARD_KARATE": 2,
+        "FOOD_TASTER": 3
+      },
+      "stripeIntrosByNumber": {
+        "0": "1",
+        "1": "2",
+        "2": "3",
+        "3": "4",
+        "4": "5"
+      },
+      "stripeOutrosByNumber": {
+        "0": "1",
+        "1": "2",
+        "2": "3",
+        "3": "4",
+        "4": "5"
+      }
+    },
+    {
+      "title": "MEDIUM",
+      "missionIntro": "This is second mission intro",
+      "missionOutro": "This is second mission outro",
+      "activitiesOrder": {
+        "SUSHI_SLICE": 0,
+        "JUICE_WARRIOR": 1,
+        "WORD_BOARD_KARATE": 2,
+        "FOOD_TASTER": 3
+      },
+      "stripeIntrosByNumber": {
+        "0": "1",
+        "1": "2",
+        "2": "3",
+        "3": "4",
+        "4": "5"
+      },
+      "stripeOutrosByNumber": {
+        "0": "1",
+        "1": "2",
+        "2": "3",
+        "3": "4",
+        "4": "5"
+      }
+    },
+    {
+      "title": "HIGH",
+      "missionIntro": "This is third mission intro",
+      "missionOutro": "This is third mission outro",
+      "activitiesOrder": {
+        "SUSHI_SLICE": 0,
+        "JUICE_WARRIOR": 1,
+        "WORD_BOARD_KARATE": 2,
+        "FOOD_TASTER": 3
+      },
+      "stripeIntrosByNumber": {
+        "0": "1",
+        "1": "2",
+        "2": "3",
+        "3": "4",
+        "4": "5"
+      },
+      "stripeOutrosByNumber": {
+        "0": "1",
+        "1": "2",
+        "2": "3",
+        "3": "4",
+        "4": "5"
+      }
+    }
+  ],
+  "stripesAtMissionCount": 5,
+  "maxStarCount": 15
 }

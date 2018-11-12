@@ -8,21 +8,9 @@ public enum Equipments {
 
     EMPTY_SLOT(Collections.emptyList()),
 
-    SUSHI_BLADE(Arrays.asList(Activities.SUSHI_SLICE, Activities.JUICE_WARRIOR)),
+    SECOND_CHANCE_SLOT(Arrays.asList(Activities.values())),
 
-    CUISINE_KATANA(Arrays.asList(Activities.SUSHI_SLICE, Activities.JUICE_WARRIOR)),
-
-    SUPER_SPATULE(Arrays.asList(Activities.values())),
-
-    SECRET_SAUCE(Arrays.asList(Activities.values())),
-
-    CHEF_HAT(Arrays.asList(Activities.values())),
-
-    KARATE_GI(Arrays.asList(Activities.values())),
-
-    HACHIMAKI(Arrays.asList(Activities.values())),
-
-    SUMO_MAWASHI(Collections.singletonList(Activities.FOOD_TASTER));
+    CORRECT_ANSWER_SLOT(Arrays.asList(Activities.values()));
 
     private final List<Activities> availableActivities;
 

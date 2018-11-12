@@ -24,18 +24,6 @@
     "again",
     "try again"
   ],
-  "SUSHI_BLADE": [
-    "sushi blade",
-    "blade"
-  ],
-  "CUISINE_KATANA": [
-    "cuisine katana",
-    "katana"
-  ],
-  "SUPER_SPATULE": [
-    "super spatula",
-    "spatula"
-  ],
   "SECRET_SAUCE": [
     "secret sauce",
     "sauce"
@@ -44,15 +32,19 @@
     "chef hat",
     "hat"
   ],
-  "KARATE_GI": [
-    "karate gi",
-    "gi"
+  "LOW": [
+    "low",
+    "first"
   ],
-  "HACHIMAKI": [
-    "hachimaki"
+  "MEDIUM": [
+    "mid",
+    "middle",
+    "medium",
+    "second"
   ],
-  "SUMO_MAWASHI": [
-    "sumo mawashi",
-    "mawashi"
+  "HIGH": [
+    "high",
+    "third",
+    "last"
   ]
 }

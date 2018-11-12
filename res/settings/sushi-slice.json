@@ -1,8 +1,7 @@
 {
   "name": "SUSHI_SLICE",
-  "levels": [
-    {
-      "number": 0,
+  "activitySettingsByStripeNumber": {
+    "0": {
       "wonSuccessCount": 4,
       "phaseTwoSuccessCount": 2,
       "maxMistakeCount": 3,
@@ -11,8 +10,7 @@
         "carrot": "chop"
       }
     },
-    {
-      "number": 1,
+    "1": {
       "wonSuccessCount": 5,
       "phaseTwoSuccessCount": 2,
       "maxMistakeCount": 2,
@@ -23,8 +21,7 @@
         "seaweed": "roll"
       }
     },
-    {
-      "number": 2,
+    "2": {
       "wonSuccessCount": 6,
       "phaseTwoSuccessCount": 2,
       "maxMistakeCount": 1,
@@ -36,8 +33,8 @@
         "shoe": "no"
       }
     }
-  ],
-  "speeches": {
+  },
+  "activitySpeechesByStripeNumber": {
     "0": {
       "intro": [
         "Hi, Sensei Sushi! This is my friend. We can’t wait to start.",
@@ -49,8 +46,6 @@
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "demo": [
         "Fish! Slice!",
         "Seaweed! Roll!",
@@ -71,8 +66,6 @@
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "demo": [
         "Fish! Slice!",
         "Seaweed! Roll!",
@@ -93,8 +86,6 @@
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": null,
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "demo": [],
       "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
     }

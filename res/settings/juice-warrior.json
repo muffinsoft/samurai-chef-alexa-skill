@@ -1,8 +1,7 @@
 {
   "name": "JUICE_WARRIOR",
-  "levels": [
-    {
-      "number": 0,
+  "activitySettingsByStripeNumber": {
+    "0": {
       "wonSuccessCount": 4,
       "timeLimitPhaseOneInMillis": 12000,
       "maxMistakeCount": 3,
@@ -11,8 +10,7 @@
         "milk": "splash a dash"
       }
     },
-    {
-      "number": 1,
+    "1": {
       "wonSuccessCount": 5,
       "timeLimitPhaseOneInMillis": 10000,
       "maxMistakeCount": 2,
@@ -22,8 +20,7 @@
         "ice": "punch and crunch"
       }
     },
-    {
-      "number": 2,
+    "2": {
       "wonSuccessCount": 6,
       "timeLimitPhaseOneInMillis": 10000,
       "maxMistakeCount": 1,
@@ -34,8 +31,8 @@
         "chopsticks": "stop don't drop"
       }
     }
-  ],
-  "speeches": {
+  },
+  "activitySpeechesByStripeNumber": {
     "0": {
       "intro": [
         "A bus full of hefty sumo wrestlers have just arrived! The good news is they've already eaten... phew! They're all here for nutritious juices. Since Sensei will need more than his blender to make all their orders, let's help! When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it."
@@ -43,8 +40,6 @@
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "demo": [
         "Carrot! Slice and dice!",
         "Milk! Splash a dash!",
@@ -60,8 +55,6 @@
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "demo": [
         "Carrot! Slice and dice!",
         "Milk! Splash a dash!",
@@ -77,8 +70,6 @@
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": null,
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "demo": [],
       "moveToPhaseTwo": null
     }

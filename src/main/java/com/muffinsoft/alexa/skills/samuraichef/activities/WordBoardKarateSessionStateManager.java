@@ -3,11 +3,10 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.ProgressManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,13 +20,13 @@ public class WordBoardKarateSessionStateManager extends BaseActivePhaseSamuraiCh
 
     private static final Logger logger = LoggerFactory.getLogger(WordBoardKarateSessionStateManager.class);
 
-    public WordBoardKarateSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
-        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, progressManager);
+    public WordBoardKarateSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, PowerUpsManager powerUpsManager, MissionManager missionManager) {
+        super(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
         this.currentActivity = WORD_BOARD_KARATE;
     }
 
     @Override
-    protected DialogItem getActivePhaseDialog() {
+    protected DialogItem handleActivePhaseState() {
 
         DialogItem dialog;
 
@@ -39,7 +38,7 @@ public class WordBoardKarateSessionStateManager extends BaseActivePhaseSamuraiCh
         }
         else {
             this.activityProgress.iterateMistakeCount();
-            if (this.activityProgress.getMistakesCount() < level.getMaxMistakeCount()) {
+            if (this.activityProgress.getMistakesCount() < stripe.getMaxMistakeCount()) {
                 dialog = getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
             }
             else {
@@ -47,7 +46,7 @@ public class WordBoardKarateSessionStateManager extends BaseActivePhaseSamuraiCh
             }
         }
 
-        if (this.activityProgress.getSuccessCount() == level.getWonSuccessCount()) {
+        if (this.activityProgress.getSuccessCount() == stripe.getWonSuccessCount()) {
             dialog = getWinDialog();
         }
 

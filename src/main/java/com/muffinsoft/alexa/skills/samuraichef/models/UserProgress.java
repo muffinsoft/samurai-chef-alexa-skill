@@ -8,12 +8,11 @@ import java.util.Set;
 
 public class UserProgress {
 
-    private Set<String> finishedRounds = new HashSet<>();
+    private Set<String> finishedActivities = new HashSet<>();
     private Set<String> earnedPowerUps = new HashSet<>();
+    private Set<String> finishedMissions = new HashSet<>();
     private int stripeCount = 0;
     private int starCount = 0;
-    private int winInARowCount = 0;
-    private int currentLevel = 0;
     private String equippedPowerUp = "";
     private String lastActivity;
     private boolean justCreated = false;
@@ -25,12 +24,20 @@ public class UserProgress {
         this.justCreated = isNew;
     }
 
-    public Set<String> getFinishedRounds() {
-        return finishedRounds;
+    public Set<String> getFinishedMissions() {
+        return finishedMissions;
     }
 
-    public void setFinishedRounds(String[] finishedRounds) {
-        this.finishedRounds = new HashSet<>(Arrays.asList(finishedRounds));
+    public void setFinishedMissions(String[] finishedMissions) {
+        this.finishedMissions = new HashSet<>(Arrays.asList(finishedMissions));
+    }
+
+    public Set<String> getFinishedActivities() {
+        return finishedActivities;
+    }
+
+    public void setFinishedActivities(String[] finishedActivities) {
+        this.finishedActivities = new HashSet<>(Arrays.asList(finishedActivities));
     }
 
     public Set<String> getEarnedPowerUps() {
@@ -57,27 +64,6 @@ public class UserProgress {
         this.starCount = starCount;
     }
 
-    public int getWinInARowCount() {
-        return winInARowCount;
-    }
-
-    public void setWinInARowCount(int winInARowCount) {
-        this.winInARowCount = winInARowCount;
-    }
-
-    public int getCurrentLevel() {
-        return currentLevel;
-    }
-
-    public void setCurrentLevel(int currentLevel) {
-        this.currentLevel = currentLevel;
-    }
-
-    public void iterateWinInARow() {
-        this.justCreated = false;
-        this.winInARowCount += 1;
-    }
-
     public void iterateStripeCount() {
         this.justCreated = false;
         this.stripeCount += 1;
@@ -85,12 +71,7 @@ public class UserProgress {
 
     public void resetFinishRounds() {
         this.justCreated = false;
-        this.finishedRounds = new HashSet<>();
-    }
-
-    public void iterateLevel() {
-        this.justCreated = false;
-        this.currentLevel += 1;
+        this.finishedActivities = new HashSet<>();
     }
 
     public void iterateStarCount() {
@@ -121,9 +102,14 @@ public class UserProgress {
         this.earnedPowerUps.add(name);
     }
 
-    public void addFinishedRound(String name) {
+    public void addFinishedMission(String name) {
         this.justCreated = false;
-        this.finishedRounds.add(name);
+        this.finishedActivities.add(name);
+    }
+
+    public void addFinishedActivities(String name) {
+        this.justCreated = false;
+        this.finishedActivities.add(name);
     }
 
     public void equipPowerUp(String equipment) {

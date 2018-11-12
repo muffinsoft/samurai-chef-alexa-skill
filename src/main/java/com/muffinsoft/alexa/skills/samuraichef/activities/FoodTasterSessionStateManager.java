@@ -3,11 +3,10 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.content.ActivitiesManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.ProgressManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +25,8 @@ public class FoodTasterSessionStateManager extends BaseActivePhaseSamuraiChefSes
 
     protected Long questionTime;
 
-    public FoodTasterSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivitiesManager activitiesManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
-        super(slots, attributesManager, phraseManager, activitiesManager, levelManager, powerUpsManager, progressManager);
+    public FoodTasterSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, PowerUpsManager powerUpsManager, MissionManager missionManager) {
+        super(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
         this.currentActivity = FOOD_TASTER;
     }
 
@@ -36,15 +35,15 @@ public class FoodTasterSessionStateManager extends BaseActivePhaseSamuraiChefSes
 
         long answerTime = System.currentTimeMillis();
 
-        long answerLimit = this.statePhase == PHASE_1 ? this.level.getTimeLimitPhaseOneInMillis() : this.level.getTimeLimitPhaseTwoInMillis();
+        long answerLimit = this.statePhase == PHASE_1 ? this.stripe.getTimeLimitPhaseOneInMillis() : this.stripe.getTimeLimitPhaseTwoInMillis();
 
         if (questionTime == null || answerTime - questionTime < answerLimit) {
 
             this.activityProgress.iterateSuccessCount();
 
-            if (this.activityProgress.getSuccessCount() == this.level.getPhaseTwoSuccessCount()) {
+            if (this.activityProgress.getSuccessCount() == this.stripe.getPhaseTwoSuccessCount()) {
                 this.statePhase = PHASE_2;
-                Speech speech = levelManager.getSpeechForActivityByNumber(this.currentActivity, this.userProgress.getCurrentLevel());
+                Speech speech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
                 return getSuccessDialog(speech.getMoveToPhaseTwo());
             }
             else {
