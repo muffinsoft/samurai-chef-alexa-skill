@@ -1,13 +1,12 @@
 package com.muffinsoft.alexa.skills.samuraichef.content;
 
 import com.muffinsoft.alexa.sdk.content.BaseContentManager;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
+import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
+
+import static com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps.CORRECT_ANSWER_SLOT;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps.SECOND_CHANCE_SLOT;
 
 public class PowerUpsManager extends BaseContentManager<String> {
 
@@ -15,30 +14,19 @@ public class PowerUpsManager extends BaseContentManager<String> {
         super(path);
     }
 
-    public Equipments getNextRandomItem(Set<String> alreadyExists) {
+    public PowerUps getNextPowerUp(Set<String> existingPowerUps) {
 
-
-        List<Equipments> allEquipment = Arrays.stream(Equipments.values())
-                .filter(equipment -> equipment != Equipments.EMPTY_SLOT)
-                .collect(Collectors.toList());
-
-        allEquipment.remove(Equipments.EMPTY_SLOT);
-
-        List<Equipments> exists = alreadyExists.stream()
-                .map(Equipments::valueOf)
-                .collect(Collectors.toList());
-
-        allEquipment.removeAll(exists);
-
-        return getRandomEquipmentFromList(allEquipment);
-    }
-
-    private Equipments getRandomEquipmentFromList(List<Equipments> equipments) {
-
-        ThreadLocalRandom random = ThreadLocalRandom.current();
-
-        int nextIngredient = random.nextInt(equipments.size());
-
-        return equipments.get(nextIngredient);
+        if (existingPowerUps.isEmpty()) {
+            return SECOND_CHANCE_SLOT;
+        }
+        else if (existingPowerUps.size() == 2) {
+            return null;
+        }
+        else if (existingPowerUps.contains(SECOND_CHANCE_SLOT.name())) {
+            return CORRECT_ANSWER_SLOT;
+        }
+        else {
+            return SECOND_CHANCE_SLOT;
+        }
     }
 }

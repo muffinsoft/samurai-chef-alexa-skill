@@ -76,6 +76,7 @@
       }
     }
   ],
+  "successInRowForPowerUp": 7,
   "stripesAtMissionCount": 5,
   "maxStarCount": 15
 }

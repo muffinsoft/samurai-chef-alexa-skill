@@ -61,8 +61,8 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected final PhraseManager phraseManager;
     protected final ActivityManager activityManager;
 
-    private final PowerUpsManager powerUpsManager;
-    private final MissionManager missionManager;
+    protected final PowerUpsManager powerUpsManager;
+    protected final MissionManager missionManager;
 
     protected Activities currentActivity;
     protected StatePhase statePhase;
@@ -411,7 +411,6 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     DialogItem getWinDialog() {
-        this.userProgress.removePowerUp();
         this.statePhase = WIN;
         return new DialogItem(phraseManager.getValueByKey(WON_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(WON_REPROMPT_PHRASE));
     }
@@ -424,7 +423,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         return getSuccessDialog("");
     }
 
-    DialogItem getSuccessDialog(String speechText) {
+    private DialogItem getSuccessDialog(String speechText) {
         String ingredient = nextIngredient();
         speechText = speechText + " " + ingredient;
         return new DialogItem(speechText, false, actionSlotName);
@@ -437,9 +436,6 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     DialogItem getLoseRoundDialog() {
-
-        this.userProgress.removePowerUp();
-
         this.statePhase = LOSE;
         return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE));
     }

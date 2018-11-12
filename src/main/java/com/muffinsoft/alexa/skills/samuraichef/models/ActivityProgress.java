@@ -1,11 +1,19 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
+import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class ActivityProgress {
     private String currentIngredientReaction = "";
     private int successCount = 0;
     private int mistakesCount = 0;
     private int successInRow = 0;
     private String previousIngredient = "";
+    private Set<String> existingPowerUps = new HashSet<>();
+    private String activePowerUp;
 
     public String getCurrentIngredientReaction() {
         return currentIngredientReaction;
@@ -60,5 +68,54 @@ public class ActivityProgress {
 
     public void setSuccessInRow(int successInRow) {
         this.successInRow = successInRow;
+    }
+
+    public void iterateSuccessInARow() {
+        this.successInRow += 1;
+    }
+
+    public void resetSuccessInRow() {
+        this.successInRow = 0;
+    }
+
+    public Set<String> getExistingPowerUps() {
+        return existingPowerUps;
+    }
+
+    public void setExistingPowerUps(String[] existingPowerUps) {
+        this.existingPowerUps = new HashSet<>(Arrays.asList(existingPowerUps));
+    }
+
+    public void addPowerUp(PowerUps nextPowerUp) {
+        if (activePowerUp == null) {
+            this.activePowerUp = nextPowerUp.name();
+        }
+        else {
+            this.existingPowerUps.add(nextPowerUp.name());
+        }
+    }
+
+    public boolean isPowerUpEquipped() {
+        return this.activePowerUp != null && !this.activePowerUp.isEmpty();
+    }
+
+    public void removePowerUp() {
+        this.activePowerUp = null;
+    }
+
+    public String getEquippedPowerUp() {
+        return this.activePowerUp;
+    }
+
+    public PowerUps equipIfAvailable() {
+        if (existingPowerUps.isEmpty()) {
+            return null;
+        }
+        else {
+            String title = String.valueOf(existingPowerUps.toArray()[0]);
+            this.existingPowerUps.remove(title);
+            this.activePowerUp = title;
+            return PowerUps.valueOf(title);
+        }
     }
 }

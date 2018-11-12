@@ -13,8 +13,9 @@ import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
+import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
+import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,7 @@ import java.util.Map;
 import static com.amazon.ask.request.Predicates.intentName;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
@@ -80,10 +82,12 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
                 currentActivity = Activities.valueOf(currentUserProgress.getLastActivity());
             }
 
-            Equipments currentEquipment = Equipments.EMPTY_SLOT;
+            PowerUps currentEquipment = PowerUps.EMPTY_SLOT;
 
-            if (currentUserProgress.isPowerUpEquipped()) {
-                currentEquipment = Equipments.valueOf(currentUserProgress.getEquippedPowerUp());
+            ActivityProgress currentActivityProgress = getCurrentActivityProgress(input);
+
+            if (currentActivityProgress.isPowerUpEquipped()) {
+                currentEquipment = PowerUps.valueOf(currentActivityProgress.getEquippedPowerUp());
             }
 
             SessionStateManager stateManager = stateManagerFabric.createFromRequest(currentActivity, currentEquipment, slots, attributesManager);
@@ -95,6 +99,13 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
         else {
             return new SelectLevelStateManager(slots, attributesManager);
         }
+    }
+
+    private ActivityProgress getCurrentActivityProgress(HandlerInput input) {
+
+        LinkedHashMap rawActivityProgress = (LinkedHashMap) input.getAttributesManager().getSessionAttributes().get(ACTIVITY_PROGRESS);
+
+        return rawActivityProgress != null ? new ObjectMapper().convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
     }
 
     private UserProgress getCurrentUserProgress(HandlerInput input) {

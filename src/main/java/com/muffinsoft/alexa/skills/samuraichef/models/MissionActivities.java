@@ -52,10 +52,6 @@ public class MissionActivities {
         return stripeIntrosByNumber.get(String.valueOf(number));
     }
 
-    public void setMissionOutro(String missionOutro) {
-        this.missionOutro = missionOutro;
-    }
-
     public Map<String, String> getStripeOutrosByNumber() {
         return stripeOutrosByNumber;
     }
@@ -66,6 +62,10 @@ public class MissionActivities {
 
     public String getMissionOutro() {
         return missionOutro;
+    }
+
+    public void setMissionOutro(String missionOutro) {
+        this.missionOutro = missionOutro;
     }
 
     public String getStripeOutroByNumber(int number) {

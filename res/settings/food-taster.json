@@ -2,10 +2,7 @@
   "name": "FOOD_TASTER",
   "activitySettingsByStripeNumber": {
     "0": {
-      "wonSuccessCount": 4,
-      "phaseTwoSuccessCount": 3,
-      "timeLimitPhaseOneInMillis": 15000,
-      "timeLimitPhaseTwoInMillis": 7500,
+      "wonSuccessCount": 5,
       "maxMistakeCount": 2,
       "ingredients": {
         "sushi": "gulp",
@@ -13,10 +10,7 @@
       }
     },
     "1": {
-      "wonSuccessCount": 5,
-      "phaseTwoSuccessCount": 2,
-      "timeLimitPhaseOneInMillis": 12000,
-      "timeLimitPhaseTwoInMillis": 6000,
+      "wonSuccessCount": 7,
       "maxMistakeCount": 2,
       "ingredients": {
         "soup": "slurp",
@@ -26,11 +20,8 @@
       }
     },
     "2": {
-      "wonSuccessCount": 6,
-      "phaseTwoSuccessCount": 2,
-      "timeLimitPhaseOneInMillis": 12000,
-      "timeLimitPhaseTwoInMillis": 6000,
-      "maxMistakeCount": 1,
+      "wonSuccessCount": 8,
+      "maxMistakeCount": 2,
       "ingredients": {
         "soup": "slurp",
         "sushi": "gulp",

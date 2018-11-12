@@ -4,13 +4,15 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
+import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 
 import java.util.Map;
 import java.util.Objects;
 
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.USED_EQUIPMENT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
 
@@ -42,6 +44,7 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
     protected DialogItem handleMistake() {
 
         this.activityProgress.iterateMistakeCount();
+        this.activityProgress.resetSuccessInRow();
 
         if (this.activityProgress.getMistakesCount() < stripe.getMaxMistakeCount()) {
             return getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
@@ -53,10 +56,12 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
 
     protected DialogItem handleMistakeWithSecondChance() {
 
-        if (this.userProgress.isPowerUpEquipped()) {
+        if (this.activityProgress.isPowerUpEquipped()) {
 
-            this.userProgress.removePowerUp();
+            this.activityProgress.removePowerUp();
             this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE);
+
+            equipIfAvailable();
 
             return getRepromptSuccessDialog();
         }
@@ -73,10 +78,13 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
 
     protected DialogItem handleMistakeWithCorrectAnswer() {
 
-        if (this.userProgress.isPowerUpEquipped()) {
+        if (this.activityProgress.isPowerUpEquipped()) {
 
-            this.userProgress.removePowerUp();
+            this.activityProgress.removePowerUp();
+
             this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE);
+
+            equipIfAvailable();
 
             return getSuccessDialog();
         }
@@ -93,9 +101,26 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
         }
     }
 
+    private void equipIfAvailable() {
+        PowerUps nextPowerUp = this.activityProgress.equipIfAvailable();
+        if (nextPowerUp != null) {
+            dialogPrefix += phraseManager.getValueByKey(JUST_WEAR_PHRASE) + powerUpsManager.getValueByKey(nextPowerUp.name());
+        }
+    }
+
     protected DialogItem handleSuccess() {
 
         this.activityProgress.iterateSuccessCount();
+        this.activityProgress.iterateSuccessInARow();
+
+        if (this.activityProgress.getSuccessInRow() == missionManager.getSuccessInRowForPowerUp()) {
+
+            PowerUps nextPowerUp = powerUpsManager.getNextPowerUp(this.activityProgress.getExistingPowerUps());
+            if (nextPowerUp != null) {
+                this.activityProgress.addPowerUp(nextPowerUp);
+                dialogPrefix = phraseManager.getValueByKey(JUST_WEAR_PHRASE) + powerUpsManager.getValueByKey(nextPowerUp.name());
+            }
+        }
 
         return getSuccessDialog();
     }

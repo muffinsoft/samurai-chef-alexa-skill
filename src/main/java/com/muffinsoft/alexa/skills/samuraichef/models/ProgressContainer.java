@@ -11,6 +11,8 @@ public class ProgressContainer {
 
     private int maxStarCount;
 
+    private int successInRowForPowerUp;
+
     private List<MissionActivities> missions;
 
     public int getStripesAtMissionCount() {
@@ -44,5 +46,9 @@ public class ProgressContainer {
             }
         }
         throw new IllegalArgumentException("Can't find Mission by title: " + mission);
+    }
+
+    public int getSuccessInRowForPowerUp() {
+        return successInRowForPowerUp;
     }
 }

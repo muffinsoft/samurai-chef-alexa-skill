@@ -4,17 +4,15 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
-import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
 
 public class SushiSliceSessionStateManager extends BaseActivePhaseSamuraiChefSessionStateManager {
 
@@ -30,13 +28,13 @@ public class SushiSliceSessionStateManager extends BaseActivePhaseSamuraiChefSes
 
         this.activityProgress.iterateSuccessCount();
 
-        if (this.activityProgress.getSuccessCount() == stripe.getPhaseTwoSuccessCount()) {
-            this.statePhase = PHASE_2;
-            Speech speech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
-            return getSuccessDialog(speech.getMoveToPhaseTwo());
-        }
-        else {
-            return getSuccessDialog();
-        }
+//        if (this.activityProgress.getSuccessCount() == stripe.getPhaseTwoSuccessCount()) {
+//            this.statePhase = PHASE_2;
+//            Speech speech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
+//            return getSuccessDialog(speech.getMoveToPhaseTwo());
+//        }
+//        else {
+        return getSuccessDialog();
+//        }
     }
 }

@@ -4,10 +4,9 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
-import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +16,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.FOOD_TASTER;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_2;
 
 public class FoodTasterSessionStateManager extends BaseActivePhaseSamuraiChefSessionStateManager {
 
@@ -41,14 +39,14 @@ public class FoodTasterSessionStateManager extends BaseActivePhaseSamuraiChefSes
 
             this.activityProgress.iterateSuccessCount();
 
-            if (this.activityProgress.getSuccessCount() == this.stripe.getPhaseTwoSuccessCount()) {
-                this.statePhase = PHASE_2;
-                Speech speech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
-                return getSuccessDialog(speech.getMoveToPhaseTwo());
-            }
-            else {
-                return getSuccessDialog();
-            }
+//            if (this.activityProgress.getSuccessCount() == this.stripe.getPhaseTwoSuccessCount()) {
+//                this.statePhase = PHASE_2;
+//                Speech speech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
+//                return getSuccessDialog(speech.getMoveToPhaseTwo());
+//            }
+//            else {
+            return getSuccessDialog();
+//            }
         }
         else {
             return getFailureDialog(phraseManager.getValueByKey(TOO_LONG_PHRASE));

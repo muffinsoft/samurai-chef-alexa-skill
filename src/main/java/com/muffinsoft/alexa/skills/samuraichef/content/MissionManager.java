@@ -90,6 +90,10 @@ public class MissionManager {
         return missionContainer.getStripeOutroByNumber(number);
     }
 
+    public int getSuccessInRowForPowerUp() {
+        return container.getSuccessInRowForPowerUp();
+    }
+
     public String getStripeIntroByMission(UserMission mission, int number) {
         MissionActivities missionContainer = container.getMissionByTitle(mission);
         return missionContainer.getStripeIntroByNumber(number);

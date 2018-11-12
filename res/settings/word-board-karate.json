@@ -2,16 +2,16 @@
   "name": "WORD_BOARD_KARATE",
   "activitySettingsByStripeNumber": {
     "0": {
-      "wonSuccessCount": 4,
-      "maxMistakeCount": 2,
+      "wonSuccessCount": 5,
+      "maxMistakeCount": 1,
       "ingredients": {
         "corn": "kick",
         "pencil": "punch"
       }
     },
     "1": {
-      "wonSuccessCount": 5,
-      "maxMistakeCount": 2,
+      "wonSuccessCount": 7,
+      "maxMistakeCount": 1,
       "ingredients": {
         "corn": "kick",
         "hat": "hayaaa",
@@ -19,7 +19,7 @@
       }
     },
     "2": {
-      "wonSuccessCount": 6,
+      "wonSuccessCount": 8,
       "maxMistakeCount": 1,
       "ingredients": {
         "corn": "kick",

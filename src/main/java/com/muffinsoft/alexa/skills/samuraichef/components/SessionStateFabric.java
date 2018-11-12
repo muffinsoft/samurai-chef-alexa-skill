@@ -16,11 +16,11 @@ import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateCorrect
 import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateSecondChanceSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
+import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 
 import java.util.Map;
 
@@ -38,15 +38,11 @@ public class SessionStateFabric {
         this.missionManager = missionManager;
     }
 
-    public SessionStateManager createFromRequest(Activities currentActivity, Equipments currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
+    public SessionStateManager createFromRequest(Activities currentActivity, PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         SessionStateManager stateManager;
 
         switch (currentActivity) {
-
-//            case NAME_HANDLER:
-//                stateManager = new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, activityManager, powerUpsManager);
-//                break;
             case SUSHI_SLICE:
                 stateManager = createSushiSliceSessionStateManager(currentEquipment, slots, attributesManager);
                 break;
@@ -66,7 +62,7 @@ public class SessionStateFabric {
         return stateManager;
     }
 
-    private FoodTasterSessionStateManager createFoodTasterSessionStateManager(Equipments currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
+    private FoodTasterSessionStateManager createFoodTasterSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
@@ -80,7 +76,7 @@ public class SessionStateFabric {
         }
     }
 
-    private WordBoardKarateSessionStateManager createWordBoardKarateSessionStateManager(Equipments currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
+    private WordBoardKarateSessionStateManager createWordBoardKarateSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
@@ -94,7 +90,7 @@ public class SessionStateFabric {
         }
     }
 
-    private SushiSliceSessionStateManager createSushiSliceSessionStateManager(Equipments currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
+    private SushiSliceSessionStateManager createSushiSliceSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
@@ -108,7 +104,7 @@ public class SessionStateFabric {
         }
     }
 
-    private JuiceWarriorSessionStateManager createJuiceWarriorSessionStateManager(Equipments currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
+    private JuiceWarriorSessionStateManager createJuiceWarriorSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:

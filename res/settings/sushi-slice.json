@@ -2,18 +2,18 @@
   "name": "SUSHI_SLICE",
   "activitySettingsByStripeNumber": {
     "0": {
-      "wonSuccessCount": 4,
-      "phaseTwoSuccessCount": 2,
-      "maxMistakeCount": 3,
+      "wonSuccessCount": 5,
+      "maxMistakeCount": 1,
+      "timeLimitPhaseOneInMillis": 12000,
       "ingredients": {
         "fish": "slice",
         "carrot": "chop"
       }
     },
     "1": {
-      "wonSuccessCount": 5,
-      "phaseTwoSuccessCount": 2,
-      "maxMistakeCount": 2,
+      "wonSuccessCount": 7,
+      "maxMistakeCount": 1,
+      "timeLimitPhaseOneInMillis": 12000,
       "ingredients": {
         "fish": "slice",
         "carrot": "chop",
@@ -22,9 +22,9 @@
       }
     },
     "2": {
-      "wonSuccessCount": 6,
-      "phaseTwoSuccessCount": 2,
+      "wonSuccessCount": 8,
       "maxMistakeCount": 1,
+      "timeLimitPhaseOneInMillis": 12000,
       "ingredients": {
         "fish": "slice",
         "carrot": "chop",

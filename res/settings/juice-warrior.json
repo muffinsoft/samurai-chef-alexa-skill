@@ -2,16 +2,16 @@
   "name": "JUICE_WARRIOR",
   "activitySettingsByStripeNumber": {
     "0": {
-      "wonSuccessCount": 4,
+      "wonSuccessCount": 5,
       "timeLimitPhaseOneInMillis": 12000,
-      "maxMistakeCount": 3,
+      "maxMistakeCount": 2,
       "ingredients": {
         "carrot": "slice and dice",
         "milk": "splash a dash"
       }
     },
     "1": {
-      "wonSuccessCount": 5,
+      "wonSuccessCount": 7,
       "timeLimitPhaseOneInMillis": 10000,
       "maxMistakeCount": 2,
       "ingredients": {
@@ -21,9 +21,9 @@
       }
     },
     "2": {
-      "wonSuccessCount": 6,
+      "wonSuccessCount": 8,
       "timeLimitPhaseOneInMillis": 10000,
-      "maxMistakeCount": 1,
+      "maxMistakeCount": 2,
       "ingredients": {
         "carrot": "slice and dice",
         "milk": "splash a dash",

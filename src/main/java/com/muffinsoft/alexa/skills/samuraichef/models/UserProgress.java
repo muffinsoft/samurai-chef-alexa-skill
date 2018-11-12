@@ -1,7 +1,5 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,11 +7,9 @@ import java.util.Set;
 public class UserProgress {
 
     private Set<String> finishedActivities = new HashSet<>();
-    private Set<String> earnedPowerUps = new HashSet<>();
     private Set<String> finishedMissions = new HashSet<>();
     private int stripeCount = 0;
     private int starCount = 0;
-    private String equippedPowerUp = "";
     private String lastActivity;
     private boolean justCreated = false;
 
@@ -38,14 +34,6 @@ public class UserProgress {
 
     public void setFinishedActivities(String[] finishedActivities) {
         this.finishedActivities = new HashSet<>(Arrays.asList(finishedActivities));
-    }
-
-    public Set<String> getEarnedPowerUps() {
-        return earnedPowerUps;
-    }
-
-    public void setEarnedPowerUps(String[] earnedPowerUps) {
-        this.earnedPowerUps = new HashSet<>(Arrays.asList(earnedPowerUps));
     }
 
     public int getStripeCount() {
@@ -79,29 +67,6 @@ public class UserProgress {
         this.starCount += 1;
     }
 
-    public String getEquippedPowerUp() {
-        return equippedPowerUp;
-    }
-
-    public void setEquippedPowerUp(String equipment) {
-        this.equippedPowerUp = equipment;
-    }
-
-    @JsonIgnore
-    public boolean isPowerUpEquipped() {
-        return equippedPowerUp != null && !equippedPowerUp.isEmpty();
-    }
-
-    public void removePowerUp() {
-        this.justCreated = false;
-        this.equippedPowerUp = null;
-    }
-
-    public void addEquipment(String name) {
-        this.justCreated = false;
-        this.earnedPowerUps.add(name);
-    }
-
     public void addFinishedMission(String name) {
         this.justCreated = false;
         this.finishedActivities.add(name);
@@ -110,12 +75,6 @@ public class UserProgress {
     public void addFinishedActivities(String name) {
         this.justCreated = false;
         this.finishedActivities.add(name);
-    }
-
-    public void equipPowerUp(String equipment) {
-        this.justCreated = false;
-        this.earnedPowerUps.remove(equipment);
-        this.equippedPowerUp = equipment;
     }
 
     public String getLastActivity() {
