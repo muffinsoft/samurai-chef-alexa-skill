@@ -7,4 +7,4 @@ Skill game for Amazon Alexa like fruit ninja
 - https://www.lucidchart.com/documents/edit/09202be7-1717-42c4-8778-123703355299/0
 
 ## Build
-mvn clean assembly:assembly -DdescriptorId=jar-with-dependencies package
+mvn clean assembly:assembly -DdescriptorId=jar-with-dependencies -DskipTests package
