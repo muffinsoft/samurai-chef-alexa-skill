@@ -12,8 +12,6 @@ public class PhraseConstants {
 
     public static final String WELCOME_BACK_PHRASE = "welcomeBackPhrase";
 
-    public static final String DEMO_REPROMPT_PHRASE = "DemoRePromptPhrase";
-
     public static final String WON_PHRASE = "wonPhrase";
 
     public static final String WON_REPROMPT_PHRASE = "wonRePromptPhrase";

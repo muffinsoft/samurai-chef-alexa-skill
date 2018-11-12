@@ -10,6 +10,7 @@ import com.muffinsoft.alexa.sdk.activities.SessionStateManager;
 import com.muffinsoft.alexa.sdk.handlers.GameActionIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
+import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
@@ -41,11 +42,13 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
 
     private final CardManager cardManager;
     private final MissionManager missionManager;
+    private final AliasManager aliasManager;
     private final SessionStateFabric stateManagerFabric;
 
-    public SamuraiActionIntentHandler(CardManager cardManager, MissionManager missionManager, SessionStateFabric stateManagerFabric) {
+    public SamuraiActionIntentHandler(CardManager cardManager, MissionManager missionManager, AliasManager aliasManager, SessionStateFabric stateManagerFabric) {
         this.cardManager = cardManager;
         this.missionManager = missionManager;
+        this.aliasManager = aliasManager;
         this.stateManagerFabric = stateManagerFabric;
     }
 
@@ -97,7 +100,7 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
             return stateManager;
         }
         else {
-            return new SelectLevelStateManager(slots, attributesManager);
+            return new SelectLevelStateManager(slots, attributesManager, aliasManager);
         }
     }
 
@@ -142,13 +145,13 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
             String dbSource;
 
             switch (userMission) {
-                case LOW:
+                case LOW_MISSION:
                     dbSource = USER_LOW_PROGRESS_DB;
                     break;
-                case MEDIUM:
+                case MEDIUM_MISSION:
                     dbSource = USER_MID_PROGRESS_DB;
                     break;
-                case HIGH:
+                case HIGH_MISSION:
                     dbSource = USER_HIGH_PROGRESS_DB;
                     break;
                 default:

@@ -58,7 +58,7 @@ class SamuraiActionIntentHandlerTest {
     }
 
     private SamuraiActionIntentHandler createActionIntentHandlerInstance() {
-        return new SamuraiActionIntentHandler(IoC.provideCardManager(), IoC.provideProgressManager(), IoC.provideSessionStateFabric());
+        return new SamuraiActionIntentHandler(IoC.provideCardManager(), IoC.provideProgressManager(), IoC.provideAliasManager(), IoC.provideSessionStateFabric());
     }
 
     @Test
@@ -67,7 +67,7 @@ class SamuraiActionIntentHandlerTest {
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
         Map<String, Slot> slots = new HashMap<>();
-        slots.put("action", Slot.builder().withValue(UserMission.LOW.name()).build());
+        slots.put("action", Slot.builder().withValue(UserMission.LOW_MISSION.name()).build());
 
         Map<String, Object> sessionAttributes = new HashMap<>();
 
@@ -156,7 +156,7 @@ class SamuraiActionIntentHandlerTest {
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.FOOD_TASTER);
-        sessionAttributes.put(SessionConstants.CURRENT_MISSION, UserMission.LOW);
+        sessionAttributes.put(SessionConstants.CURRENT_MISSION, UserMission.LOW_MISSION);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.LOSE);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
@@ -176,7 +176,7 @@ class SamuraiActionIntentHandlerTest {
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
-        sessionAttributes.put(SessionConstants.CURRENT_MISSION, UserMission.LOW);
+        sessionAttributes.put(SessionConstants.CURRENT_MISSION, UserMission.LOW_MISSION);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.READY_PHASE);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);

@@ -6,14 +6,14 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 
 import java.util.Map;
 
 public class SushiSliceSecondChanceSessionStateManager extends SushiSliceSessionStateManager {
 
-    public SushiSliceSecondChanceSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, PowerUpsManager powerUpsManager, MissionManager missionManager) {
-        super(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
+    public SushiSliceSecondChanceSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {
+        super(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager);
     }
 
     @Override

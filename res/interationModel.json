@@ -242,6 +242,7 @@
                 "value": "medium",
                 "synonyms": [
                   "medium",
+                  "middle",
                   "second",
                   "two"
                 ]
@@ -253,7 +254,8 @@
                 "synonyms": [
                   "high",
                   "third",
-                  "three"
+                  "three",
+                  "last"
                 ]
               }
             }

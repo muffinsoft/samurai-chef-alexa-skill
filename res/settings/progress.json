@@ -1,7 +1,7 @@
 {
   "missions": [
     {
-      "title": "LOW",
+      "title": "LOW_MISSION",
       "missionIntro": "This is first mission intro",
       "missionOutro": "This is first mission outro",
       "activitiesOrder": {
@@ -26,7 +26,7 @@
       }
     },
     {
-      "title": "MEDIUM",
+      "title": "MEDIUM_MISSION",
       "missionIntro": "This is second mission intro",
       "missionOutro": "This is second mission outro",
       "activitiesOrder": {
@@ -51,7 +51,7 @@
       }
     },
     {
-      "title": "HIGH",
+      "title": "HIGH_MISSION",
       "missionIntro": "This is third mission intro",
       "missionOutro": "This is third mission outro",
       "activitiesOrder": {

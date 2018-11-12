@@ -1,6 +1,7 @@
 {
   "NO": [
     "no",
+    "oh no",
     "no no",
     "nope",
     "I do not",
@@ -15,36 +16,26 @@
     "you know it",
     "of course"
   ],
-  "MISSION": [
-    "mission",
-    "new mission",
-    "start new mission"
-  ],
   "AGAIN": [
     "again",
     "try again"
   ],
-  "SECRET_SAUCE": [
-    "secret sauce",
-    "sauce"
-  ],
-  "CHEF_HAT": [
-    "chef hat",
-    "hat"
-  ],
   "LOW": [
     "low",
-    "first"
+    "first",
+    "one"
   ],
   "MEDIUM": [
     "mid",
     "middle",
     "medium",
-    "second"
+    "second",
+    "two"
   ],
   "HIGH": [
     "high",
     "third",
-    "last"
+    "last",
+    "three"
   ]
 }

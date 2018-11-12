@@ -92,9 +92,7 @@ public class ActivityProgress {
         if (activePowerUp == null) {
             this.activePowerUp = nextPowerUp.name();
         }
-        else {
-            this.existingPowerUps.add(nextPowerUp.name());
-        }
+        this.existingPowerUps.add(nextPowerUp.name());
     }
 
     public String getActivePowerUp() {
@@ -111,6 +109,7 @@ public class ActivityProgress {
     }
 
     public void removePowerUp() {
+        this.existingPowerUps.remove(this.activePowerUp);
         this.activePowerUp = null;
     }
 
@@ -121,7 +120,6 @@ public class ActivityProgress {
         }
         else {
             String title = String.valueOf(existingPowerUps.toArray()[0]);
-            this.existingPowerUps.remove(title);
             this.activePowerUp = title;
             return PowerUps.valueOf(title);
         }

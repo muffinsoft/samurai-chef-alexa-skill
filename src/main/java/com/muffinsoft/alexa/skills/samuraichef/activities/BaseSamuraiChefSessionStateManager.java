@@ -9,7 +9,7 @@ import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -27,7 +27,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.model.SlotName.ACTION;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.DEMO_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
@@ -61,7 +60,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected final PhraseManager phraseManager;
     protected final ActivityManager activityManager;
 
-    protected final PowerUpsManager powerUpsManager;
+    protected final AliasManager aliasManager;
     protected final MissionManager missionManager;
 
     protected Activities currentActivity;
@@ -76,11 +75,11 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     private boolean missionIsComplete = false;
     private boolean stripeIsComplete = false;
 
-    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, PowerUpsManager powerUpsManager, MissionManager missionManager) {
+    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {
         super(slots, attributesManager);
         this.phraseManager = phraseManager;
         this.activityManager = activityManager;
-        this.powerUpsManager = powerUpsManager;
+        this.aliasManager = aliasManager;
         this.missionManager = missionManager;
     }
 
@@ -110,13 +109,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         try {
             String json = mapper.writeValueAsString(this.userProgress);
             switch (currentMission) {
-                case LOW:
+                case LOW_MISSION:
                     persistentAttributes.put(USER_LOW_PROGRESS_DB, json);
                     break;
-                case MEDIUM:
+                case MEDIUM_MISSION:
                     persistentAttributes.put(USER_MID_PROGRESS_DB, json);
                     break;
-                case HIGH:
+                case HIGH_MISSION:
                     persistentAttributes.put(USER_HIGH_PROGRESS_DB, json);
                     break;
             }
@@ -261,7 +260,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
             dialog = appendReadyToStart(dialogBuilder).toString();
 
-            rePromptDialog = phraseManager.getValueByKey(this.currentActivity.getTitle() + DEMO_REPROMPT_PHRASE);
+            rePromptDialog = phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE);
         }
 
         return new DialogItem(dialog, false, actionSlotName, true, rePromptDialog);
@@ -296,7 +295,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
             while (invalidCondition) {
                 nextActivity = missionManager.getNextActivity(nextActivity, currentMission);
-                invalidCondition = this.userProgress.getFinishedActivities().contains(nextActivity.getTitle());
+                invalidCondition = this.userProgress.getFinishedActivities().contains(nextActivity.name());
             }
 
             currentActivity = nextActivity;

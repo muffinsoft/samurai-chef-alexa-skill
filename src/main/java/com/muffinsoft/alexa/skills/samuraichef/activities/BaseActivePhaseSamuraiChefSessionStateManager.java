@@ -3,10 +3,11 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.skills.samuraichef.components.PowerUpFabric;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 
 import java.util.Map;
@@ -18,8 +19,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 
 public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
-    BaseActivePhaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, PowerUpsManager powerUpsManager, MissionManager missionManager) {
-        super(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
+    BaseActivePhaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {
+        super(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager);
     }
 
     @Override
@@ -108,7 +109,7 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
     private void equipIfAvailable() {
         PowerUps nextPowerUp = this.activityProgress.equipIfAvailable();
         if (nextPowerUp != null) {
-            dialogPrefix += phraseManager.getValueByKey(JUST_EARN_PHRASE) + powerUpsManager.getValueByKey(nextPowerUp.name());
+            dialogPrefix += " " + phraseManager.getValueByKey(JUST_EARN_PHRASE) + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
         }
     }
 
@@ -119,10 +120,10 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
 
         if (this.activityProgress.getSuccessInRow() % missionManager.getSuccessInRowForPowerUp() == 0) {
 
-            PowerUps nextPowerUp = powerUpsManager.getNextPowerUp(this.activityProgress.getExistingPowerUps());
+            PowerUps nextPowerUp = PowerUpFabric.getNext(this.activityProgress.getExistingPowerUps());
             if (nextPowerUp != null) {
                 this.activityProgress.addPowerUp(nextPowerUp);
-                dialogPrefix = phraseManager.getValueByKey(JUST_EARN_PHRASE) + " " + powerUpsManager.getValueByKey(nextPowerUp.name()) + "!";
+                dialogPrefix = phraseManager.getValueByKey(JUST_EARN_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
             }
         }
 

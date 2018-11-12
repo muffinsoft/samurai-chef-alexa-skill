@@ -5,6 +5,7 @@ import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseSessionStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
+import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
@@ -19,10 +20,12 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 
 public class SelectLevelStateManager extends BaseSessionStateManager {
 
-    protected UserProgress userProgress;
+    private final AliasManager aliasManager;
+    private UserProgress userProgress;
 
-    public SelectLevelStateManager(Map<String, Slot> slots, AttributesManager attributesManager) {
+    public SelectLevelStateManager(Map<String, Slot> slots, AttributesManager attributesManager, AliasManager aliasManager) {
         super(slots, attributesManager);
+        this.aliasManager = aliasManager;
     }
 
     @Override
@@ -54,13 +57,13 @@ public class SelectLevelStateManager extends BaseSessionStateManager {
             dialog = "Please, select the level";
         }
         else if (UserReplyComparator.compare(userReply, UserReplies.LOW)) {
-            dialog = checkIfMissionAvailable(UserMission.LOW);
+            dialog = checkIfMissionAvailable(UserMission.LOW_MISSION);
         }
         else if (UserReplyComparator.compare(userReply, UserReplies.MEDIUM)) {
-            dialog = checkIfMissionAvailable(UserMission.MEDIUM);
+            dialog = checkIfMissionAvailable(UserMission.MEDIUM_MISSION);
         }
         else if (UserReplyComparator.compare(userReply, UserReplies.HIGH)) {
-            dialog = checkIfMissionAvailable(UserMission.HIGH);
+            dialog = checkIfMissionAvailable(UserMission.HIGH_MISSION);
         }
         else {
             dialog = "I don't understand your choice, Please, select one of three available";
@@ -77,7 +80,7 @@ public class SelectLevelStateManager extends BaseSessionStateManager {
 
         this.sessionAttributes.put(CURRENT_MISSION, mission);
 
-        return "Are you ready to start " + mission.name() + " mission?";
+        return "Are you ready to start " + aliasManager.getValueByKey(mission.name()) + "?";
 
     }
 }
