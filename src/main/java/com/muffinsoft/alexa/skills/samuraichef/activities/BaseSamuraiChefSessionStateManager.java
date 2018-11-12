@@ -5,16 +5,14 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.muffinsoft.alexa.sdk.activities.BaseSessionStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.components.ActivityEquipmentFilter;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
-import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.ProgressManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
-import com.muffinsoft.alexa.skills.samuraichef.enums.UserLevel;
+import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
@@ -27,34 +25,33 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
 
 import static com.muffinsoft.alexa.sdk.model.SlotName.ACTION;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.CONGRATULATION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.DEMO_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.GAME_FINISHED_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.DEBUG_MESSAGE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LEVEL;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.ACTIVITY_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.EQUIPMENT_PHASE;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_INTO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_OUTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.READY_PHASE;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.STRIPE_INTRO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.STRIPE_OUTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
 abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManager {
@@ -62,10 +59,10 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     private static final Logger logger = LoggerFactory.getLogger(BaseSessionStateManager.class);
 
     protected final PhraseManager phraseManager;
-    protected final LevelManager levelManager;
+    protected final ActivityManager activityManager;
 
     private final PowerUpsManager powerUpsManager;
-    private final ProgressManager progressManager;
+    private final MissionManager missionManager;
 
     protected Activities currentActivity;
     protected StatePhase statePhase;
@@ -74,24 +71,25 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected ActivityProgress activityProgress;
 
     protected String dialogPrefix = null;
-    protected UserLevel currentLevel;
+    protected UserMission currentMission;
     private boolean gameIsComplete = false;
-    private boolean levelIsComplete = false;
+    private boolean missionIsComplete = false;
+    private boolean stripeIsComplete = false;
 
-    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
+    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, PowerUpsManager powerUpsManager, MissionManager missionManager) {
         super(slots, attributesManager);
         this.phraseManager = phraseManager;
-        this.levelManager = levelManager;
+        this.activityManager = activityManager;
         this.powerUpsManager = powerUpsManager;
-        this.progressManager = progressManager;
+        this.missionManager = missionManager;
     }
 
     @Override
     protected void populateActivityVariables() {
 
-        currentLevel = UserLevel.valueOf(String.valueOf(sessionAttributes.get(USER_LEVEL)));
+        currentMission = UserMission.valueOf(String.valueOf(sessionAttributes.get(CURRENT_MISSION)));
 
-        statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.getOrDefault(STATE_PHASE, INTRO)));
+        statePhase = StatePhase.valueOf(String.valueOf(sessionAttributes.getOrDefault(STATE_PHASE, MISSION_INTO)));
 
         LinkedHashMap rawUserProgress = (LinkedHashMap) sessionAttributes.get(USER_PROGRESS);
         userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
@@ -111,7 +109,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected void updatePersistentAttributes() {
         try {
             String json = mapper.writeValueAsString(this.userProgress);
-            switch (currentLevel) {
+            switch (currentMission) {
                 case LOW:
                     persistentAttributes.put(USER_LOW_PROGRESS_DB, json);
                     break;
@@ -130,14 +128,18 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     @Override
     protected void updateSessionAttributes() {
+
         this.userProgress.setLastActivity(this.currentActivity.name());
+
         sessionAttributes.put(USER_PROGRESS, this.userProgress);
         sessionAttributes.put(ACTIVITY_PROGRESS, this.activityProgress);
-        sessionAttributes.put(STATE_PHASE, statePhase);
-        sessionAttributes.put(ACTIVITY, currentActivity);
+        sessionAttributes.put(STATE_PHASE, this.statePhase);
+        sessionAttributes.put(ACTIVITY, this.currentActivity);
+
         if (!debugMessage.toString().isEmpty()) {
             sessionAttributes.put(DEBUG_MESSAGE, debugMessage.toString());
         }
+
         logger.debug("Session attributes on the end of handling: " + this.sessionAttributes.toString());
     }
 
@@ -146,29 +148,39 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         DialogItem dialog;
 
-        stripe = levelManager.getLevelForActivity(this.currentActivity, this.userProgress.getStripeCount());
+        stripe = activityManager.getLevelForActivity(this.currentActivity, this.userProgress.getStripeCount());
 
         switch (this.statePhase) {
-            case INTRO:
-                dialog = getIntroDialog(this.currentActivity, this.userProgress.getStripeCount());
+            case MISSION_INTO:
+                dialog = handleMissionIntroState(this.currentMission);
+                break;
+            case STRIPE_INTRO:
+                dialog = handleStripeIntroStripe(this.currentMission, this.userProgress.getStripeCount());
+                break;
+            case ACTIVITY_INTRO:
+                dialog = handleActivityIntroStripe(this.currentActivity, this.userProgress.getStripeCount());
                 break;
             case DEMO:
-                dialog = handleDemoPhase();
-                break;
-            case EQUIPMENT_PHASE:
-                dialog = handleEquipmentPhase();
+                dialog = handleDemoState();
                 break;
             case READY_PHASE:
-                dialog = handleReadyToStartPhase();
+                dialog = handleReadyToStartState();
                 break;
             case LOSE:
-                dialog = handleLoseOrChangeMission();
+                dialog = handleLoseState();
                 break;
             case WIN:
-                dialog = handleWinPhase();
+                dialog = handleWinState(this.currentMission, this.userProgress.getStripeCount());
+                break;
+            case STRIPE_OUTRO:
+                dialog = handleStripeOutroState(this.currentMission);
+                break;
+            case MISSION_OUTRO:
+                dialog = handleMissionOutroState(this.currentMission);
                 break;
             default:
-                dialog = getActivePhaseDialog();
+                dialog = handleActivePhaseState();
+                break;
         }
 
         dialog = checkOnAdditions(dialog);
@@ -177,174 +189,33 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     protected void resetActivityProgress() {
-        this.statePhase = INTRO;
+        this.statePhase = ACTIVITY_INTRO;
         this.activityProgress.reset();
     }
 
-    protected abstract DialogItem getActivePhaseDialog();
+    protected abstract DialogItem handleActivePhaseState();
 
-    private DialogItem checkOnAdditions(DialogItem dialog) {
+    private DialogItem handleMissionIntroState(UserMission currentMission) {
 
-        if (dialogPrefix != null) {
+        this.statePhase = STRIPE_INTRO;
 
-            String responseText = dialog.getResponseText();
+        String dialog = missionManager.getMissionIntro(currentMission);
 
-            dialog.setResponseText(dialogPrefix + responseText);
-        }
-        return dialog;
+        return new DialogItem(dialog, false, actionSlotName);
     }
 
-    private DialogItem handleWinPhase() {
+    private DialogItem handleStripeIntroStripe(UserMission currentMission, int number) {
 
-        DialogItem dialog;
+        this.statePhase = ACTIVITY_INTRO;
 
-        calculateLevelProgress();
+        String dialog = missionManager.getStripeIntroByMission(currentMission, number);
 
-        resetActivityProgress();
-
-        if (gameIsComplete) {
-            dialog = gameIsFinishedDialog();
-        }
-        else {
-            dialog = startNewMissionDialog();
-        }
-        savePersistentAttributes();
-
-        return dialog;
+        return new DialogItem(dialog, false, actionSlotName);
     }
 
-    private DialogItem handleLoseOrChangeMission() {
+    private DialogItem handleActivityIntroStripe(Activities activity, int number) {
 
-        DialogItem dialog;
-
-        if (UserReplyComparator.compare(userReply, UserReplies.AGAIN) || UserReplyComparator.compare(userReply, UserReplies.YES)) {
-            resetActivityProgress();
-            dialog = getIntroDialog(this.currentActivity, this.userProgress.getStripeCount());
-        }
-        else {
-            dialog = getLoseRoundDialog();
-        }
-        savePersistentAttributes();
-
-        return dialog;
-    }
-
-    private DialogItem handleReadyToStartPhase() {
-
-        String speechText = nextIngredient();
-
-        this.statePhase = PHASE_1;
-
-        return new DialogItem(speechText, false, ACTION.text);
-    }
-
-    private DialogItem handleEquipmentPhase() {
-
-        if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
-            return getReadyToStartDialog();
-        }
-        else {
-            return wearEquipmentDialog();
-        }
-    }
-
-    private DialogItem handleDemoPhase() {
-
-        if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
-
-            if (isAvailablePowerUpsForActivity()) {
-                return getWearEquipmentDialog();
-            }
-            else {
-                return getReadyToStartDialog();
-            }
-        }
-        else {
-            return getDemoDialog(this.currentActivity, this.userProgress.getStripeCount());
-        }
-    }
-
-    private void calculateLevelProgress() {
-
-        this.userProgress.addFinishedRound(this.currentActivity.name());
-
-        if (this.userProgress.getFinishedRounds().size() == Activities.values().length) {
-
-            this.activityProgress.setJustStripeUp(true);
-
-            this.userProgress.iterateStripeCount();
-            this.userProgress.iterateStarCount();
-            this.userProgress.resetFinishRounds();
-
-            this.currentActivity = progressManager.getFirstActivityForLevel(currentLevel);
-
-            if (this.userProgress.getStarCount() == progressManager.getContainer().getStripesAtLevelCount()) {
-                this.levelIsComplete = true;
-            }
-
-            if (this.userProgress.getStarCount() == progressManager.getContainer().getMaxStarCount()) {
-                this.gameIsComplete = true;
-            }
-        }
-    }
-
-    private DialogItem gameIsFinishedDialog() {
-        return new DialogItem(phraseManager.getValueByKey(GAME_FINISHED_PHRASE), true);
-    }
-
-    private DialogItem startNewMissionDialog() {
-
-        Activities nextActivity = progressManager.getNextActivity(this.currentActivity, this.currentLevel);
-
-        boolean invalidCondition = this.userProgress.getFinishedRounds().contains(nextActivity.name());
-
-        while (invalidCondition) {
-            nextActivity = progressManager.getNextActivity(nextActivity, this.currentLevel);
-            invalidCondition = this.userProgress.getFinishedRounds().contains(nextActivity.getTitle());
-        }
-
-        currentActivity = nextActivity;
-        this.userProgress.setLastActivity(nextActivity.name());
-
-        if (this.activityProgress.isJustStripeUp()) {
-            return getCongratulationDialog(this.userProgress.getStripeCount());
-        }
-        else {
-            return getIntroDialog(nextActivity, this.userProgress.getStripeCount());
-        }
-    }
-
-    private DialogItem getCongratulationDialog(int number) {
-
-        String congrats = phraseManager.getValueByKey(CONGRATULATION_PHRASE);
-
-        StringBuilder dialog = new StringBuilder(congrats);
-        dialog.append(" ");
-
-        Speech speech = levelManager.getSpeechForActivityByStripeNumber(Activities.SUSHI_SLICE, number);
-
-        for (String partOfSpeech : speech.getIntro()) {
-            dialog.append(partOfSpeech);
-            dialog.append(" ");
-        }
-
-        if (speech.isShouldRunDemo()) {
-            this.statePhase = DEMO;
-        }
-        else {
-            this.statePhase = READY_PHASE;
-        }
-
-        if (this.statePhase == READY_PHASE && isAvailablePowerUpsForActivity()) {
-            dialog = appendEquipment(dialog);
-        }
-
-        return new DialogItem(dialog.toString(), false, actionSlotName);
-    }
-
-    private DialogItem getIntroDialog(Activities activity, int number) {
-
-        Speech speech = levelManager.getSpeechForActivityByStripeNumber(activity, number);
+        Speech speech = activityManager.getSpeechForActivityByStripeNumber(activity, number);
 
         StringBuilder dialog = new StringBuilder();
 
@@ -357,10 +228,6 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             this.statePhase = DEMO;
             dialog = appendShouldRunDemo(dialog);
         }
-        else if (isAvailablePowerUpsForActivity()) {
-            this.statePhase = EQUIPMENT_PHASE;
-            dialog = appendEquipment(dialog);
-        }
         else {
             this.statePhase = READY_PHASE;
             dialog = appendReadyToStart(dialog);
@@ -369,9 +236,165 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         return new DialogItem(dialog.toString(), false, actionSlotName);
     }
 
+    private DialogItem handleDemoState() {
+
+        this.statePhase = READY_PHASE;
+
+        String dialog;
+        String rePromptDialog;
+
+        if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
+
+            dialog = phraseManager.getValueByKey(READY_TO_START_PHRASE);
+            rePromptDialog = phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE);
+        }
+        else {
+
+            Speech speech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
+
+            StringBuilder dialogBuilder = new StringBuilder();
+
+            for (String partOfSpeech : speech.getDemo()) {
+                dialogBuilder.append(partOfSpeech);
+                dialogBuilder.append(" ");
+            }
+
+            dialog = appendReadyToStart(dialogBuilder).toString();
+
+            rePromptDialog = phraseManager.getValueByKey(this.currentActivity.getTitle() + DEMO_REPROMPT_PHRASE);
+        }
+
+        return new DialogItem(dialog, false, actionSlotName, true, rePromptDialog);
+    }
+
+    private DialogItem handleReadyToStartState() {
+
+        String speechText = nextIngredient();
+
+        this.statePhase = PHASE_1;
+
+        return new DialogItem(speechText, false, ACTION.text);
+    }
+
+    private DialogItem handleWinState(UserMission currentMission, int number) {
+
+        DialogItem dialog;
+
+        calculateActivityProgress();
+
+        resetActivityProgress();
+
+        if (stripeIsComplete) {
+            this.statePhase = STRIPE_OUTRO;
+            String dialogPhrase = missionManager.getStripeOutroByMission(currentMission, number);
+            dialog = new DialogItem(dialogPhrase, true, actionSlotName);
+        }
+        else {
+            Activities nextActivity = missionManager.getNextActivity(this.currentActivity, currentMission);
+
+            boolean invalidCondition = this.userProgress.getFinishedActivities().contains(nextActivity.name());
+
+            while (invalidCondition) {
+                nextActivity = missionManager.getNextActivity(nextActivity, currentMission);
+                invalidCondition = this.userProgress.getFinishedActivities().contains(nextActivity.getTitle());
+            }
+
+            currentActivity = nextActivity;
+            this.userProgress.setLastActivity(nextActivity.name());
+            dialog = handleActivityIntroStripe(nextActivity, number);
+        }
+
+        savePersistentAttributes();
+
+        return dialog;
+    }
+
+    private DialogItem handleLoseState() {
+
+        DialogItem dialog;
+
+        if (UserReplyComparator.compare(userReply, UserReplies.AGAIN) || UserReplyComparator.compare(userReply, UserReplies.YES)) {
+            resetActivityProgress();
+            dialog = handleActivityIntroStripe(this.currentActivity, this.userProgress.getStripeCount());
+        }
+        else {
+            dialog = getLoseRoundDialog();
+        }
+        savePersistentAttributes();
+
+        return dialog;
+    }
+
+    private DialogItem handleStripeOutroState(UserMission currentMission) {
+
+        calculateStripeProgress();
+
+        String dialog;
+
+        if (missionIsComplete) {
+            this.statePhase = MISSION_OUTRO;
+            dialog = missionManager.getMissionOutro(currentMission);
+        }
+        else {
+            return handleStripeIntroStripe(this.currentMission, this.userProgress.getStripeCount());
+        }
+
+        return new DialogItem(dialog, false, actionSlotName);
+    }
+
+    private DialogItem handleMissionOutroState(UserMission currentMission) {
+
+        // change mission dialog
+
+        sessionAttributes.remove(CURRENT_MISSION);
+
+        String dialog = missionManager.getMissionOutro(currentMission);
+
+        return new DialogItem(dialog, false, actionSlotName);
+    }
+
+    private DialogItem checkOnAdditions(DialogItem dialog) {
+
+        if (dialogPrefix != null) {
+
+            String responseText = dialog.getResponseText();
+
+            dialog.setResponseText(dialogPrefix + responseText);
+        }
+        return dialog;
+    }
+
+    private void calculateStripeProgress() {
+
+        if (this.userProgress.getStripeCount() == missionManager.getContainer().getStripesAtMissionCount()) {
+            this.userProgress.addFinishedMission(this.currentMission.name());
+            this.missionIsComplete = true;
+        }
+
+        if (this.userProgress.getStarCount() == missionManager.getContainer().getMaxStarCount()) {
+            this.gameIsComplete = true;
+        }
+    }
+
+    private void calculateActivityProgress() {
+
+        this.userProgress.addFinishedActivities(this.currentActivity.name());
+
+        if (this.userProgress.getFinishedActivities().size() == Activities.values().length) {
+
+            this.userProgress.iterateStripeCount();
+            this.userProgress.iterateStarCount();
+            this.userProgress.resetFinishRounds();
+
+            this.currentActivity = missionManager.getFirstActivityForLevel(currentMission);
+
+            this.stripeIsComplete = true;
+        }
+    }
+
     private StringBuilder appendShouldRunDemo(StringBuilder dialog) {
 
-        Speech speech = levelManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
+        Speech speech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
 
         dialog.append(" ").append(speech.getShouldRunDemoPhrase());
 
@@ -380,35 +403,9 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private StringBuilder appendReadyToStart(StringBuilder dialog) {
 
-        Speech speech = levelManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
+        Speech speech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
 
         dialog.append(" ").append(speech.getReadyToStartPhrase());
-
-        return dialog;
-    }
-
-    private boolean isAvailablePowerUpsForActivity() {
-        if (this.userProgress.getEarnedPowerUps().isEmpty()) {
-            return false;
-        }
-        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.userProgress.getEarnedPowerUps(), this.currentActivity);
-        return !filteredEquipment.isEmpty();
-    }
-
-    private StringBuilder appendEquipment(StringBuilder dialog) {
-
-        Speech speech = levelManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
-
-        dialog.append(" ").append(speech.getListOfEquipmentPhrase());
-
-        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.userProgress.getEarnedPowerUps(), this.currentActivity);
-
-        for (String powerUp : filteredEquipment) {
-            String description = powerUpsManager.getValueByKey(powerUp);
-            dialog.append(description).append(" ");
-        }
-
-        dialog.append(". ").append(speech.getWantWearEquipmentPhrase());
 
         return dialog;
     }
@@ -417,29 +414,6 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         this.userProgress.removePowerUp();
         this.statePhase = WIN;
         return new DialogItem(phraseManager.getValueByKey(WON_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(WON_REPROMPT_PHRASE));
-    }
-
-    private DialogItem getDemoDialog(Activities activity, int number) {
-
-        Speech speech = levelManager.getSpeechForActivityByStripeNumber(activity, number);
-
-        StringBuilder dialog = new StringBuilder();
-
-        for (String partOfSpeech : speech.getDemo()) {
-            dialog.append(partOfSpeech);
-            dialog.append(" ");
-        }
-
-        if (isAvailablePowerUpsForActivity()) {
-            this.statePhase = EQUIPMENT_PHASE;
-            dialog = appendEquipment(dialog);
-        }
-        else {
-            this.statePhase = READY_PHASE;
-            dialog = appendReadyToStart(dialog);
-        }
-
-        return new DialogItem(dialog.toString(), false, actionSlotName, true, phraseManager.getValueByKey(activity.getTitle() + DEMO_REPROMPT_PHRASE));
     }
 
     DialogItem getRepromptSuccessDialog() {
@@ -470,68 +444,9 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE));
     }
 
-    private DialogItem wearEquipmentDialog() {
-
-        String equipment = getEquipmentFromUserRequest();
-
-        String readyToStartPhrase = phraseManager.getValueByKey(READY_TO_START_PHRASE);
-
-        if (equipment == null) {
-            this.statePhase = READY_PHASE;
-            return new DialogItem(readyToStartPhrase, false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
-        }
-
-        this.userProgress.equipPowerUp(equipment);
-
-        this.statePhase = READY_PHASE;
-
-        String justWear = phraseManager.getValueByKey(JUST_WEAR_PHRASE);
-
-        return new DialogItem(justWear + " " + powerUpsManager.getValueByKey(equipment) + ". " + readyToStartPhrase, false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
-    }
-
-    private String getEquipmentFromUserRequest() {
-        if (UserReplyComparator.compare(userReply, UserReplies.CHEF_HAT)) {
-            return Equipments.CHEF_HAT.name();
-        }
-        else if (UserReplyComparator.compare(userReply, UserReplies.SECRET_SAUCE)) {
-            return Equipments.SECRET_SAUCE.name();
-        }
-        else {
-            return null;
-        }
-    }
-
-    private DialogItem getWearEquipmentDialog() {
-
-        Speech speech = levelManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
-
-        StringBuilder dialog = new StringBuilder();
-
-        dialog.append(" ").append(speech.getListOfEquipmentPhrase());
-
-        Set<String> filteredEquipment = ActivityEquipmentFilter.filterAllAvailableForActivity(this.userProgress.getEarnedPowerUps(), this.currentActivity);
-
-        for (String powerUp : filteredEquipment) {
-            String description = powerUpsManager.getValueByKey(powerUp);
-            dialog.append(description).append(" ");
-        }
-
-        dialog.append(speech.getWantWearEquipmentPhrase());
-
-        this.statePhase = EQUIPMENT_PHASE;
-
-        return new DialogItem(dialog.toString(), false, actionSlotName, true, dialog.toString());
-    }
-
-    private DialogItem getReadyToStartDialog() {
-        this.statePhase = READY_PHASE;
-        return new DialogItem(phraseManager.getValueByKey(READY_TO_START_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE));
-    }
-
     private String nextIngredient() {
 
-        IngredientReaction nextIngredient = levelManager.getNextIngredient(this.stripe, this.activityProgress.getPreviousIngredient());
+        IngredientReaction nextIngredient = activityManager.getNextIngredient(this.stripe, this.activityProgress.getPreviousIngredient());
 
         this.activityProgress.setCurrentIngredientReaction(nextIngredient.getUserReply());
         this.activityProgress.setPreviousIngredient(nextIngredient.getIngredient());

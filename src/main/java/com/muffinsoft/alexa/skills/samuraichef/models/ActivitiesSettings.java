@@ -1,13 +1,12 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
-import java.util.List;
 import java.util.Map;
 
 public class ActivitiesSettings {
 
     private String name;
-    private List<Stripe> stripes;
-    private Map<String, Speech> speeches;
+    private Map<String, Stripe> activitySettingsByStripeNumber;
+    private Map<String, Speech> activitySpeechesByStripeNumber;
 
     public String getName() {
         return name;
@@ -17,32 +16,27 @@ public class ActivitiesSettings {
         this.name = name;
     }
 
-    public List<Stripe> getStripes() {
-        return stripes;
+    public Stripe getSettingsByStripeNumber(int number) {
+        return activitySettingsByStripeNumber.get(String.valueOf(number));
     }
 
-    public void setStripes(List<Stripe> stripes) {
-        this.stripes = stripes;
+    public Map<String, Stripe> getActivitySettingsByStripeNumber() {
+        return activitySettingsByStripeNumber;
     }
 
-    public Stripe getStripe(int number) {
-        for (Stripe it : stripes) {
-            if (it.getNumber() == number) {
-                return it;
-            }
-        }
-        throw new IllegalStateException("Can't find stripe with number " + number);
+    public void setActivitySettingsByStripeNumber(Map<String, Stripe> activitySettingsByStripeNumber) {
+        this.activitySettingsByStripeNumber = activitySettingsByStripeNumber;
     }
 
-    public Map<String, Speech> getSpeeches() {
-        return speeches;
+    public Map<String, Speech> getActivitySpeechesByStripeNumber() {
+        return activitySpeechesByStripeNumber;
     }
 
-    public void setSpeeches(Map<String, Speech> speeches) {
-        this.speeches = speeches;
+    public void setActivitySpeechesByStripeNumber(Map<String, Speech> activitySpeechesByStripeNumber) {
+        this.activitySpeechesByStripeNumber = activitySpeechesByStripeNumber;
     }
 
-    public Speech getSpeech(int number) {
-        return speeches.get(String.valueOf(number));
+    public Speech getSpeechByStripeNumber(int number) {
+        return activitySpeechesByStripeNumber.get(String.valueOf(number));
     }
 }

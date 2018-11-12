@@ -1,8 +1,7 @@
 {
   "name": "FOOD_TASTER",
-  "stripes": [
-    {
-      "number": 0,
+  "activitySettingsByStripeNumber": {
+    "0": {
       "wonSuccessCount": 4,
       "phaseTwoSuccessCount": 3,
       "timeLimitPhaseOneInMillis": 15000,
@@ -13,8 +12,7 @@
         "tea": "sip"
       }
     },
-    {
-      "number": 1,
+    "1": {
       "wonSuccessCount": 5,
       "phaseTwoSuccessCount": 2,
       "timeLimitPhaseOneInMillis": 12000,
@@ -27,8 +25,7 @@
         "ice cream": "lick"
       }
     },
-    {
-      "number": 2,
+    "2": {
       "wonSuccessCount": 6,
       "phaseTwoSuccessCount": 2,
       "timeLimitPhaseOneInMillis": 12000,
@@ -42,8 +39,8 @@
         "wasabi peas": "crunch"
       }
     }
-  ],
-  "speeches": {
+  },
+  "activitySpeechesByStripeNumber": {
     "0": {
       "intro": [
         "Imagine if we became giant sumo wrestlers! Let's see who can eat the most food the fastest to become super heavy! Since Sensei loves it when his cooks show passion for eating, he has agreed to provide the food… but we must follow strict Japanese etiquette.",
@@ -52,8 +49,6 @@
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "demo": [
         "Soup! Slurp!",
         "Sushi! Gulp!",
@@ -71,8 +66,6 @@
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "demo": [
         "Soup! Slurp!",
         "Sushi! Gulp!",
@@ -91,8 +84,6 @@
       "demo": [],
       "shouldRunDemoPhrase": null,
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
     }
   }

@@ -1,8 +1,7 @@
 {
   "name": "WORD_BOARD_KARATE",
-  "stripes": [
-    {
-      "number": 0,
+  "activitySettingsByStripeNumber": {
+    "0": {
       "wonSuccessCount": 4,
       "maxMistakeCount": 2,
       "ingredients": {
@@ -10,8 +9,7 @@
         "pencil": "punch"
       }
     },
-    {
-      "number": 1,
+    "1": {
       "wonSuccessCount": 5,
       "maxMistakeCount": 2,
       "ingredients": {
@@ -20,8 +18,7 @@
         "pencil": "punch"
       }
     },
-    {
-      "number": 2,
+    "2": {
       "wonSuccessCount": 6,
       "maxMistakeCount": 1,
       "ingredients": {
@@ -31,8 +28,8 @@
         "ginger": "glok"
       }
     }
-  ],
-  "speeches": {
+  },
+  "activitySpeechesByStripeNumber": {
     "0": {
       "intro": [
         "Now that we've cooked some meals and even stuffed our bellies, lets burn that energy with some karate!",
@@ -41,8 +38,6 @@
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "demo": [
         "Corn! Kick!",
         "Hat! Hayaaa!",
@@ -59,8 +54,6 @@
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "demo": [
         "Corn! Kick!",
         "Hat! Hayaaa!",
@@ -77,8 +70,6 @@
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "listOfEquipmentPhrase": "You can use the next power-ups: ",
-      "wantWearEquipmentPhrase": "Do you want to use some of you power-ups? Say title of the power-up or no in case when you don't want to use it.",
       "demo": [
         "Corn! Kick!",
         "Hat! Hayaaa!",

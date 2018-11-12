@@ -4,21 +4,12 @@ import java.util.Map;
 
 public class Stripe {
 
-    private int number;
     private Integer wonSuccessCount;
     private Integer phaseTwoSuccessCount;
     private Long timeLimitPhaseOneInMillis;
     private Long timeLimitPhaseTwoInMillis;
     private Integer maxMistakeCount;
     private Map<String, String> ingredients;
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
 
     public Integer getWonSuccessCount() {
         return wonSuccessCount;

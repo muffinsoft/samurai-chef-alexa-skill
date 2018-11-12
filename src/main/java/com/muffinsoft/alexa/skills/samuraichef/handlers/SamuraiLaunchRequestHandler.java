@@ -38,7 +38,7 @@ public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
                 input.getAttributesManager().getPersistentAttributes().containsKey(USER_MID_PROGRESS_DB)
                 ||
                 input.getAttributesManager().getPersistentAttributes().containsKey(USER_HIGH_PROGRESS_DB)) {
-            speechText = phraseManager.getValueByKey(WELCOME_BACK_PHRASE);
+            speechText = buildRoyalGreeting();
         }
         else {
             speechText = this.getPhrase();
@@ -49,6 +49,10 @@ public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
                 .withSimpleCard(simpleCard, speechText)
                 .withReprompt(speechText)
                 .build();
+    }
+
+    private String buildRoyalGreeting() {
+        return phraseManager.getValueByKey(WELCOME_BACK_PHRASE);
     }
 
     @Override

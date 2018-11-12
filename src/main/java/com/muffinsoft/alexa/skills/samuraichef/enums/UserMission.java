@@ -1,8 +1,10 @@
 package com.muffinsoft.alexa.skills.samuraichef.enums;
 
-public enum  UserLevel {
+public enum UserMission {
 
     LOW,
+
     MEDIUM,
+
     HIGH
 }

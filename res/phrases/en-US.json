@@ -3,6 +3,7 @@
   "welcomeBackPhrase": "Welcome back! Would you like to follow me?",
   "congratulationPhrase": "You just won a stripe!",
   "fallbackPhrase": "We cannot do that right now",
+  "missionFinishedPhrase": "You've just complete the mission!",
   "wrongPhrase": "Wrong!",
   "tooLongPhrase": "Too Long!",
   "intro0": "Hey, I’m Ben!  What’s your name?",

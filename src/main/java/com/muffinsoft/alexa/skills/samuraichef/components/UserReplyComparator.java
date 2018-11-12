@@ -9,6 +9,6 @@ public class UserReplyComparator {
 
     public static boolean compare(String userReply, UserReplies expectedValue) {
         List<String> values = IoC.provideUserReplyManager().getValueByKey(expectedValue.name());
-        return values.contains(userReply);
+        return values.contains(userReply.toLowerCase());
     }
 }

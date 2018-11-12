@@ -30,6 +30,8 @@ public class PhraseConstants {
 
     public static final String GAME_FINISHED_PHRASE = "gameFinishedPhrase";
 
+    public static final String MISSION_FINISHED_PHRASE = "missionFinishedPhrase";
+
     public static final String WON_REPROMPT_PHRASE = "wonRePromptPhrase";
 
     public static final String FAILURE_PHRASE = "failurePhrase";

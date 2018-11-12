@@ -1,21 +1,24 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
+import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
+
 import java.util.List;
+import java.util.Objects;
 
 public class ProgressContainer {
 
-    private int stripesAtLevelCount;
+    private int stripesAtMissionCount;
 
     private int maxStarCount;
 
-    private List<LevelActivities> levels;
+    private List<MissionActivities> missions;
 
-    public int getStripesAtLevelCount() {
-        return stripesAtLevelCount;
+    public int getStripesAtMissionCount() {
+        return stripesAtMissionCount;
     }
 
-    public void setStripesAtLevelCount(int stripesAtLevelCount) {
-        this.stripesAtLevelCount = stripesAtLevelCount;
+    public void setStripesAtMissionCount(int stripesAtMissionCount) {
+        this.stripesAtMissionCount = stripesAtMissionCount;
     }
 
     public int getMaxStarCount() {
@@ -26,11 +29,20 @@ public class ProgressContainer {
         this.maxStarCount = maxStarCount;
     }
 
-    public List<LevelActivities> getLevels() {
-        return levels;
+    public List<MissionActivities> getMissions() {
+        return missions;
     }
 
-    public void setLevels(List<LevelActivities> levels) {
-        this.levels = levels;
+    public void setMissions(List<MissionActivities> missions) {
+        this.missions = missions;
+    }
+
+    public MissionActivities getMissionByTitle(UserMission mission) {
+        for (MissionActivities it : missions) {
+            if (Objects.equals(it.getTitle(), mission.name())) {
+                return it;
+            }
+        }
+        throw new IllegalArgumentException("Can't find Mission by title: " + mission);
     }
 }

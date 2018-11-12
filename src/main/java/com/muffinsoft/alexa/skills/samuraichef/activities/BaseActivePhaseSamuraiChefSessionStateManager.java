@@ -3,10 +3,10 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.ProgressManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 
 import java.util.Map;
 import java.util.Objects;
@@ -16,12 +16,12 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 
 public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends BaseSamuraiChefSessionStateManager {
 
-    BaseActivePhaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
-        super(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
+    BaseActivePhaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, PowerUpsManager powerUpsManager, MissionManager missionManager) {
+        super(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
     }
 
     @Override
-    protected DialogItem getActivePhaseDialog() {
+    protected DialogItem handleActivePhaseState() {
 
         DialogItem dialog;
 

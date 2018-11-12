@@ -8,9 +8,9 @@ public enum Equipments {
 
     EMPTY_SLOT(Collections.emptyList()),
 
-    SECRET_SAUCE(Arrays.asList(Activities.values())),
+    SECOND_CHANCE_SLOT(Arrays.asList(Activities.values())),
 
-    CHEF_HAT(Arrays.asList(Activities.values()));
+    CORRECT_ANSWER_SLOT(Arrays.asList(Activities.values()));
 
     private final List<Activities> availableActivities;
 

@@ -15,10 +15,10 @@ import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceSessionState
 import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateCorrectAnswerSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateSecondChanceSessionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.LevelManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PowerUpsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.ProgressManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
 
@@ -27,15 +27,15 @@ import java.util.Map;
 public class SessionStateFabric {
 
     private final PhraseManager phraseManager;
-    private final LevelManager levelManager;
+    private final ActivityManager activityManager;
     private final PowerUpsManager powerUpsManager;
-    private final ProgressManager progressManager;
+    private final MissionManager missionManager;
 
-    public SessionStateFabric(PhraseManager phraseManager, LevelManager levelManager, PowerUpsManager powerUpsManager, ProgressManager progressManager) {
+    public SessionStateFabric(PhraseManager phraseManager, ActivityManager activityManager, PowerUpsManager powerUpsManager, MissionManager missionManager) {
         this.phraseManager = phraseManager;
-        this.levelManager = levelManager;
+        this.activityManager = activityManager;
         this.powerUpsManager = powerUpsManager;
-        this.progressManager = progressManager;
+        this.missionManager = missionManager;
     }
 
     public SessionStateManager createFromRequest(Activities currentActivity, Equipments currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
@@ -45,7 +45,7 @@ public class SessionStateFabric {
         switch (currentActivity) {
 
 //            case NAME_HANDLER:
-//                stateManager = new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, levelManager, powerUpsManager);
+//                stateManager = new NameHandlerSessionStateManager(slots, input.getAttributesManager(), phraseManager, activitiesManager, activityManager, powerUpsManager);
 //                break;
             case SUSHI_SLICE:
                 stateManager = createSushiSliceSessionStateManager(currentEquipment, slots, attributesManager);
@@ -70,11 +70,11 @@ public class SessionStateFabric {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new FoodTasterSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
-            case CHEF_HAT:
-                return new FoodTasterCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
-            case SECRET_SAUCE:
-                return new FoodTasterSecondChanceSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
+                return new FoodTasterSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
+            case CORRECT_ANSWER_SLOT:
+                return new FoodTasterCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
+            case SECOND_CHANCE_SLOT:
+                return new FoodTasterSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
@@ -84,11 +84,11 @@ public class SessionStateFabric {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new WordBoardKarateSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
-            case CHEF_HAT:
-                return new WordBoardKarateCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
-            case SECRET_SAUCE:
-                return new WordBoardKarateSecondChanceSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
+                return new WordBoardKarateSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
+            case CORRECT_ANSWER_SLOT:
+                return new WordBoardKarateCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
+            case SECOND_CHANCE_SLOT:
+                return new WordBoardKarateSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
@@ -98,11 +98,11 @@ public class SessionStateFabric {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new SushiSliceSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
-            case CHEF_HAT:
-                return new SushiSliceCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
-            case SECRET_SAUCE:
-                return new SushiSliceSecondChanceSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
+                return new SushiSliceSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
+            case CORRECT_ANSWER_SLOT:
+                return new SushiSliceCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
+            case SECOND_CHANCE_SLOT:
+                return new SushiSliceSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
@@ -112,11 +112,11 @@ public class SessionStateFabric {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new JuiceWarriorSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
-            case CHEF_HAT:
-                return new JuiceWarriorCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
-            case SECRET_SAUCE:
-                return new JuiceWarriorSecondChanceSessionStateManager(slots, attributesManager, phraseManager, levelManager, powerUpsManager, progressManager);
+                return new JuiceWarriorSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
+            case CORRECT_ANSWER_SLOT:
+                return new JuiceWarriorCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
+            case SECOND_CHANCE_SLOT:
+                return new JuiceWarriorSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activityManager, powerUpsManager, missionManager);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }

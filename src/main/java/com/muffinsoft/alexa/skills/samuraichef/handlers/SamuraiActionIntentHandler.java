@@ -11,10 +11,10 @@ import com.muffinsoft.alexa.sdk.handlers.GameActionIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.ProgressManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Equipments;
-import com.muffinsoft.alexa.skills.samuraichef.enums.UserLevel;
+import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +27,8 @@ import java.util.Map;
 import static com.amazon.ask.request.Predicates.intentName;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LEVEL;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
@@ -38,12 +38,12 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
     private static final Logger logger = LoggerFactory.getLogger(SamuraiActionIntentHandler.class);
 
     private final CardManager cardManager;
-    private final ProgressManager progressManager;
+    private final MissionManager missionManager;
     private final SessionStateFabric stateManagerFabric;
 
-    public SamuraiActionIntentHandler(CardManager cardManager, ProgressManager progressManager, SessionStateFabric stateManagerFabric) {
+    public SamuraiActionIntentHandler(CardManager cardManager, MissionManager missionManager, SessionStateFabric stateManagerFabric) {
         this.cardManager = cardManager;
-        this.progressManager = progressManager;
+        this.missionManager = missionManager;
         this.stateManagerFabric = stateManagerFabric;
     }
 
@@ -63,11 +63,11 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
 
         Map<String, Slot> slots = intentRequest.getIntent().getSlots();
 
-        boolean userSelectLevel = attributesManager.getSessionAttributes().containsKey(USER_LEVEL);
+        boolean userSelectLevel = attributesManager.getSessionAttributes().containsKey(CURRENT_MISSION);
+
+        handlePersistentAttributes(input);
 
         if (userSelectLevel) {
-
-            handlePersistentAttributes(input);
 
             UserProgress currentUserProgress = getCurrentUserProgress(input);
 
@@ -106,9 +106,9 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
 
     private Activities getCurrentActivity(HandlerInput input) {
 
-        UserLevel userLevel = UserLevel.valueOf(String.valueOf(input.getAttributesManager().getSessionAttributes().get(USER_LEVEL)));
+        UserMission userMission = UserMission.valueOf(String.valueOf(input.getAttributesManager().getSessionAttributes().get(CURRENT_MISSION)));
 
-        Activities firstActivity = progressManager.getFirstActivityForLevel(userLevel);
+        Activities firstActivity = missionManager.getFirstActivityForLevel(userMission);
 
         String rawActivity = String.valueOf(input.getAttributesManager().getSessionAttributes().getOrDefault(ACTIVITY, firstActivity.name()));
         return Activities.valueOf(rawActivity);
@@ -120,11 +120,17 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
 
         if (!attributesManager.getSessionAttributes().containsKey(USER_PROGRESS)) {
 
-            UserLevel userLevel = UserLevel.valueOf(String.valueOf(attributesManager.getSessionAttributes().get(USER_LEVEL)));
+            Object rawMission = attributesManager.getSessionAttributes().get(CURRENT_MISSION);
+
+            if (rawMission == null) {
+                return;
+            }
+
+            UserMission userMission = UserMission.valueOf(String.valueOf(rawMission));
 
             String dbSource;
 
-            switch (userLevel) {
+            switch (userMission) {
                 case LOW:
                     dbSource = USER_LOW_PROGRESS_DB;
                     break;
@@ -135,7 +141,7 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
                     dbSource = USER_HIGH_PROGRESS_DB;
                     break;
                 default:
-                    throw new IllegalStateException("Unknown user level: " + userLevel.name());
+                    throw new IllegalStateException("Unknown user level: " + userMission.name());
             }
 
             if (attributesManager.getPersistentAttributes().containsKey(dbSource)) {
