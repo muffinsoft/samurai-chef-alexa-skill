@@ -49,14 +49,6 @@ public class ActivityProgress {
         this.previousIngredient = previousIngredient;
     }
 
-    public String getActivePowerUp() {
-        return activePowerUp;
-    }
-
-    public void setActivePowerUp(String activePowerUp) {
-        this.activePowerUp = activePowerUp;
-    }
-
     public void reset() {
         this.currentIngredientReaction = "";
         this.successCount = 0;
@@ -105,6 +97,14 @@ public class ActivityProgress {
         }
     }
 
+    public String getActivePowerUp() {
+        return activePowerUp;
+    }
+
+    public void setActivePowerUp(String activePowerUp) {
+        this.activePowerUp = activePowerUp;
+    }
+
     @JsonIgnore
     public boolean isPowerUpEquipped() {
         return this.activePowerUp != null && !this.activePowerUp.isEmpty();
@@ -112,10 +112,6 @@ public class ActivityProgress {
 
     public void removePowerUp() {
         this.activePowerUp = null;
-    }
-
-    public String getEquippedPowerUp() {
-        return this.activePowerUp;
     }
 
     @JsonIgnore

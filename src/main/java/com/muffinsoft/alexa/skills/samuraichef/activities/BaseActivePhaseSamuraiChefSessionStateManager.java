@@ -12,7 +12,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_EARN_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.USED_EQUIPMENT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
 
@@ -108,7 +108,7 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
     private void equipIfAvailable() {
         PowerUps nextPowerUp = this.activityProgress.equipIfAvailable();
         if (nextPowerUp != null) {
-            dialogPrefix += phraseManager.getValueByKey(JUST_WEAR_PHRASE) + powerUpsManager.getValueByKey(nextPowerUp.name());
+            dialogPrefix += phraseManager.getValueByKey(JUST_EARN_PHRASE) + powerUpsManager.getValueByKey(nextPowerUp.name());
         }
     }
 
@@ -117,12 +117,12 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
         this.activityProgress.iterateSuccessCount();
         this.activityProgress.iterateSuccessInARow();
 
-        if (this.activityProgress.getSuccessInRow() == missionManager.getSuccessInRowForPowerUp()) {
+        if (this.activityProgress.getSuccessInRow() % missionManager.getSuccessInRowForPowerUp() == 0) {
 
             PowerUps nextPowerUp = powerUpsManager.getNextPowerUp(this.activityProgress.getExistingPowerUps());
             if (nextPowerUp != null) {
                 this.activityProgress.addPowerUp(nextPowerUp);
-                dialogPrefix = phraseManager.getValueByKey(JUST_WEAR_PHRASE) + powerUpsManager.getValueByKey(nextPowerUp.name());
+                dialogPrefix = phraseManager.getValueByKey(JUST_EARN_PHRASE) + " " + powerUpsManager.getValueByKey(nextPowerUp.name()) + "!";
             }
         }
 

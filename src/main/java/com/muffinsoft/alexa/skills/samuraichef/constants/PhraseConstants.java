@@ -22,7 +22,7 @@ public class PhraseConstants {
 
     public static final String FAILURE_REPROMPT_PHRASE = "failureRePromptPhrase";
 
-    public static final String JUST_WEAR_PHRASE = "justWearPhrase";
+    public static final String JUST_EARN_PHRASE = "justEarnPhrase";
 
     public static final String READY_TO_START_PHRASE = "readyToStartPhrase";
 

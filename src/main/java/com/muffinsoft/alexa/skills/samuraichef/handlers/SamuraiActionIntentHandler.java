@@ -87,7 +87,7 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
             ActivityProgress currentActivityProgress = getCurrentActivityProgress(input);
 
             if (currentActivityProgress.isPowerUpEquipped()) {
-                currentEquipment = PowerUps.valueOf(currentActivityProgress.getEquippedPowerUp());
+                currentEquipment = PowerUps.valueOf(currentActivityProgress.getActivePowerUp());
             }
 
             SessionStateManager stateManager = stateManagerFabric.createFromRequest(currentActivity, currentEquipment, slots, attributesManager);

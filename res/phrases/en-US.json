@@ -1,24 +1,14 @@
 {
   "welcomePhrase": "Glad you’ve come over! I love playdates! And today, I’ve got something so cool, so different for us to do. Would you like to follow me?",
   "welcomeBackPhrase": "Welcome back! Would you like to follow me?",
-  "congratulationPhrase": "You just won a stripe!",
-  "fallbackPhrase": "We cannot do that right now",
-  "missionFinishedPhrase": "You've just complete the mission!",
   "wrongPhrase": "Wrong!",
   "tooLongPhrase": "Too Long!",
-  "intro0": "Hey, I’m Ben!  What’s your name?",
-  "intro1": "Glad you’ve come over! I love playdates! And today, I’ve got something so cool, so different for us to do. Would you like to follow me?",
   "failurePhrase": "You lose current round. Would you like to try again or start new mission?",
-  "failurePhraseRetry": "You lose current round. Would you like to try again?",
   "failureRePromptPhrase": "Sorry, I don't hear you. Would you like to try again or start new mission?",
-  "failureRePromptPhraseRetry": "Sorry, I don't hear you. Would you like to try again?",
   "wonPhrase": "You won current round. Would you like to start new mission?",
   "wonRePromptPhrase": "Sorry, I don't hear you. Would you like to start new mission?",
   "readyToStartPhrase": "Ready to start?",
   "readyToStartRePromptPhrase": "Sorry, I don't hear you. Ready to start?",
-  "justWearPhrase": "You've just wear",
-  "usedEquipmentPhrase": "You spent your equipment.",
-  "levelReachedPhrase": "Congratulations! You reach next level!",
-  "starReachedPhrase": "Congratulations! You earn one more start!",
-  "gameFinishedPhrase": "Congratulations! You've just get the maximum reward!"
+  "justEarnPhrase": "You've just earn ",
+  "usedEquipmentPhrase": "You spent your equipment."
 }

@@ -287,7 +287,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         if (stripeIsComplete) {
             this.statePhase = STRIPE_OUTRO;
             String dialogPhrase = missionManager.getStripeOutroByMission(currentMission, number);
-            dialog = new DialogItem(dialogPhrase, true, actionSlotName);
+            dialog = new DialogItem(dialogPhrase, false, actionSlotName);
         }
         else {
             Activities nextActivity = missionManager.getNextActivity(this.currentActivity, currentMission);
