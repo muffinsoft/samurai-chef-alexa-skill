@@ -68,7 +68,17 @@ public class SelectLevelStateManager extends BaseSessionStateManager {
         else {
             dialog = "I don't understand your choice, Please, select one of three available";
         }
-        return new DialogItem(dialog, false, actionSlotName);
+        DialogItem dialogItem = new DialogItem(dialog, false, actionSlotName);
+
+        Map<String, String> entities = new HashMap<>();
+
+        entities.put("LOW", "low");
+        entities.put("FIRST", "first");
+        entities.put("HIGH", "high");
+
+        dialogItem.setEntities(entities);
+
+        return dialogItem;
     }
 
     private String checkIfMissionAvailable(UserMission mission) {

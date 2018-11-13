@@ -3,7 +3,6 @@ package com.muffinsoft.alexa.skills.samuraichef;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import com.muffinsoft.alexa.sdk.handlers.ResponseExceptionHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiActionIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiCancelIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiFallbackIntentHandler;
@@ -31,7 +30,6 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
                         new SamuraiLaunchRequestHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
                         new SamuraiStopIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
                         new SamuraiSessionEndedRequestHandler())
-                .addExceptionHandler(new ResponseExceptionHandler())
                 .withSkillId(amazonSkillId)
                 .withTableName("samurai-chef")
                 .build();
