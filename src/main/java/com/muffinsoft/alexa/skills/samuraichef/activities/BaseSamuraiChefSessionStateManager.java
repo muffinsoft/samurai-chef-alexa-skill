@@ -7,9 +7,9 @@ import com.muffinsoft.alexa.sdk.activities.BaseSessionStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.SlotName.ACTION;
+import static com.muffinsoft.alexa.sdk.model.Speech.*;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
@@ -63,14 +63,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     protected final AliasManager aliasManager;
     protected final MissionManager missionManager;
 
-    protected Activities currentActivity;
-    protected StatePhase statePhase;
-    protected Stripe stripe;
-    protected UserProgress userProgress;
-    protected ActivityProgress activityProgress;
-
-    protected String dialogPrefix = null;
-    protected UserMission currentMission;
+    Activities currentActivity;
+    StatePhase statePhase;
+    Stripe stripe;
+    ActivityProgress activityProgress;
+    String dialogPrefix = null;
+    private UserProgress userProgress;
+    private UserMission currentMission;
     private boolean gameIsComplete = false;
     private boolean missionIsComplete = false;
     private boolean stripeIsComplete = false;
@@ -182,9 +181,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
                 break;
         }
 
-        dialog = checkOnAdditions(dialog);
-
-        return dialog;
+        return checkOnAdditions(dialog);
     }
 
     protected void resetActivityProgress() {
@@ -200,7 +197,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         String dialog = missionManager.getMissionIntro(currentMission);
 
-        return new DialogItem(dialog, false, actionSlotName);
+        return DialogItem.builder().withResponse(ofText(dialog)).withSlotName(actionSlotName).build();
     }
 
     private DialogItem handleStripeIntroStripe(UserMission currentMission, int number) {
@@ -209,7 +206,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         String dialog = missionManager.getStripeIntroByMission(currentMission, number);
 
-        return new DialogItem(dialog, false, actionSlotName);
+        return DialogItem.builder().withResponse(ofText(dialog)).withSlotName(actionSlotName).build();
     }
 
     private DialogItem handleActivityIntroStripe(Activities activity, int number) {
@@ -232,7 +229,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             dialog = appendReadyToStart(dialog);
         }
 
-        return new DialogItem(dialog.toString(), false, actionSlotName);
+        return DialogItem.builder().withResponse(ofText(dialog.toString())).withSlotName(actionSlotName).build();
     }
 
     private DialogItem handleDemoState() {
@@ -263,7 +260,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             rePromptDialog = phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE);
         }
 
-        return new DialogItem(dialog, false, actionSlotName, true, rePromptDialog);
+        return DialogItem.builder().withResponse(ofText(dialog)).withSlotName(actionSlotName).withReprompt(rePromptDialog).build();
     }
 
     private DialogItem handleReadyToStartState() {
@@ -272,7 +269,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         this.statePhase = PHASE_1;
 
-        return new DialogItem(speechText, false, ACTION.text);
+        return DialogItem.builder().withResponse(ofText(speechText)).withSlotName(actionSlotName).build();
     }
 
     private DialogItem handleWinState(UserMission currentMission, int number) {
@@ -286,7 +283,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         if (stripeIsComplete) {
             this.statePhase = STRIPE_OUTRO;
             String dialogPhrase = missionManager.getStripeOutroByMission(currentMission, number);
-            dialog = new DialogItem(dialogPhrase, false, actionSlotName);
+            dialog = DialogItem.builder().withResponse(ofText(dialogPhrase)).withSlotName(actionSlotName).build();
         }
         else {
             Activities nextActivity = missionManager.getNextActivity(this.currentActivity, currentMission);
@@ -338,7 +335,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             return handleStripeIntroStripe(this.currentMission, this.userProgress.getStripeCount());
         }
 
-        return new DialogItem(dialog, false, actionSlotName);
+        return DialogItem.builder().withResponse(ofText(dialog)).withSlotName(actionSlotName).build();
     }
 
     private DialogItem handleMissionOutroState(UserMission currentMission) {
@@ -349,16 +346,12 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         String dialog = missionManager.getMissionOutro(currentMission);
 
-        return new DialogItem(dialog, false, actionSlotName);
+        return DialogItem.builder().withResponse(ofText(dialog)).withSlotName(actionSlotName).build();
     }
 
     private DialogItem checkOnAdditions(DialogItem dialog) {
-
         if (dialogPrefix != null) {
-
-            String responseText = dialog.getResponseText();
-
-            dialog.setResponseText(dialogPrefix + responseText);
+            dialog.addResponseToBegining(ofText(dialogPrefix));
         }
         return dialog;
     }
@@ -411,32 +404,26 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     DialogItem getWinDialog() {
         this.statePhase = WIN;
-        return new DialogItem(phraseManager.getValueByKey(WON_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(WON_REPROMPT_PHRASE));
+        return DialogItem.builder().withResponse(ofText(phraseManager.getValueByKey(WON_PHRASE))).withSlotName(actionSlotName).withReprompt(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)).build();
     }
 
     DialogItem getRepromptSuccessDialog() {
-        return new DialogItem(this.activityProgress.getPreviousIngredient(), false, actionSlotName);
+        return DialogItem.builder().withResponse(ofText(this.activityProgress.getPreviousIngredient())).withSlotName(actionSlotName).build();
     }
 
     DialogItem getSuccessDialog() {
-        return getSuccessDialog("");
-    }
-
-    private DialogItem getSuccessDialog(String speechText) {
         String ingredient = nextIngredient();
-        speechText = speechText + " " + ingredient;
-        return new DialogItem(speechText, false, actionSlotName);
+        return DialogItem.builder().withResponse(ofText(ingredient)).withSlotName(actionSlotName).build();
     }
 
     DialogItem getFailureDialog(String speechText) {
         String ingredient = nextIngredient();
-        speechText = speechText + " " + ingredient;
-        return new DialogItem(speechText, false, actionSlotName);
+        return DialogItem.builder().addResponse(ofText(speechText)).addResponse(ofText(ingredient)).withSlotName(actionSlotName).build();
     }
 
     DialogItem getLoseRoundDialog() {
         this.statePhase = LOSE;
-        return new DialogItem(phraseManager.getValueByKey(FAILURE_PHRASE), false, actionSlotName, true, phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE));
+        return DialogItem.builder().withResponse(ofText(phraseManager.getValueByKey(FAILURE_PHRASE))).withSlotName(actionSlotName).withReprompt(phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE)).build();
     }
 
     private String nextIngredient() {

@@ -4,6 +4,7 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseSessionStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -68,7 +69,7 @@ public class SelectLevelStateManager extends BaseSessionStateManager {
         else {
             dialog = "I don't understand your choice, Please, select one of three available";
         }
-        return new DialogItem(dialog, false, actionSlotName);
+        return DialogItem.builder().withResponse(Speech.ofText(dialog)).withSlotName(actionSlotName).build();
     }
 
     private String checkIfMissionAvailable(UserMission mission) {
