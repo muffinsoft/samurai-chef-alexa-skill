@@ -11,18 +11,18 @@
         "FOOD_TASTER": 3
       },
       "stripeIntrosByNumber": {
-        "0": "Stripe intro #1",
-        "1": "Stripe intro #2",
-        "2": "Stripe intro #3",
-        "3": "Stripe intro #4",
-        "4": "Stripe intro #5"
+        "0": "Stripe intro #1 of first mission",
+        "1": "Stripe intro #2 of first mission",
+        "2": "Stripe intro #3 of first mission",
+        "3": "Stripe intro #4 of first mission",
+        "4": "Stripe intro #5 of first mission"
       },
       "stripeOutrosByNumber": {
-        "0": "Stripe outro #1",
-        "1": "Stripe outro #2",
-        "2": "Stripe outro #3",
-        "3": "Stripe outro #4",
-        "4": "Stripe outro #5"
+        "0": "Stripe outro #1 of first mission",
+        "1": "Stripe outro #2 of first mission",
+        "2": "Stripe outro #3 of first mission",
+        "3": "Stripe outro #4 of first mission",
+        "4": "Stripe outro #5 of first mission"
       }
     },
     {
@@ -30,24 +30,24 @@
       "missionIntro": "This is second mission intro",
       "missionOutro": "This is second mission outro",
       "activitiesOrder": {
-        "SUSHI_SLICE": 0,
-        "JUICE_WARRIOR": 1,
-        "WORD_BOARD_KARATE": 2,
-        "FOOD_TASTER": 3
+        "SUSHI_SLICE": 3,
+        "JUICE_WARRIOR": 2,
+        "WORD_BOARD_KARATE": 1,
+        "FOOD_TASTER": 0
       },
       "stripeIntrosByNumber": {
-        "0": "Stripe intro #1",
-        "1": "Stripe intro #2",
-        "2": "Stripe intro #3",
-        "3": "Stripe intro #4",
-        "4": "Stripe intro #5"
+        "0": "Stripe intro #1 of second mission",
+        "1": "Stripe intro #2 of second mission",
+        "2": "Stripe intro #3 of second mission",
+        "3": "Stripe intro #4 of second mission",
+        "4": "Stripe intro #5 of second mission"
       },
       "stripeOutrosByNumber": {
-        "0": "Stripe outro #1",
-        "1": "Stripe outro #2",
-        "2": "Stripe outro #3",
-        "3": "Stripe outro #4",
-        "4": "Stripe outro #5"
+        "0": "Stripe outro #1 of second mission",
+        "1": "Stripe outro #2 of second mission",
+        "2": "Stripe outro #3 of second mission",
+        "3": "Stripe outro #4 of second mission",
+        "4": "Stripe outro #5 of second mission"
       }
     },
     {
@@ -55,28 +55,28 @@
       "missionIntro": "This is third mission intro",
       "missionOutro": "This is third mission outro",
       "activitiesOrder": {
-        "SUSHI_SLICE": 0,
-        "JUICE_WARRIOR": 1,
-        "WORD_BOARD_KARATE": 2,
-        "FOOD_TASTER": 3
+        "SUSHI_SLICE": 2,
+        "JUICE_WARRIOR": 3,
+        "WORD_BOARD_KARATE": 0,
+        "FOOD_TASTER": 1
       },
       "stripeIntrosByNumber": {
-        "0": "Stripe intro #1",
-        "1": "Stripe intro #2",
-        "2": "Stripe intro #3",
-        "3": "Stripe intro #4",
-        "4": "Stripe intro #5"
+        "0": "Stripe intro #1 of third mission",
+        "1": "Stripe intro #2 of third mission",
+        "2": "Stripe intro #3 of third mission",
+        "3": "Stripe intro #4 of third mission",
+        "4": "Stripe intro #5 of third mission"
       },
       "stripeOutrosByNumber": {
-        "0": "1",
-        "1": "2",
-        "2": "3",
-        "3": "4",
-        "4": "5"
+        "0": "Stripe outro #1 of third mission",
+        "1": "Stripe outro #2 of third mission",
+        "2": "Stripe outro #3 of third mission",
+        "3": "Stripe outro #4 of third mission",
+        "4": "Stripe outro #5 of third mission"
       }
     }
   ],
   "successInRowForPowerUp": 6,
-  "stripesAtMissionCount": 5,
-  "maxStarCount": 15
+  "stripesAtMissionCount": 3,
+  "maxStarCount": 12
 }

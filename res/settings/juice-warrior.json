@@ -35,7 +35,8 @@
   "activitySpeechesByStripeNumber": {
     "0": {
       "intro": [
-        "A bus full of hefty sumo wrestlers have just arrived! The good news is they've already eaten... phew! They're all here for nutritious juices. Since Sensei will need more than his blender to make all their orders, let's help! When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it."
+        "First stripe Juice Warrior activity.",
+        "When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it."
       ],
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
@@ -50,7 +51,8 @@
     },
     "1": {
       "intro": [
-        "A second bus full of hefty sumo wrestlers have just arrived! The good news is they've already eaten... phew! They're all here for nutritious juices. Since Sensei will need more than his blender to make all their orders, let's help! When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it."
+        "Second stripe Juice Warrior activity.",
+        "When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it."
       ],
       "shouldRunDemo": true,
       "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
@@ -65,7 +67,8 @@
     },
     "2": {
       "intro": [
-        "The third bus full of hefty sumo wrestlers have just arrived! The good news is they've already eaten... phew! They're all here for nutritious juices. Since Sensei will need more than his blender to make all their orders, let's help! When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it."
+        "Third stripe Juice Warrior activity.",
+        "When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it."
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": null,

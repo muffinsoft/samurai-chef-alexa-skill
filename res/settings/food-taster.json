@@ -34,7 +34,7 @@
   "activitySpeechesByStripeNumber": {
     "0": {
       "intro": [
-        "Imagine if we became giant sumo wrestlers! Let's see who can eat the most food the fastest to become super heavy! Since Sensei loves it when his cooks show passion for eating, he has agreed to provide the food… but we must follow strict Japanese etiquette.",
+        "First tripe Food Taster activity.",
         "If we get soup, say 'Slurp!'. If it's sushi, say 'Gulp!' to gulp it down in one bite. If we get wasabi peas, say 'Crunch!' to chomp it good. If it's tea, say 'Sip!'. If we get mochi ice cream, say 'Lick!' to lick it up. We'll take turns eating to see who eats the most!"
       ],
       "shouldRunDemo": true,
@@ -51,7 +51,7 @@
     },
     "1": {
       "intro": [
-        "Imagine if we became giant sumo wrestlers! Let's see who can eat the most food the fastest to become super heavy! Since Sensei loves it when his cooks show passion for eating, he has agreed to provide the food… but we must follow strict Japanese etiquette.",
+        "Second stripe Food Taster activity.",
         "If we get soup, say 'Slurp!'. If it's sushi, say 'Gulp!' to gulp it down in one bite. If we get wasabi peas, say 'Crunch!' to chomp it good. If it's tea, say 'Sip!'. If we get mochi ice cream, say 'Lick!' to lick it up. We'll take turns eating to see who eats the most!"
       ],
       "shouldRunDemo": true,
@@ -68,7 +68,7 @@
     },
     "2": {
       "intro": [
-        "Imagine if we became giant sumo wrestlers! Let's see who can eat the most food the fastest to become super heavy! Since Sensei loves it when his cooks show passion for eating, he has agreed to provide the food… but we must follow strict Japanese etiquette.",
+        "SThird stripe Food Taster activity.",
         "If we get soup, say 'Slurp!'. If it's sushi, say 'Gulp!' to gulp it down in one bite. If we get wasabi peas, say 'Crunch!' to chomp it good. If it's tea, say 'Sip!'. If we get mochi ice cream, say 'Lick!' to lick it up. We'll take turns eating to see who eats the most!"
       ],
       "shouldRunDemo": false,
