@@ -18,8 +18,8 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -38,7 +38,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 
 public class SamuraiActionIntentHandler extends GameActionIntentHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(SamuraiActionIntentHandler.class);
+    private static final Logger logger = LogManager.getLogger(SamuraiActionIntentHandler.class);
 
     private final CardManager cardManager;
     private final MissionManager missionManager;
@@ -100,6 +100,7 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
             return stateManager;
         }
         else {
+            logger.info("Going to handle mission selection");
             return new SelectLevelStateManager(slots, attributesManager, aliasManager);
         }
     }

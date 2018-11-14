@@ -14,8 +14,6 @@ import java.util.Map;
 
 public class FoodTasterCorrectAnswerSessionStateManager extends FoodTasterSessionStateManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(FoodTasterCorrectAnswerSessionStateManager.class);
-
     public FoodTasterCorrectAnswerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {
         super(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager);
     }

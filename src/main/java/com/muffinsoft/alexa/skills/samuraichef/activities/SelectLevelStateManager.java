@@ -10,6 +10,8 @@ import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -20,6 +22,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 
 public class SelectLevelStateManager extends BaseSessionStateManager {
+
+    private static final Logger logger = LogManager.getLogger(SelectLevelStateManager.class);
 
     private final AliasManager aliasManager;
     private UserProgress userProgress;
@@ -53,6 +57,8 @@ public class SelectLevelStateManager extends BaseSessionStateManager {
     @Override
     public DialogItem nextResponse() {
 
+        logger.debug("Starting handling user reply '" + this.userReply + "' ...");
+
         String dialog;
         if (UserReplyComparator.compare(userReply, UserReplies.YES)) {
             dialog = "Please, select the level";
@@ -69,7 +75,19 @@ public class SelectLevelStateManager extends BaseSessionStateManager {
         else {
             dialog = "I don't understand your choice, Please, select one of three available";
         }
-        return DialogItem.builder().withResponse(Speech.ofText(dialog)).withSlotName(actionSlotName).build();
+
+        String cardTitle = null;
+        if (this.sessionAttributes.containsKey(CURRENT_MISSION)) {
+            cardTitle = aliasManager.getValueByKey(String.valueOf(this.sessionAttributes.get(CURRENT_MISSION)));
+        }
+
+        DialogItem.Builder builder = DialogItem.builder().withResponse(Speech.ofText(dialog)).withSlotName(actionSlotName);
+
+        if (cardTitle != null) {
+            builder.withCardTitle(cardTitle);
+        }
+
+        return builder.build();
     }
 
     private String checkIfMissionAvailable(UserMission mission) {
@@ -80,6 +98,7 @@ public class SelectLevelStateManager extends BaseSessionStateManager {
         }
 
         this.sessionAttributes.put(CURRENT_MISSION, mission);
+        logger.debug("Session will be redirected to " + mission.name());
 
         return "Are you ready to start " + aliasManager.getValueByKey(mission.name()) + "?";
 

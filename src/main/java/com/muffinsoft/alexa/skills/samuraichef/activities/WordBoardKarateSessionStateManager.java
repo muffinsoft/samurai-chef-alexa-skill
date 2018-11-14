@@ -15,8 +15,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.WORD_BOAR
 
 public class WordBoardKarateSessionStateManager extends BaseActivePhaseSamuraiChefSessionStateManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(WordBoardKarateSessionStateManager.class);
-
     public WordBoardKarateSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {
         super(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager);
         this.currentActivity = WORD_BOARD_KARATE;

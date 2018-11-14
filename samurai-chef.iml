@@ -12,17 +12,18 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.muffinsoft:inner-skills-sdk:0.1.10-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.muffinsoft:inner-skills-sdk:0.1.12-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.amazon.alexa:ask-sdk:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.amazon.alexa:ask-sdk-core:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.amazon.alexa:ask-sdk-runtime:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.5" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.5" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.24" level="project" />
     <orderEntry type="library" name="Maven: com.amazon.alexa:ask-sdk-model:1.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.5" level="project" />
     <orderEntry type="library" name="Maven: com.amazon.alexa:ask-sdk-lambda-support:2.9.0" level="project" />
-    <orderEntry type="library" name="Maven: com.amazonaws:aws-lambda-java-core:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
     <orderEntry type="library" name="Maven: com.amazon.alexa:ask-sdk-servlet-support:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.6" level="project" />
@@ -48,9 +49,9 @@
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy:1.9.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy-agent:1.9.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.objenesis:objenesis:2.6" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.11.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.11.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.11.1" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
+    <orderEntry type="library" name="Maven: com.amazonaws:aws-lambda-java-log4j2:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.amazonaws:aws-lambda-java-core:1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.8.2" level="project" />
   </component>
 </module>

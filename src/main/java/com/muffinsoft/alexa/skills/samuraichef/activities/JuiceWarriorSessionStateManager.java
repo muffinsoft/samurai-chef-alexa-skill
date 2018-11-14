@@ -18,8 +18,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.JUICE_WAR
 
 public class JuiceWarriorSessionStateManager extends BaseActivePhaseSamuraiChefSessionStateManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(JuiceWarriorSessionStateManager.class);
-
     protected Long questionTime;
 
     public JuiceWarriorSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {

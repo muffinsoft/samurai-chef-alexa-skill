@@ -15,8 +15,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.FOOD_TAST
 
 public class FoodTasterSessionStateManager extends BaseActivePhaseSamuraiChefSessionStateManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(FoodTasterSessionStateManager.class);
-
     public FoodTasterSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {
         super(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager);
         this.currentActivity = FOOD_TASTER;

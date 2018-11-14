@@ -19,14 +19,14 @@ import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
 import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.*;
+import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
@@ -36,7 +36,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.DEBUG_MESSAGE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
@@ -55,7 +54,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
 abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(BaseSessionStateManager.class);
+    protected static final Logger logger = LogManager.getLogger(BaseSamuraiChefSessionStateManager.class);
 
     protected final PhraseManager phraseManager;
     protected final ActivityManager activityManager;
@@ -134,15 +133,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         sessionAttributes.put(STATE_PHASE, this.statePhase);
         sessionAttributes.put(ACTIVITY, this.currentActivity);
 
-        if (!debugMessage.toString().isEmpty()) {
-            sessionAttributes.put(DEBUG_MESSAGE, debugMessage.toString());
-        }
-
         logger.debug("Session attributes on the end of handling: " + this.sessionAttributes.toString());
     }
 
     @Override
     public DialogItem nextResponse() {
+
+        logger.debug("Available slots at current step: " + this.slots.toString());
 
         DialogItem dialog;
 

@@ -19,8 +19,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
 
 public class SushiSliceSessionStateManager extends BaseActivePhaseSamuraiChefSessionStateManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(SushiSliceSessionStateManager.class);
-
     protected Long questionTime;
 
     public SushiSliceSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {
