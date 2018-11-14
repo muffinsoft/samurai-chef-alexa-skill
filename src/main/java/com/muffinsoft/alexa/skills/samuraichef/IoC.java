@@ -2,10 +2,10 @@ package com.muffinsoft.alexa.skills.samuraichef;
 
 import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.UserReplyManager;
 
 public class IoC {

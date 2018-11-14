@@ -5,6 +5,8 @@ import com.amazon.ask.model.Response;
 import com.muffinsoft.alexa.sdk.handlers.LaunchRequestHandler;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
@@ -16,6 +18,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
 
 public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
+
+    private static final Logger logger = LogManager.getLogger(SamuraiLaunchRequestHandler.class);
 
     private final PhraseManager phraseManager;
     private final CardManager cardManager;
@@ -29,6 +33,8 @@ public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
+        String userId = input.getRequestEnvelope().getSession().getUser().getUserId();
+
         String simpleCard = this.getSimpleCard();
 
         String speechText;
@@ -39,9 +45,14 @@ public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
                 ||
                 input.getAttributesManager().getPersistentAttributes().containsKey(USER_HIGH_PROGRESS_DB)) {
             speechText = buildRoyalGreeting();
+
+            logger.info(userId + " - Existing user was started new Game Session. Start Royal Greeting");
+
         }
         else {
             speechText = this.getPhrase();
+
+            logger.info(userId + " - New user was started new Game Session.");
         }
 
         return input.getResponseBuilder()

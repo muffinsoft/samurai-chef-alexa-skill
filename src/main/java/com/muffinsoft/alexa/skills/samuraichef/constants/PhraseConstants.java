@@ -22,7 +22,17 @@ public class PhraseConstants {
 
     public static final String JUST_EARN_PHRASE = "justEarnPhrase";
 
+    public static final String SEVERAL_VALUES_PHRASE = "severalValuesPhrase";
+
     public static final String READY_TO_START_PHRASE = "readyToStartPhrase";
+
+    public static final String READY_TO_START_MISSION_PHRASE = "readyToStartMissionPhrase";
+
+    public static final String SELECT_MISSION_PHRASE = "selectMissionPhrase";
+
+    public static final String SELECT_MISSION_UNKNOWN_PHRASE = "selectMissionUnknownPhrase";
+
+    public static final String MISSION_ALREADY_COMPLETE_PHRASE = "missionAlreadyCompletePhrase";
 
     public static final String READY_TO_START_REPROMPT_PHRASE = "readyToStartRePromptPhrase";
 }

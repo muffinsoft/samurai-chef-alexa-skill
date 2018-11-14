@@ -13,7 +13,8 @@ public class UserReplyComparator {
 
     public static boolean compare(String userReply, UserReplies expectedValue) {
         List<String> values = IoC.provideUserReplyManager().getValueByKey(expectedValue.name());
-        logger.debug("Going to compare '" + userReply + "' with values " + String.join(", ", values));
-        return values.contains(userReply.toLowerCase());
+        boolean contains = values.contains(userReply.toLowerCase());
+        logger.debug("Comparing user input '" + userReply + "' with values [" + String.join(", ", values) + "] returns " + contains);
+        return contains;
     }
 }

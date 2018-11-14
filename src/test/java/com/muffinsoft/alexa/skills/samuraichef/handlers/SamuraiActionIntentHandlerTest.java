@@ -9,6 +9,11 @@ import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Session;
 import com.amazon.ask.model.Slot;
+import com.amazon.ask.model.User;
+import com.amazon.ask.model.slu.entityresolution.Resolution;
+import com.amazon.ask.model.slu.entityresolution.Resolutions;
+import com.amazon.ask.model.slu.entityresolution.Status;
+import com.amazon.ask.model.slu.entityresolution.StatusCode;
 import com.muffinsoft.alexa.skills.samuraichef.IoC;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
@@ -37,7 +42,8 @@ class SamuraiActionIntentHandlerTest {
         HandlerInput handlerInput = HandlerInput.builder()
                 .withRequestEnvelope(RequestEnvelope.builder()
                         .withSession(Session.builder()
-                                .withSessionId("test session")
+                                .withSessionId("test.session")
+                                .withUser(User.builder().withUserId("user.id").build())
                                 .withNew(false)
                                 .build()
                         )
@@ -57,8 +63,22 @@ class SamuraiActionIntentHandlerTest {
         return handlerInput;
     }
 
+    private Slot createSlotForValue(String value) {
+        return Slot.builder()
+                .withValue(value)
+                .withResolutions(Resolutions.builder()
+                        .withResolutionsPerAuthority(Collections.singletonList(Resolution.builder()
+                                .withStatus(Status.builder()
+                                        .withCode(StatusCode.ER_SUCCESS_MATCH)
+                                        .build())
+                                .withAuthority("testAuthority")
+                                .build()))
+                        .build())
+                .build();
+    }
+
     private SamuraiActionIntentHandler createActionIntentHandlerInstance() {
-        return new SamuraiActionIntentHandler(IoC.provideCardManager(), IoC.provideProgressManager(), IoC.provideAliasManager(), IoC.provideSessionStateFabric());
+        return new SamuraiActionIntentHandler(IoC.provideCardManager(), IoC.provideProgressManager(), IoC.provideAliasManager(), IoC.providePhraseManager(), IoC.provideSessionStateFabric());
     }
 
     @Test
@@ -67,7 +87,7 @@ class SamuraiActionIntentHandlerTest {
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
         Map<String, Slot> slots = new HashMap<>();
-        slots.put("action", Slot.builder().withValue(UserMission.LOW_MISSION.name()).build());
+        slots.put("action", createSlotForValue(UserMission.LOW_MISSION.name()));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
 
@@ -84,7 +104,7 @@ class SamuraiActionIntentHandlerTest {
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
         Map<String, Slot> slots = new HashMap<>();
-        slots.put("action", Slot.builder().withValue("yes").build());
+        slots.put("action", createSlotForValue("yes"));
 
         Map<String, Object> userProgress = new LinkedHashMap<>();
         userProgress.put("lastActivity", JUICE_WARRIOR.name());
@@ -110,9 +130,7 @@ class SamuraiActionIntentHandlerTest {
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
         Map<String, Slot> slots = new HashMap<>();
-        slots.put("action", Slot.builder().withValue("mission").build());
-
-        List<String> finishedActivities = Collections.singletonList(JUICE_WARRIOR.name());
+        slots.put("action", createSlotForValue("mission"));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
@@ -131,7 +149,7 @@ class SamuraiActionIntentHandlerTest {
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
         Map<String, Slot> slots = new HashMap<>();
-        slots.put("action", Slot.builder().withValue("yes").build());
+        slots.put("action", createSlotForValue("yes"));
 
         List<String> finishedActivities = Arrays.asList(Activities.SUSHI_SLICE.name(), JUICE_WARRIOR.name(), Activities.WORD_BOARD_KARATE.name());
 
@@ -152,7 +170,7 @@ class SamuraiActionIntentHandlerTest {
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
         Map<String, Slot> slots = new HashMap<>();
-        slots.put("action", Slot.builder().withValue("mission").build());
+        slots.put("action", createSlotForValue("mission"));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.FOOD_TASTER);
@@ -172,7 +190,7 @@ class SamuraiActionIntentHandlerTest {
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
         Map<String, Slot> slots = new HashMap<>();
-        slots.put("action", Slot.builder().withValue("yes").build());
+        slots.put("action", createSlotForValue("yes"));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
@@ -192,8 +210,7 @@ class SamuraiActionIntentHandlerTest {
         SamuraiActionIntentHandler handler = createActionIntentHandlerInstance();
 
         Map<String, Slot> slots = new HashMap<>();
-        slots.put("action", Slot.builder().withValue("no").build());
-        slots.put("name", Slot.builder().withValue("Alex").build());
+        slots.put("action", createSlotForValue("no"));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);

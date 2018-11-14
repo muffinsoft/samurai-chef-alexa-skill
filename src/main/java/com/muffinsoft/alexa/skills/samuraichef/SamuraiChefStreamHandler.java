@@ -24,7 +24,7 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
 
         return Skills.standard()
                 .addRequestHandlers(
-                        new SamuraiActionIntentHandler(IoC.provideCardManager(), IoC.provideProgressManager(), IoC.provideAliasManager(), IoC.provideSessionStateFabric()),
+                        new SamuraiActionIntentHandler(IoC.provideCardManager(), IoC.provideProgressManager(), IoC.provideAliasManager(), IoC.providePhraseManager(), IoC.provideSessionStateFabric()),
                         new SamuraiCancelIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
                         new SamuraiFallbackIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
                         new SamuraiHelpIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),

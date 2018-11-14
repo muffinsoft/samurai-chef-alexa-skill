@@ -31,6 +31,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_REPROMPT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SEVERAL_VALUES_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
@@ -61,7 +63,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     protected final AliasManager aliasManager;
     protected final MissionManager missionManager;
-
+    protected String userId;
     Activities currentActivity;
     StatePhase statePhase;
     Stripe stripe;
@@ -73,12 +75,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     private boolean missionIsComplete = false;
     private boolean stripeIsComplete = false;
 
-    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {
+    BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager, String userId) {
         super(slots, attributesManager);
         this.phraseManager = phraseManager;
         this.activityManager = activityManager;
         this.aliasManager = aliasManager;
         this.missionManager = missionManager;
+        this.userId = userId;
     }
 
     @Override
@@ -94,7 +97,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         LinkedHashMap rawActivityProgress = (LinkedHashMap) sessionAttributes.get(ACTIVITY_PROGRESS);
         activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
 
-        logger.debug("Session attributes on the start of handling: " + this.sessionAttributes.toString());
+        logger.debug(userId + " - Session attributes on the start of handling: " + this.sessionAttributes.toString());
     }
 
     @Override
@@ -117,6 +120,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
                     persistentAttributes.put(USER_HIGH_PROGRESS_DB, json);
                     break;
             }
+            logger.debug(userId + " - Persistent attributes on the end of handling: " + this.persistentAttributes.toString());
         }
         catch (JsonProcessingException e) {
             throw new IllegalStateException(e.getMessage(), e);
@@ -133,15 +137,17 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         sessionAttributes.put(STATE_PHASE, this.statePhase);
         sessionAttributes.put(ACTIVITY, this.currentActivity);
 
-        logger.debug("Session attributes on the end of handling: " + this.sessionAttributes.toString());
+        logger.debug(userId + " - Session attributes on the end of handling: " + this.sessionAttributes.toString());
     }
 
     @Override
     public DialogItem nextResponse() {
 
-        logger.debug("Available slots at current step: " + this.slots.toString());
-
         DialogItem dialog;
+
+        if (!userMultipleReplies.isEmpty()) {
+            return handleMultipleResponses();
+        }
 
         stripe = activityManager.getLevelForActivity(this.currentActivity, this.userProgress.getStripeCount());
 
@@ -181,6 +187,13 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         return checkOnAdditions(dialog);
     }
 
+    private DialogItem handleMultipleResponses() {
+
+        String speech = phraseManager.getValueByKey(SEVERAL_VALUES_PHRASE) + String.join(", ", this.userMultipleReplies);
+
+        return DialogItem.builder().withSlotName(actionSlotName).withResponse(ofText(speech)).build();
+    }
+
     protected void resetActivityProgress() {
         this.statePhase = ACTIVITY_INTRO;
         this.activityProgress.reset();
@@ -190,6 +203,8 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private DialogItem handleMissionIntroState(UserMission currentMission) {
 
+        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + STRIPE_INTRO);
+
         this.statePhase = STRIPE_INTRO;
 
         String dialog = missionManager.getMissionIntro(currentMission);
@@ -198,6 +213,8 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     private DialogItem handleStripeIntroStripe(UserMission currentMission, int number) {
+
+        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + ACTIVITY_INTRO);
 
         this.statePhase = ACTIVITY_INTRO;
 
@@ -218,10 +235,16 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         }
 
         if (speech.isShouldRunDemo()) {
+
+            logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + DEMO);
+
             this.statePhase = DEMO;
             dialog = appendShouldRunDemo(dialog);
         }
         else {
+
+            logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + READY_PHASE);
+
             this.statePhase = READY_PHASE;
             dialog = appendReadyToStart(dialog);
         }
@@ -230,6 +253,8 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     }
 
     private DialogItem handleDemoState() {
+
+        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + READY_PHASE);
 
         this.statePhase = READY_PHASE;
 
@@ -264,6 +289,8 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         String speechText = nextIngredient();
 
+        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + PHASE_1);
+
         this.statePhase = PHASE_1;
 
         return DialogItem.builder().withResponse(ofText(speechText)).withSlotName(actionSlotName).build();
@@ -278,6 +305,9 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         resetActivityProgress();
 
         if (stripeIsComplete) {
+
+            logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + STRIPE_OUTRO);
+
             this.statePhase = STRIPE_OUTRO;
             String dialogPhrase = missionManager.getStripeOutroByMission(currentMission, number);
             dialog = DialogItem.builder().withResponse(ofText(dialogPhrase)).withSlotName(actionSlotName).build();
@@ -311,11 +341,22 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
             dialog = handleActivityIntroStripe(this.currentActivity, this.userProgress.getStripeCount());
         }
         else {
-            dialog = getLoseRoundDialog();
+            dialog = getSelectMissionDialog();
         }
         savePersistentAttributes();
 
         return dialog;
+    }
+
+    private DialogItem getSelectMissionDialog() {
+
+        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + MISSION_INTO);
+
+        this.statePhase = MISSION_INTO;
+
+        this.sessionAttributes.remove(CURRENT_MISSION);
+
+        return DialogItem.builder().withSlotName(actionSlotName).withResponse(ofText(phraseManager.getValueByKey(SELECT_MISSION_PHRASE))).build();
     }
 
     private DialogItem handleStripeOutroState(UserMission currentMission) {
@@ -325,6 +366,9 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         String dialog;
 
         if (missionIsComplete) {
+
+            logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + MISSION_OUTRO);
+
             this.statePhase = MISSION_OUTRO;
             dialog = missionManager.getMissionOutro(currentMission);
         }
@@ -340,6 +384,10 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         // change mission dialog
 
         sessionAttributes.remove(CURRENT_MISSION);
+
+        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + MISSION_INTO);
+
+        this.statePhase = MISSION_INTO;
 
         String dialog = missionManager.getMissionOutro(currentMission);
 
@@ -404,7 +452,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         return DialogItem.builder().withResponse(ofText(phraseManager.getValueByKey(WON_PHRASE))).withSlotName(actionSlotName).withReprompt(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)).build();
     }
 
-    DialogItem getRepromptSuccessDialog() {
+    DialogItem getRePromptSuccessDialog() {
         return DialogItem.builder().withResponse(ofText(this.activityProgress.getPreviousIngredient())).withSlotName(actionSlotName).build();
     }
 

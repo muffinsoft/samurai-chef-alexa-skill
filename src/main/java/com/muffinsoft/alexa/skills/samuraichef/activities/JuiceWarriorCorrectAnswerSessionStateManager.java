@@ -4,16 +4,16 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 
 import java.util.Map;
 
 public class JuiceWarriorCorrectAnswerSessionStateManager extends JuiceWarriorSessionStateManager {
 
-    public JuiceWarriorCorrectAnswerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {
-        super(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager);
+    public JuiceWarriorCorrectAnswerSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager, String userId) {
+        super(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
     }
 
     @Override

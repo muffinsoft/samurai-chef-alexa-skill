@@ -13,6 +13,7 @@ import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
 import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -43,12 +44,14 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
     private final CardManager cardManager;
     private final MissionManager missionManager;
     private final AliasManager aliasManager;
+    private final PhraseManager phraseManager;
     private final SessionStateFabric stateManagerFabric;
 
-    public SamuraiActionIntentHandler(CardManager cardManager, MissionManager missionManager, AliasManager aliasManager, SessionStateFabric stateManagerFabric) {
+    public SamuraiActionIntentHandler(CardManager cardManager, MissionManager missionManager, AliasManager aliasManager, PhraseManager phraseManager, SessionStateFabric stateManagerFabric) {
         this.cardManager = cardManager;
         this.missionManager = missionManager;
         this.aliasManager = aliasManager;
+        this.phraseManager = phraseManager;
         this.stateManagerFabric = stateManagerFabric;
     }
 
@@ -61,6 +64,8 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
     public SessionStateManager nextTurn(HandlerInput input) {
 
         AttributesManager attributesManager = input.getAttributesManager();
+
+        String userId = input.getRequestEnvelope().getSession().getUser().getUserId();
 
         Request request = input.getRequestEnvelope().getRequest();
 
@@ -93,15 +98,15 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
                 currentEquipment = PowerUps.valueOf(currentActivityProgress.getActivePowerUp());
             }
 
-            SessionStateManager stateManager = stateManagerFabric.createFromRequest(currentActivity, currentEquipment, slots, attributesManager);
+            SessionStateManager stateManager = stateManagerFabric.createFromRequest(currentActivity, currentEquipment, slots, attributesManager, userId);
 
-            logger.info("Going to handle activity " + currentActivity + " with equipment " + currentEquipment);
+            logger.info(userId + " - Going to handle activity " + currentActivity + " with equipment " + currentEquipment);
 
             return stateManager;
         }
         else {
-            logger.info("Going to handle mission selection");
-            return new SelectLevelStateManager(slots, attributesManager, aliasManager);
+            logger.info(userId + " - Going to handle mission selection ");
+            return new SelectLevelStateManager(slots, attributesManager, aliasManager, phraseManager, userId);
         }
     }
 

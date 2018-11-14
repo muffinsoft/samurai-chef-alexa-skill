@@ -10,5 +10,10 @@
   "readyToStartPhrase": "Ready to start?",
   "readyToStartRePromptPhrase": "Sorry, I don't hear you. Ready to start?",
   "justEarnPhrase": "You've just earn ",
-  "usedEquipmentPhrase": "You spent your equipment."
+  "usedEquipmentPhrase": "You spent your equipment.",
+  "selectMissionPhrase": "Please, select mission",
+  "selectMissionUnknownPhrase": "I don't understand your choice, Please, select one of three available missions",
+  "missionAlreadyCompletePhrase": "You have already complete this mission",
+  "readyToStartMissionPhrase": "Are you ready to start",
+  "severalValuesPhrase": "Sorry, we can't understand your answer. Please, choose one from this list "
 }
