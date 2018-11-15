@@ -2,8 +2,8 @@ package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Slot;
-import com.muffinsoft.alexa.sdk.activities.BaseSessionStateManager;
-import com.muffinsoft.alexa.sdk.activities.SessionStateManager;
+import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
+import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.LaunchRequestHandler;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.Speech;
@@ -32,11 +32,11 @@ public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
     }
 
     @Override
-    public SessionStateManager nextTurn(HandlerInput input) {
+    public StateManager nextTurn(HandlerInput input) {
 
         Map<String, Slot> slots = getSlotsFromInput(input);
 
-        return new BaseSessionStateManager(slots, input.getAttributesManager()) {
+        return new BaseStateManager(slots, input.getAttributesManager()) {
 
             private String buildRoyalGreeting() {
                 return phraseManager.getValueByKey(WELCOME_BACK_PHRASE);
