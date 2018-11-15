@@ -14,6 +14,8 @@ public class PhraseConstants {
 
     public static final String WON_PHRASE = "wonPhrase";
 
+    public static final String TRY_AGAIN_PHRASE = "tryAgainPhrase";
+
     public static final String WON_REPROMPT_PHRASE = "wonRePromptPhrase";
 
     public static final String FAILURE_PHRASE = "failurePhrase";
@@ -21,6 +23,8 @@ public class PhraseConstants {
     public static final String FAILURE_REPROMPT_PHRASE = "failureRePromptPhrase";
 
     public static final String JUST_EARN_PHRASE = "justEarnPhrase";
+
+    public static final String JUST_WEAR_PHRASE = "justWearPhrase";
 
     public static final String SEVERAL_VALUES_PHRASE = "severalValuesPhrase";
 
@@ -41,4 +45,6 @@ public class PhraseConstants {
     public static final String WANT_EXIT_PHRASE = "wantExitPhrase";
 
     public static final String REPEAT_LAST_PHRASE = "repeatLastPhrase";
+
+    public static final String EXIT_PHRASE = "exitPhrase";
 }

@@ -10,6 +10,7 @@
   "readyToStartPhrase": "Ready to start?",
   "readyToStartRePromptPhrase": "Sorry, I don't hear you. Ready to start?",
   "justEarnPhrase": "You've just earn ",
+  "justWearPhrase": "You've hust wear ",
   "usedEquipmentPhrase": "You spent your equipment.",
   "selectMissionPhrase": "Please, select mission",
   "selectMissionUnknownPhrase": "I don't understand your choice, Please, select one of three available missions",
@@ -18,5 +19,7 @@
   "severalValuesPhrase": "Sorry, we can't understand your answer. Please, choose one from this list ",
   "wantStartMissionPhrase": "Do you want to start a new mission?",
   "wantExitPhrase": "Do you want to quit the game?",
-  "repeatLastPhrase": "I don't understand you. Please, repeat last command"
+  "repeatLastPhrase": "I don't understand you. Please, repeat last command",
+  "tryAgainPhrase": "Try again!",
+  "exitPhrase": "We had fun together. Let's do this again soon."
 }

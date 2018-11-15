@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_EARN_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.USED_EQUIPMENT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
 
@@ -39,6 +41,13 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         }
 
         return dialog;
+    }
+
+    protected DialogItem handleTooLongMistake() {
+        this.activityProgress.iterateMistakeCount();
+        this.activityProgress.resetSuccessInRow();
+
+        return getMistakeDialog(TOO_LONG_PHRASE);
     }
 
     protected DialogItem handleMistake() {
@@ -89,6 +98,8 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             logger.debug("Wrong answer was calculated as correct");
 
+            this.activityProgress.iterateSuccessCount();
+
             return getSuccessDialog();
         }
         else {
@@ -100,9 +111,13 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     }
 
     private DialogItem getMistakeDialog() {
+        return this.getMistakeDialog(WRONG_PHRASE);
+    }
+
+    private DialogItem getMistakeDialog(String value) {
         if (this.activityProgress.getMistakesCount() < stripe.getMaxMistakeCount()) {
             logger.debug("Incorrect answer was found, running failure dialog");
-            return getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
+            return getFailureDialog(phraseManager.getValueByKey(value));
         }
         else {
             logger.debug("Last available incorrect answer was found, running lose dialog");
@@ -113,7 +128,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     private void equipIfAvailable() {
         PowerUps nextPowerUp = this.activityProgress.equipIfAvailable();
         if (nextPowerUp != null) {
-            dialogPrefix += " " + phraseManager.getValueByKey(JUST_EARN_PHRASE) + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+            dialogPrefix += " " + phraseManager.getValueByKey(JUST_WEAR_PHRASE) + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
             logger.debug("Was equipped power up: " + nextPowerUp);
         }
     }
@@ -131,7 +146,12 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
             if (nextPowerUp != null) {
                 this.activityProgress.addPowerUp(nextPowerUp);
                 logger.debug("Was earned equipment: " + nextPowerUp);
-                dialogPrefix = phraseManager.getValueByKey(JUST_EARN_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+                if (Objects.equals(this.activityProgress.getActivePowerUp(), nextPowerUp.name())) {
+                    dialogPrefix = phraseManager.getValueByKey(JUST_WEAR_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+                }
+                else {
+                    dialogPrefix = phraseManager.getValueByKey(JUST_EARN_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+                }
                 logger.debug("Was equipped power up: " + nextPowerUp);
             }
             else {

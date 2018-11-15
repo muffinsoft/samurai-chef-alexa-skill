@@ -1,5 +1,7 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -92,4 +94,17 @@ public class UserProgress {
     public void setJustCreated(boolean justCreated) {
         this.justCreated = justCreated;
     }
+
+    @Override
+    @JsonIgnore
+    public String toString() {
+        return "class UserProgress {" +
+                " stripeCount: " + stripeCount + ";" +
+                " starCount: " + starCount + ";" +
+                " lastActivity: " + lastActivity + ";" +
+                " finishedActivities: " + String.join(", ", finishedActivities) + ";" +
+                " finishedMissions: " + String.join(", ", finishedMissions) +
+                "}";
+    }
+
 }

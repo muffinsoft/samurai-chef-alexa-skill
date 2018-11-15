@@ -1,8 +1,6 @@
-package com.muffinsoft.alexa.skills.samuraichef.handlers;
+package com.muffinsoft.alexa.skills.samuraichef.tests.handlers;
 
-import com.amazon.ask.attributes.persistence.PersistenceAdapter;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.exception.PersistenceException;
 import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.RequestEnvelope;
@@ -19,6 +17,8 @@ import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiActionIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.tests.MockPersistenceAdapter;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -63,7 +63,7 @@ class SamuraiActionIntentHandlerTest {
         return handlerInput;
     }
 
-    private Slot createSlotForValue(String value) {
+    Slot createSlotForValue(String value) {
         return Slot.builder()
                 .withValue(value)
                 .withResolutions(Resolutions.builder()
@@ -223,16 +223,4 @@ class SamuraiActionIntentHandlerTest {
         response.isPresent();
     }
 
-    private class MockPersistenceAdapter implements PersistenceAdapter {
-
-        @Override
-        public Optional<Map<String, Object>> getAttributes(RequestEnvelope envelope) throws PersistenceException {
-            return Optional.empty();
-        }
-
-        @Override
-        public void saveAttributes(RequestEnvelope envelope, Map<String, Object> attributes) throws PersistenceException {
-
-        }
-    }
 }

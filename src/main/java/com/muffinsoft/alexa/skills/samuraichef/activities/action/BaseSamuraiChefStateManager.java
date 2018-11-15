@@ -23,6 +23,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -33,11 +34,13 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SEVERAL_VALUES_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TRY_AGAIN_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
@@ -101,6 +104,17 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     @Override
     protected void updatePersistentAttributes() {
+        updateUserProgress();
+        if (stripeIsComplete) {
+            updateStarCountInAllLevels();
+        }
+        if (missionIsComplete) {
+            updateMissionCompleteInAllLevels();
+        }
+        logger.debug("Persistent attributes on the end of handling: " + this.getPersistentAttributes().toString());
+    }
+
+    private void updateUserProgress() {
         try {
             String json = mapper.writeValueAsString(this.userProgress);
             switch (currentMission) {
@@ -114,10 +128,77 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                     getPersistentAttributes().put(USER_HIGH_PROGRESS_DB, json);
                     break;
             }
-            logger.debug("Persistent attributes on the end of handling: " + this.getPersistentAttributes().toString());
         }
         catch (JsonProcessingException e) {
-            throw new IllegalStateException(e.getMessage(), e);
+            throw new IllegalStateException("Exception while saving Persistent Attributes", e);
+        }
+    }
+
+    private void updateMissionCompleteInAllLevels() {
+        if (this.currentMission == UserMission.LOW_MISSION) {
+            updateMissionCompleteInForLevel(USER_MID_PROGRESS_DB);
+            updateMissionCompleteInForLevel(USER_HIGH_PROGRESS_DB);
+        }
+        else if (this.currentMission == UserMission.MEDIUM_MISSION) {
+            updateMissionCompleteInForLevel(USER_LOW_PROGRESS_DB);
+            updateMissionCompleteInForLevel(USER_HIGH_PROGRESS_DB);
+        }
+        else {
+            updateMissionCompleteInForLevel(USER_LOW_PROGRESS_DB);
+            updateMissionCompleteInForLevel(USER_MID_PROGRESS_DB);
+        }
+    }
+
+    private void updateMissionCompleteInForLevel(String value) {
+        try {
+            UserProgress missionUserProgress = null;
+            if (getPersistentAttributes().containsKey(value)) {
+                String jsonInString = String.valueOf(getPersistentAttributes().get(value));
+                LinkedHashMap rawUserProgress = mapper.readValue(jsonInString, LinkedHashMap.class);
+                missionUserProgress = mapper.convertValue(rawUserProgress, UserProgress.class);
+            }
+            if (missionUserProgress == null) {
+                missionUserProgress = new UserProgress();
+            }
+            missionUserProgress.addFinishedMission(this.currentMission.name());
+            getPersistentAttributes().put(value, mapper.writeValueAsString(missionUserProgress));
+        }
+        catch (IOException e) {
+            throw new IllegalStateException("Exception while updating Star Count in Persistent Attributes", e);
+        }
+    }
+
+    private void updateStarCountInAllLevels() {
+        if (this.currentMission == UserMission.LOW_MISSION) {
+            updateStarCountForMission(USER_MID_PROGRESS_DB);
+            updateStarCountForMission(USER_HIGH_PROGRESS_DB);
+        }
+        else if (this.currentMission == UserMission.MEDIUM_MISSION) {
+            updateStarCountForMission(USER_LOW_PROGRESS_DB);
+            updateStarCountForMission(USER_HIGH_PROGRESS_DB);
+        }
+        else {
+            updateStarCountForMission(USER_LOW_PROGRESS_DB);
+            updateStarCountForMission(USER_MID_PROGRESS_DB);
+        }
+    }
+
+    private void updateStarCountForMission(String value) {
+        try {
+            UserProgress missionUserProgress = null;
+            if (getPersistentAttributes().containsKey(value)) {
+                String jsonInString = String.valueOf(getPersistentAttributes().get(value));
+                LinkedHashMap rawUserProgress = mapper.readValue(jsonInString, LinkedHashMap.class);
+                missionUserProgress = mapper.convertValue(rawUserProgress, UserProgress.class);
+            }
+            if (missionUserProgress == null) {
+                missionUserProgress = new UserProgress();
+            }
+            missionUserProgress.iterateStarCount();
+            getPersistentAttributes().put(value, mapper.writeValueAsString(missionUserProgress));
+        }
+        catch (IOException e) {
+            throw new IllegalStateException("Exception while updating Star Count in Persistent Attributes", e);
         }
     }
 
@@ -126,16 +207,20 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.userProgress.setLastActivity(this.currentActivity.name());
 
-        if (isLeaveMission) {
+        if (this.isLeaveMission) {
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(USER_PROGRESS);
+            getSessionAttributes().remove(ACTIVITY_PROGRESS);
+            getSessionAttributes().remove(ACTIVITY);
+            getSessionAttributes().remove(STATE_PHASE);
+            getSessionAttributes().remove(QUESTION_TIME);
         }
         else {
             getSessionAttributes().put(USER_PROGRESS, this.userProgress);
+            getSessionAttributes().put(ACTIVITY_PROGRESS, this.activityProgress);
+            getSessionAttributes().put(STATE_PHASE, this.statePhase);
+            getSessionAttributes().put(ACTIVITY, this.currentActivity);
         }
-        getSessionAttributes().put(ACTIVITY_PROGRESS, this.activityProgress);
-        getSessionAttributes().put(STATE_PHASE, this.statePhase);
-        getSessionAttributes().put(ACTIVITY, this.currentActivity);
 
         logger.debug("Session attributes on the end of handling: " + this.getSessionAttributes().toString());
     }
@@ -455,7 +540,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     }
 
     DialogItem getRePromptSuccessDialog() {
-        return DialogItem.builder().withResponse(ofText(this.activityProgress.getPreviousIngredient())).withSlotName(actionSlotName).build();
+        return DialogItem.builder()
+                .withResponse(ofText(phraseManager.getValueByKey(TRY_AGAIN_PHRASE) + " " + this.activityProgress.getPreviousIngredient()))
+                .withSlotName(actionSlotName)
+                .build();
     }
 
     DialogItem getSuccessDialog() {

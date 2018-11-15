@@ -59,9 +59,11 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
             UserProgress currentUserProgress = getCurrentUserProgress(input);
 
+            logger.debug(currentUserProgress);
+
             Activities currentActivity;
 
-            if (currentUserProgress.isJustCreated()) {
+            if (currentUserProgress.isJustCreated() || currentUserProgress.getLastActivity() == null) {
                 currentActivity = getCurrentActivity(input);
             }
             else {

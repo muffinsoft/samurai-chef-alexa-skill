@@ -25,14 +25,14 @@ public class SushiSliceStateManager extends BaseActivePhaseSamuraiChefStateManag
 
         long answerTime = System.currentTimeMillis();
 
-        long answerLimit = this.statePhase == PHASE_1 ? this.stripe.getTimeLimitPhaseOneInMillis() : this.stripe.getTimeLimitPhaseTwoInMillis();
+        long answerLimit = this.stripe.getTimeLimitPhaseOneInMillis();
 
         if (questionTime == null || answerTime - questionTime < answerLimit) {
 
             return super.handleSuccess();
         }
         else {
-            return handleMistake();
+            return handleTooLongMistake();
         }
     }
 
