@@ -17,4 +17,9 @@ public class JuiceWarriorCorrectAnswerStateManager extends JuiceWarriorStateMana
     protected DialogItem handleMistake() {
         return super.handleMistakeWithCorrectAnswer();
     }
+
+    @Override
+    protected DialogItem handleTooLongMistake() {
+        return super.handleMistakeWithCorrectAnswer();
+    }
 }

@@ -17,4 +17,9 @@ public class JuiceWarriorSecondChanceStateManager extends JuiceWarriorStateManag
     protected DialogItem handleMistake() {
         return super.handleMistakeWithSecondChance();
     }
+
+    @Override
+    protected DialogItem handleTooLongMistake() {
+        return super.handleMistakeWithSecondChance();
+    }
 }

@@ -17,4 +17,9 @@ public class SushiSliceSecondChanceStateManager extends SushiSliceStateManager {
     protected DialogItem handleMistake() {
         return super.handleMistakeWithSecondChance();
     }
+
+    @Override
+    protected DialogItem handleTooLongMistake() {
+        return super.handleMistakeWithSecondChance();
+    }
 }
