@@ -26,7 +26,7 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
     @Override
     protected DialogItem handleActivePhaseState() {
 
-        logger.debug(userId + " - Handling " + this.statePhase);
+        logger.debug("Handling " + this.statePhase);
 
         DialogItem dialog;
 
@@ -58,15 +58,15 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
 
         if (this.activityProgress.isPowerUpEquipped()) {
 
-            logger.debug(userId + " - Was removed power up: " + this.activityProgress.getActivePowerUp());
+            logger.debug("Was removed power up: " + this.activityProgress.getActivePowerUp());
 
-            this.activityProgress.removePowerUp();
+            String removedPowerUp = this.activityProgress.removePowerUp();
 
-            this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE);
+            this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE) + " " + aliasManager.getValueByKey(removedPowerUp) + "! ";
 
             equipIfAvailable();
 
-            logger.debug(userId + " - User have another chance to chose right answer");
+            logger.debug("User have another chance to chose right answer");
 
             return getRePromptSuccessDialog();
         }
@@ -82,15 +82,15 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
 
         if (this.activityProgress.isPowerUpEquipped()) {
 
-            logger.debug(userId + " - Was removed power up: " + this.activityProgress.getActivePowerUp());
+            logger.debug("Was removed power up: " + this.activityProgress.getActivePowerUp());
 
-            this.activityProgress.removePowerUp();
+            String removedPowerUp = this.activityProgress.removePowerUp();
 
-            this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE);
+            this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE) + " " + aliasManager.getValueByKey(removedPowerUp) + "! ";
 
             equipIfAvailable();
 
-            logger.debug(userId + " - Wrong answer was calculated as correct");
+            logger.debug("Wrong answer was calculated as correct");
 
             return getSuccessDialog();
         }
@@ -104,11 +104,11 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
 
     private DialogItem getMistakeDialog() {
         if (this.activityProgress.getMistakesCount() < stripe.getMaxMistakeCount()) {
-            logger.debug(userId + " - Incorrect answer was found, running failure dialog");
+            logger.debug("Incorrect answer was found, running failure dialog");
             return getFailureDialog(phraseManager.getValueByKey(WRONG_PHRASE));
         }
         else {
-            logger.debug(userId + " - Last available incorrect answer was found, running lose dialog");
+            logger.debug("Last available incorrect answer was found, running lose dialog");
             return getLoseRoundDialog();
         }
     }
@@ -117,7 +117,7 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
         PowerUps nextPowerUp = this.activityProgress.equipIfAvailable();
         if (nextPowerUp != null) {
             dialogPrefix += " " + phraseManager.getValueByKey(JUST_EARN_PHRASE) + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
-            logger.debug(userId + " - Was equipped power up: " + nextPowerUp);
+            logger.debug("Was equipped power up: " + nextPowerUp);
         }
     }
 
@@ -128,15 +128,20 @@ public abstract class BaseActivePhaseSamuraiChefSessionStateManager extends Base
 
         if (this.activityProgress.getSuccessInRow() % missionManager.getSuccessInRowForPowerUp() == 0) {
 
+            logger.debug("Suitable case for earning new equipment. Lets check if user have enough space ...");
+
             PowerUps nextPowerUp = PowerUpFabric.getNext(this.activityProgress.getExistingPowerUps());
             if (nextPowerUp != null) {
                 this.activityProgress.addPowerUp(nextPowerUp);
-                logger.debug(userId + " - Was earned power up: " + nextPowerUp);
+                logger.debug("Was earned equipment: " + nextPowerUp);
                 dialogPrefix = phraseManager.getValueByKey(JUST_EARN_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
-                logger.debug(userId + " - Was equipped power up: " + nextPowerUp);
+                logger.debug("Was equipped power up: " + nextPowerUp);
+            }
+            else {
+                logger.debug("User have no free space for new equipment");
             }
         }
-        logger.debug(userId + " - Correct answer was found, running success dialog");
+        logger.debug("Correct answer was found, running success dialog");
         return getSuccessDialog();
     }
 }

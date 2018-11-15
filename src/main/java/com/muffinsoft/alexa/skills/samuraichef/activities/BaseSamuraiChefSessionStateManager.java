@@ -74,6 +74,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
     private boolean gameIsComplete = false;
     private boolean missionIsComplete = false;
     private boolean stripeIsComplete = false;
+    private boolean isLeaveMission = false;
 
     BaseSamuraiChefSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager, String userId) {
         super(slots, attributesManager);
@@ -97,7 +98,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
         LinkedHashMap rawActivityProgress = (LinkedHashMap) sessionAttributes.get(ACTIVITY_PROGRESS);
         activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
 
-        logger.debug(userId + " - Session attributes on the start of handling: " + this.sessionAttributes.toString());
+        logger.debug("Session attributes on the start of handling: " + this.sessionAttributes.toString());
     }
 
     @Override
@@ -120,7 +121,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
                     persistentAttributes.put(USER_HIGH_PROGRESS_DB, json);
                     break;
             }
-            logger.debug(userId + " - Persistent attributes on the end of handling: " + this.persistentAttributes.toString());
+            logger.debug("Persistent attributes on the end of handling: " + this.persistentAttributes.toString());
         }
         catch (JsonProcessingException e) {
             throw new IllegalStateException(e.getMessage(), e);
@@ -132,12 +133,18 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         this.userProgress.setLastActivity(this.currentActivity.name());
 
-        sessionAttributes.put(USER_PROGRESS, this.userProgress);
+        if (isLeaveMission) {
+            sessionAttributes.remove(CURRENT_MISSION);
+            sessionAttributes.remove(USER_PROGRESS);
+        }
+        else {
+            sessionAttributes.put(USER_PROGRESS, this.userProgress);
+        }
         sessionAttributes.put(ACTIVITY_PROGRESS, this.activityProgress);
         sessionAttributes.put(STATE_PHASE, this.statePhase);
         sessionAttributes.put(ACTIVITY, this.currentActivity);
 
-        logger.debug(userId + " - Session attributes on the end of handling: " + this.sessionAttributes.toString());
+        logger.debug("Session attributes on the end of handling: " + this.sessionAttributes.toString());
     }
 
     @Override
@@ -203,7 +210,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private DialogItem handleMissionIntroState(UserMission currentMission) {
 
-        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + STRIPE_INTRO);
+        logger.debug("Handling " + this.statePhase + ". Moving to " + STRIPE_INTRO);
 
         this.statePhase = STRIPE_INTRO;
 
@@ -214,7 +221,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private DialogItem handleStripeIntroStripe(UserMission currentMission, int number) {
 
-        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + ACTIVITY_INTRO);
+        logger.debug("Handling " + this.statePhase + ". Moving to " + ACTIVITY_INTRO);
 
         this.statePhase = ACTIVITY_INTRO;
 
@@ -236,14 +243,14 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         if (speech.isShouldRunDemo()) {
 
-            logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + DEMO);
+            logger.debug("Handling " + this.statePhase + ". Moving to " + DEMO);
 
             this.statePhase = DEMO;
             dialog = appendShouldRunDemo(dialog);
         }
         else {
 
-            logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + READY_PHASE);
+            logger.debug("Handling " + this.statePhase + ". Moving to " + READY_PHASE);
 
             this.statePhase = READY_PHASE;
             dialog = appendReadyToStart(dialog);
@@ -254,7 +261,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private DialogItem handleDemoState() {
 
-        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + READY_PHASE);
+        logger.debug("Handling " + this.statePhase + ". Moving to " + READY_PHASE);
 
         this.statePhase = READY_PHASE;
 
@@ -289,7 +296,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         String speechText = nextIngredient();
 
-        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + PHASE_1);
+        logger.debug("Handling " + this.statePhase + ". Moving to " + PHASE_1);
 
         this.statePhase = PHASE_1;
 
@@ -306,7 +313,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         if (stripeIsComplete) {
 
-            logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + STRIPE_OUTRO);
+            logger.debug("Handling " + this.statePhase + ". Moving to " + STRIPE_OUTRO);
 
             this.statePhase = STRIPE_OUTRO;
             String dialogPhrase = missionManager.getStripeOutroByMission(currentMission, number);
@@ -350,7 +357,9 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
     private DialogItem getSelectMissionDialog() {
 
-        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + MISSION_INTO);
+        logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTO);
+
+        isLeaveMission = true;
 
         this.statePhase = MISSION_INTO;
 
@@ -367,7 +376,7 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         if (missionIsComplete) {
 
-            logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + MISSION_OUTRO);
+            logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_OUTRO);
 
             this.statePhase = MISSION_OUTRO;
             dialog = missionManager.getMissionOutro(currentMission);
@@ -383,9 +392,9 @@ abstract class BaseSamuraiChefSessionStateManager extends BaseSessionStateManage
 
         // change mission dialog
 
-        sessionAttributes.remove(CURRENT_MISSION);
+        isLeaveMission = true;
 
-        logger.debug(userId + " - Handling " + this.statePhase + ". Moving to " + MISSION_INTO);
+        logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTO);
 
         this.statePhase = MISSION_INTO;
 

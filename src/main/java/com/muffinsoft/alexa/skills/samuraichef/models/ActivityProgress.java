@@ -108,9 +108,12 @@ public class ActivityProgress {
         return this.activePowerUp != null && !this.activePowerUp.isEmpty();
     }
 
-    public void removePowerUp() {
+    @JsonIgnore
+    public String removePowerUp() {
+        String currentlyEquippedPowerUp = this.activePowerUp;
         this.existingPowerUps.remove(this.activePowerUp);
         this.activePowerUp = null;
+        return currentlyEquippedPowerUp;
     }
 
     @JsonIgnore

@@ -66,7 +66,7 @@ public class SelectLevelStateManager extends BaseSessionStateManager {
     @Override
     public DialogItem nextResponse() {
 
-        logger.debug(userId + " - Starting handling user reply '" + this.userReply + "' ...");
+        logger.debug("Starting handling user reply '" + this.userReply + "' ...");
 
         String dialog;
         if (UserReplyComparator.compare(userReply, UserReplies.YES)) {
@@ -107,7 +107,7 @@ public class SelectLevelStateManager extends BaseSessionStateManager {
         }
 
         this.sessionAttributes.put(CURRENT_MISSION, mission);
-        logger.info(userId + " - user will be redirected to " + mission.name());
+        logger.info("user will be redirected to " + mission.name());
 
         return phraseManager.getValueByKey(READY_TO_START_MISSION_PHRASE) + " " + aliasManager.getValueByKey(mission.name()) + "?";
 

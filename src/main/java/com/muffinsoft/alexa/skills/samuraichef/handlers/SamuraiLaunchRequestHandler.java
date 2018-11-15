@@ -46,13 +46,13 @@ public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
                 input.getAttributesManager().getPersistentAttributes().containsKey(USER_HIGH_PROGRESS_DB)) {
             speechText = buildRoyalGreeting();
 
-            logger.info(userId + " - Existing user was started new Game Session. Start Royal Greeting");
+            logger.info("Existing user was started new Game Session. Start Royal Greeting");
 
         }
         else {
             speechText = this.getPhrase();
 
-            logger.info(userId + " - New user was started new Game Session.");
+            logger.info("New user was started new Game Session.");
         }
 
         return input.getResponseBuilder()

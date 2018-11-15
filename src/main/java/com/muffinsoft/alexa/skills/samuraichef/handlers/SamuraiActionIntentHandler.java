@@ -100,12 +100,12 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
 
             SessionStateManager stateManager = stateManagerFabric.createFromRequest(currentActivity, currentEquipment, slots, attributesManager, userId);
 
-            logger.info(userId + " - Going to handle activity " + currentActivity + " with equipment " + currentEquipment);
+            logger.info("Going to handle activity " + currentActivity + " with equipment " + currentEquipment);
 
             return stateManager;
         }
         else {
-            logger.info(userId + " - Going to handle mission selection ");
+            logger.info("Going to handle mission selection ");
             return new SelectLevelStateManager(slots, attributesManager, aliasManager, phraseManager, userId);
         }
     }
