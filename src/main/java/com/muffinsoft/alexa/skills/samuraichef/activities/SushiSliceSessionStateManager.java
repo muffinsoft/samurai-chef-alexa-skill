@@ -10,7 +10,6 @@ import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 
 import java.util.Map;
 
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
@@ -36,7 +35,7 @@ public class SushiSliceSessionStateManager extends BaseActivePhaseSamuraiChefSes
             return super.handleSuccess();
         }
         else {
-            return getFailureDialog(phraseManager.getValueByKey(TOO_LONG_PHRASE));
+            return handleMistake();
         }
     }
 

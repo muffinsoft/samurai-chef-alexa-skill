@@ -35,7 +35,7 @@ public class JuiceWarriorSessionStateManager extends BaseActivePhaseSamuraiChefS
             return super.handleSuccess();
         }
         else {
-            return getFailureDialog(phraseManager.getValueByKey(TOO_LONG_PHRASE));
+            return this.handleMistake();
         }
     }
 
