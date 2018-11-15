@@ -1,12 +1,9 @@
-package com.muffinsoft.alexa.skills.samuraichef.activities;
+package com.muffinsoft.alexa.skills.samuraichef.activities.action;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 
 import java.util.Map;
 
@@ -14,12 +11,12 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
 
-public class SushiSliceSessionStateManager extends BaseActivePhaseSamuraiChefSessionStateManager {
+public class SushiSliceStateManager extends BaseActivePhaseSamuraiChefStateManager {
 
     protected Long questionTime;
 
-    public SushiSliceSessionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager, String userId) {
-        super(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+    public SushiSliceStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
+        super(slots, attributesManager, configContainer);
         currentActivity = SUSHI_SLICE;
     }
 
@@ -48,12 +45,12 @@ public class SushiSliceSessionStateManager extends BaseActivePhaseSamuraiChefSes
     @Override
     protected void populateActivityVariables() {
         super.populateActivityVariables();
-        questionTime = (Long) sessionAttributes.get(QUESTION_TIME);
+        questionTime = (Long) getSessionAttributes().get(QUESTION_TIME);
     }
 
     @Override
     protected void updateSessionAttributes() {
         super.updateSessionAttributes();
-        sessionAttributes.put(QUESTION_TIME, System.currentTimeMillis());
+        getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
     }
 }

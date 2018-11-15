@@ -24,12 +24,12 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
 
         return Skills.standard()
                 .addRequestHandlers(
-                        new SamuraiActionIntentHandler(IoC.provideCardManager(), IoC.provideProgressManager(), IoC.provideAliasManager(), IoC.providePhraseManager(), IoC.provideSessionStateFabric()),
-                        new SamuraiCancelIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
-                        new SamuraiFallbackIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
-                        new SamuraiHelpIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
-                        new SamuraiLaunchRequestHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
-                        new SamuraiStopIntentHandler(IoC.provideCardManager(), IoC.providePhraseManager()),
+                        new SamuraiActionIntentHandler(IoC.provideConfigurationContainer(), IoC.provideSessionStateFabric()),
+                        new SamuraiCancelIntentHandler(IoC.provideConfigurationContainer()),
+                        new SamuraiFallbackIntentHandler(IoC.provideConfigurationContainer()),
+                        new SamuraiHelpIntentHandler(IoC.provideConfigurationContainer()),
+                        new SamuraiLaunchRequestHandler(IoC.provideConfigurationContainer()),
+                        new SamuraiStopIntentHandler(IoC.provideConfigurationContainer()),
                         new SamuraiSessionEndedRequestHandler())
                 .addExceptionHandler(new ResponseExceptionHandler())
                 .withSkillId(amazonSkillId)

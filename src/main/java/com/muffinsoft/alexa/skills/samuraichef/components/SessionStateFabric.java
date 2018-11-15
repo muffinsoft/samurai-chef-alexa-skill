@@ -3,116 +3,108 @@ package com.muffinsoft.alexa.skills.samuraichef.components;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.SessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.FoodTasterCorrectAnswerSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.FoodTasterSecondChanceSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.FoodTasterSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.JuiceWarriorCorrectAnswerSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.JuiceWarriorSecondChanceSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.JuiceWarriorSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceCorrectAnswerSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceSecondChanceSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.SushiSliceSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateCorrectAnswerSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateSecondChanceSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.WordBoardKarateSessionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.sdk.activities.StateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.FoodTasterCorrectAnswerStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.FoodTasterSecondChanceStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.FoodTasterStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.JuiceWarriorCorrectAnswerStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.JuiceWarriorSecondChanceStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.JuiceWarriorStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.SushiSliceCorrectAnswerStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.SushiSliceSecondChanceStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.SushiSliceStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.WordBoardKarateCorrectAnswerStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.WordBoardKarateSecondChanceStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.action.WordBoardKarateStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
+import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 
 import java.util.Map;
 
 public class SessionStateFabric {
 
-    private final PhraseManager phraseManager;
-    private final ActivityManager activityManager;
-    private final AliasManager aliasManager;
-    private final MissionManager missionManager;
+    private final ConfigContainer configContainer;
 
-    public SessionStateFabric(PhraseManager phraseManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {
-        this.phraseManager = phraseManager;
-        this.activityManager = activityManager;
-        this.aliasManager = aliasManager;
-        this.missionManager = missionManager;
+    public SessionStateFabric(ConfigContainer configContainer) {
+        this.configContainer = configContainer;
     }
 
-    public SessionStateManager createFromRequest(Activities currentActivity, PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager, String userId) {
+    public StateManager createFromRequest(Activities currentActivity, PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
 
-        SessionStateManager stateManager;
+        StateManager stateManager;
 
         switch (currentActivity) {
             case SUSHI_SLICE:
-                stateManager = createSushiSliceSessionStateManager(currentEquipment, slots, attributesManager, userId);
+                stateManager = createSushiSliceSessionStateManager(currentEquipment, slots, attributesManager);
                 break;
             case JUICE_WARRIOR:
-                stateManager = createJuiceWarriorSessionStateManager(currentEquipment, slots, attributesManager, userId);
+                stateManager = createJuiceWarriorSessionStateManager(currentEquipment, slots, attributesManager);
                 break;
             case WORD_BOARD_KARATE:
-                stateManager = createWordBoardKarateSessionStateManager(currentEquipment, slots, attributesManager, userId);
+                stateManager = createWordBoardKarateSessionStateManager(currentEquipment, slots, attributesManager);
                 break;
             case FOOD_TASTER:
-                stateManager = createFoodTasterSessionStateManager(currentEquipment, slots, attributesManager, userId);
+                stateManager = createFoodTasterSessionStateManager(currentEquipment, slots, attributesManager);
                 break;
             default:
-                throw new IllegalStateException("Exception while handling activity: " + currentActivity + " for user " + userId);
+                throw new IllegalStateException("Exception while handling activity: " + currentActivity);
         }
 
         return stateManager;
     }
 
-    private FoodTasterSessionStateManager createFoodTasterSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager, String userId) {
+    private FoodTasterStateManager createFoodTasterSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new FoodTasterSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new FoodTasterStateManager(slots, attributesManager, configContainer);
             case CORRECT_ANSWER_SLOT:
-                return new FoodTasterCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new FoodTasterCorrectAnswerStateManager(slots, attributesManager, configContainer);
             case SECOND_CHANCE_SLOT:
-                return new FoodTasterSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new FoodTasterSecondChanceStateManager(slots, attributesManager, configContainer);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
     }
 
-    private WordBoardKarateSessionStateManager createWordBoardKarateSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager, String userId) {
+    private WordBoardKarateStateManager createWordBoardKarateSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new WordBoardKarateSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new WordBoardKarateStateManager(slots, attributesManager, configContainer);
             case CORRECT_ANSWER_SLOT:
-                return new WordBoardKarateCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new WordBoardKarateCorrectAnswerStateManager(slots, attributesManager, configContainer);
             case SECOND_CHANCE_SLOT:
-                return new WordBoardKarateSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new WordBoardKarateSecondChanceStateManager(slots, attributesManager, configContainer);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
     }
 
-    private SushiSliceSessionStateManager createSushiSliceSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager, String userId) {
+    private SushiSliceStateManager createSushiSliceSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new SushiSliceSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new SushiSliceStateManager(slots, attributesManager, configContainer);
             case CORRECT_ANSWER_SLOT:
-                return new SushiSliceCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new SushiSliceCorrectAnswerStateManager(slots, attributesManager, configContainer);
             case SECOND_CHANCE_SLOT:
-                return new SushiSliceSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new SushiSliceSecondChanceStateManager(slots, attributesManager, configContainer);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
     }
 
-    private JuiceWarriorSessionStateManager createJuiceWarriorSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager, String userId) {
+    private JuiceWarriorStateManager createJuiceWarriorSessionStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new JuiceWarriorSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new JuiceWarriorStateManager(slots, attributesManager, configContainer);
             case CORRECT_ANSWER_SLOT:
-                return new JuiceWarriorCorrectAnswerSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new JuiceWarriorCorrectAnswerStateManager(slots, attributesManager, configContainer);
             case SECOND_CHANCE_SLOT:
-                return new JuiceWarriorSecondChanceSessionStateManager(slots, attributesManager, phraseManager, activityManager, aliasManager, missionManager, userId);
+                return new JuiceWarriorSecondChanceStateManager(slots, attributesManager, configContainer);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }

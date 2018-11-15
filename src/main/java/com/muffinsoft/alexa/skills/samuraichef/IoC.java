@@ -7,6 +7,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.UserReplyManager;
+import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 
 public class IoC {
 
@@ -17,6 +18,7 @@ public class IoC {
     private static final AliasManager aliasManager;
     private static final MissionManager missionManager;
     private static final SessionStateFabric sessionStateFabric;
+    private static final ConfigContainer configContainer;
 
     static {
         phraseManager = new PhraseManager("phrases/en-US.json");
@@ -25,31 +27,16 @@ public class IoC {
         aliasManager = new AliasManager("settings/aliases.json");
         missionManager = new MissionManager("settings/progress.json");
         activityManager = new ActivityManager();
-        sessionStateFabric = new SessionStateFabric(phraseManager, activityManager, aliasManager, missionManager);
-    }
-
-    public static PhraseManager providePhraseManager() {
-        return phraseManager;
-    }
-
-    public static ActivityManager provideIngredientsManager() {
-        return activityManager;
-    }
-
-    public static CardManager provideCardManager() {
-        return cardManager;
+        configContainer = new ConfigContainer(phraseManager, cardManager, userReplyManager, activityManager, aliasManager, missionManager);
+        sessionStateFabric = new SessionStateFabric(configContainer);
     }
 
     public static UserReplyManager provideUserReplyManager() {
         return userReplyManager;
     }
 
-    public static AliasManager provideAliasManager() {
-        return aliasManager;
-    }
-
-    public static MissionManager provideProgressManager() {
-        return missionManager;
+    public static ConfigContainer provideConfigurationContainer() {
+        return configContainer;
     }
 
     public static SessionStateFabric provideSessionStateFabric() {

@@ -1,18 +1,13 @@
 package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
+import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.muffinsoft.alexa.sdk.activities.SessionStateManager;
 import com.muffinsoft.alexa.sdk.handlers.SessionEndedRequestHandler;
 
 public class SamuraiSessionEndedRequestHandler extends SessionEndedRequestHandler {
 
     @Override
-    public String getPhrase() {
-        //TODO: implement
-        return null;
-    }
-
-    @Override
-    public String getSimpleCard() {
-        //TODO: implement
+    public SessionStateManager nextTurn(HandlerInput handlerInput) {
         return null;
     }
 }

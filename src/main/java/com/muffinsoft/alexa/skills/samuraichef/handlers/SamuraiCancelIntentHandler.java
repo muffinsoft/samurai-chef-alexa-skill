@@ -1,29 +1,59 @@
 package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
+import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
+import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.CancelIntentHandler;
-import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
+import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.Speech;
+import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
+import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 
-import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_EXIT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_START_MISSION_PHRASE;
 
 public class SamuraiCancelIntentHandler extends CancelIntentHandler {
 
     private final PhraseManager phraseManager;
-    private final CardManager cardManager;
 
-    public SamuraiCancelIntentHandler(CardManager cardManager, PhraseManager phraseManager) {
+    public SamuraiCancelIntentHandler(ConfigContainer configurationContainer) {
         super();
-        this.phraseManager = phraseManager;
-        this.cardManager = cardManager;
+        this.phraseManager = configurationContainer.getPhraseManager();
     }
 
     @Override
-    public String getPhrase() {
-        return "Cancel last action";
-    }
+    public StateManager nextTurn(HandlerInput handlerInput) {
+        return new BaseStateManager(getSlotsFromInput(handlerInput), handlerInput.getAttributesManager()) {
+            @Override
+            public DialogItem nextResponse() {
 
-    @Override
-    public String getSimpleCard() {
-        return cardManager.getValueByKey(WELCOME_CARD);
+                logger.debug("Available session attributes: " + getSessionAttributes());
+
+                logger.debug("User reply: " + getUserReply());
+
+                String dialog;
+
+                if (getUserReply() == null) {
+                    dialog = phraseManager.getValueByKey(WANT_START_MISSION_PHRASE);
+                }
+                else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
+                    dialog = phraseManager.getValueByKey(SELECT_MISSION_PHRASE);
+                }
+                else if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
+                    dialog = phraseManager.getValueByKey(WANT_EXIT_PHRASE);
+                }
+                else {
+                    dialog = phraseManager.getValueByKey(REPEAT_LAST_PHRASE);
+                }
+
+                DialogItem.Builder builder = DialogItem.builder().withResponse(Speech.ofText(dialog));
+
+                return builder.build();
+            }
+        };
     }
 }

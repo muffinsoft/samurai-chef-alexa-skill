@@ -1,5 +1,7 @@
 package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
+import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.muffinsoft.alexa.sdk.activities.SessionStateManager;
 import com.muffinsoft.alexa.sdk.handlers.NavigateHomeIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
@@ -16,12 +18,7 @@ public class SamuraiNavigationHomeIntentHandler extends NavigateHomeIntentHandle
     }
 
     @Override
-    public String getPhrase() {
-        return null;
-    }
-
-    @Override
-    public String getSimpleCard() {
+    public SessionStateManager nextTurn(HandlerInput handlerInput) {
         return null;
     }
 }

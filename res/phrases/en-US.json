@@ -15,5 +15,8 @@
   "selectMissionUnknownPhrase": "I don't understand your choice, Please, select one of three available missions",
   "missionAlreadyCompletePhrase": "You have already complete this mission",
   "readyToStartMissionPhrase": "Are you ready to start",
-  "severalValuesPhrase": "Sorry, we can't understand your answer. Please, choose one from this list "
+  "severalValuesPhrase": "Sorry, we can't understand your answer. Please, choose one from this list ",
+  "wantStartMissionPhrase": "Do you want to start a new mission?",
+  "wantExitPhrase": "Do you want to quit the game?",
+  "repeatLastPhrase": "I don't understand you. Please, repeat last command"
 }

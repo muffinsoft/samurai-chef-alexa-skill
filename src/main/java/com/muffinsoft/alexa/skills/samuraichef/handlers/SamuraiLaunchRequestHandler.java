@@ -1,14 +1,17 @@
 package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.Response;
+import com.amazon.ask.model.Slot;
+import com.muffinsoft.alexa.sdk.activities.BaseSessionStateManager;
+import com.muffinsoft.alexa.sdk.activities.SessionStateManager;
 import com.muffinsoft.alexa.sdk.handlers.LaunchRequestHandler;
+import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 
-import java.util.Optional;
+import java.util.Map;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WELCOME_BACK_PHRASE;
@@ -19,61 +22,53 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 
 public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
 
-    private static final Logger logger = LogManager.getLogger(SamuraiLaunchRequestHandler.class);
-
     private final PhraseManager phraseManager;
     private final CardManager cardManager;
 
-    public SamuraiLaunchRequestHandler(CardManager cardManager, PhraseManager phraseManager) {
+    public SamuraiLaunchRequestHandler(ConfigContainer configContainer) {
         super();
-        this.phraseManager = phraseManager;
-        this.cardManager = cardManager;
+        this.phraseManager = configContainer.getPhraseManager();
+        this.cardManager = configContainer.getCardManager();
     }
 
     @Override
-    public Optional<Response> handle(HandlerInput input) {
+    public SessionStateManager nextTurn(HandlerInput input) {
 
-        String userId = input.getRequestEnvelope().getSession().getUser().getUserId();
+        Map<String, Slot> slots = getSlotsFromInput(input);
 
-        String simpleCard = this.getSimpleCard();
+        return new BaseSessionStateManager(slots, input.getAttributesManager()) {
 
-        String speechText;
+            private String buildRoyalGreeting() {
+                return phraseManager.getValueByKey(WELCOME_BACK_PHRASE);
+            }
 
-        if (input.getAttributesManager().getPersistentAttributes().containsKey(USER_LOW_PROGRESS_DB)
-                ||
-                input.getAttributesManager().getPersistentAttributes().containsKey(USER_MID_PROGRESS_DB)
-                ||
-                input.getAttributesManager().getPersistentAttributes().containsKey(USER_HIGH_PROGRESS_DB)) {
-            speechText = buildRoyalGreeting();
+            @Override
+            public DialogItem nextResponse() {
 
-            logger.info("Existing user was started new Game Session. Start Royal Greeting");
+                String speechText;
 
-        }
-        else {
-            speechText = this.getPhrase();
+                if (getPersistentAttributes().containsKey(USER_LOW_PROGRESS_DB)
+                        ||
+                        getPersistentAttributes().containsKey(USER_MID_PROGRESS_DB)
+                        ||
+                        getPersistentAttributes().containsKey(USER_HIGH_PROGRESS_DB)) {
+                    speechText = buildRoyalGreeting();
 
-            logger.info("New user was started new Game Session.");
-        }
+                    logger.info("Existing user was started new Game Session. Start Royal Greeting");
 
-        return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard(simpleCard, speechText)
-                .withReprompt(speechText)
-                .build();
+                }
+                else {
+                    speechText = phraseManager.getValueByKey(WELCOME_PHRASE);
+
+                    logger.info("New user was started new Game Session.");
+                }
+
+                return DialogItem.builder()
+                        .withResponse(Speech.ofText(speechText))
+                        .withReprompt(speechText)
+                        .withCardTitle(cardManager.getValueByKey(WELCOME_CARD))
+                        .build();
+            }
+        };
     }
-
-    private String buildRoyalGreeting() {
-        return phraseManager.getValueByKey(WELCOME_BACK_PHRASE);
-    }
-
-    @Override
-    public String getPhrase() {
-        return phraseManager.getValueByKey(WELCOME_PHRASE);
-    }
-
-    @Override
-    public String getSimpleCard() {
-        return cardManager.getValueByKey(WELCOME_CARD);
-    }
-
 }

@@ -35,4 +35,10 @@ public class PhraseConstants {
     public static final String MISSION_ALREADY_COMPLETE_PHRASE = "missionAlreadyCompletePhrase";
 
     public static final String READY_TO_START_REPROMPT_PHRASE = "readyToStartRePromptPhrase";
+
+    public static final String WANT_START_MISSION_PHRASE = "wantStartMissionPhrase";
+
+    public static final String WANT_EXIT_PHRASE = "wantExitPhrase";
+
+    public static final String REPEAT_LAST_PHRASE = "repeatLastPhrase";
 }
