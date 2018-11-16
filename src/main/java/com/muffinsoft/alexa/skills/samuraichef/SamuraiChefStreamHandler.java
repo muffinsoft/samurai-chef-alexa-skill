@@ -9,6 +9,7 @@ import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiCancelIntentHandl
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiFallbackIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiHelpIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiLaunchRequestHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiResetIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiSessionEndedRequestHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiStopIntentHandler;
 
@@ -30,6 +31,7 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
                         new SamuraiHelpIntentHandler(IoC.provideConfigurationContainer()),
                         new SamuraiLaunchRequestHandler(IoC.provideConfigurationContainer()),
                         new SamuraiStopIntentHandler(IoC.provideConfigurationContainer()),
+                        new SamuraiResetIntentHandler(IoC.provideConfigurationContainer()),
                         new SamuraiSessionEndedRequestHandler())
                 .addExceptionHandler(new ResponseExceptionHandler())
                 .withSkillId(amazonSkillId)

@@ -1,20 +1,19 @@
 package com.muffinsoft.alexa.skills.samuraichef.enums;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum Activities {
 
-    SUSHI_SLICE("sushiSlice"),
-    JUICE_WARRIOR("juiceWarrior"),
-    WORD_BOARD_KARATE("wordBoardKarate"),
-    FOOD_TASTER("foodTaster");
+    SUSHI_SLICE,
 
-    private final String title;
+    JUICE_WARRIOR,
 
+    WORD_BOARD_KARATE,
 
-    Activities(String title) {
-        this.title = title;
-    }
+    FOOD_TASTER;
 
-    public String getTitle() {
-        return title;
+    public static List<Activities> getGameActivities() {
+        return Arrays.asList(SUSHI_SLICE, JUICE_WARRIOR, WORD_BOARD_KARATE, FOOD_TASTER);
     }
 }

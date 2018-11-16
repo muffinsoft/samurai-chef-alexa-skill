@@ -1,6 +1,7 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,18 +9,45 @@ import java.util.Set;
 
 public class UserProgress {
 
+    private String mission;
     private Set<String> finishedActivities = new HashSet<>();
     private Set<String> finishedMissions = new HashSet<>();
     private int stripeCount = 0;
     private int starCount = 0;
-    private String lastActivity;
+    private String currentActivity;
+    private String previousActivity;
     private boolean justCreated = false;
-
-    public UserProgress() {
-    }
 
     public UserProgress(boolean isNew) {
         this.justCreated = isNew;
+    }
+
+    public UserProgress(UserMission mission) {
+        this.mission = mission.name();
+        this.justCreated = true;
+    }
+
+    public UserProgress(UserMission mission, boolean isNew) {
+        this.justCreated = isNew;
+        this.mission = mission.name();
+    }
+
+    public void resetMissionProgress() {
+        this.finishedActivities = new HashSet<>();
+        this.starCount = this.starCount - this.stripeCount;
+        this.stripeCount = 0;
+        this.currentActivity = null;
+        this.previousActivity = null;
+        this.justCreated = false;
+    }
+
+
+    public String getMission() {
+        return mission;
+    }
+
+    public void setMission(String mission) {
+        this.mission = mission;
     }
 
     public Set<String> getFinishedMissions() {
@@ -76,15 +104,24 @@ public class UserProgress {
 
     public void addFinishedActivities(String name) {
         this.justCreated = false;
+        this.previousActivity = name;
         this.finishedActivities.add(name);
     }
 
-    public String getLastActivity() {
-        return lastActivity;
+    public String getPreviousActivity() {
+        return previousActivity;
     }
 
-    public void setLastActivity(String lastActivity) {
-        this.lastActivity = lastActivity;
+    public void setPreviousActivity(String previousActivity) {
+        this.previousActivity = previousActivity;
+    }
+
+    public String getCurrentActivity() {
+        return currentActivity;
+    }
+
+    public void setCurrentActivity(String currentActivity) {
+        this.currentActivity = currentActivity;
     }
 
     public boolean isJustCreated() {
@@ -101,10 +138,9 @@ public class UserProgress {
         return "class UserProgress {" +
                 " stripeCount: " + stripeCount + ";" +
                 " starCount: " + starCount + ";" +
-                " lastActivity: " + lastActivity + ";" +
+                " currentActivity: " + currentActivity + ";" +
                 " finishedActivities: " + String.join(", ", finishedActivities) + ";" +
                 " finishedMissions: " + String.join(", ", finishedMissions) +
                 "}";
     }
-
 }

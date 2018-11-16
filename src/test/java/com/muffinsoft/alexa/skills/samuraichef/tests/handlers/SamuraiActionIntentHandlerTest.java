@@ -107,7 +107,7 @@ class SamuraiActionIntentHandlerTest {
         slots.put("action", createSlotForValue("yes"));
 
         Map<String, Object> userProgress = new LinkedHashMap<>();
-        userProgress.put("lastActivity", JUICE_WARRIOR.name());
+        userProgress.put("currentActivity", JUICE_WARRIOR.name());
         userProgress.put("stripeCount", 0);
         userProgress.put("starCount", 0);
         userProgress.put("finishedActivities", new String[]{Activities.SUSHI_SLICE.name()});

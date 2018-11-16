@@ -63,7 +63,7 @@ public class MissionManager {
 
         int searchedOderValue = valueByKey + 1;
 
-        if (searchedOderValue > Activities.values().length - 1) {
+        if (searchedOderValue > Activities.getGameActivities().size() - 1) {
             searchedOderValue = 0;
         }
 

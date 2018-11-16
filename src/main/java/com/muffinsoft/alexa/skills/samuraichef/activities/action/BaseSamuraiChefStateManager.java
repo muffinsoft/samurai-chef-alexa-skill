@@ -94,7 +94,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         statePhase = StatePhase.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTO)));
 
         LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
-        userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
+        userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
 
         LinkedHashMap rawActivityProgress = (LinkedHashMap) getSessionAttributes().get(ACTIVITY_PROGRESS);
         activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
@@ -205,7 +205,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     @Override
     protected void updateSessionAttributes() {
 
-        this.userProgress.setLastActivity(this.currentActivity.name());
+        this.userProgress.setCurrentActivity(this.currentActivity.name());
 
         if (this.isLeaveMission) {
             getSessionAttributes().remove(CURRENT_MISSION);
@@ -408,7 +408,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             }
 
             currentActivity = nextActivity;
-            this.userProgress.setLastActivity(nextActivity.name());
+            this.userProgress.setCurrentActivity(nextActivity.name());
             dialog = handleActivityIntroStripe(nextActivity, number);
         }
 
@@ -556,9 +556,14 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return DialogItem.builder().addResponse(ofText(speechText)).addResponse(ofText(ingredient)).withSlotName(actionSlotName).build();
     }
 
-    DialogItem getLoseRoundDialog() {
+    DialogItem getLoseRoundDialog(String value) {
         this.statePhase = LOSE;
-        return DialogItem.builder().withResponse(ofText(phraseManager.getValueByKey(FAILURE_PHRASE))).withSlotName(actionSlotName).withReprompt(phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE)).build();
+        return DialogItem.builder()
+                .addResponse(ofText(phraseManager.getValueByKey(value)))
+                .addResponse(ofText(phraseManager.getValueByKey(FAILURE_PHRASE)))
+                .withSlotName(actionSlotName)
+                .withReprompt(phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE))
+                .build();
     }
 
     private String nextIngredient() {

@@ -6,9 +6,14 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.GameIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.ExitStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.ResetConfirmationStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.ResetStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
@@ -20,10 +25,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.amazon.ask.request.Predicates.intentName;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
@@ -40,16 +45,31 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
     }
 
     @Override
-    public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("SamuraiActionIntent"));
-    }
-
-    @Override
     public StateManager nextTurn(HandlerInput input) {
 
         AttributesManager attributesManager = input.getAttributesManager();
 
         Map<String, Slot> slots = getSlotsFromInput(input);
+
+        Intents activeIntent = Intents.valueOf(String.valueOf(attributesManager.getSessionAttributes().getOrDefault(INTENT, Intents.GAME)));
+
+        switch (activeIntent) {
+            case GAME:
+                return handleGameActivity(input, slots, attributesManager);
+            case CANCEL:
+                return new CancelStateManager(slots, attributesManager, configContainer);
+            case EXIT:
+                return new ExitStateManager(slots, attributesManager, configContainer);
+            case RESET:
+                return new ResetStateManager(slots, attributesManager, configContainer);
+            case RESET_CONFIRMATION:
+                return new ResetConfirmationStateManager(slots, attributesManager, configContainer);
+            default:
+                throw new IllegalArgumentException("Unknown intent type " + activeIntent);
+        }
+    }
+
+    private StateManager handleGameActivity(HandlerInput input, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         boolean userSelectLevel = attributesManager.getSessionAttributes().containsKey(CURRENT_MISSION);
 
@@ -63,11 +83,11 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
             Activities currentActivity;
 
-            if (currentUserProgress.isJustCreated() || currentUserProgress.getLastActivity() == null) {
+            if (currentUserProgress.isJustCreated() || currentUserProgress.getCurrentActivity() == null) {
                 currentActivity = getCurrentActivity(input);
             }
             else {
-                currentActivity = Activities.valueOf(currentUserProgress.getLastActivity());
+                currentActivity = Activities.valueOf(currentUserProgress.getCurrentActivity());
             }
 
             PowerUps currentEquipment = PowerUps.EMPTY_SLOT;

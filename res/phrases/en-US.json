@@ -21,5 +21,9 @@
   "wantExitPhrase": "Do you want to quit the game?",
   "repeatLastPhrase": "I don't understand you. Please, repeat last command",
   "tryAgainPhrase": "Try again!",
-  "exitPhrase": "We had fun together. Let's do this again soon."
+  "exitPhrase": "We had fun together. Let's do this again soon.",
+  "returnToGamePhrase": "You'll be returned to game process",
+  "wantResetProgressPhrase": "Are you sure you want to discontinue the mission and lose all your progress?",
+  "wantMissionFromBeginningPhrase": "Do you want to start mission from the beginning?",
+  "missionProgressRemovedPhrase": "Mission progress was removed"
 }

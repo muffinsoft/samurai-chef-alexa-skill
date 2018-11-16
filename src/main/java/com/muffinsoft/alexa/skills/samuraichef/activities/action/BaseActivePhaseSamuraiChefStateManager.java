@@ -121,7 +121,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         }
         else {
             logger.debug("Last available incorrect answer was found, running lose dialog");
-            return getLoseRoundDialog();
+            return getLoseRoundDialog(value);
         }
     }
 
