@@ -52,6 +52,8 @@ public class PhraseConstants {
 
     public static final String EXIT_PHRASE = "exitPhrase";
 
+    public static final String FALLBACK_PHRASE = "fallbackPhrase";
+
     public static final String WANT_MISSION_FROM_BEGINNING_PHRASE = "wantMissionFromBeginningPhrase";
 
     public static final String MISSION_PROGRESS_REMOVED_PHRASE = "missionProgressRemovedPhrase";

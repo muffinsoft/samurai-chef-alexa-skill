@@ -1,25 +1,34 @@
 package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.FallbackIntentHandler;
-import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
+import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FALLBACK_PHRASE;
 
 public class SamuraiFallbackIntentHandler extends FallbackIntentHandler {
 
     private final PhraseManager phraseManager;
-    private final CardManager cardManager;
 
     public SamuraiFallbackIntentHandler(ConfigContainer configurationContainer) {
         super();
         this.phraseManager = configurationContainer.getPhraseManager();
-        this.cardManager = configurationContainer.getCardManager();
     }
 
     @Override
     public StateManager nextTurn(HandlerInput handlerInput) {
-        return null;
+        return new BaseStateManager(getSlotsFromInput(handlerInput), handlerInput.getAttributesManager()) {
+            @Override
+            public DialogItem nextResponse() {
+                return DialogItem.builder()
+                        .withResponse(Speech.ofText(phraseManager.getValueByKey(FALLBACK_PHRASE)))
+                        .build();
+            }
+        };
     }
 }

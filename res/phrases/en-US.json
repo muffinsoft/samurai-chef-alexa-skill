@@ -3,6 +3,7 @@
   "welcomeBackPhrase": "Welcome back! Would you like to follow me?",
   "wrongPhrase": "Wrong!",
   "tooLongPhrase": "Too Long!",
+  "fallbackPhrase": "Please, say it again",
   "failurePhrase": "You lose current round. Would you like to try again or start new mission?",
   "failureRePromptPhrase": "Sorry, I don't hear you. Would you like to try again or start new mission?",
   "wonPhrase": "You won current round. Are you ready to start next competition?",

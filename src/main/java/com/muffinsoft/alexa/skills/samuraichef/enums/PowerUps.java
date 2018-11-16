@@ -6,5 +6,5 @@ public enum PowerUps {
 
     SECOND_CHANCE_SLOT,
 
-    CORRECT_ANSWER_SLOT;
+    CORRECT_ANSWER_SLOT
 }

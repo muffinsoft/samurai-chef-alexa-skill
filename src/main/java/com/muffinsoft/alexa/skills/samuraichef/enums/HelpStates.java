@@ -2,9 +2,7 @@ package com.muffinsoft.alexa.skills.samuraichef.enums;
 
 public enum HelpStates {
 
-    INSIDE_MISSION_HELP,
-
-    INSIDE_ACTIVITY_HELP,
+    COMPETITION_REMINDER_HELP,
 
     GENERAL_HELP,
 

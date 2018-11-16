@@ -54,15 +54,10 @@
         "Second stripe Juice Warrior activity.",
         "When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it."
       ],
-      "shouldRunDemo": true,
+      "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [
-        "Carrot! Slice and dice!",
-        "Milk! Splash a dash!",
-        "Ice! Punch and crunch!",
-        "Chopsticks! Stop, don't drop!"
-      ],
+      "demo": [],
       "moveToPhaseTwo": null
     },
     "2": {

@@ -44,6 +44,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.COMPETITION_REMINDER_HELP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.CONTINUE_PLAYING_HELP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.GENERAL_HELP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.LEARN_MORE_HELP;
@@ -58,10 +59,10 @@ public class HelpStateManager extends BaseStateManager {
     private final PhraseManager phraseManager;
 
     private ActivityProgress activityProgress;
-    private StatePhase statePhase = null;
+    private StatePhase statePhase;
     private UserProgress userProgress;
-    private UserMission currentMission = null;
-    private Activities currentActivity = null;
+    private UserMission currentMission;
+    private Activities currentActivity;
     private Intents currentIntent;
 
     public HelpStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, ConfigContainer configContainer) {
@@ -73,27 +74,36 @@ public class HelpStateManager extends BaseStateManager {
     protected void populateActivityVariables() {
 
         String stringifyMission = String.valueOf(getSessionAttributes().get(CURRENT_MISSION));
-        if (stringifyMission != null) {
-            currentMission = UserMission.valueOf(stringifyMission);
+        if (stringifyMission != null && !stringifyMission.isEmpty() && !stringifyMission.equals("null")) {
+            this.currentMission = UserMission.valueOf(stringifyMission);
+        }
+        else {
+            this.currentMission = null;
         }
 
         String stringifyActivity = String.valueOf(getSessionAttributes().get(ACTIVITY));
-        if (stringifyActivity != null) {
-            currentActivity = Activities.valueOf(stringifyActivity);
+        if (stringifyActivity != null && !stringifyActivity.isEmpty() && !stringifyActivity.equals("null")) {
+            this.currentActivity = Activities.valueOf(stringifyActivity);
+        }
+        else {
+            this.currentActivity = null;
         }
 
-        currentIntent = Intents.valueOf(String.valueOf(getSessionAttributes().getOrDefault(INTENT, Intents.GAME.name())));
+        this.currentIntent = Intents.valueOf(String.valueOf(getSessionAttributes().getOrDefault(INTENT, Intents.GAME.name())));
 
         String stringifyState = String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO));
-        if (stringifyState != null) {
-            statePhase = StatePhase.valueOf(stringifyState);
+        if (stringifyState != null && !stringifyState.isEmpty() && !stringifyState.equals("null")) {
+            this.statePhase = StatePhase.valueOf(stringifyState);
+        }
+        else {
+            this.statePhase = null;
         }
 
         LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
-        userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
+        this.userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
 
         LinkedHashMap rawActivityProgress = (LinkedHashMap) getSessionAttributes().get(ACTIVITY_PROGRESS);
-        activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
+        this.activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
 
         logger.debug("Session attributes on the start of handling: " + this.getSessionAttributes().toString());
     }
@@ -101,7 +111,7 @@ public class HelpStateManager extends BaseStateManager {
     @Override
     public DialogItem nextResponse() {
 
-        if (currentIntent == Intents.GAME) {
+        if (this.currentIntent == Intents.GAME) {
             return handleFirstLoopHelp();
         }
         else {
@@ -137,6 +147,7 @@ public class HelpStateManager extends BaseStateManager {
                 else {
                     handleProceedGame(builder);
                 }
+                break;
 
             case CONTINUE_PLAYING_HELP:
                 if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
@@ -145,15 +156,25 @@ public class HelpStateManager extends BaseStateManager {
                 else {
                     handleGeneralHelp(builder);
                 }
+                break;
 
             case MORE_DETAILS_HELP:
                 if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
                     handleActivityDescription(builder);
                 }
                 handleLearnMore(builder);
+                break;
+
+            case COMPETITION_REMINDER_HELP:
+                if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
+                    handleLearnMore(builder);
+                }
+                else {
+                    handleGeneralHelp(builder);
+                }
+                break;
         }
 
-        getSessionAttributes().remove(HELP_STATE);
         return builder.build();
     }
 
@@ -163,10 +184,11 @@ public class HelpStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
-        if (this.currentActivity != null && StatePhase.getActivityStates().contains(this.statePhase)) {
+        if (this.currentActivity != null) {
             if (Activities.checkIfCompetition(this.currentActivity)) {
                 // Competition Rules & Examples
                 builder.addResponse(ofText(phraseManager.getValueByKey(HELP_COMPETITION_RULES_PHRASE)));
+                getSessionAttributes().put(HELP_STATE, COMPETITION_REMINDER_HELP);
             }
             else {
                 builder.addResponse(ofText(phraseManager.getValueByKey(HELP_NEW_WORDS_PHRASE)));
@@ -179,7 +201,7 @@ public class HelpStateManager extends BaseStateManager {
                 }
             }
         }
-        else if (this.statePhase != null && this.currentMission != null) {
+        else if (this.currentMission != null) {
             handleMissionDescription(builder);
         }
         else {
@@ -232,6 +254,10 @@ public class HelpStateManager extends BaseStateManager {
         getSessionAttributes().put(INTENT, Intents.GAME);
         getSessionAttributes().remove(HELP_STATE);
         builder.addResponse(ofText(phraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
+        if (statePhase == StatePhase.PHASE_1 || statePhase == StatePhase.PHASE_2) {
+            builder.addResponse(ofText(activityProgress.getPreviousIngredient()));
+        }
+        getSessionAttributes().remove(HELP_STATE);
     }
 
     private void handleGeneralHelp(DialogItem.Builder builder) {

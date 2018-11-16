@@ -30,6 +30,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
@@ -142,6 +143,11 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
     private void handlePersistentAttributes(HandlerInput input) {
 
         AttributesManager attributesManager = input.getAttributesManager();
+
+        if (!attributesManager.getSessionAttributes().containsKey(STAR_COUNT)) {
+            int starCount = (int) attributesManager.getPersistentAttributes().getOrDefault(STAR_COUNT, 0);
+            attributesManager.getSessionAttributes().put(STAR_COUNT, starCount);
+        }
 
         if (!attributesManager.getSessionAttributes().containsKey(USER_PROGRESS)) {
 

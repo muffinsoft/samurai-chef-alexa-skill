@@ -14,6 +14,8 @@ public class SessionConstants {
 
     public static final String USER_PROGRESS = "userProgress";
 
+    public static final String STAR_COUNT = "startCount";
+
     public static final String CURRENT_MISSION = "currentMission";
 
     public static final String USER_LOW_PROGRESS_DB = "userLowProgressDB";

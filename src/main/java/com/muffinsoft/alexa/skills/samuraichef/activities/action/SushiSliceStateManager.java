@@ -12,7 +12,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLI
 
 public class SushiSliceStateManager extends BaseActivePhaseSamuraiChefStateManager {
 
-    protected Long questionTime;
+    private Long questionTime;
 
     public SushiSliceStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
         super(slots, attributesManager, configContainer);

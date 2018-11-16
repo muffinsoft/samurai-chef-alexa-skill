@@ -27,6 +27,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
@@ -37,9 +39,9 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     private static final Logger logger = LogManager.getLogger(CancelStateManager.class);
 
     private final PhraseManager phraseManager;
-    protected ActivityProgress activityProgress;
+    private ActivityProgress activityProgress;
     private UserMission currentMission;
-    private UserProgress userProgress;
+    private int starCount;
 
     public ResetConfirmationStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, ConfigContainer configContainer) {
         super(inputSlots, attributesManager);
@@ -51,8 +53,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
 
         currentMission = UserMission.valueOf(String.valueOf(getSessionAttributes().get(CURRENT_MISSION)));
 
-        LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
-        userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
+        starCount = (int) getSessionAttributes().getOrDefault(STAR_COUNT, 0);
 
         LinkedHashMap rawActivityProgress = (LinkedHashMap) getSessionAttributes().get(ACTIVITY_PROGRESS);
         activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
@@ -87,7 +88,9 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             if (missionUserProgress == null) {
                 missionUserProgress = new UserProgress(this.currentMission);
             }
+            starCount = starCount - missionUserProgress.getStripeCount();
             missionUserProgress.resetMissionProgress();
+            getPersistentAttributes().put(STAR_COUNT, starCount);
             getPersistentAttributes().put(value, mapper.writeValueAsString(missionUserProgress));
         }
         catch (IOException e) {
@@ -113,7 +116,12 @@ public class ResetConfirmationStateManager extends BaseStateManager {
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
             dialog = phraseManager.getValueByKey(MISSION_PROGRESS_REMOVED_PHRASE);
             getSessionAttributes().put(INTENT, Intents.GAME);
-            removeCurrentMissionProgress();
+            getSessionAttributes().remove(ACTIVITY_PROGRESS);
+            getSessionAttributes().remove(ACTIVITY);
+            getSessionAttributes().remove(USER_PROGRESS);
+            getSessionAttributes().remove(STATE_PHASE);
+            getSessionAttributes().remove(STAR_COUNT);
+            savePersistentAttributes();
         }
         else {
             dialog = phraseManager.getValueByKey(REPEAT_LAST_PHRASE);
@@ -122,12 +130,5 @@ public class ResetConfirmationStateManager extends BaseStateManager {
         DialogItem.Builder builder = DialogItem.builder().withResponse(Speech.ofText(dialog));
 
         return builder.build();
-    }
-
-    private void removeCurrentMissionProgress() {
-        getSessionAttributes().remove(ACTIVITY_PROGRESS);
-        getSessionAttributes().remove(ACTIVITY);
-        getSessionAttributes().remove(USER_PROGRESS);
-        savePersistentAttributes();
     }
 }

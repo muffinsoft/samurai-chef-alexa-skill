@@ -58,16 +58,10 @@
         "Second stripe Sushi Slice activity.",
         "If Ben give you fish, say 'Slice!' If it's a vegetable, say 'Chop!'. If it’s rice, say 'Boil'. And if it’s seaseed, say 'Roll!'. And if he accidentally throw you not food, say 'No!'."
       ],
-      "shouldRunDemo": true,
+      "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [
-        "Fish! Slice!",
-        "Seaweed! Roll!",
-        "Carrot! Chop!",
-        "Rice! Boil!",
-        "Shoe! No!"
-      ],
+      "demo": [],
       "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
     },
     "2": {

@@ -12,7 +12,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.JUICE_WAR
 
 public class JuiceWarriorStateManager extends BaseActivePhaseSamuraiChefStateManager {
 
-    protected Long questionTime;
+    private Long questionTime;
 
     public JuiceWarriorStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
         super(slots, attributesManager, configContainer);

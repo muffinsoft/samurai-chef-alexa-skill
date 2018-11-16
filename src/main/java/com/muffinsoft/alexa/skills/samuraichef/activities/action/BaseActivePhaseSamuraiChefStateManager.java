@@ -37,6 +37,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         }
 
         if (this.activityProgress.getSuccessCount() == stripe.getWonSuccessCount()) {
+            savePersistentAttributes();
             dialog = getWinDialog();
         }
 
@@ -121,6 +122,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         }
         else {
             logger.debug("Last available incorrect answer was found, running lose dialog");
+            savePersistentAttributes();
             return getLoseRoundDialog(value);
         }
     }

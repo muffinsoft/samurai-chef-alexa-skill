@@ -2,7 +2,6 @@ package com.muffinsoft.alexa.skills.samuraichef.activities.action;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
@@ -41,6 +40,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
@@ -62,10 +62,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     protected static final Logger logger = LogManager.getLogger(BaseSamuraiChefStateManager.class);
 
     protected final PhraseManager phraseManager;
-    protected final ActivityManager activityManager;
-
     protected final AliasManager aliasManager;
     protected final MissionManager missionManager;
+    private final ActivityManager activityManager;
     protected Activities currentActivity;
     protected StatePhase statePhase;
     protected Stripe stripe;
@@ -77,6 +76,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private boolean missionIsComplete = false;
     private boolean stripeIsComplete = false;
     private boolean isLeaveMission = false;
+    private int starCount;
 
     BaseSamuraiChefStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
         super(slots, attributesManager);
@@ -96,6 +96,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
         userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
 
+        starCount = (int) getSessionAttributes().getOrDefault(STAR_COUNT, 0);
+
         LinkedHashMap rawActivityProgress = (LinkedHashMap) getSessionAttributes().get(ACTIVITY_PROGRESS);
         activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
 
@@ -104,9 +106,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     @Override
     protected void updatePersistentAttributes() {
-        updateUserProgress();
         if (stripeIsComplete) {
-            updateStarCountInAllLevels();
+            getPersistentAttributes().put(STAR_COUNT, this.starCount);
+            getSessionAttributes().remove(STAR_COUNT);
+//            updateStarCountInAllLevels();
         }
         if (missionIsComplete) {
             updateMissionCompleteInAllLevels();
@@ -114,26 +117,26 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         logger.debug("Persistent attributes on the end of handling: " + this.getPersistentAttributes().toString());
     }
 
-    private void updateUserProgress() {
-        try {
-            String json = mapper.writeValueAsString(this.userProgress);
-            switch (currentMission) {
-                case LOW_MISSION:
-                    getPersistentAttributes().put(USER_LOW_PROGRESS_DB, json);
-                    break;
-                case MEDIUM_MISSION:
-                    getPersistentAttributes().put(USER_MID_PROGRESS_DB, json);
-                    break;
-                case HIGH_MISSION:
-                    getPersistentAttributes().put(USER_HIGH_PROGRESS_DB, json);
-                    break;
-            }
-        }
-        catch (JsonProcessingException e) {
-            throw new IllegalStateException("Exception while saving Persistent Attributes", e);
-        }
-    }
-
+    //    private void updateUserProgress() {
+//        try {
+//            String json = mapper.writeValueAsString(this.userProgress);
+//            switch (currentMission) {
+//                case LOW_MISSION:
+//                    getPersistentAttributes().put(USER_LOW_PROGRESS_DB, json);
+//                    break;
+//                case MEDIUM_MISSION:
+//                    getPersistentAttributes().put(USER_MID_PROGRESS_DB, json);
+//                    break;
+//                case HIGH_MISSION:
+//                    getPersistentAttributes().put(USER_HIGH_PROGRESS_DB, json);
+//                    break;
+//            }
+//        }
+//        catch (JsonProcessingException e) {
+//            throw new IllegalStateException("Exception while saving Persistent Attributes", e);
+//        }
+//    }
+//
     private void updateMissionCompleteInAllLevels() {
         if (this.currentMission == UserMission.LOW_MISSION) {
             updateMissionCompleteInForLevel(USER_MID_PROGRESS_DB);
@@ -168,39 +171,39 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         }
     }
 
-    private void updateStarCountInAllLevels() {
-        if (this.currentMission == UserMission.LOW_MISSION) {
-            updateStarCountForMission(USER_MID_PROGRESS_DB);
-            updateStarCountForMission(USER_HIGH_PROGRESS_DB);
-        }
-        else if (this.currentMission == UserMission.MEDIUM_MISSION) {
-            updateStarCountForMission(USER_LOW_PROGRESS_DB);
-            updateStarCountForMission(USER_HIGH_PROGRESS_DB);
-        }
-        else {
-            updateStarCountForMission(USER_LOW_PROGRESS_DB);
-            updateStarCountForMission(USER_MID_PROGRESS_DB);
-        }
-    }
+//    private void updateStarCountInAllLevels() {
+//        if (this.currentMission == UserMission.LOW_MISSION) {
+//            updateStarCountForMission(USER_MID_PROGRESS_DB);
+//            updateStarCountForMission(USER_HIGH_PROGRESS_DB);
+//        }
+//        else if (this.currentMission == UserMission.MEDIUM_MISSION) {
+//            updateStarCountForMission(USER_LOW_PROGRESS_DB);
+//            updateStarCountForMission(USER_HIGH_PROGRESS_DB);
+//        }
+//        else {
+//            updateStarCountForMission(USER_LOW_PROGRESS_DB);
+//            updateStarCountForMission(USER_MID_PROGRESS_DB);
+//        }
+//    }
 
-    private void updateStarCountForMission(String value) {
-        try {
-            UserProgress missionUserProgress = null;
-            if (getPersistentAttributes().containsKey(value)) {
-                String jsonInString = String.valueOf(getPersistentAttributes().get(value));
-                LinkedHashMap rawUserProgress = mapper.readValue(jsonInString, LinkedHashMap.class);
-                missionUserProgress = mapper.convertValue(rawUserProgress, UserProgress.class);
-            }
-            if (missionUserProgress == null) {
-                missionUserProgress = new UserProgress(this.currentMission);
-            }
-            missionUserProgress.iterateStarCount();
-            getPersistentAttributes().put(value, mapper.writeValueAsString(missionUserProgress));
-        }
-        catch (IOException e) {
-            throw new IllegalStateException("Exception while updating Star Count in Persistent Attributes", e);
-        }
-    }
+//    private void updateStarCountForMission(String value) {
+//        try {
+//            UserProgress missionUserProgress = null;
+//            if (getPersistentAttributes().containsKey(value)) {
+//                String jsonInString = String.valueOf(getPersistentAttributes().get(value));
+//                LinkedHashMap rawUserProgress = mapper.readValue(jsonInString, LinkedHashMap.class);
+//                missionUserProgress = mapper.convertValue(rawUserProgress, UserProgress.class);
+//            }
+//            if (missionUserProgress == null) {
+//                missionUserProgress = new UserProgress(this.currentMission);
+//            }
+//            starCount += 1;
+//            getPersistentAttributes().put(value, mapper.writeValueAsString(missionUserProgress));
+//        }
+//        catch (IOException e) {
+//            throw new IllegalStateException("Exception while updating Star Count in Persistent Attributes", e);
+//        }
+//    }
 
     @Override
     protected void updateSessionAttributes() {
@@ -468,8 +471,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem handleMissionOutroState(UserMission currentMission) {
 
-        // change mission dialog
-
         isLeaveMission = true;
 
         logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
@@ -495,7 +496,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             this.missionIsComplete = true;
         }
 
-        if (this.userProgress.getStarCount() == missionManager.getContainer().getMaxStarCount()) {
+        if (this.starCount == missionManager.getContainer().getMaxStarCount()) {
             this.gameIsComplete = true;
         }
     }
@@ -507,7 +508,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         if (this.userProgress.getFinishedActivities().size() == Activities.values().length) {
 
             this.userProgress.iterateStripeCount();
-            this.userProgress.iterateStarCount();
+            this.starCount += 1;
             this.userProgress.resetFinishRounds();
 
             this.currentActivity = missionManager.getFirstActivityForLevel(currentMission);

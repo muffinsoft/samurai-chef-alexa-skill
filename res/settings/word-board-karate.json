@@ -51,15 +51,10 @@
         "Second stripe Word Board Karate activity.",
         "If it begins with a 'K' sound, shout 'Kick'; if it begins with a 'H' sound, shout 'Hayaaa!'; if it begins with a 'P' sound, shout 'Punch'; if it begins with a 'G' sound, shout 'Glok'."
       ],
-      "shouldRunDemo": true,
+      "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [
-        "Corn! Kick!",
-        "Hat! Hayaaa!",
-        "Pencil! Punch!",
-        "Ginger! Glok!"
-      ],
+      "demo": [],
       "moveToPhaseTwo": null
     },
     "2": {
@@ -67,15 +62,10 @@
         "Third stripe Word Board Karate activity.",
         "If it begins with a 'K' sound, shout 'Kick'; if it begins with a 'H' sound, shout 'Hayaaa!'; if it begins with a 'P' sound, shout 'Punch.'"
       ],
-      "shouldRunDemo": true,
+      "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
       "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [
-        "Corn! Kick!",
-        "Hat! Hayaaa!",
-        "Pencil! Punch!",
-        "Gun! Glok!"
-      ],
+      "demo": [],
       "moveToPhaseTwo": null
     }
   }

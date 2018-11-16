@@ -4,13 +4,6 @@
       "invocationName": "samurai chef",
       "intents": [
         {
-          "name": "ResetIntent",
-          "slots": [],
-          "samples": [
-            "reset"
-          ]
-        },
-        {
           "name": "ActionIntent",
           "slots": [
             {
@@ -27,6 +20,13 @@
           ]
         },
         {
+          "name": "ResetIntent",
+          "slots": [],
+          "samples": [
+            "reset"
+          ]
+        },
+        {
           "name": "AMAZON.CancelIntent",
           "samples": []
         },
@@ -36,10 +36,6 @@
         },
         {
           "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
           "samples": []
         },
         {
