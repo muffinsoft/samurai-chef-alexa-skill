@@ -1,8 +1,11 @@
 package com.muffinsoft.alexa.skills.samuraichef.enums;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum StatePhase {
 
-    MISSION_INTO,
+    MISSION_INTRO,
 
     STRIPE_INTRO,
 
@@ -24,5 +27,9 @@ public enum StatePhase {
 
     MISSION_OUTRO,
 
-    GAME_OUTRO
+    GAME_OUTRO;
+
+    public static List<StatePhase> getActivityStates() {
+        return Arrays.asList(ACTIVITY_INTRO, DEMO, READY_PHASE, PHASE_1, PHASE_2, WIN, LOSE);
+    }
 }

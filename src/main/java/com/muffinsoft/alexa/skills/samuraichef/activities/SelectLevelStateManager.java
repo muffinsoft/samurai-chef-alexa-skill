@@ -2,6 +2,7 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.Speech;
@@ -16,6 +17,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -102,7 +104,7 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         this.getSessionAttributes().put(CURRENT_MISSION, mission);
 
-        if(getUserProgressForMission(mission).getPreviousActivity() == null) {
+        if (getUserProgressForMission(mission).getPreviousActivity() == null) {
             this.getSessionAttributes().remove(STATE_PHASE);
         }
         else {
@@ -115,15 +117,27 @@ public class SelectLevelStateManager extends BaseStateManager {
 
     private UserProgress getUserProgressForMission(UserMission mission) {
         switch (mission) {
-            case LOW_MISSION: return getUserProgressForMission(USER_LOW_PROGRESS_DB);
-            case MEDIUM_MISSION: return getUserProgressForMission(USER_MID_PROGRESS_DB);
-            case HIGH_MISSION: return getUserProgressForMission(USER_HIGH_PROGRESS_DB);
-            default: throw new IllegalArgumentException("Can't handle User Progress for Mission " + mission);
+            case LOW_MISSION:
+                return getUserProgressForMission(USER_LOW_PROGRESS_DB);
+            case MEDIUM_MISSION:
+                return getUserProgressForMission(USER_MID_PROGRESS_DB);
+            case HIGH_MISSION:
+                return getUserProgressForMission(USER_HIGH_PROGRESS_DB);
+            default:
+                throw new IllegalArgumentException("Can't handle User Progress for Mission " + mission);
         }
     }
 
     private UserProgress getUserProgressForMission(String value) {
-        LinkedHashMap rawUserProgress = (LinkedHashMap) getPersistentAttributes().get(value);
-        return rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
+
+        String jsonInString = String.valueOf(getPersistentAttributes().get(value));
+
+        try {
+            LinkedHashMap rawUserProgress = new ObjectMapper().readValue(jsonInString, LinkedHashMap.class);
+            return rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
+        }
+        catch (IOException e) {
+            throw new IllegalStateException(e.getMessage(), e);
+        }
     }
 }

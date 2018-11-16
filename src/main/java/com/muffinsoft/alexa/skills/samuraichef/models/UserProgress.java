@@ -18,7 +18,8 @@ public class UserProgress {
     private String previousActivity;
     private boolean justCreated = false;
 
-    public UserProgress(){}
+    public UserProgress() {
+    }
 
     public UserProgress(boolean isNew) {
         this.justCreated = isNew;

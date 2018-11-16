@@ -55,4 +55,16 @@ public class PhraseConstants {
     public static final String WANT_MISSION_FROM_BEGINNING_PHRASE = "wantMissionFromBeginningPhrase";
 
     public static final String MISSION_PROGRESS_REMOVED_PHRASE = "missionProgressRemovedPhrase";
+
+    public static final String HELP_COMPETITION_RULES_PHRASE = "helpCompetitionRulesPhrase";
+
+    public static final String HELP_MISSION_LOW_DESCRIPTION_PHRASE = "helpMissionLowDescriptionPhrase";
+
+    public static final String HELP_MISSION_MID_DESCRIPTION_PHRASE = "helpMissionMidDescriptionPhrase";
+
+    public static final String HELP_MISSION_HIGH_DESCRIPTION_PHRASE = "helpMissionHighDescriptionPhrase";
+
+    public static final String HELP_NEW_WORDS_PHRASE = "helpNewWordsPhrase";
+
+    public static final String HELP_GENERAL_PHRASE = "helpGeneralPhrase";
 }

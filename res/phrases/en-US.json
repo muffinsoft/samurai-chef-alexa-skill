@@ -25,5 +25,11 @@
   "returnToGamePhrase": "You'll be returned to game process",
   "wantResetProgressPhrase": "Are you sure you want to discontinue the mission and lose all your progress?",
   "wantMissionFromBeginningPhrase": "Do you want to start mission from the beginning?",
-  "missionProgressRemovedPhrase": "Mission progress was removed"
+  "missionProgressRemovedPhrase": "Mission progress was removed",
+  "helpCompetitionRulesPhrase": "Seems like you'd like some help.  Should I remind you how to play this activity?",
+  "helpMissionLowDescriptionPhrase": "First mission description",
+  "helpMissionMidDescriptionPhrase": "Second mission description",
+  "helpMissionHighDescriptionPhrase": "Third mission description",
+  "helpNewWordsPhrase": "Seems like you'd like some help.  Should I remind you how to handle the new words?",
+  "helpGeneralPhrase": "General Help"
 }

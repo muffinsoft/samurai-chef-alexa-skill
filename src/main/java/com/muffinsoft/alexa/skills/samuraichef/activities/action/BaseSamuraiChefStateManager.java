@@ -49,7 +49,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.ACTIVITY_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_INTO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_OUTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.READY_PHASE;
@@ -91,7 +91,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         currentMission = UserMission.valueOf(String.valueOf(getSessionAttributes().get(CURRENT_MISSION)));
 
-        statePhase = StatePhase.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTO)));
+        statePhase = StatePhase.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
 
         LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
         userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
@@ -237,7 +237,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         stripe = activityManager.getLevelForActivity(this.currentActivity, this.userProgress.getStripeCount());
 
         switch (this.statePhase) {
-            case MISSION_INTO:
+            case MISSION_INTRO:
                 dialog = handleMissionIntroState(this.currentMission);
                 break;
             case STRIPE_INTRO:
@@ -435,11 +435,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem getSelectMissionDialog() {
 
-        logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTO);
+        logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
 
         isLeaveMission = true;
 
-        this.statePhase = MISSION_INTO;
+        this.statePhase = MISSION_INTRO;
 
         this.getSessionAttributes().remove(CURRENT_MISSION);
 
@@ -472,9 +472,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         isLeaveMission = true;
 
-        logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTO);
+        logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
 
-        this.statePhase = MISSION_INTO;
+        this.statePhase = MISSION_INTRO;
 
         String dialog = missionManager.getMissionOutro(currentMission);
 
