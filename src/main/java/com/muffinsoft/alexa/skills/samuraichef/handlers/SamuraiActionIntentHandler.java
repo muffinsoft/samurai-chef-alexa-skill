@@ -54,6 +54,8 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
         Intents activeIntent = Intents.valueOf(String.valueOf(attributesManager.getSessionAttributes().getOrDefault(INTENT, Intents.GAME)));
 
+        logger.debug("Handling ");
+
         switch (activeIntent) {
             case GAME:
                 return handleGameActivity(input, slots, attributesManager);

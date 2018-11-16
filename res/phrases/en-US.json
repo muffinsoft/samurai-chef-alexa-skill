@@ -31,5 +31,12 @@
   "helpMissionMidDescriptionPhrase": "Second mission description",
   "helpMissionHighDescriptionPhrase": "Third mission description",
   "helpNewWordsPhrase": "Seems like you'd like some help.  Should I remind you how to handle the new words?",
-  "helpGeneralPhrase": "General Help"
+  "helpGeneralPhrase": "General Help",
+  "helpLearnMorePhrase": "Do you want to learn more about the game and objectives?",
+  "helpMoreDetailsPhrase": "Do you want more details?",
+  "helpContinuePlayingPhrase": "Do you want to continue playing?",
+  "helpActivitySushiSliceDescriptionPhrase": "Sushi Slice description",
+  "helpActivityJuiceWarriorDescriptionPhrase": "Juice Warrior description",
+  "helpActivityWordBoardKarateDescriptionPhrase": "Word Board Karate description",
+  "helpActivityFoodTasterDescriptionPhrase": "Food Taster description"
 }

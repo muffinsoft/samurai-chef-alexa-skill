@@ -58,6 +58,10 @@ public class PhraseConstants {
 
     public static final String HELP_COMPETITION_RULES_PHRASE = "helpCompetitionRulesPhrase";
 
+    public static final String HELP_LEARN_MORE_PHRASE = "helpLearnMorePhrase";
+
+    public static final String HELP_MORE_DETAILS_PHRASE = "helpMoreDetailsPhrase";
+
     public static final String HELP_MISSION_LOW_DESCRIPTION_PHRASE = "helpMissionLowDescriptionPhrase";
 
     public static final String HELP_MISSION_MID_DESCRIPTION_PHRASE = "helpMissionMidDescriptionPhrase";
@@ -67,4 +71,16 @@ public class PhraseConstants {
     public static final String HELP_NEW_WORDS_PHRASE = "helpNewWordsPhrase";
 
     public static final String HELP_GENERAL_PHRASE = "helpGeneralPhrase";
+
+    public static final String HELP_CONTINUE_PLAYING_PHRASE = "helpContinuePlayingPhrase";
+
+    public static final String HELP_ACTIVITY_SUSHI_SLICE_DESCRIPTION_PHRASE = "helpActivitySushiSliceDescriptionPhrase";
+
+    public static final String HELP_ACTIVITY_JUICE_WARRIOR_DESCRIPTION_PHRASE = "helpActivityJuiceWarriorDescriptionPhrase";
+
+    public static final String HELP_ACTIVITY_WORD_BOARD_KARATE_DESCRIPTION_PHRASE = "helpActivityWordBoardKarateDescriptionPhrase";
+
+    public static final String HELP_ACTIVITY_FOOD_TASTER_DESCRIPTION_PHRASE = "helpActivityFoodTasterDescriptionPhrase";
+
+
 }
