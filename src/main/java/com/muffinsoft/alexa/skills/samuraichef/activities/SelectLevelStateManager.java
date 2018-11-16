@@ -8,6 +8,7 @@ import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
@@ -26,6 +27,10 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 
 public class SelectLevelStateManager extends BaseStateManager {
@@ -96,9 +101,29 @@ public class SelectLevelStateManager extends BaseStateManager {
         this.getSessionAttributes().remove(USER_PROGRESS);
 
         this.getSessionAttributes().put(CURRENT_MISSION, mission);
+
+        if(getUserProgressForMission(mission).getPreviousActivity() == null) {
+            this.getSessionAttributes().remove(STATE_PHASE);
+        }
+        else {
+            this.getSessionAttributes().put(STATE_PHASE, StatePhase.STRIPE_INTRO);
+        }
         logger.info("user will be redirected to " + mission.name());
 
         return phraseManager.getValueByKey(READY_TO_START_MISSION_PHRASE) + " " + aliasManager.getValueByKey(mission.name()) + "?";
+    }
 
+    private UserProgress getUserProgressForMission(UserMission mission) {
+        switch (mission) {
+            case LOW_MISSION: return getUserProgressForMission(USER_LOW_PROGRESS_DB);
+            case MEDIUM_MISSION: return getUserProgressForMission(USER_MID_PROGRESS_DB);
+            case HIGH_MISSION: return getUserProgressForMission(USER_HIGH_PROGRESS_DB);
+            default: throw new IllegalArgumentException("Can't handle User Progress for Mission " + mission);
+        }
+    }
+
+    private UserProgress getUserProgressForMission(String value) {
+        LinkedHashMap rawUserProgress = (LinkedHashMap) getPersistentAttributes().get(value);
+        return rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
     }
 }
