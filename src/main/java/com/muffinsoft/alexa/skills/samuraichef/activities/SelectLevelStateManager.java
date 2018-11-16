@@ -23,6 +23,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_UNKNOWN_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 
@@ -88,6 +90,10 @@ public class SelectLevelStateManager extends BaseStateManager {
         if (finishedMissions.contains(mission.name())) {
             return phraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE);
         }
+
+        this.getSessionAttributes().remove(ACTIVITY);
+        this.getSessionAttributes().remove(ACTIVITY_PROGRESS);
+        this.getSessionAttributes().remove(USER_PROGRESS);
 
         this.getSessionAttributes().put(CURRENT_MISSION, mission);
         logger.info("user will be redirected to " + mission.name());

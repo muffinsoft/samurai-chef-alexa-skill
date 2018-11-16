@@ -106,6 +106,8 @@ public class ResetConfirmationStateManager extends BaseStateManager {
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
             dialog = phraseManager.getValueByKey(SELECT_MISSION_PHRASE);
             getSessionAttributes().remove(CURRENT_MISSION);
+            getSessionAttributes().remove(ACTIVITY);
+            getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, Intents.GAME);
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
@@ -125,6 +127,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     private void removeCurrentMissionProgress() {
         getSessionAttributes().remove(ACTIVITY_PROGRESS);
         getSessionAttributes().remove(ACTIVITY);
+        getSessionAttributes().remove(USER_PROGRESS);
         savePersistentAttributes();
     }
 }

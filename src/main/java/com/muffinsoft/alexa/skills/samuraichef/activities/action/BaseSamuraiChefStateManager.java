@@ -158,7 +158,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 missionUserProgress = mapper.convertValue(rawUserProgress, UserProgress.class);
             }
             if (missionUserProgress == null) {
-                missionUserProgress = new UserProgress();
+                missionUserProgress = new UserProgress(this.currentMission);
             }
             missionUserProgress.addFinishedMission(this.currentMission.name());
             getPersistentAttributes().put(value, mapper.writeValueAsString(missionUserProgress));
@@ -192,7 +192,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 missionUserProgress = mapper.convertValue(rawUserProgress, UserProgress.class);
             }
             if (missionUserProgress == null) {
-                missionUserProgress = new UserProgress();
+                missionUserProgress = new UserProgress(this.currentMission);
             }
             missionUserProgress.iterateStarCount();
             getPersistentAttributes().put(value, mapper.writeValueAsString(missionUserProgress));
