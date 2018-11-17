@@ -2,6 +2,7 @@ package com.muffinsoft.alexa.skills.samuraichef.activities.action;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
@@ -10,6 +11,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
@@ -29,15 +31,20 @@ import java.util.Map;
 import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.GAME_FINISHED_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_REPROMPT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REDIRECT_TO_SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SEVERAL_VALUES_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TRY_AGAIN_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_RESET_PROGRESS_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
@@ -47,6 +54,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.ACTIVITY_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.GAME_OUTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_OUTRO;
@@ -70,8 +78,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     StatePhase statePhase;
     private UserProgress userProgress;
     private UserMission currentMission;
-    private boolean gameIsComplete = false;
-    private boolean missionIsComplete = false;
     private boolean isLeaveMission = false;
     private int starCount;
 
@@ -103,15 +109,36 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     @Override
     protected void updatePersistentAttributes() {
+
+        updateMissionUserProgress();
+
         if (this.activityProgress.isStripeComplete()) {
             ++this.starCount;
             getPersistentAttributes().put(STAR_COUNT, this.starCount);
             getSessionAttributes().put(STAR_COUNT, this.starCount);
         }
-        if (missionIsComplete) {
+        if (this.activityProgress.isMissionFinished()) {
             updateMissionCompleteInAllLevels();
         }
         logger.debug("Persistent attributes on the end of handling: " + this.getPersistentAttributes().toString());
+    }
+
+    private void updateMissionUserProgress() {
+        try {
+            if (this.currentMission == UserMission.LOW_MISSION) {
+                getPersistentAttributes().put(USER_LOW_PROGRESS_DB, mapper.writeValueAsString(this.userProgress));
+            }
+            else if (this.currentMission == UserMission.MEDIUM_MISSION) {
+
+                getPersistentAttributes().put(USER_MID_PROGRESS_DB, mapper.writeValueAsString(this.userProgress));
+            }
+            else {
+                getPersistentAttributes().put(USER_HIGH_PROGRESS_DB, mapper.writeValueAsString(this.userProgress));
+            }
+        }
+        catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateMissionCompleteInAllLevels() {
@@ -174,6 +201,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
+        if (this.userProgress.getFinishedMissions().contains(this.currentMission.name()) && this.statePhase == MISSION_INTRO) {
+            return handleAlreadyFinishedMission(builder);
+        }
+
         if (!getUserMultipleReplies().isEmpty()) {
             return handleMultipleResponses(builder);
         }
@@ -214,6 +245,18 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         }
 
         return builder.build();
+    }
+
+    private DialogItem handleAlreadyFinishedMission(DialogItem.Builder builder) {
+
+        this.isLeaveMission = true;
+
+        getSessionAttributes().put(INTENT, Intents.RESET);
+
+        return builder.withSlotName(actionSlotName)
+                .addResponse(ofText(phraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)))
+                .addResponse(ofText(phraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)))
+                .build();
     }
 
     private DialogItem handleMultipleResponses(DialogItem.Builder builder) {
@@ -323,20 +366,19 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder handleWinState(DialogItem.Builder builder, UserMission currentMission) {
 
-        if (this.activityProgress.isStripeComplete()) {
-
-            int number = this.userProgress.getStripeCount() - 1; // get previous stripe outro
-
-            resetActivityProgress();
-
-            logger.debug("Handling " + this.statePhase + ". Moving to " + STRIPE_OUTRO);
-
-            this.statePhase = STRIPE_OUTRO;
-            String dialogPhrase = missionManager.getStripeOutroByMission(currentMission, number);
-            return builder.addResponse(ofText(dialogPhrase)).withSlotName(actionSlotName);
-        }
+        boolean stripeComplete = this.activityProgress.isStripeComplete();
 
         resetActivityProgress();
+
+        if (stripeComplete) {
+            return endStripeAfterWin(builder);
+        }
+        else {
+            return getNextActivityAfterWin(builder);
+        }
+    }
+
+    private DialogItem.Builder getNextActivityAfterWin(DialogItem.Builder builder) {
 
         Activities nextActivity = missionManager.getNextActivity(this.currentActivity, currentMission);
 
@@ -352,6 +394,19 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         builder = handleActivityIntroStripe(builder, nextActivity, this.userProgress.getStripeCount());
 
         return builder;
+    }
+
+    private DialogItem.Builder endStripeAfterWin(DialogItem.Builder builder) {
+
+        int number = this.userProgress.getStripeCount() - 1; // get previous stripe outro
+
+        this.currentActivity = missionManager.getFirstActivityForMission(currentMission);
+
+        logger.debug("Handling " + this.statePhase + ". Moving to " + STRIPE_OUTRO);
+
+        this.statePhase = STRIPE_OUTRO;
+        String dialogPhrase = missionManager.getStripeOutroByMission(currentMission, number);
+        return builder.addResponse(ofText(dialogPhrase)).withSlotName(actionSlotName);
     }
 
     private DialogItem.Builder handleLoseState(DialogItem.Builder builder) {
@@ -387,7 +442,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         String dialog;
 
-        if (missionIsComplete) {
+        if (this.activityProgress.isMissionFinished()) {
 
             logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_OUTRO);
 
@@ -401,34 +456,44 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder.addResponse(ofText(dialog)).withSlotName(actionSlotName);
     }
 
-    protected DialogItem.Builder handleWiningEnd(DialogItem.Builder builder) {
+    DialogItem.Builder handleWiningEnd(DialogItem.Builder builder) {
         calculateActivityProgress();
-        resetActivityProgress();
         return getWinDialog(builder);
     }
 
     private DialogItem.Builder handleMissionOutroState(DialogItem.Builder builder, UserMission currentMission) {
 
-        isLeaveMission = true;
+        this.isLeaveMission = true;
 
-        logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
+        if (this.userProgress.isGameFinished()) {
 
-        this.statePhase = MISSION_INTRO;
+            logger.debug("Handling " + this.statePhase + ". Moving to " + GAME_OUTRO);
 
-        String dialog = missionManager.getMissionOutro(currentMission);
+            this.statePhase = GAME_OUTRO;
 
-        return builder.addResponse(ofText(dialog)).withSlotName(actionSlotName);
+            builder.addResponse(ofText(phraseManager.getValueByKey(GAME_FINISHED_PHRASE)));
+        }
+        else {
+
+            logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
+
+            builder.addResponse(ofText(phraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
+            builder.addResponse(ofText(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+        }
+        return builder.withSlotName(actionSlotName);
     }
 
     private void calculateStripeProgress() {
 
         if (this.userProgress.getStripeCount() == missionManager.getContainer().getStripesAtMissionCount()) {
             this.userProgress.addFinishedMission(this.currentMission.name());
-            this.missionIsComplete = true;
+            this.activityProgress.setMissionFinished(true);
+            savePersistentAttributes();
         }
 
         if (this.starCount == missionManager.getContainer().getMaxStarCount()) {
-            this.gameIsComplete = true;
+            this.userProgress.setGameFinished(true);
+            savePersistentAttributes();
         }
     }
 
@@ -440,8 +505,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             this.userProgress.iterateStripeCount();
             this.userProgress.resetFinishRounds();
-
-            this.currentActivity = missionManager.getFirstActivityForLevel(currentMission);
 
             this.activityProgress.setStripeComplete(true);
         }

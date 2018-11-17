@@ -16,6 +16,7 @@ public class UserProgress {
     private String currentActivity;
     private String previousActivity;
     private boolean justCreated = false;
+    private boolean isGameFinished = false;
 
     public UserProgress() {
     }
@@ -89,13 +90,21 @@ public class UserProgress {
 
     public void addFinishedMission(String name) {
         this.justCreated = false;
-        this.finishedActivities.add(name);
+        this.finishedMissions.add(name);
     }
 
     public void addFinishedActivities(String name) {
         this.justCreated = false;
         this.previousActivity = name;
         this.finishedActivities.add(name);
+    }
+
+    public void setGameFinished(boolean gameFinished) {
+        this.isGameFinished = gameFinished;
+    }
+
+    public boolean isGameFinished() {
+        return isGameFinished;
     }
 
     public String getPreviousActivity() {

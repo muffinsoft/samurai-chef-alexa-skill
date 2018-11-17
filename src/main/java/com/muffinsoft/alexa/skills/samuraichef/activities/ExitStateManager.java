@@ -23,6 +23,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.RETURN_TO_GAME_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_INTRO;
 
@@ -65,6 +66,7 @@ public class ExitStateManager extends BaseStateManager {
             if (statePhase == StatePhase.PHASE_1 || statePhase == StatePhase.PHASE_2) {
                 builder.addResponse(ofText(activityProgress.getPreviousIngredient()));
             }
+            getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         }
         else {
             builder.addResponse(ofText(phraseManager.getValueByKey(REPEAT_LAST_PHRASE)));

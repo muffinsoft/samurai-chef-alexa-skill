@@ -39,5 +39,7 @@
   "helpActivitySushiSliceDescriptionPhrase": "Sushi Slice description.",
   "helpActivityJuiceWarriorDescriptionPhrase": "Juice Warrior description.",
   "helpActivityWordBoardKarateDescriptionPhrase": "Word Board Karate description.",
-  "helpActivityFoodTasterDescriptionPhrase": "Food Taster description."
+  "helpActivityFoodTasterDescriptionPhrase": "Food Taster description.",
+  "gameFinishedPhrasePhrase": "Congratulations! You are the winner!",
+  "redirectedToSelectMissionPhrase": "You will be redirected to mission selection."
 }

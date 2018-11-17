@@ -7,9 +7,11 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.MissionActivities;
 import com.muffinsoft.alexa.skills.samuraichef.models.ProgressContainer;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 public class MissionManager {
 
@@ -28,7 +30,7 @@ public class MissionManager {
         this.container = container;
     }
 
-    public Activities getFirstActivityForLevel(UserMission userMission) {
+    public Activities getFirstActivityForMission(UserMission userMission) {
 
         List<MissionActivities> allLevels = container.getMissions();
 
@@ -39,6 +41,38 @@ public class MissionManager {
             }
         }
         return null;
+    }
+
+    public Activities getNextActivityForMission(UserMission userMission, Set<String> finishedMissions) {
+
+        List<MissionActivities> allLevels = container.getMissions();
+
+        for (MissionActivities level : allLevels) {
+
+            if (Objects.equals(level.getTitle(), userMission.name())) {
+                return getNextPossibleActivity(level.getActivitiesOrder(), finishedMissions);
+            }
+        }
+        return null;
+    }
+
+    private Activities getNextPossibleActivity(Map<String, Integer> activitiesOrder, Set<String> finishedMissions) {
+
+        Map<String, Integer> temp = new HashMap<>(activitiesOrder);
+
+        for (String finishedMission : finishedMissions) {
+            temp.remove(finishedMission);
+        }
+
+        String possibleActivity = null;
+        int minimalValue = 0;
+
+        for (Map.Entry<String, Integer> entry : temp.entrySet()) {
+            if (entry.getValue() <= minimalValue) {
+                possibleActivity = entry.getKey();
+            }
+        }
+        return Activities.valueOf(possibleActivity);
     }
 
     private Activities getFirstActivity(Map<String, Integer> activities) {

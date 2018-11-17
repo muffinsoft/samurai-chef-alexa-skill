@@ -10,6 +10,7 @@ import java.util.Set;
 public class ActivityProgress {
 
     private boolean isStripeComplete;
+    private boolean isMissionFinished;
     private String currentIngredientReaction = "";
     private int successCount = 0;
     private int mistakesCount = 0;
@@ -99,6 +100,14 @@ public class ActivityProgress {
 
     public boolean isStripeComplete() {
         return isStripeComplete;
+    }
+
+    public void setMissionFinished(boolean missionFinished) {
+        this.isMissionFinished = missionFinished;
+    }
+
+    public boolean isMissionFinished() {
+        return isMissionFinished;
     }
 
     public void setStripeComplete(boolean stripeComplete) {

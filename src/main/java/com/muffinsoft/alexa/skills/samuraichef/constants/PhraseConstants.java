@@ -48,6 +48,10 @@ public class PhraseConstants {
 
     public static final String RETURN_TO_GAME_PHRASE = "returnToGamePhrase";
 
+    public static final String GAME_FINISHED_PHRASE = "gameFinishedPhrasePhrase";
+
+    public static final String REDIRECT_TO_SELECT_MISSION_PHRASE = "redirectedToSelectMissionPhrase";
+
     public static final String REPEAT_LAST_PHRASE = "repeatLastPhrase";
 
     public static final String EXIT_PHRASE = "exitPhrase";

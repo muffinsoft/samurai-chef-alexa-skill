@@ -91,7 +91,7 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
                 currentActivity = getFirstActivityForMission(input);
             }
             else {
-                currentActivity = Activities.valueOf(currentUserProgress.getCurrentActivity());
+                currentActivity = getActivityFromUserProgress(currentUserProgress);
             }
 
             PowerUps currentEquipment = PowerUps.EMPTY_SLOT;
@@ -114,6 +114,11 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
         }
     }
 
+    private Activities getActivityFromUserProgress(UserProgress userProgress) {
+        String currentActivity = userProgress.getCurrentActivity();
+        return Activities.valueOf(currentActivity);
+    }
+
     private ActivityProgress getCurrentActivityProgress(HandlerInput input) {
 
         LinkedHashMap rawActivityProgress = (LinkedHashMap) input.getAttributesManager().getSessionAttributes().get(ACTIVITY_PROGRESS);
@@ -132,7 +137,7 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
         UserMission userMission = UserMission.valueOf(String.valueOf(input.getAttributesManager().getSessionAttributes().get(CURRENT_MISSION)));
 
-        return configContainer.getMissionManager().getFirstActivityForLevel(userMission);
+        return configContainer.getMissionManager().getFirstActivityForMission(userMission);
     }
 
     private void handlePersistentAttributes(HandlerInput input) {
