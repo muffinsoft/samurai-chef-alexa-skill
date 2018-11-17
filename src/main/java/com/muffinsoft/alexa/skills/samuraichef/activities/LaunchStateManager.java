@@ -4,7 +4,6 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
@@ -13,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
+import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WELCOME_BACK_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WELCOME_PHRASE;
@@ -58,8 +58,8 @@ public class LaunchStateManager extends BaseStateManager {
         }
 
         return DialogItem.builder()
-                .withResponse(Speech.ofText(speechText))
-                .withReprompt(speechText)
+                .addResponse(ofText(speechText))
+                .withReprompt(ofText(speechText))
                 .withCardTitle(cardManager.getValueByKey(WELCOME_CARD))
                 .build();
     }

@@ -4,13 +4,11 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
-import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
@@ -20,10 +18,10 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_PROGRESS_REMOVED_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
@@ -39,7 +37,6 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     private static final Logger logger = LogManager.getLogger(CancelStateManager.class);
 
     private final PhraseManager phraseManager;
-    private ActivityProgress activityProgress;
     private UserMission currentMission;
     private int starCount;
 
@@ -51,19 +48,16 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     @Override
     protected void populateActivityVariables() {
 
-        currentMission = UserMission.valueOf(String.valueOf(getSessionAttributes().get(CURRENT_MISSION)));
+        this.currentMission = UserMission.valueOf(String.valueOf(getSessionAttributes().get(CURRENT_MISSION)));
 
-        starCount = (int) getSessionAttributes().getOrDefault(STAR_COUNT, 0);
-
-        LinkedHashMap rawActivityProgress = (LinkedHashMap) getSessionAttributes().get(ACTIVITY_PROGRESS);
-        activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
+        this.starCount = (int) getSessionAttributes().getOrDefault(STAR_COUNT, 0);
 
         logger.debug("Session attributes on the start of handling: " + this.getSessionAttributes().toString());
     }
 
     @Override
     protected void updatePersistentAttributes() {
-        switch (currentMission) {
+        switch (this.currentMission) {
             case LOW_MISSION:
                 removeMissionProgress(USER_LOW_PROGRESS_DB);
                 break;
@@ -79,18 +73,23 @@ public class ResetConfirmationStateManager extends BaseStateManager {
 
     private void removeMissionProgress(String value) {
         try {
-            UserProgress missionUserProgress = null;
+
+            UserProgress missionUserProgress;
+
             if (getPersistentAttributes().containsKey(value)) {
                 String jsonInString = String.valueOf(getPersistentAttributes().get(value));
                 LinkedHashMap rawUserProgress = mapper.readValue(jsonInString, LinkedHashMap.class);
                 missionUserProgress = mapper.convertValue(rawUserProgress, UserProgress.class);
             }
-            if (missionUserProgress == null) {
-                missionUserProgress = new UserProgress(this.currentMission);
+            else {
+                return;
             }
-            starCount = starCount - missionUserProgress.getStripeCount();
+
+            this.starCount = this.starCount - missionUserProgress.getStripeCount();
+            getPersistentAttributes().put(STAR_COUNT, this.starCount);
+            getSessionAttributes().put(STAR_COUNT, this.starCount);
+
             missionUserProgress.resetMissionProgress();
-            getPersistentAttributes().put(STAR_COUNT, starCount);
             getPersistentAttributes().put(value, mapper.writeValueAsString(missionUserProgress));
         }
         catch (IOException e) {
@@ -102,14 +101,11 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     public DialogItem nextResponse() {
         logger.debug("Available session attributes: " + getSessionAttributes());
 
-        logger.debug("User reply: " + getUserReply());
-
         String dialog;
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
             dialog = phraseManager.getValueByKey(SELECT_MISSION_PHRASE);
             getSessionAttributes().remove(CURRENT_MISSION);
-            getSessionAttributes().remove(ACTIVITY);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, Intents.GAME);
         }
@@ -117,7 +113,6 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             dialog = phraseManager.getValueByKey(MISSION_PROGRESS_REMOVED_PHRASE);
             getSessionAttributes().put(INTENT, Intents.GAME);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
-            getSessionAttributes().remove(ACTIVITY);
             getSessionAttributes().remove(USER_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
             getSessionAttributes().remove(STAR_COUNT);
@@ -127,7 +122,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             dialog = phraseManager.getValueByKey(REPEAT_LAST_PHRASE);
         }
 
-        DialogItem.Builder builder = DialogItem.builder().withResponse(Speech.ofText(dialog));
+        DialogItem.Builder builder = DialogItem.builder().addResponse(ofText(dialog));
 
         return builder.build();
     }

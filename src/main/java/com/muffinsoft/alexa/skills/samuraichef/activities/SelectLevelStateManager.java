@@ -5,7 +5,6 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
@@ -22,11 +21,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
+import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_UNKNOWN_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
@@ -60,31 +59,25 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         logger.debug("Starting handling user reply '" + this.getUserReply() + "' ...");
 
-        String dialog;
+        DialogItem.Builder builder = DialogItem.builder();
         if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-            dialog = phraseManager.getValueByKey(SELECT_MISSION_PHRASE);
+            builder.addResponse(ofText(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.LOW)) {
-            dialog = checkIfMissionAvailable(UserMission.LOW_MISSION);
+            builder.addResponse(ofText(checkIfMissionAvailable(UserMission.LOW_MISSION)));
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.MEDIUM)) {
-            dialog = checkIfMissionAvailable(UserMission.MEDIUM_MISSION);
+            builder.addResponse(ofText(checkIfMissionAvailable(UserMission.MEDIUM_MISSION)));
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.HIGH)) {
-            dialog = checkIfMissionAvailable(UserMission.HIGH_MISSION);
+            builder.addResponse(ofText(checkIfMissionAvailable(UserMission.HIGH_MISSION)));
         }
         else {
-            dialog = phraseManager.getValueByKey(SELECT_MISSION_UNKNOWN_PHRASE);
+            builder.addResponse(ofText(phraseManager.getValueByKey(SELECT_MISSION_UNKNOWN_PHRASE)));
         }
 
-        String cardTitle = null;
         if (this.getSessionAttributes().containsKey(CURRENT_MISSION)) {
-            cardTitle = aliasManager.getValueByKey(String.valueOf(this.getSessionAttributes().get(CURRENT_MISSION)));
-        }
-
-        DialogItem.Builder builder = DialogItem.builder().withResponse(Speech.ofText(dialog));
-
-        if (cardTitle != null) {
+            String cardTitle = aliasManager.getValueByKey(String.valueOf(this.getSessionAttributes().get(CURRENT_MISSION)));
             builder.withCardTitle(cardTitle);
         }
 
@@ -98,7 +91,6 @@ public class SelectLevelStateManager extends BaseStateManager {
             return phraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE);
         }
 
-        this.getSessionAttributes().remove(ACTIVITY);
         this.getSessionAttributes().remove(ACTIVITY_PROGRESS);
         this.getSessionAttributes().remove(USER_PROGRESS);
 

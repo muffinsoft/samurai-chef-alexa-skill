@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class ActivityProgress {
 
+    private boolean isStripeComplete;
     private String currentIngredientReaction = "";
     private int successCount = 0;
     private int mistakesCount = 0;
@@ -54,6 +55,7 @@ public class ActivityProgress {
         this.successCount = 0;
         this.mistakesCount = 0;
         this.previousIngredient = "";
+        this.setStripeComplete(false);
     }
 
     public void iterateSuccessCount() {
@@ -93,6 +95,14 @@ public class ActivityProgress {
             this.activePowerUp = nextPowerUp.name();
         }
         this.existingPowerUps.add(nextPowerUp.name());
+    }
+
+    public boolean isStripeComplete() {
+        return isStripeComplete;
+    }
+
+    public void setStripeComplete(boolean stripeComplete) {
+        isStripeComplete = stripeComplete;
     }
 
     public String getActivePowerUp() {

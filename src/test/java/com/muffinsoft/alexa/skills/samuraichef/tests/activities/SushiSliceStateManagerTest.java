@@ -10,6 +10,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
+import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 
 class SushiSliceStateManagerTest extends BaseStateManagerTest {
 
@@ -143,9 +145,14 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         activityProgress.setCurrentIngredientReaction("test");
         activityProgress.setSuccessCount(wonSuccessCount - 1);
 
+        UserProgress userProgress = new UserProgress(UserMission.LOW_MISSION, false);
+        userProgress.setCurrentActivity(Activities.SUSHI_SLICE.name());
+        userProgress.setFinishedActivities(new String[]{Activities.FOOD_TASTER.name(), Activities.JUICE_WARRIOR.name(), Activities.WORD_BOARD_KARATE.name()});
+
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
+        attributes.put(USER_PROGRESS, toMap(userProgress));
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
 
         SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
@@ -328,7 +335,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         activityProgress.setSuccessCount(2);
         activityProgress.setSuccessInRow(2);
         activityProgress.setActivePowerUp(powerUp);
-        activityProgress.setExistingPowerUps(new String[] {powerUp});
+        activityProgress.setExistingPowerUps(new String[]{powerUp});
 
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
@@ -364,7 +371,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         activityProgress.setSuccessCount(2);
         activityProgress.setSuccessInRow(2);
         activityProgress.setActivePowerUp(powerUp);
-        activityProgress.setExistingPowerUps(new String[] {powerUp});
+        activityProgress.setExistingPowerUps(new String[]{powerUp});
 
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
@@ -429,7 +436,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         activityProgress.setSuccessCount(1);
         activityProgress.setSuccessInRow(1);
         activityProgress.setActivePowerUp(powerUp);
-        activityProgress.setExistingPowerUps(new String[] {powerUp});
+        activityProgress.setExistingPowerUps(new String[]{powerUp});
 
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
@@ -465,7 +472,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         activityProgress.setSuccessCount(1);
         activityProgress.setSuccessInRow(1);
         activityProgress.setActivePowerUp(powerUp);
-        activityProgress.setExistingPowerUps(new String[] {powerUp});
+        activityProgress.setExistingPowerUps(new String[]{powerUp});
 
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);

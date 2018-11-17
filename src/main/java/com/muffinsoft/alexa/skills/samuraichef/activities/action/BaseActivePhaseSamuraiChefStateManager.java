@@ -10,6 +10,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_EARN_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
@@ -23,43 +24,40 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     }
 
     @Override
-    protected DialogItem handleActivePhaseState() {
+    protected DialogItem.Builder handleActivePhaseState(DialogItem.Builder builder) {
 
         logger.debug("Handling " + this.statePhase);
 
-        DialogItem dialog;
-
         if (Objects.equals(this.activityProgress.getCurrentIngredientReaction(), getUserReply())) {
-            dialog = handleSuccess();
+            builder = handleSuccess(builder);
         }
         else {
-            dialog = handleMistake();
+            builder = handleMistake(builder);
         }
 
         if (this.activityProgress.getSuccessCount() == stripe.getWonSuccessCount()) {
-            savePersistentAttributes();
-            dialog = getWinDialog();
+            builder = handleWiningEnd(builder);
         }
 
-        return dialog;
+        return builder;
     }
 
-    protected DialogItem handleTooLongMistake() {
+    protected DialogItem.Builder handleTooLongMistake(DialogItem.Builder builder) {
         this.activityProgress.iterateMistakeCount();
         this.activityProgress.resetSuccessInRow();
 
-        return getMistakeDialog(TOO_LONG_PHRASE);
+        return getMistakeDialog(builder, TOO_LONG_PHRASE);
     }
 
-    protected DialogItem handleMistake() {
+    protected DialogItem.Builder handleMistake(DialogItem.Builder builder) {
 
         this.activityProgress.iterateMistakeCount();
         this.activityProgress.resetSuccessInRow();
 
-        return getMistakeDialog();
+        return getMistakeDialog(builder);
     }
 
-    protected DialogItem handleMistakeWithSecondChance() {
+    protected DialogItem.Builder handleMistakeWithSecondChance(DialogItem.Builder builder) {
 
         this.activityProgress.resetSuccessInRow();
 
@@ -69,21 +67,23 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             String removedPowerUp = this.activityProgress.removePowerUp();
 
-            this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE) + " " + aliasManager.getValueByKey(removedPowerUp) + "! ";
+            String prependedString = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE) + " " + aliasManager.getValueByKey(removedPowerUp) + "!";
 
-            equipIfAvailable();
+            builder.addResponse(ofText(prependedString));
+
+            builder = equipIfAvailable(builder);
 
             logger.debug("User have another chance to chose right answer");
 
-            return getRePromptSuccessDialog();
+            return getRePromptSuccessDialog(builder);
         }
         else {
             this.activityProgress.iterateMistakeCount();
-            return getMistakeDialog();
+            return getMistakeDialog(builder);
         }
     }
 
-    protected DialogItem handleMistakeWithCorrectAnswer() {
+    protected DialogItem.Builder handleMistakeWithCorrectAnswer(DialogItem.Builder builder) {
 
         this.activityProgress.resetSuccessInRow();
 
@@ -93,49 +93,53 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             String removedPowerUp = this.activityProgress.removePowerUp();
 
-            this.dialogPrefix = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE) + " " + aliasManager.getValueByKey(removedPowerUp) + "! ";
+            String prependedString = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE) + " " + aliasManager.getValueByKey(removedPowerUp) + "! ";
 
-            equipIfAvailable();
+            builder.addResponse(ofText(prependedString));
+
+            builder = equipIfAvailable(builder);
 
             logger.debug("Wrong answer was calculated as correct");
 
             this.activityProgress.iterateSuccessCount();
 
-            return getSuccessDialog();
+            return getSuccessDialog(builder);
         }
         else {
 
             this.activityProgress.iterateMistakeCount();
 
-            return getMistakeDialog();
+            return getMistakeDialog(builder);
         }
     }
 
-    private DialogItem getMistakeDialog() {
-        return this.getMistakeDialog(WRONG_PHRASE);
+    private DialogItem.Builder getMistakeDialog(DialogItem.Builder builder) {
+        return this.getMistakeDialog(builder, WRONG_PHRASE);
     }
 
-    private DialogItem getMistakeDialog(String value) {
+    private DialogItem.Builder getMistakeDialog(DialogItem.Builder builder, String value) {
         if (this.activityProgress.getMistakesCount() < stripe.getMaxMistakeCount()) {
             logger.debug("Incorrect answer was found, running failure dialog");
-            return getFailureDialog(phraseManager.getValueByKey(value));
+            return getFailureDialog(builder, phraseManager.getValueByKey(value));
         }
         else {
             logger.debug("Last available incorrect answer was found, running lose dialog");
             savePersistentAttributes();
-            return getLoseRoundDialog(value);
+            return getLoseRoundDialog(builder, value);
         }
     }
 
-    private void equipIfAvailable() {
+    private DialogItem.Builder equipIfAvailable(DialogItem.Builder builder) {
         PowerUps nextPowerUp = this.activityProgress.equipIfAvailable();
         if (nextPowerUp != null) {
-            dialogPrefix += " " + phraseManager.getValueByKey(JUST_WEAR_PHRASE) + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+            String prependedString = phraseManager.getValueByKey(JUST_WEAR_PHRASE) + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+            builder.addResponse(ofText(prependedString));
             logger.debug("Was equipped power up: " + nextPowerUp);
         }
+        return builder;
     }
 
-    protected DialogItem handleSuccess() {
+    protected DialogItem.Builder handleSuccess(DialogItem.Builder builder) {
 
         this.activityProgress.iterateSuccessCount();
         this.activityProgress.iterateSuccessInARow();
@@ -149,10 +153,12 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
                 this.activityProgress.addPowerUp(nextPowerUp);
                 logger.debug("Was earned equipment: " + nextPowerUp);
                 if (Objects.equals(this.activityProgress.getActivePowerUp(), nextPowerUp.name())) {
-                    dialogPrefix = phraseManager.getValueByKey(JUST_WEAR_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+                    String prependedString = phraseManager.getValueByKey(JUST_WEAR_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+                    builder.addResponse(ofText(prependedString));
                 }
                 else {
-                    dialogPrefix = phraseManager.getValueByKey(JUST_EARN_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+                    String prependedString = phraseManager.getValueByKey(JUST_EARN_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+                    builder.addResponse(ofText(prependedString));
                 }
                 logger.debug("Was equipped power up: " + nextPowerUp);
             }
@@ -161,6 +167,6 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
             }
         }
         logger.debug("Correct answer was found, running success dialog");
-        return getSuccessDialog();
+        return getSuccessDialog(builder);
     }
 }

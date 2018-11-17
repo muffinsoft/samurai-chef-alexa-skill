@@ -22,11 +22,11 @@ import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
@@ -85,12 +85,10 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
             UserProgress currentUserProgress = getCurrentUserProgress(input);
 
-            logger.debug(currentUserProgress);
-
             Activities currentActivity;
 
             if (currentUserProgress.isJustCreated() || currentUserProgress.getCurrentActivity() == null) {
-                currentActivity = getCurrentActivity(input);
+                currentActivity = getFirstActivityForMission(input);
             }
             else {
                 currentActivity = Activities.valueOf(currentUserProgress.getCurrentActivity());
@@ -130,14 +128,11 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
         return rawUserProgress != null ? new ObjectMapper().convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
     }
 
-    private Activities getCurrentActivity(HandlerInput input) {
+    private Activities getFirstActivityForMission(HandlerInput input) {
 
         UserMission userMission = UserMission.valueOf(String.valueOf(input.getAttributesManager().getSessionAttributes().get(CURRENT_MISSION)));
 
-        Activities firstActivity = configContainer.getMissionManager().getFirstActivityForLevel(userMission);
-
-        String rawActivity = String.valueOf(input.getAttributesManager().getSessionAttributes().getOrDefault(ACTIVITY, firstActivity.name()));
-        return Activities.valueOf(rawActivity);
+        return configContainer.getMissionManager().getFirstActivityForLevel(userMission);
     }
 
     private void handlePersistentAttributes(HandlerInput input) {
@@ -145,7 +140,7 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
         AttributesManager attributesManager = input.getAttributesManager();
 
         if (!attributesManager.getSessionAttributes().containsKey(STAR_COUNT)) {
-            int starCount = (int) attributesManager.getPersistentAttributes().getOrDefault(STAR_COUNT, 0);
+            int starCount = ((BigDecimal) attributesManager.getPersistentAttributes().getOrDefault(STAR_COUNT, BigDecimal.ZERO)).intValue();
             attributesManager.getSessionAttributes().put(STAR_COUNT, starCount);
         }
 

@@ -13,13 +13,11 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.HELP_STATE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.FOOD_TASTER;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.JUICE_WARRIOR;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
 
 public class HelpStateManagerTest extends BaseStateManagerTest {
@@ -48,7 +46,11 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
         Map<String, Slot> slots = createSlotsForValue("any");
 
         Map<String, Object> attributes = new HashMap<>();
-        attributes.put(ACTIVITY, SUSHI_SLICE.name());
+
+        Map<String, Object> userProgress = new LinkedHashMap<>();
+        userProgress.put("currentActivity", SUSHI_SLICE.name());
+
+        attributes.put(USER_PROGRESS, userProgress);
 
         HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
 
@@ -67,7 +69,11 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
         Map<String, Slot> slots = createSlotsForValue("any");
 
         Map<String, Object> attributes = new HashMap<>();
-        attributes.put(ACTIVITY, JUICE_WARRIOR.name());
+
+        Map<String, Object> userProgress = new LinkedHashMap<>();
+        userProgress.put("currentActivity", FOOD_TASTER.name());
+
+        attributes.put(USER_PROGRESS, userProgress);
 
         HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
 
@@ -91,7 +97,6 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
         userProgress.put("finishedActivities", new String[]{SUSHI_SLICE.name()});
 
         Map<String, Object> attributes = new HashMap<>();
-        attributes.put(ACTIVITY, FOOD_TASTER.name());
         attributes.put(USER_PROGRESS, userProgress);
 
         HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());

@@ -55,9 +55,9 @@ class BaseStateManagerTest {
                 .build();
     }
 
-    LinkedHashMap toMap(ActivityProgress activityProgress) {
+    LinkedHashMap toMap(Object progress) {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.convertValue(activityProgress, LinkedHashMap.class);
+        return objectMapper.convertValue(progress, LinkedHashMap.class);
     }
 
     Map<String, Slot> createSlotsForValue(String value) {

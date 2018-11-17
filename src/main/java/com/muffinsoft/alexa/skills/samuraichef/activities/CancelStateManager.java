@@ -18,7 +18,6 @@ import java.util.Map;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_EXIT_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
@@ -47,7 +46,6 @@ public class CancelStateManager extends BaseStateManager {
         if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
             dialog = phraseManager.getValueByKey(SELECT_MISSION_PHRASE);
             getSessionAttributes().remove(CURRENT_MISSION);
-            getSessionAttributes().remove(ACTIVITY);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(USER_PROGRESS);
             getSessionAttributes().put(INTENT, Intents.GAME);
@@ -60,7 +58,7 @@ public class CancelStateManager extends BaseStateManager {
             dialog = phraseManager.getValueByKey(REPEAT_LAST_PHRASE);
         }
 
-        DialogItem.Builder builder = DialogItem.builder().withResponse(Speech.ofText(dialog));
+        DialogItem.Builder builder = DialogItem.builder().addResponse(Speech.ofText(dialog));
 
         return builder.build();
     }

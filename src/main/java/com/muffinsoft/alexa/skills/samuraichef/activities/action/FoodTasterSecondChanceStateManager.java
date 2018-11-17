@@ -14,7 +14,7 @@ public class FoodTasterSecondChanceStateManager extends FoodTasterStateManager {
     }
 
     @Override
-    protected DialogItem handleMistake() {
-        return super.handleMistakeWithSecondChance();
+    protected DialogItem.Builder handleMistake(DialogItem.Builder builder) {
+        return super.handleMistakeWithSecondChance(builder);
     }
 }

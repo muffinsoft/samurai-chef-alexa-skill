@@ -112,7 +112,6 @@ class SamuraiActionIntentHandlerTest {
         userProgress.put("finishedActivities", new String[]{Activities.SUSHI_SLICE.name()});
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.ACTIVITY, JUICE_WARRIOR);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.WIN);
         sessionAttributes.put(SessionConstants.USER_PROGRESS, userProgress);
 
@@ -132,7 +131,6 @@ class SamuraiActionIntentHandlerTest {
         slots.put("action", createSlotForValue("mission"));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.LOSE);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
@@ -150,10 +148,7 @@ class SamuraiActionIntentHandlerTest {
         Map<String, Slot> slots = new HashMap<>();
         slots.put("action", createSlotForValue("yes"));
 
-        List<String> finishedActivities = Arrays.asList(Activities.SUSHI_SLICE.name(), JUICE_WARRIOR.name(), Activities.WORD_BOARD_KARATE.name());
-
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.FOOD_TASTER);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.WIN);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
@@ -172,7 +167,6 @@ class SamuraiActionIntentHandlerTest {
         slots.put("action", createSlotForValue("mission"));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.FOOD_TASTER);
         sessionAttributes.put(SessionConstants.CURRENT_MISSION, UserMission.LOW_MISSION);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.LOSE);
 
@@ -192,7 +186,6 @@ class SamuraiActionIntentHandlerTest {
         slots.put("action", createSlotForValue("yes"));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
         sessionAttributes.put(SessionConstants.CURRENT_MISSION, UserMission.LOW_MISSION);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.READY_PHASE);
 
@@ -212,7 +205,6 @@ class SamuraiActionIntentHandlerTest {
         slots.put("action", createSlotForValue("no"));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.ACTIVITY, Activities.SUSHI_SLICE);
         sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.PHASE_1);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);

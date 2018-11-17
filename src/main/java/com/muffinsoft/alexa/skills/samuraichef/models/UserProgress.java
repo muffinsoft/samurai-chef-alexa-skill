@@ -13,7 +13,6 @@ public class UserProgress {
     private Set<String> finishedActivities = new HashSet<>();
     private Set<String> finishedMissions = new HashSet<>();
     private int stripeCount = 0;
-    //    private int starCount = 0;
     private String currentActivity;
     private String previousActivity;
     private boolean justCreated = false;
@@ -39,7 +38,6 @@ public class UserProgress {
 
     public void resetMissionProgress() {
         this.finishedActivities = new HashSet<>();
-//        this.starCount = this.starCount - this.stripeCount;
         this.stripeCount = 0;
         this.currentActivity = null;
         this.previousActivity = null;
@@ -79,14 +77,6 @@ public class UserProgress {
         this.stripeCount = stripeCount;
     }
 
-//    public int getStarCount() {
-//        return starCount;
-//    }
-//
-//    public void setStarCount(int starCount) {
-//        this.starCount = starCount;
-//    }
-
     public void iterateStripeCount() {
         this.justCreated = false;
         this.stripeCount += 1;
@@ -96,11 +86,6 @@ public class UserProgress {
         this.justCreated = false;
         this.finishedActivities = new HashSet<>();
     }
-
-//    public void iterateStarCount() {
-//        this.justCreated = false;
-//        this.starCount += 1;
-//    }
 
     public void addFinishedMission(String name) {
         this.justCreated = false;
@@ -142,7 +127,6 @@ public class UserProgress {
     public String toString() {
         return "class UserProgress {" +
                 " stripeCount: " + stripeCount + ";" +
-//                " starCount: " + starCount + ";" +
                 " currentActivity: " + currentActivity + ";" +
                 " finishedActivities: " + String.join(", ", finishedActivities) + ";" +
                 " finishedMissions: " + String.join(", ", finishedMissions) +

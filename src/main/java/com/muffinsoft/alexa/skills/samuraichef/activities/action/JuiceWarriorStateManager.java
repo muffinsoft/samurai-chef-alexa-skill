@@ -20,7 +20,7 @@ public class JuiceWarriorStateManager extends BaseActivePhaseSamuraiChefStateMan
     }
 
     @Override
-    protected DialogItem handleSuccess() {
+    protected DialogItem.Builder handleSuccess(DialogItem.Builder builder) {
 
         long answerTime = System.currentTimeMillis();
 
@@ -28,10 +28,10 @@ public class JuiceWarriorStateManager extends BaseActivePhaseSamuraiChefStateMan
 
         if (questionTime == null || answerTime - questionTime < answerLimit) {
 
-            return super.handleSuccess();
+            return super.handleSuccess(builder);
         }
         else {
-            return handleTooLongMistake();
+            return handleTooLongMistake(builder);
         }
     }
 

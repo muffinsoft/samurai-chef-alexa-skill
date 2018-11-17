@@ -14,12 +14,12 @@ public class SushiSliceCorrectAnswerStateManager extends SushiSliceStateManager 
     }
 
     @Override
-    protected DialogItem handleMistake() {
-        return super.handleMistakeWithCorrectAnswer();
+    protected DialogItem.Builder handleMistake(DialogItem.Builder builder) {
+        return super.handleMistakeWithCorrectAnswer(builder);
     }
 
     @Override
-    protected DialogItem handleTooLongMistake() {
-        return super.handleMistakeWithCorrectAnswer();
+    protected DialogItem.Builder handleTooLongMistake(DialogItem.Builder builder) {
+        return super.handleMistakeWithCorrectAnswer(builder);
     }
 }

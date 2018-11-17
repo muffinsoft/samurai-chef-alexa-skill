@@ -36,8 +36,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_MORE_DETAILS_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_NEW_WORDS_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.RETURN_TO_GAME_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_START_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.HELP_STATE;
@@ -81,14 +81,6 @@ public class HelpStateManager extends BaseStateManager {
             this.currentMission = null;
         }
 
-        String stringifyActivity = String.valueOf(getSessionAttributes().get(ACTIVITY));
-        if (stringifyActivity != null && !stringifyActivity.isEmpty() && !stringifyActivity.equals("null")) {
-            this.currentActivity = Activities.valueOf(stringifyActivity);
-        }
-        else {
-            this.currentActivity = null;
-        }
-
         this.currentIntent = Intents.valueOf(String.valueOf(getSessionAttributes().getOrDefault(INTENT, Intents.GAME.name())));
 
         String stringifyState = String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO));
@@ -101,6 +93,8 @@ public class HelpStateManager extends BaseStateManager {
 
         LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
         this.userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
+
+        this.currentActivity = this.userProgress.getCurrentActivity() != null ? Activities.valueOf(this.userProgress.getCurrentActivity()) : null;
 
         LinkedHashMap rawActivityProgress = (LinkedHashMap) getSessionAttributes().get(ACTIVITY_PROGRESS);
         this.activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
@@ -133,7 +127,7 @@ public class HelpStateManager extends BaseStateManager {
                     getSessionAttributes().put(INTENT, Intents.GAME);
                     getSessionAttributes().remove(HELP_STATE);
                     getSessionAttributes().remove(CURRENT_MISSION);
-                    builder.addResponse(ofText(phraseManager.getValueByKey(WANT_START_MISSION_PHRASE)));
+                    builder.addResponse(ofText(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
                 }
                 else {
                     handleProceedGame(builder);

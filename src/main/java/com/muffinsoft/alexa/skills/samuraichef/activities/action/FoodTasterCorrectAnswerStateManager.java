@@ -14,7 +14,7 @@ public class FoodTasterCorrectAnswerStateManager extends FoodTasterStateManager 
     }
 
     @Override
-    protected DialogItem handleMistake() {
-        return super.handleMistakeWithCorrectAnswer();
+    protected DialogItem.Builder handleMistake(DialogItem.Builder builder) {
+        return super.handleMistakeWithCorrectAnswer(builder);
     }
 }

@@ -14,7 +14,7 @@ public class WordBoardKarateCorrectAnswerStateManager extends WordBoardKarateSta
     }
 
     @Override
-    protected DialogItem handleMistake() {
-        return super.handleMistakeWithCorrectAnswer();
+    protected DialogItem.Builder handleMistake(DialogItem.Builder builder) {
+        return super.handleMistakeWithCorrectAnswer(builder);
     }
 }
