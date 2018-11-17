@@ -82,7 +82,7 @@ public class CancelStateManager extends BaseStateManager {
     private void saveUserProgressForMission(String value) {
         try {
             if (userProgress.getCurrentActivity().equals(userProgress.getPreviousActivity())) {
-                Activities nextActivityForMission = missionManager.getNextActivityForMission(this.currentMission, userProgress.getFinishedMissions());
+                Activities nextActivityForMission = missionManager.getNextActivityForMission(this.currentMission, userProgress.getFinishedActivities());
                 userProgress.setCurrentActivity(nextActivityForMission.name());
             }
             getPersistentAttributes().put(value, mapper.writeValueAsString(userProgress));

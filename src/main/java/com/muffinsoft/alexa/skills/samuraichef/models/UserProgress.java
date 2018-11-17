@@ -17,6 +17,7 @@ public class UserProgress {
     private String previousActivity;
     private boolean justCreated = false;
     private boolean isGameFinished = false;
+    private boolean isMissionFinished = false;
 
     public UserProgress() {
     }
@@ -43,8 +44,9 @@ public class UserProgress {
         this.currentActivity = null;
         this.previousActivity = null;
         this.justCreated = false;
+        this.isGameFinished = false;
+        this.isMissionFinished = false;
     }
-
 
     public String getMission() {
         return mission;
@@ -99,12 +101,12 @@ public class UserProgress {
         this.finishedActivities.add(name);
     }
 
-    public void setGameFinished(boolean gameFinished) {
-        this.isGameFinished = gameFinished;
-    }
-
     public boolean isGameFinished() {
         return isGameFinished;
+    }
+
+    public void setGameFinished(boolean gameFinished) {
+        this.isGameFinished = gameFinished;
     }
 
     public String getPreviousActivity() {
@@ -129,6 +131,14 @@ public class UserProgress {
 
     public void setJustCreated(boolean justCreated) {
         this.justCreated = justCreated;
+    }
+
+    public boolean isMissionFinished() {
+        return isMissionFinished;
+    }
+
+    public void setMissionFinished(boolean missionFinished) {
+        isMissionFinished = missionFinished;
     }
 
     @Override

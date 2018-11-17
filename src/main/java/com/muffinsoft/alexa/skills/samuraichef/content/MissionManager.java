@@ -43,32 +43,35 @@ public class MissionManager {
         return null;
     }
 
-    public Activities getNextActivityForMission(UserMission userMission, Set<String> finishedMissions) {
+    public Activities getNextActivityForMission(UserMission userMission, Set<String> finishedActivities) {
 
         List<MissionActivities> allLevels = container.getMissions();
 
         for (MissionActivities level : allLevels) {
 
             if (Objects.equals(level.getTitle(), userMission.name())) {
-                return getNextPossibleActivity(level.getActivitiesOrder(), finishedMissions);
+                return getNextPossibleActivity(level.getActivitiesOrder(), finishedActivities);
             }
         }
         return null;
     }
 
-    private Activities getNextPossibleActivity(Map<String, Integer> activitiesOrder, Set<String> finishedMissions) {
+    private Activities getNextPossibleActivity(Map<String, Integer> activitiesOrder, Set<String> finishedActivities) {
 
         Map<String, Integer> temp = new HashMap<>(activitiesOrder);
 
-        for (String finishedMission : finishedMissions) {
+        for (String finishedMission : finishedActivities) {
             temp.remove(finishedMission);
         }
 
         String possibleActivity = null;
-        int minimalValue = 0;
+        Integer minimalValue = null;
 
         for (Map.Entry<String, Integer> entry : temp.entrySet()) {
-            if (entry.getValue() <= minimalValue) {
+            if (minimalValue == null) {
+                minimalValue = entry.getValue();
+            }
+            else if (entry.getValue() <= minimalValue) {
                 possibleActivity = entry.getKey();
             }
         }

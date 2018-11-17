@@ -116,28 +116,35 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             ++this.starCount;
             getPersistentAttributes().put(STAR_COUNT, this.starCount);
             getSessionAttributes().put(STAR_COUNT, this.starCount);
+            logger.debug("Was updated star counter at Persistent attributes");
         }
+
         if (this.activityProgress.isMissionFinished()) {
             updateMissionCompleteInAllLevels();
+            logger.debug("Was updated completed missions in all missions");
         }
+
         logger.debug("Persistent attributes on the end of handling: " + this.getPersistentAttributes().toString());
     }
 
     private void updateMissionUserProgress() {
+
         try {
             if (this.currentMission == UserMission.LOW_MISSION) {
                 getPersistentAttributes().put(USER_LOW_PROGRESS_DB, mapper.writeValueAsString(this.userProgress));
+                logger.debug("Was update User Progress at low mission");
             }
             else if (this.currentMission == UserMission.MEDIUM_MISSION) {
-
                 getPersistentAttributes().put(USER_MID_PROGRESS_DB, mapper.writeValueAsString(this.userProgress));
+                logger.debug("Was update User Progress at medium mission");
             }
             else {
                 getPersistentAttributes().put(USER_HIGH_PROGRESS_DB, mapper.writeValueAsString(this.userProgress));
+                logger.debug("Was update User Progress at high mission");
             }
         }
         catch (JsonProcessingException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Caught exception while updating user progress: " + e.getMessage(), e);
         }
     }
 
@@ -201,7 +208,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
-        if (this.userProgress.getFinishedMissions().contains(this.currentMission.name()) && this.statePhase == MISSION_INTRO) {
+        if (this.userProgress.isMissionFinished()) {
             return handleAlreadyFinishedMission(builder);
         }
 
@@ -237,7 +244,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 builder = handleStripeOutroState(builder, this.currentMission);
                 break;
             case MISSION_OUTRO:
-                builder = handleMissionOutroState(builder, this.currentMission);
+                builder = handleMissionOutroState(builder);
                 break;
             default:
                 builder = handleActivePhaseState(builder);
@@ -440,20 +447,19 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         calculateStripeProgress();
 
-        String dialog;
-
         if (this.activityProgress.isMissionFinished()) {
 
             logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_OUTRO);
 
             this.statePhase = MISSION_OUTRO;
-            dialog = missionManager.getMissionOutro(currentMission);
+
+            return builder
+                    .addResponse(ofText(missionManager.getMissionOutro(currentMission)))
+                    .withSlotName(actionSlotName);
         }
         else {
             return handleStripeIntroStripe(builder, this.currentMission, this.userProgress.getStripeCount());
         }
-
-        return builder.addResponse(ofText(dialog)).withSlotName(actionSlotName);
     }
 
     DialogItem.Builder handleWiningEnd(DialogItem.Builder builder) {
@@ -461,7 +467,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return getWinDialog(builder);
     }
 
-    private DialogItem.Builder handleMissionOutroState(DialogItem.Builder builder, UserMission currentMission) {
+    private DialogItem.Builder handleMissionOutroState(DialogItem.Builder builder) {
 
         this.isLeaveMission = true;
 
@@ -480,6 +486,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             builder.addResponse(ofText(phraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
             builder.addResponse(ofText(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
         }
+
+        this.userProgress.setMissionFinished(true);
+        savePersistentAttributes();
+
         return builder.withSlotName(actionSlotName);
     }
 

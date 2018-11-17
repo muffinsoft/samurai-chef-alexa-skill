@@ -6,6 +6,7 @@ import com.muffinsoft.alexa.skills.samuraichef.activities.action.SushiSliceCorre
 import com.muffinsoft.alexa.skills.samuraichef.activities.action.SushiSliceSecondChanceStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.action.SushiSliceStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -19,6 +20,7 @@ import java.util.Map;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
@@ -494,5 +496,32 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         Assertions.assertEquals(result.getSuccessInRow(), 0);
         Assertions.assertTrue(result.getExistingPowerUps().isEmpty());
         Assertions.assertNull(result.getActivePowerUp());
+    }
+
+    @Test
+    void testMissionComplete() {
+
+        Map<String, Slot> slots = createSlotsForValue("test");
+
+        ActivityProgress activityProgress = new ActivityProgress();
+        activityProgress.setMissionFinished(true);
+        UserProgress userProgress = new UserProgress(UserMission.LOW_MISSION, false);
+        userProgress.setMissionFinished(true);
+        userProgress.addFinishedMission(UserMission.LOW_MISSION.name());
+
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
+        attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
+        attributes.put(USER_PROGRESS, toMap(userProgress));
+
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+
+        sushiSliceStateManager.nextResponse();
+
+        sushiSliceStateManager.updateAttributesManager();
+
+        Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
+
+        Assertions.assertEquals(sessionAttributes.get(INTENT), Intents.RESET);
     }
 }
