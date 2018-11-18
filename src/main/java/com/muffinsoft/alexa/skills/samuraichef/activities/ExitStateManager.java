@@ -61,7 +61,6 @@ public class ExitStateManager extends BaseStateManager {
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
             getSessionAttributes().put(INTENT, Intents.GAME);
-            getSessionAttributes().put(STATE_PHASE, StatePhase.STRIPE_INTRO);
             builder.addResponse(ofText(phraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             if (statePhase == StatePhase.PHASE_1 || statePhase == StatePhase.PHASE_2) {
                 builder.addResponse(ofText(activityProgress.getPreviousIngredient()));
