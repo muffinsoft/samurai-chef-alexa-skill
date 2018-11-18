@@ -5,7 +5,7 @@ import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivitiesSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
-import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
+import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class ActivityManager {
         return activitiesSettings.getSettingsByStripeNumber(level);
     }
 
-    public Speech getSpeechForActivityByStripeNumber(Activities currentActivity, int number) {
+    public SpeechSettings getSpeechForActivityByStripeNumber(Activities currentActivity, int number) {
 
         ActivitiesSettings activitiesSettings = containerByActivity.get(currentActivity);
 

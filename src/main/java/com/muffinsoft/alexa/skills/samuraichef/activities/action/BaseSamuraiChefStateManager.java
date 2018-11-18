@@ -18,7 +18,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
-import com.muffinsoft.alexa.skills.samuraichef.models.Speech;
+import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
@@ -304,21 +304,21 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder handleActivityIntroStripe(DialogItem.Builder builder, Activities activity, int number) {
 
-        Speech speech = activityManager.getSpeechForActivityByStripeNumber(activity, number);
+        SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumber(activity, number);
 
-        for (String partOfSpeech : speech.getIntro()) {
+        for (String partOfSpeech : speechSettings.getIntro()) {
             builder.addResponse(ofText(partOfSpeech));
         }
 
-        if (speech.isShouldRunDemo()) {
+        if (speechSettings.isShouldRunDemo()) {
 
             logger.debug("Handling " + this.statePhase + ". Moving to " + DEMO);
 
             this.statePhase = DEMO;
 
-            Speech demoSpeech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
+            SpeechSettings demoSpeechSettings = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
 
-            builder.addResponse(ofText(demoSpeech.getShouldRunDemoPhrase()));
+            builder.addResponse(ofText(demoSpeechSettings.getShouldRunDemoPhrase()));
         }
         else {
 
@@ -344,9 +344,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         }
         else {
 
-            Speech speech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
+            SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
 
-            for (String partOfSpeech : speech.getDemo()) {
+            for (String partOfSpeech : speechSettings.getDemo()) {
                 builder.addResponse(ofText(partOfSpeech));
             }
 
@@ -527,9 +527,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder appendReadyToStart(DialogItem.Builder builder) {
 
-        Speech speech = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
+        SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
 
-        builder.addResponse(ofText(speech.getReadyToStartPhrase()));
+        builder.addResponse(ofText(speechSettings.getReadyToStartPhrase()));
 
         return builder;
     }

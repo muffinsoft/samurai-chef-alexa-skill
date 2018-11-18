@@ -2,7 +2,7 @@ package com.muffinsoft.alexa.skills.samuraichef.models;
 
 import java.util.List;
 
-public class Speech {
+public class SpeechSettings {
 
     private List<String> intro;
     private boolean shouldRunDemo;

@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
+import static com.muffinsoft.alexa.sdk.model.Speech.ofAudio;
 import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WELCOME_BACK_PHRASE;

@@ -6,7 +6,7 @@ public class ActivitiesSettings {
 
     private String name;
     private Map<String, Stripe> activitySettingsByStripeNumber;
-    private Map<String, Speech> activitySpeechesByStripeNumber;
+    private Map<String, SpeechSettings> activitySpeechesByStripeNumber;
 
     public String getName() {
         return name;
@@ -28,15 +28,15 @@ public class ActivitiesSettings {
         this.activitySettingsByStripeNumber = activitySettingsByStripeNumber;
     }
 
-    public Map<String, Speech> getActivitySpeechesByStripeNumber() {
+    public Map<String, SpeechSettings> getActivitySpeechesByStripeNumber() {
         return activitySpeechesByStripeNumber;
     }
 
-    public void setActivitySpeechesByStripeNumber(Map<String, Speech> activitySpeechesByStripeNumber) {
+    public void setActivitySpeechesByStripeNumber(Map<String, SpeechSettings> activitySpeechesByStripeNumber) {
         this.activitySpeechesByStripeNumber = activitySpeechesByStripeNumber;
     }
 
-    public Speech getSpeechByStripeNumber(int number) {
+    public SpeechSettings getSpeechByStripeNumber(int number) {
         return activitySpeechesByStripeNumber.get(String.valueOf(number));
     }
 }
