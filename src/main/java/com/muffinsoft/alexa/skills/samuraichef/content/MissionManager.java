@@ -70,11 +70,19 @@ public class MissionManager {
         for (Map.Entry<String, Integer> entry : temp.entrySet()) {
             if (minimalValue == null) {
                 minimalValue = entry.getValue();
-            }
-            else if (entry.getValue() <= minimalValue) {
                 possibleActivity = entry.getKey();
             }
+
+            if (entry.getValue() <= minimalValue) {
+                possibleActivity = entry.getKey();
+                minimalValue = entry.getValue();
+            }
         }
+
+        if(possibleActivity == null) {
+            throw new IllegalStateException("Can't get next possible activity from " + activitiesOrder.toString() + " with " + String.join(", ", finishedActivities) + " finished activities");
+        }
+
         return Activities.valueOf(possibleActivity);
     }
 
