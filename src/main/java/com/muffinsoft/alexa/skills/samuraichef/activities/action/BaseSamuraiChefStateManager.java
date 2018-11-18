@@ -79,6 +79,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private UserProgress userProgress;
     private UserMission currentMission;
     private boolean isLeaveMission = false;
+    private boolean isMoveToReset = false;
     private int starCount;
 
     BaseSamuraiChefStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
@@ -188,7 +189,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.userProgress.setCurrentActivity(this.currentActivity.name());
 
         if (this.isLeaveMission) {
-            getSessionAttributes().remove(CURRENT_MISSION);
+            if (this.isMoveToReset) {
+                getSessionAttributes().remove(CURRENT_MISSION);
+            }
             getSessionAttributes().remove(USER_PROGRESS);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
@@ -257,6 +260,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private DialogItem handleAlreadyFinishedMission(DialogItem.Builder builder) {
 
         this.isLeaveMission = true;
+        this.isMoveToReset = true;
 
         getSessionAttributes().put(INTENT, Intents.RESET);
 
@@ -532,7 +536,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder getWinDialog(DialogItem.Builder builder) {
         this.statePhase = WIN;
-        return builder.replaceResponse(ofText(phraseManager.getValueByKey(WON_PHRASE)))
+        return builder
+                .removeLastResponse()
+                .addResponse(ofText(phraseManager.getValueByKey(WON_PHRASE)))
                 .withSlotName(actionSlotName)
                 .withReprompt(ofText(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)));
     }
