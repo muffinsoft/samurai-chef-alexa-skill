@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
+import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.EXIT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.RETURN_TO_GAME_PHRASE;
@@ -56,19 +56,19 @@ public class ExitStateManager extends BaseStateManager {
         DialogItem.Builder builder = DialogItem.builder();
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-            builder.addResponse(ofText(phraseManager.getValueByKey(EXIT_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(EXIT_PHRASE)));
             builder.withShouldEnd(true);
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
             getSessionAttributes().put(INTENT, Intents.GAME);
-            builder.addResponse(ofText(phraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             if (statePhase == StatePhase.PHASE_1 || statePhase == StatePhase.PHASE_2) {
-                builder.addResponse(ofText(activityProgress.getPreviousIngredient()));
+                builder.addResponse(ofAlexa(activityProgress.getPreviousIngredient()));
             }
             getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         }
         else {
-            builder.addResponse(ofText(phraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
         }
 
         return builder.build();

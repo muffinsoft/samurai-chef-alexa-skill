@@ -102,16 +102,16 @@ public class ActivityProgress {
         return isStripeComplete;
     }
 
-    public void setMissionFinished(boolean missionFinished) {
-        this.isMissionFinished = missionFinished;
+    public void setStripeComplete(boolean stripeComplete) {
+        isStripeComplete = stripeComplete;
     }
 
     public boolean isMissionFinished() {
         return isMissionFinished;
     }
 
-    public void setStripeComplete(boolean stripeComplete) {
-        isStripeComplete = stripeComplete;
+    public void setMissionFinished(boolean missionFinished) {
+        this.isMissionFinished = missionFinished;
     }
 
     public String getActivePowerUp() {

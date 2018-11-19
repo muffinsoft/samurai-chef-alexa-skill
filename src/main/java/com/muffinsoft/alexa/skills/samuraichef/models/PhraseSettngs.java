@@ -1,11 +1,20 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
-public class PhraseSettngs {
+import com.muffinsoft.alexa.sdk.enums.SpeechType;
+import com.muffinsoft.alexa.sdk.model.PhraseContainer;
+
+public class PhraseSettngs implements PhraseContainer {
 
     private String content;
     private String role;
     private String audioPath;
 
+    @Override
+    public SpeechType getType() {
+        return SpeechType.valueOf(role);
+    }
+
+    @Override
     public String getContent() {
         return content;
     }

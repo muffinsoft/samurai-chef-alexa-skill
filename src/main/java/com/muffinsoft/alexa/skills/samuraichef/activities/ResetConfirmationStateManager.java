@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
+import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_PROGRESS_REMOVED_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
@@ -122,7 +122,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             dialog = phraseManager.getValueByKey(REPEAT_LAST_PHRASE);
         }
 
-        DialogItem.Builder builder = DialogItem.builder().addResponse(ofText(dialog));
+        DialogItem.Builder builder = DialogItem.builder().addResponse(ofAlexa(dialog));
 
         return builder.build();
     }

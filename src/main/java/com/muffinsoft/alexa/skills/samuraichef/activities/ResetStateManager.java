@@ -4,7 +4,6 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
@@ -18,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
+import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.RETURN_TO_GAME_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_MISSION_FROM_BEGINNING_PHRASE;
@@ -59,18 +58,18 @@ public class ResetStateManager extends BaseStateManager {
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
             getSessionAttributes().put(INTENT, Intents.GAME);
             getSessionAttributes().put(STATE_PHASE, StatePhase.STRIPE_INTRO);
-            builder.addResponse(Speech.ofText(phraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             if (statePhase == StatePhase.PHASE_1 || statePhase == StatePhase.PHASE_2) {
-                builder.addResponse(ofText(activityProgress.getPreviousIngredient()));
+                builder.addResponse(ofAlexa(activityProgress.getPreviousIngredient()));
             }
             getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-            builder.addResponse(Speech.ofText(phraseManager.getValueByKey(WANT_MISSION_FROM_BEGINNING_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(WANT_MISSION_FROM_BEGINNING_PHRASE)));
             getSessionAttributes().put(INTENT, Intents.RESET_CONFIRMATION);
         }
         else {
-            builder.addResponse(Speech.ofText(phraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
         }
 
         return builder.build();

@@ -79,7 +79,7 @@ public class MissionManager {
             }
         }
 
-        if(possibleActivity == null) {
+        if (possibleActivity == null) {
             throw new IllegalStateException("Can't get next possible activity from " + activitiesOrder.toString() + " with " + String.join(", ", finishedActivities) + " finished activities");
         }
 

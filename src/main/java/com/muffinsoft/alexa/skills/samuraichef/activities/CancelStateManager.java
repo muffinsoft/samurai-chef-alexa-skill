@@ -116,7 +116,7 @@ public class CancelStateManager extends BaseStateManager {
             dialog = phraseManager.getValueByKey(REPEAT_LAST_PHRASE);
         }
 
-        DialogItem.Builder builder = DialogItem.builder().addResponse(Speech.ofText(dialog));
+        DialogItem.Builder builder = DialogItem.builder().addResponse(Speech.ofAlexa(dialog));
 
         return builder.build();
     }

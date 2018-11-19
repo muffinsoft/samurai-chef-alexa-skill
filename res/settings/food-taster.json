@@ -34,7 +34,7 @@
   "activitySpeechesByStripeNumber": {
     "0": {
       "intro": [
-        "First tripe Food Taster activity.",
+        "First stripe Food Taster activity.",
         "If we get soup, say 'Slurp!'. If it's sushi, say 'Gulp!' to gulp it down in one bite. If we get wasabi peas, say 'Crunch!' to chomp it good. If it's tea, say 'Sip!'. If we get mochi ice cream, say 'Lick!' to lick it up. We'll take turns eating to see who eats the most!"
       ],
       "shouldRunDemo": true,

@@ -21,7 +21,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
+import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
@@ -61,19 +61,19 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
         if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-            builder.addResponse(ofText(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.LOW)) {
-            builder.addResponse(ofText(checkIfMissionAvailable(UserMission.LOW_MISSION)));
+            builder.addResponse(ofAlexa(checkIfMissionAvailable(UserMission.LOW_MISSION)));
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.MEDIUM)) {
-            builder.addResponse(ofText(checkIfMissionAvailable(UserMission.MEDIUM_MISSION)));
+            builder.addResponse(ofAlexa(checkIfMissionAvailable(UserMission.MEDIUM_MISSION)));
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.HIGH)) {
-            builder.addResponse(ofText(checkIfMissionAvailable(UserMission.HIGH_MISSION)));
+            builder.addResponse(ofAlexa(checkIfMissionAvailable(UserMission.HIGH_MISSION)));
         }
         else {
-            builder.addResponse(ofText(phraseManager.getValueByKey(SELECT_MISSION_UNKNOWN_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(SELECT_MISSION_UNKNOWN_PHRASE)));
         }
 
         if (this.getSessionAttributes().containsKey(CURRENT_MISSION)) {

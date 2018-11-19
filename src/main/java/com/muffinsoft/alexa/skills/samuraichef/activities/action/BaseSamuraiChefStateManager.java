@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
+import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.GAME_FINISHED_PHRASE;
@@ -265,16 +265,16 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         getSessionAttributes().put(INTENT, Intents.RESET);
 
         return builder.withSlotName(actionSlotName)
-                .addResponse(ofText(phraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)))
-                .addResponse(ofText(phraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)))
+                .addResponse(ofAlexa(phraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)))
+                .addResponse(ofAlexa(phraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)))
                 .build();
     }
 
     private DialogItem handleMultipleResponses(DialogItem.Builder builder) {
 
         return builder.withSlotName(actionSlotName)
-                .addResponse(ofText(phraseManager.getValueByKey(SEVERAL_VALUES_PHRASE)))
-                .addResponse(ofText(String.join(", ", this.getUserMultipleReplies())))
+                .addResponse(ofAlexa(phraseManager.getValueByKey(SEVERAL_VALUES_PHRASE)))
+                .addResponse(ofAlexa(String.join(", ", this.getUserMultipleReplies())))
                 .build();
     }
 
@@ -288,7 +288,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         String dialog = missionManager.getMissionIntro(currentMission);
 
-        return builder.addResponse(ofText(dialog)).withSlotName(actionSlotName);
+        return builder.addResponse(ofAlexa(dialog)).withSlotName(actionSlotName);
     }
 
     private DialogItem.Builder handleStripeIntroStripe(DialogItem.Builder builder, UserMission currentMission, int number) {
@@ -299,7 +299,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         String dialog = missionManager.getStripeIntroByMission(currentMission, number);
 
-        return builder.addResponse(ofText(dialog)).withSlotName(actionSlotName);
+        return builder.addResponse(ofAlexa(dialog)).withSlotName(actionSlotName);
     }
 
     private DialogItem.Builder handleActivityIntroStripe(DialogItem.Builder builder, Activities activity, int number) {
@@ -307,7 +307,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumber(activity, number);
 
         for (String partOfSpeech : speechSettings.getIntro()) {
-            builder.addResponse(ofText(partOfSpeech));
+            builder.addResponse(ofAlexa(partOfSpeech));
         }
 
         if (speechSettings.isShouldRunDemo()) {
@@ -318,7 +318,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             SpeechSettings demoSpeechSettings = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
 
-            builder.addResponse(ofText(demoSpeechSettings.getShouldRunDemoPhrase()));
+            builder.addResponse(ofAlexa(demoSpeechSettings.getShouldRunDemoPhrase()));
         }
         else {
 
@@ -339,20 +339,20 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
 
-            builder.addResponse(ofText(phraseManager.getValueByKey(READY_TO_START_PHRASE)));
-            builder.withReprompt(ofText(phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(READY_TO_START_PHRASE)));
+            builder.withReprompt(ofAlexa(phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE)));
         }
         else {
 
             SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
 
             for (String partOfSpeech : speechSettings.getDemo()) {
-                builder.addResponse(ofText(partOfSpeech));
+                builder.addResponse(ofAlexa(partOfSpeech));
             }
 
             builder = appendReadyToStart(builder);
 
-            builder.withReprompt(ofText(phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE)));
+            builder.withReprompt(ofAlexa(phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE)));
         }
 
         return builder.withSlotName(actionSlotName);
@@ -366,7 +366,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.statePhase = PHASE_1;
 
-        return builder.addResponse(ofText(speechText)).withSlotName(actionSlotName);
+        return builder.addResponse(ofAlexa(speechText)).withSlotName(actionSlotName);
     }
 
 
@@ -417,7 +417,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.statePhase = STRIPE_OUTRO;
         String dialogPhrase = missionManager.getStripeOutroByMission(currentMission, number);
-        return builder.addResponse(ofText(dialogPhrase)).withSlotName(actionSlotName);
+        return builder.addResponse(ofAlexa(dialogPhrase)).withSlotName(actionSlotName);
     }
 
     private DialogItem.Builder handleLoseState(DialogItem.Builder builder) {
@@ -444,7 +444,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.getSessionAttributes().remove(CURRENT_MISSION);
 
-        return builder.withSlotName(actionSlotName).addResponse(ofText(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+        return builder.withSlotName(actionSlotName).addResponse(ofAlexa(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
     }
 
     private DialogItem.Builder handleStripeOutroState(DialogItem.Builder builder, UserMission currentMission) {
@@ -458,7 +458,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             this.statePhase = MISSION_OUTRO;
 
             return builder
-                    .addResponse(ofText(missionManager.getMissionOutro(currentMission)))
+                    .addResponse(ofAlexa(missionManager.getMissionOutro(currentMission)))
                     .withSlotName(actionSlotName);
         }
         else {
@@ -481,14 +481,14 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             this.statePhase = GAME_OUTRO;
 
-            builder.addResponse(ofText(phraseManager.getValueByKey(GAME_FINISHED_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(GAME_FINISHED_PHRASE)));
         }
         else {
 
             logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
 
-            builder.addResponse(ofText(phraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
-            builder.addResponse(ofText(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
         }
 
         this.userProgress.setMissionFinished(true);
@@ -529,7 +529,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumber(this.currentActivity, this.userProgress.getStripeCount());
 
-        builder.addResponse(ofText(speechSettings.getReadyToStartPhrase()));
+        builder.addResponse(ofAlexa(speechSettings.getReadyToStartPhrase()));
 
         return builder;
     }
@@ -538,35 +538,38 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.statePhase = WIN;
         return builder
                 .removeLastResponse()
-                .addResponse(ofText(phraseManager.getValueByKey(WON_PHRASE)))
+                .addResponse(ofAlexa(phraseManager.getValueByKey(WON_PHRASE)))
                 .withSlotName(actionSlotName)
-                .withReprompt(ofText(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)));
+                .withReprompt(ofAlexa(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)));
     }
 
     DialogItem.Builder getRePromptSuccessDialog(DialogItem.Builder builder) {
         return builder
-                .addResponse(ofText(phraseManager.getValueByKey(TRY_AGAIN_PHRASE)))
-                .addResponse(ofText(this.activityProgress.getPreviousIngredient()))
+                .addResponse(ofAlexa(phraseManager.getValueByKey(TRY_AGAIN_PHRASE)))
+                .addResponse(ofAlexa(this.activityProgress.getPreviousIngredient()))
                 .withSlotName(actionSlotName);
     }
 
     DialogItem.Builder getSuccessDialog(DialogItem.Builder builder) {
         String ingredient = nextIngredient();
-        return builder.addResponse(ofText(ingredient)).withSlotName(actionSlotName);
+        return builder.addResponse(ofAlexa(ingredient)).withSlotName(actionSlotName);
     }
 
     DialogItem.Builder getFailureDialog(DialogItem.Builder builder, String speechText) {
         String ingredient = nextIngredient();
-        return builder.addResponse(ofText(speechText)).addResponse(ofText(ingredient)).withSlotName(actionSlotName);
+        return builder
+                .addResponse(ofAlexa(speechText))
+                .addResponse(ofAlexa(ingredient))
+                .withSlotName(actionSlotName);
     }
 
     DialogItem.Builder getLoseRoundDialog(DialogItem.Builder builder, String value) {
         this.statePhase = LOSE;
         return builder
-                .addResponse(ofText(phraseManager.getValueByKey(value)))
-                .addResponse(ofText(phraseManager.getValueByKey(FAILURE_PHRASE)))
+                .addResponse(ofAlexa(phraseManager.getValueByKey(value)))
+                .addResponse(ofAlexa(phraseManager.getValueByKey(FAILURE_PHRASE)))
                 .withSlotName(actionSlotName)
-                .withReprompt(ofText(phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE)));
+                .withReprompt(ofAlexa(phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE)));
     }
 
     private String nextIngredient() {

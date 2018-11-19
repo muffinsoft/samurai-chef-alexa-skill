@@ -10,7 +10,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
+import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_EARN_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
@@ -69,7 +69,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             String prependedString = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE) + " " + aliasManager.getValueByKey(removedPowerUp) + "!";
 
-            builder.addResponse(ofText(prependedString));
+            builder.addResponse(ofAlexa(prependedString));
 
             builder = equipIfAvailable(builder);
 
@@ -95,7 +95,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             String prependedString = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE) + " " + aliasManager.getValueByKey(removedPowerUp) + "! ";
 
-            builder.addResponse(ofText(prependedString));
+            builder.addResponse(ofAlexa(prependedString));
 
             builder = equipIfAvailable(builder);
 
@@ -133,7 +133,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         PowerUps nextPowerUp = this.activityProgress.equipIfAvailable();
         if (nextPowerUp != null) {
             String prependedString = phraseManager.getValueByKey(JUST_WEAR_PHRASE) + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
-            builder.addResponse(ofText(prependedString));
+            builder.addResponse(ofAlexa(prependedString));
             logger.debug("Was equipped power up: " + nextPowerUp);
         }
         return builder;
@@ -154,11 +154,11 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
                 logger.debug("Was earned equipment: " + nextPowerUp);
                 if (Objects.equals(this.activityProgress.getActivePowerUp(), nextPowerUp.name())) {
                     String prependedString = phraseManager.getValueByKey(JUST_WEAR_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
-                    builder.addResponse(ofText(prependedString));
+                    builder.addResponse(ofAlexa(prependedString));
                 }
                 else {
                     String prependedString = phraseManager.getValueByKey(JUST_EARN_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
-                    builder.addResponse(ofText(prependedString));
+                    builder.addResponse(ofAlexa(prependedString));
                 }
                 logger.debug("Was equipped power up: " + nextPowerUp);
             }

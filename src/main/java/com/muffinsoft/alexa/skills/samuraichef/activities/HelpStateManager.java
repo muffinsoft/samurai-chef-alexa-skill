@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofText;
+import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_ACTIVITY_FOOD_TASTER_DESCRIPTION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_ACTIVITY_JUICE_WARRIOR_DESCRIPTION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_ACTIVITY_SUSHI_SLICE_DESCRIPTION_PHRASE;
@@ -128,7 +128,7 @@ public class HelpStateManager extends BaseStateManager {
                     getSessionAttributes().put(INTENT, Intents.GAME);
                     getSessionAttributes().remove(HELP_STATE);
                     getSessionAttributes().remove(CURRENT_MISSION);
-                    builder.addResponse(ofText(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+                    builder.addResponse(ofAlexa(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
                 }
                 else {
                     handleProceedGame(builder);
@@ -182,17 +182,17 @@ public class HelpStateManager extends BaseStateManager {
         if (this.currentActivity != null) {
             if (Activities.checkIfCompetition(this.currentActivity)) {
                 // Competition Rules & Examples
-                builder.addResponse(ofText(phraseManager.getValueByKey(HELP_COMPETITION_RULES_PHRASE)));
+                builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_COMPETITION_RULES_PHRASE)));
                 getSessionAttributes().put(HELP_STATE, COMPETITION_REMINDER_HELP);
             }
             else {
-                builder.addResponse(ofText(phraseManager.getValueByKey(HELP_NEW_WORDS_PHRASE)));
+                builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_NEW_WORDS_PHRASE)));
                 if (userProgress.getFinishedMissions().isEmpty() && userProgress.getFinishedActivities().isEmpty()) {
                     handleLearnMore(builder);
                 }
                 else {
                     getSessionAttributes().put(HELP_STATE, MORE_DETAILS_HELP);
-                    builder.addResponse(ofText(phraseManager.getValueByKey(HELP_MORE_DETAILS_PHRASE)));
+                    builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_MORE_DETAILS_PHRASE)));
                 }
             }
         }
@@ -210,21 +210,21 @@ public class HelpStateManager extends BaseStateManager {
 
     private void handleLearnMore(DialogItem.Builder builder) {
         getSessionAttributes().put(HELP_STATE, LEARN_MORE_HELP);
-        builder.addResponse(ofText(phraseManager.getValueByKey(HELP_LEARN_MORE_PHRASE)));
+        builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_LEARN_MORE_PHRASE)));
     }
 
     private void handleActivityDescription(DialogItem.Builder builder) {
         if (currentActivity == Activities.SUSHI_SLICE) {
-            builder.addResponse(ofText(phraseManager.getValueByKey(HELP_ACTIVITY_SUSHI_SLICE_DESCRIPTION_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_ACTIVITY_SUSHI_SLICE_DESCRIPTION_PHRASE)));
         }
         else if (currentActivity == Activities.JUICE_WARRIOR) {
-            builder.addResponse(ofText(phraseManager.getValueByKey(HELP_ACTIVITY_JUICE_WARRIOR_DESCRIPTION_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_ACTIVITY_JUICE_WARRIOR_DESCRIPTION_PHRASE)));
         }
         else if (currentActivity == Activities.WORD_BOARD_KARATE) {
-            builder.addResponse(ofText(phraseManager.getValueByKey(HELP_ACTIVITY_WORD_BOARD_KARATE_DESCRIPTION_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_ACTIVITY_WORD_BOARD_KARATE_DESCRIPTION_PHRASE)));
         }
         else {
-            builder.addResponse(ofText(phraseManager.getValueByKey(HELP_ACTIVITY_FOOD_TASTER_DESCRIPTION_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_ACTIVITY_FOOD_TASTER_DESCRIPTION_PHRASE)));
         }
     }
 
@@ -233,24 +233,24 @@ public class HelpStateManager extends BaseStateManager {
         // Current Star progress
         //  Do you want to continue playing?
         if (currentMission == UserMission.LOW_MISSION) {
-            builder.addResponse(ofText(phraseManager.getValueByKey(HELP_MISSION_LOW_DESCRIPTION_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_MISSION_LOW_DESCRIPTION_PHRASE)));
         }
         else if (currentMission == UserMission.MEDIUM_MISSION) {
-            builder.addResponse(ofText(phraseManager.getValueByKey(HELP_MISSION_MID_DESCRIPTION_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_MISSION_MID_DESCRIPTION_PHRASE)));
         }
         else {
-            builder.addResponse(ofText(phraseManager.getValueByKey(HELP_MISSION_HIGH_DESCRIPTION_PHRASE)));
+            builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_MISSION_HIGH_DESCRIPTION_PHRASE)));
         }
         getSessionAttributes().put(HELP_STATE, CONTINUE_PLAYING_HELP);
-        builder.addResponse(ofText(phraseManager.getValueByKey(HELP_CONTINUE_PLAYING_PHRASE)));
+        builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_CONTINUE_PLAYING_PHRASE)));
     }
 
     private void handleProceedGame(DialogItem.Builder builder) {
         getSessionAttributes().put(INTENT, Intents.GAME);
         getSessionAttributes().remove(HELP_STATE);
-        builder.addResponse(ofText(phraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
+        builder.addResponse(ofAlexa(phraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
         if (statePhase == StatePhase.PHASE_1 || statePhase == StatePhase.PHASE_2) {
-            builder.addResponse(ofText(activityProgress.getPreviousIngredient()));
+            builder.addResponse(ofAlexa(activityProgress.getPreviousIngredient()));
         }
         getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         getSessionAttributes().remove(HELP_STATE);
@@ -259,7 +259,7 @@ public class HelpStateManager extends BaseStateManager {
     private void handleGeneralHelp(DialogItem.Builder builder) {
         getSessionAttributes().put(HELP_STATE, GENERAL_HELP);
         // General Help %Game  description%
-        builder.addResponse(ofText(phraseManager.getValueByKey(HELP_GENERAL_PHRASE)));
-        builder.addResponse(ofText(phraseManager.getValueByKey(WANT_START_MISSION_PHRASE)));
+        builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_GENERAL_PHRASE)));
+        builder.addResponse(ofAlexa(phraseManager.getValueByKey(WANT_START_MISSION_PHRASE)));
     }
 }
