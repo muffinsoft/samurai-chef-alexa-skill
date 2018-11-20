@@ -1,12 +1,14 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
+import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
+
 import java.util.Map;
 
 public class ActivitiesSettings {
 
     private String name;
-    private Map<String, Stripe> activitySettingsByStripeNumber;
-    private Map<String, SpeechSettings> activitySpeechesByStripeNumber;
+    private Map<String, Map<String, Stripe>> activitySettingsByStripeNumber;
+    private Map<String, Map<String, SpeechSettings>> activitySpeechesByStripeNumber;
 
     public String getName() {
         return name;
@@ -16,27 +18,27 @@ public class ActivitiesSettings {
         this.name = name;
     }
 
-    public Stripe getSettingsByStripeNumber(int number) {
-        return activitySettingsByStripeNumber.get(String.valueOf(number));
-    }
-
-    public Map<String, Stripe> getActivitySettingsByStripeNumber() {
+    public Map<String, Map<String, Stripe>> getActivitySettingsByStripeNumber() {
         return activitySettingsByStripeNumber;
     }
 
-    public void setActivitySettingsByStripeNumber(Map<String, Stripe> activitySettingsByStripeNumber) {
+    public void setActivitySettingsByStripeNumber(Map<String, Map<String, Stripe>> activitySettingsByStripeNumber) {
         this.activitySettingsByStripeNumber = activitySettingsByStripeNumber;
     }
 
-    public Map<String, SpeechSettings> getActivitySpeechesByStripeNumber() {
+    public Map<String, Map<String, SpeechSettings>> getActivitySpeechesByStripeNumber() {
         return activitySpeechesByStripeNumber;
     }
 
-    public void setActivitySpeechesByStripeNumber(Map<String, SpeechSettings> activitySpeechesByStripeNumber) {
+    public void setActivitySpeechesByStripeNumber(Map<String, Map<String, SpeechSettings>> activitySpeechesByStripeNumber) {
         this.activitySpeechesByStripeNumber = activitySpeechesByStripeNumber;
     }
 
-    public SpeechSettings getSpeechByStripeNumber(int number) {
-        return activitySpeechesByStripeNumber.get(String.valueOf(number));
+    public Stripe getSettingsByStripeNumberAtMission(int stripeNumber, UserMission mission) {
+        return this.activitySettingsByStripeNumber.get(mission.name()).get(String.valueOf(stripeNumber));
+    }
+
+    public SpeechSettings getSpeechByStripeNumberAtLevel(int stripeNumber, UserMission mission) {
+        return this.activitySpeechesByStripeNumber.get(mission.name()).get(String.valueOf(stripeNumber));
     }
 }

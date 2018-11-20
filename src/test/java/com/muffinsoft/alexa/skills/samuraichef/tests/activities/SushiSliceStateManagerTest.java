@@ -141,7 +141,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
 
         Map<String, Slot> slots = createSlotsForValue("test");
 
-        Integer wonSuccessCount = IoC.provideConfigurationContainer().getActivityManager().getLevelForActivity(Activities.SUSHI_SLICE, 0).getWonSuccessCount();
+        Integer wonSuccessCount = IoC.provideConfigurationContainer().getActivityManager().getStripeForActivityAtMission(Activities.SUSHI_SLICE, 0, UserMission.LOW_MISSION).getWonSuccessCount();
 
         ActivityProgress activityProgress = new ActivityProgress();
         activityProgress.setCurrentIngredientReaction("test");
@@ -172,7 +172,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
 
         Map<String, Slot> slots = createSlotsForValue("test");
 
-        Integer maxMistakeCount = IoC.provideConfigurationContainer().getActivityManager().getLevelForActivity(Activities.SUSHI_SLICE, 0).getMaxMistakeCount();
+        Integer maxMistakeCount = IoC.provideConfigurationContainer().getActivityManager().getStripeForActivityAtMission(Activities.SUSHI_SLICE, 0, UserMission.LOW_MISSION).getMaxMistakeCount();
 
         ActivityProgress activityProgress = new ActivityProgress();
         activityProgress.setCurrentIngredientReaction("any");

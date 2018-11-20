@@ -24,7 +24,7 @@
           "audio": null
         },
         {
-          "isUserResponse": true
+          "userResponse": true
         },
         {
           "content": "Umm.... does buttered toast coast?",
@@ -139,7 +139,7 @@
             "audio": null
           },
           {
-            "isUserResponse": true
+            "userResponse": true
           },
           {
             "content": "Cool!",
@@ -169,7 +169,7 @@
             "audio": null
           },
           {
-            "isUserResponse": true
+            "userResponse": true
           },
           {
             "content": "yum",
@@ -190,40 +190,40 @@
         {
           "content": "Aah, the path of sumo! To become my offical sumo pro and make restaurant more attractive, you must grow big! Very big!",
           "role": "Sensei",
-          "audion": null
+          "audio": null
         },
         {
           "content": "wowza",
           "role": "Speechcon",
-          "audion": null
+          "audio": null
         },
         {
           "content": "Sounds cool! I've heard they weigh hundreds of pounds, and most of it is muscle!",
           "role": "Mary",
-          "audion": null
+          "audio": null
         },
         {
           "content": "Hey, sumo-in-training! Have you ever seen a real sumo match before?",
           "role": "Alexa",
-          "audion": null
+          "audio": null
         },
         {
-          "isUserResponse": true
+          "userResponse": true
         },
         {
           "content": "Don't worry, we don't have to wear those big diaper looking things.",
           "role": "Mary",
-          "audion": null
+          "audio": null
         },
         {
           "content": "There are five belts to earn. Obtain them all and you'll reach the highest rank in sumo -- Yokozuna!",
           "role": "Sensei",
-          "audion": null
+          "audio": null
         },
         {
           "content": "I like how that sounds! Let's get started!",
           "role": "Mary",
-          "audion": null
+          "audio": null
         }
       ],
       "missionOutro": [
@@ -318,7 +318,7 @@
             "audio": null
           },
           {
-            "isUserResponse": true
+            "userResponse": true
           },
           {
             "content": "Nice! I love soccer.",
@@ -348,7 +348,7 @@
             "audio": null
           },
           {
-            "isUserResponse": true
+            "userResponse": true
           },
           {
             "content": "I'm all about chocolate!",
@@ -387,7 +387,7 @@
           "audio": null
         },
         {
-          "isUserResponse": true
+          "userResponse": true
         },
         {
           "content": "I like veggies! Well, only with lots of ranch...",
@@ -497,7 +497,7 @@
             "audio": null
           },
           {
-            "isUserResponse": true
+            "userResponse": true
           },
           {
             "content": "My dad likes raddish juice... yuck!",
@@ -527,7 +527,7 @@
             "audio": null
           },
           {
-            "isUserResponse": true
+            "userResponse": true
           },
           {
             "content": "I think they're fun to watch!",

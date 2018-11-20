@@ -4,20 +4,13 @@ import java.util.List;
 
 public class SpeechSettings {
 
-    private List<String> intro;
+    private List<PhraseSettings> intro;
+    private List<PhraseSettings> outro;
+    private List<PhraseSettings> demo;
     private boolean shouldRunDemo;
-    private List<String> demo;
     private String moveToPhaseTwo;
     private String shouldRunDemoPhrase;
     private String readyToStartPhrase;
-
-    public List<String> getIntro() {
-        return intro;
-    }
-
-    public void setIntro(List<String> intro) {
-        this.intro = intro;
-    }
 
     public boolean isShouldRunDemo() {
         return shouldRunDemo;
@@ -27,11 +20,27 @@ public class SpeechSettings {
         this.shouldRunDemo = shouldRunDemo;
     }
 
-    public List<String> getDemo() {
+    public List<PhraseSettings> getIntro() {
+        return intro;
+    }
+
+    public void setIntro(List<PhraseSettings> intro) {
+        this.intro = intro;
+    }
+
+    public List<PhraseSettings> getOutro() {
+        return outro;
+    }
+
+    public void setOutro(List<PhraseSettings> outro) {
+        this.outro = outro;
+    }
+
+    public List<PhraseSettings> getDemo() {
         return demo;
     }
 
-    public void setDemo(List<String> demo) {
+    public void setDemo(List<PhraseSettings> demo) {
         this.demo = demo;
     }
 

@@ -3,6 +3,7 @@ package com.muffinsoft.alexa.skills.samuraichef.content;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
+import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivitiesSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
 import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
@@ -60,17 +61,17 @@ public class ActivityManager {
         return ingredients.get(nextIngredient);
     }
 
-    public Stripe getLevelForActivity(Activities currentActivity, int level) {
+    public Stripe getStripeForActivityAtMission(Activities currentActivity, int number, UserMission mission) {
 
         ActivitiesSettings activitiesSettings = containerByActivity.get(currentActivity);
 
-        return activitiesSettings.getSettingsByStripeNumber(level);
+        return activitiesSettings.getSettingsByStripeNumberAtMission(number, mission);
     }
 
-    public SpeechSettings getSpeechForActivityByStripeNumber(Activities currentActivity, int number) {
+    public SpeechSettings getSpeechForActivityByStripeNumberAtMission(Activities currentActivity, int number, UserMission level) {
 
         ActivitiesSettings activitiesSettings = containerByActivity.get(currentActivity);
 
-        return activitiesSettings.getSpeechByStripeNumber(number);
+        return activitiesSettings.getSpeechByStripeNumberAtLevel(number, level);
     }
 }

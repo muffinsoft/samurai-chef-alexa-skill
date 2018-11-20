@@ -62,41 +62,12 @@
         {
           "name": "ACTION",
           "values": [
-            {
-              "name": {
-                "value": "slice"
-              }
-            },
-            {
-              "name": {
-                "value": "chop"
-              }
-            },
-            {
-              "name": {
-                "value": "boil"
-              }
-            },
-            {
-              "name": {
-                "value": "roll"
-              }
-            },
-            {
+                        {
               "name": {
                 "value": "again",
                 "synonyms": [
                   "again",
                   "try again"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "mission",
-                "synonyms": [
-                  "new mission",
-                  "start new mission"
                 ]
               }
             },
@@ -128,138 +99,25 @@
             },
             {
               "name": {
-                "value": "slice and dice"
-              }
-            },
-            {
-              "name": {
-                "value": "splash a dash"
-              }
-            },
-            {
-              "name": {
-                "value": "punch and crunch"
-              }
-            },
-            {
-              "name": {
-                "value": "stop don't drop"
-              }
-            },
-            {
-              "name": {
-                "value": "baam"
-              }
-            },
-            {
-              "name": {
-                "value": "fuah"
-              }
-            },
-            {
-              "name": {
-                "value": "glok"
-              }
-            },
-            {
-              "name": {
-                "value": "hayaaa",
+                "value": "path of the chef",
                 "synonyms": [
-                  "hayaaaa",
-                  "hayaaa",
-                  "hayaa",
-                  "haya",
-                  "hi"
+                  "chef"
                 ]
               }
             },
             {
               "name": {
-                "value": "jab"
-              }
-            },
-            {
-              "name": {
-                "value": "kick"
-              }
-            },
-            {
-              "name": {
-                "value": "lash"
-              }
-            },
-            {
-              "name": {
-                "value": "punch"
-              }
-            },
-            {
-              "name": {
-                "value": "wham"
-              }
-            },
-            {
-              "name": {
-                "value": "zonk"
-              }
-            },
-            {
-              "name": {
-                "value": "slurp",
+                "value": "path of the sumo",
                 "synonyms": [
-                  "stop"
+                  "sumo"
                 ]
               }
             },
             {
               "name": {
-                "value": "gulp"
-              }
-            },
-            {
-              "name": {
-                "value": "sip"
-              }
-            },
-            {
-              "name": {
-                "value": "lick"
-              }
-            },
-            {
-              "name": {
-                "value": "crunch"
-              }
-            },
-            {
-              "name": {
-                "value": "low",
+                "value": "path of the guru",
                 "synonyms": [
-                  "low",
-                  "first",
-                  "one"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "medium",
-                "synonyms": [
-                  "medium",
-                  "middle",
-                  "second",
-                  "two"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "high",
-                "synonyms": [
-                  "high",
-                  "third",
-                  "three",
-                  "last"
+                  "guru"
                 ]
               }
             }

@@ -22,23 +22,15 @@
     "try again"
   ],
   "LOW": [
-    "1st",
-    "low",
-    "first",
-    "one"
+    "path of the chef",
+    "chef"
   ],
   "MEDIUM": [
-    "mid",
-    "middle",
-    "medium",
-    "second",
-    "two"
+    "path of the sumo",
+    "sumo"
   ],
   "HIGH": [
-    "3rd",
-    "high",
-    "third",
-    "last",
-    "three"
+    "path of the guru",
+    "guru"
   ]
 }

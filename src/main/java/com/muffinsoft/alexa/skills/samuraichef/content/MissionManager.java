@@ -5,6 +5,7 @@ import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.MissionActivities;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.ProgressContainer;
 
 import java.util.HashMap;
@@ -120,17 +121,17 @@ public class MissionManager {
         return currentActivity;
     }
 
-    public String getMissionIntro(UserMission mission) {
+    public List<PhraseSettings> getMissionIntro(UserMission mission) {
         MissionActivities missionContainer = container.getMissionByTitle(mission);
         return missionContainer.getMissionIntro();
     }
 
-    public String getMissionOutro(UserMission mission) {
+    public List<PhraseSettings> getMissionOutro(UserMission mission) {
         MissionActivities missionContainer = container.getMissionByTitle(mission);
         return missionContainer.getMissionOutro();
     }
 
-    public String getStripeOutroByMission(UserMission mission, int number) {
+    public List<PhraseSettings> getStripeOutroByMission(UserMission mission, int number) {
         MissionActivities missionContainer = container.getMissionByTitle(mission);
         return missionContainer.getStripeOutroByNumber(number);
     }
@@ -139,7 +140,7 @@ public class MissionManager {
         return container.getSuccessInRowForPowerUp();
     }
 
-    public String getStripeIntroByMission(UserMission mission, int number) {
+    public List<PhraseSettings> getStripeIntroByMission(UserMission mission, int number) {
         MissionActivities missionContainer = container.getMissionByTitle(mission);
         return missionContainer.getStripeIntroByNumber(number);
     }
