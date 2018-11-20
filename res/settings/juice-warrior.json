@@ -33,43 +33,185 @@
     }
   },
   "activitySpeechesByStripeNumber": {
-    "0": {
-      "intro": [
-        "First stripe Juice Warrior activity.",
-        "When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it."
-      ],
-      "shouldRunDemo": true,
-      "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [
-        "Carrot! Slice and dice!",
-        "Milk! Splash a dash!",
-        "Ice! Punch and crunch!",
-        "Chopsticks! Stop, don't drop!"
-      ],
-      "moveToPhaseTwo": null
+    "LOW_MISSION": {
+      "0": {
+        "intro": [
+          {
+            "content": "You will not also prepare seaweed along with rice and fish.",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Can't have sushi without seaweed wrap!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To prepare seaweed, say 'roll!' Ready?",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Carrot! Slice and dice!",
+          "Milk! Splash a dash!",
+          "Ice! Punch and crunch!",
+          "Chopsticks! Stop, don't drop!"
+        ],
+        "moveToPhaseTwo": null
+      },
+      "1": {
+        "intro": [
+          {
+            "content": "We will now also taste mochi ice cream!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Hope you've got a sweet tooth!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To eat mochi, say 'lick!'",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "For this challenge you'll have X seconds to answer!",
+            "role": "Alex",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": null
+      }
     },
-    "1": {
-      "intro": [
-        "Second stripe Juice Warrior activity.",
-        "When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it."
-      ],
-      "shouldRunDemo": false,
-      "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [],
-      "moveToPhaseTwo": null
+    "MEDIUM_MISSION": {
+      "0": {
+        "intro": [
+          {
+            "content": "Now I also cook you stew! Loaded with vitamins!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Should feel good in your stomach too!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To eat stew, say 'slurp!'",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Carrot! Slice and dice!",
+          "Milk! Splash a dash!",
+          "Ice! Punch and crunch!",
+          "Chopsticks! Stop, don't drop!"
+        ],
+        "moveToPhaseTwo": null
+      },
+      "1": {
+        "intro": [
+          {
+            "content": "Now we add candy too! Not healthy!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "I don't think cavities are good for sumo either!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "If sensei gives you beef or tofu, say yum! But if it's soda or candy, say yuck!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "For this challenge you'll have X seconds to answer!",
+            "role": "Alex",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": null
+      }
     },
-    "2": {
-      "intro": [
-        "Third stripe Juice Warrior activity.",
-        "When I throw you a fruit or vegetable, say Slice and Dice! If it's milk or yogurt, say Splash a dash! If ice, say Punch and crunch! And if I accidentally throw you a kitchen utensil, say Stop, don't drop!! to block it."
-      ],
-      "shouldRunDemo": false,
-      "shouldRunDemoPhrase": null,
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [],
-      "moveToPhaseTwo": null
+    "HIGH_MISSION": {
+      "0": {
+        "intro": [
+          {
+            "content": "Time to add ice! Ice not make juice healthier, but certainly tastier!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Nothing like a delicious cold drink on a hot day, right?",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To prepare ice, say 'punch and crunch!'",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Carrot! Slice and dice!",
+          "Milk! Splash a dash!",
+          "Ice! Punch and crunch!",
+          "Chopsticks! Stop, don't drop!"
+        ],
+        "moveToPhaseTwo": null
+      },
+      "1": {
+        "intro": [
+          {
+            "content": "Now I also show respect! Very important in martial arts and life in general!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "That's totally true!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "If sensei does a bow, you also bow!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "For this challenge you'll have X seconds to answer!",
+            "role": "Alex",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": null
+      }
     }
   }
 }

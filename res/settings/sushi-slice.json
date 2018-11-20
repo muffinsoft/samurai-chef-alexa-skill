@@ -36,44 +36,173 @@
     }
   },
   "activitySpeechesByStripeNumber": {
-    "0": {
-      "intro": [
-        "First stripe Sushi Slice activity.",
-        "If Ben give you fish, say 'Slice!' If it's a vegetable, say 'Chop!'. If it’s rice, say 'Boil'. And if it’s seaseed, say 'Roll!'. And if he accidentally throw you not food, say 'No!'."
-      ],
-      "shouldRunDemo": true,
-      "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [
-        "Fish! Slice!",
-        "Seaweed! Roll!",
-        "Carrot! Chop!",
-        "Rice! Boil!",
-        "Shoe! No!"
-      ],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+    "LOW_MISSION": {
+      "0": {
+        "intro": [
+          {
+            "content": "Time to make sushi! First, only rice and fish.",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "My mouth is watering already!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To prepare rice, say 'boil'! To cut the fish, say 'slice'. Let's get started!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Fish! Slice!",
+          "Seaweed! Roll!",
+          "Carrot! Chop!",
+          "Rice! Boil!",
+          "Shoe! No!"
+        ],
+        "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      },
+      "1": {
+        "intro": [
+          {
+            "content": "Time to train your sense of taste! Vital to cooking! First, we taste soup, sushi and tea!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Hope you're hungry, buddy!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To eat soup, say 'slurp'! To eat sushi, say 'gulp'. To sip tea, say 'sip'! Let's get started!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      }
     },
-    "1": {
-      "intro": [
-        "Second stripe Sushi Slice activity.",
-        "If Ben give you fish, say 'Slice!' If it's a vegetable, say 'Chop!'. If it’s rice, say 'Boil'. And if it’s seaseed, say 'Roll!'. And if he accidentally throw you not food, say 'No!'."
-      ],
-      "shouldRunDemo": false,
-      "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+    "MEDIUM_MISSION": {
+      "0": {
+        "intro": [
+          {
+            "content": "Eating time! First, only chicken and sushi!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Good protein to get nice and big!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To eat chicken, say 'chomp!' To eat sushi, say 'gulp'!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Fish! Slice!",
+          "Seaweed! Roll!",
+          "Carrot! Chop!",
+          "Rice! Boil!",
+          "Shoe! No!"
+        ],
+        "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      },
+      "1": {
+        "intro": [
+          {
+            "content": "Now you eat good food, reject bad food! Beef and tofu good! Soda, bad!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Soda is tasty but yeah, it's not very healthy.",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "If sensei gives you beef or tofu, say yum! but if it's soda, say yuck!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      }
     },
-    "2": {
-      "intro": [
-        "Third stripe Sushi Slice activity.",
-        "If Ben give you fish, say 'Slice!' If it's a vegetable, say 'Chop!'. If it’s rice, say 'Boil'. And if it’s seaseed, say 'Roll!'. And if he accidentally throw you not food, say 'No!'."
-      ],
-      "shouldRunDemo": false,
-      "shouldRunDemoPhrase": null,
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+    "HIGH_MISSION": {
+      "0": {
+        "intro": [
+          {
+            "content": "First we make simple  juice! First, only milk and carrots!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "That's an interesting combination!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To prepare milk, say 'splash a dash'! For carrots, say 'slice and dice'!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Fish! Slice!",
+          "Seaweed! Roll!",
+          "Carrot! Chop!",
+          "Rice! Boil!",
+          "Shoe! No!"
+        ],
+        "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      },
+      "1": {
+        "intro": [
+          {
+            "content": "Good guru also knows importance of exercise! Karate time!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Hope you're stretched and ready!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "if sensei does a punch, say BLOCK! If sensei does a kick, say DODGE! If sensei tries a sweep, say JUMP!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      }
     }
   }
 }
