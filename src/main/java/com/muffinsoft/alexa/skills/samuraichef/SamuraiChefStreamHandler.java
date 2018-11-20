@@ -28,7 +28,7 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
                         new SamuraiCancelIntentHandler(IoC.provideConfigurationContainer()),
                         new SamuraiFallbackIntentHandler(IoC.provideConfigurationContainer()),
                         new SamuraiHelpIntentHandler(IoC.provideConfigurationContainer()),
-                        new SamuraiLaunchRequestHandler(IoC.provideConfigurationContainer()),
+                        new SamuraiLaunchRequestHandler(IoC.provideConfigurationContainer(), IoC.provideGreetingsManager()),
                         new SamuraiStopIntentHandler(IoC.provideConfigurationContainer()),
                         new SamuraiResetIntentHandler(IoC.provideConfigurationContainer())
                 )
