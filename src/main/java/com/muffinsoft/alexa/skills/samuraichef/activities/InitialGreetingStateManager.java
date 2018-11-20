@@ -4,6 +4,7 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.GreetingsManager;
@@ -13,16 +14,17 @@ import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import java.util.List;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
+import static com.muffinsoft.alexa.skills.samuraichef.components.VoiseTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Intents.GAME;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.Intents.INITIAL_GREETING;
 
 public class InitialGreetingStateManager extends BaseStateManager {
 
     private final GreetingsManager greetingsManager;
 
-    private Integer userReplyBreakpoint;
+    private Integer userReplyBreakpointPosition;
 
     public InitialGreetingStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, ConfigContainer configContainer) {
         super(inputSlots, attributesManager);
@@ -31,7 +33,7 @@ public class InitialGreetingStateManager extends BaseStateManager {
 
     @Override
     protected void populateActivityVariables() {
-        this.userReplyBreakpoint = (Integer) this.getSessionAttributes().getOrDefault(USER_REPLY_BREAKPOINT, null);
+        this.userReplyBreakpointPosition = (Integer) this.getSessionAttributes().getOrDefault(USER_REPLY_BREAKPOINT, null);
     }
 
     @Override
@@ -41,19 +43,26 @@ public class InitialGreetingStateManager extends BaseStateManager {
 
         List dialog = greetingsManager.getValueByKey(GreetingsConstants.FIRST_TIME_GREETING);
 
-        int counter = 0;
-        for (Object rawPhraseSettings : dialog) {
-            PhraseSettings phraseSettings = mapper.convertValue(rawPhraseSettings, PhraseSettings.class);
-            counter++;
-            if (userReplyBreakpoint != null && counter < this.userReplyBreakpoint) {
-                continue;
-            }
-            builder.addResponse(ofAlexa(phraseSettings.getContent()));
-        }
-
         this.getSessionAttributes().remove(USER_REPLY_BREAKPOINT);
         this.getSessionAttributes().put(INTENT, GAME);
 
-        return builder.build();
+        int index = 0;
+        for (Object rawPhraseSettings : dialog) {
+            PhraseSettings phraseSettings = mapper.convertValue(rawPhraseSettings, PhraseSettings.class);
+            index++;
+
+            if (this.userReplyBreakpointPosition != null && index <= this.userReplyBreakpointPosition) {
+                continue;
+            }
+
+            if (phraseSettings.isUserResponse()) {
+                this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index + 1);
+                this.getSessionAttributes().put(INTENT, INITIAL_GREETING);
+                break;
+            }
+            builder.addResponse(translate(phraseSettings));
+        }
+
+        return builder.withSlotName(SlotName.ACTION.text).build();
     }
 }

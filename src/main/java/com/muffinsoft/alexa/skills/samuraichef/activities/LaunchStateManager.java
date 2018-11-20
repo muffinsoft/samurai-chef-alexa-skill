@@ -65,10 +65,13 @@ public class LaunchStateManager extends BaseStateManager {
         List dialog = greetingsManager.getValueByKey(GreetingsConstants.FIRST_TIME_GREETING);
 
         int userReplyBreakpointPosition = 0;
+
         for (Object rawPhraseSettings : dialog) {
+
             PhraseSettings phraseSettings = objectMapper.convertValue(rawPhraseSettings, PhraseSettings.class);
+
             if (phraseSettings.isUserResponse()) {
-                this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, userReplyBreakpointPosition);
+                this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, userReplyBreakpointPosition + 1);
                 break;
             }
             builder.addResponse(ofAlexa(phraseSettings.getContent()));

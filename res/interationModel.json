@@ -12,11 +12,19 @@
               "samples": [
                 "{action}"
               ]
+            },
+            {
+              "name": "food",
+              "type": "AMAZON.Food",
+              "samples": [
+                "{food}"
+              ]
             }
           ],
           "samples": [
             "cooking",
-            "{action}"
+            "{action}",
+            "{food}"
           ]
         },
         {
@@ -139,11 +147,6 @@
             {
               "name": {
                 "value": "zonk"
-              }
-            },
-            {
-              "name": {
-                "value": "fuah"
               }
             },
             {

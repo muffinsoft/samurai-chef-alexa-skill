@@ -2,12 +2,10 @@ package com.muffinsoft.alexa.skills.samuraichef.activities.action;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
-import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 
 import java.util.Map;
 
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.JUICE_WARRIOR;
 
 public class JuiceWarriorStateManager extends BaseActivePhaseSamuraiChefStateManager {

@@ -33,10 +33,6 @@ public class MissionActivities {
         this.missionIntro = missionIntro;
     }
 
-    public void setMissionOutro(List<PhraseSettings> missionOutro) {
-        this.missionOutro = missionOutro;
-    }
-
     public Map<String, Integer> getActivitiesOrder() {
         return activitiesOrder;
     }
@@ -47,6 +43,10 @@ public class MissionActivities {
 
     public List<PhraseSettings> getMissionOutro() {
         return missionOutro;
+    }
+
+    public void setMissionOutro(List<PhraseSettings> missionOutro) {
+        this.missionOutro = missionOutro;
     }
 
     public Map<String, List<PhraseSettings>> getStripeIntrosByNumber() {

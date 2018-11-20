@@ -21,11 +21,11 @@ public class LaunchStateManagerTest extends BaseStateManagerTest {
 
         Map<String, Object> attributes = new HashMap<>();
 
-        LaunchStateManager sushiSliceStateManager = new LaunchStateManager(slots, createAttributesManager(slots, attributes), IoC.provideGreetingsManager(), IoC.provideConfigurationContainer());
+        LaunchStateManager launchStateManager = new LaunchStateManager(slots, createAttributesManager(slots, attributes), IoC.provideGreetingsManager(), IoC.provideConfigurationContainer());
 
-        sushiSliceStateManager.nextResponse();
+        launchStateManager.nextResponse();
 
-        Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
+        Map<String, Object> sessionAttributes = launchStateManager.getSessionAttributes();
         Assertions.assertEquals(sessionAttributes.get(INTENT), Intents.INITIAL_GREETING);
     }
 }

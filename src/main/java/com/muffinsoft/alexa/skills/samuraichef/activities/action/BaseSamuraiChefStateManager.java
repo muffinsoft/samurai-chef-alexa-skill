@@ -5,6 +5,7 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
@@ -34,6 +35,7 @@ import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.sdk.model.Speech.ofIvy;
+import static com.muffinsoft.alexa.skills.samuraichef.components.VoiseTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.GAME_FINISHED_PHRASE;
@@ -73,6 +75,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     protected static final Logger logger = LogManager.getLogger(BaseSamuraiChefStateManager.class);
 
+    protected final String foodSlotName = SlotName.AMAZON_FOOD.text;
+
     protected final PhraseManager phraseManager;
     protected final ActivityManager activityManager;
     final AliasManager aliasManager;
@@ -94,6 +98,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.activityManager = configContainer.getActivityManager();
         this.aliasManager = configContainer.getAliasManager();
         this.missionManager = configContainer.getMissionManager();
+        if (getUserReply() == null) {
+            this.updateUserReply(slots.get(foodSlotName).getValue());
+        }
     }
 
     @Override
@@ -318,11 +325,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             }
 
             if (phraseSettings.isUserResponse()) {
-                this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
+                this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index + 1);
                 this.statePhase = statePhase;
                 break;
             }
-            builder.addResponse(ofAlexa(phraseSettings.getContent()));
+            builder.addResponse(translate(phraseSettings));
         }
         return builder;
     }
@@ -345,7 +352,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumberAtMission(activity, number, this.currentMission);
 
         for (PhraseSettings partOfSpeech : speechSettings.getIntro()) {
-            builder.addResponse(ofAlexa(partOfSpeech.getContent()));
+            builder.addResponse(translate(partOfSpeech));
         }
 
         if (speechSettings.isShouldRunDemo()) {
