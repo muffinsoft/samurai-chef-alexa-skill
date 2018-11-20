@@ -1,33 +1,61 @@
 {
   "name": "FOOD_TASTER",
   "activitySettingsByStripeNumber": {
-    "0": {
-      "wonSuccessCount": 5,
-      "maxMistakeCount": 2,
-      "ingredients": {
-        "sushi": "gulp",
-        "tea": "sip"
+    "LOW_MISSION" : {
+      "0": {
+        "wonSuccessCount": 5,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "'W' sound": "wham",
+          "'H' sound": "haaa"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "'W' sound": "wham",
+          "'H' sound": "haaa",
+          "'P' sound": "pow"
+        }
       }
     },
-    "1": {
-      "wonSuccessCount": 7,
-      "maxMistakeCount": 2,
-      "ingredients": {
-        "soup": "slurp",
-        "sushi": "gulp",
-        "tea": "sip",
-        "ice cream": "lick"
+    "MEDIUM_MISSION" : {
+      "0": {
+        "wonSuccessCount": 5,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "'Z' sound": "zonk",
+          "'F' sound": "fuah"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "'Z' sound": "zonk",
+          "'F' sound": "fuah",
+          "'Woo' sound": "woosh"
+        }
       }
     },
-    "2": {
-      "wonSuccessCount": 8,
-      "maxMistakeCount": 2,
-      "ingredients": {
-        "soup": "slurp",
-        "sushi": "gulp",
-        "tea": "sip",
-        "ice cream": "lick",
-        "wasabi peas": "crunch"
+    "HIGH_MISSION" : {
+      "0": {
+        "wonSuccessCount": 5,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "'Z' sound": "zaam",
+          "'W' sound": "whamo"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "'Z' sound": "zaam",
+          "'W' sound": "whamo",
+          "'Th' sound": "thwap"
+        }
       }
     }
   },

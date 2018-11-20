@@ -1,31 +1,73 @@
 {
   "name": "WORD_BOARD_KARATE",
   "activitySettingsByStripeNumber": {
-    "0": {
-      "wonSuccessCount": 5,
-      "maxMistakeCount": 2,
-      "ingredients": {
-        "corn": "kick",
-        "pencil": "punch"
+    "LOW_MISSION" : {
+      "0": {
+        "wonSuccessCount": 5,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "rice": "boil",
+          "fish": "slice",
+          "seaweed": "roll",
+          "egg": "boil"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "soup": "slurp",
+          "sushi": "gulp",
+          "tea": "sip",
+          "mochi": "lick",
+          "wasabe peas": "crunch"
+        }
       }
     },
-    "1": {
-      "wonSuccessCount": 7,
-      "maxMistakeCount": 2,
-      "ingredients": {
-        "corn": "kick",
-        "hat": "hayaaa",
-        "pencil": "punch"
+    "MEDIUM_MISSION" : {
+      "0": {
+        "wonSuccessCount": 5,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "chicken": "chomp",
+          "sushi": "gulp",
+          "stew": "stew",
+          "friend fish": "munch"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "beef": "yum",
+          "soda": "yuck",
+          "tofu": "yum",
+          "candy": "yuck",
+          "milk": "yum"
+        }
       }
     },
-    "2": {
-      "wonSuccessCount": 8,
-      "maxMistakeCount": 2,
-      "ingredients": {
-        "corn": "kick",
-        "hat": "hayaaa",
-        "pencil": "punch",
-        "ginger": "glok"
+    "HIGH_MISSION" : {
+      "0": {
+        "wonSuccessCount": 5,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "milk": "splash a dash",
+          "carrot": "slice and dice",
+          "ice": "punch and crunch",
+          "chopsticks": "stop, don't drop"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "punch": "block",
+          "kick": "dodge",
+          "sweep": "jump",
+          "bow": "bow",
+          "grab": "break"
+        }
       }
     }
   },

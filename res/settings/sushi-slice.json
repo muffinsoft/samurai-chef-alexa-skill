@@ -1,37 +1,67 @@
 {
   "name": "SUSHI_SLICE",
   "activitySettingsByStripeNumber": {
-    "0": {
-      "wonSuccessCount": 5,
-      "maxMistakeCount": 1,
-      "timeLimitPhaseOneInMillis": 12000,
-      "ingredients": {
-        "fish": "slice",
-        "carrot": "chop",
-        "rice": "boil"
+    "LOW_MISSION" : {
+      "0": {
+        "wonSuccessCount": 5,
+        "maxMistakeCount": 1,
+        "timeLimitPhaseOneInMillis": 12000,
+        "ingredients": {
+          "fish": "slice",
+          "rice": "boil"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "maxMistakeCount": 1,
+        "timeLimitPhaseOneInMillis": 12000,
+        "ingredients": {
+          "soup": "slurp",
+          "sushi": "gulp",
+          "tea": "sip"
+        }
       }
     },
-    "1": {
-      "wonSuccessCount": 7,
-      "maxMistakeCount": 1,
-      "timeLimitPhaseOneInMillis": 12000,
-      "ingredients": {
-        "fish": "slice",
-        "carrot": "chop",
-        "rice": "boil",
-        "seaweed": "roll"
+    "MEDIUM_MISSION" : {
+      "0": {
+        "wonSuccessCount": 5,
+        "maxMistakeCount": 1,
+        "timeLimitPhaseOneInMillis": 12000,
+        "ingredients": {
+          "chicken": "chomp",
+          "sushi": "gulp"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "maxMistakeCount": 1,
+        "timeLimitPhaseOneInMillis": 12000,
+        "ingredients": {
+          "beef": "yum",
+          "soda": "yuck",
+          "tofu": "yum"
+        }
       }
     },
-    "2": {
-      "wonSuccessCount": 8,
-      "maxMistakeCount": 1,
-      "timeLimitPhaseOneInMillis": 12000,
-      "ingredients": {
-        "fish": "slice",
-        "carrot": "chop",
-        "rice": "boil",
-        "seaweed": "roll",
-        "shoe": "no"
+    "HIGH_MISSION" : {
+      "0": {
+        "wonSuccessCount": 5,
+        "maxMistakeCount": 1,
+        "timeLimitPhaseOneInMillis": 12000,
+        "ingredients": {
+          "milk": "splash a dash",
+          "carrot": "slice and dice"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "maxMistakeCount": 1,
+        "timeLimitPhaseOneInMillis": 12000,
+        "ingredients": {
+          "punch": "block",
+          "kick": "dodge",
+          "sweep": "jump"
+        }
       }
     }
   },

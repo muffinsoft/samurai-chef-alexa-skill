@@ -1,34 +1,73 @@
 {
   "name": "JUICE_WARRIOR",
   "activitySettingsByStripeNumber": {
-    "0": {
-      "wonSuccessCount": 5,
-      "timeLimitPhaseOneInMillis": 12000,
-      "maxMistakeCount": 2,
-      "ingredients": {
-        "carrot": "slice and dice",
-        "milk": "splash a dash"
+    "LOW_MISSION": {
+      "0": {
+        "wonSuccessCount": 5,
+        "timeLimitPhaseOneInMillis": 12000,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "rice": "boil",
+          "fish": "slice",
+          "seaweed": "roll"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "timeLimitPhaseOneInMillis": 10000,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "soup": "slurp",
+          "sushi": "gulp",
+          "tea": "sip",
+          "mochi": "lick"
+        }
       }
     },
-    "1": {
-      "wonSuccessCount": 7,
-      "timeLimitPhaseOneInMillis": 10000,
-      "maxMistakeCount": 2,
-      "ingredients": {
-        "carrot": "slice and dice",
-        "milk": "splash a dash",
-        "ice": "punch and crunch"
+    "MEDIUM_MISSION": {
+      "0": {
+        "wonSuccessCount": 5,
+        "timeLimitPhaseOneInMillis": 12000,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "chicken": "chomp",
+          "sushi": "gulp",
+          "stew": "slurp"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "timeLimitPhaseOneInMillis": 10000,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "beef": "yum",
+          "soda": "yuck",
+          "candy": "yuck",
+          "tofu": "yum"
+        }
       }
     },
-    "2": {
-      "wonSuccessCount": 8,
-      "timeLimitPhaseOneInMillis": 10000,
-      "maxMistakeCount": 2,
-      "ingredients": {
-        "carrot": "slice and dice",
-        "milk": "splash a dash",
-        "ice": "punch and crunch",
-        "chopsticks": "stop don't drop"
+    "HIGH_MISSION": {
+      "0": {
+        "wonSuccessCount": 5,
+        "timeLimitPhaseOneInMillis": 12000,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "milk": "splash a dash",
+          "carrot": "slice and dice",
+          "ice": "punch and crunch"
+        }
+      },
+      "1": {
+        "wonSuccessCount": 7,
+        "timeLimitPhaseOneInMillis": 10000,
+        "maxMistakeCount": 2,
+        "ingredients": {
+          "punch": "block",
+          "kick": "dodge",
+          "sweep": "jump",
+          "bow": "bow"
+        }
       }
     }
   },
