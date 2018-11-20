@@ -62,7 +62,7 @@
         {
           "name": "ACTION",
           "values": [
-                        {
+            {
               "name": {
                 "value": "again",
                 "synonyms": [
@@ -119,6 +119,176 @@
                 "synonyms": [
                   "guru"
                 ]
+              }
+            },
+            {
+              "name": {
+                "value": "wham"
+              }
+            },
+            {
+              "name": {
+                "value": "haaa"
+              }
+            },
+            {
+              "name": {
+                "value": "pow"
+              }
+            },
+            {
+              "name": {
+                "value": "zonk"
+              }
+            },
+            {
+              "name": {
+                "value": "fuah"
+              }
+            },
+            {
+              "name": {
+                "value": "fuah"
+              }
+            },
+            {
+              "name": {
+                "value": "woosh"
+              }
+            },
+            {
+              "name": {
+                "value": "zaam"
+              }
+            },
+            {
+              "name": {
+                "value": "whamo"
+              }
+            },
+            {
+              "name": {
+                "value": "thwap"
+              }
+            },
+            {
+              "name": {
+                "value": "boil"
+              }
+            },
+            {
+              "name": {
+                "value": "slice"
+              }
+            },
+            {
+              "name": {
+                "value": "roll"
+              }
+            },
+            {
+              "name": {
+                "value": "slurp"
+              }
+            },
+            {
+              "name": {
+                "value": "gulp"
+              }
+            },
+            {
+              "name": {
+                "value": "sip"
+              }
+            },
+            {
+              "name": {
+                "value": "lick"
+              }
+            },
+            {
+              "name": {
+                "value": "chomp"
+              }
+            },
+            {
+              "name": {
+                "value": "yum"
+              }
+            },
+            {
+              "name": {
+                "value": "yuck"
+              }
+            },
+            {
+              "name": {
+                "value": "splash a dash"
+              }
+            },
+            {
+              "name": {
+                "value": "slice and dice"
+              }
+            },
+            {
+              "name": {
+                "value": "punch and crunch"
+              }
+            },
+            {
+              "name": {
+                "value": "block"
+              }
+            },
+            {
+              "name": {
+                "value": "dodge"
+              }
+            },
+            {
+              "name": {
+                "value": "jump"
+              }
+            },
+            {
+              "name": {
+                "value": "bow"
+              }
+            },
+            {
+              "name": {
+                "value": "crunch"
+              }
+            },
+            {
+              "name": {
+                "value": "stew"
+              }
+            },
+            {
+              "name": {
+                "value": "munch"
+              }
+            },
+            {
+              "name": {
+                "value": "stop, don't drop"
+              }
+            },
+            {
+              "name": {
+                "value": "break"
+              }
+            },
+            {
+              "name": {
+                "value": ""
+              }
+            },
+            {
+              "name": {
+                "value": ""
               }
             }
           ]
