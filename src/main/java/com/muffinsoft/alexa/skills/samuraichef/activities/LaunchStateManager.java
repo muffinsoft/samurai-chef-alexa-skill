@@ -2,9 +2,11 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsConstants;
+import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.GreetingsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
@@ -58,10 +60,19 @@ public class LaunchStateManager extends BaseStateManager {
 
     private DialogItem.Builder buildInitialGreeting(DialogItem.Builder builder) {
 
-        List<PhraseSettings> dialog = greetingsManager.getValueByKey(GreetingsConstants.FIRST_TIME_GREETING);
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        for (PhraseSettings phraseSettings : dialog) {
+        List dialog = greetingsManager.getValueByKey(GreetingsConstants.FIRST_TIME_GREETING);
+
+        int userReplyBreakpointPosition = 0;
+        for (Object rawPhraseSettings : dialog) {
+            PhraseSettings phraseSettings = objectMapper.convertValue(rawPhraseSettings, PhraseSettings.class);
+            if (phraseSettings.isUserResponse()) {
+                this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, userReplyBreakpointPosition);
+                break;
+            }
             builder.addResponse(ofAlexa(phraseSettings.getContent()));
+            userReplyBreakpointPosition++;
         }
 
         return builder;

@@ -4,6 +4,8 @@ public class SessionConstants {
 
     public static final String STATE_PHASE = "statePhase";
 
+    public static final String USER_REPLY_BREAKPOINT = "breakpoint";
+
     public static final String QUESTION_TIME = "questionTime";
 
     public static final String INTENT = "intent";

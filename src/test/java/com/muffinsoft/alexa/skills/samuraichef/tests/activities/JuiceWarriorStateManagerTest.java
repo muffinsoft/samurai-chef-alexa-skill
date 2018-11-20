@@ -40,7 +40,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         juiceWarriorStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = juiceWarriorStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.STRIPE_INTRO);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.MISSION_INTRO);
     }
 
     @Test

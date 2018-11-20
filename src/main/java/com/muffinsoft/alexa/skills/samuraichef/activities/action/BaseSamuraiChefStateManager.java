@@ -7,6 +7,7 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
+import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
@@ -55,6 +56,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.ACTIVITY_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.GAME_OUTRO;
@@ -72,9 +74,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     protected static final Logger logger = LogManager.getLogger(BaseSamuraiChefStateManager.class);
 
     protected final PhraseManager phraseManager;
+    protected final ActivityManager activityManager;
     final AliasManager aliasManager;
     final MissionManager missionManager;
-    protected final ActivityManager activityManager;
     protected Activities currentActivity;
     protected Stripe stripe;
     protected ActivityProgress activityProgress;
@@ -84,6 +86,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private boolean isLeaveMission = false;
     private boolean isMoveToReset = false;
     private int starCount;
+    private Integer userReplyBreakpointPosition;
 
     BaseSamuraiChefStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
         super(slots, attributesManager);
@@ -97,6 +100,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     protected void populateActivityVariables() {
 
         currentMission = UserMission.valueOf(String.valueOf(getSessionAttributes().get(CURRENT_MISSION)));
+
+        this.userReplyBreakpointPosition = (Integer) this.getSessionAttributes().getOrDefault(USER_REPLY_BREAKPOINT, null);
 
         statePhase = StatePhase.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
 
@@ -291,11 +296,35 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         List<PhraseSettings> dialog = missionManager.getMissionIntro(currentMission);
 
-        for (PhraseSettings phraseSettings : dialog) {
-            builder.addResponse(ofAlexa(phraseSettings.getContent()));
-        }
+        wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
 
         return builder.withSlotName(actionSlotName);
+    }
+
+    private DialogItem.Builder wrapAnyUserResponse(List<PhraseSettings> dialog, DialogItem.Builder builder, StatePhase statePhase) {
+
+        if (this.userReplyBreakpointPosition != null) {
+            this.getSessionAttributes().remove(USER_REPLY_BREAKPOINT);
+        }
+
+        int index = 0;
+
+        for (PhraseSettings phraseSettings : dialog) {
+
+            index++;
+
+            if (this.userReplyBreakpointPosition != null && index <= this.userReplyBreakpointPosition) {
+                continue;
+            }
+
+            if (phraseSettings.isUserResponse()) {
+                this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
+                this.statePhase = statePhase;
+                break;
+            }
+            builder.addResponse(ofAlexa(phraseSettings.getContent()));
+        }
+        return builder;
     }
 
     private DialogItem.Builder handleStripeIntroStripe(DialogItem.Builder builder, UserMission currentMission, int number) {
@@ -306,9 +335,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         List<PhraseSettings> dialog = missionManager.getStripeIntroByMission(currentMission, number);
 
-        for (PhraseSettings phraseSettings : dialog) {
-            builder.addResponse(ofAlexa(phraseSettings.getContent()));
-        }
+        wrapAnyUserResponse(dialog, builder, STRIPE_INTRO);
 
         return builder.withSlotName(actionSlotName);
     }
@@ -357,9 +384,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
 
-            for (PhraseSettings partOfSpeech : speechSettings.getDemo()) {
-                builder.addResponse(ofAlexa(partOfSpeech.getContent()));
-            }
+            wrapAnyUserResponse(speechSettings.getDemo(), builder, DEMO);
 
             builder = appendReadyToStart(builder);
 
@@ -430,9 +455,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         List<PhraseSettings> dialog = missionManager.getStripeOutroByMission(currentMission, number);
 
-        for (PhraseSettings phraseSettings : dialog) {
-            builder.addResponse(ofAlexa(phraseSettings.getContent()));
-        }
+        wrapAnyUserResponse(dialog, builder, WIN);
 
         return builder.withSlotName(actionSlotName);
     }
@@ -476,9 +499,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             List<PhraseSettings> missionOutro = missionManager.getMissionOutro(currentMission);
 
-            for (PhraseSettings phraseSettings : missionOutro) {
-                builder.addResponse(ofAlexa(phraseSettings.getContent()));
-            }
+            wrapAnyUserResponse(missionOutro, builder, STRIPE_OUTRO);
 
             return builder.withSlotName(actionSlotName);
         }
@@ -565,9 +586,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         List<PhraseSettings> outro = speechForActivityByStripeNumberAtMission.getOutro();
 
-        for (PhraseSettings phraseSettings : outro) {
-            builder.addResponse(ofAlexa(phraseSettings.getContent()));
-        }
+        wrapAnyUserResponse(outro, builder, PHASE_1);
 
         return builder
                 .withSlotName(actionSlotName)

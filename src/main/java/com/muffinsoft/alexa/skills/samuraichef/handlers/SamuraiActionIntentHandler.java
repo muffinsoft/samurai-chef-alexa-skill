@@ -9,6 +9,7 @@ import com.muffinsoft.alexa.sdk.handlers.GameIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ExitStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.HelpStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.InitialGreetingStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ResetConfirmationStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ResetStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
@@ -58,6 +59,8 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
         logger.debug("Handling ");
 
         switch (activeIntent) {
+            case INITIAL_GREETING:
+                return new InitialGreetingStateManager(slots, attributesManager, configContainer);
             case GAME:
                 return handleGameActivity(input, slots, attributesManager);
             case CANCEL:

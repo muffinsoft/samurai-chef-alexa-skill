@@ -30,7 +30,7 @@ public class IoC {
         missionManager = new MissionManager("settings/progress.json");
         greetingsManager = new GreetingsManager("phrases/greetings.json");
         activityManager = new ActivityManager();
-        configContainer = new ConfigContainer(phraseManager, cardManager, userReplyManager, activityManager, aliasManager, missionManager);
+        configContainer = new ConfigContainer(phraseManager, cardManager, userReplyManager, activityManager, aliasManager, missionManager, greetingsManager);
         sessionStateFabric = new SessionStateFabric(configContainer);
     }
 

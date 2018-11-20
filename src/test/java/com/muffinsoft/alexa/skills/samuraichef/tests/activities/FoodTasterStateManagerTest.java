@@ -19,6 +19,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
 
 class FoodTasterStateManagerTest extends BaseStateManagerTest {
 
@@ -32,6 +33,28 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
+
+        FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+
+        foodTasterStateManager.nextResponse();
+
+        foodTasterStateManager.updateAttributesManager();
+
+        Map<String, Object> sessionAttributes = foodTasterStateManager.getSessionAttributes();
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.MISSION_INTRO);
+    }
+
+    @Test
+    void testStartMissionSecondPart() {
+
+        Map<String, Slot> slots = createSlotsForValue("any");
+
+        ActivityProgress activityProgress = new ActivityProgress();
+
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
+        attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
+        attributes.put(USER_REPLY_BREAKPOINT, 5);
 
         FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
 

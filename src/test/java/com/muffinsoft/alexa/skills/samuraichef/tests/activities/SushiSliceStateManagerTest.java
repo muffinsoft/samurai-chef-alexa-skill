@@ -45,7 +45,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         sushiSliceStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.STRIPE_INTRO);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.MISSION_INTRO);
     }
 
     @Test

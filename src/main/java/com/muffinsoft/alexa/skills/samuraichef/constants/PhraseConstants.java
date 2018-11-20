@@ -23,9 +23,11 @@ public class PhraseConstants {
     public static final String FAILURE_REPROMPT_PHRASE = "failureRePromptPhrase";
 
     public static final String JUST_EARN_SECOND_CHANCE_PHRASE = "justEarnCorrectQuestionPhrase";
+
     public static final String JUST_EARN_CORRECT_ANSWER_PHRASE = "justWearCorrectQuestionPhrase";
 
     public static final String JUST_WEAR_SECOND_CHANCE_PHRASE = "justEarnSecondChancePhrase";
+
     public static final String JUST_WEAR_CORRECT_ANSWER_PHRASE = "jusjustWearSecondChancePhrasetWearPhrase";
 
     public static final String SEVERAL_VALUES_PHRASE = "severalValuesPhrase";
