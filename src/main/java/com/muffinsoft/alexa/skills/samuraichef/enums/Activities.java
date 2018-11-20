@@ -9,7 +9,7 @@ public enum Activities {
 
     JUICE_WARRIOR(false),
 
-    WORD_BOARD_KARATE(true),
+    WORD_BOARD_KARATE(false),
 
     FOOD_TASTER(false);
 

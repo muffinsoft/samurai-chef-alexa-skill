@@ -3,12 +3,19 @@ package com.muffinsoft.alexa.skills.samuraichef.activities.action;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
 
 import java.util.Map;
 
+import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
+import static com.muffinsoft.alexa.sdk.model.Speech.ofIvy;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
 public class SushiSliceStateManager extends BaseActivePhaseSamuraiChefStateManager {
 
@@ -28,11 +35,44 @@ public class SushiSliceStateManager extends BaseActivePhaseSamuraiChefStateManag
 
         if (questionTime == null || answerTime - questionTime < answerLimit) {
 
-            return super.handleSuccess(builder);
+            builder = super.handleSuccess(builder);
         }
         else {
-            return handleTooLongMistake(builder);
+            builder = handleTooLongMistake(builder);
         }
+
+        builder = appendMockCompetitionAnswer(builder);
+
+        return builder;
+    }
+
+    private DialogItem.Builder appendMockCompetitionAnswer(DialogItem.Builder builder) {
+
+        Speech speech = builder.popLastSpeech();
+
+        IngredientReaction randomIngredient = getRandomIngredient();
+
+        builder.addResponse(ofAlexa(randomIngredient.getIngredient()))
+                .addResponse(ofIvy(randomIngredient.getUserReply()))
+                .addResponse(speech);
+
+        return builder;
+    }
+
+    @Override
+    DialogItem.Builder getWinDialog(DialogItem.Builder builder) {
+        this.statePhase = WIN;
+
+        IngredientReaction randomIngredient = getRandomIngredient();
+
+        String wrongReplyOnIngredient = getWrongReplyOnIngredient(randomIngredient.getIngredient());
+
+        return builder
+                .replaceResponse(ofAlexa(randomIngredient.getIngredient()))
+                .addResponse(ofIvy(randomIngredient.getUserReply()))
+                .addResponse(ofAlexa(wrongReplyOnIngredient))
+                .withSlotName(actionSlotName)
+                .withReprompt(ofAlexa(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)));
     }
 
     @Override

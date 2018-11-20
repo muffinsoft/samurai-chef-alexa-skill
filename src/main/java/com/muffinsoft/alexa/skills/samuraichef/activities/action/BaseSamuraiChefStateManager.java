@@ -534,7 +534,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder;
     }
 
-    private DialogItem.Builder getWinDialog(DialogItem.Builder builder) {
+    DialogItem.Builder getWinDialog(DialogItem.Builder builder) {
         this.statePhase = WIN;
         return builder
                 .removeLastResponse()
@@ -570,6 +570,15 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 .addResponse(ofAlexa(phraseManager.getValueByKey(FAILURE_PHRASE)))
                 .withSlotName(actionSlotName)
                 .withReprompt(ofAlexa(phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE)));
+    }
+
+    IngredientReaction getRandomIngredient() {
+        return activityManager.getNextIngredient(this.stripe, null);
+    }
+
+    String getWrongReplyOnIngredient(String ingredient) {
+        IngredientReaction nextIngredient = activityManager.getNextIngredient(this.stripe, ingredient);
+        return nextIngredient.getUserReply();
     }
 
     private String nextIngredient() {
