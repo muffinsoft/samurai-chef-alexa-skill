@@ -30,43 +30,206 @@
     }
   },
   "activitySpeechesByStripeNumber": {
-    "0": {
-      "intro": [
-        "First stripe Word Board Karate activity.",
-        "If it begins with a 'K' sound, shout 'Kick'; if it begins with a 'H' sound, shout 'Hayaaa!'; if it begins with a 'P' sound, shout 'Punch'; if it begins with a 'G' sound, shout 'Glok'."
-      ],
-      "shouldRunDemo": true,
-      "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [
-        "Corn! Kick!",
-        "Hat! Hayaaa!",
-        "Pencil! Punch!",
-        "Ginger! Glok!"
-      ],
-      "moveToPhaseTwo": null
+    "LOW_MISSION": {
+      "0": {
+        "outro": [{"content" : "That's some good looking sushi you've made so far!", "role": "Mary", "audio": null}],
+        "intro": [
+          {
+            "content": "Now we also boil egg! Boiled egg go very good with salmon!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Sounds tasty!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To prepare eggs, say 'boil'! Ready?",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "For this challenge you'll have X seconds to answer!",
+            "role": "Alex",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Corn! Kick!",
+          "Hat! Hayaaa!",
+          "Pencil! Punch!",
+          "Ginger! Glok!"
+        ],
+        "moveToPhaseTwo": null
+      },
+      "1": {
+        "outro": [{"content" : "You got me! Hey, you're becoming a skilled taster already!", "role": "Mary", "audio": null}],
+        "intro": [
+          {
+            "content": "Good work so far. Wasabe peas are your next dish to taste.",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Be ready! Wasabe has a pretty strong flavor!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To eat wasabe peas, say 'crunch!'",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "For this challenge, you and Mary will compete!",
+            "role": "Alex",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": null
+      }
     },
-    "1": {
-      "intro": [
-        "Second stripe Word Board Karate activity.",
-        "If it begins with a 'K' sound, shout 'Kick'; if it begins with a 'H' sound, shout 'Hayaaa!'; if it begins with a 'P' sound, shout 'Punch'; if it begins with a 'G' sound, shout 'Glok'."
-      ],
-      "shouldRunDemo": false,
-      "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [],
-      "moveToPhaseTwo": null
+    "MEDIUM_MISSION": {
+      "0": {
+        "outro": [{"content" : "We'll be gigantic sumo in no time!", "role": "Mary", "audio": null}],
+        "intro": [
+          {
+            "content": "Now I also make fried fish! Taste good and loaded with fatty acids!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Those are the good kinds of fats! Perfect for a sumo!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To eat fried fish, say 'munch!'",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "For this challenge you'll have X seconds to answer!",
+            "role": "Alex",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Corn! Kick!",
+          "Hat! Hayaaa!",
+          "Pencil! Punch!",
+          "Ginger! Glok!"
+        ],
+        "moveToPhaseTwo": null
+      },
+      "1": {
+        "outro": [{"content" : "Impressive! I'm no match for your yum or yuck thinking!", "role": "Mary", "audio": null}],
+        "intro": [
+          {
+            "content": "I now add milk! Milk is yum for sumo!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Mom says milk gives you strong bones!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "If sensei gives you beef, tofu, or milk, say yum! But if it's soda or candy, say yuck!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "For this challenge, you and Mary will compete!",
+            "role": "Alex",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": null
+      }
     },
-    "2": {
-      "intro": [
-        "Third stripe Word Board Karate activity.",
-        "If it begins with a 'K' sound, shout 'Kick'; if it begins with a 'H' sound, shout 'Hayaaa!'; if it begins with a 'P' sound, shout 'Punch.'"
-      ],
-      "shouldRunDemo": false,
-      "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [],
-      "moveToPhaseTwo": null
+    "HIGH_MISSION": {
+      "0": {
+        "outro": [{"content" : "So close! At this rate you'll be the best guru around!", "role": "Mary", "audio": null}],
+        "intro": [
+          {
+            "content": "Time to test your reactions!  Juice making is quick business! If I give you chopsticks, don't add!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Ouch, I'd hate to get splinters from my juice!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "To not add the chopsticks, say 'stop, don't drop!'",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "For this challenge you'll have X seconds to answer!",
+            "role": "Alex",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Corn! Kick!",
+          "Hat! Hayaaa!",
+          "Pencil! Punch!",
+          "Ginger! Glok!"
+        ],
+        "moveToPhaseTwo": null
+      },
+      "1": {
+        "outro": [{"content" : "Aw, you bested me this time. We're getting good at this karate stuff!", "role": "Mary", "audio": null}],
+        "intro": [
+          {
+            "content": "Now I also try to grab!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "If sensei tries to grab you, say 'break!'",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "For this challenge, you and Mary will compete!",
+            "role": "Alex",
+            "audio": null
+          },
+          {
+            "content": "Bring it on! I'll show you what I've got!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": null
+      }
     }
   }
 }

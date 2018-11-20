@@ -35,6 +35,7 @@
   "activitySpeechesByStripeNumber": {
     "LOW_MISSION": {
       "0": {
+        "outro": [{"content" : "You're getting the hang of this!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "You will not also prepare seaweed along with rice and fish.",
@@ -64,6 +65,7 @@
         "moveToPhaseTwo": null
       },
       "1": {
+        "outro": [{"content" : "Now I'm in the mood for some dessert!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "We will now also taste mochi ice cream!",
@@ -95,6 +97,7 @@
     },
     "MEDIUM_MISSION": {
       "0": {
+        "outro": [{"content" : "Hey, I think you're getting bigger already!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "Now I also cook you stew! Loaded with vitamins!",
@@ -124,6 +127,7 @@
         "moveToPhaseTwo": null
       },
       "1": {
+        "outro": [{"content" : "You've got this! Resist the urge to eat that junk food!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "Now we add candy too! Not healthy!",
@@ -155,6 +159,7 @@
     },
     "HIGH_MISSION": {
       "0": {
+        "outro": [{"content" : "You're an ice crushing machine! Good work!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "Time to add ice! Ice not make juice healthier, but certainly tastier!",
@@ -184,6 +189,7 @@
         "moveToPhaseTwo": null
       },
       "1": {
+        "outro": [{"content" : " I can tell Sensei is impressed. Keep it up!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "Now I also show respect! Very important in martial arts and life in general!",

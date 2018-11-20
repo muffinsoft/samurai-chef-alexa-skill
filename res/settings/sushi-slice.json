@@ -38,6 +38,7 @@
   "activitySpeechesByStripeNumber": {
     "LOW_MISSION": {
       "0": {
+        "outro": [{"content" : "Pretty good for a beginner!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "Time to make sushi! First, only rice and fish.",
@@ -68,6 +69,7 @@
         "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
       },
       "1": {
+        "outro": [{"content" : "Burp if you have to! You earned it!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "Time to train your sense of taste! Vital to cooking! First, we taste soup, sushi and tea!",
@@ -94,6 +96,7 @@
     },
     "MEDIUM_MISSION": {
       "0": {
+        "outro": [{"content" : "Wow, you're an eating machine!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "Eating time! First, only chicken and sushi!",
@@ -124,6 +127,7 @@
         "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
       },
       "1": {
+        "outro": [{"content" : "Hey, you're a natural at this!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "Now you eat good food, reject bad food! Beef and tofu good! Soda, bad!",
@@ -150,6 +154,7 @@
     },
     "HIGH_MISSION": {
       "0": {
+        "outro": [{"content" : "You're already juicing like a pro! Keep it up!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "First we make simple  juice! First, only milk and carrots!",
@@ -180,6 +185,7 @@
         "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
       },
       "1": {
+        "outro": [{"content" : "Have you done karate before? You rock!", "role": "Mary", "audio": null}],
         "intro": [
           {
             "content": "Good guru also knows importance of exercise! Karate time!",
