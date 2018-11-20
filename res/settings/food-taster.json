@@ -32,44 +32,173 @@
     }
   },
   "activitySpeechesByStripeNumber": {
-    "0": {
-      "intro": [
-        "First stripe Food Taster activity.",
-        "If we get soup, say 'Slurp!'. If it's sushi, say 'Gulp!' to gulp it down in one bite. If we get wasabi peas, say 'Crunch!' to chomp it good. If it's tea, say 'Sip!'. If we get mochi ice cream, say 'Lick!' to lick it up. We'll take turns eating to see who eats the most!"
-      ],
-      "shouldRunDemo": true,
-      "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [
-        "Soup! Slurp!",
-        "Sushi! Gulp!",
-        "Tea! Sip!",
-        "Ice Cream! Lick!",
-        "Wasabi peas! Crunch!"
-      ],
-      "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+    "LOW_MISSION": {
+      "0": {
+        "intro": [
+          {
+            "content": "Good work. You show potential as sushi cook! Time to work both mind and body with some word board karate!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haa'!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Wham! and Haa! Ready, go!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Soup! Slurp!",
+          "Sushi! Gulp!",
+          "Tea! Sip!",
+          "Ice Cream! Lick!",
+          "Wasabi peas! Crunch!"
+        ],
+        "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+      },
+      "1": {
+        "intro": [
+          {
+            "content": "Good session. To train both our mind and body after making sushi, time for some word board karate!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haa!' If the word starts with 'P', like pepper, say 'Pow!'",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Wham!, Haa! and Pow! Ready, go!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+      }
     },
-    "1": {
-      "intro": [
-        "Second stripe Food Taster activity.",
-        "If we get soup, say 'Slurp!'. If it's sushi, say 'Gulp!' to gulp it down in one bite. If we get wasabi peas, say 'Crunch!' to chomp it good. If it's tea, say 'Sip!'. If we get mochi ice cream, say 'Lick!' to lick it up. We'll take turns eating to see who eats the most!"
-      ],
-      "shouldRunDemo": false,
-      "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "demo": [],
-      "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+    "MEDIUM_MISSION": {
+      "0": {
+        "intro": [
+          {
+            "content": "Good work. Your appetite is impressive! Time for some word board karate!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zonk'! If the word starts with the 'F' sound, like foosball, say 'Fuah!'",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Zonk and Fuah! Go!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Soup! Slurp!",
+          "Sushi! Gulp!",
+          "Tea! Sip!",
+          "Ice Cream! Lick!",
+          "Wasabi peas! Crunch!"
+        ],
+        "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+      },
+      "1": {
+        "intro": [
+          {
+            "content": "Good work. You show good ability to avoid unhealthy snacks. Time for some word board karate!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zonk!' If the word starts with the 'F' sound, like foosball, say 'Fuah!' IF the word starts with 'Woo' sound like wood, say 'woosh!'",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Zonk, Fuah, and Woosh! Go!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+      }
     },
-    "2": {
-      "intro": [
-        "SThird stripe Food Taster activity.",
-        "If we get soup, say 'Slurp!'. If it's sushi, say 'Gulp!' to gulp it down in one bite. If we get wasabi peas, say 'Crunch!' to chomp it good. If it's tea, say 'Sip!'. If we get mochi ice cream, say 'Lick!' to lick it up. We'll take turns eating to see who eats the most!"
-      ],
-      "shouldRunDemo": false,
-      "demo": [],
-      "shouldRunDemoPhrase": null,
-      "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-      "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+    "HIGH_MISSION": {
+      "0": {
+        "intro": [
+          {
+            "content": "Good work. You are getting the hand of making good juice! Time for some word board karate!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam'! If the word starts with the 'W' sound, like walk, say 'Whammo!'",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Zaam and whammo! Go!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": true,
+        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [
+          "Soup! Slurp!",
+          "Sushi! Gulp!",
+          "Tea! Sip!",
+          "Ice Cream! Lick!",
+          "Wasabi peas! Crunch!"
+        ],
+        "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+      },
+      "1": {
+        "intro": [
+          {
+            "content": "Good work. Karate healthy for body and mind. Time for some word board karate!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with 'TH', like thorn, say 'Thwap!'",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Zaam, whammo, and thwap! Go!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "shouldRunDemo": false,
+        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
+        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "demo": [],
+        "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+      }
     }
   }
 }
