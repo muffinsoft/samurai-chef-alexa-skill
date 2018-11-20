@@ -98,15 +98,10 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": true,
+        "shouldRunDemo": false,
         "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-        "demo": [
-          "Corn! Kick!",
-          "Hat! Hayaaa!",
-          "Pencil! Punch!",
-          "Ginger! Glok!"
-        ],
+        "demo": [],
         "moveToPhaseTwo": null
       },
       "1": {
@@ -165,15 +160,10 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": true,
+        "shouldRunDemo": false,
         "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-        "demo": [
-          "Corn! Kick!",
-          "Hat! Hayaaa!",
-          "Pencil! Punch!",
-          "Ginger! Glok!"
-        ],
+        "demo": [],
         "moveToPhaseTwo": null
       },
       "1": {
@@ -232,15 +222,10 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": true,
+        "shouldRunDemo": false,
         "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-        "demo": [
-          "Corn! Kick!",
-          "Hat! Hayaaa!",
-          "Pencil! Punch!",
-          "Ginger! Glok!"
-        ],
+        "demo": [],
         "moveToPhaseTwo": null
       },
       "1": {

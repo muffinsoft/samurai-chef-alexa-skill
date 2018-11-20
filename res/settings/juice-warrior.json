@@ -93,14 +93,70 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": true,
+        "shouldRunDemo": false,
         "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
         "demo": [
-          "Carrot! Slice and dice!",
-          "Milk! Splash a dash!",
-          "Ice! Punch and crunch!",
-          "Chopsticks! Stop, don't drop!"
+          {
+            "content": "Watch Mary closely!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Rice!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Boil!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Fish!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Slice!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Seaweed!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Roll!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Carrot!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Chop!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Egg!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Boil",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Now it’s your turn, Mary’s friend.",
+            "role": "Sensei",
+            "audio": null
+          }
         ],
         "moveToPhaseTwo": null
       },
@@ -155,14 +211,60 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": true,
+        "shouldRunDemo": false,
         "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
         "demo": [
-          "Carrot! Slice and dice!",
-          "Milk! Splash a dash!",
-          "Ice! Punch and crunch!",
-          "Chopsticks! Stop, don't drop!"
+          {
+            "content": "Watch Mary closely!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Chicken!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Chomp!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Sushi!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Gulp!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Stew!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Slurp!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Fried Fish!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Munch!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Now it’s your turn, Mary’s friend.",
+            "role": "Sensei",
+            "audio": null
+          }
         ],
         "moveToPhaseTwo": null
       },
@@ -217,14 +319,20 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": true,
+        "shouldRunDemo": false,
         "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
         "demo": [
-          "Carrot! Slice and dice!",
-          "Milk! Splash a dash!",
-          "Ice! Punch and crunch!",
-          "Chopsticks! Stop, don't drop!"
+          {"content": "Watch Mary closely!", "role": "Sensei", "audio": ""},
+          {"content": "Carrot!", "role": "Sensei", "audio": ""},
+          {"content": "Slice and dice!", "role": "Mary", "audio": ""},
+          {"content": "Milk!", "role": "Sensei", "audio": ""},
+          {"content": "Splash a dash!", "role": "Mary", "audio": ""},
+          {"content": "Ice!", "role": "Sensei", "audio": ""},
+          {"content": "Punch and crunch!", "role": "Mary", "audio": ""},
+          {"content": "Chopsticks!", "role": "Sensei", "audio": ""},
+          {"content": "Stop, don't drop!", "role": "Mary", "audio": ""},
+          {"content": "Good! Now your turn, Mary's friend.", "role": "Sensei", "audio": ""}
         ],
         "moveToPhaseTwo": null
       },

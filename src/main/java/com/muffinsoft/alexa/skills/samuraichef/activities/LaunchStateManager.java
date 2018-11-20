@@ -8,6 +8,7 @@ import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.GreetingsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
@@ -78,11 +80,15 @@ public class LaunchStateManager extends BaseStateManager {
 
             builder = buildRoyalGreeting(builder);
 
+            getSessionAttributes().put(INTENT, Intents.GAME);
+
             logger.info("Existing user was started new Game Session. Start Royal Greeting");
 
         }
         else {
             builder = buildInitialGreeting(builder);
+
+            getSessionAttributes().put(INTENT, Intents.INITIAL_GREETING);
 
             logger.info("New user was started new Game Session.");
         }

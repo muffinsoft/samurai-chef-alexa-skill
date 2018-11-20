@@ -81,16 +81,10 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": true,
+        "shouldRunDemo": false,
         "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-        "demo": [
-          "Soup! Slurp!",
-          "Sushi! Gulp!",
-          "Tea! Sip!",
-          "Ice Cream! Lick!",
-          "Wasabi peas! Crunch!"
-        ],
+        "demo": [],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
       "1": {
@@ -139,16 +133,10 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": true,
+        "shouldRunDemo": false,
         "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-        "demo": [
-          "Soup! Slurp!",
-          "Sushi! Gulp!",
-          "Tea! Sip!",
-          "Ice Cream! Lick!",
-          "Wasabi peas! Crunch!"
-        ],
+        "demo": [],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
       "1": {
@@ -197,16 +185,10 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": true,
+        "shouldRunDemo": false,
         "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
-        "demo": [
-          "Soup! Slurp!",
-          "Sushi! Gulp!",
-          "Tea! Sip!",
-          "Ice Cream! Lick!",
-          "Wasabi peas! Crunch!"
-        ],
+        "demo": [],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
       "1": {
