@@ -3,19 +3,18 @@ package com.muffinsoft.alexa.skills.samuraichef.activities.action;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.PowerUpFabric;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
 
 import java.util.Map;
 import java.util.Objects;
 
 import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
-import static com.muffinsoft.alexa.sdk.model.Speech.ofIvy;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_EARN_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_EARN_CORRECT_ANSWER_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_EARN_SECOND_CHANCE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_CORRECT_ANSWER_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_SECOND_CHANCE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.USED_EQUIPMENT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WRONG_PHRASE;
@@ -135,7 +134,13 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     private DialogItem.Builder equipIfAvailable(DialogItem.Builder builder) {
         PowerUps nextPowerUp = this.activityProgress.equipIfAvailable();
         if (nextPowerUp != null) {
-            String prependedString = phraseManager.getValueByKey(JUST_WEAR_PHRASE) + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+            String prependedString;
+            if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
+                prependedString = phraseManager.getValueByKey(JUST_WEAR_SECOND_CHANCE_PHRASE);
+            }
+            else {
+                prependedString = phraseManager.getValueByKey(JUST_WEAR_CORRECT_ANSWER_PHRASE);
+            }
             builder.addResponse(ofAlexa(prependedString));
             logger.debug("Was equipped power up: " + nextPowerUp);
         }
@@ -156,11 +161,23 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
                 this.activityProgress.addPowerUp(nextPowerUp);
                 logger.debug("Was earned equipment: " + nextPowerUp);
                 if (Objects.equals(this.activityProgress.getActivePowerUp(), nextPowerUp.name())) {
-                    String prependedString = phraseManager.getValueByKey(JUST_WEAR_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+                    String prependedString;
+                    if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
+                        prependedString = phraseManager.getValueByKey(JUST_WEAR_SECOND_CHANCE_PHRASE);
+                    }
+                    else {
+                        prependedString = phraseManager.getValueByKey(JUST_WEAR_CORRECT_ANSWER_PHRASE);
+                    }
                     builder.addResponse(ofAlexa(prependedString));
                 }
                 else {
-                    String prependedString = phraseManager.getValueByKey(JUST_EARN_PHRASE) + " " + aliasManager.getValueByKey(nextPowerUp.name()) + "! ";
+                    String prependedString;
+                    if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
+                        prependedString = phraseManager.getValueByKey(JUST_EARN_SECOND_CHANCE_PHRASE);
+                    }
+                    else {
+                        prependedString = phraseManager.getValueByKey(JUST_EARN_CORRECT_ANSWER_PHRASE);
+                    }
                     builder.addResponse(ofAlexa(prependedString));
                 }
                 logger.debug("Was equipped power up: " + nextPowerUp);
