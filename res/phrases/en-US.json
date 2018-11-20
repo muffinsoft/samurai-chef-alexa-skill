@@ -1,6 +1,10 @@
 {
   "welcomePhrase": "Glad you’ve come over! I love playdates! And today, I’ve got something so cool, so different for us to do. Would you like to follow me?",
-  "welcomeBackPhrase": "Welcome back! Would you like to follow me?",
+  "welcomeBackPhrase": {
+    "content": "Welcome back to Samurai Chef, %Title%! I'm excited to see what Sensei has in store for us next.",
+    "role": "ALEXA",
+    "audio": null
+  },
   "wrongPhrase": "Wrong!",
   "tooLongPhrase": "Too Long!",
   "fallbackPhrase": "Please, say it again.",
@@ -13,7 +17,11 @@
   "justEarnPhrase": "You've just earn ",
   "justWearPhrase": "You've just wear ",
   "usedEquipmentPhrase": "You spent your equipment.",
-  "selectMissionPhrase": "Please, select mission.",
+  "selectMissionPhrase": {
+    "content": "There are three different paths to choose from: Path of Chef, Path of Sumo, and Path of Guru. They all have fun ways of cooking and eating food. Which one do you want to try?",
+    "role": "ALEXA",
+    "audio": null
+  },
   "selectMissionUnknownPhrase": "I don't understand your choice, Please, select one of three available missions.",
   "missionAlreadyCompletePhrase": "You have already complete this mission.",
   "readyToStartMissionPhrase": "Are you ready to start ",

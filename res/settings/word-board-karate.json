@@ -3,7 +3,7 @@
   "activitySettingsByStripeNumber": {
     "0": {
       "wonSuccessCount": 5,
-      "maxMistakeCount": 1,
+      "maxMistakeCount": 2,
       "ingredients": {
         "corn": "kick",
         "pencil": "punch"
@@ -11,7 +11,7 @@
     },
     "1": {
       "wonSuccessCount": 7,
-      "maxMistakeCount": 1,
+      "maxMistakeCount": 2,
       "ingredients": {
         "corn": "kick",
         "hat": "hayaaa",
@@ -20,7 +20,7 @@
     },
     "2": {
       "wonSuccessCount": 8,
-      "maxMistakeCount": 1,
+      "maxMistakeCount": 2,
       "ingredients": {
         "corn": "kick",
         "hat": "hayaaa",
