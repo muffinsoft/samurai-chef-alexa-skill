@@ -1,5 +1,6 @@
 {
   "name": "SUSHI_SLICE",
+  "competition": true,
   "activitySettingsByStripeNumber": {
     "LOW_MISSION" : {
       "0": {

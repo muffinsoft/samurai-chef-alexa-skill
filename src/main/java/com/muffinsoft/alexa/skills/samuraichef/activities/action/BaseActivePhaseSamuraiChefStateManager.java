@@ -3,14 +3,17 @@ package com.muffinsoft.alexa.skills.samuraichef.activities.action;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.PowerUpFabric;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
 
 import java.util.Map;
 import java.util.Objects;
 
 import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
+import static com.muffinsoft.alexa.sdk.model.Speech.ofIvy;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_EARN_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_WEAR_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;

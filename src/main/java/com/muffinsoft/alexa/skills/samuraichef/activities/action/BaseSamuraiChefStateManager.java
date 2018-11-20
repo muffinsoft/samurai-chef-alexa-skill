@@ -5,6 +5,7 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
@@ -31,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
+import static com.muffinsoft.alexa.sdk.model.Speech.ofIvy;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.GAME_FINISHED_PHRASE;
@@ -42,7 +44,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SEVERAL_VALUES_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TRY_AGAIN_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_RESET_PROGRESS_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
@@ -73,7 +74,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     protected final PhraseManager phraseManager;
     final AliasManager aliasManager;
     final MissionManager missionManager;
-    private final ActivityManager activityManager;
+    protected final ActivityManager activityManager;
     protected Activities currentActivity;
     protected Stripe stripe;
     protected ActivityProgress activityProgress;
@@ -555,10 +556,20 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     }
 
     DialogItem.Builder getWinDialog(DialogItem.Builder builder) {
+
         this.statePhase = WIN;
+
+        SpeechSettings speechForActivityByStripeNumberAtMission = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+
+        builder.removeLastResponse();
+
+        List<PhraseSettings> outro = speechForActivityByStripeNumberAtMission.getOutro();
+
+        for (PhraseSettings phraseSettings : outro) {
+            builder.addResponse(ofAlexa(phraseSettings.getContent()));
+        }
+
         return builder
-                .removeLastResponse()
-                .addResponse(ofAlexa(phraseManager.getValueByKey(WON_PHRASE)))
                 .withSlotName(actionSlotName)
                 .withReprompt(ofAlexa(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)));
     }
@@ -572,7 +583,26 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     DialogItem.Builder getSuccessDialog(DialogItem.Builder builder) {
         String ingredient = nextIngredient();
-        return builder.addResponse(ofAlexa(ingredient)).withSlotName(actionSlotName);
+        builder.addResponse(ofAlexa(ingredient)).withSlotName(actionSlotName);
+
+        if (this.activityManager.isActivityCompetition(this.currentActivity)) {
+            return appendMockCompetitionAnswer(builder);
+        }
+
+        return builder;
+    }
+
+    private DialogItem.Builder appendMockCompetitionAnswer(DialogItem.Builder builder) {
+
+        Speech speech = builder.popLastSpeech();
+
+        IngredientReaction randomIngredient = getRandomIngredient();
+
+        builder.addResponse(ofAlexa(randomIngredient.getIngredient()))
+                .addResponse(ofIvy(randomIngredient.getUserReply()))
+                .addResponse(speech);
+
+        return builder;
     }
 
     DialogItem.Builder getFailureDialog(DialogItem.Builder builder, String speechText) {

@@ -1,5 +1,6 @@
 {
   "name": "JUICE_WARRIOR",
+  "competition": false,
   "activitySettingsByStripeNumber": {
     "LOW_MISSION": {
       "0": {

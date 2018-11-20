@@ -5,6 +5,7 @@ import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
+import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates;
@@ -58,8 +59,10 @@ public class HelpStateManager extends BaseStateManager {
     private static final Logger logger = LogManager.getLogger(HelpStateManager.class);
 
     private final PhraseManager phraseManager;
+    private final ActivityManager activityManager;
 
     private ActivityProgress activityProgress;
+
     private StatePhase statePhase;
     private UserProgress userProgress;
     private UserMission currentMission;
@@ -69,6 +72,7 @@ public class HelpStateManager extends BaseStateManager {
     public HelpStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, ConfigContainer configContainer) {
         super(inputSlots, attributesManager);
         this.phraseManager = configContainer.getPhraseManager();
+        this.activityManager = configContainer.getActivityManager();
     }
 
     @Override
@@ -180,7 +184,7 @@ public class HelpStateManager extends BaseStateManager {
         DialogItem.Builder builder = DialogItem.builder();
 
         if (this.currentActivity != null) {
-            if (Activities.checkIfCompetition(this.currentActivity)) {
+            if (activityManager.isActivityCompetition(this.currentActivity)) {
                 // Competition Rules & Examples
                 builder.addResponse(ofAlexa(phraseManager.getValueByKey(HELP_COMPETITION_RULES_PHRASE)));
                 getSessionAttributes().put(HELP_STATE, COMPETITION_REMINDER_HELP);

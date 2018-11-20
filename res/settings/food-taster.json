@@ -1,5 +1,6 @@
 {
   "name": "FOOD_TASTER",
+  "competition": false,
   "activitySettingsByStripeNumber": {
     "LOW_MISSION" : {
       "0": {

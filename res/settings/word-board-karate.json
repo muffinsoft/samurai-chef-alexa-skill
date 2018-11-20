@@ -1,5 +1,6 @@
 {
   "name": "WORD_BOARD_KARATE",
+  "competition": false,
   "activitySettingsByStripeNumber": {
     "LOW_MISSION" : {
       "0": {

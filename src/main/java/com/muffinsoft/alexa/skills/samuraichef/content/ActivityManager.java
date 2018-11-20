@@ -74,4 +74,9 @@ public class ActivityManager {
 
         return activitiesSettings.getSpeechByStripeNumberAtLevel(number, level);
     }
+
+    public boolean isActivityCompetition(Activities currentActivity) {
+        ActivitiesSettings activitiesSettings = containerByActivity.get(currentActivity);
+        return activitiesSettings.isCompetition();
+    }
 }

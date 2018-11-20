@@ -7,6 +7,7 @@ import java.util.Map;
 public class ActivitiesSettings {
 
     private String name;
+    private boolean competition;
     private Map<String, Map<String, Stripe>> activitySettingsByStripeNumber;
     private Map<String, Map<String, SpeechSettings>> activitySpeechesByStripeNumber;
 
@@ -16,6 +17,14 @@ public class ActivitiesSettings {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isCompetition() {
+        return competition;
+    }
+
+    public void setCompetition(boolean competition) {
+        this.competition = competition;
     }
 
     public Map<String, Map<String, Stripe>> getActivitySettingsByStripeNumber() {

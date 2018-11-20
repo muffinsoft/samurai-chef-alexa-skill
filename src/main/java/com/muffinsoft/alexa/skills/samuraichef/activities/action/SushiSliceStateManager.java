@@ -41,21 +41,6 @@ public class SushiSliceStateManager extends BaseActivePhaseSamuraiChefStateManag
             builder = handleTooLongMistake(builder);
         }
 
-        builder = appendMockCompetitionAnswer(builder);
-
-        return builder;
-    }
-
-    private DialogItem.Builder appendMockCompetitionAnswer(DialogItem.Builder builder) {
-
-        Speech speech = builder.popLastSpeech();
-
-        IngredientReaction randomIngredient = getRandomIngredient();
-
-        builder.addResponse(ofAlexa(randomIngredient.getIngredient()))
-                .addResponse(ofIvy(randomIngredient.getUserReply()))
-                .addResponse(speech);
-
         return builder;
     }
 
