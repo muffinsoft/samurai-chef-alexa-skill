@@ -81,6 +81,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     protected final ActivityManager activityManager;
     final AliasManager aliasManager;
     final MissionManager missionManager;
+    private final String userFoodSlotReply;
     protected Activities currentActivity;
     protected Stripe stripe;
     protected ActivityProgress activityProgress;
@@ -98,8 +99,17 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.activityManager = configContainer.getActivityManager();
         this.aliasManager = configContainer.getAliasManager();
         this.missionManager = configContainer.getMissionManager();
-        if (getUserReply() == null) {
-            this.updateUserReply(slots.get(foodSlotName).getValue());
+        this.userFoodSlotReply = slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null;
+    }
+
+    @Override
+    public String getUserReply() {
+        String userReply = super.getUserReply();
+        if (userReply != null && !userReply.isEmpty()) {
+            return userReply;
+        }
+        else {
+            return this.userFoodSlotReply;
         }
     }
 
@@ -241,10 +251,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 builder = handleMissionIntroState(builder, this.currentMission);
                 break;
             case STRIPE_INTRO:
-                builder = handleStripeIntroStripe(builder, this.currentMission, this.userProgress.getStripeCount());
+                builder = handleStripeIntroStrate(builder, this.currentMission, this.userProgress.getStripeCount());
                 break;
             case ACTIVITY_INTRO:
-                builder = handleActivityIntroStripe(builder, this.currentActivity, this.userProgress.getStripeCount());
+                builder = handleActivityIntroState(builder, this.currentActivity, this.userProgress.getStripeCount());
                 break;
             case DEMO:
                 builder = handleDemoState(builder);
@@ -303,12 +313,16 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         List<PhraseSettings> dialog = missionManager.getMissionIntro(currentMission);
 
-        wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
+        int iterationPointer = wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
+
+        if (iterationPointer >= dialog.size()) {
+            builder = handleStripeIntroStrate(builder, currentMission, this.userProgress.getStripeCount());
+        }
 
         return builder.withSlotName(actionSlotName);
     }
 
-    private DialogItem.Builder wrapAnyUserResponse(List<PhraseSettings> dialog, DialogItem.Builder builder, StatePhase statePhase) {
+    private int wrapAnyUserResponse(List<PhraseSettings> dialog, DialogItem.Builder builder, StatePhase statePhase) {
 
         if (this.userReplyBreakpointPosition != null) {
             this.getSessionAttributes().remove(USER_REPLY_BREAKPOINT);
@@ -331,10 +345,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             }
             builder.addResponse(translate(phraseSettings));
         }
-        return builder;
+        return index;
     }
 
-    private DialogItem.Builder handleStripeIntroStripe(DialogItem.Builder builder, UserMission currentMission, int number) {
+    private DialogItem.Builder handleStripeIntroStrate(DialogItem.Builder builder, UserMission currentMission, int number) {
 
         logger.debug("Handling " + this.statePhase + ". Moving to " + ACTIVITY_INTRO);
 
@@ -342,12 +356,16 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         List<PhraseSettings> dialog = missionManager.getStripeIntroByMission(currentMission, number);
 
-        wrapAnyUserResponse(dialog, builder, STRIPE_INTRO);
+        int iterationPointer = wrapAnyUserResponse(dialog, builder, STRIPE_INTRO);
+
+        if (iterationPointer >= dialog.size()) {
+            builder = handleActivityIntroState(builder, this.currentActivity, number);
+        }
 
         return builder.withSlotName(actionSlotName);
     }
 
-    private DialogItem.Builder handleActivityIntroStripe(DialogItem.Builder builder, Activities activity, int number) {
+    private DialogItem.Builder handleActivityIntroState(DialogItem.Builder builder, Activities activity, int number) {
 
         SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumberAtMission(activity, number, this.currentMission);
 
@@ -445,7 +463,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         currentActivity = nextActivity;
         this.userProgress.setCurrentActivity(nextActivity.name());
-        builder = handleActivityIntroStripe(builder, nextActivity, this.userProgress.getStripeCount());
+        builder = handleActivityIntroState(builder, nextActivity, this.userProgress.getStripeCount());
 
         return builder;
     }
@@ -471,7 +489,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.AGAIN) || UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
             resetActivityProgress();
-            builder = handleActivityIntroStripe(builder, this.currentActivity, this.userProgress.getStripeCount());
+            builder = handleActivityIntroState(builder, this.currentActivity, this.userProgress.getStripeCount());
         }
         else {
             builder = getSelectMissionDialog(builder);
@@ -511,7 +529,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             return builder.withSlotName(actionSlotName);
         }
         else {
-            return handleStripeIntroStripe(builder, this.currentMission, this.userProgress.getStripeCount());
+            return handleStripeIntroStrate(builder, this.currentMission, this.userProgress.getStripeCount());
         }
     }
 

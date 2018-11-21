@@ -243,7 +243,7 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": false,
+        "shouldRunDemo": true,
         "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
         "demo": [
@@ -363,7 +363,7 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": false,
+        "shouldRunDemo": true,
         "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
         "demo": [

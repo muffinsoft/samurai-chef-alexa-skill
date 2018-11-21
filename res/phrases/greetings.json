@@ -64,15 +64,20 @@
       "audio": null
     },
     {
-      "content": "%Titles%. You have %color% belt Chef, %color% belt Sumo, %color% belt Guru",
+      "content": "You have %low_color% belt Chef, %mid_color% belt Sumo, %high_color% belt Guru",
       "role": "Alexa",
       "audio": null
     }
   ],
   "playerWithTitlesGreeting": [
     {
-      "content": "Welcome back! I'm so happy to see you again....Alexa, please give our friend a royal greeting! You have %color% belt Chef, %color% belt Sumo, %color% belt Guru",
+      "content": "Welcome back! I'm so happy to see you again....Alexa, please give our friend a royal greeting!",
       "role": "Mary",
+      "audio": null
+    },
+    {
+      "content": "%titles%. You have %low_color% belt Chef, %mid_color% belt Sumo, %high_color% belt Guru",
+      "role": "Alexa",
       "audio": null
     }
   ]

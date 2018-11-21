@@ -10,7 +10,7 @@ public class VoiseTranslator {
 
         switch (phraseSettings.getRole()) {
             case "Mary":
-                return new Speech(SpeechType.IVY, phraseSettings.getContent());
+                return new Speech(SpeechType.JOANNA, phraseSettings.getContent());
             case "Sensei":
                 return new Speech(SpeechType.JOEY, phraseSettings.getContent());
             case "Alexa":

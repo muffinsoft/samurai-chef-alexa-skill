@@ -1,13 +1,30 @@
 package com.muffinsoft.alexa.skills.samuraichef.content;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.content.BaseContentManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GreetingsManager extends BaseContentManager<List<PhraseSettings>> {
 
     public GreetingsManager(String path) {
         super(path);
+    }
+
+    @Override
+    public List<PhraseSettings> getValueByKey(String key) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        List valueByKey = super.getValueByKey(key);
+
+        List<PhraseSettings> resultList = new ArrayList<>(valueByKey.size() * 2);
+
+        for (Object raw : valueByKey) {
+            resultList.add(objectMapper.convertValue(raw, PhraseSettings.class));
+        }
+        return resultList;
     }
 }

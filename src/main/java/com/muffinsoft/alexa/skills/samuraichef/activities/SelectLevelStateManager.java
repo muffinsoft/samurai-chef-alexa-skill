@@ -5,6 +5,7 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
@@ -38,6 +39,8 @@ public class SelectLevelStateManager extends BaseStateManager {
 
     private static final Logger logger = LogManager.getLogger(SelectLevelStateManager.class);
 
+    private final String userFoodSlotReply;
+
     private final AliasManager aliasManager;
     private final PhraseManager phraseManager;
     private UserProgress userProgress;
@@ -46,6 +49,19 @@ public class SelectLevelStateManager extends BaseStateManager {
         super(slots, attributesManager);
         this.aliasManager = configContainer.getAliasManager();
         this.phraseManager = configContainer.getPhraseManager();
+        String foodSlotName = SlotName.AMAZON_FOOD.text;
+        this.userFoodSlotReply = slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null;
+    }
+
+    @Override
+    public String getUserReply() {
+        String userReply = super.getUserReply();
+        if (userReply != null && !userReply.isEmpty()) {
+            return userReply;
+        }
+        else {
+            return this.userFoodSlotReply;
+        }
     }
 
     @Override
@@ -60,10 +76,10 @@ public class SelectLevelStateManager extends BaseStateManager {
         logger.debug("Starting handling user reply '" + this.getUserReply() + "' ...");
 
         DialogItem.Builder builder = DialogItem.builder();
-        if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-            builder.addResponse(ofAlexa(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
-        }
-        else if (UserReplyComparator.compare(getUserReply(), UserReplies.LOW)) {
+//        if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
+//            builder.addResponse(ofAlexa(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+//        }
+        if (UserReplyComparator.compare(getUserReply(), UserReplies.LOW)) {
             builder.addResponse(ofAlexa(checkIfMissionAvailable(UserMission.LOW_MISSION)));
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.MEDIUM)) {

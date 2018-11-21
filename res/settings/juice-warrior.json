@@ -75,7 +75,13 @@
   "activitySpeechesByStripeNumber": {
     "LOW_MISSION": {
       "0": {
-        "outro": [{"content" : "You're getting the hang of this!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "You're getting the hang of this!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "You will not also prepare seaweed along with rice and fish.",
@@ -93,7 +99,7 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": false,
+        "shouldRunDemo": true,
         "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
         "demo": [
@@ -161,7 +167,13 @@
         "moveToPhaseTwo": null
       },
       "1": {
-        "outro": [{"content" : "Now I'm in the mood for some dessert!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "Now I'm in the mood for some dessert!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "We will now also taste mochi ice cream!",
@@ -193,7 +205,13 @@
     },
     "MEDIUM_MISSION": {
       "0": {
-        "outro": [{"content" : "Hey, I think you're getting bigger already!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "Hey, I think you're getting bigger already!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Now I also cook you stew! Loaded with vitamins!",
@@ -211,7 +229,7 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": false,
+        "shouldRunDemo": true,
         "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
         "demo": [
@@ -269,7 +287,13 @@
         "moveToPhaseTwo": null
       },
       "1": {
-        "outro": [{"content" : "You've got this! Resist the urge to eat that junk food!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "You've got this! Resist the urge to eat that junk food!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Now we add candy too! Not healthy!",
@@ -301,7 +325,13 @@
     },
     "HIGH_MISSION": {
       "0": {
-        "outro": [{"content" : "You're an ice crushing machine! Good work!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "You're an ice crushing machine! Good work!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Time to add ice! Ice not make juice healthier, but certainly tastier!",
@@ -319,25 +349,71 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": false,
+        "shouldRunDemo": true,
         "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
         "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
         "demo": [
-          {"content": "Watch Mary closely!", "role": "Sensei", "audio": ""},
-          {"content": "Carrot!", "role": "Sensei", "audio": ""},
-          {"content": "Slice and dice!", "role": "Mary", "audio": ""},
-          {"content": "Milk!", "role": "Sensei", "audio": ""},
-          {"content": "Splash a dash!", "role": "Mary", "audio": ""},
-          {"content": "Ice!", "role": "Sensei", "audio": ""},
-          {"content": "Punch and crunch!", "role": "Mary", "audio": ""},
-          {"content": "Chopsticks!", "role": "Sensei", "audio": ""},
-          {"content": "Stop, don't drop!", "role": "Mary", "audio": ""},
-          {"content": "Good! Now your turn, Mary's friend.", "role": "Sensei", "audio": ""}
+          {
+            "content": "Watch Mary closely!",
+            "role": "Sensei",
+            "audio": ""
+          },
+          {
+            "content": "Carrot!",
+            "role": "Sensei",
+            "audio": ""
+          },
+          {
+            "content": "Slice and dice!",
+            "role": "Mary",
+            "audio": ""
+          },
+          {
+            "content": "Milk!",
+            "role": "Sensei",
+            "audio": ""
+          },
+          {
+            "content": "Splash a dash!",
+            "role": "Mary",
+            "audio": ""
+          },
+          {
+            "content": "Ice!",
+            "role": "Sensei",
+            "audio": ""
+          },
+          {
+            "content": "Punch and crunch!",
+            "role": "Mary",
+            "audio": ""
+          },
+          {
+            "content": "Chopsticks!",
+            "role": "Sensei",
+            "audio": ""
+          },
+          {
+            "content": "Stop, don't drop!",
+            "role": "Mary",
+            "audio": ""
+          },
+          {
+            "content": "Good! Now your turn, Mary's friend.",
+            "role": "Sensei",
+            "audio": ""
+          }
         ],
         "moveToPhaseTwo": null
       },
       "1": {
-        "outro": [{"content" : " I can tell Sensei is impressed. Keep it up!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": " I can tell Sensei is impressed. Keep it up!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Now I also show respect! Very important in martial arts and life in general!",
