@@ -6,13 +6,15 @@ public class PhraseConstants {
 
     public static final String USED_EQUIPMENT_PHRASE = "usedEquipmentPhrase";
 
-    public static final String WRONG_PHRASE = "wrongPhrase";
+    public static final String TWO_MISTAKES_LEFT_PHRASE = "twoMistakesLeftPhrase";
 
-    public static final String WELCOME_PHRASE = "welcomePhrase";
+    public static final String ONE_MISTAKE_LEFT_PHRASE = "oneMistakeLeftPhrase";
 
-    public static final String WELCOME_BACK_PHRASE = "welcomeBackPhrase";
+    public static final String LAST_MISTAKE_PHRASE = "lastMistakePhrase";
 
-    public static final String WON_PHRASE = "wonPhrase";
+    public static final String ONE_MISTAKE_LEFT_COMPETITION_PHRASE = "oneMistakeLeftCompetitionPhrase";
+
+    public static final String LAST_MISTAKE_COMPETITION_PHRASE = "lastMistakeCompetitionPhrase";
 
     public static final String TRY_AGAIN_PHRASE = "tryAgainPhrase";
 
@@ -35,6 +37,8 @@ public class PhraseConstants {
     public static final String READY_TO_START_PHRASE = "readyToStartPhrase";
 
     public static final String READY_TO_START_MISSION_PHRASE = "readyToStartMissionPhrase";
+
+    public static final String READY_TO_CONTINUE_MISSION_PHRASE = "readyToContinueMissionPhrase";
 
     public static final String SELECT_MISSION_PHRASE = "selectMissionPhrase";
 

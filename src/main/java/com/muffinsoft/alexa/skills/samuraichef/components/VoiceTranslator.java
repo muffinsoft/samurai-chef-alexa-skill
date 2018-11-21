@@ -4,9 +4,21 @@ import com.muffinsoft.alexa.sdk.enums.SpeechType;
 import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 
-public class VoiseTranslator {
+public class VoiceTranslator {
+
+    public static Speech translate(String content) {
+        return translate(new PhraseSettings(content));
+    }
+
+    public static Speech translate(String content, String role) {
+        return translate(new PhraseSettings(content, role));
+    }
 
     public static Speech translate(PhraseSettings phraseSettings) {
+
+        if (phraseSettings.getRole() == null) {
+            return new Speech(SpeechType.TEXT, phraseSettings.getContent());
+        }
 
         switch (phraseSettings.getRole()) {
             case "Mary":
@@ -20,9 +32,5 @@ public class VoiseTranslator {
             default:
                 return new Speech(SpeechType.TEXT, phraseSettings.getContent());
         }
-    }
-
-    public static Speech translate(String content, String role) {
-        return translate(new PhraseSettings(content, role));
     }
 }

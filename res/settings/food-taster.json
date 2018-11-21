@@ -2,10 +2,10 @@
   "name": "FOOD_TASTER",
   "competition": false,
   "activitySettingsByStripeNumber": {
-    "LOW_MISSION" : {
+    "LOW_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "'W' sound": "wham",
           "'H' sound": "haaa"
@@ -13,7 +13,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "'W' sound": "wham",
           "'H' sound": "haaa",
@@ -21,10 +21,10 @@
         }
       }
     },
-    "MEDIUM_MISSION" : {
+    "MEDIUM_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "'Z' sound": "zonk",
           "'F' sound": "fuah"
@@ -32,7 +32,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "'Z' sound": "zonk",
           "'F' sound": "fuah",
@@ -40,10 +40,10 @@
         }
       }
     },
-    "HIGH_MISSION" : {
+    "HIGH_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "'Z' sound": "zaam",
           "'W' sound": "whamo"
@@ -51,7 +51,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "'Z' sound": "zaam",
           "'W' sound": "whamo",
@@ -63,7 +63,13 @@
   "activitySpeechesByStripeNumber": {
     "LOW_MISSION": {
       "0": {
-        "outro": [{"content" : "Nice work! You showed those boards who's boss!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "Nice work! You showed those boards who's boss!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Good work. You show potential as sushi cook! Time to work both mind and body with some word board karate!",
@@ -88,7 +94,13 @@
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
       "1": {
-        "outro": [{"content" : "Woah! You pulverized those boards!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "Woah! You pulverized those boards!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Good session. To train both our mind and body after making sushi, time for some word board karate!",
@@ -115,7 +127,13 @@
     },
     "MEDIUM_MISSION": {
       "0": {
-        "outro": [{"content" : "Those boards didn't stand a chance!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "Those boards didn't stand a chance!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Good work. Your appetite is impressive! Time for some word board karate!",
@@ -140,7 +158,13 @@
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
       "1": {
-        "outro": [{"content" : "Those were some sweet moves on those boards!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "Those were some sweet moves on those boards!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Good work. You show good ability to avoid unhealthy snacks. Time for some word board karate!",
@@ -167,7 +191,13 @@
     },
     "HIGH_MISSION": {
       "0": {
-        "outro": [{"content" : "You crushed those boards into dust! Awesome!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "You crushed those boards into dust! Awesome!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Good work. You are getting the hand of making good juice! Time for some word board karate!",
@@ -192,7 +222,13 @@
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
       "1": {
-        "outro": [{"content" : "Wow, no way anyone is piecing those boards back together!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "Wow, no way anyone is piecing those boards back together!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Good work. Karate healthy for body and mind. Time for some word board karate!",

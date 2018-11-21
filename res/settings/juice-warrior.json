@@ -6,7 +6,7 @@
       "0": {
         "wonSuccessCount": 5,
         "timeLimitPhaseOneInMillis": 12000,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "rice": "boil",
           "fish": "slice",
@@ -16,7 +16,7 @@
       "1": {
         "wonSuccessCount": 7,
         "timeLimitPhaseOneInMillis": 10000,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "soup": "slurp",
           "sushi": "gulp",
@@ -29,7 +29,7 @@
       "0": {
         "wonSuccessCount": 5,
         "timeLimitPhaseOneInMillis": 12000,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "chicken": "chomp",
           "sushi": "gulp",
@@ -39,7 +39,7 @@
       "1": {
         "wonSuccessCount": 7,
         "timeLimitPhaseOneInMillis": 10000,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "beef": "yum",
           "soda": "yuck",
@@ -52,7 +52,7 @@
       "0": {
         "wonSuccessCount": 5,
         "timeLimitPhaseOneInMillis": 12000,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "milk": "splash a dash",
           "carrot": "slice and dice",
@@ -62,7 +62,7 @@
       "1": {
         "wonSuccessCount": 7,
         "timeLimitPhaseOneInMillis": 10000,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "punch": "block",
           "kick": "dodge",
@@ -191,7 +191,7 @@
             "audio": null
           },
           {
-            "content": "For this challenge you'll have X seconds to answer!",
+            "content": "For this challenge you'll have 15 seconds to answer!",
             "role": "Alex",
             "audio": null
           }
@@ -311,7 +311,7 @@
             "audio": null
           },
           {
-            "content": "For this challenge you'll have X seconds to answer!",
+            "content": "For this challenge you'll have 15 seconds to answer!",
             "role": "Alex",
             "audio": null
           }
@@ -431,7 +431,7 @@
             "audio": null
           },
           {
-            "content": "For this challenge you'll have X seconds to answer!",
+            "content": "For this challenge you'll have 15 seconds to answer!",
             "role": "Alex",
             "audio": null
           }

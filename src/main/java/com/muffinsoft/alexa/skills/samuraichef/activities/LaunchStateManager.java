@@ -4,7 +4,6 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
@@ -20,13 +19,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiseTranslator.translate;
+import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
@@ -41,6 +43,7 @@ public class LaunchStateManager extends BaseStateManager {
     private final CardManager cardManager;
     private final AttributesManager attributesManager;
     private int starCount;
+    private Set<String> finishedMissions;
 
     public LaunchStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, GreetingsManager greetingsManager, ConfigContainer configContainer) {
         super(inputSlots, attributesManager);
@@ -54,6 +57,9 @@ public class LaunchStateManager extends BaseStateManager {
     protected void populateActivityVariables() {
 
         this.starCount = (int) getSessionAttributes().getOrDefault(STAR_COUNT, 0);
+
+        //noinspection unchecked
+        this.finishedMissions = (Set<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new HashSet<>());
 
         logger.debug("Session attributes on the start of handling: " + this.getSessionAttributes().toString());
     }
@@ -98,7 +104,7 @@ public class LaunchStateManager extends BaseStateManager {
             builder = buildRoyalGreetingWithTitles(builder);
         }
 
-        return builder.addResponse(Speech.ofAlexa(phraseManager.getValueByKey(PhraseConstants.SELECT_MISSION_PHRASE)));
+        return builder.addResponse(translate(phraseManager.getValueByKey(PhraseConstants.SELECT_MISSION_PHRASE)));
     }
 
     private DialogItem.Builder buildRoyalGreetingWithTitles(DialogItem.Builder builder) {
@@ -143,7 +149,7 @@ public class LaunchStateManager extends BaseStateManager {
         try {
             LinkedHashMap linkedHashMap = mapper.readValue(jsonInString, LinkedHashMap.class);
             UserProgress userProgress = mapper.convertValue(linkedHashMap, UserProgress.class);
-            if (userProgress.getFinishedMissions().contains(missionType)) {
+            if (finishedMissions.contains(missionType)) {
                 return "black";
             }
             else {

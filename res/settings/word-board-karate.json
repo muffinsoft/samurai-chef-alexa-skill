@@ -2,10 +2,10 @@
   "name": "WORD_BOARD_KARATE",
   "competition": false,
   "activitySettingsByStripeNumber": {
-    "LOW_MISSION" : {
+    "LOW_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "rice": "boil",
           "fish": "slice",
@@ -15,7 +15,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "soup": "slurp",
           "sushi": "gulp",
@@ -25,10 +25,10 @@
         }
       }
     },
-    "MEDIUM_MISSION" : {
+    "MEDIUM_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "chicken": "chomp",
           "sushi": "gulp",
@@ -38,7 +38,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "beef": "yum",
           "soda": "yuck",
@@ -48,20 +48,20 @@
         }
       }
     },
-    "HIGH_MISSION" : {
+    "HIGH_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "milk": "splash a dash",
           "carrot": "slice and dice",
           "ice": "punch and crunch",
-          "chopsticks": "stop, don't drop"
+          "chopsticks": "stop don't drop"
         }
       },
       "1": {
         "wonSuccessCount": 7,
-        "maxMistakeCount": 2,
+        "maxMistakeCount": 3,
         "ingredients": {
           "punch": "block",
           "kick": "dodge",
@@ -75,7 +75,13 @@
   "activitySpeechesByStripeNumber": {
     "LOW_MISSION": {
       "0": {
-        "outro": [{"content" : "That's some good looking sushi you've made so far!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "That's some good looking sushi you've made so far!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Now we also boil egg! Boiled egg go very good with salmon!",
@@ -93,7 +99,7 @@
             "audio": null
           },
           {
-            "content": "For this challenge you'll have X seconds to answer!",
+            "content": "For this challenge you'll have 15 seconds to answer!",
             "role": "Alex",
             "audio": null
           }
@@ -105,7 +111,13 @@
         "moveToPhaseTwo": null
       },
       "1": {
-        "outro": [{"content" : "You got me! Hey, you're becoming a skilled taster already!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "You got me! Hey, you're becoming a skilled taster already!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Good work so far. Wasabe peas are your next dish to taste.",
@@ -137,7 +149,13 @@
     },
     "MEDIUM_MISSION": {
       "0": {
-        "outro": [{"content" : "We'll be gigantic sumo in no time!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "We'll be gigantic sumo in no time!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Now I also make fried fish! Taste good and loaded with fatty acids!",
@@ -155,7 +173,7 @@
             "audio": null
           },
           {
-            "content": "For this challenge you'll have X seconds to answer!",
+            "content": "For this challenge you'll have 15 seconds to answer!",
             "role": "Alex",
             "audio": null
           }
@@ -167,7 +185,13 @@
         "moveToPhaseTwo": null
       },
       "1": {
-        "outro": [{"content" : "Impressive! I'm no match for your yum or yuck thinking!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "Impressive! I'm no match for your yum or yuck thinking!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "I now add milk! Milk is yum for sumo!",
@@ -199,7 +223,13 @@
     },
     "HIGH_MISSION": {
       "0": {
-        "outro": [{"content" : "So close! At this rate you'll be the best guru around!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "So close! At this rate you'll be the best guru around!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Time to test your reactions!  Juice making is quick business! If I give you chopsticks, don't add!",
@@ -217,7 +247,7 @@
             "audio": null
           },
           {
-            "content": "For this challenge you'll have X seconds to answer!",
+            "content": "For this challenge you'll have 15 seconds to answer!",
             "role": "Alex",
             "audio": null
           }
@@ -229,7 +259,13 @@
         "moveToPhaseTwo": null
       },
       "1": {
-        "outro": [{"content" : "Aw, you bested me this time. We're getting good at this karate stuff!", "role": "Mary", "audio": null}],
+        "outro": [
+          {
+            "content": "Aw, you bested me this time. We're getting good at this karate stuff!",
+            "role": "Mary",
+            "audio": null
+          }
+        ],
         "intro": [
           {
             "content": "Now I also try to grab!",

@@ -6,7 +6,7 @@
     "LOW_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "maxMistakeCount": 1,
+        "maxMistakeCount": 2,
         "timeLimitPhaseOneInMillis": 21000,
         "ingredients": {
           "fish": "slice",
@@ -15,7 +15,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
-        "maxMistakeCount": 1,
+        "maxMistakeCount": 2,
         "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "soup": "slurp",
@@ -27,7 +27,7 @@
     "MEDIUM_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "maxMistakeCount": 1,
+        "maxMistakeCount": 2,
         "timeLimitPhaseOneInMillis": 21000,
         "ingredients": {
           "chicken": "chomp",
@@ -36,7 +36,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
-        "maxMistakeCount": 1,
+        "maxMistakeCount": 2,
         "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "beef": "yum",
@@ -48,7 +48,7 @@
     "HIGH_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "maxMistakeCount": 1,
+        "maxMistakeCount": 2,
         "timeLimitPhaseOneInMillis": 20000,
         "ingredients": {
           "milk": "splash a dash",

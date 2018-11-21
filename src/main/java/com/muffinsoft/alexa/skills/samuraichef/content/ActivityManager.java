@@ -1,6 +1,7 @@
 package com.muffinsoft.alexa.skills.samuraichef.content;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -28,7 +29,7 @@ public class ActivityManager {
 
         containerByActivity = new HashMap<>();
 
-        ContentLoader contentLoader = new ContentLoader();
+        ContentLoader contentLoader = new ContentLoader(new ObjectMapper());
 
         containerByActivity.put(Activities.SUSHI_SLICE, contentLoader.loadContent(new ActivitiesSettings(), SUSHI_SLICE, new TypeReference<ActivitiesSettings>() {
         }));

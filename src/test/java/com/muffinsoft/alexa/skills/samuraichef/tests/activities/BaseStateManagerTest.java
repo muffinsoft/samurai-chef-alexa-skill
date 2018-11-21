@@ -12,24 +12,12 @@ import com.amazon.ask.model.slu.entityresolution.Resolutions;
 import com.amazon.ask.model.slu.entityresolution.Status;
 import com.amazon.ask.model.slu.entityresolution.StatusCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.muffinsoft.alexa.skills.samuraichef.IoC;
-import com.muffinsoft.alexa.skills.samuraichef.activities.action.SushiSliceStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
-import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
-import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
-import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.tests.MockPersistenceAdapter;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 
 class BaseStateManagerTest {
 

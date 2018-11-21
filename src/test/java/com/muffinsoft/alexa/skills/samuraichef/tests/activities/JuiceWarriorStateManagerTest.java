@@ -203,7 +203,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         Assertions.assertNull(result.getActivePowerUp());
     }
 
-//    @Test
+    //    @Test
     void testActivePhaseTooLongMistake() {
 
         Map<String, Slot> slots = createSlotsForValue("test");
@@ -232,7 +232,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         Assertions.assertEquals(result.getSuccessInRow(), 0);
     }
 
-//    @Test
+    //    @Test
     void testActivePhaseTooLongMistakeWithCorrectAnswer() {
 
         Map<String, Slot> slots = createSlotsForValue("test");
@@ -268,7 +268,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         Assertions.assertNull(result.getActivePowerUp());
     }
 
-//    @Test
+    //    @Test
     void testActivePhaseTooLongMistakeWithSecondChance() {
 
         Map<String, Slot> slots = createSlotsForValue("test");

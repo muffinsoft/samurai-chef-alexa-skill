@@ -8,7 +8,7 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
+import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FALLBACK_PHRASE;
 
 public class SamuraiFallbackIntentHandler extends FallbackIntentHandler {
@@ -26,7 +26,7 @@ public class SamuraiFallbackIntentHandler extends FallbackIntentHandler {
             @Override
             public DialogItem nextResponse() {
                 return DialogItem.builder()
-                        .addResponse(ofAlexa(phraseManager.getValueByKey(FALLBACK_PHRASE)))
+                        .addResponse(translate(phraseManager.getValueByKey(FALLBACK_PHRASE)))
                         .build();
             }
         };

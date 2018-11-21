@@ -13,22 +13,25 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
+import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_CONTINUE_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_UNKNOWN_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
@@ -44,6 +47,7 @@ public class SelectLevelStateManager extends BaseStateManager {
     private final AliasManager aliasManager;
     private final PhraseManager phraseManager;
     private UserProgress userProgress;
+    private Set<String> finishedMissions;
 
     public SelectLevelStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
         super(slots, attributesManager);
@@ -67,7 +71,10 @@ public class SelectLevelStateManager extends BaseStateManager {
     @Override
     protected void populateActivityVariables() {
         LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
-        userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
+        this.userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
+
+        //noinspection unchecked
+        this.finishedMissions = (Set<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new HashSet<>());
     }
 
     @Override
@@ -77,19 +84,19 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 //        if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-//            builder.addResponse(ofAlexa(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+//            builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
 //        }
         if (UserReplyComparator.compare(getUserReply(), UserReplies.LOW)) {
-            builder.addResponse(ofAlexa(checkIfMissionAvailable(UserMission.LOW_MISSION)));
+            builder.addResponse(translate(checkIfMissionAvailable(UserMission.LOW_MISSION)));
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.MEDIUM)) {
-            builder.addResponse(ofAlexa(checkIfMissionAvailable(UserMission.MEDIUM_MISSION)));
+            builder.addResponse(translate(checkIfMissionAvailable(UserMission.MEDIUM_MISSION)));
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.HIGH)) {
-            builder.addResponse(ofAlexa(checkIfMissionAvailable(UserMission.HIGH_MISSION)));
+            builder.addResponse(translate(checkIfMissionAvailable(UserMission.HIGH_MISSION)));
         }
         else {
-            builder.addResponse(ofAlexa(phraseManager.getValueByKey(SELECT_MISSION_UNKNOWN_PHRASE)));
+            builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_UNKNOWN_PHRASE)));
         }
 
         if (this.getSessionAttributes().containsKey(CURRENT_MISSION)) {
@@ -100,9 +107,8 @@ public class SelectLevelStateManager extends BaseStateManager {
         return builder.build();
     }
 
-    private String checkIfMissionAvailable(UserMission mission) {
+    private PhraseSettings checkIfMissionAvailable(UserMission mission) {
 
-        Set<String> finishedMissions = userProgress.getFinishedMissions();
         if (finishedMissions.contains(mission.name())) {
             return phraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE);
         }
@@ -120,7 +126,34 @@ public class SelectLevelStateManager extends BaseStateManager {
         }
         logger.info("user will be redirected to " + mission.name());
 
-        return phraseManager.getValueByKey(READY_TO_START_MISSION_PHRASE) + " " + aliasManager.getValueByKey(mission.name()) + "?";
+        return startOrContinuePhrase(mission);
+
+    }
+
+    private PhraseSettings startOrContinuePhrase(UserMission mission) {
+        PhraseSettings phraseSettings;
+        if (hasProgressInMission(mission)) {
+            phraseSettings = phraseManager.getValueByKey(READY_TO_CONTINUE_MISSION_PHRASE);
+        }
+        else {
+            phraseSettings = phraseManager.getValueByKey(READY_TO_START_MISSION_PHRASE);
+        }
+
+        phraseSettings.setContent(phraseSettings.getContent() + " " + aliasManager.getValueByKey(mission.name()) + "?");
+
+        return phraseSettings;
+    }
+
+    private boolean hasProgressInMission(UserMission mission) {
+        switch (mission) {
+            case LOW_MISSION:
+                return this.getPersistentAttributes().containsKey(USER_LOW_PROGRESS_DB);
+            case MEDIUM_MISSION:
+                return this.getPersistentAttributes().containsKey(USER_MID_PROGRESS_DB);
+            case HIGH_MISSION:
+                return this.getPersistentAttributes().containsKey(USER_HIGH_PROGRESS_DB);
+        }
+        return false;
     }
 
     private UserProgress getUserProgressForMission(UserMission mission) {

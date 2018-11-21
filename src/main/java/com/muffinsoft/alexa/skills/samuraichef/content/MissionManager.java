@@ -1,6 +1,7 @@
 package com.muffinsoft.alexa.skills.samuraichef.content;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -19,7 +20,7 @@ public class MissionManager {
     private ProgressContainer container;
 
     public MissionManager(String path) {
-        this.container = new ContentLoader().loadContent(new ProgressContainer(), path, new TypeReference<ProgressContainer>() {
+        this.container = new ContentLoader(new ObjectMapper()).loadContent(new ProgressContainer(), path, new TypeReference<ProgressContainer>() {
         });
     }
 

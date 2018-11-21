@@ -4,9 +4,7 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.PhraseContainer;
 import com.muffinsoft.alexa.sdk.model.SlotName;
-import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
@@ -18,7 +16,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import java.util.List;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiseTranslator.translate;
+import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Intents.GAME;
@@ -69,8 +67,8 @@ public class InitialGreetingStateManager extends BaseStateManager {
             builder.addResponse(translate(phraseSettings));
         }
 
-        if(index >= dialog.size()) {
-            builder.addResponse(Speech.ofAlexa(phraseManager.getValueByKey(PhraseConstants.SELECT_MISSION_PHRASE)));
+        if (index >= dialog.size()) {
+            builder.addResponse(translate(phraseManager.getValueByKey(PhraseConstants.SELECT_MISSION_PHRASE)));
         }
 
         return builder

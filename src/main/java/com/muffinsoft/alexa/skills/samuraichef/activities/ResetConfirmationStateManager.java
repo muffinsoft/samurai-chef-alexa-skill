@@ -10,6 +10,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +19,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
+import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_PROGRESS_REMOVED_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
@@ -101,7 +102,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     public DialogItem nextResponse() {
         logger.debug("Available session attributes: " + getSessionAttributes());
 
-        String dialog;
+        PhraseSettings dialog;
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
             dialog = phraseManager.getValueByKey(SELECT_MISSION_PHRASE);
@@ -122,7 +123,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             dialog = phraseManager.getValueByKey(REPEAT_LAST_PHRASE);
         }
 
-        DialogItem.Builder builder = DialogItem.builder().addResponse(ofAlexa(dialog));
+        DialogItem.Builder builder = DialogItem.builder().addResponse(translate(dialog));
 
         return builder.build();
     }

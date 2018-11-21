@@ -1,47 +1,148 @@
 {
-  "welcomePhrase": "Glad you’ve come over! I love playdates! And today, I’ve got something so cool, so different for us to do. Would you like to follow me?",
-  "welcomeBackPhrase": "Welcome back to Samurai Chef, %Title%! I'm excited to see what Sensei has in store for us next.",
-  "wrongPhrase": "Wrong!",
-  "tooLongPhrase": "Too Long!",
-  "fallbackPhrase": "Sorry, I don't understand what you're saying. Would you like some help?",
-  "failurePhrase": "You lose current round. Would you like to try again?",
-  "failureRePromptPhrase": "Sorry, I don't understand what you're saying. Would you like to try again?",
-  "wonPhrase": "You won current round. Are you ready to start next competition?",
-  "wonRePromptPhrase": "Sorry, I don't understand what you're saying. Are you ready to start?",
-  "readyToStartPhrase": "Ready to start?",
-  "readyToStartRePromptPhrase": "Sorry, I don't hear you. Ready to start?",
-  "justEarnCorrectQuestionPhrase": "Wow, you got some Secret Sauce! When you use it, Sensei will accept any answer as correct!",
-  "justWearCorrectQuestionPhrase": "Sweet! With the Secret Sauce your answer was considered right, no matter what you said!",
-  "justEarnSecondChancePhrase": "Nice, you earned a Super Spatula! With it you'll get a second chance the first time you give a wrong answer.",
-  "justWearSecondChancePhrase": "Good idea using the Super Spatula to get a second chance at responding!",
-  "usedEquipmentPhrase": "You spent your equipment.",
-  "selectMissionPhrase": "There are three different paths to choose from: Path of Chef, Path of Sumo, and Path of Guru. They all have fun ways of cooking and eating food. Which one do you want to try?",
-  "selectMissionUnknownPhrase": "I don't understand your choice, Please, select one of three available missions.",
-  "missionAlreadyCompletePhrase": "You have already complete this mission.",
-  "readyToStartMissionPhrase": "Are you ready to start ",
-  "severalValuesPhrase": "Sorry, we can't understand your answer. Please, choose one from this list ",
-  "wantStartMissionPhrase": "Do you want to start a new mission?",
-  "wantExitPhrase": "Do you want to quit the game?",
-  "repeatLastPhrase": "I don't understand you. Please, repeat last command.",
-  "tryAgainPhrase": "Try again!",
-  "exitPhrase": "We had fun together. Let's do this again soon.",
-  "returnToGamePhrase": "You'll be returned to game process.",
-  "wantResetProgressPhrase": "Are you sure you want to quit the path and lose all your progress?",
-  "wantMissionFromBeginningPhrase": "Do you want to start the path from the beginning?",
-  "missionProgressRemovedPhrase": "Mission progress was removed.",
-  "helpCompetitionRulesPhrase": "In a competition, you and Mary take turns trying to provide the correct answer. The first one to lose two rounds by answering incorrectly loses.",
-  "helpMissionLowDescriptionPhrase": "In Path of the Chef your goal is to master the art of cooking sushi! When you are given an ingredient or food, say the right response to prepare it correctly! You are currently on stripe #. Do you want to continue playing?",
-  "helpMissionMidDescriptionPhrase": "In Path of the Sumo your goal is to become big and heavy! When you are given a food to eat, say the right response to eat it correctly! You are currently on stripe #. Do you want to continue playing?",
-  "helpMissionHighDescriptionPhrase": "In Path of the Guru you'll learn the ways of nutritious food! When you are given an ingredient or food, say the right response to prepare it correctly! You are currently on stripe #. Do you want to continue playing?",
-  "helpNewWordsPhrase": "Do you need to hear the correct response to all the words again?",
-  "helpGeneralPhrase": "In Samurai Chef your goal is to earn different belts in three unique paths to become the ultimate samurai chef! You'll also earn cool titles and other awesome rewards along the way!",
-  "helpLearnMorePhrase": "Do you want to learn more about the game and objectives?",
-  "helpMoreDetailsPhrase": "Do you want more details?",
-  "helpContinuePlayingPhrase": "Do you want to continue playing?",
-  "helpActivitySushiSliceDescriptionPhrase": "Sushi Slice description.",
-  "helpActivityJuiceWarriorDescriptionPhrase": "Juice Warrior description.",
-  "helpActivityWordBoardKarateDescriptionPhrase": "Word Board Karate description.",
-  "helpActivityFoodTasterDescriptionPhrase": "Food Taster description.",
-  "gameFinishedPhrasePhrase": "Congratulations! You are the winner!",
-  "redirectedToSelectMissionPhrase": "You will be redirected to mission selection."
+  "welcomePhrase": {
+    "content": "Glad you’ve come over! I love playdates! And today, I’ve got something so cool, so different for us to do. Would you like to follow me?"
+  },
+  "welcomeBackPhrase": {
+    "content": "Welcome back to Samurai Chef, %Title%! I'm excited to see what Sensei has in store for us next."
+  },
+  "fallbackPhrase": {
+    "content": "Sorry, I don't understand what you're saying. Would you like some help?"
+  },
+  "failurePhrase": {
+    "content": "You gave the wrong response, which means you failed the challenge. Would you like to restart?"
+  },
+  "failureRePromptPhrase": {
+    "content": "Sorry, I don't understand what you're saying. Would you like to try again?"
+  },
+  "wonRePromptPhrase": {
+    "content": "Sorry, I don't understand what you're saying. Are you ready to start?"
+  },
+  "readyToStartPhrase": {
+    "content": "Ready to start?"
+  },
+  "readyToStartRePromptPhrase": {
+    "content": "Sorry, I don't hear you. Ready to start?"
+  },
+  "justEarnCorrectQuestionPhrase": {
+    "content": "Wow, you got some Secret Sauce! When you use it, Sensei will accept any answer as correct!"
+  },
+  "justWearCorrectQuestionPhrase": {
+    "content": "Sweet! With the Secret Sauce your answer was considered right, no matter what you said!"
+  },
+  "justEarnSecondChancePhrase": {
+    "content": "Nice, you earned a Super Spatula! With it you'll get a second chance the first time you give a wrong answer."
+  },
+  "justWearSecondChancePhrase": {
+    "content": "Good idea using the Super Spatula to get a second chance at responding!"
+  },
+  "twoMistakesLeftPhrase": {
+    "content": "Oops, you made a mistake! You can only make two more mistakes!"
+  },
+  "oneMistakeLeftPhrase": {
+    "content": "Uh oh, that was your second mistake! You can only make one more!"
+  },
+  "lastMistakePhrase": {
+    "content": "Aww, that was your last mistake! Too bad..."
+  },
+  "oneMistakeLeftCompetitionPhrase": {
+    "content": "Kiara wins round! One more and she will be the victor!",
+    "role" : "Sensei"
+  },
+  "lastMistakeCompetitionPhrase": {
+    "content": "Aww, that was your last mistake! Too bad...",
+    "role" : "Kiara wins again! Kiara is the winner!"
+  },
+  "usedEquipmentPhrase": {
+    "content": "You spent your equipment."
+  },
+  "selectMissionPhrase": {
+    "content": "There are three different paths to choose from: Path of Chef, Path of Sumo, and Path of Guru. They all have fun ways of cooking and eating food. Which one do you want to try?"
+  },
+  "selectMissionUnknownPhrase": {
+    "content": "I don't understand your choice, Please, select one of three available missions."
+  },
+  "readyToContinueMissionPhrase": {
+    "content": "Would you like to continue playing"
+  },
+  "missionAlreadyCompletePhrase": {
+    "content": "You have already complete this path."
+  },
+  "readyToStartMissionPhrase": {
+    "content": "Are you ready to start "
+  },
+  "severalValuesPhrase": {
+    "content": "Sorry, we can't understand your answer. Please, choose one from this list "
+  },
+  "wantStartMissionPhrase": {
+    "content": "Do you want to start a new path?"
+  },
+  "wantExitPhrase": {
+    "content": "Do you want to quit the game?"
+  },
+  "repeatLastPhrase": {
+    "content": "I don't understand you. Please, repeat last command."
+  },
+  "tryAgainPhrase": {
+    "content": "Try again!"
+  },
+  "exitPhrase": {
+    "content": "We had fun together. Let's do this again soon."
+  },
+  "returnToGamePhrase": {
+    "content": "You'll be returned to game process."
+  },
+  "wantResetProgressPhrase": {
+    "content": "Are you sure you want to quit the path and lose all your progress?"
+  },
+  "wantMissionFromBeginningPhrase": {
+    "content": "Do you want to start the path from the beginning?"
+  },
+  "missionProgressRemovedPhrase": {
+    "content": "The Path progress was removed."
+  },
+  "helpCompetitionRulesPhrase": {
+    "content": "In a competition, you and Mary take turns trying to provide the correct answer. The first one to lose two rounds by answering incorrectly loses."
+  },
+  "helpMissionLowDescriptionPhrase": {
+    "content": "In Path of the Chef your goal is to master the art of cooking sushi! When you are given an ingredient or food, say the right response to prepare it correctly! You are currently on stripe #. Do you want to continue playing?"
+  },
+  "helpMissionMidDescriptionPhrase": {
+    "content": "In Path of the Sumo your goal is to become big and heavy! When you are given a food to eat, say the right response to eat it correctly! You are currently on stripe #. Do you want to continue playing?"
+  },
+  "helpMissionHighDescriptionPhrase": {
+    "content": "In Path of the Guru you'll learn the ways of nutritious food! When you are given an ingredient or food, say the right response to prepare it correctly! You are currently on stripe #. Do you want to continue playing?"
+  },
+  "helpNewWordsPhrase": {
+    "content": "Do you need to hear the correct response to all the words again?"
+  },
+  "helpGeneralPhrase": {
+    "content": "In Samurai Chef your goal is to earn different belts in three unique paths to become the ultimate samurai chef! You'll also earn cool titles and other awesome rewards along the way!"
+  },
+  "helpLearnMorePhrase": {
+    "content": "Do you want to learn more about the game and objectives?"
+  },
+  "helpMoreDetailsPhrase": {
+    "content": "Do you want more details?"
+  },
+  "helpContinuePlayingPhrase": {
+    "content": "Do you want to continue playing?"
+  },
+  "helpActivitySushiSliceDescriptionPhrase": {
+    "content": "Sushi Slice description."
+  },
+  "helpActivityJuiceWarriorDescriptionPhrase": {
+    "content": "Juice Warrior description."
+  },
+  "helpActivityWordBoardKarateDescriptionPhrase": {
+    "content": "Word Board Karate description."
+  },
+  "helpActivityFoodTasterDescriptionPhrase": {
+    "content": "Food Taster description."
+  },
+  "gameFinishedPhrasePhrase": {
+    "content": "Congratulations! You are the winner!"
+  },
+  "redirectedToSelectMissionPhrase": {
+    "content": "You will be redirected to path selection."
+  }
 }

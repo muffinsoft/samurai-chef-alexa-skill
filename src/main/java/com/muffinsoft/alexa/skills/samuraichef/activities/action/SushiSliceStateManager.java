@@ -8,8 +8,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
 
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiseTranslator.translate;
+import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
@@ -36,26 +35,10 @@ public class SushiSliceStateManager extends BaseActivePhaseSamuraiChefStateManag
             builder = super.handleSuccess(builder);
         }
         else {
-            builder = handleTooLongMistake(builder);
+            builder = handleMistake(builder);
         }
 
         return builder;
-    }
-
-    @Override
-    DialogItem.Builder getWinDialog(DialogItem.Builder builder) {
-        this.statePhase = WIN;
-
-        IngredientReaction randomIngredient = getRandomIngredient();
-
-        String wrongReplyOnIngredient = getWrongReplyOnIngredient(randomIngredient.getIngredient());
-
-        return builder
-                .replaceResponse(ofAlexa(randomIngredient.getIngredient()))
-                .addResponse(translate(randomIngredient.getUserReply(), this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
-                .addResponse(ofAlexa(wrongReplyOnIngredient))
-                .withSlotName(actionSlotName)
-                .withReprompt(ofAlexa(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)));
     }
 
     @Override

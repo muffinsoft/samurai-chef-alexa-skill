@@ -16,6 +16,8 @@ public class SessionConstants {
 
     public static final String STAR_COUNT = "starCount";
 
+    public static final String FINISHED_MISSIONS = "finishedMission";
+
     public static final String CURRENT_MISSION = "currentMission";
 
     public static final String USER_LOW_PROGRESS_DB = "userLowProgressDB";

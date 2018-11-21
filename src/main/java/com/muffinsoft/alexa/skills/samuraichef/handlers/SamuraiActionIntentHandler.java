@@ -24,12 +24,15 @@ import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
@@ -150,6 +153,11 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
         if (!attributesManager.getSessionAttributes().containsKey(STAR_COUNT)) {
             int starCount = ((BigDecimal) attributesManager.getPersistentAttributes().getOrDefault(STAR_COUNT, BigDecimal.ZERO)).intValue();
             attributesManager.getSessionAttributes().put(STAR_COUNT, starCount);
+        }
+
+        if (!attributesManager.getSessionAttributes().containsKey(FINISHED_MISSIONS)) {
+            String[] finishedMission = (String[]) attributesManager.getPersistentAttributes().getOrDefault(FINISHED_MISSIONS, new String[]{});
+            attributesManager.getSessionAttributes().put(FINISHED_MISSIONS, new HashSet<>(Arrays.asList(finishedMission)));
         }
 
         if (!attributesManager.getSessionAttributes().containsKey(USER_PROGRESS)) {

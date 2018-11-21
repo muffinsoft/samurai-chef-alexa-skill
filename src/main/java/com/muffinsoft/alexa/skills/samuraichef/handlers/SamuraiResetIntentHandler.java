@@ -8,8 +8,9 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
+import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_RESET_PROGRESS_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 
@@ -31,10 +32,10 @@ public class SamuraiResetIntentHandler extends ResetIntentHandler {
 
                 logger.debug("Available session attributes: " + getSessionAttributes());
 
-                String dialog = phraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE);
+                PhraseSettings dialog = phraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE);
                 getSessionAttributes().put(INTENT, Intents.RESET);
 
-                DialogItem.Builder builder = DialogItem.builder().addResponse(ofAlexa(dialog));
+                DialogItem.Builder builder = DialogItem.builder().addResponse(translate(dialog));
 
                 return builder.build();
             }
