@@ -53,7 +53,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REDIRECT_TO_SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SEVERAL_VALUES_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TRY_AGAIN_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_RESET_PROGRESS_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
@@ -248,7 +247,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 builder = handleLoseState(builder);
                 break;
             case WIN:
-                builder = handleWinState(builder, this.currentMission);
+                builder = handleWinState(builder);
                 break;
             case STRIPE_OUTRO:
                 builder = handleStripeOutroState(builder, this.currentMission);
@@ -389,13 +388,14 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         }
         else {
 
-            SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+            SpeechSettings dialog = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
 
-            wrapAnyUserResponse(speechSettings.getDemo(), builder, DEMO);
+            int iterationPointer = wrapAnyUserResponse(dialog.getDemo(), builder, DEMO);
 
-            builder = appendReadyToStart(builder);
-
-            builder.withReprompt(translate(phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE)));
+            if (iterationPointer >= dialog.getDemo().size()) {
+                builder = appendReadyToStart(builder);
+                builder.withReprompt(translate(phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE)));
+            }
         }
 
         return builder.withSlotName(actionSlotName);
@@ -418,13 +418,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.activityProgress.reset();
     }
 
-    private DialogItem.Builder handleWinState(DialogItem.Builder builder, UserMission currentMission) {
+    private DialogItem.Builder handleWinState(DialogItem.Builder builder) {
 
-        boolean stripeComplete = this.activityProgress.isStripeComplete();
-
-        resetActivityProgress();
-
-        if (stripeComplete) {
+        if (this.activityProgress.isStripeComplete()) {
             return endStripeAfterWin(builder);
         }
         else {
@@ -464,9 +460,14 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         List<PhraseSettings> dialog = missionManager.getStripeOutroByMission(currentMission, number);
 
-        wrapAnyUserResponse(dialog, builder, WIN);
+        int iterationPointer = wrapAnyUserResponse(dialog, builder, WIN);
 
-        return handleStripeOutroState(builder, this.currentMission);
+        if (iterationPointer >= dialog.size()) {
+            resetActivityProgress();
+            builder = handleStripeOutroState(builder, this.currentMission);
+        }
+
+        return builder;
     }
 
     private DialogItem.Builder handleLoseState(DialogItem.Builder builder) {
@@ -627,18 +628,21 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         List<PhraseSettings> outro = speechForActivityByStripeNumberAtMission.getOutro();
 
-        wrapAnyUserResponse(outro, builder, PHASE_1);
+        int iterationPointer = wrapAnyUserResponse(outro, builder, PHASE_1);
 
-        if (this.activityProgress.getMistakesCount() == 0 && !this.userProgress.isPerfectActivity()) {
-            this.userProgress.setPerfectActivity(true);
-            builder = appendEarnPerfectActivityByLevel(builder);
-        }
+        if (iterationPointer >= outro.size()) {
 
-        if (this.activityProgress.isStripeComplete()) {
-            builder = endStripeAfterWin(builder);
-        }
-        else {
-            builder = handleWinState(builder, this.currentMission);
+            if (this.activityProgress.getMistakesCount() == 0 && !this.userProgress.isPerfectActivity()) {
+                this.userProgress.setPerfectActivity(true);
+                builder = appendEarnPerfectActivityByLevel(builder);
+            }
+
+            if (this.activityProgress.isStripeComplete()) {
+                builder = endStripeAfterWin(builder);
+            }
+            else {
+                builder = handleWinState(builder);
+            }
         }
 
         return builder.withSlotName(actionSlotName);

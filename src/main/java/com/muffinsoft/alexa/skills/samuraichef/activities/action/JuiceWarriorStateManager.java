@@ -31,7 +31,7 @@ public class JuiceWarriorStateManager extends BaseActivePhaseSamuraiChefStateMan
             return super.handleSuccess(builder);
         }
         else {
-            return handleTooLongMistake(builder);
+            return handleMistake(builder);
         }
     }
 
