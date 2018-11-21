@@ -21,4 +21,8 @@ public class VoiseTranslator {
                 return new Speech(SpeechType.TEXT, phraseSettings.getContent());
         }
     }
+
+    public static Speech translate(String content, String role) {
+        return translate(new PhraseSettings(content, role));
+    }
 }

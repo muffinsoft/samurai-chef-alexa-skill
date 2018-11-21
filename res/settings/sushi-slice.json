@@ -1,12 +1,13 @@
 {
   "name": "SUSHI_SLICE",
   "competition": true,
+  "competitionPartnerRole": "Mary",
   "activitySettingsByStripeNumber": {
     "LOW_MISSION": {
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 1,
-        "timeLimitPhaseOneInMillis": 12000,
+        "timeLimitPhaseOneInMillis": 21000,
         "ingredients": {
           "fish": "slice",
           "rice": "boil"
@@ -15,7 +16,7 @@
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 1,
-        "timeLimitPhaseOneInMillis": 12000,
+        "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "soup": "slurp",
           "sushi": "gulp",
@@ -27,7 +28,7 @@
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 1,
-        "timeLimitPhaseOneInMillis": 12000,
+        "timeLimitPhaseOneInMillis": 21000,
         "ingredients": {
           "chicken": "chomp",
           "sushi": "gulp"
@@ -36,7 +37,7 @@
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 1,
-        "timeLimitPhaseOneInMillis": 12000,
+        "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "beef": "yum",
           "soda": "yuck",
@@ -48,7 +49,7 @@
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 1,
-        "timeLimitPhaseOneInMillis": 12000,
+        "timeLimitPhaseOneInMillis": 20000,
         "ingredients": {
           "milk": "splash a dash",
           "carrot": "slice and dice"
@@ -57,7 +58,7 @@
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 1,
-        "timeLimitPhaseOneInMillis": 12000,
+        "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "punch": "block",
           "kick": "dodge",
@@ -94,8 +95,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [
           {
             "content": "Watch Mary and Alexa closely!",
@@ -211,8 +212,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
       }
@@ -244,8 +245,8 @@
           }
         ],
         "shouldRunDemo": true,
-        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [
           {
             "content": "Watch Mary and Alexa closely!",
@@ -331,8 +332,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
       }
@@ -364,8 +365,8 @@
           }
         ],
         "shouldRunDemo": true,
-        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [
           {
             "content": "Watch Mary and Alexa closely!",
@@ -456,8 +457,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Would you like to see how Sensei do it?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
       }

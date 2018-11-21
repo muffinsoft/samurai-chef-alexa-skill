@@ -9,7 +9,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
-import static com.muffinsoft.alexa.sdk.model.Speech.ofIvy;
+import static com.muffinsoft.alexa.skills.samuraichef.components.VoiseTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
@@ -52,7 +52,7 @@ public class SushiSliceStateManager extends BaseActivePhaseSamuraiChefStateManag
 
         return builder
                 .replaceResponse(ofAlexa(randomIngredient.getIngredient()))
-                .addResponse(ofIvy(randomIngredient.getUserReply()))
+                .addResponse(translate(randomIngredient.getUserReply(), this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
                 .addResponse(ofAlexa(wrongReplyOnIngredient))
                 .withSlotName(actionSlotName)
                 .withReprompt(ofAlexa(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)));

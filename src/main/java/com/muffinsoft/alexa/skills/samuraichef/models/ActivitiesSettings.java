@@ -8,6 +8,7 @@ public class ActivitiesSettings {
 
     private String name;
     private boolean competition;
+    private String competitionPartnerRole;
     private Map<String, Map<String, Stripe>> activitySettingsByStripeNumber;
     private Map<String, Map<String, SpeechSettings>> activitySpeechesByStripeNumber;
 
@@ -49,5 +50,13 @@ public class ActivitiesSettings {
 
     public SpeechSettings getSpeechByStripeNumberAtLevel(int stripeNumber, UserMission mission) {
         return this.activitySpeechesByStripeNumber.get(mission.name()).get(String.valueOf(stripeNumber));
+    }
+
+    public String getCompetitionPartnerRole() {
+        return competitionPartnerRole;
+    }
+
+    public void setCompetitionPartnerRole(String competitionPartnerRole) {
+        this.competitionPartnerRole = competitionPartnerRole;
     }
 }

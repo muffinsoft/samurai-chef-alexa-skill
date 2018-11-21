@@ -82,8 +82,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
@@ -107,8 +107,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       }
@@ -134,8 +134,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
@@ -159,8 +159,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       }
@@ -186,8 +186,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
@@ -211,8 +211,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want to watch Lily and I try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       }

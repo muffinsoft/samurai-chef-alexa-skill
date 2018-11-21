@@ -100,8 +100,8 @@
           }
         ],
         "shouldRunDemo": true,
-        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [
           {
             "content": "Watch Mary closely!",
@@ -197,8 +197,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": null
       }
@@ -230,8 +230,8 @@
           }
         ],
         "shouldRunDemo": true,
-        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [
           {
             "content": "Watch Mary closely!",
@@ -317,8 +317,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": null
       }
@@ -350,8 +350,8 @@
           }
         ],
         "shouldRunDemo": true,
-        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [
           {
             "content": "Watch Mary closely!",
@@ -437,8 +437,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Should Sensei and I show you what to do?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": null
       }

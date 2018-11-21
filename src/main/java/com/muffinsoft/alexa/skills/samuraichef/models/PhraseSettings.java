@@ -17,6 +17,11 @@ public class PhraseSettings implements PhraseContainer {
         this.content = content;
     }
 
+    public PhraseSettings(String content, String role) {
+        this.content = content;
+        this.role = role;
+    }
+
     @Override
     public SpeechType getType() {
         return SpeechType.valueOf(role);

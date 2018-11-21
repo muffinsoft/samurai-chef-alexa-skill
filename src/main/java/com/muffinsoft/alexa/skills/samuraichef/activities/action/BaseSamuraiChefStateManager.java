@@ -34,7 +34,6 @@ import java.util.List;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
-import static com.muffinsoft.alexa.sdk.model.Speech.ofIvy;
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiseTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
@@ -626,7 +625,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     }
 
     DialogItem.Builder getSuccessDialog(DialogItem.Builder builder) {
+
         String ingredient = nextIngredient();
+
         builder.addResponse(ofAlexa(ingredient)).withSlotName(actionSlotName);
 
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
@@ -643,7 +644,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         IngredientReaction randomIngredient = getRandomIngredient();
 
         builder.addResponse(ofAlexa(randomIngredient.getIngredient()))
-                .addResponse(ofIvy(randomIngredient.getUserReply()))
+                .addResponse(translate(randomIngredient.getUserReply(), this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
                 .addResponse(speech);
 
         return builder;

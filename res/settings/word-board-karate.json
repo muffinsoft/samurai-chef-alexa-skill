@@ -99,8 +99,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": null
       },
@@ -129,8 +129,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": null
       }
@@ -161,8 +161,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": null
       },
@@ -191,8 +191,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": null
       }
@@ -223,8 +223,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": null
       },
@@ -253,8 +253,8 @@
           }
         ],
         "shouldRunDemo": false,
-        "shouldRunDemoPhrase": "Want Sensei Sushi to try first?",
-        "readyToStartPhrase": "Now it’s your turn, Ben’s friend. Ready to start?",
+        "shouldRunDemoPhrase": "Do you need a Demo round?",
+        "readyToStartPhrase": "Ready to start?",
         "demo": [],
         "moveToPhaseTwo": null
       }
