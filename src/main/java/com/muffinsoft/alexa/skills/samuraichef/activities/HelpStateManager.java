@@ -81,7 +81,7 @@ public class HelpStateManager extends BaseStateManager {
         this.phraseManager = configContainer.getPhraseManager();
         this.activityManager = configContainer.getActivityManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
-        this.userFoodSlotReply = slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null;
+        this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
 
     @Override
@@ -133,7 +133,7 @@ public class HelpStateManager extends BaseStateManager {
     @Override
     public DialogItem nextResponse() {
 
-        if (this.currentIntent == Intents.GAME) {
+        if (this.currentIntent == Intents.GAME || this.currentIntent == Intents.INITIAL_GREETING) {
             return handleFirstLoopHelp();
         }
         else {

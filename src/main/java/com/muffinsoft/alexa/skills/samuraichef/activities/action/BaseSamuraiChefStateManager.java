@@ -106,7 +106,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.aliasManager = configContainer.getAliasManager();
         this.missionManager = configContainer.getMissionManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
-        this.userFoodSlotReply = slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null;
+        this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
 
     @Override
@@ -412,7 +412,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder.addResponse(translate(speechText)).withSlotName(actionSlotName);
     }
 
-
     protected void resetActivityProgress() {
         this.statePhase = ACTIVITY_INTRO;
         this.activityProgress.reset();
@@ -463,7 +462,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         int iterationPointer = wrapAnyUserResponse(dialog, builder, WIN);
 
         if (iterationPointer >= dialog.size()) {
-            resetActivityProgress();
             builder = handleStripeOutroState(builder, this.currentMission);
         }
 
@@ -631,6 +629,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         int iterationPointer = wrapAnyUserResponse(outro, builder, PHASE_1);
 
         if (iterationPointer >= outro.size()) {
+
+            resetActivityProgress();
 
             if (this.activityProgress.getMistakesCount() == 0 && !this.userProgress.isPerfectActivity()) {
                 this.userProgress.setPerfectActivity(true);

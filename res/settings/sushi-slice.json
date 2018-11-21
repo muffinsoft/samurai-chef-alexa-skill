@@ -259,6 +259,11 @@
             "audio": null
           },
           {
+            "content": "Chomp!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
             "content": "Sushi!",
             "role": "Sensei",
             "audio": null
@@ -289,7 +294,7 @@
             "audio": null
           },
           {
-            "content": "No! Friend fish is munch!",
+            "content": "No, Friend! fish is munch!",
             "role": "Sensei",
             "audio": null
           },

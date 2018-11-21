@@ -77,12 +77,12 @@
             "audio": null
           },
           {
-            "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haa'!",
+            "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haaa'!",
             "role": "Mary",
             "audio": null
           },
           {
-            "content": "Wham! and Haa! Ready, go!",
+            "content": "Wham! and Haaa! Ready, go!",
             "role": "Sensei",
             "audio": null
           }
@@ -108,12 +108,12 @@
             "audio": null
           },
           {
-            "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haa!' If the word starts with 'P', like pepper, say 'Pow!'",
+            "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haaa!' If the word starts with 'P', like pepper, say 'Pow!'",
             "role": "Mary",
             "audio": null
           },
           {
-            "content": "Wham!, Haa! and Pow! Ready, go!",
+            "content": "Wham, Haaa and Pow! Ready, go!",
             "role": "Sensei",
             "audio": null
           }
@@ -210,7 +210,7 @@
             "audio": null
           },
           {
-            "content": "Zaam and wham! Go!",
+            "content": "Zaam and Wham! Go!",
             "role": "Sensei",
             "audio": null
           }
@@ -241,7 +241,7 @@
             "audio": null
           },
           {
-            "content": "Zaam, whammo, and thwap! Go!",
+            "content": "Zaam, Wham, and Thwap! Go!",
             "role": "Sensei",
             "audio": null
           }

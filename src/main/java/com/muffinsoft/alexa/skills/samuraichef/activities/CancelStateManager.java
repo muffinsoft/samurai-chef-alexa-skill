@@ -50,7 +50,7 @@ public class CancelStateManager extends BaseStateManager {
         this.phraseManager = configContainer.getPhraseManager();
         this.missionManager = configContainer.getMissionManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
-        this.userFoodSlotReply = slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null;
+        this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
 
     @Override

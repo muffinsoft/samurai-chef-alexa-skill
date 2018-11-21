@@ -48,7 +48,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
         super(slots, attributesManager);
         this.phraseManager = configContainer.getPhraseManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
-        this.userFoodSlotReply = slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null;
+        this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
 
     @Override

@@ -16,21 +16,19 @@ public class PhraseConstants {
 
     public static final String LAST_MISTAKE_COMPETITION_PHRASE = "lastMistakeCompetitionPhrase";
 
-    public static final String TRY_AGAIN_PHRASE = "tryAgainPhrase";
-
     public static final String WON_REPROMPT_PHRASE = "wonRePromptPhrase";
 
     public static final String FAILURE_PHRASE = "failurePhrase";
 
     public static final String FAILURE_REPROMPT_PHRASE = "failureRePromptPhrase";
 
-    public static final String JUST_EARN_SECOND_CHANCE_PHRASE = "justEarnCorrectQuestionPhrase";
+    public static final String JUST_EARN_SECOND_CHANCE_PHRASE = "justEarnSecondChancePhrase";
 
-    public static final String JUST_EARN_CORRECT_ANSWER_PHRASE = "justWearCorrectQuestionPhrase";
+    public static final String JUST_EARN_CORRECT_ANSWER_PHRASE = "justEarnCorrectQuestionPhrase";
 
-    public static final String JUST_WEAR_SECOND_CHANCE_PHRASE = "justEarnSecondChancePhrase";
+    public static final String JUST_USE_SECOND_CHANCE_PHRASE = "justUseSecondChancePhrase";
 
-    public static final String JUST_WEAR_CORRECT_ANSWER_PHRASE = "jusjustWearSecondChancePhrasetWearPhrase";
+    public static final String JUST_USE_CORRECT_ANSWER_PHRASE = "justUseCorrectQuestionPhrase";
 
     public static final String SEVERAL_VALUES_PHRASE = "severalValuesPhrase";
 

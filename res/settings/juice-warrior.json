@@ -5,7 +5,7 @@
     "LOW_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "timeLimitPhaseOneInMillis": 12000,
+        "timeLimitPhaseOneInMillis": 15000,
         "maxMistakeCount": 3,
         "ingredients": {
           "rice": "boil",
@@ -15,7 +15,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
-        "timeLimitPhaseOneInMillis": 10000,
+        "timeLimitPhaseOneInMillis": 12000,
         "maxMistakeCount": 3,
         "ingredients": {
           "soup": "slurp",
@@ -28,7 +28,7 @@
     "MEDIUM_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "timeLimitPhaseOneInMillis": 12000,
+        "timeLimitPhaseOneInMillis": 15000,
         "maxMistakeCount": 3,
         "ingredients": {
           "chicken": "chomp",
@@ -38,7 +38,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
-        "timeLimitPhaseOneInMillis": 10000,
+        "timeLimitPhaseOneInMillis": 12000,
         "maxMistakeCount": 3,
         "ingredients": {
           "beef": "yum",
@@ -51,7 +51,7 @@
     "HIGH_MISSION": {
       "0": {
         "wonSuccessCount": 5,
-        "timeLimitPhaseOneInMillis": 12000,
+        "timeLimitPhaseOneInMillis": 15000,
         "maxMistakeCount": 3,
         "ingredients": {
           "milk": "splash a dash",
@@ -61,7 +61,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
-        "timeLimitPhaseOneInMillis": 10000,
+        "timeLimitPhaseOneInMillis": 12000,
         "maxMistakeCount": 3,
         "ingredients": {
           "punch": "block",
