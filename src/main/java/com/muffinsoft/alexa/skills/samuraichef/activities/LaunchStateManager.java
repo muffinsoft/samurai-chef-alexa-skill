@@ -4,9 +4,11 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.skills.samuraichef.constants.AliasConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
+import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.GreetingsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
@@ -30,7 +32,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
@@ -39,10 +40,10 @@ public class LaunchStateManager extends BaseStateManager {
 
     private static final Logger logger = LogManager.getLogger(LaunchStateManager.class);
     private final GreetingsManager greetingsManager;
+    private final AliasManager aliasManager;
     private final PhraseManager phraseManager;
     private final CardManager cardManager;
     private final AttributesManager attributesManager;
-    private int starCount;
     private Set<String> finishedMissions;
 
     public LaunchStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, GreetingsManager greetingsManager, ConfigContainer configContainer) {
@@ -51,12 +52,11 @@ public class LaunchStateManager extends BaseStateManager {
         this.attributesManager = attributesManager;
         this.cardManager = configContainer.getCardManager();
         this.phraseManager = configContainer.getPhraseManager();
+        this.aliasManager = configContainer.getAliasManager();
     }
 
     @Override
     protected void populateActivityVariables() {
-
-        this.starCount = (int) getSessionAttributes().getOrDefault(STAR_COUNT, 0);
 
         //noinspection unchecked
         this.finishedMissions = (Set<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new HashSet<>());
@@ -97,22 +97,21 @@ public class LaunchStateManager extends BaseStateManager {
 
     private DialogItem.Builder buildRoyalGreeting(DialogItem.Builder builder) {
 
-        if (starCount == 0) {
-            builder = buildRoyalGreetingWithBelts(builder);
-        }
-        else {
-            builder = buildRoyalGreetingWithTitles(builder);
-        }
+        UserProgress lowUserProgress = getUserProgress(USER_LOW_PROGRESS_DB);
+        UserProgress midUserProgress = getUserProgress(USER_MID_PROGRESS_DB);
+        UserProgress highUserProgress = getUserProgress(USER_HIGH_PROGRESS_DB);
+
+        builder = buildRoyalGreetingWithAwards(builder, lowUserProgress, midUserProgress, highUserProgress);
 
         return builder.addResponse(translate(phraseManager.getValueByKey(PhraseConstants.SELECT_MISSION_PHRASE)));
     }
 
-    private DialogItem.Builder buildRoyalGreetingWithTitles(DialogItem.Builder builder) {
+    private DialogItem.Builder buildRoyalGreetingWithAwards(DialogItem.Builder builder, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
 
-        List<PhraseSettings> dialog = greetingsManager.getValueByKey(GreetingsConstants.PLAYER_WITH_TITLE_GREETING);
+        List<PhraseSettings> dialog = greetingsManager.getValueByKey(GreetingsConstants.PLAYER_WITH_AWARDS_GREETING);
 
         for (PhraseSettings phraseSettings : dialog) {
-            String newContent = fillPlaceholder(phraseSettings.getContent());
+            String newContent = fillPlaceholder(phraseSettings.getContent(), lowUserProgress, midUserProgress, highUserProgress);
             phraseSettings.setContent(newContent);
             builder.addResponse(translate(phraseSettings));
         }
@@ -120,75 +119,104 @@ public class LaunchStateManager extends BaseStateManager {
         return builder;
     }
 
-    private DialogItem.Builder buildRoyalGreetingWithBelts(DialogItem.Builder builder) {
-
-        List<PhraseSettings> dialog = greetingsManager.getValueByKey(GreetingsConstants.PLAYER_WITH_BELTS_GREETING);
-
-        for (PhraseSettings phraseSettings : dialog) {
-            String newContent = fillPlaceholder(phraseSettings.getContent());
-            phraseSettings.setContent(newContent);
-            builder.addResponse(translate(phraseSettings));
-        }
-
-        return builder;
-    }
-
-    private String fillPlaceholder(String content) {
-        content = content.replace("%titles%", getTitles());
-        content = content.replace("%low_color%", getLowBeltColor());
-        content = content.replace("%mid_color%", getMidBeltColor());
-        content = content.replace("%high_color%", getHighBeltColor());
+    private String fillPlaceholder(String content, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
+        content = content.replace("%titles%", getTitles(lowUserProgress, midUserProgress, highUserProgress));
+        content = content.replace("%low_color%", getBeltColor(lowUserProgress));
+        content = content.replace("%mid_color%", getBeltColor(midUserProgress));
+        content = content.replace("%high_color%", getBeltColor(highUserProgress));
         return content;
     }
 
-    private CharSequence getBeltColorByType(String dbType, String missionType) {
-        if (!getPersistentAttributes().containsKey(dbType)) {
+    private CharSequence getBeltColor(UserProgress userProgress) {
+
+        if (userProgress == null) {
             return "white";
         }
-        String jsonInString = String.valueOf(attributesManager.getPersistentAttributes().get(dbType));
-        try {
-            LinkedHashMap linkedHashMap = mapper.readValue(jsonInString, LinkedHashMap.class);
-            UserProgress userProgress = mapper.convertValue(linkedHashMap, UserProgress.class);
-            if (finishedMissions.contains(missionType)) {
-                return "black";
+
+        if (finishedMissions.contains(userProgress.getMission())) {
+            return "black";
+        }
+        else {
+            switch (userProgress.getStripeCount()) {
+                case 0:
+                    return "white";
+                case 1:
+                    return "yellow";
+                case 2:
+                    return "orange";
+                case 3:
+                    return "green";
+                case 4:
+                    return "purple";
+                default:
+                    return "white";
+            }
+        }
+    }
+
+    private UserProgress getUserProgress(String dbType) {
+        if (!getPersistentAttributes().containsKey(dbType)) {
+            return null;
+        }
+        else {
+            String jsonInString = String.valueOf(attributesManager.getPersistentAttributes().get(dbType));
+            try {
+                LinkedHashMap linkedHashMap = mapper.readValue(jsonInString, LinkedHashMap.class);
+                return mapper.convertValue(linkedHashMap, UserProgress.class);
+            }
+            catch (IOException e) {
+                throw new IllegalStateException(e.getMessage(), e);
+            }
+        }
+    }
+
+    private CharSequence getTitles(UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
+        String lowTitle = getHighestTitleOfMission(lowUserProgress);
+        String midTitle = getHighestTitleOfMission(midUserProgress);
+        String highTitle = getHighestTitleOfMission(highUserProgress);
+        return lowTitle + midTitle + highTitle;
+    }
+
+    private String getHighestTitleOfMission(UserProgress userProgress) {
+        if (userProgress == null) {
+            return "";
+        }
+        if (userProgress.isPerfectMission()) {
+            if (userProgress.getMission().equals(UserMission.LOW_MISSION.name())) {
+                return aliasManager.getValueByKey(AliasConstants.LOW_MISSION_PERFECT_MISSION);
+            }
+            else if (userProgress.getMission().equals(UserMission.MEDIUM_MISSION.name())) {
+                return aliasManager.getValueByKey(AliasConstants.MID_MISSION_PERFECT_MISSION);
             }
             else {
-                switch (userProgress.getStripeCount()) {
-                    case 0:
-                        return "white";
-                    case 1:
-                        return "yellow";
-                    case 2:
-                        return "orange";
-                    case 3:
-                        return "green";
-                    case 4:
-                        return "purple";
-                    default:
-                        return "white";
-                }
+                return aliasManager.getValueByKey(AliasConstants.HIGH_MISSION_PERFECT_MISSION);
             }
         }
-        catch (IOException e) {
-            throw new IllegalStateException(e.getMessage(), e);
+        else if (userProgress.isPerfectStripe()) {
+            if (userProgress.getMission().equals(UserMission.LOW_MISSION.name())) {
+                return aliasManager.getValueByKey(AliasConstants.LOW_MISSION_PERFECT_STRIPE);
+            }
+            else if (userProgress.getMission().equals(UserMission.MEDIUM_MISSION.name())) {
+                return aliasManager.getValueByKey(AliasConstants.MID_MISSION_PERFECT_STRIPE);
+            }
+            else {
+                return aliasManager.getValueByKey(AliasConstants.HIGH_MISSION_PERFECT_STRIPE);
+            }
         }
-    }
-
-
-    private CharSequence getHighBeltColor() {
-        return getBeltColorByType(USER_HIGH_PROGRESS_DB, UserMission.HIGH_MISSION.name());
-    }
-
-    private CharSequence getMidBeltColor() {
-        return getBeltColorByType(USER_MID_PROGRESS_DB, UserMission.MEDIUM_MISSION.name());
-    }
-
-    private CharSequence getLowBeltColor() {
-        return getBeltColorByType(USER_LOW_PROGRESS_DB, UserMission.LOW_MISSION.name());
-    }
-
-    private CharSequence getTitles() {
-        return "";
+        else if (userProgress.isPerfectActivity()) {
+            if (userProgress.getMission().equals(UserMission.LOW_MISSION.name())) {
+                return aliasManager.getValueByKey(AliasConstants.LOW_MISSION_PERFECT_ACTIVITY);
+            }
+            else if (userProgress.getMission().equals(UserMission.MEDIUM_MISSION.name())) {
+                return aliasManager.getValueByKey(AliasConstants.MID_MISSION_PERFECT_ACTIVITY);
+            }
+            else {
+                return aliasManager.getValueByKey(AliasConstants.HIGH_MISSION_PERFECT_ACTIVITY);
+            }
+        }
+        else {
+            return "";
+        }
     }
 
     private DialogItem.Builder buildInitialGreeting(DialogItem.Builder builder) {

@@ -39,6 +39,15 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.GAME_FINISHED_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_ACTIVITY_EARN_HIGH_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_ACTIVITY_EARN_LOW_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_ACTIVITY_EARN_MID_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_MISSION_EARN_HIGH_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_MISSION_EARN_LOW_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_MISSION_EARN_MID_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_STRIPE_EARN_HIGH_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_STRIPE_EARN_LOW_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_STRIPE_EARN_MID_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REDIRECT_TO_SELECT_MISSION_PHRASE;
@@ -153,6 +162,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         }
 
         logger.debug("Persistent attributes on the end of handling: " + this.getPersistentAttributes().toString());
+    }
+
+    void updateUserMistakeStory() {
+        int mistakesCount = this.activityProgress.getMistakesCount();
+        this.userProgress.addMistakeCount(mistakesCount);
     }
 
     private void updateMissionUserProgress() {
@@ -446,11 +460,13 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.statePhase = STRIPE_OUTRO;
 
+        calculateStripeProgress();
+
         List<PhraseSettings> dialog = missionManager.getStripeOutroByMission(currentMission, number);
 
         wrapAnyUserResponse(dialog, builder, WIN);
 
-        return builder.withSlotName(actionSlotName);
+        return handleStripeOutroState(builder, this.currentMission);
     }
 
     private DialogItem.Builder handleLoseState(DialogItem.Builder builder) {
@@ -484,11 +500,21 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         calculateStripeProgress();
 
+        if (this.userProgress.getMistakesInStripe() == 0 && !this.userProgress.isPerfectStripe()) {
+            this.userProgress.setPerfectStripe(true);
+            builder = appendEarnPerfectStripeByLevel(builder);
+        }
+
         if (this.activityProgress.isMissionFinished()) {
 
             logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_OUTRO);
 
             this.statePhase = MISSION_OUTRO;
+
+            if (this.userProgress.getMistakesInMission() == 0 && !this.userProgress.isPerfectMission()) {
+                this.userProgress.setPerfectMission(true);
+                builder = appendEarnPerfectMissionByLevel(builder);
+            }
 
             List<PhraseSettings> missionOutro = missionManager.getMissionOutro(currentMission);
 
@@ -503,7 +529,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     DialogItem.Builder handleWiningEnd(DialogItem.Builder builder) {
         calculateActivityProgress();
-        return getWinDialog(builder);
+        return handleWinDialog(builder);
     }
 
     private DialogItem.Builder handleMissionOutroState(DialogItem.Builder builder) {
@@ -536,6 +562,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         if (this.userProgress.getStripeCount() == missionManager.getContainer().getStripesAtMissionCount()) {
             this.finishedMissions.add(this.currentMission.name());
+            this.userProgress.setMistakesInStripe(0);
             this.activityProgress.setMissionFinished(true);
             savePersistentAttributes();
         }
@@ -569,11 +596,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder;
     }
 
-    private DialogItem.Builder getWinDialog(DialogItem.Builder builder) {
+    private DialogItem.Builder handleWinDialog(DialogItem.Builder builder) {
 
         this.statePhase = WIN;
 
-        SpeechSettings speechForActivityByStripeNumberAtMission = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+        updateUserMistakeStory();
 
         builder.removeLastResponse();
 
@@ -589,12 +616,26 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                     .withReprompt(translate(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)));
         }
 
+        SpeechSettings speechForActivityByStripeNumberAtMission;
+
+        if (this.activityProgress.isStripeComplete()) {
+            speechForActivityByStripeNumberAtMission = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount() - 1, this.currentMission);
+        }
+        else {
+            speechForActivityByStripeNumberAtMission = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+        }
+
         List<PhraseSettings> outro = speechForActivityByStripeNumberAtMission.getOutro();
 
         wrapAnyUserResponse(outro, builder, PHASE_1);
 
+        if (this.activityProgress.getMistakesCount() == 0 && !this.userProgress.isPerfectActivity()) {
+            this.userProgress.setPerfectActivity(true);
+            builder = appendEarnPerfectActivityByLevel(builder);
+        }
+
         if (this.activityProgress.isStripeComplete()) {
-            builder = handleStripeOutroState(builder, this.currentMission);
+            builder = endStripeAfterWin(builder);
         }
         else {
             builder = handleWinState(builder, this.currentMission);
@@ -603,9 +644,47 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder.withSlotName(actionSlotName);
     }
 
+    @SuppressWarnings("Duplicates")
+    private DialogItem.Builder appendEarnPerfectMissionByLevel(DialogItem.Builder builder) {
+        switch (this.currentMission) {
+            case LOW_MISSION:
+                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_MISSION_EARN_LOW_PHRASE)));
+            case MEDIUM_MISSION:
+                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_MISSION_EARN_MID_PHRASE)));
+            case HIGH_MISSION:
+                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_MISSION_EARN_HIGH_PHRASE)));
+        }
+        return builder;
+    }
+
+    @SuppressWarnings("Duplicates")
+    private DialogItem.Builder appendEarnPerfectStripeByLevel(DialogItem.Builder builder) {
+        switch (this.currentMission) {
+            case LOW_MISSION:
+                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_STRIPE_EARN_LOW_PHRASE)));
+            case MEDIUM_MISSION:
+                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_STRIPE_EARN_MID_PHRASE)));
+            case HIGH_MISSION:
+                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_STRIPE_EARN_HIGH_PHRASE)));
+        }
+        return builder;
+    }
+
+    @SuppressWarnings("Duplicates")
+    private DialogItem.Builder appendEarnPerfectActivityByLevel(DialogItem.Builder builder) {
+        switch (this.currentMission) {
+            case LOW_MISSION:
+                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_ACTIVITY_EARN_LOW_PHRASE)));
+            case MEDIUM_MISSION:
+                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_ACTIVITY_EARN_MID_PHRASE)));
+            case HIGH_MISSION:
+                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_ACTIVITY_EARN_HIGH_PHRASE)));
+        }
+        return builder;
+    }
+
     DialogItem.Builder getRePromptSuccessDialog(DialogItem.Builder builder) {
         return builder
-                .addResponse(translate(phraseManager.getValueByKey(TRY_AGAIN_PHRASE)))
                 .addResponse(translate(this.activityProgress.getPreviousIngredient()))
                 .withSlotName(actionSlotName);
     }

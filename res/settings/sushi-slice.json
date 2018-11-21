@@ -94,7 +94,7 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": false,
+        "shouldRunDemo": true,
         "shouldRunDemoPhrase": "Do you need a Demo round?",
         "readyToStartPhrase": "Ready to start?",
         "demo": [

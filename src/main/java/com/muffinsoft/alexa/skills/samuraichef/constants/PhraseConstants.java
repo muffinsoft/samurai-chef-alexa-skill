@@ -96,5 +96,16 @@ public class PhraseConstants {
 
     public static final String HELP_ACTIVITY_FOOD_TASTER_DESCRIPTION_PHRASE = "helpActivityFoodTasterDescriptionPhrase";
 
+    public static final String PERFECT_ACTIVITY_EARN_LOW_PHRASE = "perfectActivityEarnLowPhrase";
+    public static final String PERFECT_STRIPE_EARN_LOW_PHRASE = "perfectStripeEarnLowPhrase";
+    public static final String PERFECT_MISSION_EARN_LOW_PHRASE = "perfectMissionEarnLowPhrase";
+
+    public static final String PERFECT_ACTIVITY_EARN_MID_PHRASE = "perfectActivityEarnMidPhrase";
+    public static final String PERFECT_STRIPE_EARN_MID_PHRASE = "perfectStripeEarnMidPhrase";
+    public static final String PERFECT_MISSION_EARN_MID_PHRASE = "perfectMissionEarnMidPhrase";
+
+    public static final String PERFECT_ACTIVITY_EARN_HIGH_PHRASE = "perfectActivityEarnHighPhrase";
+    public static final String PERFECT_STRIPE_EARN_HIGH_PHRASE = "perfectStripeEarnHighPhrase";
+    public static final String PERFECT_MISSION_EARN_HIGH_PHRASE = "perfectMissionEarnHighPhrase";
 
 }

@@ -46,11 +46,11 @@
   },
   "oneMistakeLeftCompetitionPhrase": {
     "content": "Kiara wins round! One more and she will be the victor!",
-    "role" : "Sensei"
+    "role": "Sensei"
   },
   "lastMistakeCompetitionPhrase": {
     "content": "Aww, that was your last mistake! Too bad...",
-    "role" : "Kiara wins again! Kiara is the winner!"
+    "role": "Kiara wins again! Kiara is the winner!"
   },
   "usedEquipmentPhrase": {
     "content": "You spent your equipment."
@@ -144,5 +144,32 @@
   },
   "redirectedToSelectMissionPhrase": {
     "content": "You will be redirected to path selection."
+  },
+  "perfectActivityEarnLowPhrase": {
+    "content": "That was a perfect challenge! You earned a new title - Skilled Chef!"
+  },
+  "perfectStripeEarnLowPhrase": {
+    "content": "You earned that belt without messing up once! You get a new title - Pro Chef!"
+  },
+  "perfectMissionEarnLowPhrase": {
+    "content": "A perfect path of the chef? Incredible! You get the best  title - The Unmatched Chef!"
+  },
+  "perfectActivityEarnMidPhrase": {
+    "content": "A challenge with no mistakes! You earned a new title - Giant Sumo!"
+  },
+  "perfectStripeEarnMidPhrase": {
+    "content": "Hey, did you get that belt without a single wrong response? Wow! You get a new title - Enormous Sumo!"
+  },
+  "perfectMissionEarnMidPhrase": {
+    "content": "Unbelievable! A perfect Path of the Sumo! You get the best title - The Humongous Sumo!"
+  },
+  "perfectActivityEarnHighPhrase": {
+    "content": "Nice! No mistakes that challenge! You get a new title - Wise Guru!"
+  },
+  "perfectStripeEarnHighPhrase": {
+    "content": "No way! A perfect belt! You get a new title - Sage Guru!"
+  },
+  "perfectMissionEarnHighPhrase": {
+    "content": "Impossible! A perfect Path of the Guru! You get the best title - The Enlightened Guru!"
   }
 }

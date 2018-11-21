@@ -57,19 +57,7 @@
       "audio": null
     }
   ],
-  "playerWithBeltsGreeting": [
-    {
-      "content": "Welcome back! I'm so happy to see you again....Alexa, please give our friend a royal greeting!",
-      "role": "Mary",
-      "audio": null
-    },
-    {
-      "content": "You have %low_color% belt Chef, %mid_color% belt Sumo, %high_color% belt Guru",
-      "role": "Alexa",
-      "audio": null
-    }
-  ],
-  "playerWithTitlesGreeting": [
+  "playerWithAwardsGreeting": [
     {
       "content": "Welcome back! I'm so happy to see you again....Alexa, please give our friend a royal greeting!",
       "role": "Mary",

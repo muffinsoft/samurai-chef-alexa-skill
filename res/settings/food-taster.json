@@ -46,7 +46,7 @@
         "maxMistakeCount": 3,
         "ingredients": {
           "'Z' sound": "zaam",
-          "'W' sound": "whamo"
+          "'W' sound": "wham"
         }
       },
       "1": {
@@ -54,7 +54,7 @@
         "maxMistakeCount": 3,
         "ingredients": {
           "'Z' sound": "zaam",
-          "'W' sound": "whamo",
+          "'W' sound": "wham",
           "'Th' sound": "thwap"
         }
       }
@@ -205,12 +205,12 @@
             "audio": null
           },
           {
-            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam'! If the word starts with the 'W' sound, like walk, say 'Whammo!'",
+            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam'! If the word starts with the 'W' sound, like walk, say 'Wham!'",
             "role": "Mary",
             "audio": null
           },
           {
-            "content": "Zaam and whammo! Go!",
+            "content": "Zaam and wham! Go!",
             "role": "Sensei",
             "audio": null
           }
@@ -236,7 +236,7 @@
             "audio": null
           },
           {
-            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with 'TH', like thorn, say 'Thwap!'",
+            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Wham!' If the word starts with 'TH', like thorn, say 'Thwap!'",
             "role": "Mary",
             "audio": null
           },

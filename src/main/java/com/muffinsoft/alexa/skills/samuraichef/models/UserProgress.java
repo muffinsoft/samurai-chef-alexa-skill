@@ -18,6 +18,13 @@ public class UserProgress {
     private boolean isGameFinished = false;
     private boolean isMissionFinished = false;
 
+    private int mistakesInStripe = 0;
+    private int mistakesInMission = 0;
+
+    private boolean perfectActivity = false;
+    private boolean perfectStripe = false;
+    private boolean perfectMission = false;
+
     public UserProgress() {
     }
 
@@ -74,6 +81,7 @@ public class UserProgress {
     public void iterateStripeCount() {
         this.justCreated = false;
         this.stripeCount += 1;
+        this.mistakesInStripe = 0;
     }
 
     public void resetFinishRounds() {
@@ -127,6 +135,46 @@ public class UserProgress {
         isMissionFinished = missionFinished;
     }
 
+    public int getMistakesInStripe() {
+        return mistakesInStripe;
+    }
+
+    public void setMistakesInStripe(int mistakesInStripe) {
+        this.mistakesInStripe = mistakesInStripe;
+    }
+
+    public int getMistakesInMission() {
+        return mistakesInMission;
+    }
+
+    public void setMistakesInMission(int mistakesInMission) {
+        this.mistakesInMission = mistakesInMission;
+    }
+
+    public boolean isPerfectActivity() {
+        return perfectActivity;
+    }
+
+    public void setPerfectActivity(boolean perfectActivity) {
+        this.perfectActivity = perfectActivity;
+    }
+
+    public boolean isPerfectStripe() {
+        return perfectStripe;
+    }
+
+    public void setPerfectStripe(boolean perfectStripe) {
+        this.perfectStripe = perfectStripe;
+    }
+
+    public boolean isPerfectMission() {
+        return perfectMission;
+    }
+
+    public void setPerfectMission(boolean perfectMission) {
+        this.perfectMission = perfectMission;
+    }
+
     @Override
     @JsonIgnore
     public String toString() {
@@ -135,5 +183,10 @@ public class UserProgress {
                 " currentActivity: " + currentActivity + ";" +
                 " finishedActivities: " + String.join(", ", finishedActivities) +
                 "}";
+    }
+
+    public void addMistakeCount(int mistakesCount) {
+        this.mistakesInStripe += mistakesCount;
+        this.mistakesInMission += mistakesCount;
     }
 }

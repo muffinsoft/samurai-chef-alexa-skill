@@ -4,15 +4,11 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
 
 import java.util.Map;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.SUSHI_SLICE;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 
 public class SushiSliceStateManager extends BaseActivePhaseSamuraiChefStateManager {
 

@@ -75,9 +75,8 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             String removedPowerUp = this.activityProgress.removePowerUp();
 
-            String prependedString = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE) + " " + aliasManager.getValueByKey(removedPowerUp) + "!";
-
-            builder.addResponse(ofAlexa(prependedString));
+            builder.addResponse(translate(phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE)));
+            builder.addResponse(translate(aliasManager.getValueByKey(removedPowerUp)));
 
             builder = equipIfAvailable(builder);
 
@@ -101,9 +100,8 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             String removedPowerUp = this.activityProgress.removePowerUp();
 
-            String prependedString = phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE) + " " + aliasManager.getValueByKey(removedPowerUp) + "! ";
-
-            builder.addResponse(ofAlexa(prependedString));
+            builder.addResponse(translate(phraseManager.getValueByKey(USED_EQUIPMENT_PHRASE)));
+            builder.addResponse(translate(aliasManager.getValueByKey(removedPowerUp)));
 
             builder = equipIfAvailable(builder);
 
@@ -151,10 +149,12 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         }
         else {
             logger.debug("Last available incorrect answer was found, running lose dialog");
+            updateUserMistakeStory();
             savePersistentAttributes();
             return getLoseRoundDialog(builder, value);
         }
     }
+
 
     private DialogItem.Builder equipIfAvailable(DialogItem.Builder builder) {
         PowerUps nextPowerUp = this.activityProgress.equipIfAvailable();
