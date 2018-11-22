@@ -44,6 +44,11 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.RETURN_TO_GAME_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_START_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.helpLowMissionStripe0FoodTaster;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.helpLowMissionStripe0JuiceWarrior;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.helpLowMissionStripe0SushiSlice;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.helpLowMissionStripe0WordBoardKarate;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.helpMidMissionStripe0SushiSlice;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
@@ -243,6 +248,53 @@ public class HelpStateManager extends BaseStateManager {
     }
 
     private void handleActivityDescription(DialogItem.Builder builder) {
+        if (this.currentMission == null) {
+            return;
+        }
+        switch (this.currentMission) {
+            case LOW_MISSION:
+                handleActivityDescriptionByLowMission(builder);
+                break;
+            case MEDIUM_MISSION:
+                handleActivityDescriptionByMidMission(builder);
+                break;
+            case HIGH_MISSION:
+                handleActivityDescriptionByHighMission(builder);
+                break;
+        }
+    }
+
+    private void handleActivityDescriptionByLowMission(DialogItem.Builder builder) {
+        if (currentActivity == Activities.SUSHI_SLICE) {
+            builder.addResponse(translate(phraseManager.getValueByKey(helpLowMissionStripe0SushiSlice)));
+        }
+        else if (currentActivity == Activities.JUICE_WARRIOR) {
+            builder.addResponse(translate(phraseManager.getValueByKey(helpLowMissionStripe0JuiceWarrior)));
+        }
+        else if (currentActivity == Activities.WORD_BOARD_KARATE) {
+            builder.addResponse(translate(phraseManager.getValueByKey(helpLowMissionStripe0WordBoardKarate)));
+        }
+        else {
+            builder.addResponse(translate(phraseManager.getValueByKey(helpLowMissionStripe0FoodTaster)));
+        }
+    }
+
+    private void handleActivityDescriptionByMidMission(DialogItem.Builder builder) {
+        if (currentActivity == Activities.SUSHI_SLICE) {
+            builder.addResponse(translate(phraseManager.getValueByKey(helpMidMissionStripe0SushiSlice)));
+        }
+        else if (currentActivity == Activities.JUICE_WARRIOR) {
+            builder.addResponse(translate(phraseManager.getValueByKey(helpLowMissionStripe0JuiceWarrior)));
+        }
+        else if (currentActivity == Activities.WORD_BOARD_KARATE) {
+            builder.addResponse(translate(phraseManager.getValueByKey(HELP_ACTIVITY_WORD_BOARD_KARATE_DESCRIPTION_PHRASE)));
+        }
+        else {
+            builder.addResponse(translate(phraseManager.getValueByKey(HELP_ACTIVITY_FOOD_TASTER_DESCRIPTION_PHRASE)));
+        }
+    }
+
+    private void handleActivityDescriptionByHighMission(DialogItem.Builder builder) {
         if (currentActivity == Activities.SUSHI_SLICE) {
             builder.addResponse(translate(phraseManager.getValueByKey(HELP_ACTIVITY_SUSHI_SLICE_DESCRIPTION_PHRASE)));
         }
