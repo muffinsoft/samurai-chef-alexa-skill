@@ -63,7 +63,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         return getMistakeDialog(builder);
     }
 
-    protected DialogItem.Builder handleMistakeWithSecondChance(DialogItem.Builder builder) {
+    DialogItem.Builder handleMistakeWithSecondChance(DialogItem.Builder builder) {
 
         this.activityProgress.resetSuccessInRow();
 
@@ -75,7 +75,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             builder.addResponse(translate(phraseManager.getValueByKey(JUST_USE_SECOND_CHANCE_PHRASE)));
 
-//            builder = equipIfAvailable(builder);
+            this.activityProgress.equipIfAvailable();
 
             logger.debug("User have another chance to chose right answer");
 
@@ -87,7 +87,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         }
     }
 
-    protected DialogItem.Builder handleMistakeWithCorrectAnswer(DialogItem.Builder builder) {
+    DialogItem.Builder handleMistakeWithCorrectAnswer(DialogItem.Builder builder) {
 
         this.activityProgress.resetSuccessInRow();
 
@@ -99,7 +99,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             builder.addResponse(translate(phraseManager.getValueByKey(JUST_USE_CORRECT_ANSWER_PHRASE)));
 
-//            builder = equipIfAvailable(builder);
+            this.activityProgress.equipIfAvailable();
 
             logger.debug("Wrong answer was calculated as correct");
 
@@ -153,7 +153,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
 
 //    private DialogItem.Builder equipIfAvailable(DialogItem.Builder builder) {
-//        PowerUps nextPowerUp = this.activityProgress.equipIfAvailable();
+//        PowerUps nextPowerUp =
 //        if (nextPowerUp != null) {
 //            PhraseSettings prependedString;
 //            if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
@@ -192,14 +192,14 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 //                    builder.addResponse(translate(prependedString));
 //                }
 //                else {
-                    PhraseSettings prependedString;
-                    if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
-                        prependedString = phraseManager.getValueByKey(JUST_EARN_SECOND_CHANCE_PHRASE);
-                    }
-                    else {
-                        prependedString = phraseManager.getValueByKey(JUST_EARN_CORRECT_ANSWER_PHRASE);
-                    }
-                    builder.addResponse(translate(prependedString));
+                PhraseSettings prependedString;
+                if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
+                    prependedString = phraseManager.getValueByKey(JUST_EARN_SECOND_CHANCE_PHRASE);
+                }
+                else {
+                    prependedString = phraseManager.getValueByKey(JUST_EARN_CORRECT_ANSWER_PHRASE);
+                }
+                builder.addResponse(translate(prependedString));
 //                }
                 logger.debug("Was equipped power up: " + nextPowerUp);
             }

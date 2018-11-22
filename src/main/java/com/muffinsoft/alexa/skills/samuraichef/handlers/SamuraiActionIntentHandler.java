@@ -24,10 +24,11 @@ import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
@@ -156,8 +157,12 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
         }
 
         if (!attributesManager.getSessionAttributes().containsKey(FINISHED_MISSIONS)) {
-            String[] finishedMission = (String[]) attributesManager.getPersistentAttributes().getOrDefault(FINISHED_MISSIONS, new String[]{});
-            attributesManager.getSessionAttributes().put(FINISHED_MISSIONS, new HashSet<>(Arrays.asList(finishedMission)));
+            LinkedHashSet finishedMission = (LinkedHashSet) attributesManager.getPersistentAttributes().getOrDefault(FINISHED_MISSIONS, new LinkedHashSet<>());
+            List<String> result = new ArrayList<>();
+            for (Object o : finishedMission) {
+                result.add(String.valueOf(o));
+            }
+            attributesManager.getSessionAttributes().put(FINISHED_MISSIONS, result);
         }
 
         if (!attributesManager.getSessionAttributes().containsKey(USER_PROGRESS)) {

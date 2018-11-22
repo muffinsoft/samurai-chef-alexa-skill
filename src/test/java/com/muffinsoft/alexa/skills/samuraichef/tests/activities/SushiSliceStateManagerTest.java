@@ -15,6 +15,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,8 +25,10 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
 
 class SushiSliceStateManagerTest extends BaseStateManagerTest {
 
@@ -72,7 +75,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.ACTIVITY_INTRO);
     }
 
-    //    @Test
+    @Test
     void testActivityIntro() {
 
         Map<String, Slot> slots = createSlotsForValue("any");
@@ -265,6 +268,72 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
 
         Assertions.assertEquals(result.getSuccessCount(), 3);
         Assertions.assertEquals(result.getSuccessInRow(), 1);
+    }
+
+    @Test
+    void testActivePhaseLastSuccessAnswer() {
+
+        Map<String, Slot> slots = createSlotsForValue("test");
+
+        ActivityProgress activityProgress = new ActivityProgress();
+        activityProgress.setCurrentIngredientReaction("test");
+        activityProgress.setSuccessCount(6);
+
+        UserProgress userProgress = new UserProgress(UserMission.LOW_MISSION);
+        userProgress.setStripeCount(1);
+        userProgress.setFinishedActivities(new String[]{Activities.FOOD_TASTER.name(), Activities.WORD_BOARD_KARATE.name(), Activities.JUICE_WARRIOR.name()});
+
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
+        attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
+        attributes.put(USER_PROGRESS, toMap(userProgress));
+        attributes.put(STATE_PHASE, StatePhase.PHASE_1);
+        attributes.put(QUESTION_TIME, System.currentTimeMillis());
+
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+
+        sushiSliceStateManager.nextResponse();
+
+        sushiSliceStateManager.updateAttributesManager();
+
+        Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
+
+        Assertions.assertEquals(sessionAttributes.get(STAR_COUNT), 2);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.WIN);
+    }
+
+    @Test
+    void testActivePhaseLastSuccessAnswerStep5() {
+
+        Map<String, Slot> slots = createSlotsForValue("test");
+
+        ActivityProgress activityProgress = new ActivityProgress();
+        activityProgress.setCurrentIngredientReaction("test");
+        activityProgress.setSuccessCount(7);
+        activityProgress.setStripeComplete(true);
+        activityProgress.setMissionFinished(true);
+
+        UserProgress userProgress = new UserProgress(UserMission.LOW_MISSION);
+        userProgress.setStripeCount(2);
+
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put(USER_REPLY_BREAKPOINT, 5);
+        attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
+        attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
+        attributes.put(USER_PROGRESS, toMap(userProgress));
+        attributes.put(STATE_PHASE, StatePhase.WIN);
+        attributes.put(QUESTION_TIME, System.currentTimeMillis());
+
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+
+        sushiSliceStateManager.nextResponse();
+
+        sushiSliceStateManager.updateAttributesManager();
+
+        Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
+
+        Assertions.assertEquals(sessionAttributes.get(STAR_COUNT), 2);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.WIN);
     }
 
     @Test
@@ -515,7 +584,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_PROGRESS, toMap(userProgress));
-        attributes.put(FINISHED_MISSIONS, Collections.singleton(UserMission.LOW_MISSION.name()));
+        attributes.put(FINISHED_MISSIONS, Collections.singletonList(UserMission.LOW_MISSION.name()));
 
         SushiSliceStateManager sushiSliceStateManager = new SushiSliceSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
 

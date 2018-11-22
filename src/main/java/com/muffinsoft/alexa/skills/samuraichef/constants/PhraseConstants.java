@@ -4,8 +4,6 @@ public class PhraseConstants {
 
     public static final String TOO_LONG_PHRASE = "tooLongPhrase";
 
-    public static final String USED_EQUIPMENT_PHRASE = "usedEquipmentPhrase";
-
     public static final String TWO_MISTAKES_LEFT_PHRASE = "twoMistakesLeftPhrase";
 
     public static final String ONE_MISTAKE_LEFT_PHRASE = "oneMistakeLeftPhrase";

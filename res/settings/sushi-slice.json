@@ -57,7 +57,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
-        "maxMistakeCount": 1,
+        "maxMistakeCount": 2,
         "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "punch": "block",

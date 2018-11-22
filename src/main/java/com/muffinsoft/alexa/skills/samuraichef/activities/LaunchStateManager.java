@@ -21,6 +21,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -58,8 +59,8 @@ public class LaunchStateManager extends BaseStateManager {
     @Override
     protected void populateActivityVariables() {
 
-        //noinspection unchecked
-        this.finishedMissions = (Set<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new HashSet<>());
+        List<String> finishedMissionArray = (List<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new ArrayList<String>());
+        this.finishedMissions = new HashSet<>(finishedMissionArray);
 
         logger.debug("Session attributes on the start of handling: " + this.getSessionAttributes().toString());
     }

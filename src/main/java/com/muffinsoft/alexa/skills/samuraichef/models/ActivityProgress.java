@@ -99,11 +99,11 @@ public class ActivityProgress {
     }
 
     public boolean isStripeComplete() {
-        return isStripeComplete;
+        return this.isStripeComplete;
     }
 
     public void setStripeComplete(boolean stripeComplete) {
-        isStripeComplete = stripeComplete;
+        this.isStripeComplete = stripeComplete;
     }
 
     public boolean isMissionFinished() {

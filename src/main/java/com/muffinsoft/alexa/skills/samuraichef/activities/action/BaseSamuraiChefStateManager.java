@@ -28,6 +28,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -134,8 +135,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.starCount = (int) getSessionAttributes().getOrDefault(STAR_COUNT, 0);
 
-        //noinspection unchecked
-        this.finishedMissions = (Set<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new HashSet<>());
+        List<String> finishedMissionArray = (List<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new ArrayList<String>());
+        this.finishedMissions = new HashSet<>(finishedMissionArray);
 
         LinkedHashMap rawActivityProgress = (LinkedHashMap) getSessionAttributes().get(ACTIVITY_PROGRESS);
         this.activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
@@ -320,7 +321,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             }
 
             if (phraseSettings.isUserResponse()) {
-                this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index + 1);
+                this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
                 this.statePhase = statePhase;
                 break;
             }
@@ -372,6 +373,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             builder = appendReadyToStart(builder);
         }
 
+        resetActivityProgress();
+
         return builder.withSlotName(actionSlotName);
     }
 
@@ -413,7 +416,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     }
 
     protected void resetActivityProgress() {
-        this.statePhase = ACTIVITY_INTRO;
+//        this.statePhase = ACTIVITY_INTRO;
         this.activityProgress.reset();
     }
 
@@ -471,7 +474,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private DialogItem.Builder handleLoseState(DialogItem.Builder builder) {
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.AGAIN) || UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-            resetActivityProgress();
+//            resetActivityProgress();
             builder = handleActivityIntroState(builder, this.currentActivity, this.userProgress.getStripeCount());
         }
         else {
@@ -576,11 +579,13 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.userProgress.addFinishedActivities(this.currentActivity.name());
 
+        logger.info("Current user progress finished activities " + String.join(", ", this.userProgress.getFinishedActivities()));
         if (this.userProgress.getFinishedActivities().size() == Activities.values().length) {
 
             this.userProgress.iterateStripeCount();
             this.userProgress.resetFinishRounds();
 
+            logger.info("Stripe has been just compete");
             this.activityProgress.setStripeComplete(true);
         }
         savePersistentAttributes();
@@ -630,8 +635,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         if (iterationPointer >= outro.size()) {
 
-            resetActivityProgress();
-
             if (this.activityProgress.getMistakesCount() == 0 && !this.userProgress.isPerfectActivity()) {
                 this.userProgress.setPerfectActivity(true);
                 builder = appendEarnPerfectActivityByLevel(builder);
@@ -642,6 +645,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             }
             else {
                 builder = handleWinState(builder);
+//                resetActivityProgress();
             }
         }
 

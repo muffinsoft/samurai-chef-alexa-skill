@@ -65,7 +65,13 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     @Override
     protected void populateActivityVariables() {
 
-        this.currentMission = UserMission.valueOf(String.valueOf(getSessionAttributes().get(CURRENT_MISSION)));
+        Object isMissionPresent = getSessionAttributes().get(CURRENT_MISSION);
+        if (isMissionPresent != null) {
+            this.currentMission = UserMission.valueOf(String.valueOf(isMissionPresent));
+        }
+        else {
+            this.currentMission = null;
+        }
 
         this.starCount = (int) getSessionAttributes().getOrDefault(STAR_COUNT, 0);
 
@@ -74,6 +80,11 @@ public class ResetConfirmationStateManager extends BaseStateManager {
 
     @Override
     protected void updatePersistentAttributes() {
+
+        if (this.currentMission == null) {
+            return;
+        }
+
         switch (this.currentMission) {
             case LOW_MISSION:
                 removeMissionProgress(USER_LOW_PROGRESS_DB);
