@@ -1,26 +1,30 @@
 {
   "name": "SUSHI_SLICE",
   "competition": true,
-  "competitionPartnerRole": "Mary",
+  "competitionPartnerRole": "Kiara",
   "activitySettingsByStripeNumber": {
     "LOW_MISSION": {
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 21000,
+        "timeLimitPhaseOneInMillis": 210000,
         "ingredients": {
+          "rice": "boil",
           "fish": "slice",
-          "rice": "boil"
+          "seaweed": "roll",
+          "egg": "boil"
         }
       },
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 16000,
+        "timeLimitPhaseOneInMillis": 160000,
         "ingredients": {
           "soup": "slurp",
           "sushi": "gulp",
-          "tea": "sip"
+          "tea": "sip",
+          "mochi": "lick",
+          "wasabe peas": "crunch"
         }
       }
     },
@@ -28,20 +32,24 @@
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 21000,
+        "timeLimitPhaseOneInMillis": 210000,
         "ingredients": {
           "chicken": "chomp",
-          "sushi": "gulp"
+          "sushi": "gulp",
+          "stew": "slurp",
+          "friend fish": "munch"
         }
       },
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 16000,
+        "timeLimitPhaseOneInMillis": 160000,
         "ingredients": {
           "beef": "yum",
           "soda": "yuck",
-          "tofu": "yum"
+          "tofu": "yum",
+          "candy": "yuck",
+          "milk": "yum"
         }
       }
     },
@@ -49,20 +57,24 @@
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 20000,
+        "timeLimitPhaseOneInMillis": 210000,
         "ingredients": {
           "milk": "splash a dash",
-          "carrot": "slice and dice"
+          "carrot": "slice and dice",
+          "ice": "punch and crunch",
+          "chopsticks": "stop don't drop"
         }
       },
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 16000,
+        "timeLimitPhaseOneInMillis": 160000,
         "ingredients": {
           "punch": "block",
           "kick": "dodge",
-          "sweep": "jump"
+          "sweep": "jump",
+          "bow": "bow",
+          "grab": "break"
         }
       }
     }
@@ -72,25 +84,30 @@
       "0": {
         "outro": [
           {
-            "content": "Pretty good for a beginner!",
-            "role": "Mary",
+            "content": "That's some good looking sushi you've made so far!",
+            "role": "Kiara",
             "audio": null
           }
         ],
         "intro": [
           {
-            "content": "Time to make sushi! First, only rice and fish.",
+            "content": "Customers enjoy your sushi so far! But now they want more protein, so we add boiled egg!",
             "role": "Sensei",
             "audio": null
           },
           {
-            "content": "My mouth is watering already!",
-            "role": "Mary",
+            "content": "To prepare eggs, say 'boil!'. Ready?",
+            "role": "Kiara",
             "audio": null
           },
           {
-            "content": "To prepare rice, say 'boil'! To cut the fish, say 'slice'. Let's get started!",
-            "role": "Mary",
+            "content": "Many orders incoming! This will be competition round for you and Kiara! Need best sushi maker to step up!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Bring it, sushi buddy!",
+            "role": "Kiara",
             "audio": null
           }
         ],
@@ -99,7 +116,7 @@
         "readyToStartPhrase": "Ready to start?",
         "demo": [
           {
-            "content": "Watch Mary and Alexa closely!",
+            "content": "Watch Kiara and Alexa closely!",
             "role": "Sensei",
             "audio": null
           },
@@ -110,7 +127,7 @@
           },
           {
             "content": "Boil!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
@@ -130,7 +147,7 @@
           },
           {
             "content": "Roll!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
@@ -150,12 +167,12 @@
           },
           {
             "content": "Slice!!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
             "content": "Sensei",
-            "role": "No! Sorry, Mary. Egg is Boil!",
+            "role": "No! Sorry, Kiara. Egg is Boil!",
             "audio": null
           },
           {
@@ -189,25 +206,35 @@
       "1": {
         "outro": [
           {
-            "content": "Burp if you have to! You earned it!",
-            "role": "Mary",
+            "content": "You got me! Hey, you're becoming a skilled taster already!",
+            "role": "Kiara",
             "audio": null
           }
         ],
         "intro": [
           {
-            "content": "Time to train your sense of taste! Vital to cooking! First, we taste soup, sushi and tea!",
+            "content": "Good work so far. Wasabe peas are your next dish to taste.",
             "role": "Sensei",
             "audio": null
           },
           {
-            "content": "Hope you're hungry, buddy!",
-            "role": "Mary",
+            "content": "Be ready! Wasabe has a pretty strong flavor!",
+            "role": "Kiara",
             "audio": null
           },
           {
-            "content": "To eat soup, say 'slurp'! To eat sushi, say 'gulp'. To sip tea, say 'sip'! Let's get started!",
-            "role": "Mary",
+            "content": "To eat wasabe peas, say 'crunch!'",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "Time to prove yourself! You and Kiara compete to see who tastes faster!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "I'm winning this time!",
+            "role": "Kiara",
             "audio": null
           }
         ],
@@ -222,25 +249,35 @@
       "0": {
         "outro": [
           {
-            "content": "Wow, you're an eating machine!",
-            "role": "Mary",
+            "content": "We'll be gigantic sumo in no time!",
+            "role": "Kiara",
             "audio": null
           }
         ],
         "intro": [
           {
-            "content": "Eating time! First, only chicken and sushi!",
+            "content": "Now I also make fried fish! Taste good and loaded with fatty acids!",
             "role": "Sensei",
             "audio": null
           },
           {
-            "content": "Good protein to get nice and big!",
-            "role": "Mary",
+            "content": "Those are the good kinds of fats! Perfect for a sumo!",
+            "role": "Kiara",
             "audio": null
           },
           {
-            "content": "To eat chicken, say 'chomp!' To eat sushi, say 'gulp'!",
-            "role": "Mary",
+            "content": "To eat fried fish, say 'munch!'",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "I'm on a roll! Cooking fast! Competition time to see who become better sumo!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "It's you against me! I'm so ready!",
+            "role": "Kiara",
             "audio": null
           }
         ],
@@ -249,7 +286,7 @@
         "readyToStartPhrase": "Ready to start?",
         "demo": [
           {
-            "content": "Watch Mary and Alexa closely!",
+            "content": "Watch Kiara and Alexa closely!",
             "role": "Sensei",
             "audio": null
           },
@@ -260,7 +297,7 @@
           },
           {
             "content": "Chomp!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
@@ -280,7 +317,7 @@
           },
           {
             "content": "Slurp!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
@@ -300,11 +337,11 @@
           },
           {
             "content": "Hah! I won!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
-            "content": "Now it’s your turn, Mary’s friend.",
+            "content": "Now it’s your turn, Kiara’s friend.",
             "role": "Sensei",
             "audio": null
           }
@@ -314,25 +351,35 @@
       "1": {
         "outro": [
           {
-            "content": "Hey, you're a natural at this!",
-            "role": "Mary",
+            "content": "Impressive! I'm no match for your yum or yuck thinking!",
+            "role": "Kiara",
             "audio": null
           }
         ],
         "intro": [
           {
-            "content": "Now you eat good food, reject bad food! Beef and tofu good! Soda, bad!",
+            "content": "I now add milk! Milk is good for sumo!",
             "role": "Sensei",
             "audio": null
           },
           {
-            "content": "Soda is tasty but yeah, it's not very healthy.",
-            "role": "Mary",
+            "content": "Mom says milk gives you strong bones!",
+            "role": "Kiara",
             "audio": null
           },
           {
-            "content": "If sensei gives you beef or tofu, say yum! but if it's soda, say yuck!",
-            "role": "Mary",
+            "content": "If sensei gives you beef, tofu, or milk, say yum! But if it's soda or candy, say yuck!",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "Let's see who has greater discipline! Competition time between you and Kiara!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "I'm ready to win!",
+            "role": "Kiara",
             "audio": null
           }
         ],
@@ -347,25 +394,35 @@
       "0": {
         "outro": [
           {
-            "content": "You're already juicing like a pro! Keep it up!",
-            "role": "Mary",
+            "content": "So close! At this rate you'll be the best guru around!",
+            "role": "Kiara",
             "audio": null
           }
         ],
         "intro": [
           {
-            "content": "First we make simple  juice! First, only milk and carrots!",
+            "content": "Customers love our juices, want more! I begin to give you ingredients fast. If I accidentally throw you chopsticks, don't add!",
             "role": "Sensei",
             "audio": null
           },
           {
-            "content": "That's an interesting combination!",
-            "role": "Mary",
+            "content": "I'd hate to get splinters from my juice!",
+            "role": "Kiara",
             "audio": null
           },
           {
-            "content": "To prepare milk, say 'splash a dash'! For carrots, say 'slice and dice'!",
-            "role": "Mary",
+            "content": "To not add the chopsticks, say 'stop, don't drop!'",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "I want you and Kiara to compete! Good way to see who better juice maker!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Oh yeah!",
+            "role": "Kiara",
             "audio": null
           }
         ],
@@ -374,7 +431,7 @@
         "readyToStartPhrase": "Ready to start?",
         "demo": [
           {
-            "content": "Watch Mary and Alexa closely!",
+            "content": "Watch Kiara and Alexa closely!",
             "role": "Sensei",
             "audio": null
           },
@@ -385,7 +442,7 @@
           },
           {
             "content": "Slice and dice!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
@@ -405,7 +462,7 @@
           },
           {
             "content": "Punch and crunch!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
@@ -425,11 +482,11 @@
           },
           {
             "content": "Yay! I won!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
-            "content": "Now your turn, Mary's friend.",
+            "content": "Now your turn, Kiara's friend.",
             "role": "Sensei",
             "audio": null
           }
@@ -439,25 +496,30 @@
       "1": {
         "outro": [
           {
-            "content": "Have you done karate before? You rock!",
-            "role": "Mary",
+            "content": "Aw, you bested me this time. We're getting good at this karate stuff!",
+            "role": "Kiara",
             "audio": null
           }
         ],
         "intro": [
           {
-            "content": "Good guru also knows importance of exercise! Karate time!",
+            "content": "You are showing promise this session! Now I also try to grab! Good martial arts technique!",
             "role": "Sensei",
             "audio": null
           },
           {
-            "content": "Hope you're stretched and ready!",
-            "role": "Mary",
+            "content": "If sensei tries to grab you, say 'break!'",
+            "role": "Kiara",
             "audio": null
           },
           {
-            "content": "if sensei does a punch, say BLOCK! If sensei does a kick, say DODGE! If sensei tries a sweep, say JUMP!",
-            "role": "Mary",
+            "content": "For this challenge, you and Kiara will compete! I see who better at karate!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "I'll show you what I've got!",
+            "role": "Kiara",
             "audio": null
           }
         ],

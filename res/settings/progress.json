@@ -80,9 +80,9 @@
         }
       ],
       "activitiesOrder": {
-        "SUSHI_SLICE": 0,
+        "SUSHI_SLICE": 2,
         "JUICE_WARRIOR": 1,
-        "WORD_BOARD_KARATE": 2,
+        "WORD_BOARD_KARATE": 0,
         "FOOD_TASTER": 3
       },
       "stripeIntrosByNumber": {
@@ -259,9 +259,9 @@
         }
       ],
       "activitiesOrder": {
-        "SUSHI_SLICE": 0,
+        "SUSHI_SLICE": 2,
         "JUICE_WARRIOR": 1,
-        "WORD_BOARD_KARATE": 2,
+        "WORD_BOARD_KARATE": 0,
         "FOOD_TASTER": 3
       },
       "stripeIntrosByNumber": {
@@ -438,9 +438,9 @@
         }
       ],
       "activitiesOrder": {
-        "SUSHI_SLICE": 0,
+        "SUSHI_SLICE": 2,
         "JUICE_WARRIOR": 1,
-        "WORD_BOARD_KARATE": 2,
+        "WORD_BOARD_KARATE": 0,
         "FOOD_TASTER": 3
       },
       "stripeIntrosByNumber": {

@@ -66,7 +66,7 @@
         "outro": [
           {
             "content": "Nice work! You showed those boards who's boss!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           }
         ],
@@ -78,7 +78,7 @@
           },
           {
             "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haaa'!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
@@ -97,7 +97,7 @@
         "outro": [
           {
             "content": "Woah! You pulverized those boards!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           }
         ],
@@ -109,7 +109,7 @@
           },
           {
             "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haaa!' If the word starts with 'P', like pepper, say 'Pow!'",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
@@ -130,7 +130,7 @@
         "outro": [
           {
             "content": "Those boards didn't stand a chance!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           }
         ],
@@ -142,7 +142,7 @@
           },
           {
             "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zonk'! If the word starts with the 'F' sound, like foosball, say 'Fuah!'",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
@@ -161,7 +161,7 @@
         "outro": [
           {
             "content": "Those were some sweet moves on those boards!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           }
         ],
@@ -173,7 +173,7 @@
           },
           {
             "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zonk!' If the word starts with the 'F' sound, like foosball, say 'Fuah!' IF the word starts with 'Woo' sound like wood, say 'woosh!'",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
@@ -194,7 +194,7 @@
         "outro": [
           {
             "content": "You crushed those boards into dust! Awesome!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           }
         ],
@@ -206,7 +206,7 @@
           },
           {
             "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam'! If the word starts with the 'W' sound, like walk, say 'Wham!'",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {
@@ -225,7 +225,7 @@
         "outro": [
           {
             "content": "Wow, no way anyone is piecing those boards back together!",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           }
         ],
@@ -237,7 +237,7 @@
           },
           {
             "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Wham!' If the word starts with 'TH', like thorn, say 'Thwap!'",
-            "role": "Mary",
+            "role": "Kiara",
             "audio": null
           },
           {

@@ -22,6 +22,7 @@ public class VoiceTranslator {
 
         switch (phraseSettings.getRole()) {
             case "Mary":
+            case "Kiara":
                 return new Speech(SpeechType.JOANNA, phraseSettings.getContent());
             case "Sensei":
                 return new Speech(SpeechType.JOEY, phraseSettings.getContent());
