@@ -13,72 +13,17 @@ import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
-import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
-import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
-import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
-import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
-import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
-import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
-import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
-import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
+import com.muffinsoft.alexa.skills.samuraichef.enums.*;
+import com.muffinsoft.alexa.skills.samuraichef.models.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.GAME_FINISHED_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_ACTIVITY_EARN_HIGH_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_ACTIVITY_EARN_LOW_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_ACTIVITY_EARN_MID_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_MISSION_EARN_HIGH_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_MISSION_EARN_LOW_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_MISSION_EARN_MID_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_STRIPE_EARN_HIGH_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_STRIPE_EARN_LOW_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_STRIPE_EARN_MID_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_REPROMPT_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REDIRECT_TO_SELECT_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SEVERAL_VALUES_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_RESET_PROGRESS_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.ACTIVITY_INTRO;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.GAME_OUTRO;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.LOSE;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_INTRO;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_OUTRO;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.PHASE_1;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.READY_PHASE;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.STRIPE_INTRO;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.STRIPE_OUTRO;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.*;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.*;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.*;
 
 abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
@@ -244,6 +189,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             case READY_PHASE:
                 builder = handleReadyToStartState(builder);
                 break;
+            case WRAP_READY_RESULT:
+                builder = handleWrapReadyToStartState(builder);
+                break;
             case LOSE:
                 builder = handleLoseState(builder);
                 break;
@@ -404,13 +352,28 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder.withSlotName(actionSlotName);
     }
 
+    private DialogItem.Builder handleWrapReadyToStartState(DialogItem.Builder builder) {
+
+        if(UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
+            this.getSessionAttributes().remove(CURRENT_MISSION);
+
+            return builder.withSlotName(actionSlotName).addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+
+        }
+        else{
+            this.statePhase = PHASE_1;
+
+            return this.handleActivePhaseState(builder);
+        }
+    }
+
     private DialogItem.Builder handleReadyToStartState(DialogItem.Builder builder) {
 
         String speechText = nextIngredient();
 
         logger.debug("Handling " + this.statePhase + ". Moving to " + PHASE_1);
 
-        this.statePhase = PHASE_1;
+        this.statePhase = WRAP_READY_RESULT;
 
         return builder.addResponse(translate(speechText)).withSlotName(actionSlotName);
     }
