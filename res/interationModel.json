@@ -109,7 +109,9 @@
               "name": {
                 "value": "path of the chef",
                 "synonyms": [
-                  "chef"
+                  "chef",
+                  "path of the chef",
+                  "path of chef"
                 ]
               }
             },
@@ -117,7 +119,9 @@
               "name": {
                 "value": "path of the sumo",
                 "synonyms": [
-                  "sumo"
+                  "sumo",
+                  "path of the sumo",
+                  "path of sumo"
                 ]
               }
             },
@@ -125,7 +129,9 @@
               "name": {
                 "value": "path of the guru",
                 "synonyms": [
-                  "guru"
+                  "guru",
+                  "path of the guru",
+                  "path of guru"
                 ]
               }
             },

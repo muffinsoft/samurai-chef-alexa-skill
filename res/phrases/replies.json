@@ -23,14 +23,17 @@
   ],
   "LOW": [
     "path of the chef",
+    "path of chef",
     "chef"
   ],
   "MEDIUM": [
     "path of the sumo",
+    "path of sumo",
     "sumo"
   ],
   "HIGH": [
     "path of the guru",
+    "path of guru",
     "guru"
   ]
 }
