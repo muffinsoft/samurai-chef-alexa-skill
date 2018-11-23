@@ -84,6 +84,11 @@
       "0": {
         "outro": [
           {
+            "content": "No! Sorry, Kiara!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
             "content": "That's some good looking sushi you've made so far!",
             "role": "Kiara",
             "audio": null
@@ -166,18 +171,18 @@
             "audio": null
           },
           {
-            "content": "Slice!!",
+            "content": "Slice!",
             "role": "Kiara",
             "audio": null
           },
           {
-            "content": "Sensei",
-            "role": "No! Sorry, Kiara. Egg is Boil!",
+            "content": "No! Sorry, Kiara. Egg is Boil!",
+            "role": "Sensei",
             "audio": null
           },
           {
-            "content": "Alexa",
-            "role": "Hah! I won!",
+            "content": "Hah! I won!",
+            "role": "Alexa",
             "audio": null
           },
           {
@@ -205,6 +210,11 @@
       },
       "1": {
         "outro": [
+          {
+            "content": "Kiara, incorrect answer!",
+            "role": "Sensei",
+            "audio": null
+          },
           {
             "content": "You got me! Hey, you're becoming a skilled taster already!",
             "role": "Kiara",
@@ -248,6 +258,11 @@
     "MEDIUM_MISSION": {
       "0": {
         "outro": [
+          {
+            "content": "No! Sorry, Kiara!",
+            "role": "Sensei",
+            "audio": null
+          },
           {
             "content": "We'll be gigantic sumo in no time!",
             "role": "Kiara",
@@ -351,6 +366,11 @@
       "1": {
         "outro": [
           {
+            "content": "Kiara, incorrect answer!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
             "content": "Impressive! I'm no match for your yum or yuck thinking!",
             "role": "Kiara",
             "audio": null
@@ -368,7 +388,7 @@
             "audio": null
           },
           {
-            "content": "If sensei gives you beef, tofu, or milk, say yum! But if it's soda or candy, say yuck!",
+            "content": "If sensei gives you beef, tofu, or milk, say 'yum!' But if it's soda or candy, say 'yuck!'",
             "role": "Kiara",
             "audio": null
           },
@@ -394,6 +414,11 @@
       "0": {
         "outro": [
           {
+            "content": "Kiara, incorrect answer!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
             "content": "So close! At this rate you'll be the best guru around!",
             "role": "Kiara",
             "audio": null
@@ -411,7 +436,7 @@
             "audio": null
           },
           {
-            "content": "To not add the chopsticks, say 'stop, don't drop!'",
+            "content": "To not add the chopsticks, say 'stop don't drop!'",
             "role": "Kiara",
             "audio": null
           },
@@ -495,6 +520,11 @@
       },
       "1": {
         "outro": [
+          {
+            "content": "Kiara, incorrect answer!",
+            "role": "Sensei",
+            "audio": null
+          },
           {
             "content": "Aw, you bested me this time. We're getting good at this karate stuff!",
             "role": "Kiara",

@@ -46,7 +46,7 @@
         "maxMistakeCount": 3,
         "ingredients": {
           "'Z' sound": "zaam",
-          "'W' sound": "wham"
+          "'W' sound": "whammo"
         }
       },
       "1": {
@@ -54,7 +54,7 @@
         "maxMistakeCount": 3,
         "ingredients": {
           "'Z' sound": "zaam",
-          "'W' sound": "wham",
+          "'W' sound": "whammo",
           "'Th' sound": "thwap"
         }
       }
@@ -87,10 +87,51 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": false,
+        "shouldRunDemo": true,
         "shouldRunDemoPhrase": "Do you need a Demo round?",
         "readyToStartPhrase": "Ready to start?",
-        "demo": [],
+        "demo": [
+          {
+            "content": "Watch Kiara closely!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Wheel!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Wham!",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "Hat!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Haaa!",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "Pencil!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Pow!",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "Now it’s your turn, Kiara’s friend.",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
       "1": {
@@ -151,10 +192,51 @@
             "audio": null
           }
         ],
-        "shouldRunDemo": false,
+        "shouldRunDemo": true,
         "shouldRunDemoPhrase": "Do you need a Demo round?",
         "readyToStartPhrase": "Ready to start?",
-        "demo": [],
+        "demo": [
+          {
+            "content": "Watch Kiara closely!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Zebra!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Zonk!",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "Fish!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Fuah!",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "Wool!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Woosh!",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "Now it’s your turn, Kiara’s friend.",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
       "1": {
@@ -205,20 +287,61 @@
             "audio": null
           },
           {
-            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam'! If the word starts with the 'W' sound, like walk, say 'Wham!'",
+            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!'",
             "role": "Kiara",
             "audio": null
           },
           {
-            "content": "Zaam and Wham! Go!",
+            "content": "Zaam and Whammo! Go!",
             "role": "Sensei",
             "audio": null
           }
         ],
-        "shouldRunDemo": false,
+        "shouldRunDemo": true,
         "shouldRunDemoPhrase": "Do you need a Demo round?",
         "readyToStartPhrase": "Ready to start?",
-        "demo": [],
+        "demo": [
+          {
+            "content": "Watch Kiara closely!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Zip!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Zaam!",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "Week!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Whammo!",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "Theatre!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Thwap!",
+            "role": "Kiara",
+            "audio": null
+          },
+          {
+            "content": "Now it’s your turn, Kiara’s friend.",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
         "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
       },
       "1": {
@@ -236,12 +359,12 @@
             "audio": null
           },
           {
-            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Wham!' If the word starts with 'TH', like thorn, say 'Thwap!'",
+            "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with 'TH', like thorn, say 'Thwap!'",
             "role": "Kiara",
             "audio": null
           },
           {
-            "content": "Zaam, Wham, and Thwap! Go!",
+            "content": "Zaam, Whammo, and Thwap! Go!",
             "role": "Sensei",
             "audio": null
           }

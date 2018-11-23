@@ -109,7 +109,7 @@
         "readyToStartPhrase": "Ready to start?",
         "demo": [
           {
-            "content": "Watch Kiara and Alexa closely!",
+            "content": "Watch Kiara closely!",
             "role": "Sensei",
             "audio": null
           },
@@ -159,13 +159,13 @@
             "audio": null
           },
           {
-            "content": "Boil!!",
+            "content": "Boil!",
             "role": "Kiara",
             "audio": null
           },
           {
-            "content": "Sensei",
-            "role": "Now it’s your turn, Kiara’s friend.",
+            "content": "Now it’s your turn, Kiara’s friend.",
+            "role": "Sensei",
             "audio": null
           }
         ],
@@ -316,7 +316,7 @@
             "audio": null
           },
           {
-            "content": "If sensei gives you beef or tofu, say yum! But if it's soda or candy, say yuck!",
+            "content": "If sensei gives you beef or tofu, say 'yum!' But if it's soda or candy, say 'yuck!'",
             "role": "Kiara",
             "audio": null
           },
@@ -437,7 +437,7 @@
           },
           {
             "content": "That's totally true!",
-            "role": "f",
+            "role": "Kiara",
             "audio": null
           },
           {
