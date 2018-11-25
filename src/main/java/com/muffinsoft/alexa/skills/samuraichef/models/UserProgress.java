@@ -52,6 +52,11 @@ public class UserProgress {
         this.justCreated = false;
         this.isGameFinished = false;
         this.isMissionFinished = false;
+        this.perfectActivity = false;
+        this.perfectStripe = false;
+        this.perfectMission = false;
+        this.mistakesInStripe = 0;
+        this.mistakesInMission = 0;
     }
 
     public String getMission() {

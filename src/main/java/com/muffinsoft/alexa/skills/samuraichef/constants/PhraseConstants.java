@@ -38,6 +38,8 @@ public class PhraseConstants {
 
     public static final String SELECT_MISSION_PHRASE = "selectMissionPhrase";
 
+    public static final String SELECT_MISSION_TO_REMOVE_PHRASE = "selectMissionToRemovePhrase";
+
     public static final String SELECT_MISSION_UNKNOWN_PHRASE = "selectMissionUnknownPhrase";
 
     public static final String MISSION_ALREADY_COMPLETE_PHRASE = "missionAlreadyCompletePhrase";

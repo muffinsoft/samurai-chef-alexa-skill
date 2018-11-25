@@ -6,7 +6,6 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
-import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -28,6 +27,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_PROGRESS_REMOVED_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_TO_REMOVE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
@@ -46,7 +46,6 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     private final String userFoodSlotReply;
 
     private final PhraseManager phraseManager;
-    private final AliasManager aliasManager;
     private UserMission currentMission;
     private int starCount;
     private Set<String> finishedMissions;
@@ -54,7 +53,6 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     public ResetConfirmationStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
         super(slots, attributesManager);
         this.phraseManager = configContainer.getPhraseManager();
-        this.aliasManager = configContainer.getAliasManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
         this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
@@ -134,14 +132,18 @@ public class ResetConfirmationStateManager extends BaseStateManager {
                 missionUserProgress = mapper.convertValue(rawUserProgress, UserProgress.class);
             }
             else {
-                return;
+                throw new IllegalStateException("Absent value " + value + " in persistent attributes");
             }
 
             int stripeCountAtMission = missionUserProgress.getStripeCount();
 
-            this.starCount = this.starCount - stripeCountAtMission;
-            getPersistentAttributes().put(STAR_COUNT, this.starCount);
-            getSessionAttributes().put(STAR_COUNT, this.starCount);
+            logger.info("Will be removed " + stripeCountAtMission + " start from progress");
+
+            int newStarCount = this.starCount - stripeCountAtMission;
+
+            logger.info("New star count value should be " + newStarCount);
+
+            getPersistentAttributes().put(STAR_COUNT, newStarCount);
 
             missionUserProgress.resetMissionProgress();
             getPersistentAttributes().put(value, mapper.writeValueAsString(missionUserProgress));
@@ -158,6 +160,12 @@ public class ResetConfirmationStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
+        if (this.currentMission == null) {
+            builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_TO_REMOVE_PHRASE)));
+            getSessionAttributes().put(INTENT, Intents.GAME);
+            return builder.build();
+        }
+
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
             builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
             getSessionAttributes().remove(CURRENT_MISSION);
@@ -166,7 +174,6 @@ public class ResetConfirmationStateManager extends BaseStateManager {
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
             builder.addResponse(translate(phraseManager.getValueByKey(MISSION_PROGRESS_REMOVED_PHRASE)));
-            builder.addResponse(translate(aliasManager.getValueByKey(this.currentMission.name())));
             builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
             getSessionAttributes().put(INTENT, Intents.GAME);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
@@ -174,12 +181,12 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             getSessionAttributes().remove(STATE_PHASE);
             getSessionAttributes().remove(STAR_COUNT);
             getSessionAttributes().remove(CURRENT_MISSION);
+            getSessionAttributes().remove(FINISHED_MISSIONS);
             savePersistentAttributes();
         }
         else {
             builder.addResponse(translate(phraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
         }
-
 
         return builder.build();
     }

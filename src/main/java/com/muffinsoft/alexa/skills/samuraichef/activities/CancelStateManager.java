@@ -21,6 +21,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
@@ -99,7 +100,7 @@ public class CancelStateManager extends BaseStateManager {
 
     private void saveUserProgressForMission(String value) {
         try {
-            if (userProgress.getCurrentActivity().equals(userProgress.getPreviousActivity())) {
+            if (userProgress != null && Objects.equals(userProgress.getCurrentActivity(), userProgress.getPreviousActivity())) {
                 Activities nextActivityForMission = missionManager.getNextActivityForMission(this.currentMission, userProgress.getFinishedActivities());
                 userProgress.setCurrentActivity(nextActivityForMission.name());
             }

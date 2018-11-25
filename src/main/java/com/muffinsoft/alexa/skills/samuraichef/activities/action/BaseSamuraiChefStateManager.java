@@ -151,7 +151,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         updateMissionUserProgress();
 
         if (this.activityProgress.isStripeComplete()) {
-            ++this.starCount;
+            if (!this.activityProgress.isStarUpdated()) {
+                ++this.starCount;
+                this.activityProgress.setStarUpdated(true);
+            }
             getPersistentAttributes().put(STAR_COUNT, this.starCount);
             getSessionAttributes().put(STAR_COUNT, this.starCount);
             logger.debug("Was updated star counter at Persistent attributes");
@@ -197,7 +200,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.userProgress.setCurrentActivity(this.currentActivity.name());
 
         if (this.isLeaveMission) {
-            if (this.isMoveToReset) {
+            if (!this.isMoveToReset) {
                 getSessionAttributes().remove(CURRENT_MISSION);
             }
             getSessionAttributes().remove(USER_PROGRESS);
@@ -274,6 +277,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.isMoveToReset = true;
 
         getSessionAttributes().put(INTENT, Intents.RESET);
+        getSessionAttributes().put(CURRENT_MISSION, this.userProgress.getMission());
 
         return builder.withSlotName(actionSlotName)
                 .addResponse(translate(phraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)))

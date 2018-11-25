@@ -55,6 +55,9 @@
   "selectMissionPhrase": {
     "content": "There are three different paths to choose from: Path of Chef, Path of Sumo, and Path of Guru. They all have fun ways of cooking and eating food. Which one do you want to try?"
   },
+  "selectMissionToRemovePhrase": {
+    "content": "There are three different paths to choose from: Path of Chef, Path of Sumo, and Path of Guru. Enter the path before remove it?"
+  },
   "selectMissionUnknownPhrase": {
     "content": "I don't understand your choice, Please, select one of three available missions."
   },
@@ -95,7 +98,7 @@
     "content": "Do you want to start the path from the beginning?"
   },
   "missionProgressRemovedPhrase": {
-    "content": "The progress was removed for"
+    "content": "The progress was removed."
   },
   "helpCompetitionRulesPhrase": {
     "content": "In a competition, you and Mary take turns trying to provide the correct answer. The first one to lose two rounds by answering incorrectly loses."

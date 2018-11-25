@@ -286,6 +286,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_PROGRESS, toMap(userProgress));
+        attributes.put(STAR_COUNT, 1);
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
@@ -321,6 +322,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_PROGRESS, toMap(userProgress));
         attributes.put(STATE_PHASE, StatePhase.WIN);
+        attributes.put(STAR_COUNT, 1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
         SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());

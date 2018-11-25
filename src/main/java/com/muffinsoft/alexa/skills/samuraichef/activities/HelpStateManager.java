@@ -16,6 +16,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -253,15 +254,27 @@ public class HelpStateManager extends BaseStateManager {
         // Mission specific goal description
         // Current Star progress
         //  Do you want to continue playing?
+        PhraseSettings missionDescriptionHelp;
+
         if (currentMission == UserMission.LOW_MISSION) {
-            builder.addResponse(translate(phraseManager.getValueByKey(HELP_MISSION_LOW_DESCRIPTION_PHRASE)));
+            missionDescriptionHelp = phraseManager.getValueByKey(HELP_MISSION_LOW_DESCRIPTION_PHRASE);
+
         }
         else if (currentMission == UserMission.MEDIUM_MISSION) {
-            builder.addResponse(translate(phraseManager.getValueByKey(HELP_MISSION_MID_DESCRIPTION_PHRASE)));
+            missionDescriptionHelp = phraseManager.getValueByKey(HELP_MISSION_MID_DESCRIPTION_PHRASE);
         }
         else {
-            builder.addResponse(translate(phraseManager.getValueByKey(HELP_MISSION_HIGH_DESCRIPTION_PHRASE)));
+            missionDescriptionHelp = phraseManager.getValueByKey(HELP_MISSION_HIGH_DESCRIPTION_PHRASE);
         }
+
+        if(this.userProgress != null) {
+            int stripeCount = this.userProgress.getStripeCount();
+            String replace = missionDescriptionHelp.getContent().replace("#", String.valueOf(stripeCount + 1));
+            missionDescriptionHelp.setContent(replace);
+        }
+
+        builder.addResponse(translate(missionDescriptionHelp));
+
         getSessionAttributes().put(HELP_STATE, CONTINUE_PLAYING_HELP);
         builder.addResponse(translate(phraseManager.getValueByKey(HELP_CONTINUE_PLAYING_PHRASE)));
     }
