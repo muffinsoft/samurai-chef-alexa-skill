@@ -17,8 +17,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_PROGRESS_REMOVED_PHRASE;
@@ -26,6 +30,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
@@ -43,6 +48,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     private final PhraseManager phraseManager;
     private UserMission currentMission;
     private int starCount;
+    private Set<String> finishedMissions;
 
     public ResetConfirmationStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
         super(slots, attributesManager);
@@ -75,6 +81,9 @@ public class ResetConfirmationStateManager extends BaseStateManager {
 
         this.starCount = (int) getSessionAttributes().getOrDefault(STAR_COUNT, 0);
 
+        List<String> finishedMissionArray = (List<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new ArrayList<String>());
+        this.finishedMissions = new HashSet<>(finishedMissionArray);
+
         logger.debug("Session attributes on the start of handling: " + this.getSessionAttributes().toString());
     }
 
@@ -82,24 +91,35 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     protected void updatePersistentAttributes() {
 
         if (this.currentMission == null) {
-            return;
+            throw new IllegalStateException("Try remove mission progress without Current mission value");
         }
 
-        switch (this.currentMission) {
-            case LOW_MISSION:
-                removeMissionProgress(USER_LOW_PROGRESS_DB);
-                break;
-            case MEDIUM_MISSION:
-                removeMissionProgress(USER_MID_PROGRESS_DB);
-                break;
-            case HIGH_MISSION:
-                removeMissionProgress(USER_HIGH_PROGRESS_DB);
-                break;
+        if (this.finishedMissions.contains(this.currentMission.name())) {
+
+            this.finishedMissions.remove(this.currentMission.name());
+            getPersistentAttributes().put(FINISHED_MISSIONS, this.finishedMissions);
+
+            switch (this.currentMission) {
+                case LOW_MISSION:
+                    removeMissionProgress(USER_LOW_PROGRESS_DB);
+                    break;
+                case MEDIUM_MISSION:
+                    removeMissionProgress(USER_MID_PROGRESS_DB);
+                    break;
+                case HIGH_MISSION:
+                    removeMissionProgress(USER_HIGH_PROGRESS_DB);
+                    break;
+            }
         }
+        else {
+            throw new IllegalStateException("Can't remove mission " + this.currentMission + " because it is absent in finished list");
+        }
+
         logger.debug("Persistent attributes on the end of handling: " + this.getPersistentAttributes().toString());
     }
 
     private void removeMissionProgress(String value) {
+
         try {
 
             UserProgress missionUserProgress;
@@ -127,6 +147,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
 
     @Override
     public DialogItem nextResponse() {
+
         logger.debug("Available session attributes: " + getSessionAttributes());
 
         PhraseSettings dialog;
