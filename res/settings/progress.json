@@ -2,81 +2,548 @@
   "missions": [
     {
       "title": "LOW_MISSION",
-      "missionIntro": "This is first mission intro",
-      "missionOutro": "This is first mission outro",
+      "missionIntro": [
+        {
+          "content": "Good! You have chosen the Path of the Chef! Prepare to master the age-old tradition of cooking good sushi, samurai style!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "yum",
+          "role": "Speechcon",
+          "audio": null
+        },
+        {
+          "content": "Sounds awesome! We're ready!",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "Hey, chef-in-training! Have you ever helped prepare a meal before?",
+          "role": "Alexa",
+          "audio": null
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "content": "Umm.... does buttered toast coast?",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "There are five belts to earn. Obtain them all to earn the honor of being called Super Sushi Chef!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Now that's a title I'd want! Let's get started!",
+          "role": "Mary",
+          "audio": null
+        }
+      ],
+      "missionOutro": [
+        {
+          "content": "Hey, that was fun! Making sushi is great!",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "Impressive! You conquered every challenge, which means you earned every belt: yellow, orange, green, purple, and black! You have also earned the title Super Sushi Chef!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "woo hoo",
+          "role": "Speechcon",
+          "audio": null
+        },
+        {
+          "content": "Awesome!",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "My restaurant's fame has grown now that another notable sushi maker is here. Thank you friends, and congratulations!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "See ya Sensei!",
+          "role": "Lily",
+          "audio": null
+        },
+        {
+          "content": "Bye! Let's see what path we take on next!",
+          "role": "Mary",
+          "audio": null
+        }
+      ],
       "activitiesOrder": {
-        "SUSHI_SLICE": 0,
+        "SUSHI_SLICE": 2,
         "JUICE_WARRIOR": 1,
-        "WORD_BOARD_KARATE": 2,
+        "WORD_BOARD_KARATE": 0,
         "FOOD_TASTER": 3
       },
       "stripeIntrosByNumber": {
-        "0": "Stripe intro #1",
-        "1": "Stripe intro #2",
-        "2": "Stripe intro #3",
-        "3": "Stripe intro #4",
-        "4": "Stripe intro #5"
+        "0": [
+          {
+            "content": "First you must learn the basics of sushi. Don't worry, we will start simple.",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "To earn this YELLOW BELT we'll be doing three sushi making activities and end with word karate board.",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Ready? Let us begin!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "1": [
+          {
+            "content": "To be a good chef, one must know good taste! But to have good taste, one must eat properly.",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "For this ORANGE BELT we'll be doing three taste testing activities and end with word karate board.",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Ready? Let us begin!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ]
       },
       "stripeOutrosByNumber": {
-        "0": "Stripe outro #1",
-        "1": "Stripe outro #2",
-        "2": "Stripe outro #3",
-        "3": "Stripe outro #4",
-        "4": "Stripe outro #5"
+        "0": [
+          {
+            "content": "Good work! You have earned a yellow belt for learning the basics. Don't worry, there is plenty more to learn!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "We can't wait! Grats on the belt, sushi buddy!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "You're off to a good start. What's your favorite thing about making sushi so far?",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "userResponse": true
+          },
+          {
+            "content": "Cool!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Time for the next challenge!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "1": [
+          {
+            "content": "Excellent! You have earned an orange belt for learning the importance of taste. Very important in cooking!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Definitely! Grats on the belt, sushi buddy!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Say, if you could taste any food at this very moment, what would it be?",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "userResponse": true
+          },
+          {
+            "content": "yum",
+            "role": "Alexa",
+            "audio": null
+          },
+          {
+            "content": "Time for the next challenge!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ]
       }
     },
     {
       "title": "MEDIUM_MISSION",
-      "missionIntro": "This is second mission intro",
-      "missionOutro": "This is second mission outro",
+      "missionIntro": [
+        {
+          "content": "Aah, the path of sumo! To become my offical sumo pro and make restaurant more attractive, you must grow big! Very big!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "wowza",
+          "role": "Speechcon",
+          "audio": null
+        },
+        {
+          "content": "Sounds cool! I've heard they weigh hundreds of pounds, and most of it is muscle!",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "Hey, sumo-in-training! Have you ever seen a real sumo match before?",
+          "role": "Alexa",
+          "audio": null
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "content": "Don't worry, we don't have to wear those big diaper looking things.",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "There are five belts to earn. Obtain them all and you'll reach the highest rank in sumo -- Yokozuna!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "I like how that sounds! Let's get started!",
+          "role": "Mary",
+          "audio": null
+        }
+      ],
+      "missionOutro": [
+        {
+          "content": "What a great time! Becoming a sumo is cooler than I thought!",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "Excellent! You conquered every challenge, which means you earned every belt: yellow, orange, green, purple, and black! You have also earned the title Yokozuna!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "woo hoo",
+          "role": "Speechcon",
+          "audio": null
+        },
+        {
+          "content": "We rock!",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "Word has spread that a skilled and powerful sumo grew strong here! Thank you for attracting the best sumo in the world to my restaurant!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Our pleasure, Sensei! It was fun! Well, let's see what path we take on next!",
+          "role": "Mary",
+          "audio": null
+        }
+      ],
       "activitiesOrder": {
-        "SUSHI_SLICE": 0,
+        "SUSHI_SLICE": 2,
         "JUICE_WARRIOR": 1,
-        "WORD_BOARD_KARATE": 2,
+        "WORD_BOARD_KARATE": 0,
         "FOOD_TASTER": 3
       },
       "stripeIntrosByNumber": {
-        "0": "Stripe intro #1",
-        "1": "Stripe intro #2",
-        "2": "Stripe intro #3",
-        "3": "Stripe intro #4",
-        "4": "Stripe intro #5"
+        "0": [
+          {
+            "content": "Your road to becoming a sumo starts with learning the sumo diet with proper eating etiquette!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "To earn this YELLOW BELT we'll be doing three eating activities and end with word karate board.",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Ready? Let us begin!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "1": [
+          {
+            "content": "Although eating is good, a sumo has a strict diet! No junk food!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "To earn this ORANGE BELT we'll be doing three 'yum or yuck' activities and end with word karate board.",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Ready? Let us begin!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ]
       },
       "stripeOutrosByNumber": {
-        "0": "Stripe outro #1",
-        "1": "Stripe outro #2",
-        "2": "Stripe outro #3",
-        "3": "Stripe outro #4",
-        "4": "Stripe outro #5"
+        "0": [
+          {
+            "content": "Yes! You have earned a yellow belt for learning the basics. Good work, but the road to becoming big sumo is still long!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Oh yeah! Grats on the belt, by the way!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Sumo sounds like an interesting sport. Hey future sumo, what's your favorite sport to watch or play?",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "userResponse": true
+          },
+          {
+            "content": "Nice! I love soccer.",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Time for the next challenge!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "1": [
+          {
+            "content": "Good, good! You have earned an orange belt for avoiding junk food well!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Sweet! That's a nice belt!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Hey, future sumo! What's your favorite junk food?",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "userResponse": true
+          },
+          {
+            "content": "I'm all about chocolate!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Time for the next challenge!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ]
       }
     },
     {
       "title": "HIGH_MISSION",
-      "missionIntro": "This is third mission intro",
-      "missionOutro": "This is third mission outro",
+      "missionIntro": [
+        {
+          "content": "The path of guru! I'm confident you'll become the guru my restaurant needs. Prepare to explore the nutritious power of food!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "bon appetit",
+          "role": "Speechcon",
+          "audio": null
+        },
+        {
+          "content": "Great! My mom says that what we eat is the key to being healthy and happy!",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "Hey, guru-in-training! What's your favorite healthy snack to eat?",
+          "role": "Alexa",
+          "audio": null
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "content": "I like veggies! Well, only with lots of ranch...",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "There are five belts to earn. Obtain them all to be known as the Guru Master!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Sweet! Let's get started!",
+          "role": "Mary",
+          "audio": null
+        }
+      ],
+      "missionOutro": [
+        {
+          "content": "How fun! I loved learning how important food is to growing strong and healthy!",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "Phenomenal! You conquered every challenge, which means you earned every belt: yellow, orange, green, purple, and black! You have also earned the title Guru Master!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "woo hoo",
+          "role": "Speechcon",
+          "audio": null
+        },
+        {
+          "content": "Oh yeah!",
+          "role": "Mary",
+          "audio": null
+        },
+        {
+          "content": "People the world over are now arriving here to seek both nutritious food and advice on healthy eating! I thank you greatly, Mary and friends!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "We couldn't have done it without ya, Sensei! Well, let's see what path we take on next!",
+          "role": "Mary",
+          "audio": null
+        }
+      ],
       "activitiesOrder": {
-        "SUSHI_SLICE": 0,
+        "SUSHI_SLICE": 2,
         "JUICE_WARRIOR": 1,
-        "WORD_BOARD_KARATE": 2,
+        "WORD_BOARD_KARATE": 0,
         "FOOD_TASTER": 3
       },
       "stripeIntrosByNumber": {
-        "0": "Stripe intro #1",
-        "1": "Stripe intro #2",
-        "2": "Stripe intro #3",
-        "3": "Stripe intro #4",
-        "4": "Stripe intro #5"
+        "0": [
+          {
+            "content": "A samurai's path to healthy diet is vitamin-rich juices! Let's start with basics.",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "To earn this YELLOW BELT we'll be doing three juice activities and end with word karate board.",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Ready? Let us begin!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "1": [
+          {
+            "content": "Guru also good at using energy to exercise! Time for karate!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "To earn this YELLOW BELT we'll be doing three karate activities and end with word karate board.",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Ready? Let us begin!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ]
       },
       "stripeOutrosByNumber": {
-        "0": "1",
-        "1": "2",
-        "2": "3",
-        "3": "4",
-        "4": "5"
+        "0": [
+          {
+            "content": "Challenge complete! You have earned a yellow belt for learning the basics. My juices are nutritious and yummy, yes?",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "They sure are! Grats on the belt, guru-in-training!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Does or mom or dad ever make you healthy smoothies or juices?",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "userResponse": true
+          },
+          {
+            "content": "My dad likes raddish juice... yuck!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Time for the next challenge!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ],
+        "1": [
+          {
+            "content": "Wonderful karate! You have earned a yellow belt. Diet and exercise is key to healthy life!",
+            "role": "Sensei",
+            "audio": null
+          },
+          {
+            "content": "Woohoo! Good job getting that belt!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Hey, have you ever watched a karate movie before?",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "userResponse": true
+          },
+          {
+            "content": "I think they're fun to watch!",
+            "role": "Mary",
+            "audio": null
+          },
+          {
+            "content": "Time for the next challenge!",
+            "role": "Sensei",
+            "audio": null
+          }
+        ]
       }
     }
   ],
   "successInRowForPowerUp": 6,
-  "stripesAtMissionCount": 5,
-  "maxStarCount": 15
+  "stripesAtMissionCount": 2,
+  "maxStarCount": 6
 }

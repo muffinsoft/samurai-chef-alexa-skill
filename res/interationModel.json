@@ -4,7 +4,7 @@
       "invocationName": "samurai chef",
       "intents": [
         {
-          "name": "SamuraiActionIntent",
+          "name": "ActionIntent",
           "slots": [
             {
               "name": "action",
@@ -12,11 +12,26 @@
               "samples": [
                 "{action}"
               ]
+            },
+            {
+              "name": "food",
+              "type": "AMAZON.Food",
+              "samples": [
+                "{food}"
+              ]
             }
           ],
           "samples": [
             "cooking",
-            "{action}"
+            "{action}",
+            "{food}"
+          ]
+        },
+        {
+          "name": "ResetIntent",
+          "slots": [],
+          "samples": [
+            "reset"
           ]
         },
         {
@@ -29,10 +44,6 @@
         },
         {
           "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
           "samples": []
         },
         {
@@ -61,39 +72,10 @@
           "values": [
             {
               "name": {
-                "value": "slice"
-              }
-            },
-            {
-              "name": {
-                "value": "chop"
-              }
-            },
-            {
-              "name": {
-                "value": "boil"
-              }
-            },
-            {
-              "name": {
-                "value": "roll"
-              }
-            },
-            {
-              "name": {
                 "value": "again",
                 "synonyms": [
                   "again",
                   "try again"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "mission",
-                "synonyms": [
-                  "new mission",
-                  "start new mission"
                 ]
               }
             },
@@ -113,6 +95,7 @@
               "name": {
                 "value": "yes",
                 "synonyms": [
+                  "ok",
                   "yep",
                   "yeah",
                   "I do",
@@ -124,69 +107,32 @@
             },
             {
               "name": {
-                "value": "slice and dice"
-              }
-            },
-            {
-              "name": {
-                "value": "splash a dash"
-              }
-            },
-            {
-              "name": {
-                "value": "punch and crunch"
-              }
-            },
-            {
-              "name": {
-                "value": "stop don't drop"
-              }
-            },
-            {
-              "name": {
-                "value": "baam"
-              }
-            },
-            {
-              "name": {
-                "value": "fuah"
-              }
-            },
-            {
-              "name": {
-                "value": "glok"
-              }
-            },
-            {
-              "name": {
-                "value": "hayaaa",
+                "value": "path of the chef",
                 "synonyms": [
-                  "hayaaaa",
-                  "hayaaa",
-                  "hayaa",
-                  "haya",
-                  "hi"
+                  "chef",
+                  "path of the chef",
+                  "path of chef"
                 ]
               }
             },
             {
               "name": {
-                "value": "jab"
+                "value": "path of the sumo",
+                "synonyms": [
+                  "sumo",
+                  "path of the sumo",
+                  "path of sumo"
+                ]
               }
             },
             {
               "name": {
-                "value": "kick"
-              }
-            },
-            {
-              "name": {
-                "value": "lash"
-              }
-            },
-            {
-              "name": {
-                "value": "punch"
+                "value": "path of the guru",
+                "synonyms": [
+                  "guru",
+                  "path of the guru",
+                  "path of guru"
+                ]
               }
             },
             {
@@ -196,15 +142,62 @@
             },
             {
               "name": {
+                "value": "haaa"
+              }
+            },
+            {
+              "name": {
+                "value": "pow"
+              }
+            },
+            {
+              "name": {
                 "value": "zonk"
               }
             },
             {
               "name": {
-                "value": "slurp",
-                "synonyms": [
-                  "stop"
-                ]
+                "value": "fuah"
+              }
+            },
+            {
+              "name": {
+                "value": "woosh"
+              }
+            },
+            {
+              "name": {
+                "value": "zaam"
+              }
+            },
+            {
+              "name": {
+                "value": "wham"
+              }
+            },
+            {
+              "name": {
+                "value": "thwap"
+              }
+            },
+            {
+              "name": {
+                "value": "boil"
+              }
+            },
+            {
+              "name": {
+                "value": "slice"
+              }
+            },
+            {
+              "name": {
+                "value": "roll"
+              }
+            },
+            {
+              "name": {
+                "value": "slurp"
               }
             },
             {
@@ -224,39 +217,77 @@
             },
             {
               "name": {
+                "value": "chomp"
+              }
+            },
+            {
+              "name": {
+                "value": "yum"
+              }
+            },
+            {
+              "name": {
+                "value": "yuck"
+              }
+            },
+            {
+              "name": {
+                "value": "splash a dash"
+              }
+            },
+            {
+              "name": {
+                "value": "slice and dice"
+              }
+            },
+            {
+              "name": {
+                "value": "punch and crunch"
+              }
+            },
+            {
+              "name": {
+                "value": "block"
+              }
+            },
+            {
+              "name": {
+                "value": "dodge"
+              }
+            },
+            {
+              "name": {
+                "value": "jump"
+              }
+            },
+            {
+              "name": {
+                "value": "bow"
+              }
+            },
+            {
+              "name": {
                 "value": "crunch"
               }
             },
             {
               "name": {
-                "value": "low",
-                "synonyms": [
-                  "low",
-                  "first",
-                  "one"
-                ]
+                "value": "stew"
               }
             },
             {
               "name": {
-                "value": "medium",
-                "synonyms": [
-                  "medium",
-                  "middle",
-                  "second",
-                  "two"
-                ]
+                "value": "munch"
               }
             },
             {
               "name": {
-                "value": "high",
-                "synonyms": [
-                  "high",
-                  "third",
-                  "three",
-                  "last"
-                ]
+                "value": "stop don't drop"
+              }
+            },
+            {
+              "name": {
+                "value": "break"
               }
             }
           ]

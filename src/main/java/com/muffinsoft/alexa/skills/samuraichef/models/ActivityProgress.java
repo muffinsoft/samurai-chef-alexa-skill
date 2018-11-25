@@ -9,6 +9,8 @@ import java.util.Set;
 
 public class ActivityProgress {
 
+    private boolean isStripeComplete;
+    private boolean isMissionFinished;
     private String currentIngredientReaction = "";
     private int successCount = 0;
     private int mistakesCount = 0;
@@ -54,6 +56,7 @@ public class ActivityProgress {
         this.successCount = 0;
         this.mistakesCount = 0;
         this.previousIngredient = "";
+        this.setStripeComplete(false);
     }
 
     public void iterateSuccessCount() {
@@ -95,6 +98,22 @@ public class ActivityProgress {
         this.existingPowerUps.add(nextPowerUp.name());
     }
 
+    public boolean isStripeComplete() {
+        return this.isStripeComplete;
+    }
+
+    public void setStripeComplete(boolean stripeComplete) {
+        this.isStripeComplete = stripeComplete;
+    }
+
+    public boolean isMissionFinished() {
+        return isMissionFinished;
+    }
+
+    public void setMissionFinished(boolean missionFinished) {
+        this.isMissionFinished = missionFinished;
+    }
+
     public String getActivePowerUp() {
         return activePowerUp;
     }
@@ -108,9 +127,12 @@ public class ActivityProgress {
         return this.activePowerUp != null && !this.activePowerUp.isEmpty();
     }
 
-    public void removePowerUp() {
+    @JsonIgnore
+    public String removePowerUp() {
+        String currentlyEquippedPowerUp = this.activePowerUp;
         this.existingPowerUps.remove(this.activePowerUp);
         this.activePowerUp = null;
+        return currentlyEquippedPowerUp;
     }
 
     @JsonIgnore

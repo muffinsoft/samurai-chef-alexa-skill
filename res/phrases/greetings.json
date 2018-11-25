@@ -1,0 +1,72 @@
+{
+  "firstTimeGreeting": [
+    {
+      "content": "Hey! It's your friend Mary here. I've got a question for you. What's your favorite food?",
+      "role": "Mary",
+      "audio": null
+    },
+    {
+      "userResponse": true
+    },
+    {
+      "content": "Today I'm visiting a friend named Sensei Sushi who owns his own Japanese restaurant. Let's go!",
+      "role": "Mary",
+      "audio": null
+    },
+    {
+      "content": "Ah, Mary! Glad you're here.",
+      "role": "Sensei",
+      "audio": null
+    },
+    {
+      "content": "Hi Sensei! These are my friends.",
+      "role": "Mary",
+      "audio": null
+    },
+    {
+      "content": "Hello sensei, I'm Alexa. And this is my friend",
+      "role": "Alexa",
+      "audio": null
+    },
+    {
+      "content": "One question: have you ever eaten sushi?",
+      "role": "Sensei",
+      "audio": null
+    },
+    {
+      "userResponse": true
+    },
+    {
+      "content": "My sushi restaurant is on the verge of becoming the greatest! But I need your help.",
+      "role": "Sensei",
+      "audio": null
+    },
+    {
+      "content": "Really?! What can we do?",
+      "role": "Mary",
+      "audio": null
+    },
+    {
+      "content": "For my restaurant to become famous I need three things: another master chef, official sumo pro, and wise sushi guru. I teach you!",
+      "role": "Sensei",
+      "audio": null
+    },
+    {
+      "content": "I don't know about you but those all sound real cool! Sensei is ready to train us; let's go!",
+      "role": "Mary",
+      "audio": null
+    }
+  ],
+  "playerWithAwardsGreeting": [
+    {
+      "content": "Welcome back! I'm so happy to see you again....Alexa, please give our friend a royal greeting!",
+      "role": "Mary",
+      "audio": null
+    },
+    {
+      "content": "%titles%. You have %low_color% belt Chef, %mid_color% belt Sumo, %high_color% belt Guru",
+      "role": "Alexa",
+      "audio": null
+    }
+  ]
+}

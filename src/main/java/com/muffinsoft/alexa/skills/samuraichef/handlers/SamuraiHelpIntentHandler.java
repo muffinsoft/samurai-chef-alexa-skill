@@ -1,29 +1,22 @@
 package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
+import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.HelpIntentHandler;
-import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-
-import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
+import com.muffinsoft.alexa.skills.samuraichef.activities.HelpStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 
 public class SamuraiHelpIntentHandler extends HelpIntentHandler {
 
-    private final PhraseManager phraseManager;
-    private final CardManager cardManager;
+    private final ConfigContainer configurationContainer;
 
-    public SamuraiHelpIntentHandler(CardManager cardManager, PhraseManager phraseManager) {
+    public SamuraiHelpIntentHandler(ConfigContainer configurationContainer) {
         super();
-        this.phraseManager = phraseManager;
-        this.cardManager = cardManager;
+        this.configurationContainer = configurationContainer;
     }
 
     @Override
-    public String getPhrase() {
-        return "Here is description";
-    }
-
-    @Override
-    public String getSimpleCard() {
-        return cardManager.getValueByKey(WELCOME_CARD);
+    public StateManager nextTurn(HandlerInput handlerInput) {
+        return new HelpStateManager(getSlotsFromInput(handlerInput), handlerInput.getAttributesManager(), configurationContainer);
     }
 }

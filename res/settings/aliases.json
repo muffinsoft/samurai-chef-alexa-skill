@@ -1,7 +1,16 @@
 {
-  "SECOND_CHANCE_SLOT": "Secret Sauce",
-  "CORRECT_ANSWER_SLOT": "Chef Hat",
-  "LOW_MISSION": "Title of the first mission",
-  "MEDIUM_MISSION": "Title of the second Mission",
-  "HIGH_MISSION": "Title of the last mission"
+  "SECOND_CHANCE_SLOT": "Super Spatula",
+  "CORRECT_ANSWER_SLOT": "Secret Sauce",
+  "LOW_MISSION": "Path of the Chef",
+  "MEDIUM_MISSION": "Path of the Sumo",
+  "HIGH_MISSION": "Path of the Guru",
+  "LOW_MISSION_PERFECT_ACTIVITY": "Skilled Chef",
+  "LOW_MISSION_PERFECT_STRIPE": "Pro Chef",
+  "LOW_MISSION_PERFECT_MISSION": "The Unmatched Chef",
+  "MID_MISSION_PERFECT_ACTIVITY": "Giant Sumo",
+  "MID_MISSION_PERFECT_STRIPE": "Enormous Sumo",
+  "MID_MISSION_PERFECT_MISSION": "The Humongous Sumo",
+  "HIGH_MISSION_PERFECT_ACTIVITY": "Wise Guru",
+  "HIGH_MISSION_PERFECT_STRIPE": "Sage Guru",
+  "HIGH_MISSION_PERFECT_MISSION": "The Enlightened Guru"
 }

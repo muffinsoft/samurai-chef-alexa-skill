@@ -10,6 +10,8 @@ public class Stripe {
     private Long timeLimitPhaseTwoInMillis;
     private Integer maxMistakeCount;
     private Map<String, String> ingredients;
+    private boolean useVocabulary;
+    private String vocabularySource;
 
     public Integer getWonSuccessCount() {
         return wonSuccessCount;
@@ -57,5 +59,21 @@ public class Stripe {
 
     public void setIngredients(Map<String, String> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public boolean isUseVocabulary() {
+        return useVocabulary;
+    }
+
+    public void setUseVocabulary(boolean useVocabulary) {
+        this.useVocabulary = useVocabulary;
+    }
+
+    public String getVocabularySource() {
+        return vocabularySource;
+    }
+
+    public void setVocabularySource(String vocabularySource) {
+        this.vocabularySource = vocabularySource;
     }
 }

@@ -2,19 +2,11 @@ package com.muffinsoft.alexa.skills.samuraichef.enums;
 
 public enum Activities {
 
-    SUSHI_SLICE("sushiSlice"),
-    JUICE_WARRIOR("juiceWarrior"),
-    WORD_BOARD_KARATE("wordBoardKarate"),
-    FOOD_TASTER("foodTaster");
+    SUSHI_SLICE,
 
-    private final String title;
+    JUICE_WARRIOR,
 
+    WORD_BOARD_KARATE,
 
-    Activities(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return title;
-    }
+    FOOD_TASTER
 }

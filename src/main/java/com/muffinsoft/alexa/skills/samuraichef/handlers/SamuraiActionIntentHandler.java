@@ -2,71 +2,87 @@ package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.IntentRequest;
-import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.muffinsoft.alexa.sdk.activities.SessionStateManager;
-import com.muffinsoft.alexa.sdk.handlers.GameActionIntentHandler;
+import com.muffinsoft.alexa.sdk.activities.StateManager;
+import com.muffinsoft.alexa.sdk.handlers.GameIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.ExitStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.HelpStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.InitialGreetingStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.ResetConfirmationStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.ResetStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
-import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
+import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 
-import static com.amazon.ask.request.Predicates.intentName;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 
-public class SamuraiActionIntentHandler extends GameActionIntentHandler {
+public class SamuraiActionIntentHandler extends GameIntentHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(SamuraiActionIntentHandler.class);
-
-    private final CardManager cardManager;
-    private final MissionManager missionManager;
-    private final AliasManager aliasManager;
+    private final ConfigContainer configContainer;
     private final SessionStateFabric stateManagerFabric;
 
-    public SamuraiActionIntentHandler(CardManager cardManager, MissionManager missionManager, AliasManager aliasManager, SessionStateFabric stateManagerFabric) {
-        this.cardManager = cardManager;
-        this.missionManager = missionManager;
-        this.aliasManager = aliasManager;
+    public SamuraiActionIntentHandler(ConfigContainer configContainer, SessionStateFabric stateManagerFabric) {
+        this.configContainer = configContainer;
         this.stateManagerFabric = stateManagerFabric;
     }
 
     @Override
-    public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("SamuraiActionIntent"));
-    }
-
-    @Override
-    public SessionStateManager nextTurn(HandlerInput input) {
+    public StateManager nextTurn(HandlerInput input) {
 
         AttributesManager attributesManager = input.getAttributesManager();
 
-        Request request = input.getRequestEnvelope().getRequest();
+        Map<String, Slot> slots = getSlotsFromInput(input);
 
-        IntentRequest intentRequest = (IntentRequest) request;
+        Intents activeIntent = Intents.valueOf(String.valueOf(attributesManager.getSessionAttributes().getOrDefault(INTENT, Intents.GAME)));
 
-        Map<String, Slot> slots = intentRequest.getIntent().getSlots();
+        logger.debug("Handling ");
+
+        switch (activeIntent) {
+            case INITIAL_GREETING:
+                return new InitialGreetingStateManager(slots, attributesManager, configContainer);
+            case GAME:
+                return handleGameActivity(input, slots, attributesManager);
+            case CANCEL:
+                return new CancelStateManager(slots, attributesManager, configContainer);
+            case EXIT:
+                return new ExitStateManager(slots, attributesManager, configContainer);
+            case HELP:
+                return new HelpStateManager(slots, attributesManager, configContainer);
+            case RESET:
+                return new ResetStateManager(slots, attributesManager, configContainer);
+            case RESET_CONFIRMATION:
+                return new ResetConfirmationStateManager(slots, attributesManager, configContainer);
+            default:
+                throw new IllegalArgumentException("Unknown intent type " + activeIntent);
+        }
+    }
+
+    private StateManager handleGameActivity(HandlerInput input, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         boolean userSelectLevel = attributesManager.getSessionAttributes().containsKey(CURRENT_MISSION);
 
@@ -78,11 +94,11 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
 
             Activities currentActivity;
 
-            if (currentUserProgress.isJustCreated()) {
-                currentActivity = getCurrentActivity(input);
+            if (currentUserProgress.isJustCreated() || currentUserProgress.getCurrentActivity() == null) {
+                currentActivity = getFirstActivityForMission(input);
             }
             else {
-                currentActivity = Activities.valueOf(currentUserProgress.getLastActivity());
+                currentActivity = getActivityFromUserProgress(currentUserProgress);
             }
 
             PowerUps currentEquipment = PowerUps.EMPTY_SLOT;
@@ -93,15 +109,21 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
                 currentEquipment = PowerUps.valueOf(currentActivityProgress.getActivePowerUp());
             }
 
-            SessionStateManager stateManager = stateManagerFabric.createFromRequest(currentActivity, currentEquipment, slots, attributesManager);
+            StateManager stateManager = stateManagerFabric.createFromRequest(currentActivity, currentEquipment, slots, attributesManager);
 
-            logger.info("Going to handle activity " + currentActivity + " with equipment " + currentEquipment);
+            logger.debug("Going to handle activity " + currentActivity + " with equipment " + currentEquipment);
 
             return stateManager;
         }
         else {
-            return new SelectLevelStateManager(slots, attributesManager, aliasManager);
+            logger.debug("Going to handle mission selection ");
+            return new SelectLevelStateManager(slots, attributesManager, configContainer);
         }
+    }
+
+    private Activities getActivityFromUserProgress(UserProgress userProgress) {
+        String currentActivity = userProgress.getCurrentActivity();
+        return Activities.valueOf(currentActivity);
     }
 
     private ActivityProgress getCurrentActivityProgress(HandlerInput input) {
@@ -118,19 +140,30 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
         return rawUserProgress != null ? new ObjectMapper().convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
     }
 
-    private Activities getCurrentActivity(HandlerInput input) {
+    private Activities getFirstActivityForMission(HandlerInput input) {
 
         UserMission userMission = UserMission.valueOf(String.valueOf(input.getAttributesManager().getSessionAttributes().get(CURRENT_MISSION)));
 
-        Activities firstActivity = missionManager.getFirstActivityForLevel(userMission);
-
-        String rawActivity = String.valueOf(input.getAttributesManager().getSessionAttributes().getOrDefault(ACTIVITY, firstActivity.name()));
-        return Activities.valueOf(rawActivity);
+        return configContainer.getMissionManager().getFirstActivityForMission(userMission);
     }
 
     private void handlePersistentAttributes(HandlerInput input) {
 
         AttributesManager attributesManager = input.getAttributesManager();
+
+        if (!attributesManager.getSessionAttributes().containsKey(STAR_COUNT)) {
+            int starCount = ((BigDecimal) attributesManager.getPersistentAttributes().getOrDefault(STAR_COUNT, BigDecimal.ZERO)).intValue();
+            attributesManager.getSessionAttributes().put(STAR_COUNT, starCount);
+        }
+
+        if (!attributesManager.getSessionAttributes().containsKey(FINISHED_MISSIONS)) {
+            LinkedHashSet finishedMission = (LinkedHashSet) attributesManager.getPersistentAttributes().getOrDefault(FINISHED_MISSIONS, new LinkedHashSet<>());
+            List<String> result = new ArrayList<>();
+            for (Object o : finishedMission) {
+                result.add(String.valueOf(o));
+            }
+            attributesManager.getSessionAttributes().put(FINISHED_MISSIONS, result);
+        }
 
         if (!attributesManager.getSessionAttributes().containsKey(USER_PROGRESS)) {
 
@@ -177,15 +210,5 @@ public class SamuraiActionIntentHandler extends GameActionIntentHandler {
                 }
             }
         }
-    }
-
-    @Override
-    public String getPhrase() {
-        return null;
-    }
-
-    @Override
-    public String getSimpleCard() {
-        return cardManager.getValueByKey(WELCOME_CARD);
     }
 }

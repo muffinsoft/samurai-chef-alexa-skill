@@ -1,12 +1,18 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
+import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
+
 import java.util.Map;
 
 public class ActivitiesSettings {
 
     private String name;
-    private Map<String, Stripe> activitySettingsByStripeNumber;
-    private Map<String, Speech> activitySpeechesByStripeNumber;
+    private boolean competition;
+    private boolean useVocabulary;
+    private String vocabularySource;
+    private String competitionPartnerRole;
+    private Map<String, Map<String, Stripe>> activitySettingsByStripeNumber;
+    private Map<String, Map<String, SpeechSettings>> activitySpeechesByStripeNumber;
 
     public String getName() {
         return name;
@@ -16,27 +22,59 @@ public class ActivitiesSettings {
         this.name = name;
     }
 
-    public Stripe getSettingsByStripeNumber(int number) {
-        return activitySettingsByStripeNumber.get(String.valueOf(number));
+    public boolean isCompetition() {
+        return competition;
     }
 
-    public Map<String, Stripe> getActivitySettingsByStripeNumber() {
+    public void setCompetition(boolean competition) {
+        this.competition = competition;
+    }
+
+    public boolean isUseVocabulary() {
+        return useVocabulary;
+    }
+
+    public void setUseVocabulary(boolean useVocabulary) {
+        this.useVocabulary = useVocabulary;
+    }
+
+    public Map<String, Map<String, Stripe>> getActivitySettingsByStripeNumber() {
         return activitySettingsByStripeNumber;
     }
 
-    public void setActivitySettingsByStripeNumber(Map<String, Stripe> activitySettingsByStripeNumber) {
+    public void setActivitySettingsByStripeNumber(Map<String, Map<String, Stripe>> activitySettingsByStripeNumber) {
         this.activitySettingsByStripeNumber = activitySettingsByStripeNumber;
     }
 
-    public Map<String, Speech> getActivitySpeechesByStripeNumber() {
+    public Map<String, Map<String, SpeechSettings>> getActivitySpeechesByStripeNumber() {
         return activitySpeechesByStripeNumber;
     }
 
-    public void setActivitySpeechesByStripeNumber(Map<String, Speech> activitySpeechesByStripeNumber) {
+    public void setActivitySpeechesByStripeNumber(Map<String, Map<String, SpeechSettings>> activitySpeechesByStripeNumber) {
         this.activitySpeechesByStripeNumber = activitySpeechesByStripeNumber;
     }
 
-    public Speech getSpeechByStripeNumber(int number) {
-        return activitySpeechesByStripeNumber.get(String.valueOf(number));
+    public Stripe getSettingsByStripeNumberAtMission(int stripeNumber, UserMission mission) {
+        return this.activitySettingsByStripeNumber.get(mission.name()).get(String.valueOf(stripeNumber));
+    }
+
+    public SpeechSettings getSpeechByStripeNumberAtLevel(int stripeNumber, UserMission mission) {
+        return this.activitySpeechesByStripeNumber.get(mission.name()).get(String.valueOf(stripeNumber));
+    }
+
+    public String getCompetitionPartnerRole() {
+        return competitionPartnerRole;
+    }
+
+    public void setCompetitionPartnerRole(String competitionPartnerRole) {
+        this.competitionPartnerRole = competitionPartnerRole;
+    }
+
+    public String getVocabularySource() {
+        return vocabularySource;
+    }
+
+    public void setVocabularySource(String vocabularySource) {
+        this.vocabularySource = vocabularySource;
     }
 }

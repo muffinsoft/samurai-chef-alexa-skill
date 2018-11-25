@@ -8,6 +8,7 @@
     "no thank you"
   ],
   "YES": [
+    "ok",
     "yes",
     "yep",
     "yeah",
@@ -21,21 +22,18 @@
     "try again"
   ],
   "LOW": [
-    "low",
-    "first",
-    "one"
+    "path of the chef",
+    "path of chef",
+    "chef"
   ],
   "MEDIUM": [
-    "mid",
-    "middle",
-    "medium",
-    "second",
-    "two"
+    "path of the sumo",
+    "path of sumo",
+    "sumo"
   ],
   "HIGH": [
-    "high",
-    "third",
-    "last",
-    "three"
+    "path of the guru",
+    "path of guru",
+    "guru"
   ]
 }
