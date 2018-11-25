@@ -4,6 +4,9 @@ import com.muffinsoft.alexa.sdk.enums.SpeechType;
 import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class VoiceTranslator {
 
     public static Speech translate(String content) {
@@ -12,6 +15,10 @@ public class VoiceTranslator {
 
     public static Speech translate(String content, String role) {
         return translate(new PhraseSettings(content, role));
+    }
+
+    public static List<Speech> translate(List<PhraseSettings> phraseSettings) {
+        return phraseSettings.stream().map(VoiceTranslator::translate).collect(Collectors.toList());
     }
 
     public static Speech translate(PhraseSettings phraseSettings) {

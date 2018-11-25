@@ -11,7 +11,6 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -96,8 +95,14 @@ public class ResetConfirmationStateManager extends BaseStateManager {
 
         if (this.finishedMissions.contains(this.currentMission.name())) {
 
-            this.finishedMissions.remove(this.currentMission.name());
-            getPersistentAttributes().put(FINISHED_MISSIONS, this.finishedMissions);
+
+            if (this.finishedMissions.size() > 1) {
+                this.finishedMissions.remove(this.currentMission.name());
+                getPersistentAttributes().put(FINISHED_MISSIONS, this.finishedMissions);
+            }
+            else {
+                getPersistentAttributes().remove(FINISHED_MISSIONS);
+            }
 
             switch (this.currentMission) {
                 case LOW_MISSION:
@@ -133,7 +138,9 @@ public class ResetConfirmationStateManager extends BaseStateManager {
                 return;
             }
 
-            this.starCount = this.starCount - missionUserProgress.getStripeCount();
+            int stripeCountAtMission = missionUserProgress.getStripeCount();
+
+            this.starCount = this.starCount - stripeCountAtMission;
             getPersistentAttributes().put(STAR_COUNT, this.starCount);
             getSessionAttributes().put(STAR_COUNT, this.starCount);
 
@@ -150,28 +157,29 @@ public class ResetConfirmationStateManager extends BaseStateManager {
 
         logger.debug("Available session attributes: " + getSessionAttributes());
 
-        PhraseSettings dialog;
+        DialogItem.Builder builder = DialogItem.builder();
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
-            dialog = phraseManager.getValueByKey(SELECT_MISSION_PHRASE);
+            builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, Intents.GAME);
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-            dialog = phraseManager.getValueByKey(MISSION_PROGRESS_REMOVED_PHRASE);
+            builder.addResponse(translate(phraseManager.getValueByKey(MISSION_PROGRESS_REMOVED_PHRASE)));
+            builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
             getSessionAttributes().put(INTENT, Intents.GAME);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(USER_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
             getSessionAttributes().remove(STAR_COUNT);
+            getSessionAttributes().remove(CURRENT_MISSION);
             savePersistentAttributes();
         }
         else {
-            dialog = phraseManager.getValueByKey(REPEAT_LAST_PHRASE);
+            builder.addResponse(translate(phraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
         }
 
-        DialogItem.Builder builder = DialogItem.builder().addResponse(translate(dialog));
 
         return builder.build();
     }

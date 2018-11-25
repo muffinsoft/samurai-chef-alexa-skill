@@ -15,7 +15,6 @@ import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
