@@ -1,23 +1,25 @@
 {
   "name": "FOOD_TASTER",
   "competition": false,
+  "useVocabulary": true,
+  "vocabularySource": "settings/vocabularies/temp.json",
   "activitySettingsByStripeNumber": {
     "LOW_MISSION": {
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 3,
         "ingredients": {
-          "'W' sound": "wham",
-          "'H' sound": "haaa"
+          "W": "wham",
+          "H": "haaa"
         }
       },
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 3,
         "ingredients": {
-          "'W' sound": "wham",
-          "'H' sound": "haaa",
-          "'P' sound": "pow"
+          "W": "wham",
+          "H": "haaa",
+          "P": "pow"
         }
       }
     },
@@ -26,17 +28,17 @@
         "wonSuccessCount": 5,
         "maxMistakeCount": 3,
         "ingredients": {
-          "'Z' sound": "zonk",
-          "'F' sound": "fuah"
+          "Z": "zonk",
+          "F": "fuah"
         }
       },
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 3,
         "ingredients": {
-          "'Z' sound": "zonk",
-          "'F' sound": "fuah",
-          "'Woo' sound": "woosh"
+          "Z": "zonk",
+          "F": "fuah",
+          "Woo": "woosh"
         }
       }
     },
@@ -45,17 +47,17 @@
         "wonSuccessCount": 5,
         "maxMistakeCount": 3,
         "ingredients": {
-          "'Z' sound": "zaam",
-          "'W' sound": "whammo"
+          "Z": "zaam",
+          "W": "whammo"
         }
       },
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 3,
         "ingredients": {
-          "'Z' sound": "zaam",
-          "'W' sound": "whammo",
-          "'Th' sound": "thwap"
+          "Z": "zaam",
+          "W": "whammo",
+          "Th": "thwap"
         }
       }
     }

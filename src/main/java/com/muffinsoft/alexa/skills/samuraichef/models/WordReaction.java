@@ -1,11 +1,11 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
-public class IngredientReaction {
+public class WordReaction {
 
     private final String ingredient;
     private final String userReply;
 
-    public IngredientReaction(String ingredient, String userReply) {
+    public WordReaction(String ingredient, String userReply) {
         this.ingredient = ingredient;
         this.userReply = userReply;
     }

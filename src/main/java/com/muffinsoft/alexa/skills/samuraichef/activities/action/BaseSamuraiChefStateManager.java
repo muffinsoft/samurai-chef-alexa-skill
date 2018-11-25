@@ -20,7 +20,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
+import com.muffinsoft.alexa.skills.samuraichef.models.WordReaction;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
@@ -628,13 +628,13 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         builder.removeLastResponse();
 
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
-            IngredientReaction randomIngredient = getRandomIngredient();
+            WordReaction randomIngredient = getRandomIngredient();
 
             String wrongReplyOnIngredient = getWrongReplyOnIngredient(randomIngredient.getIngredient());
 
             builder
                     .replaceResponse(translate(randomIngredient.getIngredient()))
-                    .addResponse(translate(wrongReplyOnIngredient))
+                    .addResponse(translate(wrongReplyOnIngredient, this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
                     .withSlotName(actionSlotName)
                     .withReprompt(translate(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)));
         }
@@ -733,7 +733,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         Speech speech = builder.popLastSpeech();
 
-        IngredientReaction randomIngredient = getRandomIngredient();
+        WordReaction randomIngredient = getRandomIngredient();
 
         builder.addResponse(translate(randomIngredient.getIngredient()))
                 .addResponse(translate(randomIngredient.getUserReply(), this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
@@ -759,18 +759,18 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 .withReprompt(translate(phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE)));
     }
 
-    private IngredientReaction getRandomIngredient() {
-        return activityManager.getNextIngredient(this.stripe, null);
+    private WordReaction getRandomIngredient() {
+        return activityManager.getNextWord(this.stripe, null);
     }
 
     private String getWrongReplyOnIngredient(String ingredient) {
-        IngredientReaction nextIngredient = activityManager.getNextIngredient(this.stripe, ingredient);
+        WordReaction nextIngredient = activityManager.getNextWord(this.stripe, ingredient);
         return nextIngredient.getUserReply();
     }
 
     private String nextIngredient() {
 
-        IngredientReaction nextIngredient = activityManager.getNextIngredient(this.stripe, this.activityProgress.getPreviousIngredient());
+        WordReaction nextIngredient = activityManager.getNextWord(this.stripe, this.activityProgress.getPreviousIngredient());
 
         this.activityProgress.setCurrentIngredientReaction(nextIngredient.getUserReply());
         this.activityProgress.setPreviousIngredient(nextIngredient.getIngredient());

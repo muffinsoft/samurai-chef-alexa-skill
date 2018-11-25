@@ -66,6 +66,6 @@ public class SelectMissionStateManagerTest extends BaseStateManagerTest {
 
         Map<String, Object> sessionAttributes = stateManager.getSessionAttributes();
 
-        Assertions.assertNotEquals(sessionAttributes.get(USER_PROGRESS), null);
+        Assertions.assertNull(sessionAttributes.get(USER_PROGRESS));
     }
 }

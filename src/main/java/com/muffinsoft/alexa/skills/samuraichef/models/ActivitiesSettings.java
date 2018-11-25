@@ -8,6 +8,8 @@ public class ActivitiesSettings {
 
     private String name;
     private boolean competition;
+    private boolean useVocabulary;
+    private String vocabularySource;
     private String competitionPartnerRole;
     private Map<String, Map<String, Stripe>> activitySettingsByStripeNumber;
     private Map<String, Map<String, SpeechSettings>> activitySpeechesByStripeNumber;
@@ -26,6 +28,14 @@ public class ActivitiesSettings {
 
     public void setCompetition(boolean competition) {
         this.competition = competition;
+    }
+
+    public boolean isUseVocabulary() {
+        return useVocabulary;
+    }
+
+    public void setUseVocabulary(boolean useVocabulary) {
+        this.useVocabulary = useVocabulary;
     }
 
     public Map<String, Map<String, Stripe>> getActivitySettingsByStripeNumber() {
@@ -58,5 +68,13 @@ public class ActivitiesSettings {
 
     public void setCompetitionPartnerRole(String competitionPartnerRole) {
         this.competitionPartnerRole = competitionPartnerRole;
+    }
+
+    public String getVocabularySource() {
+        return vocabularySource;
+    }
+
+    public void setVocabularySource(String vocabularySource) {
+        this.vocabularySource = vocabularySource;
     }
 }

@@ -6,9 +6,9 @@ import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivitiesSettings;
-import com.muffinsoft.alexa.skills.samuraichef.models.IngredientReaction;
 import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
+import com.muffinsoft.alexa.skills.samuraichef.models.WordReaction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,13 +23,15 @@ public class ActivityManager {
     private static final String WORD_BOARD_KARATE = "settings/word-board-karate.json";
     private static final String FOOD_TASTER = "settings/food-taster.json";
 
+    private final ContentLoader contentLoader = new ContentLoader(new ObjectMapper());
+
     private final Map<Activities, ActivitiesSettings> containerByActivity;
+
+    private final Map<String, Map<String, List<String>>> vocabularies = new HashMap<>();
 
     public ActivityManager() {
 
         containerByActivity = new HashMap<>();
-
-        ContentLoader contentLoader = new ContentLoader(new ObjectMapper());
 
         containerByActivity.put(Activities.SUSHI_SLICE, contentLoader.loadContent(new ActivitiesSettings(), SUSHI_SLICE, new TypeReference<ActivitiesSettings>() {
         }));
@@ -41,22 +43,56 @@ public class ActivityManager {
         }));
     }
 
-    public IngredientReaction getNextIngredient(Stripe stripe, String previousIngredient) {
+    public WordReaction getNextWord(Stripe stripe, String previousWord) {
 
-        Map<String, String> ingredientsByActivity = stripe.getIngredients();
+        Map<String, String> wordsByActivity = stripe.getIngredients();
 
-        List<String> ingredientsList = new ArrayList<>(ingredientsByActivity.keySet());
+        List<String> wordList = new ArrayList<>(wordsByActivity.keySet());
 
-        if (previousIngredient != null) {
-            ingredientsList.remove(previousIngredient);
+        String word;
+        String wordSound;
+
+        if (stripe.isUseVocabulary()) {
+
+            String nextSound = wordSound = getRandomWordFromList(wordList);
+
+            Map<String, List<String>> vocabulary = getVocabulary(stripe);
+
+            List<String> iterationList = new ArrayList<>(vocabulary.get(nextSound));
+
+            if (previousWord != null) {
+                iterationList.remove(previousWord);
+            }
+
+            word = getRandomWordFromList(iterationList);
+
+        }
+        else {
+
+            if (previousWord != null) {
+                wordList.remove(previousWord);
+            }
+
+            word = wordSound = getRandomWordFromList(wordList);
+
         }
 
-        String ingredient = getRandomIngredientFromList(ingredientsList);
-
-        return new IngredientReaction(ingredient, ingredientsByActivity.get(ingredient));
+        return new WordReaction(word, wordsByActivity.get(wordSound));
     }
 
-    private String getRandomIngredientFromList(List<String> ingredients) {
+    private Map<String, List<String>> getVocabulary(Stripe stripe) {
+
+        String vocabularySource = stripe.getVocabularySource();
+
+        if (!vocabularies.containsKey(vocabularySource)) {
+            vocabularies.put(vocabularySource, contentLoader.loadContent(new HashMap<>(), vocabularySource, new TypeReference<Map<String, List<String>>>() {
+            }));
+        }
+
+        return vocabularies.get(vocabularySource);
+    }
+
+    private String getRandomWordFromList(List<String> ingredients) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         int nextIngredient = random.nextInt(ingredients.size());
         return ingredients.get(nextIngredient);
@@ -66,13 +102,18 @@ public class ActivityManager {
 
         ActivitiesSettings activitiesSettings = containerByActivity.get(currentActivity);
 
-        return activitiesSettings.getSettingsByStripeNumberAtMission(number, mission);
+        Stripe settingsByStripeNumberAtMission = activitiesSettings.getSettingsByStripeNumberAtMission(number, mission);
+
+        if (activitiesSettings.isUseVocabulary()) {
+            settingsByStripeNumberAtMission.setUseVocabulary(true);
+            settingsByStripeNumberAtMission.setVocabularySource(activitiesSettings.getVocabularySource());
+        }
+
+        return settingsByStripeNumberAtMission;
     }
 
     public SpeechSettings getSpeechForActivityByStripeNumberAtMission(Activities currentActivity, int number, UserMission level) {
-
         ActivitiesSettings activitiesSettings = containerByActivity.get(currentActivity);
-
         return activitiesSettings.getSpeechByStripeNumberAtLevel(number, level);
     }
 
