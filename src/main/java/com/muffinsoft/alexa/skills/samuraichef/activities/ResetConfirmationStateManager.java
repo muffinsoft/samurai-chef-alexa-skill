@@ -6,6 +6,7 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
+import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -45,6 +46,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     private final String userFoodSlotReply;
 
     private final PhraseManager phraseManager;
+    private final AliasManager aliasManager;
     private UserMission currentMission;
     private int starCount;
     private Set<String> finishedMissions;
@@ -52,6 +54,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     public ResetConfirmationStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
         super(slots, attributesManager);
         this.phraseManager = configContainer.getPhraseManager();
+        this.aliasManager = configContainer.getAliasManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
         this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
@@ -167,6 +170,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
             builder.addResponse(translate(phraseManager.getValueByKey(MISSION_PROGRESS_REMOVED_PHRASE)));
+            builder.addResponse(translate(aliasManager.getValueByKey(this.currentMission.name())));
             builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
             getSessionAttributes().put(INTENT, Intents.GAME);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
