@@ -1,8 +1,8 @@
 {
   "firstTimeGreeting": [
     {
-      "content": "Hey! It's your friend Mary here. I've got a question for you. What's your favorite food?",
-      "role": "Mary",
+      "content": "Hey! It's your friend Kiara here. I've got a question for you. What's your favorite food?",
+      "role": "Kiara",
       "audio": null
     },
     {
@@ -10,17 +10,17 @@
     },
     {
       "content": "Today I'm visiting a friend named Sensei Sushi who owns his own Japanese restaurant. Let's go!",
-      "role": "Mary",
+      "role": "Kiara",
       "audio": null
     },
     {
-      "content": "Ah, Mary! Glad you're here.",
+      "content": "Ah, Kiara! Glad you're here.",
       "role": "Sensei",
       "audio": null
     },
     {
       "content": "Hi Sensei! These are my friends.",
-      "role": "Mary",
+      "role": "Kiara",
       "audio": null
     },
     {
@@ -43,7 +43,7 @@
     },
     {
       "content": "Really?! What can we do?",
-      "role": "Mary",
+      "role": "Kiara",
       "audio": null
     },
     {
@@ -53,14 +53,14 @@
     },
     {
       "content": "I don't know about you but those all sound real cool! Sensei is ready to train us; let's go!",
-      "role": "Mary",
+      "role": "Kiara",
       "audio": null
     }
   ],
   "playerWithAwardsGreeting": [
     {
       "content": "Welcome back! I'm so happy to see you again....Alexa, please give our friend a royal greeting!",
-      "role": "Mary",
+      "role": "Kiara",
       "audio": null
     },
     {
