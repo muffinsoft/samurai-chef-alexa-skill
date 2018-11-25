@@ -71,7 +71,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         sushiSliceStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.ACTIVITY_INTRO);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.DEMO);
     }
 
     @Test
@@ -137,7 +137,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         sushiSliceStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.PHASE_1);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.WRAP_READY_RESULT);
     }
 
     @Test
@@ -194,7 +194,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         sushiSliceStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.LOSE);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.PHASE_1);
     }
 
     //    @Test
@@ -332,7 +332,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
 
         Assertions.assertEquals(sessionAttributes.get(STAR_COUNT), 2);
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.WIN);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.MISSION_OUTRO);
     }
 
     @Test

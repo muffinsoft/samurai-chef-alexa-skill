@@ -98,7 +98,6 @@ public class ResetConfirmationStateManager extends BaseStateManager {
 
         if (this.finishedMissions.contains(this.currentMission.name())) {
 
-
             if (this.finishedMissions.size() > 1) {
                 this.finishedMissions.remove(this.currentMission.name());
                 getPersistentAttributes().put(FINISHED_MISSIONS, this.finishedMissions);
@@ -106,21 +105,18 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             else {
                 getPersistentAttributes().remove(FINISHED_MISSIONS);
             }
-
-            switch (this.currentMission) {
-                case LOW_MISSION:
-                    removeMissionProgress(USER_LOW_PROGRESS_DB);
-                    break;
-                case MEDIUM_MISSION:
-                    removeMissionProgress(USER_MID_PROGRESS_DB);
-                    break;
-                case HIGH_MISSION:
-                    removeMissionProgress(USER_HIGH_PROGRESS_DB);
-                    break;
-            }
         }
-        else {
-            throw new IllegalStateException("Can't remove mission " + this.currentMission + " because it is absent in finished list");
+
+        switch (this.currentMission) {
+            case LOW_MISSION:
+                removeMissionProgress(USER_LOW_PROGRESS_DB);
+                break;
+            case MEDIUM_MISSION:
+                removeMissionProgress(USER_MID_PROGRESS_DB);
+                break;
+            case HIGH_MISSION:
+                removeMissionProgress(USER_HIGH_PROGRESS_DB);
+                break;
         }
 
         logger.debug("Persistent attributes on the end of handling: " + this.getPersistentAttributes().toString());
