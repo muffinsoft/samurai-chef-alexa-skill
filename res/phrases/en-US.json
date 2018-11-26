@@ -97,8 +97,8 @@
   "wantMissionFromBeginningPhrase": {
     "content": "Do you want to start the path from the beginning?"
   },
-  "missionProgressRemovedPhrase": {
-    "content": "The progress was removed."
+  "newMissionOrSelectPhrase": {
+    "content": "Do you want to chose another path?"
   },
   "helpCompetitionRulesPhrase": {
     "content": "In a competition, you and Mary take turns trying to provide the correct answer. The first one to lose two rounds by answering incorrectly loses."

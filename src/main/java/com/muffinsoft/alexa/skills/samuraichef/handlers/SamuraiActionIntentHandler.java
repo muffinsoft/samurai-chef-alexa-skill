@@ -11,6 +11,7 @@ import com.muffinsoft.alexa.skills.samuraichef.activities.ExitStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.HelpStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.InitialGreetingStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ResetConfirmationStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.ResetMissionSelectionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ResetStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
@@ -77,6 +78,8 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
                 return new ResetStateManager(slots, attributesManager, configContainer);
             case RESET_CONFIRMATION:
                 return new ResetConfirmationStateManager(slots, attributesManager, configContainer);
+            case RESET_MISSION_SELECTION:
+                return new ResetMissionSelectionStateManager(slots, attributesManager, configContainer);
             default:
                 throw new IllegalArgumentException("Unknown intent type " + activeIntent);
         }

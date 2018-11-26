@@ -66,7 +66,7 @@ public class PhraseConstants {
 
     public static final String WANT_MISSION_FROM_BEGINNING_PHRASE = "wantMissionFromBeginningPhrase";
 
-    public static final String MISSION_PROGRESS_REMOVED_PHRASE = "missionProgressRemovedPhrase";
+    public static final String NEW_MISSION_OR_SELECT_PHRASE = "newMissionOrSelectPhrase";
 
     public static final String HELP_COMPETITION_RULES_PHRASE = "helpCompetitionRulesPhrase";
 

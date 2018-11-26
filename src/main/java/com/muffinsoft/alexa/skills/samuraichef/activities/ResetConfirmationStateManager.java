@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_PROGRESS_REMOVED_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.NEW_MISSION_OR_SELECT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_TO_REMOVE_PHRASE;
@@ -173,8 +173,8 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             getSessionAttributes().put(INTENT, Intents.GAME);
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-            builder.addResponse(translate(phraseManager.getValueByKey(MISSION_PROGRESS_REMOVED_PHRASE)));
-            getSessionAttributes().put(INTENT, Intents.GAME);
+            builder.addResponse(translate(phraseManager.getValueByKey(NEW_MISSION_OR_SELECT_PHRASE)));
+            getSessionAttributes().put(INTENT, Intents.RESET_MISSION_SELECTION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(USER_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
