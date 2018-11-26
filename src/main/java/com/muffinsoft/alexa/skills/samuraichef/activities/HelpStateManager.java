@@ -267,7 +267,7 @@ public class HelpStateManager extends BaseStateManager {
             missionDescriptionHelp = phraseManager.getValueByKey(HELP_MISSION_HIGH_DESCRIPTION_PHRASE);
         }
 
-        if(this.userProgress != null) {
+        if (this.userProgress != null) {
             int stripeCount = this.userProgress.getStripeCount();
             String replace = missionDescriptionHelp.getContent().replace("#", String.valueOf(stripeCount + 1));
             missionDescriptionHelp.setContent(replace);

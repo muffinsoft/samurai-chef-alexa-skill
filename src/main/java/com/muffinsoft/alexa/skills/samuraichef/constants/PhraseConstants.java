@@ -74,12 +74,6 @@ public class PhraseConstants {
 
     public static final String HELP_MORE_DETAILS_PHRASE = "helpMoreDetailsPhrase";
 
-    public static final String HELP_MISSION_LOW_DESCRIPTION_PHRASE = "helpMissionLowDescriptionPhrase";
-
-    public static final String HELP_MISSION_MID_DESCRIPTION_PHRASE = "helpMissionMidDescriptionPhrase";
-
-    public static final String HELP_MISSION_HIGH_DESCRIPTION_PHRASE = "helpMissionHighDescriptionPhrase";
-
     public static final String HELP_NEW_WORDS_PHRASE = "helpNewWordsPhrase";
 
     public static final String HELP_GENERAL_PHRASE = "helpGeneralPhrase";
@@ -106,6 +100,12 @@ public class PhraseConstants {
     public static final String PERFECT_STRIPE_EARN_HIGH_PHRASE = "perfectStripeEarnHighPhrase";
     public static final String PERFECT_MISSION_EARN_HIGH_PHRASE = "perfectMissionEarnHighPhrase";
 
+
+    public static final String HELP_MISSION_LOW_DESCRIPTION_PHRASE = "helpMissionLowDescriptionPhrase";
+
+    public static final String HELP_MISSION_MID_DESCRIPTION_PHRASE = "helpMissionMidDescriptionPhrase";
+
+    public static final String HELP_MISSION_HIGH_DESCRIPTION_PHRASE = "helpMissionHighDescriptionPhrase";
 
     public static final String helpLowMissionStripe0SushiSlice = "helpLowMissionStripe0SushiSlice";
     public static final String helpLowMissionStripe0JuiceWarrior = "helpLowMissionStripe0JuiceWarrior";

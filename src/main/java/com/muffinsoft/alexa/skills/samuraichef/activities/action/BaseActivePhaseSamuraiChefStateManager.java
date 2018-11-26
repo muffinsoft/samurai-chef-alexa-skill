@@ -151,23 +151,6 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         }
     }
 
-
-//    private DialogItem.Builder equipIfAvailable(DialogItem.Builder builder) {
-//        PowerUps nextPowerUp =
-//        if (nextPowerUp != null) {
-//            PhraseSettings prependedString;
-//            if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
-//                prependedString = phraseManager.getValueByKey(JUST_USE_SECOND_CHANCE_PHRASE);
-//            }
-//            else {
-//                prependedString = phraseManager.getValueByKey(JUST_USE_CORRECT_ANSWER_PHRASE);
-//            }
-//            builder.addResponse(translate(prependedString));
-//            logger.debug("Was equipped power up: " + nextPowerUp);
-//        }
-//        return builder;
-//    }
-
     protected DialogItem.Builder handleSuccess(DialogItem.Builder builder) {
 
         this.activityProgress.iterateSuccessCount();
@@ -181,17 +164,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
             if (nextPowerUp != null) {
                 this.activityProgress.addPowerUp(nextPowerUp);
                 logger.debug("Was earned equipment: " + nextPowerUp);
-//                if (Objects.equals(this.activityProgress.getActivePowerUp(), nextPowerUp.name())) {
-//                    PhraseSettings prependedString;
-//                    if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
-//                        prependedString = phraseManager.getValueByKey(JUST_USE_SECOND_CHANCE_PHRASE);
-//                    }
-//                    else {
-//                        prependedString = phraseManager.getValueByKey(JUST_USE_CORRECT_ANSWER_PHRASE);
-//                    }
-//                    builder.addResponse(translate(prependedString));
-//                }
-//                else {
+
                 PhraseSettings prependedString;
                 if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
                     prependedString = phraseManager.getValueByKey(JUST_EARN_SECOND_CHANCE_PHRASE);
@@ -200,7 +173,6 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
                     prependedString = phraseManager.getValueByKey(JUST_EARN_CORRECT_ANSWER_PHRASE);
                 }
                 builder.addResponse(translate(prependedString));
-//                }
                 logger.debug("Was equipped power up: " + nextPowerUp);
             }
             else {

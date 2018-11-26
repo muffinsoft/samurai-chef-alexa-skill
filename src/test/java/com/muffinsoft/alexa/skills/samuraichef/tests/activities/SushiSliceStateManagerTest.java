@@ -119,28 +119,6 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
     }
 
     @Test
-    void testReadyPhase() {
-
-        Map<String, Slot> slots = createSlotsForValue("any");
-
-        ActivityProgress activityProgress = new ActivityProgress();
-
-        Map<String, Object> attributes = new HashMap<>();
-        attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
-        attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.READY_PHASE);
-
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
-
-        sushiSliceStateManager.nextResponse();
-
-        sushiSliceStateManager.updateAttributesManager();
-
-        Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.WRAP_READY_RESULT);
-    }
-
-    @Test
     void testActivePhaseWin() {
 
         Map<String, Slot> slots = createSlotsForValue("test");

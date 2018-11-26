@@ -174,13 +174,11 @@ public class ResetConfirmationStateManager extends BaseStateManager {
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
             builder.addResponse(translate(phraseManager.getValueByKey(MISSION_PROGRESS_REMOVED_PHRASE)));
-            builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
             getSessionAttributes().put(INTENT, Intents.GAME);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(USER_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
             getSessionAttributes().remove(STAR_COUNT);
-            getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(FINISHED_MISSIONS);
             savePersistentAttributes();
         }

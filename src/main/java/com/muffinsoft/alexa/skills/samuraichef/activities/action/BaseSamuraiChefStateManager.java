@@ -221,7 +221,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
-        if (this.userProgress.isMissionFinished()) {
+        if (this.finishedMissions.contains(this.currentMission.name())) {
             return handleAlreadyFinishedMission(builder);
         }
 
@@ -655,7 +655,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             }
             else {
                 builder = handleWinState(builder);
-//                resetActivityProgress();
             }
         }
 
@@ -704,7 +703,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     DialogItem.Builder getRePromptSuccessDialog(DialogItem.Builder builder) {
         return builder
                 .addResponse(translate(this.activityProgress.getPreviousIngredient()))
-                .withSlotName(actionSlotName);
+                .withSlotName(actionSlotName)
+                .turnOffReprompt();
     }
 
     DialogItem.Builder getSuccessDialog(DialogItem.Builder builder) {
@@ -717,7 +717,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             return appendMockCompetitionAnswer(builder);
         }
 
-        return builder;
+        return builder.turnOffReprompt();
     }
 
     private DialogItem.Builder appendMockCompetitionAnswer(DialogItem.Builder builder) {
@@ -738,7 +738,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder
                 .addResponse(translate(speechText))
                 .addResponse(translate(ingredient))
-                .withSlotName(actionSlotName);
+                .withSlotName(actionSlotName)
+                .turnOffReprompt();
     }
 
     DialogItem.Builder getLoseRoundDialog(DialogItem.Builder builder, String value) {
