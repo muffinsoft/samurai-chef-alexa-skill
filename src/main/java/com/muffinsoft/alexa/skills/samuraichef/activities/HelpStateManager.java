@@ -283,7 +283,7 @@ public class HelpStateManager extends BaseStateManager {
         getSessionAttributes().put(INTENT, Intents.GAME);
         getSessionAttributes().remove(HELP_STATE);
         builder.addResponse(translate(phraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
-        if (statePhase == StatePhase.PHASE_1 || statePhase == StatePhase.PHASE_2) {
+        if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {
             builder.addResponse(translate(activityProgress.getPreviousIngredient()));
         }
         getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
