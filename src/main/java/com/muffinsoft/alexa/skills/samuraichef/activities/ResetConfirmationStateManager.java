@@ -132,7 +132,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
                 missionUserProgress = mapper.convertValue(rawUserProgress, UserProgress.class);
             }
             else {
-                throw new IllegalStateException("Absent value " + value + " in persistent attributes");
+                return;
             }
 
             int stripeCountAtMission = missionUserProgress.getStripeCount();
