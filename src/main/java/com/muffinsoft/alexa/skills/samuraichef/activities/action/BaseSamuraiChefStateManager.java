@@ -79,7 +79,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.READY_PHA
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.STRIPE_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.STRIPE_OUTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WRAP_READY_RESULT;
 
 abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
@@ -248,9 +247,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             case READY_PHASE:
                 builder = handleReadyToStartState(builder);
                 break;
-            case WRAP_READY_RESULT:
-                builder = handleWrapReadyToStartState(builder);
-                break;
             case LOSE:
                 builder = handleLoseState(builder);
                 break;
@@ -412,34 +408,25 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder.withSlotName(actionSlotName);
     }
 
-    private DialogItem.Builder handleWrapReadyToStartState(DialogItem.Builder builder) {
+    private DialogItem.Builder handleReadyToStartState(DialogItem.Builder builder) {
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
             this.getSessionAttributes().remove(CURRENT_MISSION);
 
             return builder.withSlotName(actionSlotName).addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
-
         }
         else {
+            String speechText = nextIngredient();
+
+            logger.debug("Handling " + this.statePhase + ". Moving to " + PHASE_1);
+
             this.statePhase = PHASE_1;
 
-            return this.handleActivePhaseState(builder);
+            return builder.addResponse(translate(speechText)).withSlotName(actionSlotName);
         }
-    }
-
-    private DialogItem.Builder handleReadyToStartState(DialogItem.Builder builder) {
-
-        String speechText = nextIngredient();
-
-        logger.debug("Handling " + this.statePhase + ". Moving to " + PHASE_1);
-
-        this.statePhase = WRAP_READY_RESULT;
-
-        return builder.addResponse(translate(speechText)).withSlotName(actionSlotName);
     }
 
     protected void resetActivityProgress() {
-//        this.statePhase = ACTIVITY_INTRO;
         this.activityProgress.reset();
     }
 

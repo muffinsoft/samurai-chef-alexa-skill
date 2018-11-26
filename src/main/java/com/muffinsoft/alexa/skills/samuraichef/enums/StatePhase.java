@@ -15,8 +15,6 @@ public enum StatePhase {
 
     READY_PHASE,
 
-    WRAP_READY_RESULT,
-
     PHASE_1,
 
     PHASE_2,
