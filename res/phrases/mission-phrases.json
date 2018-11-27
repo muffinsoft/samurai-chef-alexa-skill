@@ -43,7 +43,7 @@
     "missionOutro": [
       {
         "content": "Hey, that was fun! Making sushi is great!",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       },
       {
@@ -58,7 +58,7 @@
       },
       {
         "content": "Awesome!",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       },
       {
@@ -67,13 +67,8 @@
         "audio": null
       },
       {
-        "content": "See ya Sensei!",
-        "role": "Lily",
-        "audio": null
-      },
-      {
-        "content": "Bye! Let's see what path we take on next!",
-        "role": "Mary",
+        "content": "See ya Sensei! Let's see what path we take on next!",
+        "role": "Kiara",
         "audio": null
       }
     ],
@@ -220,7 +215,7 @@
     "missionOutro": [
       {
         "content": "What a great time! Becoming a sumo is cooler than I thought!",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       },
       {
@@ -235,7 +230,7 @@
       },
       {
         "content": "We rock!",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       },
       {
@@ -245,7 +240,7 @@
       },
       {
         "content": "Our pleasure, Sensei! It was fun! Well, let's see what path we take on next!",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       }
     ],
@@ -392,7 +387,7 @@
     "missionOutro": [
       {
         "content": "How fun! I loved learning how important food is to growing strong and healthy!",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       },
       {
@@ -407,17 +402,17 @@
       },
       {
         "content": "Oh yeah!",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       },
       {
-        "content": "People the world over are now arriving here to seek both nutritious food and advice on healthy eating! I thank you greatly, Mary and friends!",
+        "content": "People the world over are now arriving here to seek both nutritious food and advice on healthy eating! I thank you greatly, Kiara and friends!",
         "role": "Sensei",
         "audio": null
       },
       {
         "content": "We couldn't have done it without ya, Sensei! Well, let's see what path we take on next!",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       }
     ],

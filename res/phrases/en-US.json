@@ -31,22 +31,26 @@
   ],
   "justEarnCorrectQuestionPhrase": [
     {
-      "content": "Wow, you got some Secret Sauce! When you use it, Sensei will accept any answer as correct!"
+      "content": "Wow, you got some Secret Sauce! When you use it, Sensei will accept any answer as correct!",
+      "role": "Kiara"
     }
   ],
   "justUseCorrectQuestionPhrase": [
     {
-      "content": "Sweet! With the Secret Sauce your answer was considered right, no matter what you said!"
+      "content": "Sweet! With the Secret Sauce your answer was considered right, no matter what you said!",
+      "role": "Kiara"
     }
   ],
   "justEarnSecondChancePhrase": [
     {
-      "content": "Nice, you earned a Super Spatula! With it you'll get a second chance the first time you give a wrong answer."
+      "content": "Nice, you earned a Super Spatula! With it you'll get a second chance the first time you give a wrong answer.",
+      "role": "Kiara"
     }
   ],
   "justUseSecondChancePhrase": [
     {
-      "content": "Good idea using the Super Spatula to get a second chance at responding!"
+      "content": "Good idea using the Super Spatula to get a second chance at responding!",
+      "role": "Kiara"
     }
   ],
   "twoMistakesLeftPhrase": [
@@ -56,12 +60,17 @@
   ],
   "oneMistakeLeftPhrase": [
     {
-      "content": "Uh oh, that was your second mistake! You can only make one more!"
+      "content": "Hmm! That was your second mistake! Since you first to give two wrong responses, Kiara wins challenge!",
+      "role": "Sensei"
+    },
+    {
+      "content": "Oh yeah! Better luck next time!",
+      "role": "Kiara"
     }
   ],
   "lastMistakePhrase": [
     {
-      "content": "Aww, that was your last mistake! Too bad..."
+      "content": "Aww, that was your third mistake! Too bad..."
     }
   ],
   "oneMistakeLeftCompetitionPhrase": [
@@ -72,18 +81,18 @@
   ],
   "lastMistakeCompetitionPhrase": [
     {
-      "content": "Aww, that was your last mistake! Too bad...",
-      "role": "Kiara wins again! Kiara is the winner!"
+      "content": "wins again! Kiara is the winner!",
+      "role": "Kiara "
     }
   ],
   "selectMissionPhrase": [
     {
-      "content": "There are three different paths to choose from: Path of Chef, Path of Sumo, and Path of Guru. They all have fun ways of cooking and eating food. Which one do you want to try?"
+      "content": "Sensei is ready to train you in the Path of Chef, Path of Sumo, or Path of Guru. Which one would you like?"
     }
   ],
   "selectMissionToRemovePhrase": [
     {
-      "content": "There are three different paths to choose from: Path of Chef, Path of Sumo, and Path of Guru. Enter the path before remove it?"
+      "content": "Sensei is ready to train you in the Path of Chef, Path of Sumo, or Path of Guru. Enter the path before remove it?"
     }
   ],
   "selectMissionUnknownPhrase": [

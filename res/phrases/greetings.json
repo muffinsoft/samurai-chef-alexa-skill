@@ -14,6 +14,11 @@
       "audio": null
     },
     {
+      "content": "[footsteps]",
+      "role": "Sound",
+      "audio": null
+    },
+    {
       "content": "Ah, Kiara! Glad you're here.",
       "role": "Sensei",
       "audio": null
@@ -52,7 +57,7 @@
       "audio": null
     },
     {
-      "content": "I don't know about you but those all sound real cool! Sensei is ready to train us; let's go!",
+      "content": "I don't know about you but those all sound real cool! Sensei is ready to train us. Alexa, tell us the available paths!",
       "role": "Kiara",
       "audio": null
     }
