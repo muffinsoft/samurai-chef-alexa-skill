@@ -2,7 +2,7 @@
   "name": "FOOD_TASTER",
   "competition": false,
   "useVocabulary": true,
-  "vocabularySource": "settings/vocabularies/temp.json",
+  "vocabularySource": "FOOD_TASTER",
   "activitySettingsByStripeNumber": {
     "LOW_MISSION": {
       "0": {

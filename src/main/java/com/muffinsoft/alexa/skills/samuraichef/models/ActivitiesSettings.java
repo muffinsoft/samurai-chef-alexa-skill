@@ -12,7 +12,6 @@ public class ActivitiesSettings {
     private String vocabularySource;
     private String competitionPartnerRole;
     private Map<String, Map<String, Stripe>> activitySettingsByStripeNumber;
-//    private Map<String, > activitySpeechesByStripeNumber;
 
     public String getName() {
         return name;
@@ -46,21 +45,9 @@ public class ActivitiesSettings {
         this.activitySettingsByStripeNumber = activitySettingsByStripeNumber;
     }
 
-//    public Map<String, Map<String, SpeechSettings>> getActivitySpeechesByStripeNumber() {
-//        return activitySpeechesByStripeNumber;
-//    }
-
-//    public void setActivitySpeechesByStripeNumber(Map<String, Map<String, SpeechSettings>> activitySpeechesByStripeNumber) {
-//        this.activitySpeechesByStripeNumber = activitySpeechesByStripeNumber;
-//    }
-
     public Stripe getSettingsByStripeNumberAtMission(int stripeNumber, UserMission mission) {
         return this.activitySettingsByStripeNumber.get(mission.name()).get(String.valueOf(stripeNumber));
     }
-
-//    public SpeechSettings getSpeechByStripeNumberAtLevel(int stripeNumber, UserMission mission) {
-//        return this.activitySpeechesByStripeNumber.get(mission.name()).get(String.valueOf(stripeNumber));
-//    }
 
     public String getCompetitionPartnerRole() {
         return competitionPartnerRole;
