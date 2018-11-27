@@ -28,7 +28,6 @@ public class VoiceTranslator {
         }
 
         switch (phraseSettings.getRole()) {
-            case "Mary":
             case "Kiara":
                 return new Speech(SpeechType.JOANNA, phraseSettings.getContent());
             case "Sensei":
@@ -37,6 +36,8 @@ public class VoiceTranslator {
                 return new Speech(SpeechType.TEXT, phraseSettings.getContent());
             case "Speechcon":
                 return new Speech(SpeechType.SPEECHCON, phraseSettings.getContent());
+            case "Sound":
+                return new Speech(SpeechType.AUDIO, phraseSettings.getAudio());
             default:
                 return new Speech(SpeechType.TEXT, phraseSettings.getContent());
         }

@@ -112,7 +112,7 @@
   ],
   "readyToStartMissionPhrase": [
     {
-      "content": "Are you ready to start "
+      "content": "Are you ready to start?"
     }
   ],
   "severalValuesPhrase": [
@@ -138,11 +138,6 @@
   "tryAgainPhrase": [
     {
       "content": "Try again!"
-    }
-  ],
-  "exitPhrase": [
-    {
-      "content": "We had fun together. Let's do this again soon."
     }
   ],
   "returnToGamePhrase": [

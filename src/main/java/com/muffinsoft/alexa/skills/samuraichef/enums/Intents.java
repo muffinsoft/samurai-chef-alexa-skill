@@ -9,5 +9,6 @@ public enum Intents {
     RESET_MISSION_SELECTION,
     GAME,
     EXIT,
+    EXIT_CONFIRMATION,
     INITIAL_GREETING
 }

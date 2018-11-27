@@ -73,5 +73,30 @@
       "role": "Alexa",
       "audio": null
     }
+  ],
+  "exitPhrase": [
+    {
+      "content": "I don't believe it! You have become the Ultimate Samurai Chef! It is an honor being your friend!",
+      "role": "Sensei",
+      "audio": null
+    },
+    {
+      "content": "You're amazing! Now that's an incredible nickname that's well earned! How do you feel about becoming the Ultimate Sushi Samurai?",
+      "role": "Kiara",
+      "audio": null
+    },
+    {
+      "userResponse": true
+    },
+    {
+      "content": "It's been a pleasure teaching you. Perhaps there will be greater challenges someday for you to master!",
+      "role": "Sensei",
+      "audio": null
+    },
+    {
+      "content": "Thanks Sensei. Well, one thing you can do is reset your progress. Would you like to start Samurai Chef all over?",
+      "role": "Kiara",
+      "audio": null
+    }
   ]
 }

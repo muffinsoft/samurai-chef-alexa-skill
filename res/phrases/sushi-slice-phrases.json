@@ -3,8 +3,13 @@
     "0": {
       "outro": [
         {
-          "content": "No! Sorry, Kiara!",
+          "content": "Kiara give wrong response, which means your friend win round!",
           "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Oops!",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -130,8 +135,13 @@
     "1": {
       "outro": [
         {
-          "content": "Kiara, incorrect answer!",
+          "content": "Kiara give wrong response, which means your friend win round!",
           "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Oops!",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -178,8 +188,13 @@
     "0": {
       "outro": [
         {
-          "content": "No! Sorry, Kiara!",
+          "content": "Kiara give wrong response, which means your friend win round!",
           "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Oops!",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -285,8 +300,13 @@
     "1": {
       "outro": [
         {
-          "content": "Kiara, incorrect answer!",
+          "content": "Kiara give wrong response, which means your friend win round!",
           "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Oops!",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -333,8 +353,13 @@
     "0": {
       "outro": [
         {
-          "content": "Kiara, incorrect answer!",
+          "content": "Kiara give wrong response, which means your friend win round!",
           "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Oops!",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -440,8 +465,13 @@
     "1": {
       "outro": [
         {
-          "content": "Kiara, incorrect answer!",
+          "content": "Kiara give wrong response, which means your friend win round!",
           "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Oops!",
+          "role": "Kiara",
           "audio": null
         },
         {

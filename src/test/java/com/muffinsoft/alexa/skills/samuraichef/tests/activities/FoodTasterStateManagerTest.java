@@ -41,7 +41,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         foodTasterStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = foodTasterStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.MISSION_INTRO);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.DEMO);
     }
 
     @Test

@@ -60,8 +60,6 @@ public class RegularPhraseConstants {
 
     public static final String REPEAT_LAST_PHRASE = "repeatLastPhrase";
 
-    public static final String EXIT_PHRASE = "exitPhrase";
-
     public static final String FALLBACK_PHRASE = "fallbackPhrase";
 
     public static final String WANT_MISSION_FROM_BEGINNING_PHRASE = "wantMissionFromBeginningPhrase";

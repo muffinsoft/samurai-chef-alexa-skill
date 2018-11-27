@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.GameIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.ExitConfirmationStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ExitStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.HelpStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.InitialGreetingStateManager;
@@ -75,6 +76,8 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
                 return new CancelStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case EXIT:
                 return new ExitStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
+            case EXIT_CONFIRMATION:
+                return new ExitConfirmationStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case HELP:
                 return new HelpStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case RESET:
