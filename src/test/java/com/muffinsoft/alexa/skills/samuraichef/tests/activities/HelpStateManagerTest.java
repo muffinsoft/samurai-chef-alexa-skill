@@ -29,7 +29,7 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
 
         Map<String, Object> attributes = new HashMap<>();
 
-        HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         helpStateManager.nextResponse();
 
@@ -52,7 +52,7 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
 
         attributes.put(USER_PROGRESS, userProgress);
 
-        HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         helpStateManager.nextResponse();
 
@@ -75,7 +75,7 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
 
         attributes.put(USER_PROGRESS, userProgress);
 
-        HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         helpStateManager.nextResponse();
 
@@ -99,7 +99,7 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(USER_PROGRESS, userProgress);
 
-        HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         helpStateManager.nextResponse();
 
@@ -118,7 +118,7 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION.name());
 
-        HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        HelpStateManager helpStateManager = new HelpStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         helpStateManager.nextResponse();
 

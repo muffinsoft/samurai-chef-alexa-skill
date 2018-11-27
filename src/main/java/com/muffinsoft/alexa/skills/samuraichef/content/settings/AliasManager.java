@@ -1,4 +1,4 @@
-package com.muffinsoft.alexa.skills.samuraichef.content;
+package com.muffinsoft.alexa.skills.samuraichef.content.settings;
 
 import com.muffinsoft.alexa.sdk.content.BaseContentManager;
 

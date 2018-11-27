@@ -1,0 +1,357 @@
+{
+  "LOW_MISSION": {
+    "0": {
+      "outro": [
+        {
+          "content": " Pretty good for a beginner!",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "content": "Customers are arriving and they very hungry! Good time for you to learn by helping Sensei, yes? First, only rice and fish.",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "We're ready!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "To prepare rice, say 'boil!' To cut the fish, say 'slice'. Let's get started!",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": true,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [
+        {
+          "content": "Watch Kiara closely!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Rice!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Boil!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Fish!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Slice!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Seaweed!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Roll!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Carrot!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Chop!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Egg!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Boil!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Now it’s your turn, Kiara’s friend.",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+    },
+    "1": {
+      "outro": [
+        {
+          "content": "Burp if you have to! You earned it!",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "content": "Now that lunch hour is over, I want to train your sense of taste! Vital to cooking! First, you taste soup, sushi and tea!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Hope you're hungry, buddy!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "To eat soup, say 'slurp!' To eat sushi, say 'gulp.' To sip tea, say 'sip!' Let's get started!",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+    }
+  },
+  "MEDIUM_MISSION": {
+    "0": {
+      "outro": [
+        {
+          "content": "Wow, you're an eating machine!",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "content": "The sooner you become sumo to represent my restaurant proudly, the better! So... eating time! First, only chicken and sushi!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Good protein to get nice and big!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "To eat chicken, say 'chomp!' To eat sushi, say 'gulp!'",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": true,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [
+        {
+          "content": "Watch Kiara closely!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Chicken!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Chomp!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Sushi!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Gulp!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Stew!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Slurp!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Fried Fish!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Munch!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Now it’s your turn, Kiara’s friend!",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+    },
+    "1": {
+      "outro": [
+        {
+          "content": "Hey, you're a natural at this!",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "content": "Time running short! I need you to become big sumo! For that, you must learn difference of good and bad food. Beef and tofu good! Soda, bad!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Soda is tasty but yeah, it's not very healthy.",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "If sensei gives you beef or tofu, say 'yum!' but if it's soda, say 'yuck!'",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+    }
+  },
+  "HIGH_MISSION": {
+    "0": {
+      "outro": [
+        {
+          "content": "You're already juicing like a pro! Keep it up!",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "content": "Customers from gym across the street arriving! We'll need lots of juice! First we make simple juice! Only milk and carrots!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "That's an interesting combination!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "To prepare milk, say 'splash a dash!' For carrots, say 'slice and dice!'",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": true,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [
+        {
+          "content": "Watch Kiara closely!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Carrot!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Slice and dice!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Milk!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Splash a dash!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Ice!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Punch and crunch!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Chopsticks!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Stop, don't drop!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "Good! Now your turn, Kiara's friend.",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+    },
+    "1": {
+      "outro": [
+        {
+          "content": "Have you done karate before? You rock!",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "content": "Good guru also knows importance of exercise! Karate time! I expect only best from you in my dojo!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Hope you're stretched and ready!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "if sensei does a punch, say 'Block!' If sensei does a kick, say 'Dodge!' If sensei tries a sweep, say 'Jump'",
+          "role": "Kiara",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+    }
+  }
+}

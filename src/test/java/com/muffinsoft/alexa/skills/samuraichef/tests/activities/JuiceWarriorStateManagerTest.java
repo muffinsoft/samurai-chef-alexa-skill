@@ -33,7 +33,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
 
-        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         juiceWarriorStateManager.nextResponse();
 
@@ -58,7 +58,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         juiceWarriorStateManager.nextResponse();
 
@@ -76,7 +76,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
 
         Map<String, Slot> slots = createSlotsForValue("test");
 
-        int successInRowForPowerUp = IoC.provideConfigurationContainer().getMissionManager().getSuccessInRowForPowerUp();
+        int successInRowForPowerUp = IoC.provideSettingsDependencies().getMissionManager().getSuccessInRowForPowerUp();
 
         ActivityProgress activityProgress = new ActivityProgress();
         activityProgress.setCurrentIngredientReaction("test");
@@ -88,7 +88,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         juiceWarriorStateManager.nextResponse();
 
@@ -117,7 +117,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         juiceWarriorStateManager.nextResponse();
 
@@ -151,7 +151,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         juiceWarriorStateManager.nextResponse();
 
@@ -187,7 +187,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         juiceWarriorStateManager.nextResponse();
 
@@ -218,7 +218,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis() - 18000);
 
-        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         juiceWarriorStateManager.nextResponse();
 
@@ -252,7 +252,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis() - 18000);
 
-        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         juiceWarriorStateManager.nextResponse();
 
@@ -288,7 +288,7 @@ class JuiceWarriorStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis() - 18000);
 
-        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        JuiceWarriorStateManager juiceWarriorStateManager = new JuiceWarriorSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         juiceWarriorStateManager.nextResponse();
 

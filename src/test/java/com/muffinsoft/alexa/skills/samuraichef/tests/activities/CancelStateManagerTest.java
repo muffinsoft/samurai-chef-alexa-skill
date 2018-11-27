@@ -44,7 +44,7 @@ public class CancelStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_PROGRESS, toMap(userProgress));
 
-        CancelStateManager stateManager = new CancelStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        CancelStateManager stateManager = new CancelStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         stateManager.nextResponse();
 

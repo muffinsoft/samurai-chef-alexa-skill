@@ -1,4 +1,4 @@
-package com.muffinsoft.alexa.skills.samuraichef.content;
+package com.muffinsoft.alexa.skills.samuraichef.content.settings;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -122,27 +122,7 @@ public class MissionManager {
         return currentActivity;
     }
 
-    public List<PhraseSettings> getMissionIntro(UserMission mission) {
-        MissionActivities missionContainer = container.getMissionByTitle(mission);
-        return missionContainer.getMissionIntro();
-    }
-
-    public List<PhraseSettings> getMissionOutro(UserMission mission) {
-        MissionActivities missionContainer = container.getMissionByTitle(mission);
-        return missionContainer.getMissionOutro();
-    }
-
-    public List<PhraseSettings> getStripeOutroByMission(UserMission mission, int number) {
-        MissionActivities missionContainer = container.getMissionByTitle(mission);
-        return missionContainer.getStripeOutroByNumber(number);
-    }
-
     public int getSuccessInRowForPowerUp() {
         return container.getSuccessInRowForPowerUp();
-    }
-
-    public List<PhraseSettings> getStripeIntroByMission(UserMission mission, int number) {
-        MissionActivities missionContainer = container.getMissionByTitle(mission);
-        return missionContainer.getStripeIntroByNumber(number);
     }
 }

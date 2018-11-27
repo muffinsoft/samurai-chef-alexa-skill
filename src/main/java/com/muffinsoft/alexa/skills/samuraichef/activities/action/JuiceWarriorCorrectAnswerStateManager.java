@@ -3,14 +3,15 @@ package com.muffinsoft.alexa.skills.samuraichef.activities.action;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 
 import java.util.Map;
 
 public class JuiceWarriorCorrectAnswerStateManager extends JuiceWarriorStateManager {
 
-    public JuiceWarriorCorrectAnswerStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
-        super(slots, attributesManager, configContainer);
+    public JuiceWarriorCorrectAnswerStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
+        super(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
     }
 
     @Override

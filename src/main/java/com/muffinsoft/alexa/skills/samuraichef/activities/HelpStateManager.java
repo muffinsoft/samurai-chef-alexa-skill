@@ -6,16 +6,17 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
-import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.HelpPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
-import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
@@ -29,25 +30,24 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_COMPETITION_RULES_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_CONTINUE_PLAYING_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_GENERAL_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_LEARN_MORE_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_MISSION_HIGH_DESCRIPTION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_MISSION_LOW_DESCRIPTION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_MISSION_MID_DESCRIPTION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_MORE_DETAILS_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.HELP_NEW_WORDS_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.RETURN_TO_GAME_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_START_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_COMPETITION_RULES_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_CONTINUE_PLAYING_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_GENERAL_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_LEARN_MORE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MISSION_HIGH_DESCRIPTION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MISSION_LOW_DESCRIPTION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MISSION_MID_DESCRIPTION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MORE_DETAILS_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_NEW_WORDS_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.RETURN_TO_GAME_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_START_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.HELP_STATE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.COMPETITION_REMINDER_HELP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.CONTINUE_PLAYING_HELP;
@@ -55,7 +55,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.GENERAL_H
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.LEARN_MORE_HELP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.MORE_DETAILS_HELP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.valueOf;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_INTRO;
 
 public class HelpStateManager extends BaseStateManager {
 
@@ -63,22 +62,23 @@ public class HelpStateManager extends BaseStateManager {
 
     private final String userFoodSlotReply;
 
-    private final PhraseManager phraseManager;
+    private final RegularPhraseManager regularPhraseManager;
+    private final HelpPhraseManager helpPhraseManager;
     private final ActivityManager activityManager;
 
     private ActivityProgress activityProgress;
 
-    private StatePhase statePhase;
     private UserProgress userProgress;
     private UserMission currentMission;
     private Activities currentActivity;
     private Intents currentIntent;
     private Set<String> finishedMissions;
 
-    public HelpStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
+    public HelpStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(slots, attributesManager);
-        this.phraseManager = configContainer.getPhraseManager();
-        this.activityManager = configContainer.getActivityManager();
+        this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
+        this.helpPhraseManager = phraseDependencyContainer.getHelpPhraseManager();
+        this.activityManager = settingsDependencyContainer.getActivityManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
         this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
@@ -106,14 +106,6 @@ public class HelpStateManager extends BaseStateManager {
         }
 
         this.currentIntent = Intents.valueOf(String.valueOf(getSessionAttributes().getOrDefault(INTENT, Intents.GAME.name())));
-
-        String stringifyState = String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO));
-        if (stringifyState != null && !stringifyState.isEmpty() && !stringifyState.equals("null")) {
-            this.statePhase = StatePhase.valueOf(stringifyState);
-        }
-        else {
-            this.statePhase = null;
-        }
 
         LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
         this.userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
@@ -154,7 +146,7 @@ public class HelpStateManager extends BaseStateManager {
                     getSessionAttributes().put(INTENT, Intents.GAME);
                     getSessionAttributes().remove(HELP_STATE);
                     getSessionAttributes().remove(CURRENT_MISSION);
-                    builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+                    builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
                 }
                 else {
                     handleProceedGame(builder);
@@ -208,17 +200,17 @@ public class HelpStateManager extends BaseStateManager {
         if (this.currentActivity != null) {
             if (activityManager.isActivityCompetition(this.currentActivity)) {
                 // Competition Rules & Examples
-                builder.addResponse(translate(phraseManager.getValueByKey(HELP_COMPETITION_RULES_PHRASE)));
+                builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_COMPETITION_RULES_PHRASE)));
                 getSessionAttributes().put(HELP_STATE, COMPETITION_REMINDER_HELP);
             }
             else {
-                builder.addResponse(translate(phraseManager.getValueByKey(HELP_NEW_WORDS_PHRASE)));
+                builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_NEW_WORDS_PHRASE)));
                 if (finishedMissions.isEmpty() && userProgress.getFinishedActivities().isEmpty()) {
                     handleLearnMore(builder);
                 }
                 else {
                     getSessionAttributes().put(HELP_STATE, MORE_DETAILS_HELP);
-                    builder.addResponse(translate(phraseManager.getValueByKey(HELP_MORE_DETAILS_PHRASE)));
+                    builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_MORE_DETAILS_PHRASE)));
                 }
             }
         }
@@ -236,7 +228,7 @@ public class HelpStateManager extends BaseStateManager {
 
     private void handleLearnMore(DialogItem.Builder builder) {
         getSessionAttributes().put(HELP_STATE, LEARN_MORE_HELP);
-        builder.addResponse(translate(phraseManager.getValueByKey(HELP_LEARN_MORE_PHRASE)));
+        builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_LEARN_MORE_PHRASE)));
     }
 
     private void handleActivityDescription(DialogItem.Builder builder) {
@@ -247,42 +239,44 @@ public class HelpStateManager extends BaseStateManager {
 
         String key = "help" + this.currentMission.key + "Stripe" + userProgress.getStripeCount() + this.currentActivity.key;
 
-        builder.addResponse(translate(phraseManager.getValueByKey(key)));
+        builder.addResponse(translate(regularPhraseManager.getValueByKey(key)));
     }
 
     private void handleMissionDescription(DialogItem.Builder builder) {
         // Mission specific goal description
         // Current Star progress
         //  Do you want to continue playing?
-        PhraseSettings missionDescriptionHelp;
+        List<PhraseSettings> missionDescriptionHelp;
 
         if (currentMission == UserMission.LOW_MISSION) {
-            missionDescriptionHelp = phraseManager.getValueByKey(HELP_MISSION_LOW_DESCRIPTION_PHRASE);
+            missionDescriptionHelp = helpPhraseManager.getValueByKey(HELP_MISSION_LOW_DESCRIPTION_PHRASE);
 
         }
         else if (currentMission == UserMission.MEDIUM_MISSION) {
-            missionDescriptionHelp = phraseManager.getValueByKey(HELP_MISSION_MID_DESCRIPTION_PHRASE);
+            missionDescriptionHelp = helpPhraseManager.getValueByKey(HELP_MISSION_MID_DESCRIPTION_PHRASE);
         }
         else {
-            missionDescriptionHelp = phraseManager.getValueByKey(HELP_MISSION_HIGH_DESCRIPTION_PHRASE);
+            missionDescriptionHelp = helpPhraseManager.getValueByKey(HELP_MISSION_HIGH_DESCRIPTION_PHRASE);
         }
 
         if (this.userProgress != null) {
             int stripeCount = this.userProgress.getStripeCount();
-            String replace = missionDescriptionHelp.getContent().replace("#", String.valueOf(stripeCount + 1));
-            missionDescriptionHelp.setContent(replace);
+            for (PhraseSettings settings : missionDescriptionHelp) {
+                String replace = settings.getContent().replace("#", String.valueOf(stripeCount + 1));
+                settings.setContent(replace);
+            }
         }
 
         builder.addResponse(translate(missionDescriptionHelp));
 
         getSessionAttributes().put(HELP_STATE, CONTINUE_PLAYING_HELP);
-        builder.addResponse(translate(phraseManager.getValueByKey(HELP_CONTINUE_PLAYING_PHRASE)));
+        builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_CONTINUE_PLAYING_PHRASE)));
     }
 
     private void handleProceedGame(DialogItem.Builder builder) {
         getSessionAttributes().put(INTENT, Intents.GAME);
         getSessionAttributes().remove(HELP_STATE);
-        builder.addResponse(translate(phraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
+        builder.addResponse(translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
         if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {
             builder.addResponse(translate(activityProgress.getPreviousIngredient()));
         }
@@ -293,7 +287,7 @@ public class HelpStateManager extends BaseStateManager {
     private void handleGeneralHelp(DialogItem.Builder builder) {
         getSessionAttributes().put(HELP_STATE, GENERAL_HELP);
         // General Help %Game  description%
-        builder.addResponse(translate(phraseManager.getValueByKey(HELP_GENERAL_PHRASE)));
-        builder.addResponse(translate(phraseManager.getValueByKey(WANT_START_MISSION_PHRASE)));
+        builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_GENERAL_PHRASE)));
+        builder.addResponse(translate(regularPhraseManager.getValueByKey(WANT_START_MISSION_PHRASE)));
     }
 }

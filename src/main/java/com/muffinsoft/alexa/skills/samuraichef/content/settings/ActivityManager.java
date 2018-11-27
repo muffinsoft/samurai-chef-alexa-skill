@@ -1,4 +1,4 @@
-package com.muffinsoft.alexa.skills.samuraichef.content;
+package com.muffinsoft.alexa.skills.samuraichef.content.settings;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,7 +6,6 @@ import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivitiesSettings;
-import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
 import com.muffinsoft.alexa.skills.samuraichef.models.WordReaction;
 
@@ -110,11 +109,6 @@ public class ActivityManager {
         }
 
         return settingsByStripeNumberAtMission;
-    }
-
-    public SpeechSettings getSpeechForActivityByStripeNumberAtMission(Activities currentActivity, int number, UserMission level) {
-        ActivitiesSettings activitiesSettings = containerByActivity.get(currentActivity);
-        return activitiesSettings.getSpeechByStripeNumberAtLevel(number, level);
     }
 
     public boolean isActivityCompetition(Activities currentActivity) {

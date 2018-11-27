@@ -5,12 +5,13 @@ import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
-import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsConstants;
-import com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants;
+import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsPhraseConstants;
+import com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
-import com.muffinsoft.alexa.skills.samuraichef.content.GreetingsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 
 import java.util.List;
@@ -24,15 +25,15 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.Intents.INITIAL_GREE
 
 public class InitialGreetingStateManager extends BaseStateManager {
 
-    private final GreetingsManager greetingsManager;
-    private final PhraseManager phraseManager;
+    private final GreetingsPhraseManager greetingsPhraseManager;
+    private final RegularPhraseManager regularPhraseManager;
 
     private Integer userReplyBreakpointPosition;
 
-    public InitialGreetingStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, ConfigContainer configContainer) {
+    public InitialGreetingStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(inputSlots, attributesManager);
-        this.greetingsManager = configContainer.getGreetingsManager();
-        this.phraseManager = configContainer.getPhraseManager();
+        this.greetingsPhraseManager = phraseDependencyContainer.getGreetingsPhraseManager();
+        this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
     }
 
     @Override
@@ -45,7 +46,7 @@ public class InitialGreetingStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
-        List<PhraseSettings> dialog = greetingsManager.getValueByKey(GreetingsConstants.FIRST_TIME_GREETING);
+        List<PhraseSettings> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.FIRST_TIME_GREETING);
 
         this.getSessionAttributes().remove(USER_REPLY_BREAKPOINT);
         this.getSessionAttributes().put(INTENT, GAME);
@@ -68,7 +69,7 @@ public class InitialGreetingStateManager extends BaseStateManager {
         }
 
         if (index >= dialog.size()) {
-            builder.addResponse(translate(phraseManager.getValueByKey(PhraseConstants.SELECT_MISSION_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)));
         }
 
         return builder

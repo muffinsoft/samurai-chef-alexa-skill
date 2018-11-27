@@ -6,11 +6,12 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,10 +25,10 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.NEW_MISSION_OR_SELECT_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_TO_REMOVE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.NEW_MISSION_OR_SELECT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_TO_REMOVE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
@@ -45,14 +46,14 @@ public class ResetConfirmationStateManager extends BaseStateManager {
 
     private final String userFoodSlotReply;
 
-    private final PhraseManager phraseManager;
+    private final RegularPhraseManager regularPhraseManager;
     private UserMission currentMission;
     private int starCount;
     private Set<String> finishedMissions;
 
-    public ResetConfirmationStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
+    public ResetConfirmationStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(slots, attributesManager);
-        this.phraseManager = configContainer.getPhraseManager();
+        this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
         this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
@@ -161,19 +162,19 @@ public class ResetConfirmationStateManager extends BaseStateManager {
         DialogItem.Builder builder = DialogItem.builder();
 
         if (this.currentMission == null) {
-            builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_TO_REMOVE_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_TO_REMOVE_PHRASE)));
             getSessionAttributes().put(INTENT, Intents.GAME);
             return builder.build();
         }
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
-            builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, Intents.GAME);
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-            builder.addResponse(translate(phraseManager.getValueByKey(NEW_MISSION_OR_SELECT_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(NEW_MISSION_OR_SELECT_PHRASE)));
             getSessionAttributes().put(INTENT, Intents.RESET_MISSION_SELECTION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(USER_PROGRESS);
@@ -183,7 +184,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             savePersistentAttributes();
         }
         else {
-            builder.addResponse(translate(phraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
         }
 
         return builder.build();

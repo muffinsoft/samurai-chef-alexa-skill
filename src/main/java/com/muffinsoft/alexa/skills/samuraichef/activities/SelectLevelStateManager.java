@@ -7,22 +7,21 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
-import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,11 +29,11 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_CONTINUE_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_UNKNOWN_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_RESET_PROGRESS_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_CONTINUE_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_START_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_UNKNOWN_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_RESET_PROGRESS_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
@@ -52,14 +51,14 @@ public class SelectLevelStateManager extends BaseStateManager {
     private final String userFoodSlotReply;
 
     private final AliasManager aliasManager;
-    private final PhraseManager phraseManager;
+    private final RegularPhraseManager regularPhraseManager;
     //    private UserProgress userProgress;
     private Set<String> finishedMissions;
 
-    public SelectLevelStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
+    public SelectLevelStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(slots, attributesManager);
-        this.aliasManager = configContainer.getAliasManager();
-        this.phraseManager = configContainer.getPhraseManager();
+        this.aliasManager = settingsDependencyContainer.getAliasManager();
+        this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
         this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
@@ -91,7 +90,7 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 //        if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-//            builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+//            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
 //        }
         if (UserReplyComparator.compare(getUserReply(), UserReplies.LOW)) {
             builder.addResponse(translate(checkIfMissionAvailable(UserMission.LOW_MISSION)));
@@ -103,7 +102,7 @@ public class SelectLevelStateManager extends BaseStateManager {
             builder.addResponse(translate(checkIfMissionAvailable(UserMission.HIGH_MISSION)));
         }
         else {
-            builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_UNKNOWN_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_UNKNOWN_PHRASE)));
         }
 
         if (this.getSessionAttributes().containsKey(CURRENT_MISSION)) {
@@ -120,7 +119,10 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         if (finishedMissions.contains(mission.name())) {
             getSessionAttributes().put(INTENT, Intents.RESET_CONFIRMATION);
-            return Arrays.asList(phraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE), phraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE));
+            ArrayList<PhraseSettings> result = new ArrayList<>();
+            result.addAll(regularPhraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE));
+            result.addAll(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE));
+            return result;
         }
 
         this.getSessionAttributes().remove(ACTIVITY_PROGRESS);
@@ -139,17 +141,12 @@ public class SelectLevelStateManager extends BaseStateManager {
     }
 
     private List<PhraseSettings> startOrContinuePhrase(UserMission mission) {
-        PhraseSettings phraseSettings;
         if (hasProgressInMission(mission)) {
-            phraseSettings = phraseManager.getValueByKey(READY_TO_CONTINUE_MISSION_PHRASE);
+            return regularPhraseManager.getValueByKey(READY_TO_CONTINUE_MISSION_PHRASE);
         }
         else {
-            phraseSettings = phraseManager.getValueByKey(READY_TO_START_MISSION_PHRASE);
+            return regularPhraseManager.getValueByKey(READY_TO_START_MISSION_PHRASE);
         }
-
-        phraseSettings.setContent(phraseSettings.getContent() + " " + aliasManager.getValueByKey(mission.name()) + "?");
-
-        return Collections.singletonList(phraseSettings);
     }
 
     private boolean hasProgressInMission(UserMission mission) {

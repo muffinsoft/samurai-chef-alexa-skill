@@ -1,4 +1,4 @@
-package com.muffinsoft.alexa.skills.samuraichef.content;
+package com.muffinsoft.alexa.skills.samuraichef.content.phrases;
 
 import com.muffinsoft.alexa.sdk.content.BaseContentManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
@@ -6,9 +6,9 @@ import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GreetingsManager extends BaseContentManager<List<PhraseSettings>> {
+public class HelpPhraseManager extends BaseContentManager<List<PhraseSettings>> {
 
-    public GreetingsManager(String path) {
+    public HelpPhraseManager(String path) {
         super(path);
     }
 

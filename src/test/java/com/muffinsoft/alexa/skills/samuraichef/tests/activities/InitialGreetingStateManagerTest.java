@@ -22,7 +22,7 @@ class InitialGreetingStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(SessionConstants.USER_REPLY_BREAKPOINT, 2);
 
-        InitialGreetingStateManager initialGreetingStateManager = new InitialGreetingStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        InitialGreetingStateManager initialGreetingStateManager = new InitialGreetingStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         initialGreetingStateManager.nextResponse();
 
@@ -37,7 +37,7 @@ class InitialGreetingStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(SessionConstants.USER_REPLY_BREAKPOINT, 9);
 
-        InitialGreetingStateManager initialGreetingStateManager = new InitialGreetingStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        InitialGreetingStateManager initialGreetingStateManager = new InitialGreetingStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         initialGreetingStateManager.nextResponse();
 

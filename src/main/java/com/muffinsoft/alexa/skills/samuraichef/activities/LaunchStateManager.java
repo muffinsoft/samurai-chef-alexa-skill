@@ -5,17 +5,18 @@ import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.constants.AliasConstants;
-import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsConstants;
-import com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants;
+import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsPhraseConstants;
+import com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
-import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.CardManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.GreetingsManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,20 +41,20 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 public class LaunchStateManager extends BaseStateManager {
 
     private static final Logger logger = LogManager.getLogger(LaunchStateManager.class);
-    private final GreetingsManager greetingsManager;
+    private final GreetingsPhraseManager greetingsPhraseManager;
     private final AliasManager aliasManager;
-    private final PhraseManager phraseManager;
+    private final RegularPhraseManager regularPhraseManager;
     private final CardManager cardManager;
     private final AttributesManager attributesManager;
     private Set<String> finishedMissions;
 
-    public LaunchStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, GreetingsManager greetingsManager, ConfigContainer configContainer) {
+    public LaunchStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(inputSlots, attributesManager);
-        this.greetingsManager = greetingsManager;
+        this.greetingsPhraseManager = phraseDependencyContainer.getGreetingsPhraseManager();
         this.attributesManager = attributesManager;
-        this.cardManager = configContainer.getCardManager();
-        this.phraseManager = configContainer.getPhraseManager();
-        this.aliasManager = configContainer.getAliasManager();
+        this.cardManager = settingsDependencyContainer.getCardManager();
+        this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
+        this.aliasManager = settingsDependencyContainer.getAliasManager();
     }
 
     @Override
@@ -104,12 +105,12 @@ public class LaunchStateManager extends BaseStateManager {
 
         builder = buildRoyalGreetingWithAwards(builder, lowUserProgress, midUserProgress, highUserProgress);
 
-        return builder.addResponse(translate(phraseManager.getValueByKey(PhraseConstants.SELECT_MISSION_PHRASE)));
+        return builder.addResponse(translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)));
     }
 
     private DialogItem.Builder buildRoyalGreetingWithAwards(DialogItem.Builder builder, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
 
-        List<PhraseSettings> dialog = greetingsManager.getValueByKey(GreetingsConstants.PLAYER_WITH_AWARDS_GREETING);
+        List<PhraseSettings> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.PLAYER_WITH_AWARDS_GREETING);
 
         for (PhraseSettings phraseSettings : dialog) {
             String newContent = fillPlaceholder(phraseSettings.getContent(), lowUserProgress, midUserProgress, highUserProgress);
@@ -222,7 +223,7 @@ public class LaunchStateManager extends BaseStateManager {
 
     private DialogItem.Builder buildInitialGreeting(DialogItem.Builder builder) {
 
-        List<PhraseSettings> dialog = greetingsManager.getValueByKey(GreetingsConstants.FIRST_TIME_GREETING);
+        List<PhraseSettings> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.FIRST_TIME_GREETING);
 
         int userReplyBreakpointPosition = 0;
 

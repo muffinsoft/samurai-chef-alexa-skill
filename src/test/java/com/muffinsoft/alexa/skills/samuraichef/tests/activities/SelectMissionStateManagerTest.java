@@ -33,7 +33,7 @@ public class SelectMissionStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_PROGRESS, toMap(userProgress));
 
-        SelectLevelStateManager stateManager = new SelectLevelStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SelectLevelStateManager stateManager = new SelectLevelStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         stateManager.nextResponse();
 
@@ -58,7 +58,7 @@ public class SelectMissionStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_PROGRESS, toMap(userProgress));
 
-        SelectLevelStateManager stateManager = new SelectLevelStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SelectLevelStateManager stateManager = new SelectLevelStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         stateManager.nextResponse();
 

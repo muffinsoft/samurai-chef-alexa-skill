@@ -21,7 +21,7 @@ public class LaunchStateManagerTest extends BaseStateManagerTest {
 
         Map<String, Object> attributes = new HashMap<>();
 
-        LaunchStateManager launchStateManager = new LaunchStateManager(slots, createAttributesManager(slots, attributes), IoC.provideGreetingsManager(), IoC.provideConfigurationContainer());
+        LaunchStateManager launchStateManager = new LaunchStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         launchStateManager.nextResponse();
 

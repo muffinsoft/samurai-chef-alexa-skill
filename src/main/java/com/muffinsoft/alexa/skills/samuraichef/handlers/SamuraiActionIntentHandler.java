@@ -20,7 +20,8 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 
 import java.io.IOException;
@@ -44,11 +45,13 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 
 public class SamuraiActionIntentHandler extends GameIntentHandler {
 
-    private final ConfigContainer configContainer;
+    private final SettingsDependencyContainer settingsDependencyContainer;
+    private final PhraseDependencyContainer phraseDependencyContainer;
     private final SessionStateFabric stateManagerFabric;
 
-    public SamuraiActionIntentHandler(ConfigContainer configContainer, SessionStateFabric stateManagerFabric) {
-        this.configContainer = configContainer;
+    public SamuraiActionIntentHandler(SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer, SessionStateFabric stateManagerFabric) {
+        this.settingsDependencyContainer = settingsDependencyContainer;
+        this.phraseDependencyContainer = phraseDependencyContainer;
         this.stateManagerFabric = stateManagerFabric;
     }
 
@@ -65,21 +68,21 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
         switch (activeIntent) {
             case INITIAL_GREETING:
-                return new InitialGreetingStateManager(slots, attributesManager, configContainer);
+                return new InitialGreetingStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case GAME:
                 return handleGameActivity(input, slots, attributesManager);
             case CANCEL:
-                return new CancelStateManager(slots, attributesManager, configContainer);
+                return new CancelStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case EXIT:
-                return new ExitStateManager(slots, attributesManager, configContainer);
+                return new ExitStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case HELP:
-                return new HelpStateManager(slots, attributesManager, configContainer);
+                return new HelpStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case RESET:
-                return new ResetStateManager(slots, attributesManager, configContainer);
+                return new ResetStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case RESET_CONFIRMATION:
-                return new ResetConfirmationStateManager(slots, attributesManager, configContainer);
+                return new ResetConfirmationStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case RESET_MISSION_SELECTION:
-                return new ResetMissionSelectionStateManager(slots, attributesManager, configContainer);
+                return new ResetMissionSelectionStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             default:
                 throw new IllegalArgumentException("Unknown intent type " + activeIntent);
         }
@@ -120,7 +123,7 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
         }
         else {
             logger.debug("Going to handle mission selection ");
-            return new SelectLevelStateManager(slots, attributesManager, configContainer);
+            return new SelectLevelStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
         }
     }
 
@@ -147,7 +150,7 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
         UserMission userMission = UserMission.valueOf(String.valueOf(input.getAttributesManager().getSessionAttributes().get(CURRENT_MISSION)));
 
-        return configContainer.getMissionManager().getFirstActivityForMission(userMission);
+        return settingsDependencyContainer.getMissionManager().getFirstActivityForMission(userMission);
     }
 
     private void handlePersistentAttributes(HandlerInput input) {

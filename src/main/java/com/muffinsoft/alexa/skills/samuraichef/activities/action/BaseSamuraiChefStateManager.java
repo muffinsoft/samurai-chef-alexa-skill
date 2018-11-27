@@ -9,18 +9,21 @@ import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
-import com.muffinsoft.alexa.skills.samuraichef.content.ActivityManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.AliasManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.MissionManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.MissionPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
@@ -36,26 +39,26 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FAILURE_REPROMPT_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.GAME_FINISHED_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_ACTIVITY_EARN_HIGH_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_ACTIVITY_EARN_LOW_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_ACTIVITY_EARN_MID_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_MISSION_EARN_HIGH_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_MISSION_EARN_LOW_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_MISSION_EARN_MID_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_STRIPE_EARN_HIGH_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_STRIPE_EARN_LOW_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.PERFECT_STRIPE_EARN_MID_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.READY_TO_START_REPROMPT_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REDIRECT_TO_SELECT_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SELECT_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.SEVERAL_VALUES_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_RESET_PROGRESS_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WON_REPROMPT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.FAILURE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.FAILURE_REPROMPT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.GAME_FINISHED_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.PERFECT_ACTIVITY_EARN_HIGH_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.PERFECT_ACTIVITY_EARN_LOW_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.PERFECT_ACTIVITY_EARN_MID_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.PERFECT_MISSION_EARN_HIGH_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.PERFECT_MISSION_EARN_LOW_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.PERFECT_MISSION_EARN_MID_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.PERFECT_STRIPE_EARN_HIGH_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.PERFECT_STRIPE_EARN_LOW_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.PERFECT_STRIPE_EARN_MID_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_START_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_START_REPROMPT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REDIRECT_TO_SELECT_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SEVERAL_VALUES_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_RESET_PROGRESS_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WON_REPROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
@@ -83,10 +86,12 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.WIN;
 abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     protected static final Logger logger = LogManager.getLogger(BaseSamuraiChefStateManager.class);
-    protected final PhraseManager phraseManager;
+    protected final RegularPhraseManager regularPhraseManager;
     final ActivityManager activityManager;
     final AliasManager aliasManager;
     final MissionManager missionManager;
+    private final ActivityPhraseManager activityPhraseManager;
+    protected final MissionPhraseManager missionPhraseManager;
     private final String userFoodSlotReply;
     protected Activities currentActivity;
     protected ActivityProgress activityProgress;
@@ -100,12 +105,14 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private Set<String> finishedMissions;
     private Integer userReplyBreakpointPosition;
 
-    BaseSamuraiChefStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
+    BaseSamuraiChefStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(slots, attributesManager);
-        this.phraseManager = configContainer.getPhraseManager();
-        this.activityManager = configContainer.getActivityManager();
-        this.aliasManager = configContainer.getAliasManager();
-        this.missionManager = configContainer.getMissionManager();
+        this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
+        this.missionPhraseManager = phraseDependencyContainer.getMissionPhraseManager();
+        this.activityPhraseManager = phraseDependencyContainer.getActivityPhraseManager();
+        this.activityManager = settingsDependencyContainer.getActivityManager();
+        this.aliasManager = settingsDependencyContainer.getAliasManager();
+        this.missionManager = settingsDependencyContainer.getMissionManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
         this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
@@ -276,15 +283,15 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         getSessionAttributes().put(CURRENT_MISSION, this.userProgress.getMission());
 
         return builder.withSlotName(actionSlotName)
-                .addResponse(translate(phraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)))
-                .addResponse(translate(phraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)))
+                .addResponse(translate(regularPhraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)))
+                .addResponse(translate(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)))
                 .build();
     }
 
     private DialogItem handleMultipleResponses(DialogItem.Builder builder) {
 
         return builder.withSlotName(actionSlotName)
-                .addResponse(translate(phraseManager.getValueByKey(SEVERAL_VALUES_PHRASE)))
+                .addResponse(translate(regularPhraseManager.getValueByKey(SEVERAL_VALUES_PHRASE)))
                 .addResponse(translate(String.join(", ", this.getUserMultipleReplies())))
                 .build();
     }
@@ -297,7 +304,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.statePhase = STRIPE_INTRO;
 
-        List<PhraseSettings> dialog = missionManager.getMissionIntro(currentMission);
+        List<PhraseSettings> dialog = missionPhraseManager.getMissionIntro(currentMission);
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
 
@@ -340,7 +347,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.statePhase = ACTIVITY_INTRO;
 
-        List<PhraseSettings> dialog = missionManager.getStripeIntroByMission(currentMission, number);
+        List<PhraseSettings> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, STRIPE_INTRO);
 
@@ -353,7 +360,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder handleActivityIntroState(DialogItem.Builder builder, Activities activity, int number) {
 
-        SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumberAtMission(activity, number, this.currentMission);
+        SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, number, this.currentMission);
 
         for (PhraseSettings partOfSpeech : speechSettings.getIntro()) {
             builder.addResponse(translate(partOfSpeech));
@@ -365,7 +372,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             this.statePhase = DEMO;
 
-            SpeechSettings demoSpeechSettings = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+            SpeechSettings demoSpeechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
 
             builder.addResponse(translate(demoSpeechSettings.getShouldRunDemoPhrase()));
         }
@@ -390,18 +397,18 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
 
-            builder.addResponse(translate(phraseManager.getValueByKey(READY_TO_START_PHRASE)));
-            builder.withReprompt(translate(phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_START_PHRASE)));
+            builder.withReprompt(translate(regularPhraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE)));
         }
         else {
 
-            SpeechSettings dialog = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+            SpeechSettings dialog = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
 
             int iterationPointer = wrapAnyUserResponse(dialog.getDemo(), builder, DEMO);
 
             if (iterationPointer >= dialog.getDemo().size()) {
                 builder = appendReadyToStart(builder);
-                builder.withReprompt(translate(phraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE)));
+                builder.withReprompt(translate(regularPhraseManager.getValueByKey(READY_TO_START_REPROMPT_PHRASE)));
             }
         }
 
@@ -413,7 +420,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
             this.getSessionAttributes().remove(CURRENT_MISSION);
 
-            return builder.withSlotName(actionSlotName).addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            return builder.withSlotName(actionSlotName).addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
         }
         else {
             String speechText = nextIngredient();
@@ -470,7 +477,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         calculateStripeProgress();
 
-        List<PhraseSettings> dialog = missionManager.getStripeOutroByMission(currentMission, number);
+        List<PhraseSettings> dialog = missionPhraseManager.getStripeOutroByMission(currentMission, number);
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, WIN);
 
@@ -505,7 +512,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.getSessionAttributes().remove(CURRENT_MISSION);
 
-        return builder.withSlotName(actionSlotName).addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+        return builder.withSlotName(actionSlotName).addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
     }
 
     private DialogItem.Builder handleStripeOutroState(DialogItem.Builder builder, UserMission currentMission) {
@@ -528,7 +535,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 builder = appendEarnPerfectMissionByLevel(builder);
             }
 
-            List<PhraseSettings> missionOutro = missionManager.getMissionOutro(currentMission);
+            List<PhraseSettings> missionOutro = missionPhraseManager.getMissionOutro(currentMission);
 
             wrapAnyUserResponse(missionOutro, builder, STRIPE_OUTRO);
 
@@ -554,14 +561,14 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             this.statePhase = GAME_OUTRO;
 
-            builder.addResponse(translate(phraseManager.getValueByKey(GAME_FINISHED_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(GAME_FINISHED_PHRASE)));
         }
         else {
 
             logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
 
-            builder.addResponse(translate(phraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
-            builder.addResponse(translate(phraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
         }
 
         this.userProgress.setMissionFinished(true);
@@ -603,7 +610,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder appendReadyToStart(DialogItem.Builder builder) {
 
-        SpeechSettings speechSettings = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+        SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
 
         builder.addResponse(translate(speechSettings.getReadyToStartPhrase()));
 
@@ -627,16 +634,16 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                     .replaceResponse(translate(randomIngredient.getIngredient()))
                     .addResponse(translate(wrongReplyOnIngredient, this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
                     .withSlotName(actionSlotName)
-                    .withReprompt(translate(phraseManager.getValueByKey(WON_REPROMPT_PHRASE)));
+                    .withReprompt(translate(regularPhraseManager.getValueByKey(WON_REPROMPT_PHRASE)));
         }
 
         SpeechSettings speechForActivityByStripeNumberAtMission;
 
         if (this.activityProgress.isStripeComplete()) {
-            speechForActivityByStripeNumberAtMission = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount() - 1, this.currentMission);
+            speechForActivityByStripeNumberAtMission = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount() - 1, this.currentMission);
         }
         else {
-            speechForActivityByStripeNumberAtMission = activityManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+            speechForActivityByStripeNumberAtMission = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
         }
 
         List<PhraseSettings> outro = speechForActivityByStripeNumberAtMission.getOutro();
@@ -665,11 +672,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private DialogItem.Builder appendEarnPerfectMissionByLevel(DialogItem.Builder builder) {
         switch (this.currentMission) {
             case LOW_MISSION:
-                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_MISSION_EARN_LOW_PHRASE)));
+                return builder.addResponse(translate(regularPhraseManager.getValueByKey(PERFECT_MISSION_EARN_LOW_PHRASE)));
             case MEDIUM_MISSION:
-                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_MISSION_EARN_MID_PHRASE)));
+                return builder.addResponse(translate(regularPhraseManager.getValueByKey(PERFECT_MISSION_EARN_MID_PHRASE)));
             case HIGH_MISSION:
-                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_MISSION_EARN_HIGH_PHRASE)));
+                return builder.addResponse(translate(regularPhraseManager.getValueByKey(PERFECT_MISSION_EARN_HIGH_PHRASE)));
         }
         return builder;
     }
@@ -678,11 +685,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private DialogItem.Builder appendEarnPerfectStripeByLevel(DialogItem.Builder builder) {
         switch (this.currentMission) {
             case LOW_MISSION:
-                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_STRIPE_EARN_LOW_PHRASE)));
+                return builder.addResponse(translate(regularPhraseManager.getValueByKey(PERFECT_STRIPE_EARN_LOW_PHRASE)));
             case MEDIUM_MISSION:
-                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_STRIPE_EARN_MID_PHRASE)));
+                return builder.addResponse(translate(regularPhraseManager.getValueByKey(PERFECT_STRIPE_EARN_MID_PHRASE)));
             case HIGH_MISSION:
-                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_STRIPE_EARN_HIGH_PHRASE)));
+                return builder.addResponse(translate(regularPhraseManager.getValueByKey(PERFECT_STRIPE_EARN_HIGH_PHRASE)));
         }
         return builder;
     }
@@ -691,11 +698,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private DialogItem.Builder appendEarnPerfectActivityByLevel(DialogItem.Builder builder) {
         switch (this.currentMission) {
             case LOW_MISSION:
-                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_ACTIVITY_EARN_LOW_PHRASE)));
+                return builder.addResponse(translate(regularPhraseManager.getValueByKey(PERFECT_ACTIVITY_EARN_LOW_PHRASE)));
             case MEDIUM_MISSION:
-                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_ACTIVITY_EARN_MID_PHRASE)));
+                return builder.addResponse(translate(regularPhraseManager.getValueByKey(PERFECT_ACTIVITY_EARN_MID_PHRASE)));
             case HIGH_MISSION:
-                return builder.addResponse(translate(phraseManager.getValueByKey(PERFECT_ACTIVITY_EARN_HIGH_PHRASE)));
+                return builder.addResponse(translate(regularPhraseManager.getValueByKey(PERFECT_ACTIVITY_EARN_HIGH_PHRASE)));
         }
         return builder;
     }
@@ -733,7 +740,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder;
     }
 
-    DialogItem.Builder getFailureDialog(DialogItem.Builder builder, PhraseSettings speechText) {
+    DialogItem.Builder getFailureDialog(DialogItem.Builder builder, List<PhraseSettings> speechText) {
         String ingredient = nextIngredient();
         return builder
                 .addResponse(translate(speechText))
@@ -745,10 +752,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     DialogItem.Builder getLoseRoundDialog(DialogItem.Builder builder, String value) {
         this.statePhase = LOSE;
         return builder
-                .addResponse(translate(phraseManager.getValueByKey(value)))
-                .addResponse(translate(phraseManager.getValueByKey(FAILURE_PHRASE)))
+                .addResponse(translate(regularPhraseManager.getValueByKey(value)))
+                .addResponse(translate(regularPhraseManager.getValueByKey(FAILURE_PHRASE)))
                 .withSlotName(actionSlotName)
-                .withReprompt(translate(phraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE)));
+                .withReprompt(translate(regularPhraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE)));
     }
 
     private WordReaction getRandomIngredient() {

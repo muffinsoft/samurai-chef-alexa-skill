@@ -1,6 +1,6 @@
 package com.muffinsoft.alexa.skills.samuraichef.constants;
 
-public class GreetingsConstants {
+public class GreetingsPhraseConstants {
 
     public static final String FIRST_TIME_GREETING = "firstTimeGreeting";
 
