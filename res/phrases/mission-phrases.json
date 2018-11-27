@@ -2,41 +2,28 @@
   "LOW_MISSION": {
     "missionIntro": [
       {
-        "content": "Good! You have chosen the Path of the Chef! Prepare to master the age-old tradition of cooking good sushi, samurai style!",
+        "content": "Mastering age-old tradition of samurai style cooking is not for weaklings. To learn my ways you need great focus and ninja-like reflexes! You sure you up for task?",
         "role": "Sensei",
         "audio": null
       },
       {
-        "content": "yum",
-        "role": "Speechcon",
+        "content": "You bet we are! Hey, chef-in-training! You've helped prepare a meal before, right?",
+        "role": "Kiara",
         "audio": null
       },
       {
-        "content": "Sounds awesome! We're ready!",
-        "role": "Mary",
+        "content": "Yeah? Well I made buttered toast once...",
+        "role": "Kiara",
         "audio": null
       },
       {
-        "content": "Hey, chef-in-training! Have you ever helped prepare a meal before?",
-        "role": "Alexa",
-        "audio": null
-      },
-      {
-        "userResponse": true
-      },
-      {
-        "content": "Umm.... does buttered toast coast?",
-        "role": "Mary",
-        "audio": null
-      },
-      {
-        "content": "There are five belts to earn. Obtain them all to earn the honor of being called Super Sushi Chef!",
+        "content": "There are five belts to earn. Obtain the top belt to earn the honor of being called Super Sushi Chef! I'm counting on you!",
         "role": "Sensei",
         "audio": null
       },
       {
         "content": "Now that's a title I'd want! Let's get started!",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       }
     ],
@@ -80,8 +67,13 @@
           "audio": null
         },
         {
-          "content": "To earn this YELLOW BELT we'll be doing three sushi making activities and end with word karate board.",
-          "role": "Mary",
+          "content": "To earn this YELLOW BELT we'll need to show Sensei you're a fast learner at making sushi. You've got this!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "For this challenge Sensei wants five correct responses!",
+          "role": "Alexa",
           "audio": null
         },
         {
@@ -97,8 +89,13 @@
           "audio": null
         },
         {
-          "content": "For this ORANGE BELT we'll be doing three taste testing activities and end with word karate board.",
-          "role": "Mary",
+          "content": "For this ORANGE BELT we must not only taste delicious food but eat it the correct way too! I can't wait!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "For this challenge Sensei wants seven correct responses!",
+          "role": "Alexa",
           "audio": null
         },
         {
@@ -117,12 +114,12 @@
         },
         {
           "content": "We can't wait! Grats on the belt, sushi buddy!",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
           "content": "You're off to a good start. What's your favorite thing about making sushi so far?",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -130,7 +127,7 @@
         },
         {
           "content": "Cool!",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -147,12 +144,12 @@
         },
         {
           "content": "Definitely! Grats on the belt, sushi buddy!",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
           "content": "Say, if you could taste any food at this very moment, what would it be?",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -174,23 +171,16 @@
   "MEDIUM_MISSION": {
     "missionIntro": [
       {
-        "content": "Aah, the path of sumo! To become my offical sumo pro and make restaurant more attractive, you must grow big! Very big!",
+        "content": "Being sumo takes more than eating! My offical sumo pro must know discipline and proper eating ettiquette! Are you truly up to task?",
         "role": "Sensei",
         "audio": null
       },
       {
-        "content": "wowza",
-        "role": "Speechcon",
-        "audio": null
+        "userResponse": true
       },
       {
-        "content": "Sounds cool! I've heard they weigh hundreds of pounds, and most of it is muscle!",
-        "role": "Mary",
-        "audio": null
-      },
-      {
-        "content": "Hey, sumo-in-training! Have you ever seen a real sumo match before?",
-        "role": "Alexa",
+        "content": "We're ready to grow big and strong! Hey, sumo-in-training! Have you ever seen a real sumo match before?",
+        "role": "Kiara",
         "audio": null
       },
       {
@@ -198,17 +188,17 @@
       },
       {
         "content": "Don't worry, we don't have to wear those big diaper looking things.",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       },
       {
-        "content": "There are five belts to earn. Obtain them all and you'll reach the highest rank in sumo -- Yokozuna!",
+        "content": "There are five belts to earn. Obtain the best belt and you'll reach the highest rank in sumo -- Yokozuna!",
         "role": "Sensei",
         "audio": null
       },
       {
         "content": "I like how that sounds! Let's get started!",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       }
     ],
@@ -252,8 +242,13 @@
           "audio": null
         },
         {
-          "content": "To earn this YELLOW BELT we'll be doing three eating activities and end with word karate board.",
-          "role": "Mary",
+          "content": "By earning this YELLOW BELT we'll show Sensei we got what it takes to become big, chubby sumo! I'm excited!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "For this challenge Sensei wants five correct responses!",
+          "role": "Alexa",
           "audio": null
         },
         {
@@ -269,8 +264,13 @@
           "audio": null
         },
         {
-          "content": "To earn this ORANGE BELT we'll be doing three 'yum or yuck' activities and end with word karate board.",
-          "role": "Mary",
+          "content": "Earning this ORANGE BELT will require some fast thinking! We can do it!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "For this challenge Sensei wants seven correct responses!",
+          "role": "Alexa",
           "audio": null
         },
         {
@@ -289,12 +289,12 @@
         },
         {
           "content": "Oh yeah! Grats on the belt, by the way!",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
           "content": "Sumo sounds like an interesting sport. Hey future sumo, what's your favorite sport to watch or play?",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -319,12 +319,12 @@
         },
         {
           "content": "Sweet! That's a nice belt!",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
           "content": "Hey, future sumo! What's your favorite junk food?",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -332,7 +332,7 @@
         },
         {
           "content": "I'm all about chocolate!",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -346,23 +346,16 @@
   "HIGH_MISSION": {
     "missionIntro": [
       {
-        "content": "The path of guru! I'm confident you'll become the guru my restaurant needs. Prepare to explore the nutritious power of food!",
+        "content": "To embark on path of guru demands great physical ability and mental wit! Are you prepared to explore the nutritious power of food?",
         "role": "Sensei",
         "audio": null
       },
       {
-        "content": "bon appetit",
-        "role": "Speechcon",
-        "audio": null
+        "userResponse": true
       },
       {
-        "content": "Great! My mom says that what we eat is the key to being healthy and happy!",
-        "role": "Mary",
-        "audio": null
-      },
-      {
-        "content": "Hey, guru-in-training! What's your favorite healthy snack to eat?",
-        "role": "Alexa",
+        "content": "We're ready! Mom always says you are what you eat! Hey, guru-in-training! What's your favorite healthy snack to eat?",
+        "role": "Kiara",
         "audio": null
       },
       {
@@ -370,17 +363,17 @@
       },
       {
         "content": "I like veggies! Well, only with lots of ranch...",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       },
       {
-        "content": "There are five belts to earn. Obtain them all to be known as the Guru Master!",
+        "content": "There are five belts to earn. Obtain the highest one to be known as Guru Master!",
         "role": "Sensei",
         "audio": null
       },
       {
         "content": "Sweet! Let's get started!",
-        "role": "Mary",
+        "role": "Kiara",
         "audio": null
       }
     ],
@@ -424,8 +417,13 @@
           "audio": null
         },
         {
-          "content": "To earn this YELLOW BELT we'll be doing three juice activities and end with word karate board.",
-          "role": "Mary",
+          "content": "To earn this YELLOW BELT we'll need to prove to Sensei that we're lean, mean juicing machines! Oh yeah!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "For this challenge Sensei wants five correct responses!",
+          "role": "Alexa",
           "audio": null
         },
         {
@@ -441,8 +439,13 @@
           "audio": null
         },
         {
-          "content": "To earn this YELLOW BELT we'll be doing three karate activities and end with word karate board.",
-          "role": "Mary",
+          "content": "We'll earn this ORANGE BELT by showing Sensei we pack quite a punch when it comes to karate! Hayaa!",
+          "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "For this challenge Sensei wants seven correct responses!",
+          "role": "Alexa",
           "audio": null
         },
         {
@@ -461,12 +464,12 @@
         },
         {
           "content": "They sure are! Grats on the belt, guru-in-training!",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
           "content": "Does or mom or dad ever make you healthy smoothies or juices?",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -474,7 +477,7 @@
         },
         {
           "content": "My dad likes raddish juice... yuck!",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -491,12 +494,12 @@
         },
         {
           "content": "Woohoo! Good job getting that belt!",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
           "content": "Hey, have you ever watched a karate movie before?",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
@@ -504,7 +507,7 @@
         },
         {
           "content": "I think they're fun to watch!",
-          "role": "Mary",
+          "role": "Kiara",
           "audio": null
         },
         {
