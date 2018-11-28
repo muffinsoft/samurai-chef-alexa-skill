@@ -1,13 +1,26 @@
 package com.muffinsoft.alexa.skills.samuraichef.components;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.enums.SpeechType;
 import com.muffinsoft.alexa.sdk.model.Speech;
+import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class VoiceTranslator {
+
+    private static final Map<String, String> characters;
+    private static final String PATH = "phrases/characters.json";
+
+    static {
+        characters = new ContentLoader(new ObjectMapper()).loadContent(new HashMap<>(), PATH, new TypeReference<HashMap>() {
+        });
+    }
 
     public static Speech translate(String content) {
         return translate(new PhraseSettings(content));
@@ -28,10 +41,6 @@ public class VoiceTranslator {
         }
 
         switch (phraseSettings.getRole()) {
-            case "Kiara":
-                return new Speech(SpeechType.JOANNA, phraseSettings.getContent());
-            case "Sensei":
-                return new Speech(SpeechType.JOEY, phraseSettings.getContent());
             case "Alexa":
                 return new Speech(SpeechType.TEXT, phraseSettings.getContent());
             case "Speechcon":
@@ -39,7 +48,18 @@ public class VoiceTranslator {
             case "Sound":
                 return new Speech(SpeechType.AUDIO, phraseSettings.getAudio());
             default:
-                return new Speech(SpeechType.TEXT, phraseSettings.getContent());
+                SpeechType type = getRole(phraseSettings.getRole());
+                return new Speech(type, phraseSettings.getContent());
+        }
+    }
+
+    private static SpeechType getRole(String role) {
+        String stringifyRole = characters.get(role);
+        if (stringifyRole != null) {
+            return SpeechType.valueOf(stringifyRole);
+        }
+        else {
+            return SpeechType.TEXT;
         }
     }
 }
