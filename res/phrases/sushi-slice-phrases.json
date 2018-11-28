@@ -55,8 +55,18 @@
           "audio": null
         },
         {
+          "content": "[rice pouring into bowl]",
+          "role": "Sound",
+          "audio": null
+        },
+        {
           "content": "Boil!",
           "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "[boiling water sound]",
+          "role": "Sound",
           "audio": null
         },
         {
@@ -65,8 +75,18 @@
           "audio": null
         },
         {
+          "content": "[bloop or  fishy/flapping sound]",
+          "role": "Sound",
+          "audio": null
+        },
+        {
           "content": "Slice!",
           "role": "Alexa",
+          "audio": null
+        },
+        {
+          "content": "[sword sound]",
+          "role": "Sound",
           "audio": null
         },
         {
@@ -75,8 +95,18 @@
           "audio": null
         },
         {
+          "content": "[one wet splat sound]",
+          "role": "Sound",
+          "audio": null
+        },
+        {
           "content": "Roll!",
           "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "[squishing sound]",
+          "role": "Sound",
           "audio": null
         },
         {
@@ -85,8 +115,18 @@
           "audio": null
         },
         {
+          "content": "[crunchy sound]",
+          "role": "Sound",
+          "audio": null
+        },
+        {
           "content": "Chop!",
           "role": "Alexa",
+          "audio": null
+        },
+        {
+          "content": "[chopping sound]",
+          "role": "Sound",
           "audio": null
         },
         {
@@ -95,8 +135,18 @@
           "audio": null
         },
         {
+          "content": "[egg sound]",
+          "role": "Sound",
+          "audio": null
+        },
+        {
           "content": "Slice!",
           "role": "Kiara",
+          "audio": null
+        },
+        {
+          "content": "[sword sound]",
+          "role": "Sound",
           "audio": null
         },
         {
@@ -255,8 +305,18 @@
           "audio": null
         },
         {
+          "content": "[samurai sword sound]",
+          "role": "Sound",
+          "audio": null
+        },
+        {
           "content": "Gulp!",
           "role": "Alexa",
+          "audio": null
+        },
+        {
+          "content": "[gulping sound]",
+          "role": "Sound",
           "audio": null
         },
         {

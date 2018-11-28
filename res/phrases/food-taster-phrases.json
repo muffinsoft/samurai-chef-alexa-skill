@@ -30,12 +30,12 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara closely!",
+          "content": "Watch how Kiara do word board karate!",
           "role": "Sensei",
           "audio": null
         },
         {
-          "content": "Wheel!",
+          "content": "Waitress!",
           "role": "Sensei",
           "audio": null
         },
@@ -45,7 +45,7 @@
           "audio": null
         },
         {
-          "content": "Hat!",
+          "content": "Hawk!",
           "role": "Sensei",
           "audio": null
         },
@@ -55,7 +55,7 @@
           "audio": null
         },
         {
-          "content": "Pencil!",
+          "content": "Plumber!",
           "role": "Sensei",
           "audio": null
         },
@@ -65,7 +65,7 @@
           "audio": null
         },
         {
-          "content": "Now it’s your turn, Kiara’s friend.",
+          "content": "Good! Now your turn, chef-in-training.",
           "role": "Sensei",
           "audio": null
         }
@@ -135,12 +135,12 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara closely!",
+          "content": "Watch how Kiara do word board karate!",
           "role": "Sensei",
           "audio": null
         },
         {
-          "content": "Zebra!",
+          "content": "Zoo!",
           "role": "Sensei",
           "audio": null
         },
@@ -150,7 +150,7 @@
           "audio": null
         },
         {
-          "content": "Fish!",
+          "content": "Fork!",
           "role": "Sensei",
           "audio": null
         },
@@ -160,7 +160,7 @@
           "audio": null
         },
         {
-          "content": "Wool!",
+          "content": "Wood!",
           "role": "Sensei",
           "audio": null
         },
@@ -170,7 +170,7 @@
           "audio": null
         },
         {
-          "content": "Now it’s your turn, Kiara’s friend.",
+          "content": "Excellent. You next, future sumo.",
           "role": "Sensei",
           "audio": null
         }
@@ -240,12 +240,12 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara closely!",
+          "content": "Watch how Kiara do word board karate!",
           "role": "Sensei",
           "audio": null
         },
         {
-          "content": "Zip!",
+          "content": "Zebra!",
           "role": "Sensei",
           "audio": null
         },
@@ -255,7 +255,7 @@
           "audio": null
         },
         {
-          "content": "Week!",
+          "content": "Whale!",
           "role": "Sensei",
           "audio": null
         },
@@ -265,7 +265,7 @@
           "audio": null
         },
         {
-          "content": "Theatre!",
+          "content": "Thunder!",
           "role": "Sensei",
           "audio": null
         },
@@ -275,7 +275,7 @@
           "audio": null
         },
         {
-          "content": "Now it’s your turn, Kiara’s friend.",
+          "content": "Good. You next, guru-in-training.",
           "role": "Sensei",
           "audio": null
         }

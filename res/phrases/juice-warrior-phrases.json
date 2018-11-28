@@ -45,6 +45,11 @@
           "audio": null
         },
         {
+          "content": "[samurai sword sound]",
+          "role": "Sound",
+          "audio": null
+        },
+        {
           "content": "Boil!",
           "role": "Kiara",
           "audio": null
