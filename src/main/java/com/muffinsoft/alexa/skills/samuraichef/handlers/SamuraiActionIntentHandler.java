@@ -6,6 +6,7 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.GameIntentHandler;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ExitConfirmationStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ExitStateManager;
@@ -16,10 +17,12 @@ import com.muffinsoft.alexa.skills.samuraichef.activities.ResetMissionSelectionS
 import com.muffinsoft.alexa.skills.samuraichef.activities.ResetStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
+import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
+import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
@@ -38,6 +41,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.MISSION_START_STATE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
@@ -94,10 +98,22 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
     private StateManager handleGameActivity(HandlerInput input, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         boolean userSelectLevel = attributesManager.getSessionAttributes().containsKey(CURRENT_MISSION);
+        boolean isMissionSelectState = attributesManager.getSessionAttributes().containsKey(MISSION_START_STATE);
 
         handlePersistentAttributes(input);
 
         if (userSelectLevel) {
+
+            if (isMissionSelectState) {
+                String userReply = getUserReply(slots);
+                if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
+                    attributesManager.getSessionAttributes().remove(CURRENT_MISSION);
+                    attributesManager.getSessionAttributes().remove(MISSION_START_STATE);
+                    logger.debug("Going to handle mission selection ");
+
+                    return new SelectLevelStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
+                }
+            }
 
             UserProgress currentUserProgress = getCurrentUserProgress(input);
 
@@ -127,6 +143,25 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
         else {
             logger.debug("Going to handle mission selection ");
             return new SelectLevelStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
+        }
+    }
+
+    private String getUserReply(Map<String, Slot> slots) {
+        if (slots != null && !slots.isEmpty()) {
+            Slot actionSlot = slots.get(SlotName.ACTION.text);
+            Slot foodSlot = slots.get(SlotName.AMAZON_FOOD.text);
+            if (actionSlot != null) {
+                return actionSlot.getValue();
+            }
+            else if (foodSlot != null) {
+                return foodSlot.getValue();
+            }
+            else {
+                return null;
+            }
+        }
+        else {
+            return null;
         }
     }
 

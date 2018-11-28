@@ -32,12 +32,14 @@ import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_CONTINUE_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_START_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_UNKNOWN_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_RESET_PROGRESS_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.MISSION_START_STATE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
@@ -89,9 +91,6 @@ public class SelectLevelStateManager extends BaseStateManager {
         logger.debug("Starting handling user reply '" + this.getUserReply() + "' ...");
 
         DialogItem.Builder builder = DialogItem.builder();
-//        if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-//            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
-//        }
         if (UserReplyComparator.compare(getUserReply(), UserReplies.LOW)) {
             builder.addResponse(translate(checkIfMissionAvailable(UserMission.LOW_MISSION)));
         }
@@ -102,7 +101,7 @@ public class SelectLevelStateManager extends BaseStateManager {
             builder.addResponse(translate(checkIfMissionAvailable(UserMission.HIGH_MISSION)));
         }
         else {
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_UNKNOWN_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
         }
 
         if (this.getSessionAttributes().containsKey(CURRENT_MISSION)) {
@@ -124,6 +123,8 @@ public class SelectLevelStateManager extends BaseStateManager {
             result.addAll(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE));
             return result;
         }
+
+        this.getSessionAttributes().put(MISSION_START_STATE, true);
 
         this.getSessionAttributes().remove(ACTIVITY_PROGRESS);
         this.getSessionAttributes().remove(USER_PROGRESS);

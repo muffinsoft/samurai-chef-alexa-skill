@@ -17,6 +17,10 @@ public class RegularPhraseManager extends BaseContentManager<List<PhraseSettings
 
         List valueByKey = super.getValueByKey(key);
 
+        if (valueByKey == null) {
+            return null;
+        }
+
         List<PhraseSettings> resultList = new ArrayList<>(valueByKey.size() * 2);
 
         for (Object raw : valueByKey) {

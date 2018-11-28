@@ -20,6 +20,8 @@ public class SessionConstants {
 
     public static final String CURRENT_MISSION = "currentMission";
 
+    public static final String MISSION_START_STATE = "missionStartState";
+
     public static final String USER_LOW_PROGRESS_DB = "userLowProgressDB";
 
     public static final String USER_MID_PROGRESS_DB = "userMidProgressDB";
