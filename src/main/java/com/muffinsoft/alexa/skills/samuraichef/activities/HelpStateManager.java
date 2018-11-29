@@ -45,8 +45,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.GENERAL_HELP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.LEARN_MORE_HELP;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.PROCEED_GAME;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.valueOf;
 
 public class HelpStateManager extends BaseStateManager {
@@ -133,7 +133,7 @@ public class HelpStateManager extends BaseStateManager {
 
         switch (helpState) {
 
-            case GENERAL_HELP:
+            case PROCEED_GAME:
 
                 if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
                     getSessionAttributes().put(INTENT, Intents.GAME);
@@ -144,7 +144,6 @@ public class HelpStateManager extends BaseStateManager {
                 else {
                     handleProceedGame(builder);
                 }
-                break;
 
             case LEARN_MORE_HELP:
                 if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
@@ -170,11 +169,7 @@ public class HelpStateManager extends BaseStateManager {
                     }
 
                     builder.addResponse(translate(missionDescriptionHelp));
-
-                    getSessionAttributes().put(INTENT, Intents.GAME);
-                    getSessionAttributes().remove(HELP_STATE);
-                    getSessionAttributes().remove(CURRENT_MISSION);
-                    builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+                    builder.addResponse(translate(regularPhraseManager.getValueByKey(WANT_START_MISSION_PHRASE)));
                 }
                 else {
                     handleProceedGame(builder);
@@ -202,7 +197,7 @@ public class HelpStateManager extends BaseStateManager {
             builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_LEARN_MORE_PHRASE)));
         }
         else {
-            getSessionAttributes().put(HELP_STATE, GENERAL_HELP);
+            getSessionAttributes().put(HELP_STATE, PROCEED_GAME);
             // General Help %Game  description%
             builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_GENERAL_PHRASE)));
             builder.addResponse(translate(regularPhraseManager.getValueByKey(WANT_START_MISSION_PHRASE)));
