@@ -4,7 +4,7 @@
       "outro": [
         {
           "content": "You're getting the hang of this!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -16,12 +16,22 @@
         },
         {
           "content": "Can't have sushi without seaweed wrap!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "To prepare seaweed, say 'roll!' Ready?",
-          "role": "Kiara",
+          "content": "To prepare seaweed, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'roll!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Ready?",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -35,7 +45,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara closely!",
+          "content": "Watch Ben closely!",
           "role": "Sensei",
           "audio": null
         },
@@ -51,7 +61,7 @@
         },
         {
           "content": "Boil!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -61,7 +71,7 @@
         },
         {
           "content": "Slice!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -71,7 +81,7 @@
         },
         {
           "content": "Roll!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -81,7 +91,7 @@
         },
         {
           "content": "Chop!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -91,11 +101,11 @@
         },
         {
           "content": "Boil!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "Now it’s your turn, Kiara’s friend.",
+          "content": "Now it’s your turn, Ben’s friend.",
           "role": "Sensei",
           "audio": null
         }
@@ -106,7 +116,7 @@
       "outro": [
         {
           "content": "Now I'm in the mood for some dessert!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -118,12 +128,17 @@
         },
         {
           "content": "Hope you've got a sweet tooth!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "To eat mochi, say 'lick!'",
-          "role": "Kiara",
+          "content": "To eat mochi, say.",
+          "role": "Ben",
+          "audio": null
+        },
+		{
+          "content": "'lick!'",
+          "role": "BenLoud",
           "audio": null
         },
         {
@@ -144,7 +159,7 @@
       "outro": [
         {
           "content": "Hey, I think you're getting bigger already!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -156,12 +171,17 @@
         },
         {
           "content": "Should feel good in your stomach too!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "To eat stew, say 'slurp!'",
-          "role": "Kiara",
+          "content": "To eat stew, say.",
+          "role": "Ben",
+          "audio": null
+        },
+		{
+          "content": "'slurp!'",
+          "role": "BenLoud",
           "audio": null
         },
         {
@@ -175,7 +195,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara closely!",
+          "content": "Watch Ben closely!",
           "role": "Sensei",
           "audio": null
         },
@@ -186,7 +206,7 @@
         },
         {
           "content": "Chomp!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -196,7 +216,7 @@
         },
         {
           "content": "Gulp!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -206,7 +226,7 @@
         },
         {
           "content": "Slurp!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -216,11 +236,11 @@
         },
         {
           "content": "Munch!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "Now it’s your turn, Kiara’s friend.",
+          "content": "Now it’s your turn, Ben’s friend.",
           "role": "Sensei",
           "audio": null
         }
@@ -231,7 +251,7 @@
       "outro": [
         {
           "content": "You've got this! Resist the urge to eat that junk food!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -243,12 +263,27 @@
         },
         {
           "content": "I don't think cavities are good for sumo either!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "If sensei gives you beef or tofu, say 'yum!' But if it's soda or candy, say 'yuck!'",
-          "role": "Kiara",
+          "content": "If sensei gives you beef or tofu, say.",
+          "role": "Ben",
+          "audio": null
+        },
+		{
+          "content": "'yum!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+		{
+          "content": "But if it's soda or candy, say.",
+          "role": "Ben",
+          "audio": null
+        },
+		{
+          "content": "'yuck!'",
+          "role": "BenLoud",
           "audio": null
         },
         {
@@ -269,7 +304,7 @@
       "outro": [
         {
           "content": "You're an ice crushing machine! Good work!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -281,12 +316,17 @@
         },
         {
           "content": "Nothing like a delicious cold drink after a work out!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "To prepare ice, say 'punch and crunch!'",
-          "role": "Kiara",
+          "content": "To prepare ice, say.",
+          "role": "Ben",
+          "audio": null
+        },
+		{
+          "content": "'punch and crunch!'",
+          "role": "BenLoud",
           "audio": null
         },
         {
@@ -300,7 +340,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara closely!",
+          "content": "Watch Ben closely!",
           "role": "Sensei",
           "audio": ""
         },
@@ -311,7 +351,7 @@
         },
         {
           "content": "Slice and dice!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": ""
         },
         {
@@ -321,7 +361,7 @@
         },
         {
           "content": "Splash a dash!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": ""
         },
         {
@@ -331,7 +371,7 @@
         },
         {
           "content": "Punch and crunch!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": ""
         },
         {
@@ -341,11 +381,11 @@
         },
         {
           "content": "Stop, don't drop!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": ""
         },
         {
-          "content": "Good! Now your turn, Kiara's friend.",
+          "content": "Good! Now your turn, Ben's friend.",
           "role": "Sensei",
           "audio": ""
         }
@@ -356,7 +396,7 @@
       "outro": [
         {
           "content": " I can tell Sensei is impressed. Keep it up!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -368,12 +408,12 @@
         },
         {
           "content": "That's totally true!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "If sensei does a bow, you also bow!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {

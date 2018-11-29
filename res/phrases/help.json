@@ -1,7 +1,7 @@
 {
   "helpCompetitionRulesPhrase": [
     {
-      "content": "In a competition, you and Kiara take turns trying to provide the correct answer. The first one to lose two rounds by answering incorrectly loses."
+      "content": "In a competition, you and Ben take turns trying to provide the correct answer. The first one to lose two rounds by answering incorrectly loses."
     }
   ],
   "helpMissionLowDescriptionPhrase": [
@@ -126,17 +126,17 @@
   ],
   "helpMidMissionStripe1WordBoardKarate": [
     {
-      "content": "If sensei gives you beef or tofu, say yum! but if it's soda, say yuck!"
+      "content": "If sensei gives you beef or tofu, say 'yum!' but if it's soda, say 'yuck!'"
     }
   ],
   "helpMidMissionStripe1JuiceWarrior": [
     {
-      "content": "If sensei gives you beef or tofu, say yum! But if it's soda or candy, say yuck!"
+      "content": "If sensei gives you beef or tofu, say 'yum!' But if it's soda or candy, say 'yuck!'"
     }
   ],
   "helpMidMissionStripe1SushiSlice": [
     {
-      "content": "If sensei gives you beef, tofu, or milk, say yum! But if it's soda or candy, say yuck!"
+      "content": "If sensei gives you beef, tofu, or milk, say 'yum!' But if it's soda or candy, say 'yuck!'"
     }
   ],
   "helpMidMissionStripe1FoodTaster": [

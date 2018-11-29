@@ -3,18 +3,18 @@
     "0": {
       "outro": [
         {
-          "content": "Kiara give wrong response, which means your friend win round!",
+          "content": "Ben give wrong response, which means your friend win round!",
           "role": "Sensei",
           "audio": null
         },
         {
           "content": "Oops!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "That's some good looking sushi you've made so far!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -25,18 +25,28 @@
           "audio": null
         },
         {
-          "content": "To prepare eggs, say 'boil!'. Ready?",
-          "role": "Kiara",
+          "content": "To prepare eggs, say.",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "Many orders incoming! This will be competition round for you and Kiara! Need best sushi maker to step up!",
+          "content": "'boil!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Ready?",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Many orders incoming! This will be competition round for you and Ben! Need best sushi maker to step up!",
           "role": "Sensei",
           "audio": null
         },
         {
           "content": "Bring it, sushi buddy!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -45,7 +55,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara and Alexa closely!",
+          "content": "Watch Ben and Alexa closely!",
           "role": "Sensei",
           "audio": null
         },
@@ -61,7 +71,7 @@
         },
         {
           "content": "Boil!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -101,7 +111,7 @@
         },
         {
           "content": "Roll!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -141,7 +151,7 @@
         },
         {
           "content": "Slice!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -150,7 +160,7 @@
           "audio": null
         },
         {
-          "content": "No! Sorry, Kiara. Egg is Boil!",
+          "content": "No! Sorry, Ben. Egg is Boil!",
           "role": "Sensei",
           "audio": null
         },
@@ -185,18 +195,18 @@
     "1": {
       "outro": [
         {
-          "content": "Kiara give wrong response, which means your friend win round!",
+          "content": "Ben give wrong response, which means your friend win round!",
           "role": "Sensei",
           "audio": null
         },
         {
           "content": "Oops!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "You got me! Hey, you're becoming a skilled taster already!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -208,22 +218,27 @@
         },
         {
           "content": "Be ready! Wasabe has a pretty strong flavor!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "To eat wasabe peas, say 'crunch!'",
-          "role": "Kiara",
+          "content": "To eat wasabe peas, say.",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "Time to prove yourself! You and Kiara compete to see who tastes faster!",
+          "content": "'crunch!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Time to prove yourself! You and Ben compete to see who tastes faster!",
           "role": "Sensei",
           "audio": null
         },
         {
           "content": "I'm winning this time!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -238,18 +253,18 @@
     "0": {
       "outro": [
         {
-          "content": "Kiara give wrong response, which means your friend win round!",
+          "content": "Ben give wrong response, which means your friend win round!",
           "role": "Sensei",
           "audio": null
         },
         {
           "content": "Oops!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "We'll be gigantic sumo in no time!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -261,12 +276,17 @@
         },
         {
           "content": "Those are the good kinds of fats! Perfect for a sumo!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "To eat fried fish, say 'munch!'",
-          "role": "Kiara",
+          "content": "To eat fried fish, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'munch!'",
+          "role": "BenLoud",
           "audio": null
         },
         {
@@ -276,7 +296,7 @@
         },
         {
           "content": "It's you against me! I'm so ready!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -285,7 +305,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara and Alexa closely!",
+          "content": "Watch Ben and Alexa closely!",
           "role": "Sensei",
           "audio": null
         },
@@ -296,7 +316,7 @@
         },
         {
           "content": "Chomp!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -326,7 +346,7 @@
         },
         {
           "content": "Slurp!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -346,11 +366,11 @@
         },
         {
           "content": "Hah! I won!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "Now it’s your turn, Kiara’s friend.",
+          "content": "Now it’s your turn, Ben’s friend.",
           "role": "Sensei",
           "audio": null
         }
@@ -360,18 +380,18 @@
     "1": {
       "outro": [
         {
-          "content": "Kiara give wrong response, which means your friend win round!",
+          "content": "Ben give wrong response, which means your friend win round!",
           "role": "Sensei",
           "audio": null
         },
         {
           "content": "Oops!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "Impressive! I'm no match for your yum or yuck thinking!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -383,22 +403,37 @@
         },
         {
           "content": "Mom says milk gives you strong bones!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "If sensei gives you beef, tofu, or milk, say 'yum!' But if it's soda or candy, say 'yuck!'",
-          "role": "Kiara",
+          "content": "If sensei gives you beef, tofu, or milk, say.",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "Let's see who has greater discipline! Competition time between you and Kiara!",
+          "content": "'yum!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "But if it's soda or candy, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'yuck!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Let's see who has greater discipline! Competition time between you and Ben!",
           "role": "Sensei",
           "audio": null
         },
         {
           "content": "I'm ready to win!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -413,18 +448,18 @@
     "0": {
       "outro": [
         {
-          "content": "Kiara give wrong response, which means your friend win round!",
+          "content": "Ben give wrong response, which means your friend win round!",
           "role": "Sensei",
           "audio": null
         },
         {
           "content": "Oops!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "So close! At this rate you'll be the best guru around!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -436,22 +471,27 @@
         },
         {
           "content": "I'd hate to get splinters from my juice!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "To not add the chopsticks, say 'stop don't drop!'",
-          "role": "Kiara",
+          "content": "To not add the chopsticks, say.",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "I want you and Kiara to compete! Good way to see who better juice maker!",
+          "content": "'stop don't drop!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "I want you and Ben to compete! Good way to see who better juice maker!",
           "role": "Sensei",
           "audio": null
         },
         {
           "content": "Oh yeah!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -460,7 +500,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara and Alexa closely!",
+          "content": "Watch Ben and Alexa closely!",
           "role": "Sensei",
           "audio": null
         },
@@ -471,7 +511,7 @@
         },
         {
           "content": "Slice and dice!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -491,7 +531,7 @@
         },
         {
           "content": "Punch and crunch!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -511,11 +551,11 @@
         },
         {
           "content": "Yay! I won!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "Now your turn, Kiara's friend.",
+          "content": "Now your turn, Ben's friend.",
           "role": "Sensei",
           "audio": null
         }
@@ -525,18 +565,18 @@
     "1": {
       "outro": [
         {
-          "content": "Kiara give wrong response, which means your friend win round!",
+          "content": "Ben give wrong response, which means your friend win round!",
           "role": "Sensei",
           "audio": null
         },
         {
           "content": "Oops!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "Aw, you bested me this time. We're getting good at this karate stuff!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -547,18 +587,23 @@
           "audio": null
         },
         {
-          "content": "If sensei tries to grab you, say 'break!'",
-          "role": "Kiara",
+          "content": "If sensei tries to grab you, say.",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "For this challenge, you and Kiara will compete! I see who better at karate!",
+          "content": "'break!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "For this challenge, you and Ben will compete! I see who better at karate!",
           "role": "Sensei",
           "audio": null
         },
         {
           "content": "I'll show you what I've got!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],

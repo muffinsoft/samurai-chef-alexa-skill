@@ -1,8 +1,8 @@
 {
   "firstTimeGreeting": [
     {
-      "content": "Hey! It's your friend Kiara here. I've got a question for you. What's your favorite food?",
-      "role": "Kiara",
+      "content": "Hey! It's your friend Ben here. I've got a question for you. What's your favorite food?",
+      "role": "Ben",
       "audio": null
     },
     {
@@ -10,7 +10,7 @@
     },
     {
       "content": "Today I'm visiting a friend named Sensei Sushi who owns his own Japanese restaurant. Let's go!",
-      "role": "Kiara",
+      "role": "Ben",
       "audio": null
     },
     {
@@ -19,13 +19,13 @@
       "audio": null
     },
     {
-      "content": "Ah, Kiara! Glad you're here.",
+      "content": "Ah, Ben! Glad you're here.",
       "role": "Sensei",
       "audio": null
     },
     {
       "content": "Hi Sensei! These are my friends.",
-      "role": "Kiara",
+      "role": "Ben",
       "audio": null
     },
     {
@@ -48,7 +48,7 @@
     },
     {
       "content": "Really?! What can we do?",
-      "role": "Kiara",
+      "role": "Ben",
       "audio": null
     },
     {
@@ -58,18 +58,18 @@
     },
     {
       "content": "I don't know about you but those all sound real cool! Sensei is ready to train us. Alexa, tell us the available paths!",
-      "role": "Kiara",
+      "role": "Ben",
       "audio": null
     }
   ],
   "playerWithAwardsGreeting": [
     {
       "content": "Welcome back! I'm so happy to see you again....Alexa, please give our friend a royal greeting!",
-      "role": "Kiara",
+      "role": "Ben",
       "audio": null
     },
     {
-      "content": "%titles%. You have %low_color% belt Chef, %mid_color% belt Sumo, %high_color% belt Guru",
+      "content": "%titles%. You have %low_color% belt Chef, %mid_color% belt Sumo, %high_color% belt Guru.",
       "role": "Alexa",
       "audio": null
     }
@@ -82,7 +82,7 @@
     },
     {
       "content": "You're amazing! Now that's an incredible nickname that's well earned! How do you feel about becoming the Ultimate Sushi Samurai?",
-      "role": "Kiara",
+      "role": "Ben",
       "audio": null
     },
     {
@@ -95,7 +95,7 @@
     },
     {
       "content": "Thanks Sensei. Well, one thing you can do is reset your progress. Would you like to start Samurai Chef all over?",
-      "role": "Kiara",
+      "role": "Ben",
       "audio": null
     }
   ]

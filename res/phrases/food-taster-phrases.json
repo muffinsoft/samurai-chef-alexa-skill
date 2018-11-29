@@ -4,7 +4,7 @@
       "outro": [
         {
           "content": "Nice work! You showed those boards who's boss!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -15,8 +15,23 @@
           "audio": null
         },
         {
-          "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haaa'!",
-          "role": "Kiara",
+          "content": "If the word on the board starts with 'W' sound, like whale, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Wham!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'H' sound, like hat, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Haaa'!",
+          "role": "BenLoud",
           "audio": null
         },
         {
@@ -30,7 +45,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch how Kiara do word board karate!",
+          "content": "Watch how Ben do word board karate!",
           "role": "Sensei",
           "audio": null
         },
@@ -41,7 +56,7 @@
         },
         {
           "content": "Wham!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -51,7 +66,7 @@
         },
         {
           "content": "Haaa!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -61,7 +76,7 @@
         },
         {
           "content": "Pow!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -76,7 +91,7 @@
       "outro": [
         {
           "content": "Woah! You pulverized those boards!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -87,8 +102,33 @@
           "audio": null
         },
         {
-          "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haaa!' If the word starts with 'P', like pepper, say 'Pow!'",
-          "role": "Kiara",
+          "content": "If the word on the board starts with 'W' sound, like whale, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Wham!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'H' sound, like hat, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Haaa!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with 'P', like pepper, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Pow!'",
+          "role": "BenLoud",
           "audio": null
         },
         {
@@ -109,7 +149,7 @@
       "outro": [
         {
           "content": "Those boards didn't stand a chance!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -120,8 +160,23 @@
           "audio": null
         },
         {
-          "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zonk'! If the word starts with the 'F' sound, like foosball, say 'Fuah!'",
-          "role": "Kiara",
+          "content": "If the word on the board starts with 'Z' sound, like zoo, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Zonk!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'F' sound, like foosball, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Fuah!'",
+          "role": "BenLoud",
           "audio": null
         },
         {
@@ -135,7 +190,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch how Kiara do word board karate!",
+          "content": "Watch how Ben do word board karate!",
           "role": "Sensei",
           "audio": null
         },
@@ -146,7 +201,7 @@
         },
         {
           "content": "Zonk!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -156,7 +211,7 @@
         },
         {
           "content": "Fuah!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -166,7 +221,7 @@
         },
         {
           "content": "Woosh!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -181,7 +236,7 @@
       "outro": [
         {
           "content": "Those were some sweet moves on those boards!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -192,8 +247,33 @@
           "audio": null
         },
         {
-          "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zonk!' If the word starts with the 'F' sound, like foosball, say 'Fuah!' IF the word starts with 'Woo' sound like wood, say 'woosh!'",
-          "role": "Kiara",
+          "content": "If the word on the board starts with 'Z' sound, like zoo, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Zonk!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'F' sound, like foosball, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Fuah!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "IF the word starts with 'Woo' sound like wood, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Woosh!'",
+          "role": "BenLoud",
           "audio": null
         },
         {
@@ -214,7 +294,7 @@
       "outro": [
         {
           "content": "You crushed those boards into dust! Awesome!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -225,8 +305,23 @@
           "audio": null
         },
         {
-          "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!'",
-          "role": "Kiara",
+          "content": "If the word on the board starts with 'Z' sound, like zoo, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Zaam!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'W' sound, like walk, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Whammo!'",
+          "role": "BenLoud",
           "audio": null
         },
         {
@@ -240,7 +335,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch how Kiara do word board karate!",
+          "content": "Watch how Ben do word board karate!",
           "role": "Sensei",
           "audio": null
         },
@@ -251,7 +346,7 @@
         },
         {
           "content": "Zaam!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -261,7 +356,7 @@
         },
         {
           "content": "Whammo!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -271,7 +366,7 @@
         },
         {
           "content": "Thwap!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -286,7 +381,7 @@
       "outro": [
         {
           "content": "Wow, no way anyone is piecing those boards back together!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -297,8 +392,33 @@
           "audio": null
         },
         {
-          "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with 'TH', like thorn, say 'Thwap!'",
-          "role": "Kiara",
+          "content": "If the word on the board starts with 'Z' sound, like zoo, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Zaam!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'W' sound, like walk, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Whammo!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with 'TH', like thorn, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Thwap!'",
+          "role": "BenLoud",
           "audio": null
         },
         {

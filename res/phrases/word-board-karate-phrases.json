@@ -4,7 +4,7 @@
       "outro": [
         {
           "content": " Pretty good for a beginner!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -16,12 +16,32 @@
         },
         {
           "content": "We're ready!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "To prepare rice, say 'boil!' To cut the fish, say 'slice'. Let's get started!",
-          "role": "Kiara",
+          "content": "To prepare rice, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'boil!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "To cut the fish, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'slice!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Let's get started!",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -30,7 +50,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara closely!",
+          "content": "Watch Ben closely!",
           "role": "Sensei",
           "audio": null
         },
@@ -46,7 +66,7 @@
         },
         {
           "content": "Boil!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -66,7 +86,7 @@
         },
         {
           "content": "Slice!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -86,7 +106,7 @@
         },
         {
           "content": "Roll!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -106,7 +126,7 @@
         },
         {
           "content": "Chop!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -126,7 +146,7 @@
         },
         {
           "content": "Boil!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -135,7 +155,7 @@
           "audio": null
         },
         {
-          "content": "Now it’s your turn, Kiara’s friend.",
+          "content": "Now it’s your turn, Ben’s friend.",
           "role": "Sensei",
           "audio": null
         }
@@ -146,7 +166,7 @@
       "outro": [
         {
           "content": "Burp if you have to! You earned it!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -158,12 +178,42 @@
         },
         {
           "content": "Hope you're hungry, buddy!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "To eat soup, say 'slurp!' To eat sushi, say 'gulp.' To sip tea, say 'sip!' Let's get started!",
-          "role": "Kiara",
+          "content": "To eat soup, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'slurp!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "To eat sushi, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'gulp!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "To sip tea, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'sip!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Let's get started!",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -179,7 +229,7 @@
       "outro": [
         {
           "content": "Wow, you're an eating machine!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -191,12 +241,27 @@
         },
         {
           "content": "Good protein to get nice and big!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "To eat chicken, say 'chomp!' To eat sushi, say 'gulp!'",
-          "role": "Kiara",
+          "content": "To eat chicken, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'chomp!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "To eat sushi, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'gulp!'",
+          "role": "BenLoud",
           "audio": null
         }
       ],
@@ -205,7 +270,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara closely!",
+          "content": "Watch Ben closely!",
           "role": "Sensei",
           "audio": null
         },
@@ -216,7 +281,7 @@
         },
         {
           "content": "Chomp!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -231,7 +296,7 @@
         },
         {
           "content": "Gulp!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -246,7 +311,7 @@
         },
         {
           "content": "Slurp!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -256,11 +321,11 @@
         },
         {
           "content": "Munch!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "Now it’s your turn, Kiara’s friend!",
+          "content": "Now it’s your turn, Ben’s friend!",
           "role": "Sensei",
           "audio": null
         }
@@ -271,7 +336,7 @@
       "outro": [
         {
           "content": "Hey, you're a natural at this!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -283,12 +348,27 @@
         },
         {
           "content": "Soda is tasty but yeah, it's not very healthy.",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "If sensei gives you beef or tofu, say 'yum!' but if it's soda, say 'yuck!'",
-          "role": "Kiara",
+          "content": "If sensei gives you beef or tofu, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'yum!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "but if it's soda, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'yuck!'",
+          "role": "BenLoud",
           "audio": null
         }
       ],
@@ -304,7 +384,7 @@
       "outro": [
         {
           "content": "You're already juicing like a pro! Keep it up!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -316,12 +396,27 @@
         },
         {
           "content": "That's an interesting combination!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "To prepare milk, say 'splash a dash!' For carrots, say 'slice and dice!'",
-          "role": "Kiara",
+          "content": "To prepare milk, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'splash a dash!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "For carrots, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'slice and dice!'",
+          "role": "BenLoud",
           "audio": null
         }
       ],
@@ -330,7 +425,7 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Kiara closely!",
+          "content": "Watch Ben closely!",
           "role": "Sensei",
           "audio": null
         },
@@ -341,7 +436,7 @@
         },
         {
           "content": "Slice and dice!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -351,7 +446,7 @@
         },
         {
           "content": "Splash a dash!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -361,7 +456,7 @@
         },
         {
           "content": "Punch and crunch!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -371,11 +466,11 @@
         },
         {
           "content": "Stop, don't drop!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "Good! Now your turn, Kiara's friend.",
+          "content": "Good! Now your turn, Ben's friend.",
           "role": "Sensei",
           "audio": null
         }
@@ -386,7 +481,7 @@
       "outro": [
         {
           "content": "Have you done karate before? You rock!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -398,12 +493,37 @@
         },
         {
           "content": "Hope you're stretched and ready!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
-          "content": "if sensei does a punch, say 'Block!' If sensei does a kick, say 'Dodge!' If sensei tries a sweep, say 'Jump'",
-          "role": "Kiara",
+          "content": "if sensei does a punch, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'block!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If sensei does a kick, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'dodge!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If sensei tries a sweep, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'jump!'",
+          "role": "BenLoud",
           "audio": null
         }
       ],

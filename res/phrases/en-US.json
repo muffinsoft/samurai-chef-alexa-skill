@@ -32,25 +32,25 @@
   "justEarnCorrectQuestionPhrase": [
     {
       "content": "Wow, you got some Secret Sauce! When you use it, Sensei will accept any answer as correct!",
-      "role": "Kiara"
+      "role": "Ben"
     }
   ],
   "justUseCorrectQuestionPhrase": [
     {
       "content": "Sweet! With the Secret Sauce your answer was considered right, no matter what you said!",
-      "role": "Kiara"
+      "role": "Ben"
     }
   ],
   "justEarnSecondChancePhrase": [
     {
       "content": "Nice, you earned a Super Spatula! With it you'll get a second chance the first time you give a wrong answer.",
-      "role": "Kiara"
+      "role": "Ben"
     }
   ],
   "justUseSecondChancePhrase": [
     {
       "content": "Good idea using the Super Spatula to get a second chance at responding!",
-      "role": "Kiara"
+      "role": "Ben"
     }
   ],
   "twoMistakesLeftPhrase": [
@@ -60,12 +60,12 @@
   ],
   "oneMistakeLeftPhrase": [
     {
-      "content": "Hmm! That was your second mistake! Since you first to give two wrong responses, Kiara wins challenge!",
+      "content": "Hmm! That was your second mistake! Since you first to give two wrong responses, Ben wins challenge!",
       "role": "Sensei"
     },
     {
       "content": "Oh yeah! Better luck next time!",
-      "role": "Kiara"
+      "role": "Ben"
     }
   ],
   "lastMistakePhrase": [
@@ -75,14 +75,14 @@
   ],
   "oneMistakeLeftCompetitionPhrase": [
     {
-      "content": "Kiara wins round! One more and she will be the victor!",
+      "content": "Ben wins round! One more and she will be the victor!",
       "role": "Sensei"
     }
   ],
   "lastMistakeCompetitionPhrase": [
     {
-      "content": "wins again! Kiara is the winner!",
-      "role": "Kiara "
+      "content": "wins again! Ben is the winner!",
+      "role": "Ben "
     }
   ],
   "selectMissionPhrase": [
@@ -102,7 +102,7 @@
   ],
   "readyToContinueMissionPhrase": [
     {
-      "content": "Would you like to continue playing?"
+      "content": "Would you like to continue playing"
     }
   ],
   "missionAlreadyCompletePhrase": [

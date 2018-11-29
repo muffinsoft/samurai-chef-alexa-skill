@@ -8,12 +8,12 @@
       },
       {
         "content": "You bet we are! Hey, chef-in-training! You've helped prepare a meal before, right?",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
         "content": "Yeah? Well I made buttered toast once...",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
@@ -23,14 +23,14 @@
       },
       {
         "content": "Now that's a title I'd want! Let's get started!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       }
     ],
     "missionOutro": [
       {
         "content": "Hey, that was fun! Making sushi is great!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
@@ -45,7 +45,7 @@
       },
       {
         "content": "Awesome!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
@@ -55,7 +55,7 @@
       },
       {
         "content": "See ya Sensei! Let's see what path we take on next!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       }
     ],
@@ -68,7 +68,7 @@
         },
         {
           "content": "To earn this YELLOW BELT we'll need to show Sensei you're a fast learner at making sushi. You've got this!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -90,7 +90,7 @@
         },
         {
           "content": "For this ORANGE BELT we must not only taste delicious food but eat it the correct way too! I can't wait!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -114,12 +114,12 @@
         },
         {
           "content": "We can't wait! Grats on the belt, sushi buddy!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "You're off to a good start. What's your favorite thing about making sushi so far?",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -127,7 +127,7 @@
         },
         {
           "content": "Cool!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -144,12 +144,12 @@
         },
         {
           "content": "Definitely! Grats on the belt, sushi buddy!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "Say, if you could taste any food at this very moment, what would it be?",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -180,7 +180,7 @@
       },
       {
         "content": "We're ready to grow big and strong! Hey, sumo-in-training! Have you ever seen a real sumo match before?",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
@@ -188,7 +188,7 @@
       },
       {
         "content": "Don't worry, we don't have to wear those big diaper looking things.",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
@@ -198,14 +198,14 @@
       },
       {
         "content": "I like how that sounds! Let's get started!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       }
     ],
     "missionOutro": [
       {
         "content": "What a great time! Becoming a sumo is cooler than I thought!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
@@ -220,7 +220,7 @@
       },
       {
         "content": "We rock!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
@@ -230,7 +230,7 @@
       },
       {
         "content": "Our pleasure, Sensei! It was fun! Well, let's see what path we take on next!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       }
     ],
@@ -243,7 +243,7 @@
         },
         {
           "content": "By earning this YELLOW BELT we'll show Sensei we got what it takes to become big, chubby sumo! I'm excited!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -265,7 +265,7 @@
         },
         {
           "content": "Earning this ORANGE BELT will require some fast thinking! We can do it!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -289,12 +289,12 @@
         },
         {
           "content": "Oh yeah! Grats on the belt, by the way!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "Sumo sounds like an interesting sport. Hey future sumo, what's your favorite sport to watch or play?",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -302,7 +302,7 @@
         },
         {
           "content": "Nice! I love soccer.",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -319,12 +319,12 @@
         },
         {
           "content": "Sweet! That's a nice belt!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "Hey, future sumo! What's your favorite junk food?",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -332,7 +332,7 @@
         },
         {
           "content": "I'm all about chocolate!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -355,7 +355,7 @@
       },
       {
         "content": "We're ready! Mom always says you are what you eat! Hey, guru-in-training! What's your favorite healthy snack to eat?",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
@@ -363,7 +363,7 @@
       },
       {
         "content": "I like veggies! Well, only with lots of ranch...",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
@@ -373,14 +373,14 @@
       },
       {
         "content": "Sweet! Let's get started!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       }
     ],
     "missionOutro": [
       {
         "content": "How fun! I loved learning how important food is to growing strong and healthy!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
@@ -395,17 +395,17 @@
       },
       {
         "content": "Oh yeah!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       },
       {
-        "content": "People the world over are now arriving here to seek both nutritious food and advice on healthy eating! I thank you greatly, Kiara and friends!",
+        "content": "People the world over are now arriving here to seek both nutritious food and advice on healthy eating! I thank you greatly, Ben and friends!",
         "role": "Sensei",
         "audio": null
       },
       {
         "content": "We couldn't have done it without ya, Sensei! Well, let's see what path we take on next!",
-        "role": "Kiara",
+        "role": "Ben",
         "audio": null
       }
     ],
@@ -418,7 +418,7 @@
         },
         {
           "content": "To earn this YELLOW BELT we'll need to prove to Sensei that we're lean, mean juicing machines! Oh yeah!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -440,7 +440,7 @@
         },
         {
           "content": "We'll earn this ORANGE BELT by showing Sensei we pack quite a punch when it comes to karate! Hayaa!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -464,12 +464,12 @@
         },
         {
           "content": "They sure are! Grats on the belt, guru-in-training!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "Does or mom or dad ever make you healthy smoothies or juices?",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -477,7 +477,7 @@
         },
         {
           "content": "My dad likes raddish juice... yuck!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -494,12 +494,12 @@
         },
         {
           "content": "Woohoo! Good job getting that belt!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
           "content": "Hey, have you ever watched a karate movie before?",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
@@ -507,7 +507,7 @@
         },
         {
           "content": "I think they're fun to watch!",
-          "role": "Kiara",
+          "role": "Ben",
           "audio": null
         },
         {
