@@ -106,9 +106,9 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
             if (isMissionSelectState) {
                 String userReply = getUserReply(slots);
+                attributesManager.getSessionAttributes().remove(MISSION_START_STATE);
                 if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
                     attributesManager.getSessionAttributes().remove(CURRENT_MISSION);
-                    attributesManager.getSessionAttributes().remove(MISSION_START_STATE);
                     logger.debug("Going to handle mission selection ");
 
                     return new SelectLevelStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
