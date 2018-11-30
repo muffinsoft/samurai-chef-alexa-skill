@@ -1,7 +1,7 @@
 {
   "firstTimeGreeting": [
     {
-      "content": "Hey! It's your friend Ben here. I've got a question for you. What's your favorite food?",
+      "content": "Hey! I'm super excited that you called! Want to know what I've got in store for us today?",
       "role": "Ben",
       "audio": null
     },
@@ -9,9 +9,12 @@
       "userResponse": true
     },
     {
-      "content": "Today I'm visiting a friend named Sensei Sushi who owns his own Japanese restaurant. Let's go!",
+      "content": "Today we're visiting Sensei! He owns a Japanese restaurant and makes all sorts of delicious food, samurai style! You know what a samurai is, right buddy?",
       "role": "Ben",
       "audio": null
+    },
+    {
+      "userResponse": true
     },
     {
       "content": "[footsteps]",
@@ -19,22 +22,27 @@
       "audio": null
     },
     {
-      "content": "Ah, Ben! Glad you're here.",
-      "role": "Sensei",
-      "audio": null
-    },
-    {
-      "content": "Hi Sensei! These are my friends.",
+      "content": "Cool! Well, I heard Sensei needs some samurai chef apprentices. Let's go find out more!",
       "role": "Ben",
       "audio": null
     },
     {
-      "content": "Hello sensei, I'm Alexa. And this is my friend",
-      "role": "Alexa",
+      "content": "Greetings, Sensei! This is my friend. We're here to learn your ways!",
+      "role": "Ben",
       "audio": null
     },
     {
-      "content": "One question: have you ever eaten sushi?",
+      "content": "Hello! Ah, you wish to be my disciples. First, I have one question: do you like... sushi?",
+      "role": "Sensei",
+      "audio": null
+    },
+    {
+      "content": "I love it!",
+      "role": "Ben",
+      "audio": null
+    },
+    {
+      "content": "People say I'm the wisest, most skilled sushi samurai in the world! But my passion is also to teach others. Do you have what it takes to learn from a master?",
       "role": "Sensei",
       "audio": null
     },
@@ -42,22 +50,7 @@
       "userResponse": true
     },
     {
-      "content": "My sushi restaurant is on the verge of becoming the greatest! But I need your help.",
-      "role": "Sensei",
-      "audio": null
-    },
-    {
-      "content": "Really?! What can we do?",
-      "role": "Ben",
-      "audio": null
-    },
-    {
-      "content": "For my restaurant to become famous I need three things: another master chef, official sumo pro, and wise sushi guru. I teach you!",
-      "role": "Sensei",
-      "audio": null
-    },
-    {
-      "content": "I don't know about you but those all sound real cool! Sensei is ready to train us. Alexa, tell us the available paths!",
+      "content": "Oh yeah! Let's prove to Sensei that we can become Sushi Masters!  Alexa, tell us the available paths!",
       "role": "Ben",
       "audio": null
     }

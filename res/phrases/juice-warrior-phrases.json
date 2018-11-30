@@ -14,13 +14,8 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "Big order just came in! Need lots of seaweed sushi! You prepare seaweed along with rice and fish.",
+          "content": "Big order just came in! Need lots of seaweed, and fast! I give you no more than 5 seconds to prepare item.",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Can't have sushi without seaweed wrap!",
-          "role": "Ben",
           "audio": null
         },
         {
@@ -31,16 +26,6 @@
         {
           "content": "'roll!'",
           "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "Ready?",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Need sushi fast! I give you no more than 15 seconds to prepare item!",
-          "role": "Sensei",
           "audio": null
         }
       ],
@@ -130,13 +115,8 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "You will now also taste mochi ice cream!",
+          "content": "You will now also taste mochi ice cream! Hope you've got a sweet tooth! For this challenge you'll have 5 seconds to answer!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Hope you've got a sweet tooth!",
-          "role": "Ben",
           "audio": null
         },
         {
@@ -147,11 +127,6 @@
 		{
           "content": "'lick!'",
           "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "For this challenge you'll have 12 seconds to answer!",
-          "role": "Alex",
           "audio": null
         }
       ],
@@ -177,13 +152,8 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
         },
         {
-          "content": "Now I also cook you stew! Loaded with vitamins!",
+          "content": "Now I also cook you stew! Loaded with vitamins and good for stomach! You have only 5 seconds to taste correctly!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Should feel good in your stomach too!",
-          "role": "Ben",
           "audio": null
         },
         {
@@ -194,11 +164,6 @@
 		{
           "content": "'slurp!'",
           "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "I cook faster now! You have only 15 seconds to taste correctly!",
-          "role": "Sensei",
           "audio": null
         }
       ],
@@ -273,13 +238,8 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
         },
         {
-          "content": "Now we add candy too! Not healthy!",
+          "content": "Now we add candy too! Not healthy! Also give cavities! You have only 5 seconds to respond.",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "I don't think cavities are good for sumo either!",
-          "role": "Ben",
           "audio": null
         },
         {
@@ -300,11 +260,6 @@
 		{
           "content": "'yuck!'",
           "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "Good sumo must resist urge quickly! You have only 12 seconds to respond!",
-          "role": "Sensei",
           "audio": null
         }
       ],
@@ -330,13 +285,8 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "Customers say it's hot! We need to add ice! Ice not make juice healthier, but certainly tastier!",
+          "content": "Customers want refreshing drink so we add ice! Let's be quick! Have ingredients ready in less than 5 seconds!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Nothing like a delicious cold drink after a work out!",
-          "role": "Ben",
           "audio": null
         },
         {
@@ -347,11 +297,6 @@
 		{
           "content": "'punch and crunch!'",
           "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "Customers waiting! You must prepare ingredients in less than 15 seconds!",
-          "role": "Sensei",
           "audio": null
         }
       ],
@@ -415,7 +360,7 @@
     "1": {
       "outro": [
         {
-          "content": " I can tell Sensei is impressed. Keep it up!",
+          "content": "I can tell Sensei is impressed. Keep it up!",
           "role": "Ben",
           "audio": null
         }
@@ -426,23 +371,13 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "Now I also show respect! Very important in martial arts and life in general!",
+          "content": "Now I also show respect! Very important in martial arts and life in general! Guru must react swiftly! Only 5 seconds to respond now!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "That's totally true!",
-          "role": "Ben",
           "audio": null
         },
         {
           "content": "If sensei does a bow, you also bow!",
           "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Guru must react swiftly! Only 12 seconds to respond now!",
-          "role": "Sensei",
           "audio": null
         }
       ],

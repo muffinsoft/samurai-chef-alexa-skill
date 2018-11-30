@@ -24,33 +24,18 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "Customers enjoy your sushi so far! But now they want more protein, so we add boiled egg!",
+          "content": "Customers enjoy sushi so far but want more protein, so we add boiled egg! This will be competition round for you and Ben! Need best sushi maker to step up!",
           "role": "Sensei",
           "audio": null
         },
         {
-          "content": "To prepare eggs, say.",
+          "content": "Bring it, sushi buddy! To prepare eggs, say.",
           "role": "Ben",
           "audio": null
         },
         {
           "content": "'boil!'",
           "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "Ready?",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Many orders incoming! This will be competition round for you and Ben! Need best sushi maker to step up!",
-          "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Bring it, sushi buddy!",
-          "role": "Ben",
           "audio": null
         }
       ],
@@ -220,33 +205,18 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "Good work so far. Wasabe peas are your next dish to taste.",
+          "content": "Wasabe peas are your next dish to taste. Strong in flavor! Time to prove yourself! You and Ben compete to see who tastes faster!",
           "role": "Sensei",
           "audio": null
         },
         {
-          "content": "Be ready! Wasabe has a pretty strong flavor!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "To eat wasabe peas, say.",
+          "content": "I'm winning this time! To eat wasabe peas, say.",
           "role": "Ben",
           "audio": null
         },
         {
           "content": "'crunch!'",
           "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "Time to prove yourself! You and Ben compete to see who tastes faster!",
-          "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "I'm winning this time!",
-          "role": "Ben",
           "audio": null
         }
       ],
@@ -282,33 +252,18 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
         },
         {
-          "content": "Now I also make fried fish! Taste good and loaded with fatty acids!",
+          "content": "Now I also make fried fish! Taste good and loaded with fatty acids! I'm on fire! Cooking fast! Competition time to see who become better sumo!",
           "role": "Sensei",
           "audio": null
         },
         {
-          "content": "Those are the good kinds of fats! Perfect for a sumo!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "To eat fried fish, say.",
+          "content": "I'm so ready! To eat fried fish, say.",
           "role": "Ben",
           "audio": null
         },
         {
           "content": "'munch!'",
           "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "I'm on a roll! Cooking fast! Competition time to see who become better sumo!",
-          "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "It's you against me! I'm so ready!",
-          "role": "Ben",
           "audio": null
         }
       ],
@@ -413,17 +368,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
         },
         {
-          "content": "I now add milk! Milk is good for sumo!",
+          "content": "I now add milk! Milk is good for sumo bones! Let's see who has greater discipline! Competition time between you and Ben!",
           "role": "Sensei",
           "audio": null
         },
         {
-          "content": "Mom says milk gives you strong bones!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "If sensei gives you beef, tofu, or milk, say.",
+          "content": "I'm ready to win! If sensei gives you beef, tofu or milk, say.",
           "role": "Ben",
           "audio": null
         },
@@ -440,16 +390,6 @@
         {
           "content": "'yuck!'",
           "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "Let's see who has greater discipline! Competition time between you and Ben!",
-          "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "I'm ready to win!",
-          "role": "Ben",
           "audio": null
         }
       ],
@@ -485,33 +425,18 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "Customers love our juices, want more! I begin to give you ingredients fast. If I accidentally throw you chopsticks, don't add!",
+          "content": "Customers want more delicious juices so so I give you ingredients fast. If I accidentally throw you chopsticks, don't add! I want you and Ben to compete! Good way to see who better juice maker!",
           "role": "Sensei",
           "audio": null
         },
         {
-          "content": "I'd hate to get splinters from my juice!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "To not add the chopsticks, say.",
+          "content": "Oh yeah! To not add the chopsticks, say.",
           "role": "Ben",
           "audio": null
         },
         {
           "content": "'stop don't drop!'",
           "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "I want you and Ben to compete! Good way to see who better juice maker!",
-          "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Oh yeah!",
-          "role": "Ben",
           "audio": null
         }
       ],
@@ -606,28 +531,18 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "You are showing promise this session! Now I also try to grab! Good martial arts technique!",
+          "content": "You are impressing me! Now I also grab! Good technique! You and Ben will compete! I see who better at karate!",
           "role": "Sensei",
           "audio": null
         },
         {
-          "content": "If sensei tries to grab you, say.",
+          "content": "I'll show you what I've got! If sensei tries to grab you, say.",
           "role": "Ben",
           "audio": null
         },
         {
           "content": "'break!'",
           "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "For this challenge, you and Ben will compete! I see who better at karate!",
-          "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "I'll show you what I've got!",
-          "role": "Ben",
           "audio": null
         }
       ],

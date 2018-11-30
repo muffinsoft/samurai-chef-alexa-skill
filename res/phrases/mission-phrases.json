@@ -75,18 +75,13 @@
           "audio": null
         },
         {
-          "content": "To earn this YELLOW BELT we'll need to show Sensei you're a fast learner at making sushi. You've got this!",
+          "content": "To earn this YELLOW BELT we'll need to show Sensei you're a fast learner at making sushi.",
           "role": "Ben",
           "audio": null
         },
         {
           "content": "For this challenge Sensei wants five correct responses!",
           "role": "Alexa",
-          "audio": null
-        },
-        {
-          "content": "Ready? Let us begin!",
-          "role": "Sensei",
           "audio": null
         }
       ],
@@ -101,18 +96,13 @@
           "audio": null
         },
         {
-          "content": "For this ORANGE BELT we must not only taste delicious food but eat it the correct way too! I can't wait!",
+          "content": "For this ORANGE BELT we must not only taste delicious food but eat it the correct way too!",
           "role": "Ben",
           "audio": null
         },
         {
           "content": "For this challenge Sensei wants seven correct responses!",
           "role": "Alexa",
-          "audio": null
-        },
-        {
-          "content": "Ready? Let us begin!",
-          "role": "Sensei",
           "audio": null
         }
       ]
@@ -126,11 +116,6 @@
         {
           "content": "Good work! You have earned a yellow belt for learning the basics. Don't worry, there is plenty more to learn!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "We can't wait! Grats on the belt, sushi buddy!",
-          "role": "Ben",
           "audio": null
         },
         {
@@ -160,11 +145,6 @@
         {
           "content": "Excellent! You have earned an orange belt for learning the importance of taste. Very important in cooking!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Definitely! Grats on the belt, sushi buddy!",
-          "role": "Ben",
           "audio": null
         },
         {
@@ -270,18 +250,13 @@
           "audio": null
         },
         {
-          "content": "By earning this YELLOW BELT we'll show Sensei we got what it takes to become big, chubby sumo! I'm excited!",
+          "content": "By earning this YELLOW BELT we'll show Sensei we got what it takes to become big, chubby sumo!",
           "role": "Ben",
           "audio": null
         },
         {
           "content": "For this challenge Sensei wants five correct responses!",
           "role": "Alexa",
-          "audio": null
-        },
-        {
-          "content": "Ready? Let us begin!",
-          "role": "Sensei",
           "audio": null
         }
       ],
@@ -296,18 +271,13 @@
           "audio": null
         },
         {
-          "content": "Earning this ORANGE BELT will require some fast thinking! We can do it!",
+          "content": "Earning this ORANGE BELT will require some fast thinking!",
           "role": "Ben",
           "audio": null
         },
         {
           "content": "For this challenge Sensei wants seven correct responses!",
           "role": "Alexa",
-          "audio": null
-        },
-        {
-          "content": "Ready? Let us begin!",
-          "role": "Sensei",
           "audio": null
         }
       ]
@@ -324,12 +294,7 @@
           "audio": null
         },
         {
-          "content": "Oh yeah! Grats on the belt, by the way!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Sumo sounds like an interesting sport. Hey future sumo, what's your favorite sport to watch or play?",
+          "content": "Hey future sumo, what's your favorite sport to watch or play?",
           "role": "Ben",
           "audio": null
         },
@@ -355,11 +320,6 @@
         {
           "content": "Good, good! You have earned an orange belt for avoiding junk food well!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Sweet! That's a nice belt!",
-          "role": "Ben",
           "audio": null
         },
         {
@@ -465,18 +425,13 @@
           "audio": null
         },
         {
-          "content": "To earn this YELLOW BELT we'll need to prove to Sensei that we're lean, mean juicing machines! Oh yeah!",
+          "content": "To earn this YELLOW BELT we'll need to prove to Sensei that we're lean, mean juicing machines!",
           "role": "Ben",
           "audio": null
         },
         {
           "content": "For this challenge Sensei wants five correct responses!",
           "role": "Alexa",
-          "audio": null
-        },
-        {
-          "content": "Ready? Let us begin!",
-          "role": "Sensei",
           "audio": null
         }
       ],
@@ -491,18 +446,13 @@
           "audio": null
         },
         {
-          "content": "We'll earn this ORANGE BELT by showing Sensei we pack quite a punch when it comes to karate! Hayaa!",
+          "content": "We'll earn this ORANGE BELT by showing Sensei we pack quite a punch!",
           "role": "Ben",
           "audio": null
         },
         {
           "content": "For this challenge Sensei wants seven correct responses!",
           "role": "Alexa",
-          "audio": null
-        },
-        {
-          "content": "Ready? Let us begin!",
-          "role": "Sensei",
           "audio": null
         }
       ]
@@ -516,11 +466,6 @@
         {
           "content": "Challenge complete! You have earned a yellow belt for learning the basics. My juices are nutritious and yummy, yes?",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "They sure are! Grats on the belt, guru-in-training!",
-          "role": "Ben",
           "audio": null
         },
         {
@@ -550,11 +495,6 @@
         {
           "content": "Wonderful karate! You have earned a yellow belt. Diet and exercise is key to healthy life!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Woohoo! Good job getting that belt!",
-          "role": "Ben",
           "audio": null
         },
         {
