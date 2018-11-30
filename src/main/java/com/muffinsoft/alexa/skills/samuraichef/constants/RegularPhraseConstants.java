@@ -5,14 +5,19 @@ public class RegularPhraseConstants {
     public static final String TOO_LONG_PHRASE = "tooLongPhrase";
 
     public static final String TWO_MISTAKES_LEFT_PHRASE = "twoMistakesLeftPhrase";
+    public static final String TWO_MISTAKES_LEFT_TOO_LONG_PHRASE = "twoMistakesLeftTooLongPhrase";
 
     public static final String ONE_MISTAKE_LEFT_PHRASE = "oneMistakeLeftPhrase";
+    public static final String ONE_MISTAKE_LEFT_TOO_LONG_PHRASE = "oneMistakeLeftTooLongPhrase";
 
     public static final String LAST_MISTAKE_PHRASE = "lastMistakePhrase";
+    public static final String LAST_MISTAKE_TOO_LONG_PHRASE = "lastMistakeTooLongPhrase";
 
     public static final String ONE_MISTAKE_LEFT_COMPETITION_PHRASE = "oneMistakeLeftCompetitionPhrase";
+    public static final String ONE_MISTAKE_LEFT_COMPETITION_TOO_LONG_PHRASE = "oneMistakeLeftCompetitionTooLongPhrase";
 
     public static final String LAST_MISTAKE_COMPETITION_PHRASE = "lastMistakeCompetitionPhrase";
+    public static final String LAST_MISTAKE_COMPETITION_TOO_LONG_PHRASE = "lastMistakeCompetitionTooLongPhrase";
 
     public static final String WON_REPROMPT_PHRASE = "wonRePromptPhrase";
 

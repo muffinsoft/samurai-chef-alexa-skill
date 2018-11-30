@@ -31,11 +31,19 @@
   ],
   "justEarnCorrectQuestionPhrase": [
     {
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
+    },
+    {
       "content": "Wow, you got some Secret Sauce! When you use it, Sensei will accept any answer as correct!",
       "role": "Ben"
     }
   ],
   "justUseCorrectQuestionPhrase": [
+    {
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
+    },
     {
       "content": "Sweet! With the Secret Sauce your answer was considered right, no matter what you said!",
       "role": "Ben"
@@ -43,11 +51,19 @@
   ],
   "justEarnSecondChancePhrase": [
     {
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
+    },
+    {
       "content": "Nice, you earned a Super Spatula! With it you'll get a second chance the first time you give a wrong answer.",
       "role": "Ben"
     }
   ],
   "justUseSecondChancePhrase": [
+    {
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
+    },
     {
       "content": "Good idea using the Super Spatula to get a second chance at responding!",
       "role": "Ben"
@@ -73,6 +89,21 @@
       "content": "Aww, that was your third mistake! Too bad..."
     }
   ],
+  "twoMistakesLeftTooLongPhrase": [
+    {
+      "content": "Sorry, you answered too late! I'm counting it as a mistake. Two more and you fail!"
+    }
+  ],
+  "oneMistakeLeftTooLongPhrase": [
+    {
+      "content": "Hmm, that answer was late! You can only make one more mistake!"
+    }
+  ],
+  "lastMistakeTooLongPhrase": [
+    {
+      "content": "You answered after the time limit ended! That was your third mistake, I'm afraid."
+    }
+  ],
   "oneMistakeLeftCompetitionPhrase": [
     {
       "content": "Ben wins round! One more and she will be the victor!",
@@ -83,6 +114,18 @@
     {
       "content": "wins again! Ben is the winner!",
       "role": "Ben "
+    }
+  ],
+  "oneMistakeLeftCompetitionTooLongPhrase": [
+    {
+      "content": "Too late! Ben wins round! One more and he will be the victor!",
+      "role": "Sensei"
+    }
+  ],
+  "lastMistakeCompetitionTooLongPhrase": [
+    {
+      "content": "That answer was too late! Ben wins again! Ben is the winner!",
+      "role": "Sensei "
     }
   ],
   "selectMissionPhrase": [

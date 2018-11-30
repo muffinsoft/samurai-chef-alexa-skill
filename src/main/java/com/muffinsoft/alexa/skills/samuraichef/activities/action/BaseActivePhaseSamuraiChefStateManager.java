@@ -19,11 +19,16 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseCon
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_USE_CORRECT_ANSWER_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_USE_SECOND_CHANCE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.LAST_MISTAKE_COMPETITION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.LAST_MISTAKE_COMPETITION_TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.LAST_MISTAKE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.LAST_MISTAKE_TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_COMPETITION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_COMPETITION_TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.TWO_MISTAKES_LEFT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.TWO_MISTAKES_LEFT_TOO_LONG_PHRASE;
 
 public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamuraiChefStateManager {
 
@@ -54,7 +59,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         this.activityProgress.iterateMistakeCount();
         this.activityProgress.resetSuccessInRow();
 
-        return getMistakeDialog(builder, TOO_LONG_PHRASE);
+        return getTooLongMistakeDialog(builder);
     }
 
     protected DialogItem.Builder handleMistake(DialogItem.Builder builder) {
@@ -117,6 +122,30 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         }
     }
 
+    @SuppressWarnings("Duplicates")
+    private DialogItem.Builder getTooLongMistakeDialog(DialogItem.Builder builder) {
+        if (this.activityManager.isActivityCompetition(this.currentActivity)) {
+            if (this.activityProgress.getMistakesCount() == 1) {
+                return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_COMPETITION_TOO_LONG_PHRASE);
+            }
+            else {
+                return this.getMistakeDialog(builder, LAST_MISTAKE_COMPETITION_TOO_LONG_PHRASE);
+            }
+        }
+        else {
+            if (this.activityProgress.getMistakesCount() == 2) {
+                return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_TOO_LONG_PHRASE);
+            }
+            else if (this.activityProgress.getMistakesCount() == 1) {
+                return this.getMistakeDialog(builder, TWO_MISTAKES_LEFT_TOO_LONG_PHRASE);
+            }
+            else {
+                return this.getMistakeDialog(builder, LAST_MISTAKE_TOO_LONG_PHRASE);
+            }
+        }
+    }
+
+    @SuppressWarnings("Duplicates")
     private DialogItem.Builder getMistakeDialog(DialogItem.Builder builder) {
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             if (this.activityProgress.getMistakesCount() == 1) {

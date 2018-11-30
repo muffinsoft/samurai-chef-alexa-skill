@@ -32,7 +32,7 @@ public class SushiSliceStateManager extends BaseActivePhaseSamuraiChefStateManag
             builder = super.handleSuccess(builder);
         }
         else {
-            builder = handleMistake(builder);
+            builder = handleTooLongMistake(builder);
         }
 
         return builder;
