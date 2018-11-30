@@ -20,6 +20,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
           "content": "Customers enjoy your sushi so far! But now they want more protein, so we add boiled egg!",
           "role": "Sensei",
           "audio": null
@@ -212,6 +216,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
           "content": "Good work so far. Wasabe peas are your next dish to taste.",
           "role": "Sensei",
           "audio": null
@@ -269,6 +277,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
         {
           "content": "Now I also make fried fish! Taste good and loaded with fatty acids!",
           "role": "Sensei",
@@ -397,6 +409,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
+        {
           "content": "I now add milk! Milk is good for sumo!",
           "role": "Sensei",
           "audio": null
@@ -464,6 +480,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
         {
           "content": "Customers love our juices, want more! I begin to give you ingredients fast. If I accidentally throw you chopsticks, don't add!",
           "role": "Sensei",
@@ -581,6 +601,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
         {
           "content": "You are showing promise this session! Now I also try to grab! Good martial arts technique!",
           "role": "Sensei",

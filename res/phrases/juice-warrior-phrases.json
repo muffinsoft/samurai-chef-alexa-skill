@@ -10,6 +10,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
           "content": "Big order just came in! Need lots of seaweed sushi! You prepare seaweed along with rice and fish.",
           "role": "Sensei",
           "audio": null
@@ -122,6 +126,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
           "content": "You will now also taste mochi ice cream!",
           "role": "Sensei",
           "audio": null
@@ -164,6 +172,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
         {
           "content": "Now I also cook you stew! Loaded with vitamins!",
           "role": "Sensei",
@@ -257,6 +269,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
+        {
           "content": "Now we add candy too! Not healthy!",
           "role": "Sensei",
           "audio": null
@@ -309,6 +325,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
         {
           "content": "Customers say it's hot! We need to add ice! Ice not make juice healthier, but certainly tastier!",
           "role": "Sensei",
@@ -401,6 +421,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
         {
           "content": "Now I also show respect! Very important in martial arts and life in general!",
           "role": "Sensei",

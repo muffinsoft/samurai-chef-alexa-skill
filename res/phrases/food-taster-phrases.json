@@ -10,6 +10,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
           "content": "Good work. You show potential as sushi cook! Time to work both mind and body with some word board karate!",
           "role": "Sensei",
           "audio": null
@@ -97,6 +101,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
           "content": "Good session. To train both our mind and body after making sushi, time for some word board karate!",
           "role": "Sensei",
           "audio": null
@@ -154,6 +162,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
         {
           "content": "Good work. Your appetite is impressive! Time for some word board karate!",
           "role": "Sensei",
@@ -242,6 +254,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
+        {
           "content": "Good work. You show good ability to avoid unhealthy snacks. Time for some word board karate!",
           "role": "Sensei",
           "audio": null
@@ -299,6 +315,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
         {
           "content": "Good work. You are getting the hand of making good juice! Time for some word board karate!",
           "role": "Sensei",
@@ -386,6 +406,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
         {
           "content": "Good work. Karate healthy for body and mind. Time for some word board karate!",
           "role": "Sensei",

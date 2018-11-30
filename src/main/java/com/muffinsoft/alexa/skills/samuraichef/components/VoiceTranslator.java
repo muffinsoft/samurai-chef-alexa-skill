@@ -45,6 +45,7 @@ public class VoiceTranslator {
                 return new Speech(SpeechType.TEXT, phraseSettings.getContent());
             case "Speechcon":
                 return new Speech(SpeechType.SPEECHCON, phraseSettings.getContent());
+            case "Audio":
             case "Sound":
                 return new Speech(SpeechType.AUDIO, phraseSettings.getAudio());
             default:

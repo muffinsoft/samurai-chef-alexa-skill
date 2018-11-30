@@ -10,6 +10,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
           "content": "Customers are arriving and they very hungry! Good time for you to learn by helping Sensei, yes? First, only rice and fish.",
           "role": "Sensei",
           "audio": null
@@ -172,6 +176,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
           "content": "Now that lunch hour is over, I want to train your sense of taste! Vital to cooking! First, you taste soup, sushi and tea!",
           "role": "Sensei",
           "audio": null
@@ -234,6 +242,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
         {
           "content": "The sooner you become sumo to represent my restaurant proudly, the better! So... eating time! First, only chicken and sushi!",
           "role": "Sensei",
@@ -342,6 +354,10 @@
       ],
       "intro": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
+        {
           "content": "Time running short! I need you to become big sumo! For that, you must learn difference of good and bad food. Beef and tofu good! Soda, bad!",
           "role": "Sensei",
           "audio": null
@@ -389,6 +405,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
         {
           "content": "Customers from gym across the street arriving! We'll need lots of juice! First we make simple juice! Only milk and carrots!",
           "role": "Sensei",
@@ -486,6 +506,10 @@
         }
       ],
       "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
         {
           "content": "Good guru also knows importance of exercise! Karate time! I expect only best from you in my dojo!",
           "role": "Sensei",

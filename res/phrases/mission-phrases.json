@@ -2,6 +2,10 @@
   "LOW_MISSION": {
     "missionIntro": [
       {
+        "role": "Audio",
+        "audio": "https://s3.amazonaws.com/samurai-audio/chefTheme.mp3"
+      },
+      {
         "content": "Mastering age-old tradition of samurai style cooking is not for weaklings. To learn my ways you need great focus and ninja-like reflexes! You sure you up for task?",
         "role": "Sensei",
         "audio": null
@@ -62,6 +66,10 @@
     "stripeIntrosByNumber": {
       "0": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTheme.mp3"
+        },
+        {
           "content": "First you must learn the basics of sushi. Don't worry, we will start simple.",
           "role": "Sensei",
           "audio": null
@@ -83,6 +91,10 @@
         }
       ],
       "1": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTheme.mp3"
+        },
         {
           "content": "To be a good chef, one must know good taste! But to have good taste, one must eat properly.",
           "role": "Sensei",
@@ -107,6 +119,10 @@
     },
     "stripeOutrosByNumber": {
       "0": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
+        },
         {
           "content": "Good work! You have earned a yellow belt for learning the basics. Don't worry, there is plenty more to learn!",
           "role": "Sensei",
@@ -137,6 +153,10 @@
         }
       ],
       "1": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
+        },
         {
           "content": "Excellent! You have earned an orange belt for learning the importance of taste. Very important in cooking!",
           "role": "Sensei",
@@ -170,6 +190,10 @@
   },
   "MEDIUM_MISSION": {
     "missionIntro": [
+      {
+        "role": "Audio",
+        "audio": "https://s3.amazonaws.com/samurai-audio/sumoTheme.mp3"
+      },
       {
         "content": "Being sumo takes more than eating! My offical sumo pro must know discipline and proper eating ettiquette! Are you truly up to task?",
         "role": "Sensei",
@@ -237,6 +261,10 @@
     "stripeIntrosByNumber": {
       "0": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTheme.mp3"
+        },
+        {
           "content": "Your road to becoming a sumo starts with learning the sumo diet with proper eating etiquette!",
           "role": "Sensei",
           "audio": null
@@ -258,6 +286,10 @@
         }
       ],
       "1": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTheme.mp3"
+        },
         {
           "content": "Although eating is good, a sumo has a strict diet! No junk food!",
           "role": "Sensei",
@@ -282,6 +314,10 @@
     },
     "stripeOutrosByNumber": {
       "0": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
+        },
         {
           "content": "Yes! You have earned a yellow belt for learning the basics. Good work, but the road to becoming big sumo is still long!",
           "role": "Sensei",
@@ -312,6 +348,10 @@
         }
       ],
       "1": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
+        },
         {
           "content": "Good, good! You have earned an orange belt for avoiding junk food well!",
           "role": "Sensei",
@@ -345,6 +385,10 @@
   },
   "HIGH_MISSION": {
     "missionIntro": [
+      {
+        "role": "Audio",
+        "audio": "https://s3.amazonaws.com/samurai-audio/guruTheme.mp3"
+      },
       {
         "content": "To embark on path of guru demands great physical ability and mental wit! Are you prepared to explore the nutritious power of food?",
         "role": "Sensei",
@@ -412,6 +456,10 @@
     "stripeIntrosByNumber": {
       "0": [
         {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTheme.mp3"
+        },
+        {
           "content": "A samurai's path to healthy diet is vitamin-rich juices! Let's start with basics.",
           "role": "Sensei",
           "audio": null
@@ -433,6 +481,10 @@
         }
       ],
       "1": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTheme.mp3"
+        },
         {
           "content": "Guru also good at using energy to exercise! Time for karate!",
           "role": "Sensei",
@@ -457,6 +509,10 @@
     },
     "stripeOutrosByNumber": {
       "0": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
+        },
         {
           "content": "Challenge complete! You have earned a yellow belt for learning the basics. My juices are nutritious and yummy, yes?",
           "role": "Sensei",
@@ -487,6 +543,10 @@
         }
       ],
       "1": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
+        },
         {
           "content": "Wonderful karate! You have earned a yellow belt. Diet and exercise is key to healthy life!",
           "role": "Sensei",
