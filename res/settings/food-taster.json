@@ -10,7 +10,7 @@
         "maxMistakeCount": 3,
         "ingredients": {
           "W": "wham",
-          "H": "haaa"
+          "H": "haa"
         }
       },
       "1": {
@@ -18,7 +18,7 @@
         "maxMistakeCount": 3,
         "ingredients": {
           "W": "wham",
-          "H": "haaa",
+          "H": "haa",
           "P": "pow"
         }
       }

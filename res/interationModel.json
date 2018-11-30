@@ -142,7 +142,12 @@
             },
             {
               "name": {
-                "value": "haaa"
+                "value": "haa",
+                "synonyms": [
+                  "haaaa",
+                  "haaa",
+                  "ha"
+                ]
               }
             },
             {
