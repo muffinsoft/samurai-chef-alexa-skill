@@ -9,21 +9,13 @@
       "userResponse": true
     },
     {
-      "content": "Today we're visiting Sensei! He owns a Japanese restaurant and makes all sorts of delicious food, samurai style! You know what a samurai is, right buddy?",
+      "content": "Today we're visiting Sensei! He owns a Japanese restaurant and makes food, samurai style! I heard he needs some new apprentices. Let's go find out more!",
       "role": "Ben",
       "audio": null
     },
     {
-      "userResponse": true
-    },
-    {
-      "content": "[footsteps]",
+      "content": "[sound of entering a restaurant]",
       "role": "Sound",
-      "audio": null
-    },
-    {
-      "content": "Cool! Well, I heard Sensei needs some samurai chef apprentices. Let's go find out more!",
-      "role": "Ben",
       "audio": null
     },
     {
@@ -35,6 +27,9 @@
       "content": "Hello! Ah, you wish to be my disciples. First, I have one question: do you like... sushi?",
       "role": "Sensei",
       "audio": null
+    },
+    {
+      "userResponse": true
     },
     {
       "content": "I love it!",
