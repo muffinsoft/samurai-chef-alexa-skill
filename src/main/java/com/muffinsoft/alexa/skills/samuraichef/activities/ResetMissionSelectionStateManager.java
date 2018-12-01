@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_START_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
@@ -74,13 +73,6 @@ public class ResetMissionSelectionStateManager extends BaseStateManager {
         DialogItem.Builder builder = DialogItem.builder();
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
-            List<PhraseSettings> phraseSettings = regularPhraseManager.getValueByKey(READY_TO_START_MISSION_PHRASE);
-            for (PhraseSettings settings : phraseSettings) {
-                settings.setContent(settings.getContent() + " " + aliasManager.getValueByKey(currentMission.name()) + "?");
-            }
-
-            builder.addResponse(translate(phraseSettings));
-
             getSessionAttributes().put(INTENT, Intents.GAME);
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {

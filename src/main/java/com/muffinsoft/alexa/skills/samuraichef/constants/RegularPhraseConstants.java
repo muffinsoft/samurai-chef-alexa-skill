@@ -2,8 +2,6 @@ package com.muffinsoft.alexa.skills.samuraichef.constants;
 
 public class RegularPhraseConstants {
 
-    public static final String TOO_LONG_PHRASE = "tooLongPhrase";
-
     public static final String TWO_MISTAKES_LEFT_PHRASE = "twoMistakesLeftPhrase";
     public static final String TWO_MISTAKES_LEFT_TOO_LONG_PHRASE = "twoMistakesLeftTooLongPhrase";
 
@@ -37,19 +35,11 @@ public class RegularPhraseConstants {
 
     public static final String READY_TO_START_PHRASE = "readyToStartPhrase";
 
-    public static final String READY_TO_START_MISSION_PHRASE = "readyToStartMissionPhrase";
-
-    public static final String READY_TO_CONTINUE_MISSION_PHRASE = "readyToContinueMissionPhrase";
-
     public static final String SELECT_MISSION_PHRASE = "selectMissionPhrase";
 
     public static final String SELECT_MISSION_TO_REMOVE_PHRASE = "selectMissionToRemovePhrase";
 
-    public static final String SELECT_MISSION_UNKNOWN_PHRASE = "selectMissionUnknownPhrase";
-
     public static final String MISSION_ALREADY_COMPLETE_PHRASE = "missionAlreadyCompletePhrase";
-
-    public static final String READY_TO_START_REPROMPT_PHRASE = "readyToStartRePromptPhrase";
 
     public static final String WANT_START_MISSION_PHRASE = "wantStartMissionPhrase";
 

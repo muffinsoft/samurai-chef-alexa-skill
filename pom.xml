@@ -29,7 +29,7 @@
         <dependency>
             <groupId>com.muffinsoft</groupId>
             <artifactId>inner-skills-sdk</artifactId>
-            <version>0.1.16-SNAPSHOT</version>
+            <version>0.1.17-SNAPSHOT</version>
         </dependency>
 
         <dependency>

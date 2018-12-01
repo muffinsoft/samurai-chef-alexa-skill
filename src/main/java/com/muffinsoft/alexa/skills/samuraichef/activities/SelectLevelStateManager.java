@@ -7,8 +7,13 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
+import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.MissionPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -16,6 +21,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,21 +36,23 @@ import java.util.Set;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_CONTINUE_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_START_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_UNKNOWN_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_RESET_PROGRESS_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.MISSION_START_STATE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.ACTIVITY_INTRO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_INTRO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.READY_PHASE;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.STRIPE_INTRO;
 
 public class SelectLevelStateManager extends BaseStateManager {
 
@@ -53,14 +61,22 @@ public class SelectLevelStateManager extends BaseStateManager {
     private final String userFoodSlotReply;
 
     private final AliasManager aliasManager;
+    private final MissionManager missionManager;
     private final RegularPhraseManager regularPhraseManager;
-    //    private UserProgress userProgress;
+    private final ActivityPhraseManager activityPhraseManager;
+    private final MissionPhraseManager missionPhraseManager;
+    StatePhase statePhase;
+    private UserProgress userProgress;
     private Set<String> finishedMissions;
+    private Integer userReplyBreakpointPosition;
 
     public SelectLevelStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(slots, attributesManager);
         this.aliasManager = settingsDependencyContainer.getAliasManager();
+        this.missionManager = settingsDependencyContainer.getMissionManager();
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
+        this.missionPhraseManager = phraseDependencyContainer.getMissionPhraseManager();
+        this.activityPhraseManager = phraseDependencyContainer.getActivityPhraseManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
         this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
@@ -77,12 +93,20 @@ public class SelectLevelStateManager extends BaseStateManager {
     }
 
     @Override
-    protected void populateActivityVariables() {
-//        LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
-//        this.userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
+    protected void updateSessionAttributes() {
 
+        getSessionAttributes().put(USER_PROGRESS, this.userProgress);
+        getSessionAttributes().put(STATE_PHASE, this.statePhase);
+
+        logger.debug("Session attributes on the end of handling: " + this.getSessionAttributes().toString());
+    }
+
+    @Override
+    protected void populateActivityVariables() {
+        this.userReplyBreakpointPosition = (Integer) this.getSessionAttributes().getOrDefault(USER_REPLY_BREAKPOINT, null);
         List<String> finishedMissionArray = (List<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new ArrayList<String>());
         this.finishedMissions = new HashSet<>(finishedMissionArray);
+        this.statePhase = StatePhase.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
     }
 
     @Override
@@ -92,13 +116,13 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
         if (UserReplyComparator.compare(getUserReply(), UserReplies.LOW)) {
-            builder.addResponse(translate(checkIfMissionAvailable(UserMission.LOW_MISSION)));
+            checkIfMissionAvailable(builder, UserMission.LOW_MISSION);
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.MEDIUM)) {
-            builder.addResponse(translate(checkIfMissionAvailable(UserMission.MEDIUM_MISSION)));
+            checkIfMissionAvailable(builder, UserMission.MEDIUM_MISSION);
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.HIGH)) {
-            builder.addResponse(translate(checkIfMissionAvailable(UserMission.HIGH_MISSION)));
+            checkIfMissionAvailable(builder, UserMission.HIGH_MISSION);
         }
         else {
             builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
@@ -112,19 +136,16 @@ public class SelectLevelStateManager extends BaseStateManager {
         return builder.build();
     }
 
-    private List<PhraseSettings> checkIfMissionAvailable(UserMission mission) {
+    private DialogItem.Builder checkIfMissionAvailable(DialogItem.Builder builder, UserMission mission) {
 
         this.getSessionAttributes().put(CURRENT_MISSION, mission);
 
         if (finishedMissions.contains(mission.name())) {
             getSessionAttributes().put(INTENT, Intents.RESET_CONFIRMATION);
-            ArrayList<PhraseSettings> result = new ArrayList<>();
-            result.addAll(regularPhraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE));
-            result.addAll(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE));
-            return result;
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)));
+            return builder;
         }
-
-        this.getSessionAttributes().put(MISSION_START_STATE, true);
 
         this.getSessionAttributes().remove(ACTIVITY_PROGRESS);
         this.getSessionAttributes().remove(USER_PROGRESS);
@@ -137,29 +158,150 @@ public class SelectLevelStateManager extends BaseStateManager {
         }
         logger.info("user will be redirected to " + mission.name());
 
-        return startOrContinuePhrase(mission);
+        appendIntro(builder, mission);
 
+        return builder;
     }
 
-    private List<PhraseSettings> startOrContinuePhrase(UserMission mission) {
-        if (hasProgressInMission(mission)) {
-            return regularPhraseManager.getValueByKey(READY_TO_CONTINUE_MISSION_PHRASE);
+    private void appendIntro(DialogItem.Builder builder, UserMission mission) {
+
+        UserProgress userProgress = null;
+
+        try {
+            userProgress = getProgressInMission(mission);
+        }
+        catch (IOException e) {
+            logger.error(e.getMessage(), e);
+        }
+
+        if (userProgress == null) {
+            this.userProgress = new UserProgress(mission, true);
+            handleMissionIntroState(builder, mission, this.userProgress);
         }
         else {
-            return regularPhraseManager.getValueByKey(READY_TO_START_MISSION_PHRASE);
+            this.userProgress = userProgress;
+            handleStripeIntroState(builder, userProgress, mission, userProgress.getStripeCount());
         }
     }
 
-    private boolean hasProgressInMission(UserMission mission) {
+    private void handleMissionIntroState(DialogItem.Builder builder, UserMission currentMission, UserProgress userProgress) {
+
+        this.statePhase = STRIPE_INTRO;
+
+        List<PhraseSettings> dialog = missionPhraseManager.getMissionIntro(currentMission);
+
+        int iterationPointer = wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
+
+        if (iterationPointer >= dialog.size()) {
+            builder = handleStripeIntroState(builder, userProgress, currentMission, userProgress.getStripeCount());
+        }
+
+        builder.withSlotName(actionSlotName);
+    }
+
+    @SuppressWarnings("Duplicates")
+    private DialogItem.Builder handleStripeIntroState(DialogItem.Builder builder, UserProgress userProgress, UserMission currentMission, int number) {
+
+        this.statePhase = ACTIVITY_INTRO;
+
+        Activities currentActivity = missionManager.getFirstActivityForMission(currentMission);
+
+        List<PhraseSettings> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
+
+        int iterationPointer = wrapAnyUserResponse(dialog, builder, STRIPE_INTRO);
+
+        if (iterationPointer >= dialog.size()) {
+            builder = handleActivityIntroState(builder, userProgress, currentActivity, currentMission, number);
+        }
+
+        return builder.withSlotName(actionSlotName);
+    }
+
+    @SuppressWarnings("Duplicates")
+    private DialogItem.Builder handleActivityIntroState(DialogItem.Builder builder, UserProgress userProgress, Activities activity, UserMission currentMission, int number) {
+
+        SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, number, currentMission);
+
+        for (PhraseSettings partOfSpeech : speechSettings.getIntro()) {
+            builder.addResponse(translate(partOfSpeech));
+        }
+
+        if (speechSettings.isShouldRunDemo()) {
+
+            logger.debug("Handling " + this.statePhase + ". Moving to " + DEMO);
+
+            this.statePhase = DEMO;
+
+            SpeechSettings demoSpeechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, userProgress.getStripeCount(), currentMission);
+
+            builder.addResponse(translate(demoSpeechSettings.getShouldRunDemoPhrase()));
+        }
+        else {
+
+            logger.debug("Handling " + this.statePhase + ". Moving to " + READY_PHASE);
+
+            this.statePhase = READY_PHASE;
+            appendReadyToStart(builder, userProgress, activity, currentMission);
+        }
+
+        return builder.withSlotName(actionSlotName);
+    }
+
+    private void appendReadyToStart(DialogItem.Builder builder, UserProgress userProgress, Activities activity, UserMission currentMission) {
+
+        SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, userProgress.getStripeCount(), currentMission);
+
+        builder.addResponse(translate(speechSettings.getReadyToStartPhrase()));
+    }
+
+    @SuppressWarnings("Duplicates")
+    private int wrapAnyUserResponse(List<PhraseSettings> dialog, DialogItem.Builder builder, StatePhase statePhase) {
+
+        if (this.userReplyBreakpointPosition != null) {
+            this.getSessionAttributes().remove(USER_REPLY_BREAKPOINT);
+        }
+
+        int index = 0;
+
+        for (PhraseSettings phraseSettings : dialog) {
+
+            index++;
+
+            if (this.userReplyBreakpointPosition != null && index <= this.userReplyBreakpointPosition) {
+                continue;
+            }
+
+            if (phraseSettings.isUserResponse()) {
+                this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
+                this.statePhase = statePhase;
+                break;
+            }
+            builder.addResponse(translate(phraseSettings));
+        }
+        return index;
+    }
+
+    private UserProgress getProgressInMission(UserMission mission) throws IOException {
+        String jsonInString = null;
         switch (mission) {
             case LOW_MISSION:
-                return this.getPersistentAttributes().containsKey(USER_LOW_PROGRESS_DB);
+                if (this.getPersistentAttributes().containsKey(USER_LOW_PROGRESS_DB)) {
+                    jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_LOW_PROGRESS_DB));
+                }
             case MEDIUM_MISSION:
-                return this.getPersistentAttributes().containsKey(USER_MID_PROGRESS_DB);
+                if (this.getPersistentAttributes().containsKey(USER_MID_PROGRESS_DB)) {
+                    jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_MID_PROGRESS_DB));
+                }
             case HIGH_MISSION:
-                return this.getPersistentAttributes().containsKey(USER_HIGH_PROGRESS_DB);
+                if (this.getPersistentAttributes().containsKey(USER_HIGH_PROGRESS_DB)) {
+                    jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_HIGH_PROGRESS_DB));
+                }
         }
-        return false;
+        if (jsonInString != null) {
+            LinkedHashMap linkedHashMap = mapper.readValue(jsonInString, LinkedHashMap.class);
+            return mapper.convertValue(linkedHashMap, UserProgress.class);
+        }
+        return null;
     }
 
     private UserProgress getUserProgressForMission(UserMission mission) {

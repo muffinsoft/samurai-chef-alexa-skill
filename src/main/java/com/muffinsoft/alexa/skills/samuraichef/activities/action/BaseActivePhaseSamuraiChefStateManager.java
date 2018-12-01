@@ -26,7 +26,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseCon
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_COMPETITION_TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_TOO_LONG_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.TWO_MISTAKES_LEFT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.TWO_MISTAKES_LEFT_TOO_LONG_PHRASE;
 

@@ -24,11 +24,6 @@
       "content": "Ready to start?"
     }
   ],
-  "readyToStartRePromptPhrase": [
-    {
-      "content": "Sorry, I don't hear you. Ready to start?"
-    }
-  ],
   "justEarnCorrectQuestionPhrase": [
     {
       "role": "Audio",
@@ -138,24 +133,9 @@
       "content": "Sensei is ready to train you in the Path of Chef, Path of Sumo, or Path of Guru. Enter the path before remove it?"
     }
   ],
-  "selectMissionUnknownPhrase": [
-    {
-      "content": "I don't understand your choice, Please, select one of three available missions."
-    }
-  ],
-  "readyToContinueMissionPhrase": [
-    {
-      "content": "Would you like to continue playing"
-    }
-  ],
   "missionAlreadyCompletePhrase": [
     {
-      "content": "You have already complete this path."
-    }
-  ],
-  "readyToStartMissionPhrase": [
-    {
-      "content": "Are you ready to start?"
+      "content": "You have already completed this path. Finish all 3 paths to complete the game. "
     }
   ],
   "severalValuesPhrase": [
@@ -190,7 +170,7 @@
   ],
   "wantResetProgressPhrase": [
     {
-      "content": "Are you sure you want to quit the path and lose all your progress?"
+      "content": "Do you want to reset your progress in this path and start it from the beginning?"
     }
   ],
   "wantMissionFromBeginningPhrase": [
