@@ -92,7 +92,8 @@ public class HelpStateManager extends BaseStateManager {
 
         this.currentIntent = Intents.valueOf(String.valueOf(getSessionAttributes().getOrDefault(INTENT, Intents.GAME.name())));
 
-        this.userProgress = (UserProgress) getSessionAttributes().getOrDefault(USER_PROGRESS, new UserProgress(this.currentMission, true));
+        LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
+        this.userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
 
         this.currentActivity = this.userProgress.getCurrentActivity() != null ? Activities.valueOf(this.userProgress.getCurrentActivity()) : null;
 

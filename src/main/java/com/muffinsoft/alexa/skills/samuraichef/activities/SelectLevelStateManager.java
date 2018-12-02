@@ -299,23 +299,23 @@ public class SelectLevelStateManager extends BaseStateManager {
     private UserProgress getUserProgressForMission(UserMission mission) {
         switch (mission) {
             case LOW_MISSION:
-                return getUserProgressForMission(USER_LOW_PROGRESS_DB);
+                return getUserProgressForMission(USER_LOW_PROGRESS_DB, UserMission.LOW_MISSION);
             case MEDIUM_MISSION:
-                return getUserProgressForMission(USER_MID_PROGRESS_DB);
+                return getUserProgressForMission(USER_MID_PROGRESS_DB, UserMission.MEDIUM_MISSION);
             case HIGH_MISSION:
-                return getUserProgressForMission(USER_HIGH_PROGRESS_DB);
+                return getUserProgressForMission(USER_HIGH_PROGRESS_DB, UserMission.HIGH_MISSION);
             default:
                 throw new IllegalArgumentException("Can't handle User Progress for Mission " + mission);
         }
     }
 
-    private UserProgress getUserProgressForMission(String value) {
+    private UserProgress getUserProgressForMission(String value, UserMission mission) {
 
         String jsonInString = String.valueOf(getPersistentAttributes().get(value));
 
         try {
             LinkedHashMap rawUserProgress = new ObjectMapper().readValue(jsonInString, LinkedHashMap.class);
-            return rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
+            return rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(mission, true);
         }
         catch (IOException e) {
             throw new IllegalStateException(e.getMessage(), e);

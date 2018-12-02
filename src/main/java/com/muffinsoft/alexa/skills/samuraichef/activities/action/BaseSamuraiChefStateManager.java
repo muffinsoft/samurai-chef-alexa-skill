@@ -133,7 +133,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.statePhase = StatePhase.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
 
-        this.userProgress = (UserProgress) getSessionAttributes().getOrDefault(USER_PROGRESS, new UserProgress(this.currentMission, true));
+        LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
+        this.userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
 
         this.starCount = (int) getSessionAttributes().getOrDefault(STAR_COUNT, 0);
 
@@ -220,6 +221,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     public DialogItem nextResponse() {
 
         DialogItem.Builder builder = DialogItem.builder();
+
+        this.userProgress.setCurrentActivity(this.currentActivity.name());
 
         if (this.finishedMissions.contains(this.currentMission.name()) && this.statePhase != MISSION_OUTRO) {
             return handleAlreadyFinishedMission(builder);
@@ -353,6 +356,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     }
 
     private DialogItem.Builder handleActivityIntroState(DialogItem.Builder builder, Activities activity, int number) {
+
+        this.userProgress.setCurrentActivity(activity.name());
+
+        savePersistentAttributes();
 
         SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, number, this.currentMission);
 

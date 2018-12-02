@@ -20,6 +20,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -77,7 +78,8 @@ public class CancelStateManager extends BaseStateManager {
             this.currentMission = null;
         }
 
-        this.userProgress = (UserProgress) getSessionAttributes().getOrDefault(USER_PROGRESS, new UserProgress(this.currentMission, true));
+        LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
+        this.userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
 
         logger.debug("Session attributes on the start of handling: " + this.getSessionAttributes().toString());
     }

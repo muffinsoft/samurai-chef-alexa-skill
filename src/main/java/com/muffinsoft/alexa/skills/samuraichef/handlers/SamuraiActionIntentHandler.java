@@ -144,7 +144,9 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
     private UserProgress getCurrentUserProgress(HandlerInput input) {
 
-        return (UserProgress) input.getAttributesManager().getSessionAttributes().getOrDefault(USER_PROGRESS, new UserProgress(true));
+        LinkedHashMap rawUserProgress = (LinkedHashMap) input.getAttributesManager().getSessionAttributes().get(USER_PROGRESS);
+
+        return rawUserProgress != null ? new ObjectMapper().convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
     }
 
     private Activities getFirstActivityForMission(HandlerInput input) {
@@ -210,8 +212,7 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
             try {
                 LinkedHashMap rawUserProgress = mapper.readValue(jsonInString, LinkedHashMap.class);
-                UserProgress userProgress = mapper.convertValue(rawUserProgress, UserProgress.class);
-                sessionAttributes.put(USER_PROGRESS, userProgress);
+                sessionAttributes.put(USER_PROGRESS, rawUserProgress);
             }
             catch (IOException e) {
                 throw new IllegalStateException(e.getMessage(), e);
