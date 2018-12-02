@@ -177,7 +177,6 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             builder.addResponse(translate(regularPhraseManager.getValueByKey(NEW_MISSION_OR_SELECT_PHRASE)));
             getSessionAttributes().put(INTENT, Intents.RESET_MISSION_SELECTION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
-            getSessionAttributes().remove(USER_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
             getSessionAttributes().remove(STAR_COUNT);
             getSessionAttributes().remove(FINISHED_MISSIONS);

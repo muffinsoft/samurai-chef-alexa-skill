@@ -6,7 +6,6 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.GameIntentHandler;
-import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ExitConfirmationStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ExitStateManager;
@@ -17,12 +16,10 @@ import com.muffinsoft.alexa.skills.samuraichef.activities.ResetMissionSelectionS
 import com.muffinsoft.alexa.skills.samuraichef.activities.ResetStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
-import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
-import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
@@ -41,7 +38,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.MISSION_START_STATE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STAR_COUNT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
@@ -98,22 +94,10 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
     private StateManager handleGameActivity(HandlerInput input, Map<String, Slot> slots, AttributesManager attributesManager) {
 
         boolean userSelectLevel = attributesManager.getSessionAttributes().containsKey(CURRENT_MISSION);
-        boolean isMissionSelectState = attributesManager.getSessionAttributes().containsKey(MISSION_START_STATE);
 
         handlePersistentAttributes(input);
 
         if (userSelectLevel) {
-
-            if (isMissionSelectState) {
-                String userReply = getUserReply(slots);
-                attributesManager.getSessionAttributes().remove(MISSION_START_STATE);
-                if (UserReplyComparator.compare(userReply, UserReplies.NO)) {
-                    attributesManager.getSessionAttributes().remove(CURRENT_MISSION);
-                    logger.debug("Going to handle mission selection ");
-
-                    return new SelectLevelStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
-                }
-            }
 
             UserProgress currentUserProgress = getCurrentUserProgress(input);
 
@@ -146,25 +130,6 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
         }
     }
 
-    private String getUserReply(Map<String, Slot> slots) {
-        if (slots != null && !slots.isEmpty()) {
-            Slot actionSlot = slots.get(SlotName.ACTION.text);
-            Slot foodSlot = slots.get(SlotName.AMAZON_FOOD.text);
-            if (actionSlot != null) {
-                return actionSlot.getValue();
-            }
-            else if (foodSlot != null) {
-                return foodSlot.getValue();
-            }
-            else {
-                return null;
-            }
-        }
-        else {
-            return null;
-        }
-    }
-
     private Activities getActivityFromUserProgress(UserProgress userProgress) {
         String currentActivity = userProgress.getCurrentActivity();
         return Activities.valueOf(currentActivity);
@@ -179,9 +144,7 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
     private UserProgress getCurrentUserProgress(HandlerInput input) {
 
-        LinkedHashMap rawUserProgress = (LinkedHashMap) input.getAttributesManager().getSessionAttributes().get(USER_PROGRESS);
-
-        return rawUserProgress != null ? new ObjectMapper().convertValue(rawUserProgress, UserProgress.class) : new UserProgress(true);
+        return (UserProgress) input.getAttributesManager().getSessionAttributes().getOrDefault(USER_PROGRESS, new UserProgress(true));
     }
 
     private Activities getFirstActivityForMission(HandlerInput input) {
@@ -209,50 +172,53 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
             attributesManager.getSessionAttributes().put(FINISHED_MISSIONS, result);
         }
 
-        if (!attributesManager.getSessionAttributes().containsKey(USER_PROGRESS)) {
+        Object rawMission = attributesManager.getSessionAttributes().get(CURRENT_MISSION);
 
-            Object rawMission = attributesManager.getSessionAttributes().get(CURRENT_MISSION);
+        if (rawMission == null) {
+            return;
+        }
 
-            if (rawMission == null) {
-                return;
+        UserMission userMission = UserMission.valueOf(String.valueOf(rawMission));
+
+        String dbSource;
+
+        switch (userMission) {
+            case LOW_MISSION:
+                dbSource = USER_LOW_PROGRESS_DB;
+                break;
+            case MEDIUM_MISSION:
+                dbSource = USER_MID_PROGRESS_DB;
+                break;
+            case HIGH_MISSION:
+                dbSource = USER_HIGH_PROGRESS_DB;
+                break;
+            default:
+                throw new IllegalStateException("Unknown user level: " + userMission.name());
+        }
+
+        Map<String, Object> sessionAttributes = attributesManager.getSessionAttributes();
+
+        if (attributesManager.getPersistentAttributes().containsKey(dbSource)) {
+
+            if (sessionAttributes == null) {
+                sessionAttributes = new HashMap<>();
             }
 
-            UserMission userMission = UserMission.valueOf(String.valueOf(rawMission));
+            String jsonInString = String.valueOf(attributesManager.getPersistentAttributes().get(dbSource));
 
-            String dbSource;
+            ObjectMapper mapper = new ObjectMapper();
 
-            switch (userMission) {
-                case LOW_MISSION:
-                    dbSource = USER_LOW_PROGRESS_DB;
-                    break;
-                case MEDIUM_MISSION:
-                    dbSource = USER_MID_PROGRESS_DB;
-                    break;
-                case HIGH_MISSION:
-                    dbSource = USER_HIGH_PROGRESS_DB;
-                    break;
-                default:
-                    throw new IllegalStateException("Unknown user level: " + userMission.name());
+            try {
+                LinkedHashMap rawUserProgress = mapper.readValue(jsonInString, LinkedHashMap.class);
+                UserProgress userProgress = mapper.convertValue(rawUserProgress, UserProgress.class);
+                sessionAttributes.put(USER_PROGRESS, userProgress);
             }
-
-            if (attributesManager.getPersistentAttributes().containsKey(dbSource)) {
-
-                Map<String, Object> sessionAttributes = attributesManager.getSessionAttributes();
-
-                if (sessionAttributes == null) {
-                    sessionAttributes = new HashMap<>();
-                }
-
-                String jsonInString = String.valueOf(attributesManager.getPersistentAttributes().get(dbSource));
-
-                try {
-                    LinkedHashMap linkedHashMap = new ObjectMapper().readValue(jsonInString, LinkedHashMap.class);
-                    sessionAttributes.put(USER_PROGRESS, linkedHashMap);
-                }
-                catch (IOException e) {
-                    throw new IllegalStateException(e.getMessage(), e);
-                }
+            catch (IOException e) {
+                throw new IllegalStateException(e.getMessage(), e);
             }
+        }
+        else {
+            sessionAttributes.remove(USER_PROGRESS);
         }
     }
 }

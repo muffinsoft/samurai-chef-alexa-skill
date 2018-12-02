@@ -46,7 +46,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.ACTIVITY_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
@@ -65,8 +64,7 @@ public class SelectLevelStateManager extends BaseStateManager {
     private final RegularPhraseManager regularPhraseManager;
     private final ActivityPhraseManager activityPhraseManager;
     private final MissionPhraseManager missionPhraseManager;
-    StatePhase statePhase;
-    private UserProgress userProgress;
+    private StatePhase statePhase;
     private Set<String> finishedMissions;
     private Integer userReplyBreakpointPosition;
 
@@ -95,7 +93,6 @@ public class SelectLevelStateManager extends BaseStateManager {
     @Override
     protected void updateSessionAttributes() {
 
-        getSessionAttributes().put(USER_PROGRESS, this.userProgress);
         getSessionAttributes().put(STATE_PHASE, this.statePhase);
 
         logger.debug("Session attributes on the end of handling: " + this.getSessionAttributes().toString());
@@ -104,7 +101,7 @@ public class SelectLevelStateManager extends BaseStateManager {
     @Override
     protected void populateActivityVariables() {
         this.userReplyBreakpointPosition = (Integer) this.getSessionAttributes().getOrDefault(USER_REPLY_BREAKPOINT, null);
-        List<String> finishedMissionArray = (List<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new ArrayList<String>());
+        @SuppressWarnings("unchecked") List<String> finishedMissionArray = (List<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new ArrayList<String>());
         this.finishedMissions = new HashSet<>(finishedMissionArray);
         this.statePhase = StatePhase.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
     }
@@ -136,7 +133,7 @@ public class SelectLevelStateManager extends BaseStateManager {
         return builder.build();
     }
 
-    private DialogItem.Builder checkIfMissionAvailable(DialogItem.Builder builder, UserMission mission) {
+    private void checkIfMissionAvailable(DialogItem.Builder builder, UserMission mission) {
 
         this.getSessionAttributes().put(CURRENT_MISSION, mission);
 
@@ -144,11 +141,10 @@ public class SelectLevelStateManager extends BaseStateManager {
             getSessionAttributes().put(INTENT, Intents.RESET_CONFIRMATION);
             builder.addResponse(translate(regularPhraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)));
             builder.addResponse(translate(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)));
-            return builder;
+            return;
         }
 
         this.getSessionAttributes().remove(ACTIVITY_PROGRESS);
-        this.getSessionAttributes().remove(USER_PROGRESS);
 
         if (getUserProgressForMission(mission).getPreviousActivity() == null) {
             this.getSessionAttributes().remove(STATE_PHASE);
@@ -159,8 +155,6 @@ public class SelectLevelStateManager extends BaseStateManager {
         logger.info("user will be redirected to " + mission.name());
 
         appendIntro(builder, mission);
-
-        return builder;
     }
 
     private void appendIntro(DialogItem.Builder builder, UserMission mission) {
@@ -175,11 +169,9 @@ public class SelectLevelStateManager extends BaseStateManager {
         }
 
         if (userProgress == null) {
-            this.userProgress = new UserProgress(mission, true);
-            handleMissionIntroState(builder, mission, this.userProgress);
+            handleMissionIntroState(builder, mission, new UserProgress(mission, true));
         }
         else {
-            this.userProgress = userProgress;
             handleStripeIntroState(builder, userProgress, mission, userProgress.getStripeCount());
         }
     }

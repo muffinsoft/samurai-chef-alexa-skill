@@ -6,18 +6,14 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
-import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
-import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
@@ -33,14 +29,10 @@ public class ResetMissionSelectionStateManager extends BaseStateManager {
     private final String userFoodSlotReply;
 
     private final RegularPhraseManager regularPhraseManager;
-    private final AliasManager aliasManager;
-
-    private UserMission currentMission;
 
     public ResetMissionSelectionStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(slots, attributesManager);
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
-        this.aliasManager = settingsDependencyContainer.getAliasManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
         this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
@@ -54,15 +46,6 @@ public class ResetMissionSelectionStateManager extends BaseStateManager {
         else {
             return this.userFoodSlotReply;
         }
-    }
-
-    @Override
-    protected void populateActivityVariables() {
-
-        Object isMissionPresent = getSessionAttributes().get(CURRENT_MISSION);
-        this.currentMission = UserMission.valueOf(String.valueOf(isMissionPresent));
-
-        logger.debug("Session attributes on the start of handling: " + this.getSessionAttributes().toString());
     }
 
     @Override

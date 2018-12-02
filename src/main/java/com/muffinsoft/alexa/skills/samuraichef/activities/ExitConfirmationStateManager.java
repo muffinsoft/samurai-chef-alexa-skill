@@ -8,7 +8,6 @@ import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsPhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
@@ -22,14 +21,12 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 public class ExitConfirmationStateManager extends BaseStateManager {
 
     private final GreetingsPhraseManager greetingsPhraseManager;
-    private final RegularPhraseManager regularPhraseManager;
 
     private Integer userReplyBreakpointPosition;
 
     public ExitConfirmationStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(inputSlots, attributesManager);
         this.greetingsPhraseManager = phraseDependencyContainer.getGreetingsPhraseManager();
-        this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
     }
 
     @Override

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,7 +55,7 @@ public class SelectMissionStateManagerTest extends BaseStateManagerTest {
         UserProgress userProgress = new UserProgress();
 
         Map<String, Object> attributes = new HashMap<>();
-        attributes.put(FINISHED_MISSIONS, Arrays.asList(UserMission.MEDIUM_MISSION.name()));
+        attributes.put(FINISHED_MISSIONS, Collections.singletonList(UserMission.MEDIUM_MISSION.name()));
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_PROGRESS, toMap(userProgress));
 

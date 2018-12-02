@@ -34,7 +34,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.MISSION_START_STATE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
@@ -103,8 +102,6 @@ public class LaunchStateManager extends BaseStateManager {
         UserProgress lowUserProgress = getUserProgress(USER_LOW_PROGRESS_DB);
         UserProgress midUserProgress = getUserProgress(USER_MID_PROGRESS_DB);
         UserProgress highUserProgress = getUserProgress(USER_HIGH_PROGRESS_DB);
-
-        this.getSessionAttributes().put(MISSION_START_STATE, true);
 
         builder = buildRoyalGreetingWithAwards(builder, lowUserProgress, midUserProgress, highUserProgress);
 

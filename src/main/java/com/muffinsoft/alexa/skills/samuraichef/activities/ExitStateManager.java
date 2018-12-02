@@ -56,6 +56,7 @@ public class ExitStateManager extends BaseStateManager {
         activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public DialogItem nextResponse() {
 
@@ -68,7 +69,6 @@ public class ExitStateManager extends BaseStateManager {
 
             int userReplyBreakpointPosition = 0;
 
-            //noinspection Duplicates
             for (PhraseSettings phraseSettings : dialog) {
 
                 if (phraseSettings.isUserResponse()) {

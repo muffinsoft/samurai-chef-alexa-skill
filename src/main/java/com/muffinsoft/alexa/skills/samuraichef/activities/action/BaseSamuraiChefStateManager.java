@@ -13,7 +13,6 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseMan
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.MissionPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.ActivityManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
@@ -88,7 +87,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     protected final RegularPhraseManager regularPhraseManager;
     final ActivityManager activityManager;
     final MissionManager missionManager;
-    private final AliasManager aliasManager;
     private final ActivityPhraseManager activityPhraseManager;
     private final MissionPhraseManager missionPhraseManager;
     private final String userFoodSlotReply;
@@ -110,7 +108,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.missionPhraseManager = phraseDependencyContainer.getMissionPhraseManager();
         this.activityPhraseManager = phraseDependencyContainer.getActivityPhraseManager();
         this.activityManager = settingsDependencyContainer.getActivityManager();
-        this.aliasManager = settingsDependencyContainer.getAliasManager();
         this.missionManager = settingsDependencyContainer.getMissionManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
         this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
@@ -136,12 +133,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.statePhase = StatePhase.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
 
-        LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
-        this.userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
+        this.userProgress = (UserProgress) getSessionAttributes().getOrDefault(USER_PROGRESS, new UserProgress(this.currentMission, true));
 
         this.starCount = (int) getSessionAttributes().getOrDefault(STAR_COUNT, 0);
 
-        List<String> finishedMissionArray = (List<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new ArrayList<String>());
+        @SuppressWarnings("unchecked") List<String> finishedMissionArray = (List<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new ArrayList<String>());
         this.finishedMissions = new HashSet<>(finishedMissionArray);
 
         LinkedHashMap rawActivityProgress = (LinkedHashMap) getSessionAttributes().get(ACTIVITY_PROGRESS);
@@ -208,13 +204,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             if (!this.isMoveToReset) {
                 getSessionAttributes().remove(CURRENT_MISSION);
             }
-            getSessionAttributes().remove(USER_PROGRESS);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
             getSessionAttributes().remove(QUESTION_TIME);
         }
         else {
-            getSessionAttributes().put(USER_PROGRESS, this.userProgress);
             getSessionAttributes().put(ACTIVITY_PROGRESS, this.activityProgress);
             getSessionAttributes().put(STATE_PHASE, this.statePhase);
         }
@@ -227,7 +221,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
-        if (this.finishedMissions.contains(this.currentMission.name())) {
+        if (this.finishedMissions.contains(this.currentMission.name()) && this.statePhase != MISSION_OUTRO) {
             return handleAlreadyFinishedMission(builder);
         }
 
@@ -391,6 +385,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder handleDemoState(DialogItem.Builder builder) {
 
+        savePersistentAttributes();
+
         logger.debug("Handling " + this.statePhase + ". Moving to " + READY_PHASE);
 
         this.statePhase = READY_PHASE;
@@ -415,10 +411,13 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder handleReadyToStartState(DialogItem.Builder builder) {
 
+        savePersistentAttributes();
+
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
+            this.getSessionAttributes().remove(ACTIVITY_PROGRESS);
             this.getSessionAttributes().remove(CURRENT_MISSION);
 
-            return builder.withSlotName(actionSlotName).addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
         }
         else {
             String speechText = nextIngredient();
@@ -427,8 +426,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             this.statePhase = PHASE_1;
 
-            return builder.addResponse(translate(speechText)).withSlotName(actionSlotName);
+            builder.addResponse(translate(speechText));
         }
+        return builder.withSlotName(actionSlotName);
     }
 
     protected void resetActivityProgress() {
@@ -489,7 +489,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private DialogItem.Builder handleLoseState(DialogItem.Builder builder) {
 
         if (UserReplyComparator.compare(getUserReply(), UserReplies.AGAIN) || UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-//            resetActivityProgress();
             builder = handleActivityIntroState(builder, this.currentActivity, this.userProgress.getStripeCount());
         }
         else {
@@ -551,26 +550,32 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder handleMissionOutroState(DialogItem.Builder builder) {
 
-        this.isLeaveMission = true;
+        List<PhraseSettings> missionOutro = missionPhraseManager.getMissionOutro(currentMission);
 
-        if (this.userProgress.isGameFinished()) {
+        int iterationPoint = wrapAnyUserResponse(missionOutro, builder, STRIPE_OUTRO);
 
-            logger.debug("Handling " + this.statePhase + ". Moving to " + GAME_OUTRO);
+        if (iterationPoint >= missionOutro.size()) {
+            this.isLeaveMission = true;
 
-            this.statePhase = GAME_OUTRO;
+            if (this.userProgress.isGameFinished()) {
 
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(GAME_FINISHED_PHRASE)));
+                logger.debug("Handling " + this.statePhase + ". Moving to " + GAME_OUTRO);
+
+                this.statePhase = GAME_OUTRO;
+
+                builder.addResponse(translate(regularPhraseManager.getValueByKey(GAME_FINISHED_PHRASE)));
+            }
+            else {
+
+                logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
+
+                builder.addResponse(translate(regularPhraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
+                builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            }
+
+            this.userProgress.setMissionFinished(true);
+            savePersistentAttributes();
         }
-        else {
-
-            logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
-
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
-        }
-
-        this.userProgress.setMissionFinished(true);
-        savePersistentAttributes();
 
         return builder.withSlotName(actionSlotName);
     }
