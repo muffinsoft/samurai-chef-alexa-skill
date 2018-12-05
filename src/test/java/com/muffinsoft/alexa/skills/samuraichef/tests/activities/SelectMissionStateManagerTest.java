@@ -45,7 +45,7 @@ public class SelectMissionStateManagerTest extends BaseStateManagerTest {
         Assertions.assertNotEquals(sessionAttributes.get(USER_PROGRESS), null);
     }
 
-//    @Test
+    //    @Test
     void testAllowingNonFinishedMission() {
 
         Map<String, Slot> slots = createSlotsForValue("chef");

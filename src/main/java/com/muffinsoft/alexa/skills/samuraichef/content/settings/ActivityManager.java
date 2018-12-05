@@ -12,6 +12,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.WordReaction;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,11 @@ public class ActivityManager {
         catch (IOException e) {
             System.exit(1);
         }
+    }
+
+    public Collection<String> getAllReplies(Stripe stripe) {
+        Map<String, String> wordsByActivity = stripe.getIngredients();
+        return wordsByActivity.values();
     }
 
     public WordReaction getNextWord(Stripe stripe, String previousWord) {

@@ -85,7 +85,7 @@ public class LaunchStateManager extends BaseStateManager {
 
         }
         else {
-            builder = buildInitialGreeting(builder);
+            buildInitialGreeting(builder);
 
             getSessionAttributes().put(INTENT, Intents.INITIAL_GREETING);
 
@@ -103,12 +103,12 @@ public class LaunchStateManager extends BaseStateManager {
         UserProgress midUserProgress = getUserProgress(USER_MID_PROGRESS_DB);
         UserProgress highUserProgress = getUserProgress(USER_HIGH_PROGRESS_DB);
 
-        builder = buildRoyalGreetingWithAwards(builder, lowUserProgress, midUserProgress, highUserProgress);
+        buildRoyalGreetingWithAwards(builder, lowUserProgress, midUserProgress, highUserProgress);
 
         return builder.addResponse(translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)));
     }
 
-    private DialogItem.Builder buildRoyalGreetingWithAwards(DialogItem.Builder builder, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
+    private void buildRoyalGreetingWithAwards(DialogItem.Builder builder, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
 
         List<PhraseSettings> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.PLAYER_WITH_AWARDS_GREETING);
 
@@ -117,8 +117,6 @@ public class LaunchStateManager extends BaseStateManager {
             phraseSettings.setContent(newContent);
             builder.addResponse(translate(phraseSettings));
         }
-
-        return builder;
     }
 
     private String fillPlaceholder(String content, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
@@ -221,7 +219,7 @@ public class LaunchStateManager extends BaseStateManager {
         }
     }
 
-    private DialogItem.Builder buildInitialGreeting(DialogItem.Builder builder) {
+    private void buildInitialGreeting(DialogItem.Builder builder) {
 
         List<PhraseSettings> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.FIRST_TIME_GREETING);
 
@@ -236,7 +234,5 @@ public class LaunchStateManager extends BaseStateManager {
             builder.addResponse(ofAlexa(phraseSettings.getContent()));
             userReplyBreakpointPosition++;
         }
-
-        return builder;
     }
 }

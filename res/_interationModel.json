@@ -1,0 +1,352 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "samurai chef",
+      "intents": [
+        {
+          "name": "ActionIntent",
+          "slots": [
+            {
+              "name": "action",
+              "type": "ACTION",
+              "samples": [
+                "{action}"
+              ]
+            },
+            {
+              "name": "food",
+              "type": "AMAZON.Food",
+              "samples": [
+                "{food}"
+              ]
+            }
+          ],
+          "samples": [
+            "cooking",
+            "{action}",
+            "{food}"
+          ]
+        },
+        {
+          "name": "ResetIntent",
+          "slots": [],
+          "samples": [
+            "reset"
+          ]
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "DummyIntent",
+          "slots": [
+            {
+              "name": "part",
+              "type": "DummyPart",
+              "samples": [
+                "I want some {part}"
+              ]
+            }
+          ],
+          "samples": [
+            "please take me to some {part}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "ACTION",
+          "values": [
+            {
+              "name": {
+                "value": "again",
+                "synonyms": [
+                  "again",
+                  "try again"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "no",
+                "synonyms": [
+                  "no",
+                  "nope",
+                  "not",
+                  "nah",
+                  "neh",
+                  "oh no",
+                  "no no",
+                  "nope",
+                  "I do not",
+                  "no thank you"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "yes",
+                "synonyms": [
+                  "ok",
+                  "yep",
+                  "yeah",
+                  "I do",
+                  "yes please",
+                  "you know it",
+                  "of course",
+                  "ya",
+                  "ready",
+                  "go"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "path of the chef",
+                "synonyms": [
+                  "chef",
+                  "path of the chef",
+                  "path of chef"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "path of the sumo",
+                "synonyms": [
+                  "sumo",
+                  "path of the sumo",
+                  "path of sumo"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "path of the guru",
+                "synonyms": [
+                  "guru",
+                  "path of the guru",
+                  "path of guru"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "wham"
+              }
+            },
+            {
+              "name": {
+                "value": "haa",
+                "synonyms": [
+                  "haaaa",
+                  "haaa",
+                  "ha"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "pow"
+              }
+            },
+            {
+              "name": {
+                "value": "zonk"
+              }
+            },
+            {
+              "name": {
+                "value": "fuah"
+              }
+            },
+            {
+              "name": {
+                "value": "woosh"
+              }
+            },
+            {
+              "name": {
+                "value": "zaam"
+              }
+            },
+            {
+              "name": {
+                "value": "wham"
+              }
+            },
+            {
+              "name": {
+                "value": "thwap"
+              }
+            },
+            {
+              "name": {
+                "value": "boil"
+              }
+            },
+            {
+              "name": {
+                "value": "slice"
+              }
+            },
+            {
+              "name": {
+                "value": "roll"
+              }
+            },
+            {
+              "name": {
+                "value": "slurp"
+              }
+            },
+            {
+              "name": {
+                "value": "gulp"
+              }
+            },
+            {
+              "name": {
+                "value": "sip"
+              }
+            },
+            {
+              "name": {
+                "value": "lick"
+              }
+            },
+            {
+              "name": {
+                "value": "chomp"
+              }
+            },
+            {
+              "name": {
+                "value": "yum"
+              }
+            },
+            {
+              "name": {
+                "value": "yuck"
+              }
+            },
+            {
+              "name": {
+                "value": "splash a dash"
+              }
+            },
+            {
+              "name": {
+                "value": "slice and dice"
+              }
+            },
+            {
+              "name": {
+                "value": "punch and crunch"
+              }
+            },
+            {
+              "name": {
+                "value": "block"
+              }
+            },
+            {
+              "name": {
+                "value": "dodge"
+              }
+            },
+            {
+              "name": {
+                "value": "jump"
+              }
+            },
+            {
+              "name": {
+                "value": "bow"
+              }
+            },
+            {
+              "name": {
+                "value": "crunch"
+              }
+            },
+            {
+              "name": {
+                "value": "stew"
+              }
+            },
+            {
+              "name": {
+                "value": "munch"
+              }
+            },
+            {
+              "name": {
+                "value": "stop don't drop"
+              }
+            },
+            {
+              "name": {
+                "value": "break"
+              }
+            }
+          ]
+        },
+        {
+          "name": "DummyPart",
+          "values": [
+            {
+              "name": {
+                "value": "whatever"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "DummyIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "part",
+              "type": "DummyPart",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.323516811559.863715167340"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.323516811559.863715167340",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Could you please say what you want?"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -31,6 +31,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -267,7 +269,18 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 break;
         }
 
+        addSessionEntities(builder);
+
         return builder.build();
+    }
+
+    private void addSessionEntities(DialogItem.Builder builder) {
+        Map<String, String> sessionEntities = new HashMap<>();
+        Collection<String> allReplies = activityManager.getAllReplies(this.stripe);
+        for (String reply : allReplies) {
+            sessionEntities.put(reply, reply);
+        }
+        builder.withEntities(sessionEntities);
     }
 
     private DialogItem handleAlreadyFinishedMission(DialogItem.Builder builder) {
