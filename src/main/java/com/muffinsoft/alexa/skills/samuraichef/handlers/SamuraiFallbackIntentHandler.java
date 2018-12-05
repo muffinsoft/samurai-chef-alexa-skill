@@ -5,19 +5,20 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.FallbackIntentHandler;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.FALLBACK_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.FALLBACK_PHRASE;
 
 public class SamuraiFallbackIntentHandler extends FallbackIntentHandler {
 
-    private final PhraseManager phraseManager;
+    private final RegularPhraseManager regularPhraseManager;
 
-    public SamuraiFallbackIntentHandler(ConfigContainer configurationContainer) {
+    public SamuraiFallbackIntentHandler(SettingsDependencyContainer configurationContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super();
-        this.phraseManager = configurationContainer.getPhraseManager();
+        this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
     }
 
     @Override
@@ -26,7 +27,7 @@ public class SamuraiFallbackIntentHandler extends FallbackIntentHandler {
             @Override
             public DialogItem nextResponse() {
                 return DialogItem.builder()
-                        .addResponse(translate(phraseManager.getValueByKey(FALLBACK_PHRASE)))
+                        .addResponse(translate(regularPhraseManager.getValueByKey(FALLBACK_PHRASE)))
                         .build();
             }
         };

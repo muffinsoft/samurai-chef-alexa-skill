@@ -42,14 +42,14 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
         sushiSliceStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.MISSION_INTRO);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.DEMO);
     }
 
     @Test
@@ -64,14 +64,14 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(STATE_PHASE, StatePhase.STRIPE_INTRO);
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
         sushiSliceStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.ACTIVITY_INTRO);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.DEMO);
     }
 
     @Test
@@ -86,7 +86,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(STATE_PHASE, StatePhase.ACTIVITY_INTRO);
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -108,7 +108,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(STATE_PHASE, StatePhase.DEMO);
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -119,33 +119,11 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
     }
 
     @Test
-    void testReadyPhase() {
-
-        Map<String, Slot> slots = createSlotsForValue("any");
-
-        ActivityProgress activityProgress = new ActivityProgress();
-
-        Map<String, Object> attributes = new HashMap<>();
-        attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
-        attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.READY_PHASE);
-
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
-
-        sushiSliceStateManager.nextResponse();
-
-        sushiSliceStateManager.updateAttributesManager();
-
-        Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.PHASE_1);
-    }
-
-    @Test
     void testActivePhaseWin() {
 
         Map<String, Slot> slots = createSlotsForValue("test");
 
-        Integer wonSuccessCount = IoC.provideConfigurationContainer().getActivityManager().getStripeForActivityAtMission(Activities.SUSHI_SLICE, 0, UserMission.LOW_MISSION).getWonSuccessCount();
+        Integer wonSuccessCount = IoC.provideSettingsDependencies().getActivityManager().getStripeForActivityAtMission(Activities.SUSHI_SLICE, 0, UserMission.LOW_MISSION).getWonSuccessCount();
 
         ActivityProgress activityProgress = new ActivityProgress();
         activityProgress.setCurrentIngredientReaction("test");
@@ -161,7 +139,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(USER_PROGRESS, toMap(userProgress));
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -176,7 +154,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
 
         Map<String, Slot> slots = createSlotsForValue("test");
 
-        Integer maxMistakeCount = IoC.provideConfigurationContainer().getActivityManager().getStripeForActivityAtMission(Activities.SUSHI_SLICE, 0, UserMission.LOW_MISSION).getMaxMistakeCount();
+        Integer maxMistakeCount = IoC.provideSettingsDependencies().getActivityManager().getStripeForActivityAtMission(Activities.SUSHI_SLICE, 0, UserMission.LOW_MISSION).getMaxMistakeCount();
 
         ActivityProgress activityProgress = new ActivityProgress();
         activityProgress.setCurrentIngredientReaction("any");
@@ -187,14 +165,14 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
         sushiSliceStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.LOSE);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.PHASE_1);
     }
 
     //    @Test
@@ -209,7 +187,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(STATE_PHASE, StatePhase.LOSE);
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -231,7 +209,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(STATE_PHASE, StatePhase.LOSE);
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -256,7 +234,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -286,10 +264,11 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_PROGRESS, toMap(userProgress));
+        attributes.put(STAR_COUNT, 1);
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -321,9 +300,10 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_PROGRESS, toMap(userProgress));
         attributes.put(STATE_PHASE, StatePhase.WIN);
+        attributes.put(STAR_COUNT, 1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -332,7 +312,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> sessionAttributes = sushiSliceStateManager.getSessionAttributes();
 
         Assertions.assertEquals(sessionAttributes.get(STAR_COUNT), 2);
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.WIN);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.MISSION_OUTRO);
     }
 
     @Test
@@ -340,7 +320,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
 
         Map<String, Slot> slots = createSlotsForValue("test");
 
-        int successInRowForPowerUp = IoC.provideConfigurationContainer().getMissionManager().getSuccessInRowForPowerUp();
+        int successInRowForPowerUp = IoC.provideSettingsDependencies().getMissionManager().getSuccessInRowForPowerUp();
 
         ActivityProgress activityProgress = new ActivityProgress();
         activityProgress.setCurrentIngredientReaction("test");
@@ -352,7 +332,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -381,7 +361,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -415,7 +395,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -451,7 +431,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -482,7 +462,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis() - 300000);
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -516,7 +496,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis() - 300000);
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -552,7 +532,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis() - 300000);
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 
@@ -585,7 +565,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         attributes.put(USER_PROGRESS, toMap(userProgress));
         attributes.put(FINISHED_MISSIONS, Collections.singletonList(UserMission.LOW_MISSION.name()));
 
-        SushiSliceStateManager sushiSliceStateManager = new SushiSliceSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        SushiSliceStateManager sushiSliceStateManager = new SushiSliceSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         sushiSliceStateManager.nextResponse();
 

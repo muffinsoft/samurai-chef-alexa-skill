@@ -5,30 +5,58 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.StopIntentHandler;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsPhraseConstants;
+import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.EXIT_PHRASE;
+import java.util.List;
+
+import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 
 public class SamuraiStopIntentHandler extends StopIntentHandler {
 
-    private final PhraseManager phraseManager;
+    private final GreetingsPhraseManager greetingsPhraseManager;
 
-    public SamuraiStopIntentHandler(ConfigContainer configurationContainer) {
+    public SamuraiStopIntentHandler(SettingsDependencyContainer configurationContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super();
-        this.phraseManager = configurationContainer.getPhraseManager();
+        this.greetingsPhraseManager = phraseDependencyContainer.getGreetingsPhraseManager();
     }
 
     @Override
     public StateManager nextTurn(HandlerInput handlerInput) {
         return new BaseStateManager(getSlotsFromInput(handlerInput), handlerInput.getAttributesManager()) {
+
+            @SuppressWarnings("Duplicates")
+            private void buildExit(DialogItem.Builder builder) {
+
+                List<PhraseSettings> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.EXIT_PHRASE);
+
+                int userReplyBreakpointPosition = 0;
+
+                for (PhraseSettings phraseSettings : dialog) {
+
+                    if (phraseSettings.isUserResponse()) {
+                        this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, userReplyBreakpointPosition + 1);
+                        this.getSessionAttributes().put(SessionConstants.INTENT, Intents.EXIT_CONFIRMATION);
+                        break;
+                    }
+                    builder.addResponse(ofAlexa(phraseSettings.getContent()));
+                    userReplyBreakpointPosition++;
+                }
+            }
+
             @Override
             public DialogItem nextResponse() {
-                return DialogItem.builder()
-                        .addResponse(translate(phraseManager.getValueByKey(EXIT_PHRASE)))
-                        .withShouldEnd(true)
-                        .build();
+
+                DialogItem.Builder builder = DialogItem.builder();
+
+                buildExit(builder);
+
+                return builder.build();
             }
         };
     }

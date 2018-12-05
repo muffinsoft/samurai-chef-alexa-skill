@@ -34,14 +34,14 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
 
-        FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         foodTasterStateManager.nextResponse();
 
         foodTasterStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = foodTasterStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.MISSION_INTRO);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.DEMO);
     }
 
     @Test
@@ -56,14 +56,14 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_REPLY_BREAKPOINT, 5);
 
-        FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         foodTasterStateManager.nextResponse();
 
         foodTasterStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = foodTasterStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.STRIPE_INTRO);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.DEMO);
     }
 
     @Test
@@ -81,7 +81,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         foodTasterStateManager.nextResponse();
 
@@ -99,7 +99,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
 
         Map<String, Slot> slots = createSlotsForValue("test");
 
-        int successInRowForPowerUp = IoC.provideConfigurationContainer().getMissionManager().getSuccessInRowForPowerUp();
+        int successInRowForPowerUp = IoC.provideSettingsDependencies().getMissionManager().getSuccessInRowForPowerUp();
 
         ActivityProgress activityProgress = new ActivityProgress();
         activityProgress.setCurrentIngredientReaction("test");
@@ -111,7 +111,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         foodTasterStateManager.nextResponse();
 
@@ -140,7 +140,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         foodTasterStateManager.nextResponse();
 
@@ -174,7 +174,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        FoodTasterStateManager foodTasterStateManager = new FoodTasterCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        FoodTasterStateManager foodTasterStateManager = new FoodTasterCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         foodTasterStateManager.nextResponse();
 
@@ -210,7 +210,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         attributes.put(STATE_PHASE, StatePhase.PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
-        FoodTasterStateManager foodTasterStateManager = new FoodTasterSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideConfigurationContainer());
+        FoodTasterStateManager foodTasterStateManager = new FoodTasterSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
         foodTasterStateManager.nextResponse();
 

@@ -5,28 +5,34 @@ import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.components.PowerUpFabric;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_EARN_CORRECT_ANSWER_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_EARN_SECOND_CHANCE_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_USE_CORRECT_ANSWER_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.JUST_USE_SECOND_CHANCE_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.LAST_MISTAKE_COMPETITION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.LAST_MISTAKE_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.ONE_MISTAKE_LEFT_COMPETITION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.ONE_MISTAKE_LEFT_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TOO_LONG_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.TWO_MISTAKES_LEFT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_EARN_CORRECT_ANSWER_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_EARN_SECOND_CHANCE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_USE_CORRECT_ANSWER_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_USE_SECOND_CHANCE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.LAST_MISTAKE_COMPETITION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.LAST_MISTAKE_COMPETITION_TOO_LONG_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.LAST_MISTAKE_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.LAST_MISTAKE_TOO_LONG_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_COMPETITION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_COMPETITION_TOO_LONG_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_TOO_LONG_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.TWO_MISTAKES_LEFT_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.TWO_MISTAKES_LEFT_TOO_LONG_PHRASE;
 
 public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamuraiChefStateManager {
 
-    BaseActivePhaseSamuraiChefStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
-        super(slots, attributesManager, configContainer);
+    BaseActivePhaseSamuraiChefStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
+        super(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
     }
 
     @Override
@@ -52,7 +58,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         this.activityProgress.iterateMistakeCount();
         this.activityProgress.resetSuccessInRow();
 
-        return getMistakeDialog(builder, TOO_LONG_PHRASE);
+        return getTooLongMistakeDialog(builder);
     }
 
     protected DialogItem.Builder handleMistake(DialogItem.Builder builder) {
@@ -73,7 +79,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             this.activityProgress.removePowerUp();
 
-            builder.addResponse(translate(phraseManager.getValueByKey(JUST_USE_SECOND_CHANCE_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(JUST_USE_SECOND_CHANCE_PHRASE)));
 
             this.activityProgress.equipIfAvailable();
 
@@ -97,7 +103,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             this.activityProgress.removePowerUp();
 
-            builder.addResponse(translate(phraseManager.getValueByKey(JUST_USE_CORRECT_ANSWER_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(JUST_USE_CORRECT_ANSWER_PHRASE)));
 
             this.activityProgress.equipIfAvailable();
 
@@ -115,6 +121,30 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         }
     }
 
+    @SuppressWarnings("Duplicates")
+    private DialogItem.Builder getTooLongMistakeDialog(DialogItem.Builder builder) {
+        if (this.activityManager.isActivityCompetition(this.currentActivity)) {
+            if (this.activityProgress.getMistakesCount() == 1) {
+                return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_COMPETITION_TOO_LONG_PHRASE);
+            }
+            else {
+                return this.getMistakeDialog(builder, LAST_MISTAKE_COMPETITION_TOO_LONG_PHRASE);
+            }
+        }
+        else {
+            if (this.activityProgress.getMistakesCount() == 2) {
+                return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_TOO_LONG_PHRASE);
+            }
+            else if (this.activityProgress.getMistakesCount() == 1) {
+                return this.getMistakeDialog(builder, TWO_MISTAKES_LEFT_TOO_LONG_PHRASE);
+            }
+            else {
+                return this.getMistakeDialog(builder, LAST_MISTAKE_TOO_LONG_PHRASE);
+            }
+        }
+    }
+
+    @SuppressWarnings("Duplicates")
     private DialogItem.Builder getMistakeDialog(DialogItem.Builder builder) {
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             if (this.activityProgress.getMistakesCount() == 1) {
@@ -141,7 +171,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
         if (this.activityProgress.getMistakesCount() < stripe.getMaxMistakeCount()) {
             logger.debug("Incorrect answer was found, running failure dialog");
-            return getFailureDialog(builder, phraseManager.getValueByKey(value));
+            return getFailureDialog(builder, regularPhraseManager.getValueByKey(value));
         }
         else {
             logger.debug("Last available incorrect answer was found, running lose dialog");
@@ -150,23 +180,6 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
             return getLoseRoundDialog(builder, value);
         }
     }
-
-
-//    private DialogItem.Builder equipIfAvailable(DialogItem.Builder builder) {
-//        PowerUps nextPowerUp =
-//        if (nextPowerUp != null) {
-//            PhraseSettings prependedString;
-//            if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
-//                prependedString = phraseManager.getValueByKey(JUST_USE_SECOND_CHANCE_PHRASE);
-//            }
-//            else {
-//                prependedString = phraseManager.getValueByKey(JUST_USE_CORRECT_ANSWER_PHRASE);
-//            }
-//            builder.addResponse(translate(prependedString));
-//            logger.debug("Was equipped power up: " + nextPowerUp);
-//        }
-//        return builder;
-//    }
 
     protected DialogItem.Builder handleSuccess(DialogItem.Builder builder) {
 
@@ -181,26 +194,15 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
             if (nextPowerUp != null) {
                 this.activityProgress.addPowerUp(nextPowerUp);
                 logger.debug("Was earned equipment: " + nextPowerUp);
-//                if (Objects.equals(this.activityProgress.getActivePowerUp(), nextPowerUp.name())) {
-//                    PhraseSettings prependedString;
-//                    if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
-//                        prependedString = phraseManager.getValueByKey(JUST_USE_SECOND_CHANCE_PHRASE);
-//                    }
-//                    else {
-//                        prependedString = phraseManager.getValueByKey(JUST_USE_CORRECT_ANSWER_PHRASE);
-//                    }
-//                    builder.addResponse(translate(prependedString));
-//                }
-//                else {
-                PhraseSettings prependedString;
+
+                List<PhraseSettings> prependedString;
                 if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
-                    prependedString = phraseManager.getValueByKey(JUST_EARN_SECOND_CHANCE_PHRASE);
+                    prependedString = regularPhraseManager.getValueByKey(JUST_EARN_SECOND_CHANCE_PHRASE);
                 }
                 else {
-                    prependedString = phraseManager.getValueByKey(JUST_EARN_CORRECT_ANSWER_PHRASE);
+                    prependedString = regularPhraseManager.getValueByKey(JUST_EARN_CORRECT_ANSWER_PHRASE);
                 }
                 builder.addResponse(translate(prependedString));
-//                }
                 logger.debug("Was equipped power up: " + nextPowerUp);
             }
             else {

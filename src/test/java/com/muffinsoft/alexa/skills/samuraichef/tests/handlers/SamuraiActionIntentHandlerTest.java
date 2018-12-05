@@ -76,7 +76,7 @@ class SamuraiActionIntentHandlerTest {
     }
 
     private SamuraiActionIntentHandler createActionIntentHandlerInstance() {
-        return new SamuraiActionIntentHandler(IoC.provideConfigurationContainer(), IoC.provideSessionStateFabric());
+        return new SamuraiActionIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies(), IoC.provideSessionStateFabric());
     }
 
     @Test

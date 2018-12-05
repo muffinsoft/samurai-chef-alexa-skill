@@ -17,16 +17,19 @@ import com.muffinsoft.alexa.skills.samuraichef.activities.action.WordBoardKarate
 import com.muffinsoft.alexa.skills.samuraichef.activities.action.WordBoardKarateStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 
 import java.util.Map;
 
 public class SessionStateFabric {
 
-    private final ConfigContainer configContainer;
+    private final SettingsDependencyContainer settingsDependencyContainer;
+    private final PhraseDependencyContainer phraseDependencyContainer;
 
-    public SessionStateFabric(ConfigContainer configContainer) {
-        this.configContainer = configContainer;
+    public SessionStateFabric(SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
+        this.settingsDependencyContainer = settingsDependencyContainer;
+        this.phraseDependencyContainer = phraseDependencyContainer;
     }
 
     public StateManager createFromRequest(Activities currentActivity, PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
@@ -57,11 +60,11 @@ public class SessionStateFabric {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new FoodTasterStateManager(slots, attributesManager, configContainer);
+                return new FoodTasterStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case CORRECT_ANSWER_SLOT:
-                return new FoodTasterCorrectAnswerStateManager(slots, attributesManager, configContainer);
+                return new FoodTasterCorrectAnswerStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case SECOND_CHANCE_SLOT:
-                return new FoodTasterSecondChanceStateManager(slots, attributesManager, configContainer);
+                return new FoodTasterSecondChanceStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
@@ -71,11 +74,11 @@ public class SessionStateFabric {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new WordBoardKarateStateManager(slots, attributesManager, configContainer);
+                return new WordBoardKarateStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case CORRECT_ANSWER_SLOT:
-                return new WordBoardKarateCorrectAnswerStateManager(slots, attributesManager, configContainer);
+                return new WordBoardKarateCorrectAnswerStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case SECOND_CHANCE_SLOT:
-                return new WordBoardKarateSecondChanceStateManager(slots, attributesManager, configContainer);
+                return new WordBoardKarateSecondChanceStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
@@ -85,11 +88,11 @@ public class SessionStateFabric {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new SushiSliceStateManager(slots, attributesManager, configContainer);
+                return new SushiSliceStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case CORRECT_ANSWER_SLOT:
-                return new SushiSliceCorrectAnswerStateManager(slots, attributesManager, configContainer);
+                return new SushiSliceCorrectAnswerStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case SECOND_CHANCE_SLOT:
-                return new SushiSliceSecondChanceStateManager(slots, attributesManager, configContainer);
+                return new SushiSliceSecondChanceStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }
@@ -99,11 +102,11 @@ public class SessionStateFabric {
 
         switch (currentEquipment) {
             case EMPTY_SLOT:
-                return new JuiceWarriorStateManager(slots, attributesManager, configContainer);
+                return new JuiceWarriorStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case CORRECT_ANSWER_SLOT:
-                return new JuiceWarriorCorrectAnswerStateManager(slots, attributesManager, configContainer);
+                return new JuiceWarriorCorrectAnswerStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case SECOND_CHANCE_SLOT:
-                return new JuiceWarriorSecondChanceStateManager(slots, attributesManager, configContainer);
+                return new JuiceWarriorSecondChanceStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             default:
                 throw new IllegalStateException("Exception while handling equipment: " + currentEquipment);
         }

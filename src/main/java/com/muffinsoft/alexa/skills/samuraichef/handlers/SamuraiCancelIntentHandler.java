@@ -5,22 +5,25 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.CancelIntentHandler;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 
+import java.util.List;
+
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_START_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_START_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 
 public class SamuraiCancelIntentHandler extends CancelIntentHandler {
 
-    private final PhraseManager phraseManager;
+    private final RegularPhraseManager regularPhraseManager;
 
-    public SamuraiCancelIntentHandler(ConfigContainer configurationContainer) {
+    public SamuraiCancelIntentHandler(SettingsDependencyContainer configurationContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super();
-        this.phraseManager = configurationContainer.getPhraseManager();
+        this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
     }
 
     @Override
@@ -32,7 +35,7 @@ public class SamuraiCancelIntentHandler extends CancelIntentHandler {
 
                 logger.debug("Available session attributes: " + getSessionAttributes());
 
-                PhraseSettings dialog = phraseManager.getValueByKey(WANT_START_MISSION_PHRASE);
+                List<PhraseSettings> dialog = regularPhraseManager.getValueByKey(WANT_START_MISSION_PHRASE);
                 getSessionAttributes().put(INTENT, Intents.CANCEL);
 
                 DialogItem.Builder builder = DialogItem.builder().addResponse(translate(dialog));

@@ -6,12 +6,13 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
-import com.muffinsoft.alexa.skills.samuraichef.content.PhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,9 +21,9 @@ import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.REPEAT_LAST_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.RETURN_TO_GAME_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.PhraseConstants.WANT_MISSION_FROM_BEGINNING_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.RETURN_TO_GAME_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_MISSION_FROM_BEGINNING_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
@@ -35,14 +36,14 @@ public class ResetStateManager extends BaseStateManager {
 
     private final String userFoodSlotReply;
 
-    private final PhraseManager phraseManager;
+    private final RegularPhraseManager regularPhraseManager;
 
     private StatePhase statePhase;
     private ActivityProgress activityProgress;
 
-    public ResetStateManager(Map<String, Slot> slots, AttributesManager attributesManager, ConfigContainer configContainer) {
+    public ResetStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(slots, attributesManager);
-        this.phraseManager = configContainer.getPhraseManager();
+        this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         String foodSlotName = SlotName.AMAZON_FOOD.text;
         this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
     }
@@ -75,18 +76,18 @@ public class ResetStateManager extends BaseStateManager {
         if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
             getSessionAttributes().put(INTENT, Intents.GAME);
             getSessionAttributes().put(STATE_PHASE, StatePhase.STRIPE_INTRO);
-            builder.addResponse(translate(phraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             if (statePhase == StatePhase.PHASE_1 || statePhase == StatePhase.PHASE_2) {
                 builder.addResponse(ofAlexa(activityProgress.getPreviousIngredient()));
             }
             getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         }
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-            builder.addResponse(translate(phraseManager.getValueByKey(WANT_MISSION_FROM_BEGINNING_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(WANT_MISSION_FROM_BEGINNING_PHRASE)));
             getSessionAttributes().put(INTENT, Intents.RESET_CONFIRMATION);
         }
         else {
-            builder.addResponse(translate(phraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
         }
 
         return builder.build();

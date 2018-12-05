@@ -1,0 +1,461 @@
+{
+  "LOW_MISSION": {
+    "0": {
+      "outro": [
+        {
+          "content": "Nice work! You showed those boards who's boss!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
+          "content": "You show potential as sushi cook! Now we work both mind and body with word board karate!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "If the word on the board starts with 'W' sound, like whale, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Wham!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'H' sound, like hat, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Haa'!",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Wham! and Haa! Go!",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": true,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [
+        {
+          "content": "Watch how Ben do word board karate!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Waitress!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Wham!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Hawk!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Haa!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Plumber!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Pow!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Good! Now your turn, chef-in-training.",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+    },
+    "1": {
+      "outro": [
+        {
+          "content": "Woah! You pulverized those boards!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
+          "content": "Good session. Best way to end tasting is with word board karate!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "If the word on the board starts with 'W' sound, like whale, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Wham!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'H' sound, like hat, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Haa!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with 'P', like pepper, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Pow!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Wham, Haa and Pow! Ready, go!",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+    }
+  },
+  "MEDIUM_MISSION": {
+    "0": {
+      "outro": [
+        {
+          "content": "Those boards didn't stand a chance!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
+        {
+          "content": "Your appetite is impressive! Time for word board karate to make use of that energy!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "If the word on the board starts with 'Z' sound, like zoo, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Zonk!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'F' sound, like foosball, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Fuah!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Zonk and Fuah! Go!",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": true,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [
+        {
+          "content": "Watch how Ben do word board karate!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Zoo!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Zonk!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Fork!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Fuah!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Wood!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Woosh!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Excellent. You next, future sumo.",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+    },
+    "1": {
+      "outro": [
+        {
+          "content": "Those were some sweet moves on those boards!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
+        {
+          "content": "You show good ability to avoid unhealthy snacks. Time for some word board karate!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "If the word on the board starts with 'Z' sound, like zoo, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Zonk!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'F' sound, like foosball, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Fuah!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "IF the word starts with 'Woo' sound like wood, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Woosh!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Zonk, Fuah, and Woosh! Go!",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+    }
+  },
+  "HIGH_MISSION": {
+    "0": {
+      "outro": [
+        {
+          "content": "You crushed those boards into dust! Awesome!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
+        {
+          "content": "You on path to becoming juice making machine! Time for some word board karate!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "If the word on the board starts with 'Z' sound, like zoo, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Zaam!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'W' sound, like walk, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Whammo!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Zaam and Whammo! Go!",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": true,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [
+        {
+          "content": "Watch how Ben do word board karate!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Zebra!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Zaam!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Whale!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Whammo!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Thunder!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Thwap!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Good. You next, guru-in-training.",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+    },
+    "1": {
+      "outro": [
+        {
+          "content": "Wow, no way anyone is piecing those boards back together!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
+        {
+          "content": "Good work. To follow up traditional karate we do word board karate!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "If the word on the board starts with 'Z' sound, like zoo, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Zaam!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with the 'W' sound, like walk, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Whammo!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "If the word starts with 'TH', like thorn, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'Thwap!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+        {
+          "content": "Zaam, Whammo and Thwap! Go!",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "moveToPhaseTwo": "Woah, Sensei Sushi is in the zone! He's cooking faster now to test us, which means he'll only provide the dish and not say what it is. Let's match his speed!"
+    }
+  }
+}

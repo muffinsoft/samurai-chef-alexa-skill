@@ -6,7 +6,9 @@ public enum Intents {
     RESET,
     HELP,
     RESET_CONFIRMATION,
+    RESET_MISSION_SELECTION,
     GAME,
     EXIT,
+    EXIT_CONFIRMATION,
     INITIAL_GREETING
 }

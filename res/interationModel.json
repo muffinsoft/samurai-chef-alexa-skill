@@ -83,6 +83,11 @@
               "name": {
                 "value": "no",
                 "synonyms": [
+                  "no",
+                  "nope",
+                  "not",
+                  "nah",
+                  "neh",
                   "oh no",
                   "no no",
                   "nope",
@@ -101,7 +106,10 @@
                   "I do",
                   "yes please",
                   "you know it",
-                  "of course"
+                  "of course",
+                  "ya",
+                  "ready",
+                  "go"
                 ]
               }
             },
@@ -142,7 +150,12 @@
             },
             {
               "name": {
-                "value": "haaa"
+                "value": "haa",
+                "synonyms": [
+                  "haaaa",
+                  "haaa",
+                  "ha"
+                ]
               }
             },
             {

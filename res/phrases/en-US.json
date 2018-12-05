@@ -1,244 +1,241 @@
 {
-  "welcomePhrase": {
-    "content": "Glad you’ve come over! I love playdates! And today, I’ve got something so cool, so different for us to do. Would you like to follow me?"
-  },
-  "welcomeBackPhrase": {
-    "content": "Welcome back to Samurai Chef, %Title%! I'm excited to see what Sensei has in store for us next."
-  },
-  "fallbackPhrase": {
-    "content": "Sorry, I don't understand what you're saying. Would you like some help?"
-  },
-  "failurePhrase": {
-    "content": "You gave the wrong response, which means you failed the challenge. Would you like to restart?"
-  },
-  "failureRePromptPhrase": {
-    "content": "Sorry, I don't understand what you're saying. Would you like to try again?"
-  },
-  "wonRePromptPhrase": {
-    "content": "Sorry, I don't understand what you're saying. Are you ready to start?"
-  },
-  "readyToStartPhrase": {
-    "content": "Ready to start?"
-  },
-  "readyToStartRePromptPhrase": {
-    "content": "Sorry, I don't hear you. Ready to start?"
-  },
-  "justEarnCorrectQuestionPhrase": {
-    "content": "Wow, you got some Secret Sauce! When you use it, Sensei will accept any answer as correct!"
-  },
-  "justUseCorrectQuestionPhrase": {
-    "content": "Sweet! With the Secret Sauce your answer was considered right, no matter what you said!"
-  },
-  "justEarnSecondChancePhrase": {
-    "content": "Nice, you earned a Super Spatula! With it you'll get a second chance the first time you give a wrong answer."
-  },
-  "justUseSecondChancePhrase": {
-    "content": "Good idea using the Super Spatula to get a second chance at responding!"
-  },
-  "twoMistakesLeftPhrase": {
-    "content": "Oops, you made a mistake! You can only make two more mistakes!"
-  },
-  "oneMistakeLeftPhrase": {
-    "content": "Uh oh, that was your second mistake! You can only make one more!"
-  },
-  "lastMistakePhrase": {
-    "content": "Aww, that was your last mistake! Too bad..."
-  },
-  "oneMistakeLeftCompetitionPhrase": {
-    "content": "Kiara wins round! One more and she will be the victor!",
-    "role": "Sensei"
-  },
-  "lastMistakeCompetitionPhrase": {
-    "content": "Aww, that was your last mistake! Too bad...",
-    "role": "Kiara wins again! Kiara is the winner!"
-  },
-  "selectMissionPhrase": {
-    "content": "There are three different paths to choose from: Path of Chef, Path of Sumo, and Path of Guru. They all have fun ways of cooking and eating food. Which one do you want to try?"
-  },
-  "selectMissionUnknownPhrase": {
-    "content": "I don't understand your choice, Please, select one of three available missions."
-  },
-  "readyToContinueMissionPhrase": {
-    "content": "Would you like to continue playing"
-  },
-  "missionAlreadyCompletePhrase": {
-    "content": "You have already complete this path."
-  },
-  "readyToStartMissionPhrase": {
-    "content": "Are you ready to start "
-  },
-  "severalValuesPhrase": {
-    "content": "Sorry, we can't understand your answer. Please, choose one from this list "
-  },
-  "wantStartMissionPhrase": {
-    "content": "Do you want to start a new path?"
-  },
-  "wantExitPhrase": {
-    "content": "Do you want to quit the game?"
-  },
-  "repeatLastPhrase": {
-    "content": "I don't understand you. Please, repeat last command."
-  },
-  "tryAgainPhrase": {
-    "content": "Try again!"
-  },
-  "exitPhrase": {
-    "content": "We had fun together. Let's do this again soon."
-  },
-  "returnToGamePhrase": {
-    "content": "You'll be returned to game process."
-  },
-  "wantResetProgressPhrase": {
-    "content": "Are you sure you want to quit the path and lose all your progress?"
-  },
-  "wantMissionFromBeginningPhrase": {
-    "content": "Do you want to start the path from the beginning?"
-  },
-  "missionProgressRemovedPhrase": {
-    "content": "The Path progress was removed."
-  },
-  "helpCompetitionRulesPhrase": {
-    "content": "In a competition, you and Mary take turns trying to provide the correct answer. The first one to lose two rounds by answering incorrectly loses."
-  },
-  "helpMissionLowDescriptionPhrase": {
-    "content": "In Path of the Chef your goal is to master the art of cooking sushi! When you are given an ingredient or food, say the right response to prepare it correctly! You are currently on stripe #."
-  },
-  "helpMissionMidDescriptionPhrase": {
-    "content": "In Path of the Sumo your goal is to become big and heavy! When you are given a food to eat, say the right response to eat it correctly! You are currently on stripe #."
-  },
-  "helpMissionHighDescriptionPhrase": {
-    "content": "In Path of the Guru you'll learn the ways of nutritious food! When you are given an ingredient or food, say the right response to prepare it correctly! You are currently on stripe #."
-  },
-  "helpNewWordsPhrase": {
-    "content": "Do you need to hear the correct response to all the words again?"
-  },
-  "helpGeneralPhrase": {
-    "content": "In Samurai Chef your goal is to earn different belts in three unique paths to become the ultimate samurai chef! You'll also earn cool titles and other awesome rewards along the way!"
-  },
-  "helpLearnMorePhrase": {
-    "content": "Do you want to learn more about the game and objectives?"
-  },
-  "helpMoreDetailsPhrase": {
-    "content": "Do you want more details?"
-  },
-  "helpContinuePlayingPhrase": {
-    "content": "Do you want to continue playing?"
-  },
-  "helpActivitySushiSliceDescriptionPhrase": {
-    "content": "Sushi Slice description."
-  },
-  "helpActivityJuiceWarriorDescriptionPhrase": {
-    "content": "Juice Warrior description."
-  },
-  "helpActivityWordBoardKarateDescriptionPhrase": {
-    "content": "Word Board Karate description."
-  },
-  "helpActivityFoodTasterDescriptionPhrase": {
-    "content": "Food Taster description."
-  },
-  "gameFinishedPhrasePhrase": {
-    "content": "Congratulations! You are the winner!"
-  },
-  "redirectedToSelectMissionPhrase": {
-    "content": "You will be redirected to path selection."
-  },
-  "perfectActivityEarnLowPhrase": {
-    "content": "That was a perfect challenge! You earned a new title - Skilled Chef!"
-  },
-  "perfectStripeEarnLowPhrase": {
-    "content": "You earned that belt without messing up once! You get a new title - Pro Chef!"
-  },
-  "perfectMissionEarnLowPhrase": {
-    "content": "A perfect path of the chef? Incredible! You get the best  title - The Unmatched Chef!"
-  },
-  "perfectActivityEarnMidPhrase": {
-    "content": "A challenge with no mistakes! You earned a new title - Giant Sumo!"
-  },
-  "perfectStripeEarnMidPhrase": {
-    "content": "Hey, did you get that belt without a single wrong response? Wow! You get a new title - Enormous Sumo!"
-  },
-  "perfectMissionEarnMidPhrase": {
-    "content": "Unbelievable! A perfect Path of the Sumo! You get the best title - The Humongous Sumo!"
-  },
-  "perfectActivityEarnHighPhrase": {
-    "content": "Nice! No mistakes that challenge! You get a new title - Wise Guru!"
-  },
-  "perfectStripeEarnHighPhrase": {
-    "content": "No way! A perfect belt! You get a new title - Sage Guru!"
-  },
-  "perfectMissionEarnHighPhrase": {
-    "content": "Impossible! A perfect Path of the Guru! You get the best title - The Enlightened Guru!"
-  },
-  "helpLowMissionStripe0SushiSlice": {
-    "content": "To prepare rice, say 'boil!' To cut the fish, say 'slice.' Let's get started!"
-  },
-  "helpLowMissionStripe0JuiceWarrior": {
-    "content": "To prepare rice, say 'boil!' To cut fish, say 'slice.' To roll seaweed, say 'roll!'"
-  },
-  "helpLowMissionStripe0WordBoardKarate": {
-    "content": "To prepare rice, say 'boil!' To cut fish, say 'slice.' To roll seaweed, say 'roll!' To boil eggs, say 'boil!'"
-  },
-  "helpLowMissionStripe0FoodTaster": {
-    "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haa!'"
-  },
-  "helpLowMissionStripe1SushiSlice": {
-    "content": "To eat soup, say 'slurp!' To eat sushi, say 'gulp.' To sip tea, say 'sip!'"
-  },
-  "helpLowMissionStripe1JuiceWarrior": {
-    "content": "To eat soup, say 'slurp!' To eat sushi, say 'gulp.' To sip tea, say 'sip!' To eat mochi, say 'lick!'"
-  },
-  "helpLowMissionStripe1WordBoardKarate": {
-    "content": "To eat soup, say 'slurp!' To eat sushi, say 'gulp.' To sip tea, say 'sip!' To eat mochi, say 'lick!'  To eat wasabe peas, say 'crunch!'"
-  },
-  "helpLowMissionStripe1FoodTaster": {
-    "content": "If the word on the board starts with W sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haa!' If the word starts with P, like pepper, say 'Pow!'"
-  },
-  "helpHighMissionStripe0SushiSlice": {
-    "content": "To eat chicken, say 'chomp!' To eat sushi, say 'gulp'!"
-  },
-  "helpHighMissionStripe0JuiceWarrior": {
-    "content": "To eat chicken, say 'chomp!' To eat sushi, say 'gulp'! To eat stew, say 'slurp!'"
-  },
-  "helpHighMissionStripe0WordBoardKarate": {
-    "content": "To eat chicken, say 'chomp!' To eat sushi, say 'gulp'! To eat stew, say 'slurp!'To eat fried fish, say 'munch!'"
-  },
-  "helpHighMissionStripe0FoodTaster": {
-    "content": "If the word on the board starts with Z sound, like zoo, say 'Zonk!' If the word starts with the F sound, like foosball, say 'Fuah!'"
-  },
-  "helpHighMissionStripe1SushiSlice": {
-    "content": "If sensei gives you beef or tofu, say yum! but if it's soda, say yuck!"
-  },
-  "helpHighMissionStripe1JuiceWarrior": {
-    "content": "If sensei gives you beef or tofu, say yum! But if it's soda or candy, say yuck!"
-  },
-  "helpHighMissionStripe1WordBoardKarate": {
-    "content": "If sensei gives you beef, tofu, or milk, say yum! But if it's soda or candy, say yuck!"
-  },
-  "helpHighMissionStripe1FoodTaster": {
-    "content": "If the word on the board starts with Z sound, like zoo, say 'Zonk!' If the word starts with the F sound, like foosball, say 'Fuah!' IF the word starts with 'Woo' sound like wood, say 'woosh!'"
-  },
-  "helpMidMissionStripe0SushiSlice": {
-    "content": "To prepare milk, say 'splash a dash'! For carrots, say 'slice and dice'!"
-  },
-  "helpMidMissionStripe0JuiceWarrior": {
-    "content": "To prepare milk, say 'splash a dash'! For carrots, say 'slice and dice'! To prepare ice, say 'punch and crunch!'"
-  },
-  "helpMidMissionStripe0WordBoardKarate": {
-    "content": "To prepare milk, say 'splash a dash'! For carrots, say 'slice and dice'! To prepare ice, say 'punch and crunch!' To not add the chopsticks, say 'stop, don't drop!'"
-  },
-  "helpMidMissionStripe0FoodTaster": {
-    "content": " If the word on the board starts with Z sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!'"
-  },
-  "helpMidMissionStripe1SushiSlice": {
-    "content": "if sensei does a punch, say BLOCK! If sensei does a kick, say DODGE! If sensei tries a sweep, say JUMP!"
-  },
-  "helpMidMissionStripe1JuiceWarrior": {
-    "content": "If sensei does a punch, say BLOCK! If sensei does a kick, say DODGE! If sensei tries a sweep, say JUMP! If sensei does a bow, you say BOW!"
-  },
-  "helpMidMissionStripe1WordBoardKarate": {
-    "content": "If sensei does a punch, say BLOCK! If sensei does a kick, say DODGE! If sensei tries a sweep, say JUMP! If sensei does a bow, you say BOW! If sensei tries to grab you, say 'break!'"
-  },
-  "helpMidMissionStripe1FoodTaster": {
-    "content": "If the word on the board starts with Z sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with 'TH', like thorn, say 'Thwap!'"
-  }
+  "fallbackPhrase": [
+    {
+      "content": "Sorry, I don't understand what you're saying. Would you like some help?"
+    }
+  ],
+  "failurePhrase": [
+    {
+      "content": "You gave the wrong response, which means you failed the challenge. Would you like to restart?"
+    }
+  ],
+  "failureRePromptPhrase": [
+    {
+      "content": "Sorry, I don't understand what you're saying. Would you like to try again?"
+    }
+  ],
+  "wonRePromptPhrase": [
+    {
+      "content": "Sorry, I don't understand what you're saying. Are you ready to start?"
+    }
+  ],
+  "readyToStartPhrase": [
+    {
+      "content": "Ready to start?"
+    }
+  ],
+  "justEarnCorrectQuestionPhrase": [
+    {
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
+    },
+    {
+      "content": "Wow, you got some Secret Sauce! When you use it, Sensei will accept any answer as correct!",
+      "role": "Ben"
+    }
+  ],
+  "justUseCorrectQuestionPhrase": [
+    {
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
+    },
+    {
+      "content": "Sweet! With the Secret Sauce your answer was considered right, no matter what you said!",
+      "role": "Ben"
+    }
+  ],
+  "justEarnSecondChancePhrase": [
+    {
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
+    },
+    {
+      "content": "Nice, you earned a Super Spatula! With it you'll get a second chance the first time you give a wrong answer.",
+      "role": "Ben"
+    }
+  ],
+  "justUseSecondChancePhrase": [
+    {
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
+    },
+    {
+      "content": "Good idea using the Super Spatula to get a second chance at responding!",
+      "role": "Ben"
+    }
+  ],
+  "twoMistakesLeftPhrase": [
+    {
+      "content": "Oops, you made a mistake! You can only make two more mistakes!"
+    }
+  ],
+  "oneMistakeLeftPhrase": [
+    {
+      "content": "Hmm! That was your second mistake! Since you first to give two wrong responses, Ben wins challenge!",
+      "role": "Sensei"
+    },
+    {
+      "content": "Oh yeah! Better luck next time!",
+      "role": "Ben"
+    }
+  ],
+  "lastMistakePhrase": [
+    {
+      "content": "Aww, that was your third mistake! Too bad..."
+    }
+  ],
+  "twoMistakesLeftTooLongPhrase": [
+    {
+      "content": "Sorry, you answered too late! I'm counting it as a mistake. Two more and you fail!"
+    }
+  ],
+  "oneMistakeLeftTooLongPhrase": [
+    {
+      "content": "Hmm, that answer was late! You can only make one more mistake!"
+    }
+  ],
+  "lastMistakeTooLongPhrase": [
+    {
+      "content": "You answered after the time limit ended! That was your third mistake, I'm afraid."
+    }
+  ],
+  "oneMistakeLeftCompetitionPhrase": [
+    {
+      "content": "Ben wins round! One more and she will be the victor!",
+      "role": "Sensei"
+    }
+  ],
+  "lastMistakeCompetitionPhrase": [
+    {
+      "content": "wins again! Ben is the winner!",
+      "role": "Ben "
+    }
+  ],
+  "oneMistakeLeftCompetitionTooLongPhrase": [
+    {
+      "content": "Too late! Ben wins round! One more and he will be the victor!",
+      "role": "Sensei"
+    }
+  ],
+  "lastMistakeCompetitionTooLongPhrase": [
+    {
+      "content": "That answer was too late! Ben wins again! Ben is the winner!",
+      "role": "Sensei "
+    }
+  ],
+  "selectMissionPhrase": [
+    {
+      "content": "Sensei is ready to train you in the Path of Chef, Path of Sumo, or Path of Guru. Which one would you like?"
+    }
+  ],
+  "selectMissionToRemovePhrase": [
+    {
+      "content": "Sensei is ready to train you in the Path of Chef, Path of Sumo, or Path of Guru. Enter the path before remove it?"
+    }
+  ],
+  "missionAlreadyCompletePhrase": [
+    {
+      "content": "You have already completed this path. Finish all 3 paths to complete the game. "
+    }
+  ],
+  "severalValuesPhrase": [
+    {
+      "content": "Sorry, we can't understand your answer. Please, choose one from this list "
+    }
+  ],
+  "wantStartMissionPhrase": [
+    {
+      "content": "Do you want to start a new path?"
+    }
+  ],
+  "wantExitPhrase": [
+    {
+      "content": "Do you want to quit the game?"
+    }
+  ],
+  "repeatLastPhrase": [
+    {
+      "content": "I don't understand you. Please, repeat last command."
+    }
+  ],
+  "tryAgainPhrase": [
+    {
+      "content": "Try again!"
+    }
+  ],
+  "returnToGamePhrase": [
+    {
+      "content": "You'll be returned to game process."
+    }
+  ],
+  "wantResetProgressPhrase": [
+    {
+      "content": "Do you want to reset your progress in this path and start it from the beginning?"
+    }
+  ],
+  "wantMissionFromBeginningPhrase": [
+    {
+      "content": "Do you want to start the path from the beginning?"
+    }
+  ],
+  "newMissionOrSelectPhrase": [
+    {
+      "content": "Do you want to chose another path?"
+    }
+  ],
+  "gameFinishedPhrasePhrase": [
+    {
+      "content": "Congratulations! You are the winner!"
+    }
+  ],
+  "redirectedToSelectMissionPhrase": [
+    {
+      "content": "You will be redirected to path selection."
+    }
+  ],
+  "perfectActivityEarnLowPhrase": [
+    {
+      "content": "That was a perfect challenge! You earned a new title - Skilled Chef!"
+    }
+  ],
+  "perfectStripeEarnLowPhrase": [
+    {
+      "content": "You earned that belt without messing up once! You get a new title - Pro Chef!"
+    }
+  ],
+  "perfectMissionEarnLowPhrase": [
+    {
+      "content": "A perfect path of the chef? Incredible! You get the best  title - The Unmatched Chef!"
+    }
+  ],
+  "perfectActivityEarnMidPhrase": [
+    {
+      "content": "A challenge with no mistakes! You earned a new title - Giant Sumo!"
+    }
+  ],
+  "perfectStripeEarnMidPhrase": [
+    {
+      "content": "Hey, did you get that belt without a single wrong response? Wow! You get a new title - Enormous Sumo!"
+    }
+  ],
+  "perfectMissionEarnMidPhrase": [
+    {
+      "content": "Unbelievable! A perfect Path of the Sumo! You get the best title - The Humongous Sumo!"
+    }
+  ],
+  "perfectActivityEarnHighPhrase": [
+    {
+      "content": "Nice! No mistakes that challenge! You get a new title - Wise Guru!"
+    }
+  ],
+  "perfectStripeEarnHighPhrase": [
+    {
+      "content": "No way! A perfect belt! You get a new title - Sage Guru!"
+    }
+  ],
+  "perfectMissionEarnHighPhrase": [
+    {
+      "content": "Impossible! A perfect Path of the Guru! You get the best title - The Enlightened Guru!"
+    }
+  ]
 }

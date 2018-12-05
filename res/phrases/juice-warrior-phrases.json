@@ -1,0 +1,391 @@
+{
+  "LOW_MISSION": {
+    "0": {
+      "outro": [
+        {
+          "content": "You're getting the hang of this!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
+          "content": "Big order just came in! Need lots of seaweed, and fast! I give you no more than 5 seconds to prepare item.",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "To prepare seaweed, say.",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "'roll!'",
+          "role": "BenLoud",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": true,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [
+        {
+          "content": "Watch Ben closely!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Rice!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "[samurai sword sound]",
+          "role": "Sound",
+          "audio": null
+        },
+        {
+          "content": "Boil!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Fish!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Slice!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Seaweed!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Roll!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Carrot!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Chop!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Egg!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Boil!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Now it’s your turn, Ben’s friend.",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+    },
+    "1": {
+      "outro": [
+        {
+          "content": "Now I'm in the mood for some dessert!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
+        },
+        {
+          "content": "You will now also taste mochi ice cream! Hope you've got a sweet tooth! For this challenge you'll have 5 seconds to answer!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "To eat mochi, say.",
+          "role": "Ben",
+          "audio": null
+        },
+		{
+          "content": "'lick!'",
+          "role": "BenLoud",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "moveToPhaseTwo": null
+    }
+  },
+  "MEDIUM_MISSION": {
+    "0": {
+      "outro": [
+        {
+          "content": "Hey, I think you're getting bigger already!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
+        {
+          "content": "Now I also cook you stew! Loaded with vitamins and good for stomach! You have only 5 seconds to taste correctly!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "To eat stew, say.",
+          "role": "Ben",
+          "audio": null
+        },
+		{
+          "content": "'slurp!'",
+          "role": "BenLoud",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": true,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [
+        {
+          "content": "Watch Ben closely!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Chicken!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Chomp!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Sushi!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Gulp!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Stew!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Slurp!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Fried Fish!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "Munch!",
+          "role": "Ben",
+          "audio": null
+        },
+        {
+          "content": "Now it’s your turn, Ben’s friend.",
+          "role": "Sensei",
+          "audio": null
+        }
+      ],
+      "moveToPhaseTwo": null
+    },
+    "1": {
+      "outro": [
+        {
+          "content": "You've got this! Resist the urge to eat that junk food!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
+        },
+        {
+          "content": "Now we add candy too! Not healthy! Also give cavities! You have only 5 seconds to respond.",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "If sensei gives you beef or tofu, say.",
+          "role": "Ben",
+          "audio": null
+        },
+		{
+          "content": "'yum!'",
+          "role": "BenLoud",
+          "audio": null
+        },
+		{
+          "content": "But if it's soda or candy, say.",
+          "role": "Ben",
+          "audio": null
+        },
+		{
+          "content": "'yuck!'",
+          "role": "BenLoud",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "moveToPhaseTwo": null
+    }
+  },
+  "HIGH_MISSION": {
+    "0": {
+      "outro": [
+        {
+          "content": "You're an ice crushing machine! Good work!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
+        {
+          "content": "Customers want refreshing drink so we add ice! Let's be quick! Have ingredients ready in less than 5 seconds!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "To prepare ice, say.",
+          "role": "Ben",
+          "audio": null
+        },
+		{
+          "content": "'punch and crunch!'",
+          "role": "BenLoud",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": true,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [
+        {
+          "content": "Watch Ben closely!",
+          "role": "Sensei",
+          "audio": ""
+        },
+        {
+          "content": "Carrot!",
+          "role": "Sensei",
+          "audio": ""
+        },
+        {
+          "content": "Slice and dice!",
+          "role": "Ben",
+          "audio": ""
+        },
+        {
+          "content": "Milk!",
+          "role": "Sensei",
+          "audio": ""
+        },
+        {
+          "content": "Splash a dash!",
+          "role": "Ben",
+          "audio": ""
+        },
+        {
+          "content": "Ice!",
+          "role": "Sensei",
+          "audio": ""
+        },
+        {
+          "content": "Punch and crunch!",
+          "role": "Ben",
+          "audio": ""
+        },
+        {
+          "content": "Chopsticks!",
+          "role": "Sensei",
+          "audio": ""
+        },
+        {
+          "content": "Stop, don't drop!",
+          "role": "Ben",
+          "audio": ""
+        },
+        {
+          "content": "Good! Now your turn, Ben's friend.",
+          "role": "Sensei",
+          "audio": ""
+        }
+      ],
+      "moveToPhaseTwo": null
+    },
+    "1": {
+      "outro": [
+        {
+          "content": "I can tell Sensei is impressed. Keep it up!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "intro": [
+        {
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+        },
+        {
+          "content": "Now I also show respect! Very important in martial arts and life in general! Guru must react swiftly! Only 5 seconds to respond now!",
+          "role": "Sensei",
+          "audio": null
+        },
+        {
+          "content": "If sensei does a bow, you also bow!",
+          "role": "Ben",
+          "audio": null
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "moveToPhaseTwo": null
+    }
+  }
+}

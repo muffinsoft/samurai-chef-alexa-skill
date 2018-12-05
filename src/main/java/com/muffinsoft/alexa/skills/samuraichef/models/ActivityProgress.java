@@ -10,6 +10,7 @@ import java.util.Set;
 public class ActivityProgress {
 
     private boolean isStripeComplete;
+    private boolean isStarUpdated;
     private boolean isMissionFinished;
     private String currentIngredientReaction = "";
     private int successCount = 0;
@@ -56,6 +57,7 @@ public class ActivityProgress {
         this.successCount = 0;
         this.mistakesCount = 0;
         this.previousIngredient = "";
+        this.setStarUpdated(false);
         this.setStripeComplete(false);
     }
 
@@ -120,6 +122,14 @@ public class ActivityProgress {
 
     public void setActivePowerUp(String activePowerUp) {
         this.activePowerUp = activePowerUp;
+    }
+
+    public boolean isStarUpdated() {
+        return isStarUpdated;
+    }
+
+    public void setStarUpdated(boolean starUpdated) {
+        isStarUpdated = starUpdated;
     }
 
     @JsonIgnore

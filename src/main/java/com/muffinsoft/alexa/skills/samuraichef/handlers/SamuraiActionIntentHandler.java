@@ -7,10 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.GameIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.ExitConfirmationStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ExitStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.HelpStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.InitialGreetingStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ResetConfirmationStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.ResetMissionSelectionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ResetStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
@@ -19,7 +21,8 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 
 import java.io.IOException;
@@ -43,11 +46,13 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 
 public class SamuraiActionIntentHandler extends GameIntentHandler {
 
-    private final ConfigContainer configContainer;
+    private final SettingsDependencyContainer settingsDependencyContainer;
+    private final PhraseDependencyContainer phraseDependencyContainer;
     private final SessionStateFabric stateManagerFabric;
 
-    public SamuraiActionIntentHandler(ConfigContainer configContainer, SessionStateFabric stateManagerFabric) {
-        this.configContainer = configContainer;
+    public SamuraiActionIntentHandler(SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer, SessionStateFabric stateManagerFabric) {
+        this.settingsDependencyContainer = settingsDependencyContainer;
+        this.phraseDependencyContainer = phraseDependencyContainer;
         this.stateManagerFabric = stateManagerFabric;
     }
 
@@ -64,19 +69,23 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
         switch (activeIntent) {
             case INITIAL_GREETING:
-                return new InitialGreetingStateManager(slots, attributesManager, configContainer);
+                return new InitialGreetingStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case GAME:
                 return handleGameActivity(input, slots, attributesManager);
             case CANCEL:
-                return new CancelStateManager(slots, attributesManager, configContainer);
+                return new CancelStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case EXIT:
-                return new ExitStateManager(slots, attributesManager, configContainer);
+                return new ExitStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
+            case EXIT_CONFIRMATION:
+                return new ExitConfirmationStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case HELP:
-                return new HelpStateManager(slots, attributesManager, configContainer);
+                return new HelpStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case RESET:
-                return new ResetStateManager(slots, attributesManager, configContainer);
+                return new ResetStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case RESET_CONFIRMATION:
-                return new ResetConfirmationStateManager(slots, attributesManager, configContainer);
+                return new ResetConfirmationStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
+            case RESET_MISSION_SELECTION:
+                return new ResetMissionSelectionStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             default:
                 throw new IllegalArgumentException("Unknown intent type " + activeIntent);
         }
@@ -117,7 +126,7 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
         }
         else {
             logger.debug("Going to handle mission selection ");
-            return new SelectLevelStateManager(slots, attributesManager, configContainer);
+            return new SelectLevelStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
         }
     }
 
@@ -144,7 +153,7 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
 
         UserMission userMission = UserMission.valueOf(String.valueOf(input.getAttributesManager().getSessionAttributes().get(CURRENT_MISSION)));
 
-        return configContainer.getMissionManager().getFirstActivityForMission(userMission);
+        return settingsDependencyContainer.getMissionManager().getFirstActivityForMission(userMission);
     }
 
     private void handlePersistentAttributes(HandlerInput input) {
@@ -165,50 +174,52 @@ public class SamuraiActionIntentHandler extends GameIntentHandler {
             attributesManager.getSessionAttributes().put(FINISHED_MISSIONS, result);
         }
 
-        if (!attributesManager.getSessionAttributes().containsKey(USER_PROGRESS)) {
+        Object rawMission = attributesManager.getSessionAttributes().get(CURRENT_MISSION);
 
-            Object rawMission = attributesManager.getSessionAttributes().get(CURRENT_MISSION);
+        if (rawMission == null) {
+            return;
+        }
 
-            if (rawMission == null) {
-                return;
+        UserMission userMission = UserMission.valueOf(String.valueOf(rawMission));
+
+        String dbSource;
+
+        switch (userMission) {
+            case LOW_MISSION:
+                dbSource = USER_LOW_PROGRESS_DB;
+                break;
+            case MEDIUM_MISSION:
+                dbSource = USER_MID_PROGRESS_DB;
+                break;
+            case HIGH_MISSION:
+                dbSource = USER_HIGH_PROGRESS_DB;
+                break;
+            default:
+                throw new IllegalStateException("Unknown user level: " + userMission.name());
+        }
+
+        Map<String, Object> sessionAttributes = attributesManager.getSessionAttributes();
+
+        if (attributesManager.getPersistentAttributes().containsKey(dbSource)) {
+
+            if (sessionAttributes == null) {
+                sessionAttributes = new HashMap<>();
             }
 
-            UserMission userMission = UserMission.valueOf(String.valueOf(rawMission));
+            String jsonInString = String.valueOf(attributesManager.getPersistentAttributes().get(dbSource));
 
-            String dbSource;
+            ObjectMapper mapper = new ObjectMapper();
 
-            switch (userMission) {
-                case LOW_MISSION:
-                    dbSource = USER_LOW_PROGRESS_DB;
-                    break;
-                case MEDIUM_MISSION:
-                    dbSource = USER_MID_PROGRESS_DB;
-                    break;
-                case HIGH_MISSION:
-                    dbSource = USER_HIGH_PROGRESS_DB;
-                    break;
-                default:
-                    throw new IllegalStateException("Unknown user level: " + userMission.name());
+            try {
+                LinkedHashMap rawUserProgress = mapper.readValue(jsonInString, LinkedHashMap.class);
+                sessionAttributes.put(USER_PROGRESS, rawUserProgress);
             }
-
-            if (attributesManager.getPersistentAttributes().containsKey(dbSource)) {
-
-                Map<String, Object> sessionAttributes = attributesManager.getSessionAttributes();
-
-                if (sessionAttributes == null) {
-                    sessionAttributes = new HashMap<>();
-                }
-
-                String jsonInString = String.valueOf(attributesManager.getPersistentAttributes().get(dbSource));
-
-                try {
-                    LinkedHashMap linkedHashMap = new ObjectMapper().readValue(jsonInString, LinkedHashMap.class);
-                    sessionAttributes.put(USER_PROGRESS, linkedHashMap);
-                }
-                catch (IOException e) {
-                    throw new IllegalStateException(e.getMessage(), e);
-                }
+            catch (IOException e) {
+                throw new IllegalStateException(e.getMessage(), e);
             }
+        }
+        else {
+            sessionAttributes.remove(USER_PROGRESS);
         }
     }
 }

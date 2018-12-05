@@ -4,22 +4,23 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.LaunchRequestHandler;
 import com.muffinsoft.alexa.skills.samuraichef.activities.LaunchStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.content.GreetingsManager;
-import com.muffinsoft.alexa.skills.samuraichef.models.ConfigContainer;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 
 public class SamuraiLaunchRequestHandler extends LaunchRequestHandler {
 
-    private final ConfigContainer configContainer;
-    private final GreetingsManager greetingsManager;
+    private final SettingsDependencyContainer settingsDependencyContainer;
+    private final PhraseDependencyContainer phraseDependencyContainer;
 
-    public SamuraiLaunchRequestHandler(ConfigContainer configContainer, GreetingsManager greetingsManager) {
+    public SamuraiLaunchRequestHandler(SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super();
-        this.configContainer = configContainer;
-        this.greetingsManager = greetingsManager;
+        this.settingsDependencyContainer = settingsDependencyContainer;
+        this.phraseDependencyContainer = phraseDependencyContainer;
     }
 
     @Override
     public StateManager nextTurn(HandlerInput input) {
-        return new LaunchStateManager(getSlotsFromInput(input), input.getAttributesManager(), greetingsManager, configContainer);
+        return new LaunchStateManager(getSlotsFromInput(input), input.getAttributesManager(), settingsDependencyContainer, phraseDependencyContainer);
     }
 }
