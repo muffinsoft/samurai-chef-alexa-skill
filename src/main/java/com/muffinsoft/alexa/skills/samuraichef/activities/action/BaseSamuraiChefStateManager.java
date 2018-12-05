@@ -5,7 +5,6 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
@@ -31,7 +30,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -90,7 +89,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     final MissionManager missionManager;
     private final ActivityPhraseManager activityPhraseManager;
     private final MissionPhraseManager missionPhraseManager;
-    private final String userFoodSlotReply;
     protected Activities currentActivity;
     protected ActivityProgress activityProgress;
     Stripe stripe;
@@ -110,19 +108,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.activityPhraseManager = phraseDependencyContainer.getActivityPhraseManager();
         this.activityManager = settingsDependencyContainer.getActivityManager();
         this.missionManager = settingsDependencyContainer.getMissionManager();
-        String foodSlotName = SlotName.AMAZON_FOOD.text;
-        this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
-    }
-
-    @Override
-    public String getUserReply() {
-        String userReply = super.getUserReply();
-        if (userReply != null && !userReply.isEmpty()) {
-            return userReply;
-        }
-        else {
-            return this.userFoodSlotReply;
-        }
     }
 
     @Override
@@ -275,8 +260,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private void addSessionEntities(DialogItem.Builder builder) {
         String reaction = this.activityProgress.getCurrentIngredientReaction();
-        if (reaction != null) {
-            builder.withEntities(Collections.singletonMap(reaction, reaction));
+        if (reaction != null && !reaction.isEmpty()) {
+            Map<String, String> map = new HashMap<>();
+            map.put(reaction, reaction);
+            builder.withEntities(map);
         }
     }
 

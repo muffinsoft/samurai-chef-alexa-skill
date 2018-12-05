@@ -5,7 +5,6 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseManager;
@@ -57,8 +56,6 @@ public class SelectLevelStateManager extends BaseStateManager {
 
     private static final Logger logger = LogManager.getLogger(SelectLevelStateManager.class);
 
-    private final String userFoodSlotReply;
-
     private final AliasManager aliasManager;
     private final MissionManager missionManager;
     private final RegularPhraseManager regularPhraseManager;
@@ -75,19 +72,6 @@ public class SelectLevelStateManager extends BaseStateManager {
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.missionPhraseManager = phraseDependencyContainer.getMissionPhraseManager();
         this.activityPhraseManager = phraseDependencyContainer.getActivityPhraseManager();
-        String foodSlotName = SlotName.AMAZON_FOOD.text;
-        this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
-    }
-
-    @Override
-    public String getUserReply() {
-        String userReply = super.getUserReply();
-        if (userReply != null && !userReply.isEmpty()) {
-            return userReply;
-        }
-        else {
-            return this.userFoodSlotReply;
-        }
     }
 
     @Override

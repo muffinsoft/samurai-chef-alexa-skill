@@ -7,24 +7,12 @@
           "name": "ActionIntent",
           "slots": [
             {
-              "name": "action",
-              "type": "ACTION",
-              "samples": [
-                "{action}"
-              ]
-            },
-            {
-              "name": "food",
-              "type": "AMAZON.Food",
-              "samples": [
-                "{food}"
-              ]
+              "name": "Action",
+              "type": "ACTION"
             }
           ],
           "samples": [
-            "cooking",
-            "{action}",
-            "{food}"
+            "{action}"
           ]
         },
         {
