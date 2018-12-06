@@ -230,7 +230,7 @@ public class LaunchStateManager extends BaseStateManager {
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, userReplyBreakpointPosition + 1);
                 break;
             }
-            builder.addResponse(translate(phraseSettings.getContent()));
+            builder.addResponse(translate(phraseSettings));
             userReplyBreakpointPosition++;
         }
     }
