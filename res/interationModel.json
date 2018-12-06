@@ -103,6 +103,24 @@
             },
             {
               "name": {
+                "value": "start",
+                "synonyms": [
+                  "over",
+                  "start this mission over"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "new",
+                "synonyms": [
+                  "new mission",
+                  "new"
+                ]
+              }
+            },
+            {
+              "name": {
                 "value": "path of the chef",
                 "synonyms": [
                   "chef",

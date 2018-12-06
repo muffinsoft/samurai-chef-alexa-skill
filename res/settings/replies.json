@@ -36,5 +36,14 @@
     "path of the guru",
     "path of guru",
     "guru"
+  ],
+  "RESET": [
+    "start this mission over",
+    "start",
+    "over"
+  ],
+  "NEW": [
+    "new mission",
+    "new"
   ]
 }

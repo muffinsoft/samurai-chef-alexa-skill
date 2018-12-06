@@ -101,7 +101,7 @@
   ],
   "oneMistakeLeftCompetitionPhrase": [
     {
-      "content": "Ben wins round! One more and she will be the victor!",
+      "content": "Ben wins round! One more and he will be the victor!",
       "role": "Sensei"
     }
   ],
@@ -145,7 +145,7 @@
   ],
   "wantStartMissionPhrase": [
     {
-      "content": "Do you want to start a new path?"
+      "content": "Ready to play?"
     }
   ],
   "wantExitPhrase": [
@@ -168,9 +168,14 @@
       "content": "You'll be returned to game process."
     }
   ],
+  "readyToPlayPhrase": [
+    {
+      "content": "Ready to play?"
+    }
+  ],
   "wantResetProgressPhrase": [
     {
-      "content": "Do you want to reset your progress in this path and start it from the beginning?"
+      "content": "If you restart now, you’ll lose your progress on this mission. You can start this mission over, or start a new mission. Which would you like?"
     }
   ],
   "wantMissionFromBeginningPhrase": [

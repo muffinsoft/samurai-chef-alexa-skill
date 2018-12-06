@@ -16,6 +16,9 @@
         "audio": null
       },
       {
+        "userResponse": true
+      },
+      {
         "content": "Yeah? Well I made buttered toast once...",
         "role": "Ben",
         "audio": null
