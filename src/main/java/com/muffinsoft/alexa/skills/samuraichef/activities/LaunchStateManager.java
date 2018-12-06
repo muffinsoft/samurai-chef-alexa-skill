@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
@@ -231,7 +230,7 @@ public class LaunchStateManager extends BaseStateManager {
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, userReplyBreakpointPosition + 1);
                 break;
             }
-            builder.addResponse(ofAlexa(phraseSettings.getContent()));
+            builder.addResponse(translate(phraseSettings.getContent()));
             userReplyBreakpointPosition++;
         }
     }

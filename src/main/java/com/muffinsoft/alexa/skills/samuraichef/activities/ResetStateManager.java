@@ -18,7 +18,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.RETURN_TO_GAME_PHRASE;
@@ -62,7 +61,7 @@ public class ResetStateManager extends BaseStateManager {
             getSessionAttributes().put(STATE_PHASE, StatePhase.STRIPE_INTRO);
             builder.addResponse(translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             if (statePhase == StatePhase.PHASE_1 || statePhase == StatePhase.PHASE_2) {
-                builder.addResponse(ofAlexa(activityProgress.getPreviousIngredient()));
+                builder.addResponse(translate(activityProgress.getPreviousIngredient()));
             }
             getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         }
