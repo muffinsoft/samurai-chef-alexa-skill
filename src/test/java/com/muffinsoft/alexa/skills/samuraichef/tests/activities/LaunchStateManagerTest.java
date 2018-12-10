@@ -1,6 +1,7 @@
 package com.muffinsoft.alexa.skills.samuraichef.tests.activities;
 
 import com.amazon.ask.model.Slot;
+import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.IoC;
 import com.muffinsoft.alexa.skills.samuraichef.activities.LaunchStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
@@ -23,7 +24,7 @@ public class LaunchStateManagerTest extends BaseStateManagerTest {
 
         LaunchStateManager launchStateManager = new LaunchStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
-        launchStateManager.nextResponse();
+        DialogItem dialogItem = launchStateManager.nextResponse();
 
         Map<String, Object> sessionAttributes = launchStateManager.getSessionAttributes();
         Assertions.assertEquals(sessionAttributes.get(INTENT), Intents.INITIAL_GREETING);

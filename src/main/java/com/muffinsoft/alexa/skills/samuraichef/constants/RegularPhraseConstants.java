@@ -41,7 +41,7 @@ public class RegularPhraseConstants {
 
     public static final String MISSION_ALREADY_COMPLETE_PHRASE = "missionAlreadyCompletePhrase";
 
-    public static final String WANT_START_MISSION_PHRASE = "wantStartMissionPhrase";
+    public static final String READY_TO_PLAY_PHRASE = "readyToPlayPhrase";
 
     public static final String WANT_RESET_PROGRESS_PHRASE = "wantResetProgressPhrase";
 

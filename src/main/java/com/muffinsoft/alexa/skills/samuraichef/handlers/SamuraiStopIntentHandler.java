@@ -15,7 +15,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContaine
 
 import java.util.List;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
+import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 
 public class SamuraiStopIntentHandler extends StopIntentHandler {
 
@@ -44,7 +44,7 @@ public class SamuraiStopIntentHandler extends StopIntentHandler {
                         this.getSessionAttributes().put(SessionConstants.INTENT, Intents.EXIT_CONFIRMATION);
                         break;
                     }
-                    builder.addResponse(ofAlexa(phraseSettings.getContent()));
+                    builder.addResponse(translate(phraseSettings.getContent()));
                     userReplyBreakpointPosition++;
                 }
             }

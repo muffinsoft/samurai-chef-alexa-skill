@@ -7,24 +7,12 @@
           "name": "ActionIntent",
           "slots": [
             {
-              "name": "action",
-              "type": "ACTION",
-              "samples": [
-                "{action}"
-              ]
-            },
-            {
-              "name": "food",
-              "type": "AMAZON.Food",
-              "samples": [
-                "{food}"
-              ]
+              "name": "Action",
+              "type": "ACTION"
             }
           ],
           "samples": [
-            "cooking",
-            "{action}",
-            "{food}"
+            "{Action}"
           ]
         },
         {
@@ -115,6 +103,24 @@
             },
             {
               "name": {
+                "value": "start",
+                "synonyms": [
+                  "over",
+                  "start this mission over"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "new",
+                "synonyms": [
+                  "new mission",
+                  "new"
+                ]
+              }
+            },
+            {
+              "name": {
                 "value": "path of the chef",
                 "synonyms": [
                   "chef",
@@ -129,7 +135,8 @@
                 "synonyms": [
                   "sumo",
                   "path of the sumo",
-                  "path of sumo"
+                  "path of sumo",
+                  "simo"
                 ]
               }
             },
@@ -141,11 +148,6 @@
                   "path of the guru",
                   "path of guru"
                 ]
-              }
-            },
-            {
-              "name": {
-                "value": "wham"
               }
             },
             {

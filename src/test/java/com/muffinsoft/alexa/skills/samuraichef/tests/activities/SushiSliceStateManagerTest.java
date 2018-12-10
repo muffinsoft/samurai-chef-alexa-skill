@@ -292,7 +292,7 @@ class SushiSliceStateManagerTest extends BaseStateManagerTest {
         activityProgress.setMissionFinished(true);
 
         UserProgress userProgress = new UserProgress(UserMission.LOW_MISSION);
-        userProgress.setStripeCount(2);
+        userProgress.setStripeCount(1);
 
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(USER_REPLY_BREAKPOINT, 5);

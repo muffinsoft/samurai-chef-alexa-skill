@@ -23,8 +23,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.sdk.model.Speech.ofAlexa;
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_PLAY_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.RETURN_TO_GAME_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
@@ -76,7 +76,7 @@ public class ExitStateManager extends BaseStateManager {
                     this.getSessionAttributes().put(SessionConstants.INTENT, Intents.EXIT_CONFIRMATION);
                     break;
                 }
-                builder.addResponse(ofAlexa(phraseSettings.getContent()));
+                builder.addResponse(translate(phraseSettings.getContent()));
                 userReplyBreakpointPosition++;
             }
             this.getSessionAttributes().put(INTENT, Intents.EXIT_CONFIRMATION);
@@ -84,8 +84,11 @@ public class ExitStateManager extends BaseStateManager {
         else if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
             getSessionAttributes().put(INTENT, Intents.GAME);
             builder.addResponse(translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
-            if (statePhase == StatePhase.PHASE_1 || statePhase == StatePhase.PHASE_2) {
-                builder.addResponse(ofAlexa(activityProgress.getPreviousIngredient()));
+            if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {
+                builder.addResponse(translate(activityProgress.getPreviousIngredient()));
+            }
+            else {
+                builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
             }
             getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         }

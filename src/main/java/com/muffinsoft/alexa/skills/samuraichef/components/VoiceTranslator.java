@@ -7,10 +7,10 @@ import com.muffinsoft.alexa.sdk.model.Speech;
 import com.muffinsoft.alexa.sdk.util.ContentLoader;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class VoiceTranslator {
 
@@ -31,7 +31,14 @@ public class VoiceTranslator {
     }
 
     public static List<Speech> translate(List<PhraseSettings> phraseSettings) {
-        return phraseSettings.stream().map(VoiceTranslator::translate).collect(Collectors.toList());
+        List<Speech> result = new ArrayList<>();
+        for (PhraseSettings settings : phraseSettings) {
+            if (settings != null) {
+                Speech translatedSpeech = translate(settings);
+                result.add(translatedSpeech);
+            }
+        }
+        return result;
     }
 
     public static Speech translate(PhraseSettings phraseSettings) {

@@ -29,11 +29,21 @@
   "MEDIUM": [
     "path of the sumo",
     "path of sumo",
-    "sumo"
+    "sumo",
+    "simo"
   ],
   "HIGH": [
     "path of the guru",
     "path of guru",
     "guru"
+  ],
+  "RESET": [
+    "start this mission over",
+    "start",
+    "over"
+  ],
+  "NEW": [
+    "new mission",
+    "new"
   ]
 }

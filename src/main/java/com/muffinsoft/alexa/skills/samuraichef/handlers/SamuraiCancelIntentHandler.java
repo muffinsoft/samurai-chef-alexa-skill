@@ -8,13 +8,13 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
+import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 
 import java.util.List;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_START_MISSION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_PLAY_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 
 public class SamuraiCancelIntentHandler extends CancelIntentHandler {
@@ -35,7 +35,7 @@ public class SamuraiCancelIntentHandler extends CancelIntentHandler {
 
                 logger.debug("Available session attributes: " + getSessionAttributes());
 
-                List<PhraseSettings> dialog = regularPhraseManager.getValueByKey(WANT_START_MISSION_PHRASE);
+                List<PhraseSettings> dialog = regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE);
                 getSessionAttributes().put(INTENT, Intents.CANCEL);
 
                 DialogItem.Builder builder = DialogItem.builder().addResponse(translate(dialog));

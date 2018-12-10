@@ -1,6 +1,7 @@
 package com.muffinsoft.alexa.skills.samuraichef.tests.activities;
 
 import com.amazon.ask.model.Slot;
+import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.skills.samuraichef.IoC;
 import com.muffinsoft.alexa.skills.samuraichef.activities.InitialGreetingStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
@@ -16,6 +17,20 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 class InitialGreetingStateManagerTest extends BaseStateManagerTest {
 
     @Test
+    void beforeBreakpoint() {
+        Map<String, Slot> slots = createSlotsForValue("any");
+
+        Map<String, Object> attributes = new HashMap<>();
+
+        InitialGreetingStateManager initialGreetingStateManager = new InitialGreetingStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
+
+        DialogItem dialogItem = initialGreetingStateManager.nextResponse();
+
+        Map<String, Object> sessionAttributes = initialGreetingStateManager.getSessionAttributes();
+        Assertions.assertEquals(sessionAttributes.get(INTENT), Intents.INITIAL_GREETING);
+    }
+
+    @Test
     void firstBreakpoint() {
         Map<String, Slot> slots = createSlotsForValue("any");
 
@@ -24,7 +39,7 @@ class InitialGreetingStateManagerTest extends BaseStateManagerTest {
 
         InitialGreetingStateManager initialGreetingStateManager = new InitialGreetingStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
 
-        initialGreetingStateManager.nextResponse();
+        DialogItem dialogItem = initialGreetingStateManager.nextResponse();
 
         Map<String, Object> sessionAttributes = initialGreetingStateManager.getSessionAttributes();
         Assertions.assertEquals(sessionAttributes.get(INTENT), Intents.INITIAL_GREETING);

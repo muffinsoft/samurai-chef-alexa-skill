@@ -4,7 +4,6 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.HelpPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
@@ -31,9 +30,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConsta
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MISSION_HIGH_DESCRIPTION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MISSION_LOW_DESCRIPTION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MISSION_MID_DESCRIPTION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_PLAY_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.RETURN_TO_GAME_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_START_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.HELP_STATE;
@@ -47,8 +45,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.valueOf;
 public class HelpStateManager extends BaseStateManager {
 
     private static final Logger logger = LogManager.getLogger(HelpStateManager.class);
-
-    private final String userFoodSlotReply;
 
     private final RegularPhraseManager regularPhraseManager;
     private final HelpPhraseManager helpPhraseManager;
@@ -64,19 +60,6 @@ public class HelpStateManager extends BaseStateManager {
         super(slots, attributesManager);
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.helpPhraseManager = phraseDependencyContainer.getHelpPhraseManager();
-        String foodSlotName = SlotName.AMAZON_FOOD.text;
-        this.userFoodSlotReply = slots != null ? (slots.containsKey(foodSlotName) ? slots.get(foodSlotName).getValue() : null) : null;
-    }
-
-    @Override
-    public String getUserReply() {
-        String userReply = super.getUserReply();
-        if (userReply != null && !userReply.isEmpty()) {
-            return userReply;
-        }
-        else {
-            return this.userFoodSlotReply;
-        }
     }
 
     @Override
@@ -125,14 +108,15 @@ public class HelpStateManager extends BaseStateManager {
             case PROCEED_GAME:
 
                 if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-                    getSessionAttributes().put(INTENT, Intents.GAME);
-                    getSessionAttributes().remove(HELP_STATE);
-                    getSessionAttributes().remove(CURRENT_MISSION);
-                    builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
-                }
-                else {
                     handleProceedGame(builder);
                 }
+                else {
+                    getSessionAttributes().put(HELP_STATE, PROCEED_GAME);
+                    builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_GENERAL_PHRASE)));
+                    builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
+                    getSessionAttributes().put(INTENT, Intents.HELP);
+                }
+                break;
 
             case LEARN_MORE_HELP:
                 if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
@@ -158,7 +142,7 @@ public class HelpStateManager extends BaseStateManager {
                     }
 
                     builder.addResponse(translate(missionDescriptionHelp));
-                    builder.addResponse(translate(regularPhraseManager.getValueByKey(WANT_START_MISSION_PHRASE)));
+                    builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
                 }
                 else {
                     handleProceedGame(builder);
@@ -170,8 +154,6 @@ public class HelpStateManager extends BaseStateManager {
     }
 
     private DialogItem handleFirstLoopHelp() {
-
-        getSessionAttributes().put(INTENT, Intents.HELP);
 
         DialogItem.Builder builder = DialogItem.builder();
 
@@ -188,7 +170,7 @@ public class HelpStateManager extends BaseStateManager {
         else {
             getSessionAttributes().put(HELP_STATE, PROCEED_GAME);
             builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_GENERAL_PHRASE)));
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(WANT_START_MISSION_PHRASE)));
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
         }
 
         getSessionAttributes().put(INTENT, Intents.HELP);
@@ -201,6 +183,9 @@ public class HelpStateManager extends BaseStateManager {
         builder.addResponse(translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
         if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {
             builder.addResponse(translate(activityProgress.getPreviousIngredient()));
+        }
+        else {
+            builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
         }
         getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         getSessionAttributes().remove(HELP_STATE);
