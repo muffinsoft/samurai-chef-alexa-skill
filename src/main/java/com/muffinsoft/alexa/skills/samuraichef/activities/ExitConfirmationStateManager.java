@@ -60,7 +60,7 @@ public class ExitConfirmationStateManager extends BaseStateManager {
         }
 
         if (index >= dialog.size()) {
-            builder.withShouldEnd(true);
+            builder.shouldEnd();
         }
 
         return builder

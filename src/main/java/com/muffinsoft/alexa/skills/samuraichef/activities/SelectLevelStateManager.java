@@ -152,6 +152,8 @@ public class SelectLevelStateManager extends BaseStateManager {
             logger.error(e.getMessage(), e);
         }
 
+        logger.warn("User progess " + userProgress);
+
         if (userProgress == null) {
             handleMissionIntroState(builder, mission, new UserProgress(mission, true));
         }
@@ -264,14 +266,17 @@ public class SelectLevelStateManager extends BaseStateManager {
                 if (this.getPersistentAttributes().containsKey(USER_LOW_PROGRESS_DB)) {
                     jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_LOW_PROGRESS_DB));
                 }
+                break;
             case MEDIUM_MISSION:
                 if (this.getPersistentAttributes().containsKey(USER_MID_PROGRESS_DB)) {
                     jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_MID_PROGRESS_DB));
                 }
+                break;
             case HIGH_MISSION:
                 if (this.getPersistentAttributes().containsKey(USER_HIGH_PROGRESS_DB)) {
                     jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_HIGH_PROGRESS_DB));
                 }
+                break;
         }
         if (jsonInString != null) {
             LinkedHashMap linkedHashMap = mapper.readValue(jsonInString, LinkedHashMap.class);

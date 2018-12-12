@@ -56,7 +56,7 @@ public class SamuraiStopIntentHandler extends StopIntentHandler {
 
                 buildExit(builder);
 
-                return builder.build();
+                return builder.shouldEnd().build();
             }
         };
     }

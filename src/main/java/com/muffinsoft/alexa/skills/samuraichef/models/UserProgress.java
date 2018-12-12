@@ -183,11 +183,21 @@ public class UserProgress {
     @Override
     @JsonIgnore
     public String toString() {
-        return "class UserProgress {" +
-                " stripeCount: " + stripeCount + ";" +
-                " currentActivity: " + currentActivity + ";" +
-                " finishedActivities: " + String.join(", ", finishedActivities) +
-                "}";
+        return "UserProgress{" +
+                "mission='" + mission + '\'' +
+                ", finishedActivities=" + finishedActivities +
+                ", stripeCount=" + stripeCount +
+                ", currentActivity='" + currentActivity + '\'' +
+                ", previousActivity='" + previousActivity + '\'' +
+                ", justCreated=" + justCreated +
+                ", isGameFinished=" + isGameFinished +
+                ", isMissionFinished=" + isMissionFinished +
+                ", mistakesInStripe=" + mistakesInStripe +
+                ", mistakesInMission=" + mistakesInMission +
+                ", perfectActivity=" + perfectActivity +
+                ", perfectStripe=" + perfectStripe +
+                ", perfectMission=" + perfectMission +
+                '}';
     }
 
     public void addMistakeCount(int mistakesCount) {
