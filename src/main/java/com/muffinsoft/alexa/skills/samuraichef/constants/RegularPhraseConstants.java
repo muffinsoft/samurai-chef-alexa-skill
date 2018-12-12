@@ -21,6 +21,10 @@ public class RegularPhraseConstants {
 
     public static final String FAILURE_PHRASE = "failurePhrase";
 
+    public static final String GAME_OUTRO_PHRASE = "gameOutroPhrase";
+
+    public static final String MISSION_SELECTION_PHRASE = "missionSelectionPhrase";
+
     public static final String FAILURE_REPROMPT_PHRASE = "failureRePromptPhrase";
 
     public static final String JUST_EARN_SECOND_CHANCE_PHRASE = "justEarnSecondChancePhrase";

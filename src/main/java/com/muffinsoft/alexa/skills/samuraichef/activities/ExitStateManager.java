@@ -76,7 +76,7 @@ public class ExitStateManager extends BaseStateManager {
                     this.getSessionAttributes().put(SessionConstants.INTENT, Intents.EXIT_CONFIRMATION);
                     break;
                 }
-                builder.addResponse(translate(phraseSettings.getContent()));
+                builder.addResponse(translate(phraseSettings));
                 userReplyBreakpointPosition++;
             }
             this.getSessionAttributes().put(INTENT, Intents.EXIT_CONFIRMATION);

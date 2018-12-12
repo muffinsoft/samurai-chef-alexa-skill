@@ -44,7 +44,7 @@ public class SamuraiStopIntentHandler extends StopIntentHandler {
                         this.getSessionAttributes().put(SessionConstants.INTENT, Intents.EXIT_CONFIRMATION);
                         break;
                     }
-                    builder.addResponse(translate(phraseSettings.getContent()));
+                    builder.addResponse(translate(phraseSettings));
                     userReplyBreakpointPosition++;
                 }
             }

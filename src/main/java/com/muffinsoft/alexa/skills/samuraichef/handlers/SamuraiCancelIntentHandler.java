@@ -14,6 +14,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContaine
 import java.util.List;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.MISSION_SELECTION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_PLAY_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 
@@ -35,7 +36,7 @@ public class SamuraiCancelIntentHandler extends CancelIntentHandler {
 
                 logger.debug("Available session attributes: " + getSessionAttributes());
 
-                List<PhraseSettings> dialog = regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE);
+                List<PhraseSettings> dialog = regularPhraseManager.getValueByKey(MISSION_SELECTION_PHRASE);
                 getSessionAttributes().put(INTENT, Intents.CANCEL);
 
                 DialogItem.Builder builder = DialogItem.builder().addResponse(translate(dialog));
