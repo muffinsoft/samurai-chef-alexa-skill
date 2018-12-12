@@ -148,6 +148,11 @@
       "content": "Ready to play?"
     }
   ],
+  "missionSelectionPhrase": [
+    {
+      "content": "Would you like to try a different path?"
+    }
+  ],
   "wantExitPhrase": [
     {
       "content": "Do you want to quit the game?"

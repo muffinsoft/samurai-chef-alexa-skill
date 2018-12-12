@@ -142,6 +142,7 @@ public class HelpStateManager extends BaseStateManager {
                     }
 
                     builder.addResponse(translate(missionDescriptionHelp));
+                    getSessionAttributes().put(HELP_STATE, PROCEED_GAME);
                     builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
                 }
                 else {
