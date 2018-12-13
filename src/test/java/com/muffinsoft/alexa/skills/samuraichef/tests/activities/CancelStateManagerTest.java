@@ -2,10 +2,10 @@ package com.muffinsoft.alexa.skills.samuraichef.tests.activities;
 
 import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.skills.samuraichef.IoC;
 import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
-import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
@@ -22,7 +22,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 
-public class CancelStateManagerTest extends BaseStateManagerTest {
+class CancelStateManagerTest extends BaseStateManagerTest {
 
 
     @Test
@@ -40,7 +40,7 @@ public class CancelStateManagerTest extends BaseStateManagerTest {
 
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
-        attributes.put(STATE_PHASE, StatePhase.WIN);
+        attributes.put(STATE_PHASE, StateType.WIN);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_PROGRESS, toMap(userProgress));
 

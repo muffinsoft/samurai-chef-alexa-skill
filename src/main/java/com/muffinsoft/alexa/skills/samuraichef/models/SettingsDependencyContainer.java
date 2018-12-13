@@ -1,5 +1,6 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
+import com.muffinsoft.alexa.sdk.components.DialogTranslator;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
@@ -11,12 +12,14 @@ public class SettingsDependencyContainer {
     private final ActivityManager activityManager;
     private final AliasManager aliasManager;
     private final MissionManager missionManager;
+    private final DialogTranslator dialogTranslator;
 
-    public SettingsDependencyContainer(CardManager cardManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager) {
+    public SettingsDependencyContainer(CardManager cardManager, ActivityManager activityManager, AliasManager aliasManager, MissionManager missionManager, DialogTranslator dialogTranslator) {
         this.cardManager = cardManager;
         this.activityManager = activityManager;
         this.aliasManager = aliasManager;
         this.missionManager = missionManager;
+        this.dialogTranslator = dialogTranslator;
     }
 
     public CardManager getCardManager() {
@@ -33,5 +36,9 @@ public class SettingsDependencyContainer {
 
     public MissionManager getMissionManager() {
         return missionManager;
+    }
+
+    public DialogTranslator getDialogTranslator() {
+        return dialogTranslator;
     }
 }

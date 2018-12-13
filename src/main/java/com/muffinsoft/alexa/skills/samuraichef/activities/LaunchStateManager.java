@@ -3,7 +3,9 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
+import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.constants.AliasConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsPhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants;
@@ -12,7 +14,6 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseMa
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
@@ -29,7 +30,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
@@ -48,7 +48,7 @@ public class LaunchStateManager extends BaseStateManager {
     private Set<String> finishedMissions;
 
     public LaunchStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
-        super(inputSlots, attributesManager);
+        super(inputSlots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.greetingsPhraseManager = phraseDependencyContainer.getGreetingsPhraseManager();
         this.attributesManager = attributesManager;
         this.cardManager = settingsDependencyContainer.getCardManager();
@@ -78,7 +78,7 @@ public class LaunchStateManager extends BaseStateManager {
 
             builder = buildRoyalGreeting(builder);
 
-            getSessionAttributes().put(INTENT, Intents.GAME);
+            getSessionAttributes().put(INTENT, IntentType.GAME);
 
             logger.info("Existing user was started new Game Session. Start Royal Greeting");
 
@@ -86,12 +86,13 @@ public class LaunchStateManager extends BaseStateManager {
         else {
             buildInitialGreeting(builder);
 
-            getSessionAttributes().put(INTENT, Intents.INITIAL_GREETING);
+            getSessionAttributes().put(INTENT, IntentType.INITIAL_GREETING);
 
             logger.info("New user was started new Game Session.");
         }
 
         return builder
+                .withSlotName(SlotName.MISSION)
                 .withCardTitle(cardManager.getValueByKey(WELCOME_CARD))
                 .build();
     }
@@ -104,7 +105,7 @@ public class LaunchStateManager extends BaseStateManager {
 
         buildRoyalGreetingWithAwards(builder, lowUserProgress, midUserProgress, highUserProgress);
 
-        return builder.addResponse(translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)));
+        return builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)));
     }
 
     private void buildRoyalGreetingWithAwards(DialogItem.Builder builder, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
@@ -114,7 +115,7 @@ public class LaunchStateManager extends BaseStateManager {
         for (PhraseSettings phraseSettings : dialog) {
             String newContent = fillPlaceholder(phraseSettings.getContent(), lowUserProgress, midUserProgress, highUserProgress);
             phraseSettings.setContent(newContent);
-            builder.addResponse(translate(phraseSettings));
+            builder.addResponse(getDialogTranslator().translate(phraseSettings));
         }
     }
 
@@ -230,7 +231,7 @@ public class LaunchStateManager extends BaseStateManager {
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, userReplyBreakpointPosition + 1);
                 break;
             }
-            builder.addResponse(translate(phraseSettings));
+            builder.addResponse(getDialogTranslator().translate(phraseSettings));
             userReplyBreakpointPosition++;
         }
     }

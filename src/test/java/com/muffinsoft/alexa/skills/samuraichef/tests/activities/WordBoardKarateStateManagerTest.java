@@ -1,12 +1,12 @@
 package com.muffinsoft.alexa.skills.samuraichef.tests.activities;
 
 import com.amazon.ask.model.Slot;
+import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.skills.samuraichef.IoC;
 import com.muffinsoft.alexa.skills.samuraichef.activities.action.WordBoardKarateCorrectAnswerStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.action.WordBoardKarateSecondChanceStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.action.WordBoardKarateStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
-import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import org.junit.jupiter.api.Assertions;
@@ -40,7 +40,7 @@ class WordBoardKarateStateManagerTest extends BaseStateManagerTest {
         wordBoardKarateStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = wordBoardKarateStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.DEMO);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StateType.DEMO);
     }
 
     @Test
@@ -55,7 +55,7 @@ class WordBoardKarateStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.PHASE_1);
+        attributes.put(STATE_PHASE, StateType.GAME_PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
         WordBoardKarateStateManager wordBoardKarateStateManager = new WordBoardKarateStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
@@ -85,7 +85,7 @@ class WordBoardKarateStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.PHASE_1);
+        attributes.put(STATE_PHASE, StateType.GAME_PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
         WordBoardKarateStateManager wordBoardKarateStateManager = new WordBoardKarateStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
@@ -114,7 +114,7 @@ class WordBoardKarateStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.PHASE_1);
+        attributes.put(STATE_PHASE, StateType.GAME_PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
         WordBoardKarateStateManager wordBoardKarateStateManager = new WordBoardKarateStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
@@ -148,7 +148,7 @@ class WordBoardKarateStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.PHASE_1);
+        attributes.put(STATE_PHASE, StateType.GAME_PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
         WordBoardKarateStateManager wordBoardKarateStateManager = new WordBoardKarateCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
@@ -184,7 +184,7 @@ class WordBoardKarateStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.PHASE_1);
+        attributes.put(STATE_PHASE, StateType.GAME_PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
         WordBoardKarateStateManager wordBoardKarateStateManager = new WordBoardKarateSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());

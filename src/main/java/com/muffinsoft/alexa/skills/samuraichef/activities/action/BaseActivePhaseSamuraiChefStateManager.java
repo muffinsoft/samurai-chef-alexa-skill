@@ -3,17 +3,18 @@ package com.muffinsoft.alexa.skills.samuraichef.activities.action;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.PhraseContainer;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.PowerUpFabric;
+import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
+import static com.muffinsoft.alexa.sdk.model.SlotName.ACTION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_EARN_CORRECT_ANSWER_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_EARN_SECOND_CHANCE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_USE_CORRECT_ANSWER_PHRASE;
@@ -38,9 +39,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     @Override
     protected DialogItem.Builder handleActivePhaseState(DialogItem.Builder builder) {
 
-        logger.debug("Handling " + this.statePhase);
-
-        if (Objects.equals(this.activityProgress.getCurrentIngredientReaction(), getUserReply())) {
+        if (UserReplyComparator.compare(getUserReply(ACTION), this.activityProgress.getCurrentIngredientReaction())) {
             builder = handleSuccess(builder);
         }
         else {
@@ -79,7 +78,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             this.activityProgress.removePowerUp();
 
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(JUST_USE_SECOND_CHANCE_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(JUST_USE_SECOND_CHANCE_PHRASE)));
 
             this.activityProgress.equipIfAvailable();
 
@@ -103,7 +102,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             this.activityProgress.removePowerUp();
 
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(JUST_USE_CORRECT_ANSWER_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(JUST_USE_CORRECT_ANSWER_PHRASE)));
 
             this.activityProgress.equipIfAvailable();
 
@@ -195,14 +194,14 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
                 this.activityProgress.addPowerUp(nextPowerUp);
                 logger.debug("Was earned equipment: " + nextPowerUp);
 
-                List<PhraseSettings> prependedString;
+                List<PhraseContainer> prependedString;
                 if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
                     prependedString = regularPhraseManager.getValueByKey(JUST_EARN_SECOND_CHANCE_PHRASE);
                 }
                 else {
                     prependedString = regularPhraseManager.getValueByKey(JUST_EARN_CORRECT_ANSWER_PHRASE);
                 }
-                builder.addResponse(translate(prependedString));
+                builder.addResponse(getDialogTranslator().translate(prependedString));
                 logger.debug("Was equipped power up: " + nextPowerUp);
             }
             else {

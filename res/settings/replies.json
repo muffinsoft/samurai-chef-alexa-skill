@@ -1,49 +1,26 @@
 {
   "NO": [
-    "no",
-    "oh no",
-    "no no",
-    "nope",
-    "I do not",
-    "no thank you"
+    "no"
   ],
   "YES": [
-    "ok",
-    "yes",
-    "yep",
-    "yeah",
-    "I do",
-    "yes please",
-    "you know it",
-    "of course"
+    "yes"
   ],
   "AGAIN": [
-    "again",
-    "try again"
+    "again"
   ],
   "LOW": [
-    "path of the chef",
-    "path of chef",
-    "chef"
+    "low"
   ],
   "MEDIUM": [
-    "path of the sumo",
-    "path of sumo",
-    "sumo",
-    "simo"
+    "mid"
   ],
   "HIGH": [
-    "path of the guru",
-    "path of guru",
-    "guru"
+    "high"
   ],
   "RESET": [
-    "start this mission over",
-    "start",
-    "over"
+    "reset"
   ],
   "NEW": [
-    "new mission",
     "new"
   ]
 }

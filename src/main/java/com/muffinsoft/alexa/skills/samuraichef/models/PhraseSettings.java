@@ -1,6 +1,5 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
-import com.muffinsoft.alexa.sdk.enums.SpeechType;
 import com.muffinsoft.alexa.sdk.model.PhraseContainer;
 
 public class PhraseSettings implements PhraseContainer {
@@ -23,11 +22,6 @@ public class PhraseSettings implements PhraseContainer {
     }
 
     @Override
-    public SpeechType getType() {
-        return SpeechType.valueOf(role);
-    }
-
-    @Override
     public String getContent() {
         return content;
     }
@@ -45,12 +39,22 @@ public class PhraseSettings implements PhraseContainer {
         this.userResponse = userResponse;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public String getRole() {
         return role;
     }
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String getSource() {
+        return null;
     }
 
     public String getAudio() {

@@ -3,13 +3,15 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
+import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.PhraseContainer;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.HelpPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
@@ -24,7 +26,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_GENERAL_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_LEARN_MORE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MISSION_HIGH_DESCRIPTION_PHRASE;
@@ -54,10 +55,10 @@ public class HelpStateManager extends BaseStateManager {
     private UserProgress userProgress;
     private UserMission currentMission;
     private Activities currentActivity;
-    private Intents currentIntent;
+    private IntentType currentIntent;
 
     public HelpStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
-        super(slots, attributesManager);
+        super(slots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.helpPhraseManager = phraseDependencyContainer.getHelpPhraseManager();
     }
@@ -73,7 +74,7 @@ public class HelpStateManager extends BaseStateManager {
             this.currentMission = null;
         }
 
-        this.currentIntent = Intents.valueOf(String.valueOf(getSessionAttributes().getOrDefault(INTENT, Intents.GAME.name())));
+        this.currentIntent = IntentType.valueOf(String.valueOf(getSessionAttributes().getOrDefault(INTENT, IntentType.GAME.name())));
 
         LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
         this.userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
@@ -89,7 +90,7 @@ public class HelpStateManager extends BaseStateManager {
     @Override
     public DialogItem nextResponse() {
 
-        if (this.currentIntent == Intents.GAME || this.currentIntent == Intents.INITIAL_GREETING) {
+        if (this.currentIntent == IntentType.GAME || this.currentIntent == IntentType.INITIAL_GREETING) {
             return handleFirstLoopHelp();
         }
         else {
@@ -107,20 +108,20 @@ public class HelpStateManager extends BaseStateManager {
 
             case PROCEED_GAME:
 
-                if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
+                if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
                     handleProceedGame(builder);
                 }
                 else {
                     getSessionAttributes().put(HELP_STATE, PROCEED_GAME);
-                    builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_GENERAL_PHRASE)));
-                    builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
-                    getSessionAttributes().put(INTENT, Intents.HELP);
+                    builder.addResponse(getDialogTranslator().translate(helpPhraseManager.getValueByKey(HELP_GENERAL_PHRASE)));
+                    builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
+                    getSessionAttributes().put(INTENT, IntentType.HELP);
                 }
                 break;
 
             case LEARN_MORE_HELP:
-                if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-                    List<PhraseSettings> missionDescriptionHelp;
+                if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
+                    List<PhraseContainer> missionDescriptionHelp;
 
                     if (currentMission == UserMission.LOW_MISSION) {
                         missionDescriptionHelp = helpPhraseManager.getValueByKey(HELP_MISSION_LOW_DESCRIPTION_PHRASE);
@@ -135,15 +136,15 @@ public class HelpStateManager extends BaseStateManager {
 
                     if (this.userProgress != null) {
                         int stripeCount = this.userProgress.getStripeCount();
-                        for (PhraseSettings settings : missionDescriptionHelp) {
+                        for (PhraseContainer settings : missionDescriptionHelp) {
                             String replace = settings.getContent().replace("#", String.valueOf(stripeCount + 1));
-                            settings.setContent(replace);
+                            ((PhraseSettings) settings).setContent(replace);
                         }
                     }
 
-                    builder.addResponse(translate(missionDescriptionHelp));
+                    builder.addResponse(getDialogTranslator().translate(missionDescriptionHelp));
                     getSessionAttributes().put(HELP_STATE, PROCEED_GAME);
-                    builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
+                    builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
                 }
                 else {
                     handleProceedGame(builder);
@@ -161,32 +162,32 @@ public class HelpStateManager extends BaseStateManager {
         if (this.currentActivity != null && this.currentMission != null) {
             getSessionAttributes().put(HELP_STATE, LEARN_MORE_HELP);
             String key = "help" + this.currentMission.key + "Stripe" + userProgress.getStripeCount() + this.currentActivity.key;
-            List<PhraseSettings> activityHelp = helpPhraseManager.getValueByKey(key);
+            List<PhraseContainer> activityHelp = helpPhraseManager.getValueByKey(key);
             if (activityHelp == null) {
                 throw new IllegalStateException("Can't find help information for key: " + key);
             }
-            builder.addResponse(translate(activityHelp));
-            builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_LEARN_MORE_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(activityHelp));
+            builder.addResponse(getDialogTranslator().translate(helpPhraseManager.getValueByKey(HELP_LEARN_MORE_PHRASE)));
         }
         else {
             getSessionAttributes().put(HELP_STATE, PROCEED_GAME);
-            builder.addResponse(translate(helpPhraseManager.getValueByKey(HELP_GENERAL_PHRASE)));
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(helpPhraseManager.getValueByKey(HELP_GENERAL_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
         }
 
-        getSessionAttributes().put(INTENT, Intents.HELP);
+        getSessionAttributes().put(INTENT, IntentType.HELP);
         return builder.build();
     }
 
     private void handleProceedGame(DialogItem.Builder builder) {
-        getSessionAttributes().put(INTENT, Intents.GAME);
+        getSessionAttributes().put(INTENT, IntentType.GAME);
         getSessionAttributes().remove(HELP_STATE);
-        builder.addResponse(translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
+        builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
         if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {
-            builder.addResponse(translate(activityProgress.getPreviousIngredient()));
+            builder.addResponse(getDialogTranslator().translate(activityProgress.getPreviousIngredient()));
         }
         else {
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
         }
         getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         getSessionAttributes().remove(HELP_STATE);

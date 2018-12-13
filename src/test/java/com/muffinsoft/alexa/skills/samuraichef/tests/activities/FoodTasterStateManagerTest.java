@@ -1,12 +1,12 @@
 package com.muffinsoft.alexa.skills.samuraichef.tests.activities;
 
 import com.amazon.ask.model.Slot;
+import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.skills.samuraichef.IoC;
 import com.muffinsoft.alexa.skills.samuraichef.activities.action.FoodTasterCorrectAnswerStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.action.FoodTasterSecondChanceStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.action.FoodTasterStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
-import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import org.junit.jupiter.api.Assertions;
@@ -41,7 +41,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         foodTasterStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = foodTasterStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.DEMO);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StateType.DEMO);
     }
 
     @Test
@@ -63,7 +63,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         foodTasterStateManager.updateAttributesManager();
 
         Map<String, Object> sessionAttributes = foodTasterStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StatePhase.DEMO);
+        Assertions.assertEquals(sessionAttributes.get(STATE_PHASE), StateType.DEMO);
     }
 
     @Test
@@ -78,7 +78,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.PHASE_1);
+        attributes.put(STATE_PHASE, StateType.GAME_PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
         FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
@@ -108,7 +108,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.PHASE_1);
+        attributes.put(STATE_PHASE, StateType.GAME_PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
         FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
@@ -137,7 +137,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.PHASE_1);
+        attributes.put(STATE_PHASE, StateType.GAME_PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
         FoodTasterStateManager foodTasterStateManager = new FoodTasterStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
@@ -171,7 +171,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.PHASE_1);
+        attributes.put(STATE_PHASE, StateType.GAME_PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
         FoodTasterStateManager foodTasterStateManager = new FoodTasterCorrectAnswerStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());
@@ -207,7 +207,7 @@ class FoodTasterStateManagerTest extends BaseStateManagerTest {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION);
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
-        attributes.put(STATE_PHASE, StatePhase.PHASE_1);
+        attributes.put(STATE_PHASE, StateType.GAME_PHASE_1);
         attributes.put(QUESTION_TIME, System.currentTimeMillis());
 
         FoodTasterStateManager foodTasterStateManager = new FoodTasterSecondChanceStateManager(slots, createAttributesManager(slots, attributes), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies());

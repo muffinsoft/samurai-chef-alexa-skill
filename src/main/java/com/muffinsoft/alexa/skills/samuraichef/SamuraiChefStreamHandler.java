@@ -9,8 +9,12 @@ import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiCancelIntentHandl
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiFallbackIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiHelpIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiLaunchRequestHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiMissionNavigationIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiNoIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiResetIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiSelectPathIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiStopIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiYesIntentHandler;
 
 public class SamuraiChefStreamHandler extends SkillStreamHandler {
 
@@ -24,7 +28,11 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
 
         return Skills.standard()
                 .addRequestHandlers(
-                        new SamuraiActionIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies(), IoC.provideSessionStateFabric()),
+                        new SamuraiActionIntentHandler(IoC.provideIntentFactory()),
+                        new SamuraiMissionNavigationIntentHandler(IoC.provideIntentFactory()),
+                        new SamuraiSelectPathIntentHandler(IoC.provideIntentFactory()),
+                        new SamuraiYesIntentHandler(IoC.provideIntentFactory()),
+                        new SamuraiNoIntentHandler(IoC.provideIntentFactory()),
                         new SamuraiCancelIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiFallbackIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiHelpIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),

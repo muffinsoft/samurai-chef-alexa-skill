@@ -17,11 +17,10 @@ import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContaine
 import java.util.List;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
+import static com.muffinsoft.alexa.sdk.enums.IntentType.GAME;
+import static com.muffinsoft.alexa.sdk.enums.IntentType.INITIAL_GREETING;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.Intents.GAME;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.Intents.INITIAL_GREETING;
 
 public class InitialGreetingStateManager extends BaseStateManager {
 
@@ -31,7 +30,7 @@ public class InitialGreetingStateManager extends BaseStateManager {
     private Integer userReplyBreakpointPosition;
 
     public InitialGreetingStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
-        super(inputSlots, attributesManager);
+        super(inputSlots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.greetingsPhraseManager = phraseDependencyContainer.getGreetingsPhraseManager();
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
     }
@@ -65,15 +64,15 @@ public class InitialGreetingStateManager extends BaseStateManager {
                 this.getSessionAttributes().put(INTENT, INITIAL_GREETING);
                 break;
             }
-            builder.addResponse(translate(phraseSettings));
+            builder.addResponse(getDialogTranslator().translate(phraseSettings));
         }
 
         if (index >= dialog.size()) {
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)));
         }
 
         return builder
-                .withSlotName(SlotName.ACTION.text)
+                .withSlotName(SlotName.MISSION)
                 .turnOffReprompt()
                 .build();
     }

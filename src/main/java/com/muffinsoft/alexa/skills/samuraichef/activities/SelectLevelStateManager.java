@@ -4,7 +4,10 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
+import com.muffinsoft.alexa.sdk.enums.IntentType;
+import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseManager;
@@ -13,8 +16,6 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseMana
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
-import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
@@ -33,7 +34,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
+import static com.muffinsoft.alexa.sdk.enums.StateType.ACTIVITY_INTRO;
+import static com.muffinsoft.alexa.sdk.enums.StateType.DEMO;
+import static com.muffinsoft.alexa.sdk.enums.StateType.MISSION_INTRO;
+import static com.muffinsoft.alexa.sdk.enums.StateType.READY;
+import static com.muffinsoft.alexa.sdk.enums.StateType.SUBMISSION_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_RESET_PROGRESS_PHRASE;
@@ -46,11 +51,9 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.ACTIVITY_INTRO;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.DEMO;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_INTRO;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.READY_PHASE;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.STRIPE_INTRO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies.HIGH;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies.LOW;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies.MEDIUM;
 
 public class SelectLevelStateManager extends BaseStateManager {
 
@@ -61,12 +64,12 @@ public class SelectLevelStateManager extends BaseStateManager {
     private final RegularPhraseManager regularPhraseManager;
     private final ActivityPhraseManager activityPhraseManager;
     private final MissionPhraseManager missionPhraseManager;
-    private StatePhase statePhase;
+    private StateType statePhase;
     private Set<String> finishedMissions;
     private Integer userReplyBreakpointPosition;
 
     public SelectLevelStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
-        super(slots, attributesManager);
+        super(slots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.aliasManager = settingsDependencyContainer.getAliasManager();
         this.missionManager = settingsDependencyContainer.getMissionManager();
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
@@ -87,26 +90,26 @@ public class SelectLevelStateManager extends BaseStateManager {
         this.userReplyBreakpointPosition = (Integer) this.getSessionAttributes().getOrDefault(USER_REPLY_BREAKPOINT, null);
         @SuppressWarnings("unchecked") List<String> finishedMissionArray = (List<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new ArrayList<String>());
         this.finishedMissions = new HashSet<>(finishedMissionArray);
-        this.statePhase = StatePhase.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
+        this.statePhase = StateType.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
     }
 
     @Override
     public DialogItem nextResponse() {
 
-        logger.debug("Starting handling user reply '" + this.getUserReply() + "' ...");
+        logger.debug("Starting handling user reply '" + this.getUserReply(SlotName.ACTION) + "' ...");
 
         DialogItem.Builder builder = DialogItem.builder();
-        if (UserReplyComparator.compare(getUserReply(), UserReplies.LOW)) {
+        if (UserReplyComparator.compare(getUserReply(SlotName.MISSION), LOW)) {
             checkIfMissionAvailable(builder, UserMission.LOW_MISSION);
         }
-        else if (UserReplyComparator.compare(getUserReply(), UserReplies.MEDIUM)) {
+        else if (UserReplyComparator.compare(getUserReply(SlotName.MISSION), MEDIUM)) {
             checkIfMissionAvailable(builder, UserMission.MEDIUM_MISSION);
         }
-        else if (UserReplyComparator.compare(getUserReply(), UserReplies.HIGH)) {
+        else if (UserReplyComparator.compare(getUserReply(SlotName.MISSION), HIGH)) {
             checkIfMissionAvailable(builder, UserMission.HIGH_MISSION);
         }
         else {
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
         }
 
         if (this.getSessionAttributes().containsKey(CURRENT_MISSION)) {
@@ -122,9 +125,9 @@ public class SelectLevelStateManager extends BaseStateManager {
         this.getSessionAttributes().put(CURRENT_MISSION, mission);
 
         if (finishedMissions.contains(mission.name())) {
-            getSessionAttributes().put(INTENT, Intents.RESET_CONFIRMATION);
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)));
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)));
+            getSessionAttributes().put(INTENT, IntentType.RESET_CONFIRMATION);
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)));
             return;
         }
 
@@ -134,7 +137,7 @@ public class SelectLevelStateManager extends BaseStateManager {
             this.getSessionAttributes().remove(STATE_PHASE);
         }
         else {
-            this.getSessionAttributes().put(STATE_PHASE, StatePhase.STRIPE_INTRO);
+            this.getSessionAttributes().put(STATE_PHASE, StateType.SUBMISSION_INTRO);
         }
         logger.info("user will be redirected to " + mission.name());
 
@@ -164,7 +167,7 @@ public class SelectLevelStateManager extends BaseStateManager {
 
     private void handleMissionIntroState(DialogItem.Builder builder, UserMission currentMission, UserProgress userProgress) {
 
-        this.statePhase = STRIPE_INTRO;
+        this.statePhase = StateType.SUBMISSION_INTRO;
 
         List<PhraseSettings> dialog = missionPhraseManager.getMissionIntro(currentMission);
 
@@ -174,7 +177,7 @@ public class SelectLevelStateManager extends BaseStateManager {
             builder = handleStripeIntroState(builder, userProgress, currentMission, userProgress.getStripeCount());
         }
 
-        builder.withSlotName(actionSlotName);
+        builder.withSlotName(SlotName.ACTION);
     }
 
     @SuppressWarnings("Duplicates")
@@ -186,13 +189,13 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         List<PhraseSettings> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
 
-        int iterationPointer = wrapAnyUserResponse(dialog, builder, STRIPE_INTRO);
+        int iterationPointer = wrapAnyUserResponse(dialog, builder, SUBMISSION_INTRO);
 
         if (iterationPointer >= dialog.size()) {
             builder = handleActivityIntroState(builder, userProgress, currentActivity, currentMission, number);
         }
 
-        return builder.withSlotName(actionSlotName);
+        return builder.withSlotName(SlotName.ACTION);
     }
 
     @SuppressWarnings("Duplicates")
@@ -201,7 +204,7 @@ public class SelectLevelStateManager extends BaseStateManager {
         SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, number, currentMission);
 
         for (PhraseSettings partOfSpeech : speechSettings.getIntro()) {
-            builder.addResponse(translate(partOfSpeech));
+            builder.addResponse(getDialogTranslator().translate(partOfSpeech));
         }
 
         if (speechSettings.isShouldRunDemo()) {
@@ -212,28 +215,28 @@ public class SelectLevelStateManager extends BaseStateManager {
 
             SpeechSettings demoSpeechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, userProgress.getStripeCount(), currentMission);
 
-            builder.addResponse(translate(demoSpeechSettings.getShouldRunDemoPhrase()));
+            builder.addResponse(getDialogTranslator().translate(demoSpeechSettings.getShouldRunDemoPhrase()));
         }
         else {
 
-            logger.debug("Handling " + this.statePhase + ". Moving to " + READY_PHASE);
+            logger.debug("Handling " + this.statePhase + ". Moving to " + READY);
 
-            this.statePhase = READY_PHASE;
+            this.statePhase = READY;
             appendReadyToStart(builder, userProgress, activity, currentMission);
         }
 
-        return builder.withSlotName(actionSlotName);
+        return builder.withSlotName(SlotName.ACTION);
     }
 
     private void appendReadyToStart(DialogItem.Builder builder, UserProgress userProgress, Activities activity, UserMission currentMission) {
 
         SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, userProgress.getStripeCount(), currentMission);
 
-        builder.addResponse(translate(speechSettings.getReadyToStartPhrase()));
+        builder.addResponse(getDialogTranslator().translate(speechSettings.getReadyToStartPhrase()));
     }
 
     @SuppressWarnings("Duplicates")
-    private int wrapAnyUserResponse(List<PhraseSettings> dialog, DialogItem.Builder builder, StatePhase statePhase) {
+    private int wrapAnyUserResponse(List<PhraseSettings> dialog, DialogItem.Builder builder, StateType statePhase) {
 
         if (this.userReplyBreakpointPosition != null) {
             this.getSessionAttributes().remove(USER_REPLY_BREAKPOINT);
@@ -254,7 +257,7 @@ public class SelectLevelStateManager extends BaseStateManager {
                 this.statePhase = statePhase;
                 break;
             }
-            builder.addResponse(translate(phraseSettings));
+            builder.addResponse(getDialogTranslator().translate(phraseSettings));
         }
         return index;
     }

@@ -1,11 +1,16 @@
 package com.muffinsoft.alexa.skills.samuraichef;
 
+import com.muffinsoft.alexa.sdk.components.BaseDialogTranslator;
+import com.muffinsoft.alexa.sdk.components.IntentFactory;
+import com.muffinsoft.alexa.skills.samuraichef.components.SamuraiIntentFactory;
 import com.muffinsoft.alexa.skills.samuraichef.components.SessionStateFabric;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.CharactersManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.HelpPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.MissionPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.SoundsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
@@ -26,7 +31,11 @@ public class IoC {
     private static final ActivityManager activityManager;
     private static final AliasManager aliasManager;
     private static final MissionManager missionManager;
+    private static final BaseDialogTranslator dialogTranslator;
+    private static final CharactersManager charactersManager;
+    private static final SoundsManager soundsManager;
     private static final SessionStateFabric sessionStateFabric;
+    private static final SamuraiIntentFactory intentFactory;
     private static final SettingsDependencyContainer settingsDependencyContainer;
     private static final PhraseDependencyContainer phraseDependencyContainer;
 
@@ -40,14 +49,14 @@ public class IoC {
         helpPhraseManager = new HelpPhraseManager("phrases/help.json");
         missionPhraseManager = new MissionPhraseManager("phrases/mission-phrases.json");
         activityManager = new ActivityManager();
+        charactersManager = new CharactersManager("phrases/characters.json");
+        soundsManager = new SoundsManager("phrases/sounds.json");
+        dialogTranslator = new BaseDialogTranslator(charactersManager.getContainer(), soundsManager.getContainer());
         activityPhraseManager = new ActivityPhraseManager();
-        settingsDependencyContainer = new SettingsDependencyContainer(cardManager, activityManager, aliasManager, missionManager);
+        settingsDependencyContainer = new SettingsDependencyContainer(cardManager, activityManager, aliasManager, missionManager, dialogTranslator);
         phraseDependencyContainer = new PhraseDependencyContainer(regularPhraseManager, activityPhraseManager, helpPhraseManager, greetingsPhraseManager, missionPhraseManager);
         sessionStateFabric = new SessionStateFabric(settingsDependencyContainer, phraseDependencyContainer);
-    }
-
-    public static GreetingsPhraseManager provideGreetingsManager() {
-        return greetingsPhraseManager;
+        intentFactory = new SamuraiIntentFactory(settingsDependencyContainer, phraseDependencyContainer, sessionStateFabric);
     }
 
     public static UserReplyManager provideUserReplyManager() {
@@ -64,5 +73,9 @@ public class IoC {
 
     public static SessionStateFabric provideSessionStateFabric() {
         return sessionStateFabric;
+    }
+
+    public static IntentFactory provideIntentFactory() {
+        return intentFactory;
     }
 }

@@ -16,6 +16,30 @@
           ]
         },
         {
+          "name": "SelectPathIntent",
+          "slots": [
+            {
+              "name": "Mission",
+              "type": "MISSION"
+            }
+          ],
+          "samples": [
+            "{Mission}"
+          ]
+        },
+        {
+          "name": "MissionNavigationIntent",
+          "slots": [
+            {
+              "name": "Navigation",
+              "type": "NAVIGATION"
+            }
+          ],
+          "samples": [
+            "{Navigation}"
+          ]
+        },
+        {
           "name": "ResetIntent",
           "slots": [],
           "samples": [
@@ -31,6 +55,14 @@
           "samples": []
         },
         {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        },
+        {
           "name": "AMAZON.HelpIntent",
           "samples": []
         },
@@ -39,24 +71,70 @@
           "samples": []
         },
         {
-          "name": "DummyIntent",
+          "name": "WhateverIntent",
           "slots": [
             {
-              "name": "part",
-              "type": "DummyPart",
+              "name": "Whatever",
+              "type": "WHATEVER",
               "samples": [
-                "I want some {part}"
+                "I want some {Whatever}"
               ]
             }
           ],
           "samples": [
-            "please take me to some {part}"
+            "please take me to some {Whatever}"
           ]
         }
       ],
       "types": [
         {
-          "name": "ACTION",
+          "name": "WHATEVER",
+          "values": [
+            {
+              "name": {
+                "value": "whatever"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MISSION",
+          "values": [
+            {
+              "name": {
+                "value": "low",
+                "synonyms": [
+                  "chef",
+                  "Path of the chef",
+                  "Path of chef"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "mid",
+                "synonyms": [
+                  "sumo",
+                  "Path of the sumo",
+                  "Path of sumo",
+                  "simo"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "high",
+                "synonyms": [
+                  "guru",
+                  "Path of the guru",
+                  "Path of guru"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "NAVIGATION",
           "values": [
             {
               "name": {
@@ -69,44 +147,10 @@
             },
             {
               "name": {
-                "value": "no",
-                "synonyms": [
-                  "no",
-                  "nope",
-                  "not",
-                  "nah",
-                  "neh",
-                  "oh no",
-                  "no no",
-                  "nope",
-                  "I do not",
-                  "no thank you"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "yes",
-                "synonyms": [
-                  "ok",
-                  "yep",
-                  "yeah",
-                  "I do",
-                  "yes please",
-                  "you know it",
-                  "of course",
-                  "ya",
-                  "ready",
-                  "go"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "start",
+                "value": "reset",
                 "synonyms": [
                   "over",
-                  "start this mission over"
+                  "start this path over"
                 ]
               }
             },
@@ -118,38 +162,12 @@
                   "new"
                 ]
               }
-            },
-            {
-              "name": {
-                "value": "path of the chef",
-                "synonyms": [
-                  "chef",
-                  "path of the chef",
-                  "path of chef"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "path of the sumo",
-                "synonyms": [
-                  "sumo",
-                  "path of the sumo",
-                  "path of sumo",
-                  "simo"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "path of the guru",
-                "synonyms": [
-                  "guru",
-                  "path of the guru",
-                  "path of guru"
-                ]
-              }
-            },
+            }
+          ]
+        },
+        {
+          "name": "ACTION",
+          "values": [
             {
               "name": {
                 "value": "haa",
@@ -262,6 +280,11 @@
             },
             {
               "name": {
+                "value": "stop don't drop"
+              }
+            },
+            {
+              "name": {
                 "value": "block"
               }
             },
@@ -297,22 +320,7 @@
             },
             {
               "name": {
-                "value": "stop don't drop"
-              }
-            },
-            {
-              "name": {
                 "value": "break"
-              }
-            }
-          ]
-        },
-        {
-          "name": "DummyPart",
-          "values": [
-            {
-              "name": {
-                "value": "whatever"
               }
             }
           ]
@@ -322,13 +330,13 @@
     "dialog": {
       "intents": [
         {
-          "name": "DummyIntent",
+          "name": "WhateverIntent",
           "confirmationRequired": false,
           "prompts": {},
           "slots": [
             {
-              "name": "part",
-              "type": "DummyPart",
+              "name": "Whatever",
+              "type": "WHATEVER",
               "confirmationRequired": false,
               "elicitationRequired": true,
               "prompts": {

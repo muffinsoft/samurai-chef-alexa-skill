@@ -17,8 +17,6 @@ public class ActivityPhraseManager {
     private static final String WORD_BOARD_KARATE = "phrases/word-board-karate-phrases.json";
     private static final String FOOD_TASTER = "phrases/food-taster-phrases.json";
 
-    private final ContentLoader contentLoader = new ContentLoader(new ObjectMapper());
-
     private final Map<Activities, Map<String, Map<String, SpeechSettings>>> containerByActivity;
 
 
@@ -26,6 +24,7 @@ public class ActivityPhraseManager {
 
         containerByActivity = new HashMap<>();
 
+        ContentLoader contentLoader = new ContentLoader(new ObjectMapper());
         containerByActivity.put(Activities.SUSHI_SLICE, contentLoader.loadContent(new HashMap<>(), SUSHI_SLICE, new TypeReference<Map<String, Map<String, SpeechSettings>>>() {
         }));
         containerByActivity.put(Activities.JUICE_WARRIOR, contentLoader.loadContent(new HashMap<>(), JUICE_WARRIOR, new TypeReference<Map<String, Map<String, SpeechSettings>>>() {

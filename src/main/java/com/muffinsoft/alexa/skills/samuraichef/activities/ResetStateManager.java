@@ -3,11 +3,12 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
+import com.muffinsoft.alexa.sdk.enums.IntentType;
+import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
-import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
@@ -25,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
+import static com.muffinsoft.alexa.sdk.enums.StateType.MISSION_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_PLAY_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.RETURN_TO_GAME_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
@@ -39,7 +40,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_LOW_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
-import static com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase.MISSION_INTRO;
 
 public class ResetStateManager extends BaseStateManager {
 
@@ -47,7 +47,7 @@ public class ResetStateManager extends BaseStateManager {
 
     private final RegularPhraseManager regularPhraseManager;
 
-    private StatePhase statePhase;
+    private StateType statePhase;
     private ActivityProgress activityProgress;
 
     private UserMission currentMission;
@@ -55,13 +55,13 @@ public class ResetStateManager extends BaseStateManager {
     private Set<String> finishedMissions;
 
     public ResetStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
-        super(slots, attributesManager);
+        super(slots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
     }
 
     @Override
     protected void populateActivityVariables() {
-        statePhase = StatePhase.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
+        statePhase = StateType.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
         LinkedHashMap rawActivityProgress = (LinkedHashMap) getSessionAttributes().get(ACTIVITY_PROGRESS);
         activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
 
@@ -153,31 +153,31 @@ public class ResetStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
-        if (UserReplyComparator.compare(getUserReply(), UserReplies.NEW)) {
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+        if (UserReplyComparator.compare(getUserReply(SlotName.NAVIGATION), UserReplies.NEW)) {
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
-            getSessionAttributes().put(INTENT, Intents.GAME);
+            getSessionAttributes().put(INTENT, IntentType.GAME);
         }
-        else if (UserReplyComparator.compare(getUserReply(), UserReplies.RESET)) {
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
+        else if (UserReplyComparator.compare(getUserReply(SlotName.NAVIGATION), UserReplies.RESET)) {
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
             getSessionAttributes().remove(STAR_COUNT);
             getSessionAttributes().remove(FINISHED_MISSIONS);
-            getSessionAttributes().put(INTENT, Intents.GAME);
+            getSessionAttributes().put(INTENT, IntentType.GAME);
             getSessionAttributes().put(STATE_PHASE, MISSION_INTRO);
             savePersistentAttributes();
         }
         else {
-            getSessionAttributes().put(INTENT, Intents.GAME);
-            getSessionAttributes().put(STATE_PHASE, StatePhase.STRIPE_INTRO);
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
+            getSessionAttributes().put(INTENT, IntentType.GAME);
+            getSessionAttributes().put(STATE_PHASE, StateType.SUBMISSION_INTRO);
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {
-                builder.addResponse(translate(activityProgress.getPreviousIngredient()));
+                builder.addResponse(getDialogTranslator().translate(activityProgress.getPreviousIngredient()));
             }
             else {
-                builder.addResponse(translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
+                builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
             }
             getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         }

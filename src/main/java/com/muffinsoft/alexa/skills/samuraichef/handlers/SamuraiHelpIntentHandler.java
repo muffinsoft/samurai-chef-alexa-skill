@@ -3,9 +3,12 @@ package com.muffinsoft.alexa.skills.samuraichef.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.handlers.HelpIntentHandler;
+import com.muffinsoft.alexa.sdk.model.PhraseContainer;
 import com.muffinsoft.alexa.skills.samuraichef.activities.HelpStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
+
+import java.util.List;
 
 public class SamuraiHelpIntentHandler extends HelpIntentHandler {
 
@@ -16,6 +19,11 @@ public class SamuraiHelpIntentHandler extends HelpIntentHandler {
         super();
         this.configurationContainer = configurationContainer;
         this.phraseDependencyContainer = phraseDependencyContainer;
+    }
+
+    @Override
+    protected List<PhraseContainer> getPhrase() {
+        return null;
     }
 
     @Override

@@ -12,10 +12,10 @@ import com.amazon.ask.model.slu.entityresolution.Resolution;
 import com.amazon.ask.model.slu.entityresolution.Resolutions;
 import com.amazon.ask.model.slu.entityresolution.Status;
 import com.amazon.ask.model.slu.entityresolution.StatusCode;
+import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.skills.samuraichef.IoC;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
-import com.muffinsoft.alexa.skills.samuraichef.enums.StatePhase;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiActionIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.tests.MockPersistenceAdapter;
@@ -76,7 +76,7 @@ class SamuraiActionIntentHandlerTest {
     }
 
     private SamuraiActionIntentHandler createActionIntentHandlerInstance() {
-        return new SamuraiActionIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies(), IoC.provideSessionStateFabric());
+        return new SamuraiActionIntentHandler(IoC.provideIntentFactory());
     }
 
     @Test
@@ -110,7 +110,7 @@ class SamuraiActionIntentHandlerTest {
         userProgress.put("finishedActivities", new String[]{Activities.SUSHI_SLICE.name()});
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.WIN);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StateType.WIN);
         sessionAttributes.put(SessionConstants.USER_PROGRESS, userProgress);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
@@ -129,7 +129,7 @@ class SamuraiActionIntentHandlerTest {
         slots.put("action", createSlotForValue("mission"));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.LOSE);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StateType.LOSE);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
@@ -147,7 +147,7 @@ class SamuraiActionIntentHandlerTest {
         slots.put("action", createSlotForValue("yes"));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.WIN);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StateType.WIN);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
@@ -166,7 +166,7 @@ class SamuraiActionIntentHandlerTest {
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.CURRENT_MISSION, UserMission.LOW_MISSION);
-        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.LOSE);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StateType.LOSE);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
@@ -185,7 +185,7 @@ class SamuraiActionIntentHandlerTest {
 
         Map<String, Object> sessionAttributes = new HashMap<>();
         sessionAttributes.put(SessionConstants.CURRENT_MISSION, UserMission.LOW_MISSION);
-        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.READY_PHASE);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StateType.READY);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 
@@ -203,7 +203,7 @@ class SamuraiActionIntentHandlerTest {
         slots.put("action", createSlotForValue("no"));
 
         Map<String, Object> sessionAttributes = new HashMap<>();
-        sessionAttributes.put(SessionConstants.STATE_PHASE, StatePhase.PHASE_1);
+        sessionAttributes.put(SessionConstants.STATE_PHASE, StateType.GAME_PHASE_1);
 
         HandlerInput input = createInputWithSlotsAndSessionAttributes(slots, sessionAttributes);
 

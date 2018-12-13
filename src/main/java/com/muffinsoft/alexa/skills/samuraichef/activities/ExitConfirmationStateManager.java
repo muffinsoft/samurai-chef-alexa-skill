@@ -15,7 +15,6 @@ import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContaine
 import java.util.List;
 import java.util.Map;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
 
 public class ExitConfirmationStateManager extends BaseStateManager {
@@ -25,7 +24,7 @@ public class ExitConfirmationStateManager extends BaseStateManager {
     private Integer userReplyBreakpointPosition;
 
     public ExitConfirmationStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
-        super(inputSlots, attributesManager);
+        super(inputSlots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.greetingsPhraseManager = phraseDependencyContainer.getGreetingsPhraseManager();
     }
 
@@ -56,7 +55,7 @@ public class ExitConfirmationStateManager extends BaseStateManager {
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
                 break;
             }
-            builder.addResponse(translate(phraseSettings));
+            builder.addResponse(getDialogTranslator().translate(phraseSettings));
         }
 
         if (index >= dialog.size()) {
@@ -64,7 +63,7 @@ public class ExitConfirmationStateManager extends BaseStateManager {
         }
 
         return builder
-                .withSlotName(SlotName.ACTION.text)
+                .withSlotName(SlotName.ACTION)
                 .turnOffReprompt()
                 .build();
     }

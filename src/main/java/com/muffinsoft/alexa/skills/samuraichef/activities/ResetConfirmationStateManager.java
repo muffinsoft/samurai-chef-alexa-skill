@@ -3,10 +3,11 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
+import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
@@ -23,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.NEW_MISSION_OR_SELECT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
@@ -48,7 +48,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
     private Set<String> finishedMissions;
 
     public ResetConfirmationStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
-        super(slots, attributesManager);
+        super(slots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
     }
 
@@ -145,20 +145,20 @@ public class ResetConfirmationStateManager extends BaseStateManager {
         DialogItem.Builder builder = DialogItem.builder();
 
         if (this.currentMission == null) {
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_TO_REMOVE_PHRASE)));
-            getSessionAttributes().put(INTENT, Intents.GAME);
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_TO_REMOVE_PHRASE)));
+            getSessionAttributes().put(INTENT, IntentType.GAME);
             return builder.build();
         }
 
-        if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+        if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.NO)) {
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
-            getSessionAttributes().put(INTENT, Intents.GAME);
+            getSessionAttributes().put(INTENT, IntentType.GAME);
         }
-        else if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(NEW_MISSION_OR_SELECT_PHRASE)));
-            getSessionAttributes().put(INTENT, Intents.RESET_MISSION_SELECTION);
+        else if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(NEW_MISSION_OR_SELECT_PHRASE)));
+            getSessionAttributes().put(INTENT, IntentType.RESET_MISSION_SELECTION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
             getSessionAttributes().remove(STAR_COUNT);
@@ -166,7 +166,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             savePersistentAttributes();
         }
         else {
-            builder.addResponse(translate(regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
         }
 
         return builder.build();

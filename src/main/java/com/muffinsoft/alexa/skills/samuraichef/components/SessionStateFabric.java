@@ -32,28 +32,19 @@ public class SessionStateFabric {
         this.phraseDependencyContainer = phraseDependencyContainer;
     }
 
-    public StateManager createFromRequest(Activities currentActivity, PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
-
-        StateManager stateManager;
-
+    StateManager createFromRequest(Activities currentActivity, PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {
         switch (currentActivity) {
             case SUSHI_SLICE:
-                stateManager = createSushiSliceStateManager(currentEquipment, slots, attributesManager);
-                break;
+                return createSushiSliceStateManager(currentEquipment, slots, attributesManager);
             case JUICE_WARRIOR:
-                stateManager = createJuiceWarriorStateManager(currentEquipment, slots, attributesManager);
-                break;
+                return createJuiceWarriorStateManager(currentEquipment, slots, attributesManager);
             case WORD_BOARD_KARATE:
-                stateManager = createWordBoardKarateStateManager(currentEquipment, slots, attributesManager);
-                break;
+                return createWordBoardKarateStateManager(currentEquipment, slots, attributesManager);
             case FOOD_TASTER:
-                stateManager = createFoodTasterStateManager(currentEquipment, slots, attributesManager);
-                break;
+                return createFoodTasterStateManager(currentEquipment, slots, attributesManager);
             default:
                 throw new IllegalStateException("Exception while handling activity: " + currentActivity);
         }
-
-        return stateManager;
     }
 
     private FoodTasterStateManager createFoodTasterStateManager(PowerUps currentEquipment, Map<String, Slot> slots, AttributesManager attributesManager) {

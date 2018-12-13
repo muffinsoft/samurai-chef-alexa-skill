@@ -3,16 +3,17 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
+import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
+import com.muffinsoft.alexa.sdk.model.PhraseContainer;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
-import com.muffinsoft.alexa.skills.samuraichef.enums.Intents;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
@@ -24,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.muffinsoft.alexa.skills.samuraichef.components.VoiceTranslator.translate;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_EXIT_PHRASE;
@@ -46,7 +46,7 @@ public class CancelStateManager extends BaseStateManager {
     private UserProgress userProgress;
 
     public CancelStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
-        super(slots, attributesManager);
+        super(slots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.missionManager = settingsDependencyContainer.getMissionManager();
     }
@@ -102,25 +102,25 @@ public class CancelStateManager extends BaseStateManager {
 
         logger.debug("Available session attributes: " + getSessionAttributes());
 
-        List<PhraseSettings> dialog;
+        List<PhraseContainer> dialog;
 
-        if (UserReplyComparator.compare(getUserReply(), UserReplies.YES)) {
+        if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
             savePersistentAttributes();
             dialog = regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE);
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
-            getSessionAttributes().put(INTENT, Intents.GAME);
+            getSessionAttributes().put(INTENT, IntentType.GAME);
         }
-        else if (UserReplyComparator.compare(getUserReply(), UserReplies.NO)) {
+        else if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.NO)) {
             savePersistentAttributes();
             dialog = regularPhraseManager.getValueByKey(WANT_EXIT_PHRASE);
-            getSessionAttributes().put(INTENT, Intents.EXIT);
+            getSessionAttributes().put(INTENT, IntentType.EXIT);
         }
         else {
             dialog = regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE);
         }
 
-        DialogItem.Builder builder = DialogItem.builder().addResponse(translate(dialog));
+        DialogItem.Builder builder = DialogItem.builder().addResponse(getDialogTranslator().translate(dialog));
 
         return builder.build();
     }
