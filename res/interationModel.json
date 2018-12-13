@@ -9,10 +9,16 @@
             {
               "name": "Action",
               "type": "ACTION"
+            },
+            {
+              "name": "ActionAlternative",
+              "type": "AMAZON.SearchQuery"
             }
           ],
           "samples": [
-            "{Action}"
+            "{Action}",
+            "what about {Action}",
+            "it's {ActionAlternative}"
           ]
         },
         {
@@ -24,7 +30,14 @@
             }
           ],
           "samples": [
-            "{Mission}"
+            "{Mission}",
+            "{Mission} please",
+            "I'd like {Mission}",
+            "I'm feeling {Mission}",
+            "restart {Mission}",
+            "start {Mission}",
+            "let's play {Mission}",
+            "I'd like to play {Mission}"
           ]
         },
         {
@@ -69,34 +82,9 @@
         {
           "name": "AMAZON.StopIntent",
           "samples": []
-        },
-        {
-          "name": "WhateverIntent",
-          "slots": [
-            {
-              "name": "Whatever",
-              "type": "WHATEVER",
-              "samples": [
-                "I want some {Whatever}"
-              ]
-            }
-          ],
-          "samples": [
-            "please take me to some {Whatever}"
-          ]
         }
       ],
       "types": [
-        {
-          "name": "WHATEVER",
-          "values": [
-            {
-              "name": {
-                "value": "whatever"
-              }
-            }
-          ]
-        },
         {
           "name": "MISSION",
           "values": [
@@ -326,37 +314,6 @@
           ]
         }
       ]
-    },
-    "dialog": {
-      "intents": [
-        {
-          "name": "WhateverIntent",
-          "confirmationRequired": false,
-          "prompts": {},
-          "slots": [
-            {
-              "name": "Whatever",
-              "type": "WHATEVER",
-              "confirmationRequired": false,
-              "elicitationRequired": true,
-              "prompts": {
-                "elicitation": "Elicit.Slot.323516811559.863715167340"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    "prompts": [
-      {
-        "id": "Elicit.Slot.323516811559.863715167340",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Could you please say what you want?"
-          }
-        ]
-      }
-    ]
+    }
   }
 }

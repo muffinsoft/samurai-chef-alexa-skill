@@ -4,7 +4,6 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.PhraseContainer;
-import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.PowerUpFabric;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
@@ -15,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.model.SlotName.ACTION;
+import static com.muffinsoft.alexa.sdk.model.SlotName.ACTION_ALTERNATIVE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_EARN_CORRECT_ANSWER_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_EARN_SECOND_CHANCE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_USE_CORRECT_ANSWER_PHRASE;
@@ -39,7 +39,10 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     @Override
     protected DialogItem.Builder handleActivePhaseState(DialogItem.Builder builder) {
 
-        if (UserReplyComparator.compare(getUserReply(ACTION), this.activityProgress.getCurrentIngredientReaction())) {
+        String reaction = this.activityProgress.getCurrentIngredientReaction();
+
+        if (UserReplyComparator.compare(getUserReply(ACTION), reaction)
+                || UserReplyComparator.compare(getUserReply(ACTION_ALTERNATIVE), reaction)) {
             builder = handleSuccess(builder);
         }
         else {
