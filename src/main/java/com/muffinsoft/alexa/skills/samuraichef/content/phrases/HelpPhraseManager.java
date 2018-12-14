@@ -18,6 +18,10 @@ public class HelpPhraseManager extends BaseContentManager<List<PhraseContainer>>
 
         List valueByKey = super.getValueByKey(key);
 
+        if (valueByKey == null) {
+            throw new IllegalArgumentException("Can't find text by key: " + key);
+        }
+
         List<PhraseContainer> resultList = new ArrayList<>(valueByKey.size() * 2);
 
         for (Object raw : valueByKey) {

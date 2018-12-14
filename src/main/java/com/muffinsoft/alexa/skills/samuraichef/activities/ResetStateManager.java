@@ -159,7 +159,7 @@ public class ResetStateManager extends BaseStateManager {
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, IntentType.GAME);
         }
-        else if (UserReplyComparator.compare(getUserReply(SlotName.NAVIGATION), UserReplies.RESET)) {
+        else if (UserReplyComparator.compare(getUserReply(SlotName.NAVIGATION), UserReplies.RESTART)) {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);

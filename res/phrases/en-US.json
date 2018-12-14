@@ -143,11 +143,6 @@
       "content": "Sorry, we can't understand your answer. Please, choose one from this list "
     }
   ],
-  "wantStartMissionPhrase": [
-    {
-      "content": "Ready to play?"
-    }
-  ],
   "missionSelectionPhrase": [
     {
       "content": "Would you like to try a different path?"

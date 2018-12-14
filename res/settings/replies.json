@@ -17,8 +17,8 @@
   "HIGH": [
     "high"
   ],
-  "RESET": [
-    "reset"
+  "RESTART": [
+    "restart"
   ],
   "NEW": [
     "new"

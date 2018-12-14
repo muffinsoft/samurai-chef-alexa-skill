@@ -19,7 +19,7 @@ public class RegularPhraseManager extends BaseContentManager<List<PhraseContaine
         List valueByKey = super.getValueByKey(key);
 
         if (valueByKey == null) {
-            return null;
+            throw new IllegalArgumentException("Can't find text by key: " + key);
         }
 
         List<PhraseContainer> resultList = new ArrayList<>(valueByKey.size() * 2);

@@ -90,11 +90,11 @@ public class HelpStateManager extends BaseStateManager {
     @Override
     public DialogItem nextResponse() {
 
-        if (this.currentIntent == IntentType.GAME || this.currentIntent == IntentType.INITIAL_GREETING) {
-            return handleFirstLoopHelp();
+        if (this.currentIntent == IntentType.HELP) {
+            return handleSecondLoopHelp();
         }
         else {
-            return handleSecondLoopHelp();
+            return handleFirstLoopHelp();
         }
     }
 
@@ -163,9 +163,6 @@ public class HelpStateManager extends BaseStateManager {
             getSessionAttributes().put(HELP_STATE, LEARN_MORE_HELP);
             String key = "help" + this.currentMission.key + "Stripe" + userProgress.getStripeCount() + this.currentActivity.key;
             List<PhraseContainer> activityHelp = helpPhraseManager.getValueByKey(key);
-            if (activityHelp == null) {
-                throw new IllegalStateException("Can't find help information for key: " + key);
-            }
             builder.addResponse(getDialogTranslator().translate(activityHelp));
             builder.addResponse(getDialogTranslator().translate(helpPhraseManager.getValueByKey(HELP_LEARN_MORE_PHRASE)));
         }

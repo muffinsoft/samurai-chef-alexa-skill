@@ -229,6 +229,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             case DEMO:
                 builder = handleDemoState(builder);
                 break;
+            case RETURN_TO_GAME:
+                builder = handleReturnToGameState(builder);
+                break;
             case READY:
                 builder = handleReadyToStartState(builder);
                 break;
@@ -252,6 +255,13 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         addSessionEntities(builder);
 
         return builder.build();
+    }
+
+    private DialogItem.Builder handleReturnToGameState(DialogItem.Builder builder) {
+        this.statePhase = GAME_PHASE_1;
+        String ingredient = this.activityProgress.getPreviousIngredient();
+        builder.addResponse(getDialogTranslator().translate(ingredient));
+        return builder;
     }
 
     private void addSessionEntities(DialogItem.Builder builder) {

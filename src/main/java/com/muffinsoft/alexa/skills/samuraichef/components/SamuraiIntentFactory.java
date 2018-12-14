@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.components.IntentFactory;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
+import com.muffinsoft.alexa.sdk.enums.StateType;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ExitConfirmationStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ExitStateManager;
@@ -16,6 +18,7 @@ import com.muffinsoft.alexa.skills.samuraichef.activities.ResetMissionSelectionS
 import com.muffinsoft.alexa.skills.samuraichef.activities.ResetStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
+import com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
@@ -27,9 +30,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.HELP_STATE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 
 public class SamuraiIntentFactory implements IntentFactory {
@@ -51,7 +58,9 @@ public class SamuraiIntentFactory implements IntentFactory {
 
         logger.info("Selecting State manager for " + intent);
 
-        switch (intent) {
+        IntentType interceptedIntent = interceptIntent(intent, slots, attributesManager);
+
+        switch (interceptedIntent) {
             case INITIAL_GREETING:
                 return new InitialGreetingStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case GAME:
@@ -73,6 +82,31 @@ public class SamuraiIntentFactory implements IntentFactory {
             default:
                 throw new IllegalArgumentException("Unknown intent type " + intent);
         }
+    }
+
+    private IntentType interceptIntent(IntentType intent, Map<String, Slot> slots, AttributesManager attributesManager) {
+        if (intent == IntentType.HELP) {
+            if (attributesManager.getSessionAttributes().containsKey(HELP_STATE)) {
+                HelpStates helpState = HelpStates.valueOf(String.valueOf(attributesManager.getSessionAttributes().get(HELP_STATE)));
+                if (helpState == HelpStates.PROCEED_GAME) {
+                    if (slots.containsKey(SlotName.CONFIRMATION.text)) {
+                        Slot slot = slots.get(SlotName.CONFIRMATION.text);
+                        if (Objects.equals(slot.getValue(), "yes")) {
+                            attributesManager.getSessionAttributes().put(INTENT, IntentType.GAME);
+                            attributesManager.getSessionAttributes().remove(HELP_STATE);
+                            if (attributesManager.getSessionAttributes().containsKey(STATE_PHASE)) {
+                                StateType stateType = StateType.valueOf(String.valueOf(attributesManager.getSessionAttributes().get(STATE_PHASE)));
+                                if (stateType == StateType.GAME_PHASE_1 || stateType == StateType.GAME_PHASE_2) {
+                                    attributesManager.getSessionAttributes().put(STATE_PHASE, StateType.RETURN_TO_GAME);
+                                }
+                            }
+                            return IntentType.GAME;
+                        }
+                    }
+                }
+            }
+        }
+        return intent;
     }
 
     private StateManager handleGameActivity(Map<String, Slot> slots, AttributesManager attributesManager) {

@@ -136,10 +136,9 @@
             },
             {
               "name": {
-                "value": "reset",
+                "value": "restart",
                 "synonyms": [
                   "over",
-                  "restart",
                   "this"
                 ]
               }
