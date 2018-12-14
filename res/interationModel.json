@@ -145,18 +145,25 @@
             },
             {
               "name": {
-                "value": "restart",
+                "value": "new",
                 "synonyms": [
-                  "over",
-                  "this"
+                  "new",
+                  "new one",
+                  "new mission",
+                  "start a new mission"
                 ]
               }
             },
             {
               "name": {
-                "value": "new",
+                "value": "this",
                 "synonyms": [
-                  "new mission"
+                  "mission over",
+                  "this mission",
+                  "this one",
+                  "this",
+                  "start this mission",
+                  "start this mission over"
                 ]
               }
             }

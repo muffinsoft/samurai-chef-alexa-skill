@@ -154,13 +154,13 @@ public class ResetStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
-        if (UserReplyComparator.compare(getUserReply(SlotName.NAVIGATION), UserReplies.NEW)) {
+        if (UserReplyComparator.compare(getUserReply(SlotName.NAVIGATION), UserReplies.NEW_MISSION)) {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, IntentType.GAME);
         }
-        else if (UserReplyComparator.compare(getUserReply(SlotName.NAVIGATION), UserReplies.RESTART)) {
+        else if (UserReplyComparator.compare(getUserReply(SlotName.NAVIGATION), UserReplies.THIS_MISSION)) {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
@@ -170,7 +170,8 @@ public class ResetStateManager extends BaseStateManager {
             getSessionAttributes().put(STATE_PHASE, MISSION_INTRO);
             savePersistentAttributes();
         }
-        else if (UserReplyComparator.compare(getUserReply(SlotName.NAVIGATION), UserReplies.BACK)) {
+        else if (UserReplyComparator.compare(getUserReply(SlotName.NAVIGATION), UserReplies.BACK) ||
+                UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.NO)) {
             getSessionAttributes().put(INTENT, IntentType.GAME);
             getSessionAttributes().put(STATE_PHASE, StateType.SUBMISSION_INTRO);
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
