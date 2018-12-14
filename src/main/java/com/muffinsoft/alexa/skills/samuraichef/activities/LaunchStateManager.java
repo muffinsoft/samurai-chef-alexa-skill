@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static com.muffinsoft.alexa.skills.samuraichef.components.BeltColorDefiner.defineColor;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
@@ -137,20 +138,7 @@ public class LaunchStateManager extends BaseStateManager {
             return "black";
         }
         else {
-            switch (userProgress.getStripeCount()) {
-                case 0:
-                    return "white";
-                case 1:
-                    return "yellow";
-                case 2:
-                    return "orange";
-                case 3:
-                    return "green";
-                case 4:
-                    return "purple";
-                default:
-                    return "white";
-            }
+            return defineColor(userProgress.getStripeCount());
         }
     }
 

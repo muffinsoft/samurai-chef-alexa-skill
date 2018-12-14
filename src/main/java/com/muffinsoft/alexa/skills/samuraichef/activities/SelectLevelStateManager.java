@@ -124,7 +124,7 @@ public class SelectLevelStateManager extends BaseStateManager {
         this.getSessionAttributes().put(CURRENT_MISSION, mission);
 
         if (finishedMissions.contains(mission.name())) {
-            getSessionAttributes().put(INTENT, IntentType.RESET_CONFIRMATION);
+            getSessionAttributes().put(INTENT, IntentType.RESET);
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)));
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)));
             return;

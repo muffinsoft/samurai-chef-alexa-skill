@@ -92,21 +92,33 @@ public class SamuraiIntentFactory implements IntentFactory {
                     if (slots.containsKey(SlotName.CONFIRMATION.text)) {
                         Slot slot = slots.get(SlotName.CONFIRMATION.text);
                         if (Objects.equals(slot.getValue(), "yes")) {
-                            attributesManager.getSessionAttributes().put(INTENT, IntentType.GAME);
-                            attributesManager.getSessionAttributes().remove(HELP_STATE);
-                            if (attributesManager.getSessionAttributes().containsKey(STATE_PHASE)) {
-                                StateType stateType = StateType.valueOf(String.valueOf(attributesManager.getSessionAttributes().get(STATE_PHASE)));
-                                if (stateType == StateType.GAME_PHASE_1 || stateType == StateType.GAME_PHASE_2) {
-                                    attributesManager.getSessionAttributes().put(STATE_PHASE, StateType.RETURN_TO_GAME);
-                                }
-                            }
-                            return IntentType.GAME;
+                            return getInterceptedIntentType(attributesManager);
+                        }
+                    }
+                }
+                else if (helpState == HelpStates.LEARN_MORE_HELP) {
+                    if (slots.containsKey(SlotName.CONFIRMATION.text)) {
+                        Slot slot = slots.get(SlotName.CONFIRMATION.text);
+                        if (Objects.equals(slot.getValue(), "no")) {
+                            return getInterceptedIntentType(attributesManager);
                         }
                     }
                 }
             }
         }
         return intent;
+    }
+
+    private IntentType getInterceptedIntentType(AttributesManager attributesManager) {
+        attributesManager.getSessionAttributes().put(INTENT, IntentType.GAME);
+        attributesManager.getSessionAttributes().remove(HELP_STATE);
+        if (attributesManager.getSessionAttributes().containsKey(STATE_PHASE)) {
+            StateType stateType = StateType.valueOf(String.valueOf(attributesManager.getSessionAttributes().get(STATE_PHASE)));
+            if (stateType == StateType.GAME_PHASE_1 || stateType == StateType.GAME_PHASE_2) {
+                attributesManager.getSessionAttributes().put(STATE_PHASE, StateType.RETURN_TO_GAME);
+            }
+        }
+        return IntentType.GAME;
     }
 
     private StateManager handleGameActivity(Map<String, Slot> slots, AttributesManager attributesManager) {

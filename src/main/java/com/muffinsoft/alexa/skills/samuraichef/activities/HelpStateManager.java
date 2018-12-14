@@ -7,6 +7,7 @@ import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.PhraseContainer;
 import com.muffinsoft.alexa.sdk.model.SlotName;
+import com.muffinsoft.alexa.skills.samuraichef.components.BeltColorDefiner;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.HelpPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
@@ -137,7 +138,7 @@ public class HelpStateManager extends BaseStateManager {
                     if (this.userProgress != null) {
                         int stripeCount = this.userProgress.getStripeCount();
                         for (PhraseContainer settings : missionDescriptionHelp) {
-                            String replace = settings.getContent().replace("#", String.valueOf(stripeCount + 1));
+                            String replace = settings.getContent().replace("#", getColorByStripe(stripeCount));
                             ((PhraseSettings) settings).setContent(replace);
                         }
                     }
@@ -153,6 +154,10 @@ public class HelpStateManager extends BaseStateManager {
         }
 
         return builder.build();
+    }
+
+    private String getColorByStripe(int stripe) {
+        return BeltColorDefiner.defineColor(stripe);
     }
 
     private DialogItem handleFirstLoopHelp() {

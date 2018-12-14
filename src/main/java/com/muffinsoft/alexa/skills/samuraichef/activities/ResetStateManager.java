@@ -28,6 +28,7 @@ import java.util.Set;
 
 import static com.muffinsoft.alexa.sdk.enums.StateType.MISSION_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_PLAY_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.RETURN_TO_GAME_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
@@ -169,7 +170,7 @@ public class ResetStateManager extends BaseStateManager {
             getSessionAttributes().put(STATE_PHASE, MISSION_INTRO);
             savePersistentAttributes();
         }
-        else {
+        else if (UserReplyComparator.compare(getUserReply(SlotName.NAVIGATION), UserReplies.BACK)) {
             getSessionAttributes().put(INTENT, IntentType.GAME);
             getSessionAttributes().put(STATE_PHASE, StateType.SUBMISSION_INTRO);
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
@@ -180,6 +181,9 @@ public class ResetStateManager extends BaseStateManager {
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
             }
             getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
+        }
+        else {
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
         }
 
         return builder.build();

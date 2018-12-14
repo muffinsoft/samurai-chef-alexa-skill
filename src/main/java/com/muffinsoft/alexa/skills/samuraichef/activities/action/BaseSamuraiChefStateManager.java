@@ -490,7 +490,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder handleLoseState(DialogItem.Builder builder) {
 
-        if (UserReplyComparator.compare(getUserReply(NAVIGATION), UserReplies.AGAIN) || UserReplyComparator.compare(getUserReply(SlotName.ACTION), UserReplies.YES)) {
+        if (UserReplyComparator.compare(getUserReply(NAVIGATION), UserReplies.AGAIN) || UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
             builder = handleActivityIntroState(builder, this.currentActivity, this.userProgress.getStripeCount());
         }
         else {
