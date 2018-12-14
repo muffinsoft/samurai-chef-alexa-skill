@@ -258,9 +258,12 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     }
 
     private DialogItem.Builder handleReturnToGameState(DialogItem.Builder builder) {
-        this.statePhase = GAME_PHASE_1;
         String ingredient = this.activityProgress.getPreviousIngredient();
+        if (ingredient == null || ingredient.isEmpty()) {
+            ingredient = nextIngredient();
+        }
         builder.addResponse(getDialogTranslator().translate(ingredient));
+        this.statePhase = GAME_PHASE_1;
         return builder;
     }
 

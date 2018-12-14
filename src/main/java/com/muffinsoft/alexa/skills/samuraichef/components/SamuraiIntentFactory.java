@@ -114,7 +114,7 @@ public class SamuraiIntentFactory implements IntentFactory {
         attributesManager.getSessionAttributes().remove(HELP_STATE);
         if (attributesManager.getSessionAttributes().containsKey(STATE_PHASE)) {
             StateType stateType = StateType.valueOf(String.valueOf(attributesManager.getSessionAttributes().get(STATE_PHASE)));
-            if (stateType == StateType.GAME_PHASE_1 || stateType == StateType.GAME_PHASE_2) {
+            if (stateType == StateType.GAME_PHASE_1 || stateType == StateType.GAME_PHASE_2 || stateType == StateType.READY) {
                 attributesManager.getSessionAttributes().put(STATE_PHASE, StateType.RETURN_TO_GAME);
             }
         }
