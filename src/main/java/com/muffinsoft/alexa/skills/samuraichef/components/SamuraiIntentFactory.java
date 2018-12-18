@@ -39,6 +39,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.HELP_STATE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.PREVIOUS_INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 
@@ -105,7 +106,7 @@ public class SamuraiIntentFactory implements IntentFactory {
                     if (slots.containsKey(SlotName.CONFIRMATION.text)) {
                         Slot slot = slots.get(SlotName.CONFIRMATION.text);
                         if (Objects.equals(slot.getValue(), "yes")) {
-                            return getGameIntentType(attributesManager);
+                            return getPreviousOrDefaultIntentType(attributesManager);
                         }
                         if (Objects.equals(slot.getValue(), "no")) {
                             return getSelectMissionIntentType(attributesManager);
@@ -116,7 +117,7 @@ public class SamuraiIntentFactory implements IntentFactory {
                     if (slots.containsKey(SlotName.CONFIRMATION.text)) {
                         Slot slot = slots.get(SlotName.CONFIRMATION.text);
                         if (Objects.equals(slot.getValue(), "no")) {
-                            return getGameIntentType(attributesManager);
+                            return getPreviousOrDefaultIntentType(attributesManager);
                         }
                     }
                 }
@@ -131,16 +132,30 @@ public class SamuraiIntentFactory implements IntentFactory {
         return IntentType.SELECT_MISSION;
     }
 
-    private IntentType getGameIntentType(AttributesManager attributesManager) {
-        attributesManager.getSessionAttributes().put(INTENT, IntentType.GAME);
-        attributesManager.getSessionAttributes().remove(HELP_STATE);
-        if (attributesManager.getSessionAttributes().containsKey(STATE_PHASE)) {
-            StateType stateType = StateType.valueOf(String.valueOf(attributesManager.getSessionAttributes().get(STATE_PHASE)));
-            if (stateType == StateType.GAME_PHASE_1 || stateType == StateType.GAME_PHASE_2 || stateType == StateType.READY) {
-                attributesManager.getSessionAttributes().put(STATE_PHASE, StateType.RETURN_TO_GAME);
+    private IntentType getPreviousOrDefaultIntentType(AttributesManager attributesManager) {
+
+        Map<String, Object> sessionAttributes = attributesManager.getSessionAttributes();
+
+        IntentType intentType = IntentType.GAME;
+
+        if (sessionAttributes.containsKey(PREVIOUS_INTENT)) {
+            intentType = IntentType.valueOf(String.valueOf(sessionAttributes.get(PREVIOUS_INTENT)));
+        }
+
+        if (intentType == IntentType.GAME) {
+            if (sessionAttributes.containsKey(STATE_PHASE)) {
+                StateType stateType = StateType.valueOf(String.valueOf(sessionAttributes.get(STATE_PHASE)));
+                if (stateType == StateType.GAME_PHASE_1 || stateType == StateType.GAME_PHASE_2 || stateType == StateType.READY) {
+                    sessionAttributes.put(STATE_PHASE, StateType.RETURN_TO_GAME);
+                }
             }
         }
-        return IntentType.GAME;
+
+        sessionAttributes.put(INTENT, intentType);
+        sessionAttributes.remove(HELP_STATE);
+        sessionAttributes.remove(PREVIOUS_INTENT);
+
+        return intentType;
     }
 
     private StateManager handleGameActivity(Map<String, Slot> slots, AttributesManager attributesManager) {

@@ -38,6 +38,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.HELP_STATE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.PREVIOUS_INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.LEARN_MORE_HELP;
@@ -177,6 +178,7 @@ public class HelpStateManager extends BaseStateManager {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
         }
 
+        getSessionAttributes().put(PREVIOUS_INTENT, this.currentIntent);
         getSessionAttributes().put(INTENT, IntentType.HELP);
         return builder.build();
     }

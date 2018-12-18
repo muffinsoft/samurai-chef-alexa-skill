@@ -10,6 +10,8 @@ public class SessionConstants {
 
     public static final String INTENT = "intent";
 
+    public static final String PREVIOUS_INTENT = "previousIntent";
+
     public static final String HELP_STATE = "helpState";
 
     public static final String USER_PROGRESS = "userProgress";
