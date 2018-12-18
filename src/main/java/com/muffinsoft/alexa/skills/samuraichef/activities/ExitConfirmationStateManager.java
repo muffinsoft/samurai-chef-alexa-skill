@@ -3,13 +3,13 @@ package com.muffinsoft.alexa.skills.samuraichef.activities;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
+import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsPhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 
 import java.util.List;
@@ -38,12 +38,12 @@ public class ExitConfirmationStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
-        List<PhraseSettings> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.EXIT_PHRASE);
+        List<BasePhraseContainer> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.EXIT_PHRASE);
 
         this.getSessionAttributes().remove(USER_REPLY_BREAKPOINT);
 
         int index = 0;
-        for (PhraseSettings phraseSettings : dialog) {
+        for (BasePhraseContainer BasePhraseContainer : dialog) {
 
             index++;
 
@@ -51,11 +51,11 @@ public class ExitConfirmationStateManager extends BaseStateManager {
                 continue;
             }
 
-            if (phraseSettings.isUserResponse()) {
+            if (BasePhraseContainer.isUserResponse()) {
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
                 break;
             }
-            builder.addResponse(getDialogTranslator().translate(phraseSettings));
+            builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
         }
 
         if (index >= dialog.size()) {

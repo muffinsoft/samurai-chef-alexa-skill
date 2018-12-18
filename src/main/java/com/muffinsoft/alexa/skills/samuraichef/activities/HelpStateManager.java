@@ -4,6 +4,7 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
+import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.PhraseContainer;
 import com.muffinsoft.alexa.sdk.model.SlotName;
@@ -17,7 +18,6 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
@@ -139,7 +139,7 @@ public class HelpStateManager extends BaseStateManager {
                         int stripeCount = this.userProgress.getStripeCount();
                         for (PhraseContainer settings : missionDescriptionHelp) {
                             String replace = settings.getContent().replace("#", getColorByStripe(stripeCount));
-                            ((PhraseSettings) settings).setContent(replace);
+                            ((BasePhraseContainer) settings).setContent(replace);
                         }
                     }
 

@@ -4,6 +4,7 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
+import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.constants.AliasConstants;
@@ -16,7 +17,6 @@ import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
@@ -111,12 +111,12 @@ public class LaunchStateManager extends BaseStateManager {
 
     private void buildRoyalGreetingWithAwards(DialogItem.Builder builder, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
 
-        List<PhraseSettings> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.PLAYER_WITH_AWARDS_GREETING);
+        List<BasePhraseContainer> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.PLAYER_WITH_AWARDS_GREETING);
 
-        for (PhraseSettings phraseSettings : dialog) {
-            String newContent = fillPlaceholder(phraseSettings.getContent(), lowUserProgress, midUserProgress, highUserProgress);
-            phraseSettings.setContent(newContent);
-            builder.addResponse(getDialogTranslator().translate(phraseSettings));
+        for (BasePhraseContainer BasePhraseContainer : dialog) {
+            String newContent = fillPlaceholder(BasePhraseContainer.getContent(), lowUserProgress, midUserProgress, highUserProgress);
+            BasePhraseContainer.setContent(newContent);
+            builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
         }
     }
 
@@ -209,17 +209,17 @@ public class LaunchStateManager extends BaseStateManager {
 
     private void buildInitialGreeting(DialogItem.Builder builder) {
 
-        List<PhraseSettings> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.FIRST_TIME_GREETING);
+        List<BasePhraseContainer> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.FIRST_TIME_GREETING);
 
         int userReplyBreakpointPosition = 0;
 
-        for (PhraseSettings phraseSettings : dialog) {
+        for (BasePhraseContainer BasePhraseContainer : dialog) {
 
-            if (phraseSettings.isUserResponse()) {
+            if (BasePhraseContainer.isUserResponse()) {
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, userReplyBreakpointPosition + 1);
                 break;
             }
-            builder.addResponse(getDialogTranslator().translate(phraseSettings));
+            builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
             userReplyBreakpointPosition++;
         }
     }

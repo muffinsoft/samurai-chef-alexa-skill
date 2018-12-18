@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.enums.StateType;
+import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.PhraseContainer;
 import com.muffinsoft.alexa.sdk.model.SlotName;
@@ -22,7 +23,6 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
@@ -298,7 +298,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.statePhase = SUBMISSION_INTRO;
 
-        List<PhraseSettings> dialog = missionPhraseManager.getMissionIntro(currentMission);
+        List<BasePhraseContainer> dialog = missionPhraseManager.getMissionIntro(currentMission);
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
 
@@ -310,7 +310,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     }
 
     @SuppressWarnings("Duplicates")
-    private int wrapAnyUserResponse(List<PhraseSettings> dialog, DialogItem.Builder builder, StateType statePhase) {
+    private int wrapAnyUserResponse(List<BasePhraseContainer> dialog, DialogItem.Builder builder, StateType statePhase) {
 
         if (this.userReplyBreakpointPosition != null) {
             this.getSessionAttributes().remove(USER_REPLY_BREAKPOINT);
@@ -318,7 +318,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         int index = 0;
 
-        for (PhraseSettings phraseSettings : dialog) {
+        for (BasePhraseContainer BasePhraseContainer : dialog) {
 
             index++;
 
@@ -326,12 +326,12 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 continue;
             }
 
-            if (phraseSettings.isUserResponse()) {
+            if (BasePhraseContainer.isUserResponse()) {
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
                 this.statePhase = statePhase;
                 break;
             }
-            builder.addResponse(getDialogTranslator().translate(phraseSettings));
+            builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
         }
         return index;
     }
@@ -342,7 +342,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.statePhase = ACTIVITY_INTRO;
 
-        List<PhraseSettings> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
+        List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, SUBMISSION_INTRO);
 
@@ -361,7 +361,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, number, this.currentMission);
 
-        for (PhraseSettings partOfSpeech : speechSettings.getIntro()) {
+        for (BasePhraseContainer partOfSpeech : speechSettings.getIntro()) {
             builder.addResponse(getDialogTranslator().translate(partOfSpeech));
         }
 
@@ -480,7 +480,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         calculateStripeProgress();
 
-        List<PhraseSettings> dialog = missionPhraseManager.getStripeOutroByMission(currentMission, number);
+        List<BasePhraseContainer> dialog = missionPhraseManager.getStripeOutroByMission(currentMission, number);
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, WIN);
 
@@ -537,7 +537,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 builder = appendEarnPerfectMissionByLevel(builder);
             }
 
-            List<PhraseSettings> missionOutro = missionPhraseManager.getMissionOutro(currentMission);
+            List<BasePhraseContainer> missionOutro = missionPhraseManager.getMissionOutro(currentMission);
 
             wrapAnyUserResponse(missionOutro, builder, SUBMISSION_OUTRO);
 
@@ -555,7 +555,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder handleMissionOutroState(DialogItem.Builder builder) {
 
-        List<PhraseSettings> missionOutro = missionPhraseManager.getMissionOutro(currentMission);
+        List<BasePhraseContainer> missionOutro = missionPhraseManager.getMissionOutro(currentMission);
 
         int iterationPoint = wrapAnyUserResponse(missionOutro, builder, SUBMISSION_OUTRO);
 
@@ -652,7 +652,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             speechForActivityByStripeNumberAtMission = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
         }
 
-        List<PhraseSettings> outro = speechForActivityByStripeNumberAtMission.getOutro();
+        List<BasePhraseContainer> outro = speechForActivityByStripeNumberAtMission.getOutro();
 
         int iterationPointer = wrapAnyUserResponse(outro, builder, GAME_PHASE_1);
 

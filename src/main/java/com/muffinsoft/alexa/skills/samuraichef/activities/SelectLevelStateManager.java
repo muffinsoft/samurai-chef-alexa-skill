@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.enums.StateType;
+import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
@@ -18,7 +19,6 @@ import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
-import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
@@ -40,7 +40,6 @@ import static com.muffinsoft.alexa.sdk.enums.StateType.READY;
 import static com.muffinsoft.alexa.sdk.enums.StateType.SUBMISSION_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_RESET_PROGRESS_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
@@ -169,7 +168,7 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         this.statePhase = StateType.SUBMISSION_INTRO;
 
-        List<PhraseSettings> dialog = missionPhraseManager.getMissionIntro(currentMission);
+        List<BasePhraseContainer> dialog = missionPhraseManager.getMissionIntro(currentMission);
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
 
@@ -187,7 +186,7 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         Activities currentActivity = missionManager.getFirstActivityForMission(currentMission);
 
-        List<PhraseSettings> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
+        List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, SUBMISSION_INTRO);
 
@@ -203,7 +202,7 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, number, currentMission);
 
-        for (PhraseSettings partOfSpeech : speechSettings.getIntro()) {
+        for (BasePhraseContainer partOfSpeech : speechSettings.getIntro()) {
             builder.addResponse(getDialogTranslator().translate(partOfSpeech));
         }
 
@@ -236,7 +235,7 @@ public class SelectLevelStateManager extends BaseStateManager {
     }
 
     @SuppressWarnings("Duplicates")
-    private int wrapAnyUserResponse(List<PhraseSettings> dialog, DialogItem.Builder builder, StateType statePhase) {
+    private int wrapAnyUserResponse(List<BasePhraseContainer> dialog, DialogItem.Builder builder, StateType statePhase) {
 
         if (this.userReplyBreakpointPosition != null) {
             this.getSessionAttributes().remove(USER_REPLY_BREAKPOINT);
@@ -244,7 +243,7 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         int index = 0;
 
-        for (PhraseSettings phraseSettings : dialog) {
+        for (BasePhraseContainer BasePhraseContainer : dialog) {
 
             index++;
 
@@ -252,12 +251,12 @@ public class SelectLevelStateManager extends BaseStateManager {
                 continue;
             }
 
-            if (phraseSettings.isUserResponse()) {
+            if (BasePhraseContainer.isUserResponse()) {
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
                 this.statePhase = statePhase;
                 break;
             }
-            builder.addResponse(getDialogTranslator().translate(phraseSettings));
+            builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
         }
         return index;
     }

@@ -1,55 +1,57 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
+import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
+
 import java.util.List;
 import java.util.Map;
 
 public class MissionPhrases {
 
-    private List<PhraseSettings> missionIntro;
+    private List<BasePhraseContainer> missionIntro;
 
-    private List<PhraseSettings> missionOutro;
+    private List<BasePhraseContainer> missionOutro;
 
-    private Map<String, List<PhraseSettings>> stripeIntrosByNumber;
+    private Map<String, List<BasePhraseContainer>> stripeIntrosByNumber;
 
-    private Map<String, List<PhraseSettings>> stripeOutrosByNumber;
+    private Map<String, List<BasePhraseContainer>> stripeOutrosByNumber;
 
-    public List<PhraseSettings> getMissionIntro() {
+    public List<BasePhraseContainer> getMissionIntro() {
         return missionIntro;
     }
 
-    public void setMissionIntro(List<PhraseSettings> missionIntro) {
+    public void setMissionIntro(List<BasePhraseContainer> missionIntro) {
         this.missionIntro = missionIntro;
     }
 
-    public List<PhraseSettings> getMissionOutro() {
+    public List<BasePhraseContainer> getMissionOutro() {
         return missionOutro;
     }
 
-    public void setMissionOutro(List<PhraseSettings> missionOutro) {
+    public void setMissionOutro(List<BasePhraseContainer> missionOutro) {
         this.missionOutro = missionOutro;
     }
 
-    public Map<String, List<PhraseSettings>> getStripeIntrosByNumber() {
+    public Map<String, List<BasePhraseContainer>> getStripeIntrosByNumber() {
         return stripeIntrosByNumber;
     }
 
-    public void setStripeIntrosByNumber(Map<String, List<PhraseSettings>> stripeIntrosByNumber) {
+    public void setStripeIntrosByNumber(Map<String, List<BasePhraseContainer>> stripeIntrosByNumber) {
         this.stripeIntrosByNumber = stripeIntrosByNumber;
     }
 
-    public Map<String, List<PhraseSettings>> getStripeOutrosByNumber() {
+    public Map<String, List<BasePhraseContainer>> getStripeOutrosByNumber() {
         return stripeOutrosByNumber;
     }
 
-    public void setStripeOutrosByNumber(Map<String, List<PhraseSettings>> stripeOutrosByNumber) {
+    public void setStripeOutrosByNumber(Map<String, List<BasePhraseContainer>> stripeOutrosByNumber) {
         this.stripeOutrosByNumber = stripeOutrosByNumber;
     }
 
-    public List<PhraseSettings> getStripeOutroByNumber(int number) {
+    public List<BasePhraseContainer> getStripeOutroByNumber(int number) {
         return stripeOutrosByNumber.get(String.valueOf(number));
     }
 
-    public List<PhraseSettings> getStripeIntroByNumber(int number) {
+    public List<BasePhraseContainer> getStripeIntroByNumber(int number) {
         return stripeIntrosByNumber.get(String.valueOf(number));
     }
 }

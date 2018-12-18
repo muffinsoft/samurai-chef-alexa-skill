@@ -1,19 +1,19 @@
 package com.muffinsoft.alexa.skills.samuraichef.content.phrases;
 
 import com.muffinsoft.alexa.sdk.content.BaseContentManager;
-import com.muffinsoft.alexa.skills.samuraichef.models.PhraseSettings;
+import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GreetingsPhraseManager extends BaseContentManager<List<PhraseSettings>> {
+public class GreetingsPhraseManager extends BaseContentManager<List<BasePhraseContainer>> {
 
     public GreetingsPhraseManager(String path) {
         super(path);
     }
 
     @Override
-    public List<PhraseSettings> getValueByKey(String key) {
+    public List<BasePhraseContainer> getValueByKey(String key) {
 
         List valueByKey = super.getValueByKey(key);
 
@@ -21,10 +21,10 @@ public class GreetingsPhraseManager extends BaseContentManager<List<PhraseSettin
             throw new IllegalArgumentException("Can't find text by key: " + key);
         }
 
-        List<PhraseSettings> resultList = new ArrayList<>(valueByKey.size() * 2);
+        List<BasePhraseContainer> resultList = new ArrayList<>(valueByKey.size() * 2);
 
         for (Object raw : valueByKey) {
-            resultList.add(getObjectMapper().convertValue(raw, PhraseSettings.class));
+            resultList.add(getObjectMapper().convertValue(raw, BasePhraseContainer.class));
         }
         return resultList;
     }

@@ -1,12 +1,14 @@
 package com.muffinsoft.alexa.skills.samuraichef.models;
 
+import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
+
 import java.util.List;
 
 public class SpeechSettings {
 
-    private List<PhraseSettings> intro;
-    private List<PhraseSettings> outro;
-    private List<PhraseSettings> demo;
+    private List<BasePhraseContainer> intro;
+    private List<BasePhraseContainer> outro;
+    private List<BasePhraseContainer> demo;
     private boolean shouldRunDemo;
     private String moveToPhaseTwo;
     private String shouldRunDemoPhrase;
@@ -20,27 +22,27 @@ public class SpeechSettings {
         this.shouldRunDemo = shouldRunDemo;
     }
 
-    public List<PhraseSettings> getIntro() {
+    public List<BasePhraseContainer> getIntro() {
         return intro;
     }
 
-    public void setIntro(List<PhraseSettings> intro) {
+    public void setIntro(List<BasePhraseContainer> intro) {
         this.intro = intro;
     }
 
-    public List<PhraseSettings> getOutro() {
+    public List<BasePhraseContainer> getOutro() {
         return outro;
     }
 
-    public void setOutro(List<PhraseSettings> outro) {
+    public void setOutro(List<BasePhraseContainer> outro) {
         this.outro = outro;
     }
 
-    public List<PhraseSettings> getDemo() {
+    public List<BasePhraseContainer> getDemo() {
         return demo;
     }
 
-    public void setDemo(List<PhraseSettings> demo) {
+    public void setDemo(List<BasePhraseContainer> demo) {
         this.demo = demo;
     }
 
