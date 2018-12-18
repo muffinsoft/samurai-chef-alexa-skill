@@ -154,13 +154,13 @@ public class SelectLevelStateManager extends BaseStateManager {
             logger.error(e.getMessage(), e);
         }
 
-        logger.warn("User progess " + userProgress);
+        logger.info("User progress " + userProgress);
 
         if (userProgress == null) {
             handleMissionIntroState(builder, mission, new UserProgress(mission, true));
         }
         else {
-            handleStripeIntroState(builder, userProgress, mission, userProgress.getStripeCount());
+            handleStripeIntroState(builder, mission, userProgress);
         }
     }
 
@@ -173,34 +173,38 @@ public class SelectLevelStateManager extends BaseStateManager {
         int iterationPointer = wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
 
         if (iterationPointer >= dialog.size()) {
-            builder = handleStripeIntroState(builder, userProgress, currentMission, userProgress.getStripeCount());
+            handleStripeIntroState(builder, currentMission, userProgress);
         }
-
-        builder.withSlotName(SlotName.ACTION);
     }
 
     @SuppressWarnings("Duplicates")
-    private DialogItem.Builder handleStripeIntroState(DialogItem.Builder builder, UserProgress userProgress, UserMission currentMission, int number) {
+    private void handleStripeIntroState(DialogItem.Builder builder, UserMission currentMission, UserProgress userProgress) {
 
         this.statePhase = ACTIVITY_INTRO;
 
-        Activities currentActivity = missionManager.getFirstActivityForMission(currentMission);
-
-        List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
+        List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, userProgress.getStripeCount());
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, SUBMISSION_INTRO);
 
         if (iterationPointer >= dialog.size()) {
-            builder = handleActivityIntroState(builder, userProgress, currentActivity, currentMission, number);
+            handleActivityIntroState(builder, currentMission, userProgress);
         }
-
-        return builder.withSlotName(SlotName.ACTION);
     }
 
     @SuppressWarnings("Duplicates")
-    private DialogItem.Builder handleActivityIntroState(DialogItem.Builder builder, UserProgress userProgress, Activities activity, UserMission currentMission, int number) {
+    private void handleActivityIntroState(DialogItem.Builder builder, UserMission currentMission, UserProgress userProgress) {
 
-        SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, number, currentMission);
+        Activities activity;
+
+        String currentActivity = userProgress.getCurrentActivity();
+        if (currentActivity != null && !currentActivity.isEmpty()) {
+            activity = Activities.valueOf(currentActivity);
+        }
+        else {
+            activity = missionManager.getFirstActivityForMission(currentMission);
+        }
+
+        SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, userProgress.getStripeCount(), currentMission);
 
         for (BasePhraseContainer partOfSpeech : speechSettings.getIntro()) {
             builder.addResponse(getDialogTranslator().translate(partOfSpeech));
@@ -223,8 +227,6 @@ public class SelectLevelStateManager extends BaseStateManager {
             this.statePhase = READY;
             appendReadyToStart(builder, userProgress, activity, currentMission);
         }
-
-        return builder.withSlotName(SlotName.ACTION);
     }
 
     private void appendReadyToStart(DialogItem.Builder builder, UserProgress userProgress, Activities activity, UserMission currentMission) {

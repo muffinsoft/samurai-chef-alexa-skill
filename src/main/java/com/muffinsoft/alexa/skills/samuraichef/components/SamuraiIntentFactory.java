@@ -3,10 +3,12 @@ package com.muffinsoft.alexa.skills.samuraichef.components;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.components.IntentFactory;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.enums.StateType;
+import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ExitConfirmationStateManager;
@@ -32,6 +34,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.HELP_STATE;
@@ -79,6 +82,16 @@ public class SamuraiIntentFactory implements IntentFactory {
                 return new ResetConfirmationStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case RESET_MISSION_SELECTION:
                 return new ResetMissionSelectionStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
+            case SELECT_MISSION:
+                return new BaseStateManager(slots, attributesManager, settingsDependencyContainer.getDialogTranslator()) {
+                    @Override
+                    public DialogItem nextResponse() {
+                        attributesManager.getSessionAttributes().put(INTENT, IntentType.GAME);
+                        return DialogItem.builder()
+                                .addResponse(getDialogTranslator().translate(phraseDependencyContainer.getRegularPhraseManager().getValueByKey(SELECT_MISSION_PHRASE)))
+                                .build();
+                    }
+                };
             default:
                 throw new IllegalArgumentException("Unknown intent type " + intent);
         }
@@ -92,7 +105,10 @@ public class SamuraiIntentFactory implements IntentFactory {
                     if (slots.containsKey(SlotName.CONFIRMATION.text)) {
                         Slot slot = slots.get(SlotName.CONFIRMATION.text);
                         if (Objects.equals(slot.getValue(), "yes")) {
-                            return getInterceptedIntentType(attributesManager);
+                            return getGameIntentType(attributesManager);
+                        }
+                        if (Objects.equals(slot.getValue(), "no")) {
+                            return getSelectMissionIntentType(attributesManager);
                         }
                     }
                 }
@@ -100,7 +116,7 @@ public class SamuraiIntentFactory implements IntentFactory {
                     if (slots.containsKey(SlotName.CONFIRMATION.text)) {
                         Slot slot = slots.get(SlotName.CONFIRMATION.text);
                         if (Objects.equals(slot.getValue(), "no")) {
-                            return getInterceptedIntentType(attributesManager);
+                            return getGameIntentType(attributesManager);
                         }
                     }
                 }
@@ -109,7 +125,13 @@ public class SamuraiIntentFactory implements IntentFactory {
         return intent;
     }
 
-    private IntentType getInterceptedIntentType(AttributesManager attributesManager) {
+    private IntentType getSelectMissionIntentType(AttributesManager attributesManager) {
+        attributesManager.getSessionAttributes().clear();
+        attributesManager.getSessionAttributes().put(INTENT, IntentType.SELECT_MISSION);
+        return IntentType.SELECT_MISSION;
+    }
+
+    private IntentType getGameIntentType(AttributesManager attributesManager) {
         attributesManager.getSessionAttributes().put(INTENT, IntentType.GAME);
         attributesManager.getSessionAttributes().remove(HELP_STATE);
         if (attributesManager.getSessionAttributes().containsKey(STATE_PHASE)) {

@@ -5,7 +5,6 @@ import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsPhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
@@ -59,11 +58,11 @@ public class ExitConfirmationStateManager extends BaseStateManager {
         }
 
         if (index >= dialog.size()) {
+            this.getSessionAttributes().remove(USER_REPLY_BREAKPOINT);
             builder.shouldEnd();
         }
 
         return builder
-                .withSlotName(SlotName.ACTION)
                 .turnOffReprompt()
                 .build();
     }

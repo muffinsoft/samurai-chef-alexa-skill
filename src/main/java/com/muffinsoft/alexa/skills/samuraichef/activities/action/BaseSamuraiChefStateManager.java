@@ -306,7 +306,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             builder = handleStripeIntroStrate(builder, currentMission, this.userProgress.getStripeCount());
         }
 
-        return builder.withSlotName(SlotName.ACTION);
+        return builder;
     }
 
     @SuppressWarnings("Duplicates")
@@ -315,6 +315,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         if (this.userReplyBreakpointPosition != null) {
             this.getSessionAttributes().remove(USER_REPLY_BREAKPOINT);
         }
+
+        logger.debug("Going to run dialog for " + statePhase + ". Dialog contains " + dialog.size() + " elements. Current step: " + this.userReplyBreakpointPosition);
 
         int index = 0;
 
@@ -327,18 +329,26 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             }
 
             if (BasePhraseContainer.isUserResponse()) {
+                this.userReplyBreakpointPosition = index;
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
                 this.statePhase = statePhase;
                 break;
             }
             builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
         }
+
+        if (index >= dialog.size()) {
+            this.userReplyBreakpointPosition = null;
+            this.getSessionAttributes().remove(SessionConstants.USER_REPLY_BREAKPOINT);
+            logger.debug("Dialog at " + statePhase + " is finished");
+        }
+
         return index;
     }
 
     private DialogItem.Builder handleStripeIntroStrate(DialogItem.Builder builder, UserMission currentMission, int number) {
 
-        logger.debug("Handling " + this.statePhase + ". Moving to " + ACTIVITY_INTRO);
+        logger.debug("Handling " + this.statePhase + ". Moving to " + SUBMISSION_INTRO);
 
         this.statePhase = ACTIVITY_INTRO;
 
@@ -350,10 +360,12 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             builder = handleActivityIntroState(builder, this.currentActivity, number);
         }
 
-        return builder.withSlotName(SlotName.ACTION);
+        return builder;
     }
 
     private DialogItem.Builder handleActivityIntroState(DialogItem.Builder builder, Activities activity, int number) {
+
+        logger.debug("Handling " + this.statePhase + ". Moving to " + ACTIVITY_INTRO);
 
         this.userProgress.setCurrentActivity(activity.name());
 
@@ -385,7 +397,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         resetActivityProgress();
 
-        return builder.withSlotName(SlotName.ACTION);
+        return builder;
     }
 
     private DialogItem.Builder handleDemoState(DialogItem.Builder builder) {
@@ -411,7 +423,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             }
         }
 
-        return builder.withSlotName(SlotName.ACTION);
+        return builder;
     }
 
     private DialogItem.Builder handleReadyToStartState(DialogItem.Builder builder) {
@@ -433,7 +445,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             builder.addResponse(getDialogTranslator().translate(speechText));
         }
-        return builder.withSlotName(SlotName.ACTION);
+        return builder;
     }
 
     protected void resetActivityProgress() {
@@ -514,7 +526,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.getSessionAttributes().remove(CURRENT_MISSION);
 
-        return builder.withSlotName(SlotName.ACTION).addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+        return builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
     }
 
     private DialogItem.Builder handleStripeOutroState(DialogItem.Builder builder, UserMission currentMission) {
@@ -541,7 +553,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             wrapAnyUserResponse(missionOutro, builder, SUBMISSION_OUTRO);
 
-            return builder.withSlotName(SlotName.ACTION);
+            return builder;
         }
         else {
             return handleStripeIntroStrate(builder, this.currentMission, this.userProgress.getStripeCount());
@@ -582,7 +594,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             savePersistentAttributes();
         }
 
-        return builder.withSlotName(SlotName.ACTION);
+        return builder;
     }
 
     private void calculateStripeProgress() {
@@ -639,7 +651,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             builder
                     .replaceResponse(getDialogTranslator().translate(randomIngredient.getIngredient()))
                     .addResponse(getDialogTranslator().translate(wrongReplyOnIngredient, this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
-                    .withSlotName(SlotName.ACTION)
                     .withReprompt(getDialogTranslator().translate(regularPhraseManager.getValueByKey(WON_REPROMPT_PHRASE)));
         }
 
@@ -671,7 +682,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             }
         }
 
-        return builder.withSlotName(SlotName.ACTION);
+        return builder;
     }
 
     @SuppressWarnings("Duplicates")
@@ -716,7 +727,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     DialogItem.Builder getRePromptSuccessDialog(DialogItem.Builder builder) {
         return builder
                 .addResponse(getDialogTranslator().translate(this.activityProgress.getPreviousIngredient()))
-                .withSlotName(SlotName.ACTION)
                 .turnOffReprompt();
     }
 
@@ -724,7 +734,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         String ingredient = nextIngredient();
 
-        builder.addResponse(getDialogTranslator().translate(ingredient)).withSlotName(SlotName.ACTION);
+        builder.addResponse(getDialogTranslator().translate(ingredient));
 
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             return appendMockCompetitionAnswer(builder);
@@ -751,7 +761,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder
                 .addResponse(getDialogTranslator().translate(speechText))
                 .addResponse(getDialogTranslator().translate(ingredient))
-                .withSlotName(SlotName.ACTION)
+
                 .turnOffReprompt();
     }
 
@@ -760,7 +770,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(value)))
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(FAILURE_PHRASE)))
-                .withSlotName(SlotName.ACTION)
+
                 .withReprompt(getDialogTranslator().translate(regularPhraseManager.getValueByKey(FAILURE_REPROMPT_PHRASE)));
     }
 
