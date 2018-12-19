@@ -40,6 +40,7 @@ import static com.muffinsoft.alexa.sdk.enums.StateType.READY;
 import static com.muffinsoft.alexa.sdk.enums.StateType.SUBMISSION_INTRO;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_RESET_PROGRESS_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
@@ -53,6 +54,8 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies.HIGH;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies.LOW;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies.MEDIUM;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies.NO;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies.YES;
 
 public class SelectLevelStateManager extends BaseStateManager {
 
@@ -107,6 +110,10 @@ public class SelectLevelStateManager extends BaseStateManager {
         else if (UserReplyComparator.compare(getUserReply(SlotName.MISSION), HIGH)) {
             checkIfMissionAvailable(builder, UserMission.HIGH_MISSION);
         }
+        else if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), YES) ||
+                UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), NO)) {
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+        }
         else {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
         }
@@ -136,7 +143,7 @@ public class SelectLevelStateManager extends BaseStateManager {
             this.getSessionAttributes().remove(STATE_PHASE);
         }
         else {
-            this.getSessionAttributes().put(STATE_PHASE, StateType.SUBMISSION_INTRO);
+            this.getSessionAttributes().put(STATE_PHASE, MISSION_INTRO);
         }
         logger.info("user will be redirected to " + mission.name());
 
@@ -157,11 +164,9 @@ public class SelectLevelStateManager extends BaseStateManager {
         logger.info("User progress " + userProgress);
 
         if (userProgress == null) {
-            handleMissionIntroState(builder, mission, new UserProgress(mission, true));
+            userProgress = new UserProgress(mission, true);
         }
-        else {
-            handleStripeIntroState(builder, mission, userProgress);
-        }
+        handleMissionIntroState(builder, mission, userProgress);
     }
 
     private void handleMissionIntroState(DialogItem.Builder builder, UserMission currentMission, UserProgress userProgress) {
