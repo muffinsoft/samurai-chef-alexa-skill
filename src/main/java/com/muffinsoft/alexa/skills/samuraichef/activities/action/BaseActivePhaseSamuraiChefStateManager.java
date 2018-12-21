@@ -4,8 +4,6 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.PhraseContainer;
-import com.muffinsoft.alexa.skills.samuraichef.components.PowerUpFabric;
-import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
@@ -15,6 +13,8 @@ import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.model.SlotName.ACTION;
 import static com.muffinsoft.alexa.sdk.model.SlotName.ACTION_ALTERNATIVE;
+import static com.muffinsoft.alexa.skills.samuraichef.components.PowerUpFabric.getNextPowerUp;
+import static com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator.compare;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_EARN_CORRECT_ANSWER_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_EARN_SECOND_CHANCE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.JUST_USE_CORRECT_ANSWER_PHRASE;
@@ -41,8 +41,8 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
         String reaction = this.activityProgress.getCurrentIngredientReaction();
 
-        if (UserReplyComparator.compare(getUserReply(ACTION), reaction)
-                || UserReplyComparator.compare(getUserReply(ACTION_ALTERNATIVE), reaction)) {
+        if (compare(getUserReply(ACTION), reaction)
+                || compare(getUserReply(ACTION_ALTERNATIVE), reaction)) {
             builder = handleSuccess(builder);
         }
         else {
@@ -56,14 +56,14 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         return builder;
     }
 
-    protected DialogItem.Builder handleTooLongMistake(DialogItem.Builder builder) {
+    DialogItem.Builder handleTooLongMistake(DialogItem.Builder builder) {
         this.activityProgress.iterateMistakeCount();
         this.activityProgress.resetSuccessInRow();
 
         return getTooLongMistakeDialog(builder);
     }
 
-    protected DialogItem.Builder handleMistake(DialogItem.Builder builder) {
+    DialogItem.Builder handleMistake(DialogItem.Builder builder) {
 
         this.activityProgress.iterateMistakeCount();
         this.activityProgress.resetSuccessInRow();
@@ -183,7 +183,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         }
     }
 
-    protected DialogItem.Builder handleSuccess(DialogItem.Builder builder) {
+    DialogItem.Builder handleSuccess(DialogItem.Builder builder) {
 
         this.activityProgress.iterateSuccessCount();
         this.activityProgress.iterateSuccessInARow();
@@ -192,7 +192,7 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             logger.debug("Suitable case for earning new equipment. Lets check if user have enough space ...");
 
-            PowerUps nextPowerUp = PowerUpFabric.getNext(this.activityProgress.getExistingPowerUps());
+            PowerUps nextPowerUp = getNextPowerUp(this.activityProgress.getExistingPowerUps());
             if (nextPowerUp != null) {
                 this.activityProgress.addPowerUp(nextPowerUp);
                 logger.debug("Was earned equipment: " + nextPowerUp);

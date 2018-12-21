@@ -9,7 +9,6 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.PhraseContainer;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.BeltColorDefiner;
-import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.HelpPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
@@ -27,6 +26,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator.compare;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_GENERAL_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_LEARN_MORE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MISSION_HIGH_DESCRIPTION_PHRASE;
@@ -110,7 +110,7 @@ public class HelpStateManager extends BaseStateManager {
 
             case PROCEED_GAME:
 
-                if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
+                if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
                     handleProceedGame(builder);
                 }
                 else {
@@ -122,7 +122,7 @@ public class HelpStateManager extends BaseStateManager {
                 break;
 
             case LEARN_MORE_HELP:
-                if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
+                if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
                     List<PhraseContainer> missionDescriptionHelp;
 
                     if (currentMission == UserMission.LOW_MISSION) {

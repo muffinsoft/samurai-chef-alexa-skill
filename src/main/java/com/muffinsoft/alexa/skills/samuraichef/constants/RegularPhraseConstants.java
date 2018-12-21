@@ -17,7 +17,7 @@ public class RegularPhraseConstants {
     public static final String LAST_MISTAKE_COMPETITION_PHRASE = "lastMistakeCompetitionPhrase";
     public static final String LAST_MISTAKE_COMPETITION_TOO_LONG_PHRASE = "lastMistakeCompetitionTooLongPhrase";
 
-    public static final String WON_REPROMPT_PHRASE = "wonRePromptPhrase";
+    public static final String WON_RE_PROMPT_PHRASE = "wonRePromptPhrase";
 
     public static final String FAILURE_PHRASE = "failurePhrase";
 
@@ -25,7 +25,7 @@ public class RegularPhraseConstants {
 
     public static final String MISSION_SELECTION_PHRASE = "missionSelectionPhrase";
 
-    public static final String FAILURE_REPROMPT_PHRASE = "failureRePromptPhrase";
+    public static final String FAILURE_RE_PROMPT_PHRASE = "failureRePromptPhrase";
 
     public static final String JUST_EARN_SECOND_CHANCE_PHRASE = "justEarnSecondChancePhrase";
 

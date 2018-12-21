@@ -7,7 +7,6 @@ import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.PhraseContainer;
 import com.muffinsoft.alexa.sdk.model.SlotName;
-import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
@@ -25,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator.compare;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_EXIT_PHRASE;
@@ -104,14 +104,14 @@ public class CancelStateManager extends BaseStateManager {
 
         List<PhraseContainer> dialog;
 
-        if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
+        if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
             savePersistentAttributes();
             dialog = regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE);
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, IntentType.GAME);
         }
-        else if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.NO)) {
+        else if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.NO)) {
             savePersistentAttributes();
             dialog = regularPhraseManager.getValueByKey(WANT_EXIT_PHRASE);
             getSessionAttributes().put(INTENT, IntentType.EXIT);

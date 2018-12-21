@@ -16,7 +16,7 @@ import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiSelectPathIntentH
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiStopIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiYesIntentHandler;
 
-public class SamuraiChefStreamHandler extends SkillStreamHandler {
+class SamuraiChefStreamHandler extends SkillStreamHandler {
 
     public SamuraiChefStreamHandler() {
         super(getSkill());

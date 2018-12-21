@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class MissionPhraseManager {
 
-    private Map<String, MissionPhrases> container;
+    private final Map<String, MissionPhrases> container;
 
     public MissionPhraseManager(String path) {
         this.container = new ContentLoader(new ObjectMapper()).loadContent(new HashMap<>(), path, new TypeReference<Map<String, MissionPhrases>>() {

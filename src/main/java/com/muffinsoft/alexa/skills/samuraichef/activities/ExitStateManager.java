@@ -8,7 +8,6 @@ import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
-import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsPhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
@@ -25,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.enums.StateType.MISSION_INTRO;
+import static com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator.compare;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_PLAY_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.RETURN_TO_GAME_PHRASE;
@@ -40,7 +40,6 @@ public class ExitStateManager extends BaseStateManager {
     private final RegularPhraseManager regularPhraseManager;
     private final GreetingsPhraseManager greetingsPhraseManager;
 
-    private StateType statePhase;
     private ActivityProgress activityProgress;
 
     public ExitStateManager(Map<String, Slot> inputSlots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
@@ -51,7 +50,7 @@ public class ExitStateManager extends BaseStateManager {
 
     @Override
     protected void populateActivityVariables() {
-        statePhase = StateType.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
+        StateType statePhase = StateType.valueOf(String.valueOf(getSessionAttributes().getOrDefault(STATE_PHASE, MISSION_INTRO)));
         LinkedHashMap rawActivityProgress = (LinkedHashMap) getSessionAttributes().get(ACTIVITY_PROGRESS);
         activityProgress = rawActivityProgress != null ? mapper.convertValue(rawActivityProgress, ActivityProgress.class) : new ActivityProgress();
     }
@@ -64,7 +63,7 @@ public class ExitStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
-        if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
+        if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
             List<BasePhraseContainer> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.EXIT_PHRASE);
 
             int userReplyBreakpointPosition = 0;
@@ -81,7 +80,7 @@ public class ExitStateManager extends BaseStateManager {
             }
             this.getSessionAttributes().put(INTENT, IntentType.EXIT_CONFIRMATION);
         }
-        else if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), UserReplies.NO)) {
+        else if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.NO)) {
             getSessionAttributes().put(INTENT, IntentType.GAME);
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {

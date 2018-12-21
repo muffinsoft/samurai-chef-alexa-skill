@@ -138,22 +138,17 @@ public class ActivityProgress {
     }
 
     @JsonIgnore
-    public String removePowerUp() {
-        String currentlyEquippedPowerUp = this.activePowerUp;
+    public void removePowerUp() {
         this.existingPowerUps.remove(this.activePowerUp);
         this.activePowerUp = null;
-        return currentlyEquippedPowerUp;
     }
 
     @JsonIgnore
-    public PowerUps equipIfAvailable() {
-        if (existingPowerUps.isEmpty()) {
-            return null;
-        }
-        else {
+    public void equipIfAvailable() {
+        if (!existingPowerUps.isEmpty()) {
             String title = String.valueOf(existingPowerUps.toArray()[0]);
             this.activePowerUp = title;
-            return PowerUps.valueOf(title);
+            PowerUps.valueOf(title);
         }
     }
 }

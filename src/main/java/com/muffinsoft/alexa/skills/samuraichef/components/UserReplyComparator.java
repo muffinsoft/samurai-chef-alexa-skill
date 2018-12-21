@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserReplyComparator {
 
-    protected static final Logger logger = LogManager.getLogger(UserReplyComparator.class);
+    private static final Logger logger = LogManager.getLogger(UserReplyComparator.class);
 
     public static boolean compare(List<String> userReplies, UserReplies expectedValue) {
         logger.info("Going to compare " + expectedValue + " with user replies " + userReplies);

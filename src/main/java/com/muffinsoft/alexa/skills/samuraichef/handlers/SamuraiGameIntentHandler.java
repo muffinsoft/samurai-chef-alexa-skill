@@ -25,7 +25,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_MID_PROGRESS_DB;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 
-public abstract class SamuraiGameIntentHandler extends GameIntentHandler {
+abstract class SamuraiGameIntentHandler extends GameIntentHandler {
 
     SamuraiGameIntentHandler(IntentFactory intentFactory) {
         super(intentFactory);
@@ -102,12 +102,13 @@ public abstract class SamuraiGameIntentHandler extends GameIntentHandler {
 
     @Override
     protected IntentType getIntentFromRequest(AttributesManager attributesManager) {
-        String stringifyIntent = String.valueOf(attributesManager.getSessionAttributes().get(SessionConstants.INTENT));
-        if (stringifyIntent == null) {
+        Object rawIntent = attributesManager.getSessionAttributes().get(SessionConstants.INTENT);
+        if (rawIntent == null) {
             logger.info("Was evoked action intent handler with default Intent Type");
             return IntentType.GAME;
         }
         else {
+            String stringifyIntent = String.valueOf(rawIntent);
             logger.info("Was evoked action intent handler with Intent Type: " + stringifyIntent);
             return IntentType.valueOf(stringifyIntent);
         }

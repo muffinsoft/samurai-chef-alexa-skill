@@ -1,6 +1,7 @@
 package com.muffinsoft.alexa.skills.samuraichef.tests.activities;
 
 import com.amazon.ask.model.Slot;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.IoC;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -23,14 +24,14 @@ public class SelectMissionStateManagerTest extends BaseStateManagerTest {
     @Test
     void testBlockingFinishedMission() {
 
-        Map<String, Slot> slots = createSlotsForValue("chef");
+        Map<String, Slot> slots = createSlotsForValue(SlotName.MISSION, "chef");
 
         ActivityProgress activityProgress = new ActivityProgress();
 
         UserProgress userProgress = new UserProgress();
 
         Map<String, Object> attributes = new HashMap<>();
-        attributes.put(FINISHED_MISSIONS, Arrays.asList(UserMission.LOW_MISSION.name()));
+        attributes.put(FINISHED_MISSIONS, Collections.singletonList(UserMission.LOW_MISSION.name()));
         attributes.put(ACTIVITY_PROGRESS, toMap(activityProgress));
         attributes.put(USER_PROGRESS, toMap(userProgress));
 
@@ -48,7 +49,7 @@ public class SelectMissionStateManagerTest extends BaseStateManagerTest {
     //    @Test
     void testAllowingNonFinishedMission() {
 
-        Map<String, Slot> slots = createSlotsForValue("chef");
+        Map<String, Slot> slots = createSlotsForValue(SlotName.MISSION,"chef");
 
         ActivityProgress activityProgress = new ActivityProgress();
 

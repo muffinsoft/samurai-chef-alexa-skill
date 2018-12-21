@@ -5,7 +5,7 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
 //    @Test
 //    void testStartGeneralHelp() {
 //
-//        Map<String, Slot> slots = createSlotsForValue("any");
+//        Map<String, Slot> slots = createSlotsForValue(SlotName.ACTION, "any");
 //
 //        Map<String, Object> attributes = new HashMap<>();
 //
@@ -23,7 +23,7 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
 //    @Test
 //    void testStartActivityCompetitionHelp() {
 //
-//        Map<String, Slot> slots = createSlotsForValue("any");
+//        Map<String, Slot> slots = createSlotsForValue(SlotName.ACTION, "any");
 //
 //        Map<String, Object> attributes = new HashMap<>();
 //
@@ -46,7 +46,7 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
 //    @Test
 //    void testStartActivityRegularFirstTimeHelp() {
 //
-//        Map<String, Slot> slots = createSlotsForValue("any");
+//        Map<String, Slot> slots = createSlotsForValue(SlotName.ACTION, "any");
 //
 //        Map<String, Object> attributes = new HashMap<>();
 //
@@ -69,7 +69,7 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
 //    @Test
 //    void testStartActivityRegularHelp() {
 //
-//        Map<String, Slot> slots = createSlotsForValue("any");
+//        Map<String, Slot> slots = createSlotsForValue(SlotName.ACTION, "any");
 //
 //        Map<String, Object> userProgress = new LinkedHashMap<>();
 //        userProgress.put("currentActivity", FOOD_TASTER.name());
@@ -93,7 +93,7 @@ public class HelpStateManagerTest extends BaseStateManagerTest {
 //    @Test
 //    void testStartMissionHelp() {
 //
-//        Map<String, Slot> slots = createSlotsForValue("any");
+//        Map<String, Slot> slots = createSlotsForValue(SlotName.ACTION, "any");
 //
 //        Map<String, Object> attributes = new HashMap<>();
 //        attributes.put(CURRENT_MISSION, UserMission.LOW_MISSION.name());

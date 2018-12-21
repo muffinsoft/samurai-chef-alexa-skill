@@ -9,7 +9,6 @@ import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
-import com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.MissionPhraseManager;
@@ -38,6 +37,7 @@ import static com.muffinsoft.alexa.sdk.enums.StateType.DEMO;
 import static com.muffinsoft.alexa.sdk.enums.StateType.MISSION_INTRO;
 import static com.muffinsoft.alexa.sdk.enums.StateType.READY;
 import static com.muffinsoft.alexa.sdk.enums.StateType.SUBMISSION_INTRO;
+import static com.muffinsoft.alexa.skills.samuraichef.components.UserReplyComparator.compare;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.MISSION_ALREADY_COMPLETE_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REPEAT_LAST_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
@@ -101,17 +101,17 @@ public class SelectLevelStateManager extends BaseStateManager {
         logger.debug("Starting handling user reply '" + this.getUserReply(SlotName.ACTION) + "' ...");
 
         DialogItem.Builder builder = DialogItem.builder();
-        if (UserReplyComparator.compare(getUserReply(SlotName.MISSION), LOW)) {
+        if (compare(getUserReply(SlotName.MISSION), LOW)) {
             checkIfMissionAvailable(builder, UserMission.LOW_MISSION);
         }
-        else if (UserReplyComparator.compare(getUserReply(SlotName.MISSION), MEDIUM)) {
+        else if (compare(getUserReply(SlotName.MISSION), MEDIUM)) {
             checkIfMissionAvailable(builder, UserMission.MEDIUM_MISSION);
         }
-        else if (UserReplyComparator.compare(getUserReply(SlotName.MISSION), HIGH)) {
+        else if (compare(getUserReply(SlotName.MISSION), HIGH)) {
             checkIfMissionAvailable(builder, UserMission.HIGH_MISSION);
         }
-        else if (UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), YES) ||
-                UserReplyComparator.compare(getUserReply(SlotName.CONFIRMATION), NO)) {
+        else if (compare(getUserReply(SlotName.CONFIRMATION), YES) ||
+                compare(getUserReply(SlotName.CONFIRMATION), NO)) {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
         }
         else {
@@ -182,7 +182,6 @@ public class SelectLevelStateManager extends BaseStateManager {
         }
     }
 
-    @SuppressWarnings("Duplicates")
     private void handleStripeIntroState(DialogItem.Builder builder, UserMission currentMission, UserProgress userProgress) {
 
         this.statePhase = ACTIVITY_INTRO;
@@ -196,7 +195,6 @@ public class SelectLevelStateManager extends BaseStateManager {
         }
     }
 
-    @SuppressWarnings("Duplicates")
     private void handleActivityIntroState(DialogItem.Builder builder, UserMission currentMission, UserProgress userProgress) {
 
         Activities activity;
@@ -241,7 +239,6 @@ public class SelectLevelStateManager extends BaseStateManager {
         builder.addResponse(getDialogTranslator().translate(speechSettings.getReadyToStartPhrase()));
     }
 
-    @SuppressWarnings("Duplicates")
     private int wrapAnyUserResponse(List<BasePhraseContainer> dialog, DialogItem.Builder builder, StateType statePhase) {
 
         if (this.userReplyBreakpointPosition != null) {

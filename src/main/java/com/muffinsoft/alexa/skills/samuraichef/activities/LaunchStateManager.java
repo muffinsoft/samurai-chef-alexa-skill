@@ -60,7 +60,7 @@ public class LaunchStateManager extends BaseStateManager {
     @Override
     protected void populateActivityVariables() {
 
-        List<String> finishedMissionArray = (List<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new ArrayList<String>());
+        @SuppressWarnings("unchecked") List<String> finishedMissionArray = (List<String>) getSessionAttributes().getOrDefault(FINISHED_MISSIONS, new ArrayList<String>());
         this.finishedMissions = new HashSet<>(finishedMissionArray);
 
         logger.debug("Session attributes on the start of handling: " + this.getSessionAttributes().toString());

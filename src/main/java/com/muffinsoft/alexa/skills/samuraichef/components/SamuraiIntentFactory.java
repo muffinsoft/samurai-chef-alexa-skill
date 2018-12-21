@@ -45,7 +45,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 
 public class SamuraiIntentFactory implements IntentFactory {
 
-    protected static final Logger logger = LogManager.getLogger(SamuraiIntentFactory.class);
+    private static final Logger logger = LogManager.getLogger(SamuraiIntentFactory.class);
 
     private final SettingsDependencyContainer settingsDependencyContainer;
     private final PhraseDependencyContainer phraseDependencyContainer;

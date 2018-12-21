@@ -9,7 +9,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.enums.PowerUps.SECOND_CHAN
 
 public class PowerUpFabric {
 
-    public static PowerUps getNext(Set<String> existingPowerUps) {
+    public static PowerUps getNextPowerUp(Set<String> existingPowerUps) {
 
         if (existingPowerUps.isEmpty()) {
             return SECOND_CHANCE_SLOT;

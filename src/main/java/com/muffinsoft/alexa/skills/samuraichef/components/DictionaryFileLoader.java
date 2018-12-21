@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,7 @@ public class DictionaryFileLoader {
 
     private Path definePathToFile(String filename) {
 
-        return new File(getClass().getClassLoader().getResource(filename).getFile()).toPath();
+        return new File(Objects.requireNonNull(getClass().getClassLoader().getResource(filename)).getFile()).toPath();
     }
 
 

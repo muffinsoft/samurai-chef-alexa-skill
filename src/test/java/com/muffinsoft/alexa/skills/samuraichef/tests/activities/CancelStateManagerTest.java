@@ -3,6 +3,7 @@ package com.muffinsoft.alexa.skills.samuraichef.tests.activities;
 import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.enums.StateType;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.IoC;
 import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
@@ -28,7 +29,7 @@ class CancelStateManagerTest extends BaseStateManagerTest {
     @Test
     void testCancelYes() throws IOException {
 
-        Map<String, Slot> slots = createSlotsForValue("yes");
+        Map<String, Slot> slots = createSlotsForValue(SlotName.CONFIRMATION, "yes");
 
         ActivityProgress activityProgress = new ActivityProgress();
 
