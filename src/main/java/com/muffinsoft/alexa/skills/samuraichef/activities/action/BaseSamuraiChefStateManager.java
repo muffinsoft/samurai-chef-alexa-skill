@@ -749,7 +749,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         WordReaction randomIngredient = getRandomIngredient();
 
         builder.addResponse(getDialogTranslator().translate(randomIngredient.getIngredient()))
+                .addResponse(getDialogTranslator().translate(BasePhraseContainer.pause(1000)))
                 .addResponse(getDialogTranslator().translate(randomIngredient.getUserReply(), this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
+                .addResponse(getDialogTranslator().translate(BasePhraseContainer.pause(1500)))
                 .addResponse(speech);
 
         return builder;
