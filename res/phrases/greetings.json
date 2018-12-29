@@ -1,7 +1,7 @@
 {
   "firstTimeGreeting": [
     {
-      "content": "Hey! I'm super excited that you called! Want to know what I've got in store for us today?",
+      "content": "Hey! Welcome to Samurai Chef! I'm super excited that you called! Can you guess what we're doing today?",
       "role": "Ben",
       "audio": null
     },
@@ -9,7 +9,7 @@
       "userResponse": true
     },
     {
-      "content": "Today we're visiting Sensei! He owns a Japanese restaurant and makes food, samurai style! I heard he needs some new apprentices. Let's go find out more!",
+      "content": "Today we're visiting Sensei Sushi and his right-hand cook, Chef Arthur! They run a Japanese restaurant and make food, samurai style! I heard they need some new apprentices. Let's go find out more!",
       "role": "Ben",
       "audio": null
     },
@@ -19,13 +19,13 @@
       "audio": null
     },
     {
-      "content": "Greetings, Sensei! This is my friend. We're here to learn your ways!",
+      "content": "Greetings, Chef Arthur! This is my friend. We're here to learn Sensei's ways!",
       "role": "Ben",
       "audio": null
     },
     {
-      "content": "Hello! Ah, you wish to be my disciples. First, I have one question: do you like... sushi?",
-      "role": "Sensei",
+      "content": "Hello! Is that so? It's the reason I moved here from Britain years ago! First, I have one question: do you like... sushi",
+      "role": "Arthur",
       "audio": null
     },
     {
@@ -37,22 +37,22 @@
       "audio": null
     },
     {
-      "content": "People say I'm the wisest, most skilled sushi samurai in the world! But my passion is also to teach others. Do you have what it takes to learn from a master?",
-      "role": "Sensei",
+      "content": "Excellent! As you know, Sensei is the wisest, most skilled sushi samurai in the world! But his passion is also to teach others. Do you have what it takes to learn from a master?",
+      "role": "Arthur",
       "audio": null
     },
     {
       "userResponse": true
     },
     {
-      "content": "Oh yeah! Let's prove to Sensei that we can become Sushi Masters!  Alexa, tell us the available paths!",
+      "content": "Oh yeah! Let's prove to Chef Arthur and Sensei Sushi that we can become Sushi Masters!  Alexa, tell us the available paths!",
       "role": "Ben",
       "audio": null
     }
   ],
   "playerWithAwardsGreeting": [
     {
-      "content": "Welcome back! I'm so happy to see you again....Alexa, please give our friend a royal greeting!",
+      "content": "Welcome back to Samurai Chef! I'm so happy to see you again....Alexa, please give our friend a royal greeting!",
       "role": "Ben",
       "audio": null
     },

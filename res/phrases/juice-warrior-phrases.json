@@ -3,8 +3,8 @@
     "0": {
       "outro": [
         {
-          "content": "You're getting the hang of this!",
-          "role": "Ben",
+          "content": "You get better. I like that.",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -14,12 +14,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "Big order just came in! Need lots of seaweed, and fast! I give you no more than 5 seconds to prepare item.",
-          "role": "Sensei",
+          "content": "A big order just came in! We need lots of seaweed, and fast! I'll give you no more than 5 seconds to prepare items.",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "To prepare seaweed, say.",
+          "content": "To roll seaweed, say.",
           "role": "Ben",
           "audio": null
         },
@@ -35,12 +35,12 @@
       "demo": [
         {
           "content": "Watch Ben closely!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "Rice!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -55,7 +55,7 @@
         },
         {
           "content": "Fish!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -65,7 +65,7 @@
         },
         {
           "content": "Seaweed!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -75,7 +75,7 @@
         },
         {
           "content": "Carrot!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -85,7 +85,7 @@
         },
         {
           "content": "Egg!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -104,8 +104,8 @@
     "1": {
       "outro": [
         {
-          "content": "Now I'm in the mood for some dessert!",
-          "role": "Ben",
+          "content": "Keep up good work.",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -115,12 +115,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "You will now also taste mochi ice cream! Hope you've got a sweet tooth! For this challenge you'll have 5 seconds to answer!",
-          "role": "Sensei",
+          "content": "You will now also taste mochi ice cream! I hope you've got a sweet tooth! For this challenge you'll have 5 seconds to answer!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "To eat mochi, say.",
+          "content": "To lick some mochi, say.",
           "role": "Ben",
           "audio": null
         },
@@ -141,8 +141,8 @@
     "0": {
       "outro": [
         {
-          "content": "Hey, I think you're getting bigger already!",
-          "role": "Ben",
+          "content": "You grow bigger. Excellent.",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -152,12 +152,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
         },
         {
-          "content": "Now I also cook you stew! Loaded with vitamins and good for stomach! You have only 5 seconds to taste correctly!",
-          "role": "Sensei",
+          "content": "Now I'll also cook you stew! It's loaded with vitamins and good for the stomach! You have only 5 seconds to taste correctly!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "To eat stew, say.",
+          "content": "To slurp up stew, say.",
           "role": "Ben",
           "audio": null
         },
@@ -173,12 +173,12 @@
       "demo": [
         {
           "content": "Watch Ben closely!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "Chicken!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -188,7 +188,7 @@
         },
         {
           "content": "Sushi!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -198,7 +198,7 @@
         },
         {
           "content": "Stew!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -208,7 +208,7 @@
         },
         {
           "content": "Fried Fish!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -218,7 +218,7 @@
         },
         {
           "content": "Now it’s your turn, Ben’s friend.",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -227,8 +227,8 @@
     "1": {
       "outro": [
         {
-          "content": "You've got this! Resist the urge to eat that junk food!",
-          "role": "Ben",
+          "content": "Promising effort!",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -238,12 +238,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
         },
         {
-          "content": "Now we add candy too! Not healthy! Also give cavities! You have only 5 seconds to respond.",
-          "role": "Sensei",
+          "content": "Now we'll add candy too! It's not healthy and gives you cavities! You have only 5 seconds to respond!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "If sensei gives you beef or tofu, say.",
+          "content": "If Arthur gives you beef or tofu, say.",
           "role": "Ben",
           "audio": null
         },
@@ -274,8 +274,8 @@
     "0": {
       "outro": [
         {
-          "content": "You're an ice crushing machine! Good work!",
-          "role": "Ben",
+          "content": "Notable effort.",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -285,12 +285,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "Customers want refreshing drink so we add ice! Let's be quick! Have ingredients ready in less than 5 seconds!",
-          "role": "Sensei",
+          "content": "Customers want refreshing drinks, so we'll now add ice! Let's be quick! Have the ingredients ready in less than 5 seconds!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "To prepare ice, say.",
+          "content": "To crunch up ice, say.",
           "role": "Ben",
           "audio": null
         },
@@ -306,12 +306,12 @@
       "demo": [
         {
           "content": "Watch Ben closely!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": ""
         },
         {
           "content": "Carrot!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": ""
         },
         {
@@ -321,7 +321,7 @@
         },
         {
           "content": "Milk!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": ""
         },
         {
@@ -331,7 +331,7 @@
         },
         {
           "content": "Ice!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": ""
         },
         {
@@ -341,7 +341,7 @@
         },
         {
           "content": "Chopsticks!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": ""
         },
         {
@@ -351,7 +351,7 @@
         },
         {
           "content": "Good! Now your turn, Ben's friend.",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": ""
         }
       ],
@@ -360,8 +360,8 @@
     "1": {
       "outro": [
         {
-          "content": "I can tell Sensei is impressed. Keep it up!",
-          "role": "Ben",
+          "content": "Keep it up",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -371,12 +371,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "Now I also show respect! Very important in martial arts and life in general! Guru must react swiftly! Only 5 seconds to respond now!",
-          "role": "Sensei",
+          "content": "Now I'll also show respect! It's very important in martial arts and life in general! A guru must react swiftly so you have 5 seconds to respond now!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "If sensei does a bow, you also bow!",
+          "content": "If Arthur bows, you also bow!",
           "role": "Ben",
           "audio": null
         }

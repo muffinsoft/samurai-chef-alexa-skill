@@ -3,18 +3,8 @@
     "0": {
       "outro": [
         {
-          "content": "Ben give wrong response, which means your friend win round!",
+          "content": "Your sushi looks good! I'm pleased.",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Oops!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "That's some good looking sushi you've made so far!",
-          "role": "Ben",
           "audio": null
         }
       ],
@@ -24,12 +14,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "Customers enjoy sushi so far but want more protein, so we add boiled egg! This will be competition round for you and Ben! Need best sushi maker to step up!",
-          "role": "Sensei",
+          "content": "Customers are enjoying the sushi so far but they want more protein, so we'll add boiled eggs! This will be a competition round for you and Ben! I need the best sushi maker to step up!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "Bring it, sushi buddy! To prepare eggs, say.",
+          "content": "Bring it, sushi buddy! To boil eggs, say.",
           "role": "Ben",
           "audio": null
         },
@@ -45,12 +35,12 @@
       "demo": [
         {
           "content": "Watch Ben and Alexa closely!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "Rice!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -70,7 +60,7 @@
         },
         {
           "content": "Fish!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -90,7 +80,7 @@
         },
         {
           "content": "Seaweed!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -110,7 +100,7 @@
         },
         {
           "content": "Carrot!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -130,7 +120,7 @@
         },
         {
           "content": "Egg!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -150,7 +140,7 @@
         },
         {
           "content": "No! Sorry, Ben. Egg is Boil!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -184,18 +174,8 @@
     "1": {
       "outro": [
         {
-          "content": "Ben give wrong response, which means your friend win round!",
+          "content": "Ah, I see future sushi masters!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Oops!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "You got me! Hey, you're becoming a skilled taster already!",
-          "role": "Ben",
           "audio": null
         }
       ],
@@ -205,12 +185,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "Wasabe peas are your next dish to taste. Strong in flavor! Time to prove yourself! You and Ben compete to see who tastes faster!",
-          "role": "Sensei",
+          "content": "Wasabi peas are your next dish to taste. They're strong in flavor! Time to prove yourself! You and Ben will compete to see who tastes faster!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "I'm winning this time! To eat wasabe peas, say.",
+          "content": "I'm winning this time! To crunch some wasabi peas, say.",
           "role": "Ben",
           "audio": null
         },
@@ -231,18 +211,8 @@
     "0": {
       "outro": [
         {
-          "content": "Ben give wrong response, which means your friend win round!",
+          "content": "Ha! I admire your appetite!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Oops!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "We'll be gigantic sumo in no time!",
-          "role": "Ben",
           "audio": null
         }
       ],
@@ -252,12 +222,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
         },
         {
-          "content": "Now I also make fried fish! Taste good and loaded with fatty acids! I'm on fire! Cooking fast! Competition time to see who become better sumo!",
-          "role": "Sensei",
+          "content": "Now I'll also make fried fish! Tastes good and is loaded with fatty acids! I'm on fire! It's competition time to see who is the better sumo so far! ",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "I'm so ready! To eat fried fish, say.",
+          "content": "I'm so ready! To munch on fried fish, say.",
           "role": "Ben",
           "audio": null
         },
@@ -273,12 +243,12 @@
       "demo": [
         {
           "content": "Watch Ben and Alexa closely!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "Chicken!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -288,7 +258,7 @@
         },
         {
           "content": "Sushi!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -308,7 +278,7 @@
         },
         {
           "content": "Stew!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -318,7 +288,7 @@
         },
         {
           "content": "Fried Fish!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -328,7 +298,7 @@
         },
         {
           "content": "No, Friend! fish is munch!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -338,7 +308,7 @@
         },
         {
           "content": "Now it’s your turn, Ben’s friend.",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -347,18 +317,8 @@
     "1": {
       "outro": [
         {
-          "content": "Ben give wrong response, which means your friend win round!",
+          "content": "Very impressive! I'm pleased!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Oops!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Impressive! I'm no match for your yum or yuck thinking!",
-          "role": "Ben",
           "audio": null
         }
       ],
@@ -368,12 +328,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
         },
         {
-          "content": "I now add milk! Milk is good for sumo bones! Let's see who has greater discipline! Competition time between you and Ben!",
-          "role": "Sensei",
+          "content": "We'll now add milk! It's good for sumo bones! Let's see who has more discipline! Competition time between you and Ben!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "I'm ready to win! If sensei gives you beef, tofu or milk, say.",
+          "content": "I'm ready to win! If Arthur gives you beef, tofu, or milk, say.",
           "role": "Ben",
           "audio": null
         },
@@ -404,18 +364,8 @@
     "0": {
       "outro": [
         {
-          "content": "Ben give wrong response, which means your friend win round!",
+          "content": "I liked what I saw!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Oops!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "So close! At this rate you'll be the best guru around!",
-          "role": "Ben",
           "audio": null
         }
       ],
@@ -425,12 +375,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "Customers want more delicious juices so so I give you ingredients fast. If I accidentally throw you chopsticks, don't add! I want you and Ben to compete! Good way to see who better juice maker!",
-          "role": "Sensei",
+          "content": "Customers want more delicious juices so I'll give you the ingredients faster. If I throw you chopsticks, don't add them! I want you and Ben to compete! it's a good way to see who is the better juice maker!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "Oh yeah! To not add the chopsticks, say.",
+          "content": "Oh yeah! If Arthur throws you chopsticks, say.",
           "role": "Ben",
           "audio": null
         },
@@ -446,12 +396,12 @@
       "demo": [
         {
           "content": "Watch Ben and Alexa closely!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "Carrot!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -461,7 +411,7 @@
         },
         {
           "content": "Milk!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -471,7 +421,7 @@
         },
         {
           "content": "Ice!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -481,7 +431,7 @@
         },
         {
           "content": "Chopsticks!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -491,7 +441,7 @@
         },
         {
           "content": "No! Chopsticks is stop, don't drop!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -501,7 +451,7 @@
         },
         {
           "content": "Now your turn, Ben's friend.",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -510,18 +460,8 @@
     "1": {
       "outro": [
         {
-          "content": "Ben give wrong response, which means your friend win round!",
+          "content": "That's good karate! Yes!",
           "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Oops!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Aw, you bested me this time. We're getting good at this karate stuff!",
-          "role": "Ben",
           "audio": null
         }
       ],
@@ -531,12 +471,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "You are impressing me! Now I also grab! Good technique! You and Ben will compete! I see who better at karate!",
-          "role": "Sensei",
+          "content": "You are impressing Sensei! Now I'll also grab! You and Ben will compete to see who is better at karate so far!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "I'll show you what I've got! If sensei tries to grab you, say.",
+          "content": "I'll show you what I've got! If Arthur tries to grab you, say.",
           "role": "Ben",
           "audio": null
         },

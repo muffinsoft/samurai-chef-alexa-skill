@@ -37,7 +37,6 @@ public class SamuraiStopIntentHandler extends StopIntentHandler {
     public StateManager nextTurn(HandlerInput handlerInput) {
         return new BaseStateManager(getSlotsFromInput(handlerInput), handlerInput.getAttributesManager(), dialogTranslator) {
 
-            @SuppressWarnings("Duplicates")
             private void buildExit(DialogItem.Builder builder) {
 
                 List<BasePhraseContainer> dialog = greetingsPhraseManager.getValueByKey(GreetingsPhraseConstants.EXIT_PHRASE);

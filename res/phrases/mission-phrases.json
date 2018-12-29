@@ -6,12 +6,17 @@
         "audio": "https://s3.amazonaws.com/samurai-audio/chefTheme.mp3"
       },
       {
-        "content": "Mastering age-old tradition of samurai style cooking is not for weaklings. To learn my ways you need great focus and ninja-like reflexes! You sure you up for task?",
+        "content": "Sensei, these students wish to master the age-old tradition of samurai style cooking.",
+        "role": "Arthur",
+        "audio": null
+      },
+      {
+        "content": "Must move like ninja! Can't be slow!",
         "role": "Sensei",
         "audio": null
       },
       {
-        "content": "You bet we are! Hey, chef-in-training! You've helped prepare a meal before, right?",
+        "content": "No problem! Hey, chef-in-training! You've helped prepare a meal before, right?",
         "role": "Ben",
         "audio": null
       },
@@ -24,8 +29,8 @@
         "audio": null
       },
       {
-        "content": "There are five belts to earn. Obtain the top belt to earn the honor of being called Super Sushi Chef! I'm counting on you!",
-        "role": "Sensei",
+        "content": "There are five belts to earn. Obtain the top belt to earn the honor of being called Super Sushi Chef!",
+        "role": "Arthur",
         "audio": null
       },
       {
@@ -41,7 +46,12 @@
         "audio": null
       },
       {
-        "content": "Impressive! You conquered every challenge, which means you earned every belt: yellow, orange, green, purple, and black! You have also earned the title Super Sushi Chef!",
+        "content": "Impressive! You conquered every challenge, which means you earned every belt: yellow, orange, green, purple, and black! You have also earned a new title...",
+        "role": "Arthur",
+        "audio": null
+      },
+      {
+        "content": "Super Sushi Chef!",
         "role": "Sensei",
         "audio": null
       },
@@ -56,12 +66,17 @@
         "audio": null
       },
       {
-        "content": "My restaurant's fame has grown now that another notable sushi maker is here. Thank you friends, and congratulations!",
+        "content": "Our restaurant's fame has grown now that another notable sushi maker is here. Thanks!",
+        "role": "Arthur",
+        "audio": null
+      },
+      {
+        "content": "Thank you and congratulations!",
         "role": "Sensei",
         "audio": null
       },
       {
-        "content": "See ya Sensei! Let's see what path we take on next!",
+        "content": "Bye for now! Let's see what path we take on next!",
         "role": "Ben",
         "audio": null
       }
@@ -73,18 +88,13 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTheme.mp3"
         },
         {
-          "content": "First you must learn the basics of sushi. Don't worry, we will start simple.",
-          "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "To earn this YELLOW BELT we'll need to show Sensei you're a fast learner at making sushi.",
-          "role": "Ben",
+          "content": "To earn this YELLOW BELT you'll need to prove that you're a fast learner at learning the sushi basics.",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "For this challenge Sensei wants five correct responses!",
-          "role": "Alexa",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -94,18 +104,13 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTheme.mp3"
         },
         {
-          "content": "To be a good chef, one must know good taste! But to have good taste, one must eat properly.",
-          "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "For this ORANGE BELT we must not only taste delicious food but eat it the correct way too!",
-          "role": "Ben",
+          "content": "To be a good chef, one must know good taste! For this ORANGE BELT you must not only taste delicious food but eat it correctly!",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "For this challenge Sensei wants seven correct responses!",
-          "role": "Alexa",
+          "role": "Ben",
           "audio": null
         }
       ]
@@ -117,12 +122,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
         },
         {
-          "content": "Good work! You have earned a yellow belt for learning the basics. Don't worry, there is plenty more to learn!",
-          "role": "Sensei",
+          "content": "Fantastic! You have earned a yellow belt for learning the basics. Don't worry, there is plenty more to learn!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "You're off to a good start. What's your favorite thing about making sushi so far?",
+          "content": "You're off to a good start, sushi buddy! What's your favorite thing about making sushi so far?",
           "role": "Ben",
           "audio": null
         },
@@ -146,12 +151,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
         },
         {
-          "content": "Excellent! You have earned an orange belt for learning the importance of taste. Very important in cooking!",
-          "role": "Sensei",
+          "content": "Sensational! You have earned an orange belt for learning the importance of taste in cooking!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "Say, if you could taste any food at this very moment, what would it be?",
+          "content": "Sweet! Say, if you could taste any food at this very moment, what would it be?",
           "role": "Ben",
           "audio": null
         },
@@ -178,7 +183,12 @@
         "audio": "https://s3.amazonaws.com/samurai-audio/sumoTheme.mp3"
       },
       {
-        "content": "Being sumo takes more than eating! My offical sumo pro must know discipline and proper eating ettiquette! Are you truly up to task?",
+        "content": "Sensei, these two desire to become your official sumo pros by getting big and learning proper eating etiquette.",
+        "role": "Arthur",
+        "audio": null
+      },
+      {
+        "content": "Need great discipline! You ready?",
         "role": "Sensei",
         "audio": null
       },
@@ -200,7 +210,7 @@
       },
       {
         "content": "There are five belts to earn. Obtain the best belt and you'll reach the highest rank in sumo -- Yokozuna!",
-        "role": "Sensei",
+        "role": "Arthur",
         "audio": null
       },
       {
@@ -216,7 +226,12 @@
         "audio": null
       },
       {
-        "content": "Excellent! You conquered every challenge, which means you earned every belt: yellow, orange, green, purple, and black! You have also earned the title Yokozuna!",
+        "content": "Wow, you conquered every challenge, which means you earned every belt: yellow, orange, green, purple, and black! You have also earned a new title...",
+        "role": "Arthur",
+        "audio": null
+      },
+      {
+        "content": "Yokozuna!",
         "role": "Sensei",
         "audio": null
       },
@@ -231,12 +246,17 @@
         "audio": null
       },
       {
-        "content": "Word has spread that a skilled and powerful sumo grew strong here! Thank you for attracting the best sumo in the world to my restaurant!",
+        "content": "Word has spread that a skilled and powerful sumo grew strong here! Thank you for attracting the best sumo in the world to our restaurant!",
+        "role": "Arthur",
+        "audio": null
+      },
+      {
+        "content": "We are proud of you!",
         "role": "Sensei",
         "audio": null
       },
       {
-        "content": "Our pleasure, Sensei! It was fun! Well, let's see what path we take on next!",
+        "content": "Thanks! It was fun! Well, let's see what path we take on next!",
         "role": "Ben",
         "audio": null
       }
@@ -248,18 +268,13 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTheme.mp3"
         },
         {
-          "content": "Your road to becoming a sumo starts with learning the sumo diet with proper eating etiquette!",
-          "role": "Sensei",
+          "content": "Your road starts by learning the sumo diet with proper eating etiquette! Prove yourself to earn this YELLOW BELT!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "By earning this YELLOW BELT we'll show Sensei we got what it takes to become big, chubby sumo!",
+          "content": "For this challenge Sensei  wants five correct responses!",
           "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "For this challenge Sensei wants five correct responses!",
-          "role": "Alexa",
           "audio": null
         }
       ],
@@ -269,18 +284,13 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTheme.mp3"
         },
         {
-          "content": "Although eating is good, a sumo has a strict diet! No junk food!",
-          "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "Earning this ORANGE BELT will require some fast thinking!",
-          "role": "Ben",
+          "content": "Although eating is good, a sumo has a strict diet! No junk food! Earning this ORANGE BELT will require some fast thinking!",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "For this challenge Sensei wants seven correct responses!",
-          "role": "Alexa",
+          "role": "Ben",
           "audio": null
         }
       ]
@@ -292,12 +302,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
         },
         {
-          "content": "Yes! You have earned a yellow belt for learning the basics. Good work, but the road to becoming big sumo is still long!",
-          "role": "Sensei",
+          "content": "Wonderful! You have earned a yellow belt for learning the basics. You're closer to becoming a giant sumo!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "Hey future sumo, what's your favorite sport to watch or play?",
+          "content": "Nice! Hey future sumo, what's your favorite sport to watch or play?",
           "role": "Ben",
           "audio": null
         },
@@ -321,12 +331,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
         },
         {
-          "content": "Good, good! You have earned an orange belt for avoiding junk food well!",
-          "role": "Sensei",
+          "content": "Unreal! You have earned an orange belt for avoiding junk food well!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "Hey, future sumo! What's your favorite junk food?",
+          "content": "Cool! Hey, future sumo! What's your favorite junk food?",
           "role": "Ben",
           "audio": null
         },
@@ -353,7 +363,12 @@
         "audio": "https://s3.amazonaws.com/samurai-audio/guruTheme.mp3"
       },
       {
-        "content": "To embark on path of guru demands great physical ability and mental wit! Are you prepared to explore the nutritious power of food?",
+        "content": "Sensei, these disciples wish to prove their physical ability and mental wit by becoming sushi gurus.",
+        "role": "Arthur",
+        "audio": null
+      },
+      {
+        "content": "Gurus are wise! You up to task?",
         "role": "Sensei",
         "audio": null
       },
@@ -361,7 +376,7 @@
         "userResponse": true
       },
       {
-        "content": "We're ready! Mom always says you are what you eat! Hey, guru-in-training! What's your favorite healthy snack to eat?",
+        "content": "Oh yeah! Mom always says you are what you eat! Hey, guru-in-training! What's your favorite healthy snack?",
         "role": "Ben",
         "audio": null
       },
@@ -375,7 +390,7 @@
       },
       {
         "content": "There are five belts to earn. Obtain the highest one to be known as Guru Master!",
-        "role": "Sensei",
+        "role": "Arthur",
         "audio": null
       },
       {
@@ -391,7 +406,12 @@
         "audio": null
       },
       {
-        "content": "Phenomenal! You conquered every challenge, which means you earned every belt: yellow, orange, green, purple, and black! You have also earned the title Guru Master!",
+        "content": "Phenomenal! You conquered every challenge, which means you earned every belt: yellow, orange, green, purple, and black! You have also earned the title...",
+        "role": "Sensei",
+        "audio": null
+      },
+      {
+        "content": "Guru Master!",
         "role": "Sensei",
         "audio": null
       },
@@ -406,12 +426,17 @@
         "audio": null
       },
       {
-        "content": "People the world over are now arriving here to seek both nutritious food and advice on healthy eating! I thank you greatly, Ben and friends!",
+        "content": "People the world over are now arriving here to seek both nutritious food and advice on healthy eating!",
+        "role": "Arthur",
+        "audio": null
+      },
+      {
+        "content": "I thank you greatly, Ben and friend!",
         "role": "Sensei",
         "audio": null
       },
       {
-        "content": "We couldn't have done it without ya, Sensei! Well, let's see what path we take on next!",
+        "content": "We couldn't have done it without your great training! Well, let's see what path we take on next!",
         "role": "Ben",
         "audio": null
       }
@@ -423,18 +448,13 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTheme.mp3"
         },
         {
-          "content": "A samurai's path to healthy diet is vitamin-rich juices! Let's start with basics.",
-          "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "To earn this YELLOW BELT we'll need to prove to Sensei that we're lean, mean juicing machines!",
-          "role": "Ben",
+          "content": "A samurai's path to healthy diet is vitamin-rich juices! Become lean, mean juicing machines to earn this YELLOW BELT!",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "For this challenge Sensei wants five correct responses!",
-          "role": "Alexa",
+          "role": "Ben",
           "audio": null
         }
       ],
@@ -444,18 +464,13 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTheme.mp3"
         },
         {
-          "content": "Guru also good at using energy to exercise! Time for karate!",
-          "role": "Sensei",
-          "audio": null
-        },
-        {
-          "content": "We'll earn this ORANGE BELT by showing Sensei we pack quite a punch!",
-          "role": "Ben",
+          "content": "A guru also good at using his energy to gain strength! You'll earn this ORANGE BELT by showing me your karate skills!",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "For this challenge Sensei wants seven correct responses!",
-          "role": "Alexa",
+          "role": "Ben",
           "audio": null
         }
       ]
@@ -467,12 +482,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
         },
         {
-          "content": "Challenge complete! You have earned a yellow belt for learning the basics. My juices are nutritious and yummy, yes?",
-          "role": "Sensei",
+          "content": "Marvelous! You have earned a yellow belt for learning the basics of our nutritious juices!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "Does or mom or dad ever make you healthy smoothies or juices?",
+          "content": "Woohoo! Does your mom or dad ever make you healthy smoothies or juices?",
           "role": "Ben",
           "audio": null
         },
@@ -480,7 +495,7 @@
           "userResponse": true
         },
         {
-          "content": "My dad likes raddish juice... yuck!",
+          "content": "My dad likes radish juice... yuck!",
           "role": "Ben",
           "audio": null
         },
@@ -496,12 +511,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/reward.mp3"
         },
         {
-          "content": "Wonderful karate! You have earned a yellow belt. Diet and exercise is key to healthy life!",
-          "role": "Sensei",
+          "content": "Spectacular! You have earned a orange belt. Diet and exercise is the key to healthy life!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "Hey, have you ever watched a karate movie before?",
+          "content": "Awesome! Hey sushi buddy, have you ever watched a karate movie before?",
           "role": "Ben",
           "audio": null
         },

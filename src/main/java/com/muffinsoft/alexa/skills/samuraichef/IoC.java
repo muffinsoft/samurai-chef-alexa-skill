@@ -71,10 +71,6 @@ public class IoC {
         return phraseDependencyContainer;
     }
 
-    public static SessionStateFabric provideSessionStateFabric() {
-        return sessionStateFabric;
-    }
-
     public static IntentFactory provideIntentFactory() {
         return intentFactory;
     }

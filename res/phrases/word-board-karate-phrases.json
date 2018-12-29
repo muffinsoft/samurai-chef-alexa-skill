@@ -4,7 +4,7 @@
       "outro": [
         {
           "content": "Pretty good for a beginner!",
-          "role": "Ben",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -14,12 +14,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "Customers are arriving and they very hungry! Good time for you to learn by helping Sensei? First, only rice and fish.",
-          "role": "Sensei",
+          "content": "Hungry customers are arriving! Now's your chance to learn. First, only rice and fish!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "To prepare rice, say.",
+          "content": "To boil rice, say.",
           "role": "Ben",
           "audio": null
         },
@@ -29,7 +29,7 @@
           "audio": null
         },
         {
-          "content": "To cut the fish, say.",
+          "content": "To slice the fish, say.",
           "role": "Ben",
           "audio": null
         },
@@ -45,12 +45,12 @@
       "demo": [
         {
           "content": "Watch Ben closely!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "Rice!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -70,7 +70,7 @@
         },
         {
           "content": "Fish!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -90,7 +90,7 @@
         },
         {
           "content": "Seaweed!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -110,7 +110,7 @@
         },
         {
           "content": "Carrot!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -130,7 +130,7 @@
         },
         {
           "content": "Egg!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -150,7 +150,7 @@
         },
         {
           "content": "Now it’s your turn, Ben’s friend.",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -159,8 +159,8 @@
     "1": {
       "outro": [
         {
-          "content": "Burp if you have to! You earned it!",
-          "role": "Ben",
+          "content": "Good hustle.",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -170,12 +170,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "Lunch hour over so now I train your sense of taste! Vital to cooking! First, you taste soup, sushi and tea!",
-          "role": "Sensei",
+          "content": "Lunch hour is over so now I'll train your sense of taste! Very important for cooking! First, you'll taste soup, sushi and tea!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "To eat soup, say.",
+          "content": "To slurp up soup, say.",
           "role": "Ben",
           "audio": null
         },
@@ -185,7 +185,7 @@
           "audio": null
         },
         {
-          "content": "To eat sushi, say.",
+          "content": "To gulp up sushi, say.",
           "role": "Ben",
           "audio": null
         },
@@ -216,8 +216,8 @@
     "0": {
       "outro": [
         {
-          "content": "Wow, you're an eating machine!",
-          "role": "Ben",
+          "content": "Not bad for novice.",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -227,12 +227,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
         },
         {
-          "content": "The sooner you become sumo to represent my restaurant proudly, the better! First, good protein!",
-          "role": "Sensei",
+          "content": "The sooner you become a sumo to represent Sensei's restaurant proudly, the better! First, chicken and sushi!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "To eat chicken, say.",
+          "content": "To chomp on the chicken, say.",
           "role": "Ben",
           "audio": null
         },
@@ -242,7 +242,7 @@
           "audio": null
         },
         {
-          "content": "To eat sushi, say.",
+          "content": "To gulp up the sushi, say.",
           "role": "Ben",
           "audio": null
         },
@@ -258,12 +258,12 @@
       "demo": [
         {
           "content": "Watch Ben closely!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "Chicken!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -273,7 +273,7 @@
         },
         {
           "content": "Sushi!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -293,7 +293,7 @@
         },
         {
           "content": "Stew!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -303,7 +303,7 @@
         },
         {
           "content": "Fried Fish!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -313,7 +313,7 @@
         },
         {
           "content": "Now it’s your turn, Ben’s friend!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -322,8 +322,8 @@
     "1": {
       "outro": [
         {
-          "content": "Hey, you're a natural at this!",
-          "role": "Ben",
+          "content": "You're a natural.",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -333,12 +333,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
         },
         {
-          "content": "Good sumo must learn difference between good and bad food. Beef and tofu, good! Soda, bad!",
-          "role": "Sensei",
+          "content": "A good sumo must learn the difference between good and bad food. Beef and tofu, good! Soda, bad!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "If sensei gives you beef or tofu, say.",
+          "content": "If Arthur gives you beef or tofu, say.",
           "role": "Ben",
           "audio": null
         },
@@ -369,8 +369,8 @@
     "0": {
       "outro": [
         {
-          "content": "You're already juicing like a pro! Keep it up!",
-          "role": "Ben",
+          "content": "Good... for a trainee.",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -380,12 +380,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "Customers from gym across the street arriving! We'll need lots of juice! First, only milk and carrots!",
-          "role": "Sensei",
+          "content": "Customers from the gym across the street are arriving! We'll need lots of juice! First, only milk and carrots!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "To prepare milk, say.",
+          "content": "To splash some milk, say.",
           "role": "Ben",
           "audio": null
         },
@@ -395,7 +395,7 @@
           "audio": null
         },
         {
-          "content": "For carrots, say.",
+          "content": "To slice some carrots, say.",
           "role": "Ben",
           "audio": null
         },
@@ -411,12 +411,12 @@
       "demo": [
         {
           "content": "Watch Ben closely!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "Carrot!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -426,7 +426,7 @@
         },
         {
           "content": "Milk!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -436,7 +436,7 @@
         },
         {
           "content": "Ice!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -446,7 +446,7 @@
         },
         {
           "content": "Chopsticks!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -456,7 +456,7 @@
         },
         {
           "content": "Good! Now your turn, Ben's friend.",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -465,8 +465,8 @@
     "1": {
       "outro": [
         {
-          "content": "Have you done karate before? You rock!",
-          "role": "Ben",
+          "content": "I see talent.",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -476,12 +476,12 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "Good guru also knows importance of exercise! Traditional karate time!",
-          "role": "Sensei",
+          "content": "A wise guru also knows the importance of exercise! Traditional karate time!",
+          "role": "Arthur",
           "audio": null
         },
         {
-          "content": "If sensei does a punch, say.",
+          "content": "if Arthur punches, say.",
           "role": "Ben",
           "audio": null
         },
@@ -491,7 +491,7 @@
           "audio": null
         },
         {
-          "content": "If sensei does a kick, say.",
+          "content": "If Arthur kicks, say.",
           "role": "Ben",
           "audio": null
         },
@@ -501,7 +501,7 @@
           "audio": null
         },
         {
-          "content": "If sensei tries a sweep, say.",
+          "content": "If Arthur leg sweeps, say.",
           "role": "Ben",
           "audio": null
         },

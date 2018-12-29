@@ -3,8 +3,8 @@
     "0": {
       "outro": [
         {
-          "content": "Nice work! You showed those boards who's boss!",
-          "role": "Ben",
+          "content": "Impressive, but still much to learn!",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -14,8 +14,8 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "You show potential as sushi cook! Now we work both mind and body with word board karate!",
-          "role": "Sensei",
+          "content": "You show potential as a sushi cook! Now we'll work both mind and body with word board karate!",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -40,7 +40,7 @@
         },
         {
           "content": "Wham! and Haa! Go!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -50,12 +50,12 @@
       "demo": [
         {
           "content": "Watch how Ben do word board karate!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "Waitress!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -65,7 +65,7 @@
         },
         {
           "content": "Hawk!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -75,7 +75,7 @@
         },
         {
           "content": "Plumber!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -85,7 +85,7 @@
         },
         {
           "content": "Good! Now your turn, chef-in-training.",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -94,8 +94,8 @@
     "1": {
       "outro": [
         {
-          "content": "Woah! You pulverized those boards!",
-          "role": "Ben",
+          "content": "Good! You pulverize boards!",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -105,8 +105,8 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
         },
         {
-          "content": "Good session. Best way to end tasting is with word board karate!",
-          "role": "Sensei",
+          "content": "Good session. Well, the best way to end tasting is with word board karate!",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -141,7 +141,7 @@
         },
         {
           "content": "Wham, Haa and Pow! Ready, go!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -156,8 +156,8 @@
     "0": {
       "outro": [
         {
-          "content": "Those boards didn't stand a chance!",
-          "role": "Ben",
+          "content": "Impressive! Keep up the effort!",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -168,7 +168,7 @@
         },
         {
           "content": "Your appetite is impressive! Time for word board karate to make use of that energy!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -193,7 +193,7 @@
         },
         {
           "content": "Zonk and Fuah! Go!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -203,12 +203,12 @@
       "demo": [
         {
           "content": "Watch how Ben do word board karate!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "Zoo!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -218,7 +218,7 @@
         },
         {
           "content": "Fork!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -228,7 +228,7 @@
         },
         {
           "content": "Wood!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -238,7 +238,7 @@
         },
         {
           "content": "Excellent. You next, future sumo.",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -247,8 +247,8 @@
     "1": {
       "outro": [
         {
-          "content": "Those were some sweet moves on those boards!",
-          "role": "Ben",
+          "content": "Great moves on boards!",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -258,8 +258,8 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
         },
         {
-          "content": "You show good ability to avoid unhealthy snacks. Time for some word board karate!",
-          "role": "Sensei",
+          "content": "You have a knack for avoiding unhealthy snacks. That's good! Time for some word board karate!",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -294,7 +294,7 @@
         },
         {
           "content": "Zonk, Fuah, and Woosh! Go!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -309,8 +309,8 @@
     "0": {
       "outro": [
         {
-          "content": "You crushed those boards into dust! Awesome!",
-          "role": "Ben",
+          "content": "Impressive! Do not give up!",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -320,8 +320,8 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "You on path to becoming juice making machine! Time for some word board karate!",
-          "role": "Sensei",
+          "content": "You're on your way to becoming a juice making machine! Time for some word board karate!",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -356,12 +356,12 @@
       "demo": [
         {
           "content": "Watch how Ben do word board karate!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
           "content": "Zebra!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -371,7 +371,7 @@
         },
         {
           "content": "Whale!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -381,7 +381,7 @@
         },
         {
           "content": "Thunder!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -391,7 +391,7 @@
         },
         {
           "content": "Good. You next, guru-in-training.",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
@@ -400,8 +400,8 @@
     "1": {
       "outro": [
         {
-          "content": "Wow, no way anyone is piecing those boards back together!",
-          "role": "Ben",
+          "content": "Boards now dust! Excellent!",
+          "role": "Sensei",
           "audio": null
         }
       ],
@@ -411,8 +411,8 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
         },
         {
-          "content": "Good work. To follow up traditional karate we do word board karate!",
-          "role": "Sensei",
+          "content": "Good work. To follow up traditional karate we'll move on to word board karate!",
+          "role": "Arthur",
           "audio": null
         },
         {
@@ -447,7 +447,7 @@
         },
         {
           "content": "Zaam, Whammo and Thwap! Go!",
-          "role": "Sensei",
+          "role": "Arthur",
           "audio": null
         }
       ],
