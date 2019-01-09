@@ -51,7 +51,7 @@ public class InitialGreetingStateManager extends BaseStateManager {
         this.getSessionAttributes().put(INTENT, GAME);
 
         int index = 0;
-        for (BasePhraseContainer BasePhraseContainer : dialog) {
+        for (BasePhraseContainer phraseContainer : dialog) {
 
             index++;
 
@@ -59,12 +59,12 @@ public class InitialGreetingStateManager extends BaseStateManager {
                 continue;
             }
 
-            if (BasePhraseContainer.isUserResponse()) {
+            if (phraseContainer.isUserResponse()) {
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
                 this.getSessionAttributes().put(INTENT, INITIAL_GREETING);
                 break;
             }
-            builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
+            builder.addResponse(getDialogTranslator().translate(phraseContainer));
         }
 
         if (index >= dialog.size()) {

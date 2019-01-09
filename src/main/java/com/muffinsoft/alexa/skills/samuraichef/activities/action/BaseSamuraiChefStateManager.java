@@ -319,7 +319,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         int index = 0;
 
-        for (BasePhraseContainer BasePhraseContainer : dialog) {
+        for (BasePhraseContainer phraseContainer : dialog) {
 
             index++;
 
@@ -327,13 +327,13 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 continue;
             }
 
-            if (BasePhraseContainer.isUserResponse()) {
+            if (phraseContainer.isUserResponse()) {
                 this.userReplyBreakpointPosition = index;
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
                 this.statePhase = statePhase;
                 break;
             }
-            builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
+            builder.addResponse(getDialogTranslator().translate(phraseContainer));
         }
 
         if (index >= dialog.size()) {

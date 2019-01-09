@@ -1,0 +1,127 @@
+{
+  "rice": {
+    "content": "Rice",
+    "role": "Alexa",
+    "audio": null
+  },
+  "fish": {
+    "content": "Fish",
+    "role": "Alexa",
+    "audio": null
+  },
+  "seaweed": {
+    "content": "Seaweed",
+    "role": "Alexa",
+    "audio": null
+  },
+  "egg": {
+    "content": "Egg",
+    "role": "Alexa",
+    "audio": null
+  },
+  "soup": {
+    "content": "Soup",
+    "role": "Alexa",
+    "audio": null
+  },
+  "sushi": {
+    "content": "Sushi",
+    "role": "Alexa",
+    "audio": null
+  },
+  "tea": {
+    "content": "Tea",
+    "role": "Alexa",
+    "audio": null
+  },
+  "mochi": {
+    "content": "Mochi",
+    "role": "Alexa",
+    "audio": null
+  },
+  "wasabe peas": {
+    "content": "Wasabe peas",
+    "role": "Alexa",
+    "audio": null
+  },
+  "chicken": {
+    "content": "Chicken",
+    "role": "Alexa",
+    "audio": null
+  },
+  "stew": {
+    "content": "Stew",
+    "role": "Alexa",
+    "audio": null
+  },
+  "friend fish": {
+    "content": "Friend fish",
+    "role": "Alexa",
+    "audio": null
+  },
+  "beef": {
+    "content": "Beef",
+    "role": "Alexa",
+    "audio": null
+  },
+  "soda": {
+    "content": "Soda",
+    "role": "Alexa",
+    "audio": null
+  },
+  "tofu": {
+    "content": "Tofu",
+    "role": "Alexa",
+    "audio": null
+  },
+  "candy": {
+    "content": "Candy",
+    "role": "Alexa",
+    "audio": null
+  },
+  "milk": {
+    "content": "Milk",
+    "role": "Alexa",
+    "audio": null
+  },
+  "carrot": {
+    "content": "Carrot",
+    "role": "Alexa",
+    "audio": null
+  },
+  "ice": {
+    "content": "Ice",
+    "role": "Alexa",
+    "audio": null
+  },
+  "chopsticks": {
+    "content": "Chopsticks",
+    "role": "Alexa",
+    "audio": null
+  },
+  "punch": {
+    "content": "Punch",
+    "role": "Alexa",
+    "audio": null
+  },
+  "kick": {
+    "content": "Kick",
+    "role": "Alexa",
+    "audio": null
+  },
+  "sweep": {
+    "content": "Sweep",
+    "role": "Alexa",
+    "audio": null
+  },
+  "bow": {
+    "content": "Bow",
+    "role": "Alexa",
+    "audio": null
+  },
+  "grab": {
+    "content": "Grab",
+    "role": "Alexa",
+    "audio": null
+  }
+}
