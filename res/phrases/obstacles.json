@@ -1,127 +1,127 @@
 {
   "rice": {
     "content": "Rice",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "fish": {
     "content": "Fish",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "seaweed": {
     "content": "Seaweed",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "egg": {
     "content": "Egg",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "soup": {
     "content": "Soup",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "sushi": {
     "content": "Sushi",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "tea": {
     "content": "Tea",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "mochi": {
     "content": "Mochi",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "wasabe peas": {
     "content": "Wasabe peas",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "chicken": {
     "content": "Chicken",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "stew": {
     "content": "Stew",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "friend fish": {
     "content": "Friend fish",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "beef": {
     "content": "Beef",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "soda": {
     "content": "Soda",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "tofu": {
     "content": "Tofu",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "candy": {
     "content": "Candy",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "milk": {
     "content": "Milk",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "carrot": {
     "content": "Carrot",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "ice": {
     "content": "Ice",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "chopsticks": {
     "content": "Chopsticks",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "punch": {
     "content": "Punch",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "kick": {
     "content": "Kick",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "sweep": {
     "content": "Sweep",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "bow": {
     "content": "Bow",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   },
   "grab": {
     "content": "Grab",
-    "role": "Alexa",
+    "role": "Arthur",
     "audio": null
   }
 }
