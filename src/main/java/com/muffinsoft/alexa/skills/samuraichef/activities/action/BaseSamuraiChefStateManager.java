@@ -260,7 +260,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private DialogItem.Builder handleReturnToGameState(DialogItem.Builder builder) {
         String ingredient = this.activityProgress.getPreviousIngredient();
         if (ingredient == null || ingredient.isEmpty()) {
-            ingredient = nextIngredient();
+            ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
         }
         builder.addResponse(getDialogTranslator().translate(ingredient));
         this.statePhase = GAME_PHASE_1;
@@ -436,7 +436,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
         }
         else {
-            String speechText = nextIngredient();
+            String speechText = nextIngredient(this.activityProgress.getPreviousIngredient());
 
             logger.debug("Handling " + this.statePhase + ". Moving to " + GAME_PHASE_1);
 
@@ -643,7 +643,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         builder.removeLastResponse();
 
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
-            WordReaction randomIngredient = getRandomIngredient();
+            WordReaction randomIngredient = getRandomIngredient(this.activityProgress.getPreviousIngredient());
 
             String wrongReplyOnIngredient = getWrongReplyOnIngredient(randomIngredient.getIngredient());
 
@@ -731,7 +731,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     DialogItem.Builder getSuccessDialog(DialogItem.Builder builder) {
 
-        String ingredient = nextIngredient();
+        String ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
 
         builder.addResponse(getDialogTranslator().translate(ingredient));
 
@@ -746,7 +746,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         Speech speech = builder.popLastSpeech();
 
-        WordReaction randomIngredient = getRandomIngredient();
+        WordReaction randomIngredient = getRandomIngredient(speech.getContent());
 
         builder.addResponse(getDialogTranslator().translate(randomIngredient.getIngredient()))
                 .addResponse(getDialogTranslator().translate(BasePhraseContainer.pause(1000)))
@@ -758,7 +758,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     }
 
     DialogItem.Builder getFailureDialog(DialogItem.Builder builder, List<PhraseContainer> speechText) {
-        String ingredient = nextIngredient();
+        String ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
         return builder
                 .addResponse(getDialogTranslator().translate(speechText))
                 .addResponse(getDialogTranslator().translate(ingredient))
@@ -775,8 +775,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 .withReprompt(getDialogTranslator().translate(regularPhraseManager.getValueByKey(FAILURE_RE_PROMPT_PHRASE)));
     }
 
-    private WordReaction getRandomIngredient() {
-        return activityManager.getNextWord(this.stripe, null);
+    private WordReaction getRandomIngredient(String ingredient) {
+        return activityManager.getNextWord(this.stripe, ingredient);
     }
 
     private String getWrongReplyOnIngredient(String ingredient) {
@@ -784,9 +784,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return nextIngredient.getUserReply();
     }
 
-    private String nextIngredient() {
+    private String nextIngredient(String ingredient) {
 
-        WordReaction nextIngredient = activityManager.getNextWord(this.stripe, this.activityProgress.getPreviousIngredient());
+        WordReaction nextIngredient = activityManager.getNextWord(this.stripe, ingredient);
 
         this.activityProgress.setCurrentIngredientReaction(nextIngredient.getUserReply());
         this.activityProgress.setPreviousIngredient(nextIngredient.getIngredient());
