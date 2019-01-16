@@ -99,22 +99,22 @@
           "audio": null
         },
         {
-          "content": "Carrot!",
+          "content": "Rice!",
           "role": "Arthur",
           "audio": null
         },
         {
-          "content": "[crunchy sound]",
+          "content": "[rice pouring into bowl]",
           "role": "Sound",
           "audio": null
         },
         {
-          "content": "Chop!",
+          "content": "Boil!",
           "role": "Alexa",
           "audio": null
         },
         {
-          "content": "[chopping sound]",
+          "content": "[boiling water sound]",
           "role": "Sound",
           "audio": null
         },
@@ -146,26 +146,6 @@
         {
           "content": "Hah! I won!",
           "role": "Alexa",
-          "audio": null
-        },
-        {
-          "content": "",
-          "role": "",
-          "audio": null
-        },
-        {
-          "content": "",
-          "role": "",
-          "audio": null
-        },
-        {
-          "content": "",
-          "role": "",
-          "audio": null
-        },
-        {
-          "content": "",
-          "role": "",
           "audio": null
         }
       ],
