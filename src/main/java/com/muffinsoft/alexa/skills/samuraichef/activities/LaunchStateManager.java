@@ -24,6 +24,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -162,7 +163,7 @@ public class LaunchStateManager extends BaseStateManager {
         String lowTitle = getHighestTitleOfMission(lowUserProgress);
         String midTitle = getHighestTitleOfMission(midUserProgress);
         String highTitle = getHighestTitleOfMission(highUserProgress);
-        return lowTitle + midTitle + highTitle;
+        return String.join(", ", Arrays.asList(lowTitle, midTitle, highTitle));
     }
 
     private String getHighestTitleOfMission(UserProgress userProgress) {
