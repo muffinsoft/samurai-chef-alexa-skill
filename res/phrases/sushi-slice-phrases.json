@@ -19,12 +19,12 @@
           "audio": null
         },
         {
-          "content": "Bring it, sushi buddy! To boil eggs, say.",
+          "content": "Bring it, sushi buddy! To crack eggs, say.",
           "role": "Ben",
           "audio": null
         },
         {
-          "content": "'boil!'",
+          "content": "'crack!'",
           "role": "BenLoud",
           "audio": null
         }
@@ -139,7 +139,7 @@
           "audio": null
         },
         {
-          "content": "No! Sorry, Ben. Egg is Boil!",
+          "content": "No! Sorry, Ben. Egg is Crack!",
           "role": "Arthur",
           "audio": null
         },
