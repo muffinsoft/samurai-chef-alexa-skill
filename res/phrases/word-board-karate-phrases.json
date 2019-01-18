@@ -89,66 +89,6 @@
           "audio": null
         },
         {
-          "content": "Seaweed!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[one wet splat sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Roll!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "[squishing sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Carrot!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[crunchy sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Chop!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "[chopping sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Egg!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[egg sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Boil!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "[bloop]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
           "content": "Now it’s your turn, Ben’s friend.",
           "role": "Arthur",
           "audio": null
@@ -292,26 +232,6 @@
           "audio": null
         },
         {
-          "content": "Stew!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Slurp!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Fried Fish!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Munch!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
           "content": "Now it’s your turn, Ben’s friend!",
           "role": "Arthur",
           "audio": null
@@ -431,26 +351,6 @@
         },
         {
           "content": "Splash a dash!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Ice!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Punch and crunch!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Chopsticks!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Stop, don't drop!",
           "role": "Ben",
           "audio": null
         },
