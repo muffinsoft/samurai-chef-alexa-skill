@@ -4,6 +4,8 @@ public class HelpPhraseConstants {
 
     public static final String HELP_COMPETITION_RULES_PHRASE = "helpCompetitionRulesPhrase";
 
+    public static final String HELP_REPEAT_PHRASE = "helpRepeatPhrase";
+
     public static final String HELP_LEARN_MORE_PHRASE = "helpLearnMorePhrase";
 
     public static final String HELP_MORE_DETAILS_PHRASE = "helpMoreDetailsPhrase";

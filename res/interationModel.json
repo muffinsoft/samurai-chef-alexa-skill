@@ -63,7 +63,11 @@
         },
         {
           "name": "AMAZON.CancelIntent",
-          "samples": []
+          "samples": [
+            "new game",
+            "return to the main menu",
+            "different game"
+          ]
         },
         {
           "name": "AMAZON.FallbackIntent",

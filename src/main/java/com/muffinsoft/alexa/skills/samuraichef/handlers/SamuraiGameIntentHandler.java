@@ -1,6 +1,7 @@
 package com.muffinsoft.alexa.skills.samuraichef.handlers;
 
 import com.amazon.ask.attributes.AttributesManager;
+import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.components.IntentFactory;
 import com.muffinsoft.alexa.sdk.constants.SessionConstants;
@@ -32,7 +33,7 @@ abstract class SamuraiGameIntentHandler extends GameIntentHandler {
     }
 
     @Override
-    protected void handleAttributes(AttributesManager attributesManager) {
+    protected void handleInputAttributes(Map<String, Slot> slots, AttributesManager attributesManager) {
         Map<String, Object> sessionAttributes = attributesManager.getSessionAttributes();
         logger.info("Session Attributes: " + sessionAttributes);
 

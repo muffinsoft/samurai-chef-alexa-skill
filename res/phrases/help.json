@@ -4,6 +4,11 @@
       "content": "In a competition, you and Ben take turns trying to provide the correct answer. The first one to lose two rounds by answering incorrectly loses."
     }
   ],
+  "helpRepeatPhrase": [
+    {
+      "content": "Would you like me to repeat that?"
+    }
+  ],
   "helpMissionLowDescriptionPhrase": [
     {
       "content": "In Path of the Chef your goal is to master the art of cooking sushi! When you are given an ingredient or food, say the right response to prepare it correctly! You currently have # belt."
@@ -31,7 +36,7 @@
   ],
   "helpLearnMorePhrase": [
     {
-      "content": "Do you want to learn more about the game and objectives?"
+      "content": "Need more help with this mission?"
     }
   ],
   "helpMoreDetailsPhrase": [

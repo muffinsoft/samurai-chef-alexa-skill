@@ -4,5 +4,7 @@ public enum HelpStates {
 
     LEARN_MORE_HELP,
 
-    PROCEED_GAME
+    PROCEED_GAME,
+
+    REPEAT_ACTIVITY_HELP
 }

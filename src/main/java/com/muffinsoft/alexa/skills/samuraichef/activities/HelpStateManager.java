@@ -32,6 +32,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConsta
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MISSION_HIGH_DESCRIPTION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MISSION_LOW_DESCRIPTION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_MISSION_MID_DESCRIPTION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.HelpPhraseConstants.HELP_REPEAT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.READY_TO_PLAY_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.RETURN_TO_GAME_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
@@ -43,6 +44,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.LEARN_MORE_HELP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.PROCEED_GAME;
+import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.REPEAT_ACTIVITY_HELP;
 import static com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates.valueOf;
 
 public class HelpStateManager extends BaseStateManager {
@@ -108,6 +110,17 @@ public class HelpStateManager extends BaseStateManager {
 
         switch (helpState) {
 
+            case REPEAT_ACTIVITY_HELP:
+                if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
+                    hanleActivityHelp(builder);
+                }
+                else {
+                    getSessionAttributes().put(HELP_STATE, LEARN_MORE_HELP);
+                    builder.addResponse(getDialogTranslator().translate(helpPhraseManager.getValueByKey(HELP_LEARN_MORE_PHRASE)));
+                    getSessionAttributes().put(INTENT, IntentType.HELP);
+                }
+                break;
+
             case PROCEED_GAME:
 
                 if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
@@ -157,6 +170,14 @@ public class HelpStateManager extends BaseStateManager {
         return builder.build();
     }
 
+    private void hanleActivityHelp(DialogItem.Builder builder) {
+        getSessionAttributes().put(HELP_STATE, REPEAT_ACTIVITY_HELP);
+        String key = "help" + this.currentMission.key + "Stripe" + userProgress.getStripeCount() + this.currentActivity.key;
+        List<PhraseContainer> activityHelp = helpPhraseManager.getValueByKey(key);
+        builder.addResponse(getDialogTranslator().translate(activityHelp));
+        builder.addResponse(getDialogTranslator().translate(helpPhraseManager.getValueByKey(HELP_REPEAT_PHRASE)));
+    }
+
     private String getColorByStripe(int stripe) {
         return BeltColorDefiner.defineColor(stripe);
     }
@@ -166,11 +187,7 @@ public class HelpStateManager extends BaseStateManager {
         DialogItem.Builder builder = DialogItem.builder();
 
         if (this.currentActivity != null && this.currentMission != null) {
-            getSessionAttributes().put(HELP_STATE, LEARN_MORE_HELP);
-            String key = "help" + this.currentMission.key + "Stripe" + userProgress.getStripeCount() + this.currentActivity.key;
-            List<PhraseContainer> activityHelp = helpPhraseManager.getValueByKey(key);
-            builder.addResponse(getDialogTranslator().translate(activityHelp));
-            builder.addResponse(getDialogTranslator().translate(helpPhraseManager.getValueByKey(HELP_LEARN_MORE_PHRASE)));
+            hanleActivityHelp(builder);
         }
         else {
             getSessionAttributes().put(HELP_STATE, PROCEED_GAME);
