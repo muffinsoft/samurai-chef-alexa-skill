@@ -42,8 +42,8 @@
         "maxMistakeCount": 3,
         "ingredients": {
           "beef": "yum",
-          "soda": "yuck",
-          "candy": "yuck",
+          "soda": "gross",
+          "candy": "gross",
           "tofu": "yum"
         }
       }

@@ -164,11 +164,6 @@
           "userResponse": true
         },
         {
-          "content": "yum",
-          "role": "Alexa",
-          "audio": null
-        },
-        {
           "content": "Time for the next challenge!",
           "role": "Sensei",
           "audio": null

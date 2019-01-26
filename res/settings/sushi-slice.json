@@ -46,9 +46,9 @@
         "timeLimitPhaseOneInMillis": 160000,
         "ingredients": {
           "beef": "yum",
-          "soda": "yuck",
+          "soda": "gross",
           "tofu": "yum",
-          "candy": "yuck",
+          "candy": "gross",
           "milk": "yum"
         }
       }
