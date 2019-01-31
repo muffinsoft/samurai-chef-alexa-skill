@@ -1,157 +1,157 @@
 {
   "boil": {
     "content": "Boil",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsBoil.mp3"
   },
   "crack": {
     "content": "Crack",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsCrack.mp3"
   },
   "slice": {
     "content": "Slice",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsSlice.mp3"
   },
   "roll": {
     "content": "Roll",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsRoll.mp3"
   },
   "slurp": {
     "content": "Slurp",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsSlurp.mp3"
   },
   "haa": {
     "content": "Haa",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsHaa.mp3"
   },
   "pow": {
     "content": "Pow",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsPow.mp3"
   },
   "zonk": {
     "content": "Zonk",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsZonk.mp3"
   },
   "fuah": {
     "content": "Fuah",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsFuah.mp3"
   },
   "woosh": {
     "content": "Woosh",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsWoosh.mp3"
   },
   "zaam": {
     "content": "Zaam",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsZaam.mp3"
   },
   "wham": {
     "content": "Wham",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsWham.mp3"
   },
   "thwap": {
     "content": "Thwap",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsThwap.mp3"
   },
   "gulp": {
     "content": "Gulp",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsGulp.mp3"
   },
   "sip": {
     "content": "Sip",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsSip.mp3"
   },
   "lick": {
     "content": "Lick",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsLick.mp3"
   },
   "chomp": {
     "content": "Chomp",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsChomp.mp3"
   },
   "yum": {
     "content": "Yum",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsYum.mp3"
   },
   "gross": {
     "content": "Gross",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsGross.mp3"
   },
   "splash a dash": {
     "content": "Splash a dash",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsSplashADash.mp3"
   },
   "slice and dice": {
     "content": "Slice and dice",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsSliceAndDice.mp3"
   },
   "punch and crunch": {
     "content": "Punch and crunch",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsPunchAndCrunch.mp3"
   },
   "stop don't drop": {
     "content": "Stop don't drop",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsStopDon'tDrop.mp3"
   },
   "block": {
     "content": "Block",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsBlock.mp3"
   },
   "dodge": {
     "content": "Dodge",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsDodge.mp3"
   },
   "jump": {
     "content": "Jump",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsJump.mp3"
   },
   "bow": {
     "content": "Bow",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsBow.mp3"
   },
   "crunch": {
     "content": "Crunch",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsCrunch.mp3"
   },
   "stew": {
     "content": "Stew",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsStew.mp3"
   },
   "munch": {
     "content": "Munch",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsMunch.mp3"
   },
   "break": {
     "content": "Break",
-    "role": "Ben",
-    "audio": null
+    "role": "Audio",
+    "audio": "https://s3.amazonaws.com/samurai-audio/reactions/reactionsBreak.mp3"
   }
 }

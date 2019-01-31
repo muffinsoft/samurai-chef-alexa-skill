@@ -1,127 +1,127 @@
 {
   "rice": {
     "content": "Rice",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesRice.mp3"
   },
   "fish": {
     "content": "Fish",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesFish.mp3"
   },
   "seaweed": {
     "content": "Seaweed",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesSeaweed.mp3"
   },
   "egg": {
     "content": "Egg",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesEgg.mp3"
   },
   "soup": {
     "content": "Soup",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesSoup.mp3"
   },
   "sushi": {
     "content": "Sushi",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesSushi.mp3"
   },
   "tea": {
     "content": "Tea",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesTea.mp3"
   },
   "mochi": {
     "content": "Mochi",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesMochi.mp3"
   },
   "wasabe peas": {
     "content": "Wasabe peas",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesWasabePeas.mp3"
   },
   "chicken": {
     "content": "Chicken",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesChicken.mp3"
   },
   "stew": {
     "content": "Stew",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesStew.mp3"
   },
   "fried fish": {
     "content": "Fried fish",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesFriedFish.mp3"
   },
   "beef": {
     "content": "Beef",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesBeef.mp3"
   },
   "soda": {
     "content": "Soda",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesSoda.mp3"
   },
   "tofu": {
     "content": "Tofu",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesTofu.mp3"
   },
   "candy": {
     "content": "Candy",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesCandy.mp3"
   },
   "milk": {
     "content": "Milk",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesMilk.mp3"
   },
   "carrot": {
     "content": "Carrot",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesCarrot.mp3"
   },
   "ice": {
     "content": "Ice",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesIce.mp3"
   },
   "chopsticks": {
     "content": "Chopsticks",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesChopsticks.mp3"
   },
   "punch": {
     "content": "Punch",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesPunch.mp3"
   },
   "kick": {
     "content": "Kick",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesKick.mp3"
   },
   "sweep": {
     "content": "Sweep",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesSweep.mp3"
   },
   "bow": {
     "content": "Bow",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesBow.mp3"
   },
   "grab": {
     "content": "Grab",
-    "role": "Arthur",
+    "role": "Audio",
     "audio": "https://s3.amazonaws.com/samurai-audio/obstacles/obstaclesGrab.mp3"
   }
 }
