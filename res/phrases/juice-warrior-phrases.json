@@ -3,30 +3,14 @@
     "0": {
       "outro": [
         {
-          "content": "You get better. I like that.",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesLowMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
-        },
-        {
-          "content": "A big order just came in! We need lots of seaweed, and fast! I'll give you no more than 5 seconds to prepare items.",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "To roll seaweed, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'roll!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesLowMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -104,30 +88,14 @@
     "1": {
       "outro": [
         {
-          "content": "Keep up good work.",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesLowMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
-        },
-        {
-          "content": "You will now also taste mochi ice cream! I hope you've got a sweet tooth! For this challenge you'll have 5 seconds to answer!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "To lick some mochi, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'lick!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesLowMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -141,30 +109,14 @@
     "0": {
       "outro": [
         {
-          "content": "You grow bigger. Excellent.",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesMediumMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
-        },
-        {
-          "content": "Now I'll also cook you stew! It's loaded with vitamins and good for the stomach! You have only 5 seconds to taste correctly!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "To slurp up stew, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'slurp!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesMediumMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -227,40 +179,14 @@
     "1": {
       "outro": [
         {
-          "content": "Promising effort!",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesMediumMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
-        },
-        {
-          "content": "Now we'll add candy too! It's not healthy and gives you cavities! You have only 5 seconds to respond!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "If Arthur gives you beef or tofu, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'yum!'",
-          "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "But if it's soda or candy, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'gross!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesMediumMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -274,15 +200,14 @@
     "0": {
       "outro": [
         {
-          "content": "Notable effort.",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesHighMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesHighMission0Intro0.mp3"
         },
         {
           "content": "Customers want refreshing drinks, so we'll now add ice! Let's be quick! Have the ingredients ready in less than 5 seconds!",
@@ -360,25 +285,14 @@
     "1": {
       "outro": [
         {
-          "content": "Keep it up",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesHighMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
-        },
-        {
-          "content": "Now I'll also show respect! It's very important in martial arts and life in general! A guru must react swiftly so you have 5 seconds to respond now!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "If Arthur bows, you also bow!",
-          "role": "Ben",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesHighMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,

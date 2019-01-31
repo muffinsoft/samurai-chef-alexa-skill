@@ -2,34 +2,34 @@
   "firstTimeGreeting": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/greetingsFirstTimeGreeting0.mp3"
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsFirstTimeGreeting0.mp3"
     },
     {
       "userResponse": true
     },
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/greetingsFirstTimeGreeting1.mp3"
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsFirstTimeGreeting1.mp3"
     },
     {
       "userResponse": true
     },
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/greetingsFirstTimeGreeting2.mp3"
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsFirstTimeGreeting2.mp3"
     },
     {
       "userResponse": true
     },
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/greetingsFirstTimeGreeting3.mp3"
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsFirstTimeGreeting3.mp3"
     }
   ],
   "playerWithAwardsGreeting": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/greetingsPlayerWithAwardsGreeting0.mp3"
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsPlayerWithAwardsGreeting0.mp3"
     },
     {
       "content": "%titles%. You have %low_color% belt Chef, %mid_color% belt Sumo, %high_color% belt Guru.",
@@ -40,7 +40,7 @@
   "exitPhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/greetingsExitPhrase0.mp3"
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsExitPhrase0.mp3"
     },
     {
       "content": "Goodbye.",
