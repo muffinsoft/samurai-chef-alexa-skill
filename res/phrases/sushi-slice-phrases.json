@@ -3,30 +3,14 @@
     "0": {
       "outro": [
         {
-          "content": "Your sushi looks good! I'm pleased.",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesLowMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
-        },
-        {
-          "content": "Customers are enjoying the sushi so far but they want more protein, so we'll add boiled eggs! This will be a competition round for you and Ben! I need the best sushi maker to step up!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Bring it, sushi buddy! To crack eggs, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'crack!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesLowMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -34,39 +18,8 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Ben and Alexa closely!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Rice!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[rice pouring into bowl]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Boil!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "[boiling water sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Fish!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[bloop or  fishy/flapping sound]",
-          "role": "Sound",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesLowMission0Demo0.mp3"
         },
         {
           "content": "Slice!",
@@ -74,39 +27,8 @@
           "audio": null
         },
         {
-          "content": "[sword sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Seaweed!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[one wet splat sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Roll!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "[squishing sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Rice!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[rice pouring into bowl]",
-          "role": "Sound",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesLowMission0Demo1.mp3"
         },
         {
           "content": "Boil!",
@@ -114,34 +36,8 @@
           "audio": null
         },
         {
-          "content": "[boiling water sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Egg!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[egg sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Slice!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "[sword sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "No! Sorry, Ben. Egg is Crack!",
-          "role": "Arthur",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesLowMission0Demo2.mp3"
         },
         {
           "content": "Hah! I won!",
@@ -154,30 +50,14 @@
     "1": {
       "outro": [
         {
-          "content": "Ah, I see future sushi masters!",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesLowMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
-        },
-        {
-          "content": "Wasabi peas are your next dish to taste. They're strong in flavor! Time to prove yourself! You and Ben will compete to see who tastes faster!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "I'm winning this time! To crunch some wasabi peas, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'crunch!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesLowMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -191,30 +71,14 @@
     "0": {
       "outro": [
         {
-          "content": "Ha! I admire your appetite!",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
-        },
-        {
-          "content": "Now I'll also make fried fish! Tastes good and is loaded with fatty acids! I'm on fire! It's competition time to see who is the better sumo so far! ",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "I'm so ready! To munch on fried fish, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'munch!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -222,29 +86,8 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Ben and Alexa closely!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Chicken!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Chomp!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Sushi!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[samurai sword sound]",
-          "role": "Sound",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission0Demo0.mp3"
         },
         {
           "content": "Gulp!",
@@ -252,24 +95,8 @@
           "audio": null
         },
         {
-          "content": "[gulping sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Stew!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Slurp!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Fried Fish!",
-          "role": "Arthur",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission0Demo1.mp3"
         },
         {
           "content": "Gulp?",
@@ -277,19 +104,8 @@
           "audio": null
         },
         {
-          "content": "No, Friend! fish is munch!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Hah! I won!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Now it’s your turn, Ben’s friend.",
-          "role": "Arthur",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission0Demo2.mp3"
         }
       ],
       "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
@@ -297,40 +113,14 @@
     "1": {
       "outro": [
         {
-          "content": "Very impressive! I'm pleased!",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
-        },
-        {
-          "content": "We'll now add milk! It's good for sumo bones! Let's see who has more discipline! Competition time between you and Ben!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "I'm ready to win! If Arthur gives you beef, tofu, or milk, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'yum!'",
-          "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "But if it's soda or candy, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'gross!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -344,30 +134,14 @@
     "0": {
       "outro": [
         {
-          "content": "I liked what I saw!",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
-        },
-        {
-          "content": "Customers want more delicious juices so I'll give you the ingredients faster. If I throw you chopsticks, don't add them! I want you and Ben to compete! it's a good way to see who is the better juice maker!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Oh yeah! If Arthur throws you chopsticks, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'stop don't drop!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -375,24 +149,8 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Ben and Alexa closely!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Carrot!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Slice and dice!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Milk!",
-          "role": "Arthur",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission0Demo0.mp3"
         },
         {
           "content": "Splash a dash!",
@@ -400,19 +158,8 @@
           "audio": null
         },
         {
-          "content": "Ice!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Punch and crunch!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Chopsticks!",
-          "role": "Arthur",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission0Demo1.mp3"
         },
         {
           "content": "Slice and dice?",
@@ -420,19 +167,8 @@
           "audio": null
         },
         {
-          "content": "No! Chopsticks is stop, don't drop!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Yay! I won!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Now your turn, Ben's friend.",
-          "role": "Arthur",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission0Demo2.mp3"
         }
       ],
       "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
@@ -440,30 +176,14 @@
     "1": {
       "outro": [
         {
-          "content": "That's good karate! Yes!",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
-        },
-        {
-          "content": "You are impressing Sensei! Now I'll also grab! You and Ben will compete to see who is better at karate so far!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "I'll show you what I've got! If Arthur tries to grab you, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'break!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
