@@ -262,7 +262,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         if (ingredient == null || ingredient.isEmpty()) {
             ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
         }
-        builder.addResponse(getDialogTranslator().translate(ingredient));
+        builder.addResponse(getDialogTranslator().getSound(ingredient));
         this.statePhase = GAME_PHASE_1;
         return builder;
     }
@@ -442,7 +442,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             this.statePhase = GAME_PHASE_1;
 
-            builder.addResponse(getDialogTranslator().translate(speechText));
+            builder.addResponse(getDialogTranslator().getSound(speechText));
         }
         return builder;
     }
@@ -733,7 +733,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         String ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
 
-        builder.addResponse(getDialogTranslator().translate(ingredient));
+        builder.addResponse(getDialogTranslator().getSound(ingredient));
 
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             return appendMockCompetitionAnswer(builder);
@@ -748,9 +748,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         WordReaction randomIngredient = getRandomIngredient(speech.getContent());
 
-        builder.addResponse(getDialogTranslator().translate(randomIngredient.getIngredient()))
+        builder.addResponse(getDialogTranslator().getSound(randomIngredient.getIngredient()))
                 .addResponse(getDialogTranslator().translate(BasePhraseContainer.pause(1000)))
-                .addResponse(getDialogTranslator().translate(randomIngredient.getUserReply(), this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
+                .addResponse(getDialogTranslator().getSound("reaction_" + randomIngredient.getUserReply()))
                 .addResponse(getDialogTranslator().translate(BasePhraseContainer.pause(1500)))
                 .addResponse(speech);
 
@@ -761,7 +761,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         String ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
         return builder
                 .addResponse(getDialogTranslator().translate(speechText))
-                .addResponse(getDialogTranslator().translate(ingredient))
+                .addResponse(getDialogTranslator().getSound(ingredient))
 
                 .turnOffReprompt();
     }

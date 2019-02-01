@@ -122,6 +122,9 @@ public class LaunchStateManager extends BaseStateManager {
     }
 
     private String fillPlaceholder(String content, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
+        if(content == null) {
+            return null;
+        }
         content = content.replace("%titles%", getTitles(lowUserProgress, midUserProgress, highUserProgress));
         content = content.replace("%low_color%", getBeltColor(lowUserProgress));
         content = content.replace("%mid_color%", getBeltColor(midUserProgress));
