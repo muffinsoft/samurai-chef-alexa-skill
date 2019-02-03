@@ -284,7 +284,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         getSessionAttributes().put(INTENT, IntentType.RESET);
         getSessionAttributes().put(CURRENT_MISSION, this.userProgress.getMission());
 
-        return builder.withSlotName(NAVIGATION)
+        return builder
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)))
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)))
                 .build();
@@ -749,9 +749,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         WordReaction randomIngredient = getRandomIngredient(speech.getContent());
 
         builder.addResponse(getDialogTranslator().getSound(randomIngredient.getIngredient()))
-                .addResponse(getDialogTranslator().translate(BasePhraseContainer.pause(1000)))
                 .addResponse(getDialogTranslator().getSound("reaction_" + randomIngredient.getUserReply()))
-                .addResponse(getDialogTranslator().translate(BasePhraseContainer.pause(1500)))
                 .addResponse(speech);
 
         return builder;

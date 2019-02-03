@@ -94,7 +94,6 @@ public class LaunchStateManager extends BaseStateManager {
         }
 
         return builder
-                .withSlotName(SlotName.MISSION)
                 .withCardTitle(cardManager.getValueByKey(WELCOME_CARD))
                 .build();
     }
@@ -122,7 +121,7 @@ public class LaunchStateManager extends BaseStateManager {
     }
 
     private String fillPlaceholder(String content, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
-        if(content == null) {
+        if (content == null) {
             return null;
         }
         content = content.replace("%titles%", getTitles(lowUserProgress, midUserProgress, highUserProgress));
@@ -166,7 +165,15 @@ public class LaunchStateManager extends BaseStateManager {
         String lowTitle = getHighestTitleOfMission(lowUserProgress);
         String midTitle = getHighestTitleOfMission(midUserProgress);
         String highTitle = getHighestTitleOfMission(highUserProgress);
-        return String.join(", ", Arrays.asList(lowTitle, midTitle, highTitle));
+        return join(Arrays.asList(lowTitle, midTitle, highTitle), ", ");
+    }
+
+    private String join(List<String> str, String separator) {
+        StringBuilder retval = new StringBuilder();
+        for (String s : str) {
+            retval.append(separator).append(s);
+        }
+        return retval.toString().replaceFirst(separator, "");
     }
 
     private String getHighestTitleOfMission(UserProgress userProgress) {

@@ -72,7 +72,6 @@ public class InitialGreetingStateManager extends BaseStateManager {
         }
 
         return builder
-                .withSlotName(SlotName.MISSION)
                 .turnOffReprompt()
                 .build();
     }
