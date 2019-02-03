@@ -1,3 +1,7 @@
 {
-  "welcome": "Samurai Chef"
+  "welcome-small": "https://s3.amazonaws.com/samurai-audio/images/welcome-small.jpg",
+  "welcome-large": "https://s3.amazonaws.com/samurai-audio/images/welcome-large.jpg",
+  "mission-selection-small": "https://s3.amazonaws.com/samurai-audio/images/mission-selection-small.jpg",
+  "mission-selection-large": "https://s3.amazonaws.com/samurai-audio/images/mission-selection-large.jpg",
+  "mission-selection-chef-large": "https://s3.amazonaws.com/samurai-audio/images/mission-selection-chef-large.jpg"
 }

@@ -6,7 +6,6 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.constants.AliasConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsPhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants;
@@ -32,7 +31,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.BeltColorDefiner.defineColor;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
@@ -93,9 +91,7 @@ public class LaunchStateManager extends BaseStateManager {
             logger.info("New user was started new Game Session.");
         }
 
-        return builder
-                .withCardTitle(cardManager.getValueByKey(WELCOME_CARD))
-                .build();
+        return builder.build();
     }
 
     private DialogItem.Builder buildRoyalGreeting(DialogItem.Builder builder) {
@@ -106,7 +102,11 @@ public class LaunchStateManager extends BaseStateManager {
 
         buildRoyalGreetingWithAwards(builder, lowUserProgress, midUserProgress, highUserProgress);
 
-        return builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)));
+        return builder
+                .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)))
+                .withCardTitle("Mission Selection")
+                .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
+                .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
     }
 
     private void buildRoyalGreetingWithAwards(DialogItem.Builder builder, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
@@ -233,5 +233,8 @@ public class LaunchStateManager extends BaseStateManager {
             builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
             userReplyBreakpointPosition++;
         }
+        builder.withCardTitle("Welcome")
+                .withSmallImageUrl(cardManager.getValueByKey("welcome-small"))
+                .withLargeImageUrl(cardManager.getValueByKey("welcome-large"));
     }
 }

@@ -14,6 +14,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseMan
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.MissionPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -66,6 +67,7 @@ public class SelectLevelStateManager extends BaseStateManager {
     private final RegularPhraseManager regularPhraseManager;
     private final ActivityPhraseManager activityPhraseManager;
     private final MissionPhraseManager missionPhraseManager;
+    private final CardManager cardManager;
     private StateType statePhase;
     private Set<String> finishedMissions;
     private Integer userReplyBreakpointPosition;
@@ -77,6 +79,7 @@ public class SelectLevelStateManager extends BaseStateManager {
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.missionPhraseManager = phraseDependencyContainer.getMissionPhraseManager();
         this.activityPhraseManager = phraseDependencyContainer.getActivityPhraseManager();
+        this.cardManager = settingsDependencyContainer.getCardManager();
     }
 
     @Override
@@ -112,7 +115,10 @@ public class SelectLevelStateManager extends BaseStateManager {
         }
         else if (compare(getUserReply(SlotName.CONFIRMATION), YES) ||
                 compare(getUserReply(SlotName.CONFIRMATION), NO)) {
-            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                    .withCardTitle("Mission Selection")
+                    .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
+                    .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
         }
         else {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE)));

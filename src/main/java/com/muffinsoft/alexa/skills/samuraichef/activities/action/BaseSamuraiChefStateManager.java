@@ -16,6 +16,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseMan
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.MissionPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -89,6 +90,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     final MissionManager missionManager;
     private final ActivityPhraseManager activityPhraseManager;
     private final MissionPhraseManager missionPhraseManager;
+    private final CardManager cardManager;
     Activities currentActivity;
     ActivityProgress activityProgress;
     Stripe stripe;
@@ -108,6 +110,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.activityPhraseManager = phraseDependencyContainer.getActivityPhraseManager();
         this.activityManager = settingsDependencyContainer.getActivityManager();
         this.missionManager = settingsDependencyContainer.getMissionManager();
+        this.cardManager = settingsDependencyContainer.getCardManager();
     }
 
     @Override
@@ -433,7 +436,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             this.getSessionAttributes().remove(ACTIVITY_PROGRESS);
             this.getSessionAttributes().remove(CURRENT_MISSION);
 
-            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                    .withCardTitle("Mission Selection")
+                    .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
+                    .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
         }
         else {
             String speechText = nextIngredient(this.activityProgress.getPreviousIngredient());
@@ -586,7 +592,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
 
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
-                builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+                builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                        .withCardTitle("Mission Selection")
+                        .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
+                        .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
+
             }
 
             this.userProgress.setMissionFinished(true);

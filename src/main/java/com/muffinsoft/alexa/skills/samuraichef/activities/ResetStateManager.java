@@ -8,6 +8,7 @@ import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
@@ -47,6 +48,7 @@ public class ResetStateManager extends BaseStateManager {
     private static final Logger logger = LogManager.getLogger(CancelStateManager.class);
 
     private final RegularPhraseManager regularPhraseManager;
+    private final CardManager cardManager;
 
     private ActivityProgress activityProgress;
 
@@ -57,6 +59,7 @@ public class ResetStateManager extends BaseStateManager {
     public ResetStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(slots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
+        this.cardManager = settingsDependencyContainer.getCardManager();
     }
 
     @Override
@@ -155,7 +158,10 @@ public class ResetStateManager extends BaseStateManager {
         DialogItem.Builder builder = DialogItem.builder();
 
         if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.NEW_MISSION)) {
-            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                    .withCardTitle("Mission Selection")
+                    .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
+                    .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, IntentType.GAME);
