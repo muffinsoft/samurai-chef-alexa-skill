@@ -5,6 +5,7 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
+import com.muffinsoft.alexa.sdk.enums.SpeechType;
 import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
@@ -265,7 +266,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         if (ingredient == null || ingredient.isEmpty()) {
             ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
         }
-        builder.addResponse(getDialogTranslator().getSound(ingredient));
+        builder.addResponse(getSoundLine(ingredient, false));
         this.statePhase = GAME_PHASE_1;
         return builder;
     }
@@ -448,7 +449,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             this.statePhase = GAME_PHASE_1;
 
-            builder.addResponse(getDialogTranslator().getSound(speechText));
+            builder.addResponse(getSoundLine(speechText, false));
         }
         return builder;
     }
@@ -743,7 +744,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         String ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
 
-        builder.addResponse(getDialogTranslator().getSound(ingredient));
+        builder.addResponse(getSoundLine(ingredient, false));
 
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             return appendMockCompetitionAnswer(builder);
@@ -758,18 +759,31 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         WordReaction randomIngredient = getRandomIngredient(speech.getContent());
 
-        builder.addResponse(getDialogTranslator().getSound(randomIngredient.getIngredient()))
-                .addResponse(getDialogTranslator().getSound("reaction_" + randomIngredient.getUserReply()))
+        builder.addResponse(getSoundLine(randomIngredient.getIngredient(), false))
+                .addResponse(getSoundLine(randomIngredient.getUserReply(), true))
                 .addResponse(speech);
 
         return builder;
+    }
+
+    private Speech getSoundLine(String source, boolean isReaction) {
+        if (isReaction) {
+            source = "reaction_" + source;
+        }
+        if (stripe.isUseVocabulary()) {
+            String path = "https://s3.amazonaws.com/samurai-audio/words/" + source + ".mp3";
+            return new Speech(SpeechType.AUDIO, path, 0);
+        }
+        else {
+            return getDialogTranslator().getSound(source);
+        }
     }
 
     DialogItem.Builder getFailureDialog(DialogItem.Builder builder, List<PhraseContainer> speechText) {
         String ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
         return builder
                 .addResponse(getDialogTranslator().translate(speechText))
-                .addResponse(getDialogTranslator().getSound(ingredient))
+                .addResponse(getSoundLine(ingredient, false))
 
                 .turnOffReprompt();
     }
