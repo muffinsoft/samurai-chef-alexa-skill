@@ -17,6 +17,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseMan
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.MissionPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
@@ -89,6 +90,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     final RegularPhraseManager regularPhraseManager;
     final ActivityManager activityManager;
     final MissionManager missionManager;
+    final AplManager aplManager;
     private final ActivityPhraseManager activityPhraseManager;
     private final MissionPhraseManager missionPhraseManager;
     private final CardManager cardManager;
@@ -112,6 +114,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.activityManager = settingsDependencyContainer.getActivityManager();
         this.missionManager = settingsDependencyContainer.getMissionManager();
         this.cardManager = settingsDependencyContainer.getCardManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -439,6 +442,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                     .withCardTitle("Mission Selection")
+//                    .withAplDocument(aplManager.getContainer())
                     .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
                     .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
         }
@@ -496,13 +500,12 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.statePhase = SUBMISSION_OUTRO;
 
-        calculateStripeProgress();
-
         List<BasePhraseContainer> dialog = missionPhraseManager.getStripeOutroByMission(currentMission, number);
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, WIN);
 
         if (iterationPointer >= dialog.size()) {
+            calculateStripeProgress();
             builder = handleStripeOutroState(builder, this.currentMission);
         }
 
@@ -659,8 +662,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             String wrongReplyOnIngredient = getWrongReplyOnIngredient(randomIngredient.getIngredient());
 
             builder
-                    .replaceResponse(getDialogTranslator().translate(randomIngredient.getIngredient()))
-                    .addResponse(getDialogTranslator().translate(wrongReplyOnIngredient, this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
+                    .replaceResponse(getSoundLine(randomIngredient.getIngredient(), false))
+                    .addResponse(getSoundLine(wrongReplyOnIngredient, true))
                     .withReprompt(getDialogTranslator().translate(regularPhraseManager.getValueByKey(WON_RE_PROMPT_PHRASE)));
         }
 
@@ -736,7 +739,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     DialogItem.Builder getRePromptSuccessDialog(DialogItem.Builder builder) {
         return builder
-                .addResponse(getDialogTranslator().translate(this.activityProgress.getPreviousIngredient()))
+                .addResponse(getSoundLine(this.activityProgress.getPreviousIngredient(), false))
                 .turnOffReprompt();
     }
 
@@ -772,10 +775,13 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         }
         if (stripe.isUseVocabulary()) {
             String path = "https://s3.amazonaws.com/samurai-audio/words/" + source + ".mp3";
+            logger.info("Try to get sound by url " + path);
             return new Speech(SpeechType.AUDIO, path, 0);
         }
         else {
-            return getDialogTranslator().getSound(source);
+            Speech sound = getDialogTranslator().getSound(source);
+            logger.info("Try to get sound by url " + sound.getContent());
+            return sound;
         }
     }
 

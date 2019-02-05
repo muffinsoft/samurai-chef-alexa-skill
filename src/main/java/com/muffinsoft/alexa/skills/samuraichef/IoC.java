@@ -13,6 +13,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseMana
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.SoundsManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.ActivityManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.UserReplyManager;
@@ -21,6 +22,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContaine
 
 public class IoC {
 
+    public static final AplManager aplManager;
     private static final RegularPhraseManager regularPhraseManager;
     private static final HelpPhraseManager helpPhraseManager;
     private static final ActivityPhraseManager activityPhraseManager;
@@ -44,6 +46,7 @@ public class IoC {
         cardManager = new CardManager("phrases/cards.json");
         userReplyManager = new UserReplyManager("settings/replies.json");
         aliasManager = new AliasManager("settings/aliases.json");
+        aplManager = new AplManager("settings/apl.json");
         missionManager = new MissionManager("settings/progress.json");
         greetingsPhraseManager = new GreetingsPhraseManager("phrases/greetings.json");
         helpPhraseManager = new HelpPhraseManager("phrases/help.json");
@@ -53,7 +56,7 @@ public class IoC {
         soundsManager = new SoundsManager("phrases/sounds.json");
         dialogTranslator = new BaseDialogTranslator(charactersManager.getContainer(), soundsManager.getContainer());
         activityPhraseManager = new ActivityPhraseManager();
-        settingsDependencyContainer = new SettingsDependencyContainer(cardManager, activityManager, aliasManager, missionManager, dialogTranslator);
+        settingsDependencyContainer = new SettingsDependencyContainer(cardManager, activityManager, aliasManager, missionManager, aplManager, dialogTranslator);
         phraseDependencyContainer = new PhraseDependencyContainer(regularPhraseManager, activityPhraseManager, helpPhraseManager, greetingsPhraseManager, missionPhraseManager);
         sessionStateFabric = new SessionStateFabric(settingsDependencyContainer, phraseDependencyContainer);
         intentFactory = new SamuraiIntentFactory(settingsDependencyContainer, phraseDependencyContainer, sessionStateFabric);

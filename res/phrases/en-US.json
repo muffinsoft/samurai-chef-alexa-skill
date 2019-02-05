@@ -27,11 +27,7 @@
   "justEarnCorrectQuestionPhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsJustEarnCorrectQuestionPhrase0"
-    },
-    {
-      "content": "Wow, you got some Secret Sauce! When you use it, Sensei will accept any answer as correct!",
-      "role": "Ben"
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsJustEarnCorrectQuestionPhrase0.mp3"
     }
   ],
   "justUseCorrectQuestionPhrase": [

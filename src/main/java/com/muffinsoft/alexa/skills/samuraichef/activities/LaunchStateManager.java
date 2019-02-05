@@ -13,6 +13,7 @@ import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
@@ -42,6 +43,7 @@ public class LaunchStateManager extends BaseStateManager {
     private static final Logger logger = LogManager.getLogger(LaunchStateManager.class);
     private final GreetingsPhraseManager greetingsPhraseManager;
     private final AliasManager aliasManager;
+    private final AplManager aplManager;
     private final RegularPhraseManager regularPhraseManager;
     private final CardManager cardManager;
     private final AttributesManager attributesManager;
@@ -54,6 +56,7 @@ public class LaunchStateManager extends BaseStateManager {
         this.cardManager = settingsDependencyContainer.getCardManager();
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.aliasManager = settingsDependencyContainer.getAliasManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -105,6 +108,7 @@ public class LaunchStateManager extends BaseStateManager {
         return builder
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)))
                 .withCardTitle("Mission Selection")
+//                .withAplDocument(aplManager.getContainer())
                 .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
                 .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
     }
@@ -234,6 +238,7 @@ public class LaunchStateManager extends BaseStateManager {
             userReplyBreakpointPosition++;
         }
         builder.withCardTitle("Welcome")
+//                .withAplDocument(aplManager.getContainer())
                 .withSmallImageUrl(cardManager.getValueByKey("welcome-small"))
                 .withLargeImageUrl(cardManager.getValueByKey("welcome-large"));
     }

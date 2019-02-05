@@ -23,8 +23,7 @@
         },
         {
           "content": "Slice!",
-          "role": "Alexa",
-          "audio": null
+          "role": "Alexa"
         },
         {
           "role": "Audio",
@@ -32,8 +31,7 @@
         },
         {
           "content": "Boil!",
-          "role": "Alexa",
-          "audio": null
+          "role": "Alexa"
         },
         {
           "role": "Audio",
@@ -41,8 +39,7 @@
         },
         {
           "content": "Hah! I won!",
-          "role": "Alexa",
-          "audio": null
+          "role": "Alexa"
         }
       ],
       "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
@@ -91,8 +88,7 @@
         },
         {
           "content": "Gulp!",
-          "role": "Alexa",
-          "audio": null
+          "role": "Alexa"
         },
         {
           "role": "Audio",
@@ -100,8 +96,7 @@
         },
         {
           "content": "Gulp?",
-          "role": "Alexa",
-          "audio": null
+          "role": "Alexa"
         },
         {
           "role": "Audio",
@@ -154,8 +149,7 @@
         },
         {
           "content": "Splash a dash!",
-          "role": "Alexa",
-          "audio": null
+          "role": "Alexa"
         },
         {
           "role": "Audio",
@@ -163,8 +157,7 @@
         },
         {
           "content": "Slice and dice?",
-          "role": "Alexa",
-          "audio": null
+          "role": "Alexa"
         },
         {
           "role": "Audio",
