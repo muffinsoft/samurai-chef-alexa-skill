@@ -16,73 +16,7 @@
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
-      "demo": [
-        {
-          "content": "Watch Ben closely!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Rice!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[samurai sword sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Boil!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Fish!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Slice!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Seaweed!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Roll!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Carrot!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Chop!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Egg!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Crack!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Now it’s your turn, Ben’s friend.",
-          "role": "Sensei",
-          "audio": null
-        }
-      ],
+      "demo": [],
       "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
     },
     "1": {
@@ -122,58 +56,7 @@
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
-      "demo": [
-        {
-          "content": "Watch Ben closely!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Chicken!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Chomp!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Sushi!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Gulp!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Stew!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Slurp!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Fried Fish!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Munch!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Now it’s your turn, Ben’s friend.",
-          "role": "Arthur",
-          "audio": null
-        }
-      ],
+      "demo": [],
       "moveToPhaseTwo": null
     },
     "1": {
@@ -208,78 +91,12 @@
         {
           "role": "Audio",
           "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesHighMission0Intro0.mp3"
-        },
-        {
-          "content": "Customers want refreshing drinks, so we'll now add ice! Let's be quick! Have the ingredients ready in less than 5 seconds!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "To crunch up ice, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'punch and crunch!'",
-          "role": "BenLoud",
-          "audio": null
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
-      "demo": [
-        {
-          "content": "Watch Ben closely!",
-          "role": "Arthur",
-          "audio": ""
-        },
-        {
-          "content": "Carrot!",
-          "role": "Arthur",
-          "audio": ""
-        },
-        {
-          "content": "Slice and dice!",
-          "role": "Ben",
-          "audio": ""
-        },
-        {
-          "content": "Milk!",
-          "role": "Arthur",
-          "audio": ""
-        },
-        {
-          "content": "Splash a dash!",
-          "role": "Ben",
-          "audio": ""
-        },
-        {
-          "content": "Ice!",
-          "role": "Arthur",
-          "audio": ""
-        },
-        {
-          "content": "Punch and crunch!",
-          "role": "Ben",
-          "audio": ""
-        },
-        {
-          "content": "Chopsticks!",
-          "role": "Arthur",
-          "audio": ""
-        },
-        {
-          "content": "Stop, don't drop!",
-          "role": "Ben",
-          "audio": ""
-        },
-        {
-          "content": "Good! Now your turn, Ben's friend.",
-          "role": "Arthur",
-          "audio": ""
-        }
-      ],
+      "demo": [],
       "moveToPhaseTwo": null
     },
     "1": {
