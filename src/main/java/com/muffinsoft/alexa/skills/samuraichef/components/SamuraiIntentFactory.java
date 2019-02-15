@@ -19,6 +19,7 @@ import com.muffinsoft.alexa.skills.samuraichef.activities.ResetConfirmationState
 import com.muffinsoft.alexa.skills.samuraichef.activities.ResetMissionSelectionStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.ResetStateManager;
 import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates;
@@ -52,12 +53,14 @@ public class SamuraiIntentFactory implements IntentFactory {
     private final PhraseDependencyContainer phraseDependencyContainer;
     private final SessionStateFabric sessionStateFabric;
     private final CardManager cardManager;
+    private final AplManager aplManager;
 
     public SamuraiIntentFactory(SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer, SessionStateFabric sessionStateFabric) {
         this.settingsDependencyContainer = settingsDependencyContainer;
         this.phraseDependencyContainer = phraseDependencyContainer;
         this.sessionStateFabric = sessionStateFabric;
         this.cardManager = settingsDependencyContainer.getCardManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -94,6 +97,7 @@ public class SamuraiIntentFactory implements IntentFactory {
                         return DialogItem.builder()
                                 .addResponse(getDialogTranslator().translate(phraseDependencyContainer.getRegularPhraseManager().getValueByKey(SELECT_MISSION_PHRASE)))
                                 .withCardTitle("Mission Selection")
+                                .withAplDocument(aplManager.getContainer())
                                 .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
                                 .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"))
                                 .build();

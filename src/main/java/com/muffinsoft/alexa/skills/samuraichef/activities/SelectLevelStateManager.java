@@ -14,6 +14,7 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseMan
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.MissionPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
@@ -63,6 +64,7 @@ public class SelectLevelStateManager extends BaseStateManager {
     private static final Logger logger = LogManager.getLogger(SelectLevelStateManager.class);
 
     private final AliasManager aliasManager;
+    private final AplManager aplManager;
     private final MissionManager missionManager;
     private final RegularPhraseManager regularPhraseManager;
     private final ActivityPhraseManager activityPhraseManager;
@@ -80,6 +82,7 @@ public class SelectLevelStateManager extends BaseStateManager {
         this.missionPhraseManager = phraseDependencyContainer.getMissionPhraseManager();
         this.activityPhraseManager = phraseDependencyContainer.getActivityPhraseManager();
         this.cardManager = settingsDependencyContainer.getCardManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -117,6 +120,7 @@ public class SelectLevelStateManager extends BaseStateManager {
                 compare(getUserReply(SlotName.CONFIRMATION), NO)) {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                     .withCardTitle("Mission Selection")
+                    .withAplDocument(aplManager.getContainer())
                     .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
                     .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
         }

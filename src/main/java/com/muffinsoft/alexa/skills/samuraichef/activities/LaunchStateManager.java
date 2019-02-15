@@ -108,7 +108,7 @@ public class LaunchStateManager extends BaseStateManager {
         return builder
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)))
                 .withCardTitle("Mission Selection")
-//                .withAplDocument(aplManager.getContainer())
+                .withAplDocument(aplManager.getContainer())
                 .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
                 .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
     }
@@ -238,7 +238,7 @@ public class LaunchStateManager extends BaseStateManager {
             userReplyBreakpointPosition++;
         }
         builder.withCardTitle("Welcome")
-//                .withAplDocument(aplManager.getContainer())
+                .withAplDocument(aplManager.getContainer())
                 .withSmallImageUrl(cardManager.getValueByKey("welcome-small"))
                 .withLargeImageUrl(cardManager.getValueByKey("welcome-large"));
     }

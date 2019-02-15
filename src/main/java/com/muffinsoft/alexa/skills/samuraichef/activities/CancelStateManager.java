@@ -7,6 +7,7 @@ import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
@@ -41,6 +42,7 @@ public class CancelStateManager extends BaseStateManager {
 
     private final RegularPhraseManager regularPhraseManager;
     private final MissionManager missionManager;
+    private final AplManager aplManager;
     private final CardManager cardManager;
     private UserMission currentMission;
     private UserProgress userProgress;
@@ -50,6 +52,7 @@ public class CancelStateManager extends BaseStateManager {
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.missionManager = settingsDependencyContainer.getMissionManager();
         this.cardManager = settingsDependencyContainer.getCardManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -109,6 +112,7 @@ public class CancelStateManager extends BaseStateManager {
             savePersistentAttributes();
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                     .withCardTitle("Mission Selection")
+                    .withAplDocument(aplManager.getContainer())
                     .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
                     .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
             getSessionAttributes().remove(CURRENT_MISSION);

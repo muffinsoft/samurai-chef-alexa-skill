@@ -442,7 +442,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                     .withCardTitle("Mission Selection")
-//                    .withAplDocument(aplManager.getContainer())
+                    .withAplDocument(aplManager.getContainer())
                     .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
                     .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
         }
@@ -598,6 +598,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                         .withCardTitle("Mission Selection")
+                        .withAplDocument(aplManager.getContainer())
                         .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
                         .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
 

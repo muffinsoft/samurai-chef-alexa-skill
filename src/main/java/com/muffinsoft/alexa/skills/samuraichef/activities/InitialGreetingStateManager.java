@@ -10,6 +10,7 @@ import com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
@@ -27,6 +28,7 @@ public class InitialGreetingStateManager extends BaseStateManager {
     private final GreetingsPhraseManager greetingsPhraseManager;
     private final RegularPhraseManager regularPhraseManager;
     private final CardManager cardManager;
+    private final AplManager aplManager;
 
     private Integer userReplyBreakpointPosition;
 
@@ -35,6 +37,7 @@ public class InitialGreetingStateManager extends BaseStateManager {
         this.greetingsPhraseManager = phraseDependencyContainer.getGreetingsPhraseManager();
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.cardManager = settingsDependencyContainer.getCardManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -73,6 +76,7 @@ public class InitialGreetingStateManager extends BaseStateManager {
             builder
                     .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)))
                     .withCardTitle("Mission Selection")
+                    .withAplDocument(aplManager.getContainer())
                     .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
                     .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
         }
