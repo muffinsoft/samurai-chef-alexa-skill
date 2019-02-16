@@ -8,6 +8,7 @@ import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
@@ -49,6 +50,7 @@ public class ResetStateManager extends BaseStateManager {
 
     private final RegularPhraseManager regularPhraseManager;
     private final CardManager cardManager;
+    private final AplManager aplManager;
 
     private ActivityProgress activityProgress;
 
@@ -60,6 +62,7 @@ public class ResetStateManager extends BaseStateManager {
         super(slots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.cardManager = settingsDependencyContainer.getCardManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -160,8 +163,8 @@ public class ResetStateManager extends BaseStateManager {
         if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.NEW_MISSION)) {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                     .withCardTitle("Mission Selection")
-                    .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
-                    .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
+                    .withAplDocument(aplManager.getContainer())
+                    .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, IntentType.GAME);

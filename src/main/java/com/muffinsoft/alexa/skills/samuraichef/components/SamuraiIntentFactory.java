@@ -98,8 +98,7 @@ public class SamuraiIntentFactory implements IntentFactory {
                                 .addResponse(getDialogTranslator().translate(phraseDependencyContainer.getRegularPhraseManager().getValueByKey(SELECT_MISSION_PHRASE)))
                                 .withCardTitle("Mission Selection")
                                 .withAplDocument(aplManager.getContainer())
-                                .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
-                                .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"))
+                                .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"))
                                 .build();
                     }
                 };

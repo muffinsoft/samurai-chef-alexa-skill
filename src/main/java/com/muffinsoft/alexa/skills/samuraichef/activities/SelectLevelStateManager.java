@@ -121,8 +121,7 @@ public class SelectLevelStateManager extends BaseStateManager {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                     .withCardTitle("Mission Selection")
                     .withAplDocument(aplManager.getContainer())
-                    .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
-                    .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
+                    .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
         }
         else {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
@@ -185,9 +184,13 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         List<BasePhraseContainer> dialog = missionPhraseManager.getMissionIntro(currentMission);
 
+        builder.withAplDocument(aplManager.getContainer());
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-selection-" + currentMission.key));
+
         int iterationPointer = wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
 
         if (iterationPointer >= dialog.size()) {
+            builder.withAplDocument(aplManager.getContainer());
             handleStripeIntroState(builder, currentMission, userProgress);
         }
     }
@@ -195,8 +198,10 @@ public class SelectLevelStateManager extends BaseStateManager {
     private void handleStripeIntroState(DialogItem.Builder builder, UserMission currentMission, UserProgress userProgress) {
 
         this.statePhase = ACTIVITY_INTRO;
-
-        List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, userProgress.getStripeCount());
+        int number = userProgress.getStripeCount();
+        List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number + "_" + 1));
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number + "_" + 2));
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, SUBMISSION_INTRO);
 

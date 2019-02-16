@@ -161,8 +161,7 @@ public class ResetConfirmationStateManager extends BaseStateManager {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                     .withCardTitle("Mission Selection")
                     .withAplDocument(aplManager.getContainer())
-                    .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
-                    .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
+                    .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, IntentType.GAME);

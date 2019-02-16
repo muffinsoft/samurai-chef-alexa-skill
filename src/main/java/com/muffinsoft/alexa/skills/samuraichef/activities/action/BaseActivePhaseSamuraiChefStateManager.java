@@ -212,6 +212,8 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
                 this.activityProgress.addPowerUp(nextPowerUp);
                 logger.debug("Was earned equipment: " + nextPowerUp);
 
+                builder.withAplDocument(aplManager.getContainer());
+
                 List<PhraseContainer> prependedString;
                 if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
                     prependedString = regularPhraseManager.getValueByKey(JUST_EARN_SECOND_CHANCE_PHRASE);
@@ -219,6 +221,8 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
                 else {
                     prependedString = regularPhraseManager.getValueByKey(JUST_EARN_CORRECT_ANSWER_PHRASE);
                 }
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("powerup_" + nextPowerUp.name() + "-1"));
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("powerup_" + nextPowerUp.name() + "-2"));
 
                 addAdditionalTimeToAnswer(10);
 

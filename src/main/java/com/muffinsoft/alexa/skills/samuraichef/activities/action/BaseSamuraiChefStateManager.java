@@ -91,9 +91,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     final ActivityManager activityManager;
     final MissionManager missionManager;
     final AplManager aplManager;
+    final CardManager cardManager;
     private final ActivityPhraseManager activityPhraseManager;
     private final MissionPhraseManager missionPhraseManager;
-    private final CardManager cardManager;
     Activities currentActivity;
     ActivityProgress activityProgress;
     Stripe stripe;
@@ -309,7 +309,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
 
+        builder.withAplDocument(aplManager.getContainer());
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-selection-" + currentMission.key));
+
         if (iterationPointer >= dialog.size()) {
+            builder.withAplDocument(aplManager.getContainer());
             builder = handleStripeIntroState(builder, currentMission, this.userProgress.getStripeCount());
         }
 
@@ -359,8 +363,12 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.statePhase = ACTIVITY_INTRO;
 
         List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number + "_" + 1));
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number + "_" + 2));
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, SUBMISSION_INTRO);
+
+        builder.withAplDocument(aplManager.getContainer());
 
         if (iterationPointer >= dialog.size()) {
             builder = handleActivityIntroState(builder, this.currentActivity, number);
@@ -443,8 +451,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                     .withCardTitle("Mission Selection")
                     .withAplDocument(aplManager.getContainer())
-                    .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
-                    .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
+                    .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
         }
         else {
             String speechText = nextIngredient(this.activityProgress.getPreviousIngredient());
@@ -599,8 +606,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                         .withCardTitle("Mission Selection")
                         .withAplDocument(aplManager.getContainer())
-                        .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
-                        .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
 
             }
 

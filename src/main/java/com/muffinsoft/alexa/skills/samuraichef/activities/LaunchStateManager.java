@@ -109,8 +109,8 @@ public class LaunchStateManager extends BaseStateManager {
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)))
                 .withCardTitle("Mission Selection")
                 .withAplDocument(aplManager.getContainer())
-                .withSmallImageUrl(cardManager.getValueByKey("mission-selection-small"))
-                .withLargeImageUrl(cardManager.getValueByKey("mission-selection-large"));
+                .addBackgroundImageUrl(cardManager.getValueByKey("welcome-back"))
+                .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
     }
 
     private void buildRoyalGreetingWithAwards(DialogItem.Builder builder, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
@@ -237,9 +237,8 @@ public class LaunchStateManager extends BaseStateManager {
             builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
             userReplyBreakpointPosition++;
         }
-        builder.withCardTitle("Welcome")
-                .withAplDocument(aplManager.getContainer())
-                .withSmallImageUrl(cardManager.getValueByKey("welcome-small"))
-                .withLargeImageUrl(cardManager.getValueByKey("welcome-large"));
+
+        builder.withAplDocument(aplManager.getContainer())
+                .addBackgroundImageUrl(cardManager.getValueByKey("welcome"));
     }
 }
