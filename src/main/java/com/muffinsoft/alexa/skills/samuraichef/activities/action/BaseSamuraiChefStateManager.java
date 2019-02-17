@@ -268,6 +268,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         String ingredient = this.activityProgress.getPreviousIngredient();
         if (ingredient == null || ingredient.isEmpty()) {
             ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
+            builder.addBackgroundImageUrl(getBackgroundImageUrl(ingredient))
+                    .withAplDocument(aplManager.getContainer());
         }
         builder.addResponse(getSoundLine(ingredient, false));
         this.statePhase = GAME_PHASE_1;
@@ -460,7 +462,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             this.statePhase = GAME_PHASE_1;
 
-            builder.addResponse(getSoundLine(speechText, false));
+            builder.addResponse(getSoundLine(speechText, false))
+                    .addBackgroundImageUrl(getBackgroundImageUrl(speechText))
+                    .withAplDocument(aplManager.getContainer());
         }
         return builder;
     }
@@ -754,7 +758,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         String ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
 
-        builder.addResponse(getSoundLine(ingredient, false));
+        builder.addResponse(getSoundLine(ingredient, false))
+                .addBackgroundImageUrl(getBackgroundImageUrl(ingredient))
+                .withAplDocument(aplManager.getContainer());
 
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             return appendMockCompetitionAnswer(builder);
@@ -797,7 +803,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return builder
                 .addResponse(getDialogTranslator().translate(speechText))
                 .addResponse(getSoundLine(ingredient, false))
-
+                .addBackgroundImageUrl(getBackgroundImageUrl(ingredient))
+                .withAplDocument(aplManager.getContainer())
                 .turnOffReprompt();
     }
 
@@ -817,6 +824,12 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private String getWrongReplyOnIngredient(String ingredient) {
         WordReaction nextIngredient = activityManager.getNextWord(this.stripe, ingredient);
         return nextIngredient.getUserReply();
+    }
+
+    String getBackgroundImageUrl(String ingredient) {
+        String url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient + ".jpg";
+        logger.info("Going to load icon by url: " + url);
+        return url;
     }
 
     private String nextIngredient(String ingredient) {

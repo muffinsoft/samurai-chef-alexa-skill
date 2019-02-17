@@ -10,7 +10,7 @@ public class SpeechSettings {
     private List<BasePhraseContainer> outro;
     private List<BasePhraseContainer> demo;
     private boolean shouldRunDemo;
-    private String moveToPhaseTwo;
+    private String instructionImageUrl;
     private String shouldRunDemoPhrase;
     private String readyToStartPhrase;
 
@@ -46,12 +46,12 @@ public class SpeechSettings {
         this.demo = demo;
     }
 
-    public String getMoveToPhaseTwo() {
-        return moveToPhaseTwo;
+    public String getInstructionImageUrl() {
+        return instructionImageUrl;
     }
 
-    public void setMoveToPhaseTwo(String moveToPhaseTwo) {
-        this.moveToPhaseTwo = moveToPhaseTwo;
+    public void setInstructionImageUrl(String instructionImageUrl) {
+        this.instructionImageUrl = instructionImageUrl;
     }
 
     public String getShouldRunDemoPhrase() {

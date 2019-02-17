@@ -42,7 +42,7 @@
           "role": "Alexa"
         }
       ],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/1_1_3.jpg"
     },
     "1": {
       "outro": [
@@ -61,7 +61,7 @@
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/1_2_3.jpg"
     }
   },
   "MEDIUM_MISSION": {
@@ -103,7 +103,7 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission0Demo2.mp3"
         }
       ],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/2_1_3.jpg"
     },
     "1": {
       "outro": [
@@ -122,7 +122,7 @@
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/2_2_3.jpg"
     }
   },
   "HIGH_MISSION": {
@@ -164,7 +164,7 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission0Demo2.mp3"
         }
       ],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/3_1_3.jpg"
     },
     "1": {
       "outro": [
@@ -183,7 +183,7 @@
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/3_2_3.jpg"
     }
   }
 }

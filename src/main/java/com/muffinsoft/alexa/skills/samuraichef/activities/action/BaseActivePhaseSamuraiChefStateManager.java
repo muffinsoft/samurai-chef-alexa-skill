@@ -142,20 +142,30 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     private DialogItem.Builder getTooLongMistakeDialog(DialogItem.Builder builder) {
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             if (this.activityProgress.getMistakesCount() == 1) {
+                builder.withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_COMPETITION_TOO_LONG_PHRASE);
             }
             else {
+                builder.withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_COMPETITION_TOO_LONG_PHRASE);
             }
         }
         else {
             if (this.activityProgress.getMistakesCount() == 2) {
+                builder.withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_TOO_LONG_PHRASE);
             }
             else if (this.activityProgress.getMistakesCount() == 1) {
+                builder.withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, TWO_MISTAKES_LEFT_TOO_LONG_PHRASE);
             }
             else {
+                builder.withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-3"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_TOO_LONG_PHRASE);
             }
         }
@@ -165,20 +175,30 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     private DialogItem.Builder getMistakeDialog(DialogItem.Builder builder) {
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             if (this.activityProgress.getMistakesCount() == 1) {
+                builder.withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_COMPETITION_PHRASE);
             }
             else {
+                builder.withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_COMPETITION_PHRASE);
             }
         }
         else {
             if (this.activityProgress.getMistakesCount() == 2) {
+                builder.withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_PHRASE);
             }
             else if (this.activityProgress.getMistakesCount() == 1) {
+                builder.withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, TWO_MISTAKES_LEFT_PHRASE);
             }
             else {
+                builder.withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-3"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_PHRASE);
             }
         }

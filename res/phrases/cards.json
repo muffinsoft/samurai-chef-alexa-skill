@@ -20,5 +20,8 @@
   "powerup_CORRECT_ANSWER_SLOT-1": "https://s3.amazonaws.com/samurai-audio/images/{size}/powerups/Powerup_secret-sauce.jpg",
   "powerup_CORRECT_ANSWER_SLOT-2": "https://s3.amazonaws.com/samurai-audio/images/{size}/powerups/Powerup_secret-sauce2.jpg",
   "powerup_SECOND_CHANCE_SLOT-1": "https://s3.amazonaws.com/samurai-audio/images/{size}/powerups/Powerup_Super-Spatula.jpg",
-  "powerup_SECOND_CHANCE_SLOT-2": "https://s3.amazonaws.com/samurai-audio/images/{size}/powerups/Powerup_Super-Spatula2.jpg"
+  "powerup_SECOND_CHANCE_SLOT-2": "https://s3.amazonaws.com/samurai-audio/images/{size}/powerups/Powerup_Super-Spatula2.jpg",
+  "mistake-1": "https://s3.amazonaws.com/samurai-audio/images/{size}/lose_life/Single/1.jpg",
+  "mistake-2": "https://s3.amazonaws.com/samurai-audio/images/{size}/lose_life/Single/2.jpg",
+  "mistake-3": "https://s3.amazonaws.com/samurai-audio/images/{size}/lose_life/Single/3.jpg"
 }
