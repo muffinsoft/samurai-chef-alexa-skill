@@ -57,10 +57,6 @@
     {
       "role": "Audio",
       "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsOneMistakeLeftPhrase0.mp3"
-    },
-    {
-      "content": "Oh yeah! Better luck next time!",
-      "role": "Ben"
     }
   ],
   "lastMistakePhrase": [

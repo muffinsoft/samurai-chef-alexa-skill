@@ -80,6 +80,8 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             logger.debug("Was removed power up: " + this.activityProgress.getActivePowerUp());
 
+            builder.addBackgroundImageUrl(cardManager.getValueByKey("powerup_" + PowerUps.valueOf(this.activityProgress.getActivePowerUp()) + "-2"));
+
             this.activityProgress.removePowerUp();
 
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(JUST_USE_SECOND_CHANCE_PHRASE)));
@@ -94,6 +96,8 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
             }
 
             logger.debug("User have another chance to chose right answer");
+
+            builder.withAplDocument(aplManager.getContainer());
 
             return getRePromptSuccessDialog(builder);
         }
@@ -111,6 +115,8 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             logger.debug("Was removed power up: " + this.activityProgress.getActivePowerUp());
 
+            builder.addBackgroundImageUrl(cardManager.getValueByKey("powerup_" + PowerUps.valueOf(this.activityProgress.getActivePowerUp()) + "-2"));
+
             this.activityProgress.removePowerUp();
 
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(JUST_USE_CORRECT_ANSWER_PHRASE)));
@@ -127,6 +133,8 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
             logger.debug("Wrong answer was calculated as correct");
 
             this.activityProgress.iterateSuccessCount();
+
+            builder.withAplDocument(aplManager.getContainer());
 
             return getSuccessDialog(builder);
         }
@@ -242,7 +250,6 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
                     prependedString = regularPhraseManager.getValueByKey(JUST_EARN_CORRECT_ANSWER_PHRASE);
                 }
                 builder.addBackgroundImageUrl(cardManager.getValueByKey("powerup_" + nextPowerUp.name() + "-1"));
-                builder.addBackgroundImageUrl(cardManager.getValueByKey("powerup_" + nextPowerUp.name() + "-2"));
 
                 addAdditionalTimeToAnswer(10);
 

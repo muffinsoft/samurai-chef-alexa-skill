@@ -215,12 +215,21 @@ public class HelpStateManager extends BaseStateManager {
         getSessionAttributes().remove(HELP_STATE);
         builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
         if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {
-            builder.addResponse(getDialogTranslator().translate(activityProgress.getPreviousIngredient()));
+            String ingredient = activityProgress.getPreviousIngredient();
+            builder.addResponse(getDialogTranslator().translate(ingredient));
+            builder.withAplDocument(aplManager.getContainer());
+            builder.addBackgroundImageUrl(getBackgroundImageUrl(ingredient));
         }
         else {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
         }
         getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         getSessionAttributes().remove(HELP_STATE);
+    }
+
+    String getBackgroundImageUrl(String ingredient) {
+        String url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient + ".jpg";
+        logger.info("Going to load icon by url: " + url);
+        return url;
     }
 }

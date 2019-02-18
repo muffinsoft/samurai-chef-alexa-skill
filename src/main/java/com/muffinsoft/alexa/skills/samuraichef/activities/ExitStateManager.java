@@ -68,14 +68,14 @@ public class ExitStateManager extends BaseStateManager {
 
             int userReplyBreakpointPosition = 0;
 
-            for (BasePhraseContainer BasePhraseContainer : dialog) {
+            for (BasePhraseContainer basePhraseContainer : dialog) {
 
-                if (BasePhraseContainer.isUserResponse()) {
+                if (basePhraseContainer.isUserResponse()) {
                     this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, userReplyBreakpointPosition + 1);
                     this.getSessionAttributes().put(SessionConstants.INTENT, IntentType.EXIT_CONFIRMATION);
                     break;
                 }
-                builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
+                builder.addResponse(getDialogTranslator().translate(basePhraseContainer));
                 userReplyBreakpointPosition++;
             }
             this.getSessionAttributes().put(INTENT, IntentType.EXIT_CONFIRMATION);
