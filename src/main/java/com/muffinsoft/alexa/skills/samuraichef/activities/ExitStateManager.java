@@ -12,6 +12,7 @@ import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsPhraseConstant
 import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
@@ -39,6 +40,7 @@ public class ExitStateManager extends BaseStateManager {
 
     private final RegularPhraseManager regularPhraseManager;
     private final GreetingsPhraseManager greetingsPhraseManager;
+    private final AplManager aplManager;
 
     private ActivityProgress activityProgress;
 
@@ -46,6 +48,7 @@ public class ExitStateManager extends BaseStateManager {
         super(inputSlots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.greetingsPhraseManager = phraseDependencyContainer.getGreetingsPhraseManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -84,7 +87,10 @@ public class ExitStateManager extends BaseStateManager {
             getSessionAttributes().put(INTENT, IntentType.GAME);
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {
+                String previousIngredient = activityProgress.getPreviousIngredient();
                 builder.addResponse(getDialogTranslator().translate(activityProgress.getPreviousIngredient()));
+                builder.withAplDocument(aplManager.getContainer());
+                builder.addBackgroundImageUrl(getBackgroundImageUrl(previousIngredient));
             }
             else {
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
@@ -96,5 +102,11 @@ public class ExitStateManager extends BaseStateManager {
         }
 
         return builder.build();
+    }
+
+    private String getBackgroundImageUrl(String ingredient) {
+        String url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient.replace(" ", "-") + ".jpg";
+        logger.info("Going to load icon by url: " + url);
+        return url;
     }
 }

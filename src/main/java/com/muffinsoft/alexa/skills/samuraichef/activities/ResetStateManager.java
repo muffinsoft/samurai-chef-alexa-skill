@@ -184,7 +184,10 @@ public class ResetStateManager extends BaseStateManager {
             getSessionAttributes().put(STATE_PHASE, StateType.SUBMISSION_INTRO);
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {
-                builder.addResponse(getDialogTranslator().translate(activityProgress.getPreviousIngredient()));
+                String previousIngredient = activityProgress.getPreviousIngredient();
+                builder.addResponse(getDialogTranslator().translate(previousIngredient));
+                builder.withAplDocument(aplManager.getContainer());
+                builder.addBackgroundImageUrl(getBackgroundImageUrl(previousIngredient));
             }
             else {
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
@@ -196,5 +199,11 @@ public class ResetStateManager extends BaseStateManager {
         }
 
         return builder.build();
+    }
+
+    private String getBackgroundImageUrl(String ingredient) {
+        String url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient.replace(" ", "-") + ".jpg";
+        logger.info("Going to load icon by url: " + url);
+        return url;
     }
 }

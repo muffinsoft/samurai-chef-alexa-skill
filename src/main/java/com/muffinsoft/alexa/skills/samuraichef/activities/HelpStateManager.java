@@ -228,7 +228,7 @@ public class HelpStateManager extends BaseStateManager {
     }
 
     String getBackgroundImageUrl(String ingredient) {
-        String url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient + ".jpg";
+        String url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient.replace(" ", "-") + ".jpg";
         logger.info("Going to load icon by url: " + url);
         return url;
     }

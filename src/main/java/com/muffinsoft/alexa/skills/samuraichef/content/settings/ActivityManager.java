@@ -127,6 +127,10 @@ public class ActivityManager {
 
         Stripe settingsByStripeNumberAtMission = activitiesSettings.getSettingsByStripeNumberAtMission(number, mission);
 
+        if(settingsByStripeNumberAtMission == null) {
+            return null;
+        }
+
         if (activitiesSettings.isUseVocabulary()) {
             settingsByStripeNumberAtMission.setUseVocabulary(true);
             settingsByStripeNumberAtMission.setVocabularySource(activitiesSettings.getVocabularySource());

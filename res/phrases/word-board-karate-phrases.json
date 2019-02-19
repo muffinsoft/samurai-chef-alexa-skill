@@ -41,7 +41,7 @@
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/1_2_2.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/1_2_1.jpg"
     }
   },
   "MEDIUM_MISSION": {
@@ -67,7 +67,7 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesMediumMission0Demo0.mp3"
         }
       ],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/2_1_2.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/2_1_1.jpg"
     },
     "1": {
       "outro": [
@@ -86,7 +86,7 @@
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/2_2_2.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/2_2_1.jpg"
     }
   },
   "HIGH_MISSION": {
@@ -112,7 +112,7 @@
           "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesHighMission0Demo0.mp3"
         }
       ],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/3_1_2.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/3_1_1.jpg"
     },
     "1": {
       "outro": [
@@ -131,7 +131,7 @@
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/3_2_2.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/3_2_1.jpg"
     }
   }
 }

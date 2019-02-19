@@ -97,8 +97,6 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             logger.debug("User have another chance to chose right answer");
 
-            builder.withAplDocument(aplManager.getContainer());
-
             return getRePromptSuccessDialog(builder);
         }
         else {
@@ -134,8 +132,6 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             this.activityProgress.iterateSuccessCount();
 
-            builder.withAplDocument(aplManager.getContainer());
-
             return getSuccessDialog(builder);
         }
         else {
@@ -150,30 +146,25 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     private DialogItem.Builder getTooLongMistakeDialog(DialogItem.Builder builder) {
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             if (this.activityProgress.getMistakesCount() == 1) {
-                builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_COMPETITION_TOO_LONG_PHRASE);
             }
             else {
-                builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_COMPETITION_TOO_LONG_PHRASE);
             }
         }
         else {
             if (this.activityProgress.getMistakesCount() == 2) {
-                builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_TOO_LONG_PHRASE);
             }
             else if (this.activityProgress.getMistakesCount() == 1) {
-                builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, TWO_MISTAKES_LEFT_TOO_LONG_PHRASE);
             }
             else {
-                builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-3"));
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-3"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_TOO_LONG_PHRASE);
             }
         }
@@ -183,30 +174,25 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     private DialogItem.Builder getMistakeDialog(DialogItem.Builder builder) {
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             if (this.activityProgress.getMistakesCount() == 1) {
-                builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_COMPETITION_PHRASE);
             }
             else {
-                builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_COMPETITION_PHRASE);
             }
         }
         else {
             if (this.activityProgress.getMistakesCount() == 2) {
-                builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_PHRASE);
             }
             else if (this.activityProgress.getMistakesCount() == 1) {
-                builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, TWO_MISTAKES_LEFT_PHRASE);
             }
             else {
-                builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-3"));
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-3"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_PHRASE);
             }
         }
@@ -239,8 +225,6 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
             if (nextPowerUp != null) {
                 this.activityProgress.addPowerUp(nextPowerUp);
                 logger.debug("Was earned equipment: " + nextPowerUp);
-
-                builder.withAplDocument(aplManager.getContainer());
 
                 List<PhraseContainer> prependedString;
                 if (nextPowerUp == PowerUps.SECOND_CHANCE_SLOT) {
