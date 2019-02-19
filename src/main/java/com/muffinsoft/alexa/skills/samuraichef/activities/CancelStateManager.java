@@ -5,9 +5,10 @@ import com.amazon.ask.model.Slot;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.PhraseContainer;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -20,7 +21,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -42,6 +42,8 @@ public class CancelStateManager extends BaseStateManager {
 
     private final RegularPhraseManager regularPhraseManager;
     private final MissionManager missionManager;
+    private final AplManager aplManager;
+    private final CardManager cardManager;
     private UserMission currentMission;
     private UserProgress userProgress;
 
@@ -49,6 +51,8 @@ public class CancelStateManager extends BaseStateManager {
         super(slots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.missionManager = settingsDependencyContainer.getMissionManager();
+        this.cardManager = settingsDependencyContainer.getCardManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -102,25 +106,26 @@ public class CancelStateManager extends BaseStateManager {
 
         logger.debug("Available session attributes: " + getSessionAttributes());
 
-        List<PhraseContainer> dialog;
+        DialogItem.Builder builder = DialogItem.builder();
 
         if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
             savePersistentAttributes();
-            dialog = regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE);
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                    .withAplDocument(aplManager.getContainer())
+                    .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, IntentType.GAME);
         }
         else if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.NO)) {
             savePersistentAttributes();
-            dialog = regularPhraseManager.getValueByKey(WANT_EXIT_PHRASE);
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(WANT_EXIT_PHRASE)));
             getSessionAttributes().put(INTENT, IntentType.EXIT);
         }
         else {
-            dialog = regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE);
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
         }
 
-        DialogItem.Builder builder = DialogItem.builder().addResponse(getDialogTranslator().translate(dialog));
 
         return builder.build();
     }

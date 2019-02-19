@@ -127,6 +127,10 @@ public class ActivityManager {
 
         Stripe settingsByStripeNumberAtMission = activitiesSettings.getSettingsByStripeNumberAtMission(number, mission);
 
+        if(settingsByStripeNumberAtMission == null) {
+            return null;
+        }
+
         if (activitiesSettings.isUseVocabulary()) {
             settingsByStripeNumberAtMission.setUseVocabulary(true);
             settingsByStripeNumberAtMission.setVocabularySource(activitiesSettings.getVocabularySource());
@@ -138,6 +142,11 @@ public class ActivityManager {
     public boolean isActivityCompetition(Activities currentActivity) {
         ActivitiesSettings activitiesSettings = containerByActivity.get(currentActivity);
         return activitiesSettings.isCompetition();
+    }
+
+    public boolean isActivityUseVocabulary(Activities currentActivity) {
+        ActivitiesSettings activitiesSettings = containerByActivity.get(currentActivity);
+        return activitiesSettings.isUseVocabulary();
     }
 
     public String getCompetitionPartnerRole(Activities currentActivity) {

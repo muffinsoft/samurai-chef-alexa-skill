@@ -29,6 +29,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseCon
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.ONE_MISTAKE_LEFT_TOO_LONG_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.TWO_MISTAKES_LEFT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.TWO_MISTAKES_LEFT_TOO_LONG_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.QUESTION_TIME;
 
 public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamuraiChefStateManager {
 
@@ -79,11 +80,20 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             logger.debug("Was removed power up: " + this.activityProgress.getActivePowerUp());
 
+            builder.addBackgroundImageUrl(cardManager.getValueByKey("powerup_" + PowerUps.valueOf(this.activityProgress.getActivePowerUp()) + "-2"));
+
             this.activityProgress.removePowerUp();
 
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(JUST_USE_SECOND_CHANCE_PHRASE)));
 
             this.activityProgress.equipIfAvailable();
+
+            if (this.activityProgress.isPowerUpEquipped()) {
+                addAdditionalTimeToAnswer(15);
+            }
+            else {
+                addAdditionalTimeToAnswer(10);
+            }
 
             logger.debug("User have another chance to chose right answer");
 
@@ -103,11 +113,20 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
             logger.debug("Was removed power up: " + this.activityProgress.getActivePowerUp());
 
+            builder.addBackgroundImageUrl(cardManager.getValueByKey("powerup_" + PowerUps.valueOf(this.activityProgress.getActivePowerUp()) + "-2"));
+
             this.activityProgress.removePowerUp();
 
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(JUST_USE_CORRECT_ANSWER_PHRASE)));
 
             this.activityProgress.equipIfAvailable();
+
+            if (this.activityProgress.isPowerUpEquipped()) {
+                addAdditionalTimeToAnswer(15);
+            }
+            else {
+                addAdditionalTimeToAnswer(10);
+            }
 
             logger.debug("Wrong answer was calculated as correct");
 
@@ -127,20 +146,25 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     private DialogItem.Builder getTooLongMistakeDialog(DialogItem.Builder builder) {
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             if (this.activityProgress.getMistakesCount() == 1) {
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_COMPETITION_TOO_LONG_PHRASE);
             }
             else {
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_COMPETITION_TOO_LONG_PHRASE);
             }
         }
         else {
             if (this.activityProgress.getMistakesCount() == 2) {
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_TOO_LONG_PHRASE);
             }
             else if (this.activityProgress.getMistakesCount() == 1) {
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, TWO_MISTAKES_LEFT_TOO_LONG_PHRASE);
             }
             else {
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-3"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_TOO_LONG_PHRASE);
             }
         }
@@ -150,20 +174,25 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
     private DialogItem.Builder getMistakeDialog(DialogItem.Builder builder) {
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             if (this.activityProgress.getMistakesCount() == 1) {
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_COMPETITION_PHRASE);
             }
             else {
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_COMPETITION_PHRASE);
             }
         }
         else {
             if (this.activityProgress.getMistakesCount() == 2) {
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_PHRASE);
             }
             else if (this.activityProgress.getMistakesCount() == 1) {
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, TWO_MISTAKES_LEFT_PHRASE);
             }
             else {
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-3"));
                 return this.getMistakeDialog(builder, LAST_MISTAKE_PHRASE);
             }
         }
@@ -204,6 +233,10 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
                 else {
                     prependedString = regularPhraseManager.getValueByKey(JUST_EARN_CORRECT_ANSWER_PHRASE);
                 }
+                builder.addBackgroundImageUrl(cardManager.getValueByKey("powerup_" + nextPowerUp.name() + "-1"));
+
+                addAdditionalTimeToAnswer(10);
+
                 builder.addResponse(getDialogTranslator().translate(prependedString));
                 logger.debug("Was equipped power up: " + nextPowerUp);
             }
@@ -213,5 +246,12 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         }
         logger.debug("Correct answer was found, running success dialog");
         return getSuccessDialog(builder);
+    }
+
+    private void addAdditionalTimeToAnswer(long seconds) {
+        if (this.stripe.getTimeLimitPhaseOneInMillis() != null && this.stripe.getTimeLimitPhaseOneInMillis() > 0) {
+            logger.debug("Add additional time to answer");
+            getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis() + (seconds * 1_000));
+        }
     }
 }

@@ -53,6 +53,10 @@ public class SushiSliceStateManager extends BaseActivePhaseSamuraiChefStateManag
     @Override
     protected void updateSessionAttributes() {
         super.updateSessionAttributes();
-        getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
+        if (getSessionAttributes().containsKey(QUESTION_TIME)) {
+            if ((Long) getSessionAttributes().get(QUESTION_TIME) < System.currentTimeMillis()) {
+                getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
+            }
+        }
     }
 }

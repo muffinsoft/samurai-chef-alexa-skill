@@ -6,7 +6,6 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
-import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.constants.AliasConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.GreetingsPhraseConstants;
 import com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants;
@@ -14,6 +13,7 @@ import com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.GreetingsPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
@@ -32,7 +32,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.muffinsoft.alexa.skills.samuraichef.components.BeltColorDefiner.defineColor;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.CardConstants.WELCOME_CARD;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_HIGH_PROGRESS_DB;
@@ -44,6 +43,7 @@ public class LaunchStateManager extends BaseStateManager {
     private static final Logger logger = LogManager.getLogger(LaunchStateManager.class);
     private final GreetingsPhraseManager greetingsPhraseManager;
     private final AliasManager aliasManager;
+    private final AplManager aplManager;
     private final RegularPhraseManager regularPhraseManager;
     private final CardManager cardManager;
     private final AttributesManager attributesManager;
@@ -56,6 +56,7 @@ public class LaunchStateManager extends BaseStateManager {
         this.cardManager = settingsDependencyContainer.getCardManager();
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.aliasManager = settingsDependencyContainer.getAliasManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -93,10 +94,7 @@ public class LaunchStateManager extends BaseStateManager {
             logger.info("New user was started new Game Session.");
         }
 
-        return builder
-                .withSlotName(SlotName.MISSION)
-                .withCardTitle(cardManager.getValueByKey(WELCOME_CARD))
-                .build();
+        return builder.build();
     }
 
     private DialogItem.Builder buildRoyalGreeting(DialogItem.Builder builder) {
@@ -107,7 +105,12 @@ public class LaunchStateManager extends BaseStateManager {
 
         buildRoyalGreetingWithAwards(builder, lowUserProgress, midUserProgress, highUserProgress);
 
-        return builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)));
+        return builder
+                .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)))
+                .withAplDocument(aplManager.getContainer())
+                .withCardTitle(getTitles(lowUserProgress, midUserProgress, highUserProgress).toString().replace(",", " "))
+                .addBackgroundImageUrl(cardManager.getValueByKey("welcome-back"))
+                .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
     }
 
     private void buildRoyalGreetingWithAwards(DialogItem.Builder builder, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
@@ -122,6 +125,9 @@ public class LaunchStateManager extends BaseStateManager {
     }
 
     private String fillPlaceholder(String content, UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
+        if (content == null) {
+            return null;
+        }
         content = content.replace("%titles%", getTitles(lowUserProgress, midUserProgress, highUserProgress));
         content = content.replace("%low_color%", getBeltColor(lowUserProgress));
         content = content.replace("%mid_color%", getBeltColor(midUserProgress));
@@ -163,7 +169,15 @@ public class LaunchStateManager extends BaseStateManager {
         String lowTitle = getHighestTitleOfMission(lowUserProgress);
         String midTitle = getHighestTitleOfMission(midUserProgress);
         String highTitle = getHighestTitleOfMission(highUserProgress);
-        return String.join(", ", Arrays.asList(lowTitle, midTitle, highTitle));
+        return join(Arrays.asList(lowTitle, midTitle, highTitle), ", ");
+    }
+
+    private String join(List<String> str, String separator) {
+        StringBuilder retval = new StringBuilder();
+        for (String s : str) {
+            retval.append(separator).append(s);
+        }
+        return retval.toString().replaceFirst(separator, "");
     }
 
     private String getHighestTitleOfMission(UserProgress userProgress) {
@@ -223,5 +237,8 @@ public class LaunchStateManager extends BaseStateManager {
             builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
             userReplyBreakpointPosition++;
         }
+
+        builder.withAplDocument(aplManager.getContainer())
+                .addBackgroundImageUrl(cardManager.getValueByKey("welcome"));
     }
 }

@@ -5,6 +5,7 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
+import com.muffinsoft.alexa.sdk.enums.SpeechType;
 import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.sdk.model.BasePhraseContainer;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
@@ -16,6 +17,8 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseMan
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.MissionPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.ActivityManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -87,6 +90,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     final RegularPhraseManager regularPhraseManager;
     final ActivityManager activityManager;
     final MissionManager missionManager;
+    final CardManager cardManager;
+    private final AplManager aplManager;
     private final ActivityPhraseManager activityPhraseManager;
     private final MissionPhraseManager missionPhraseManager;
     Activities currentActivity;
@@ -108,6 +113,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.activityPhraseManager = phraseDependencyContainer.getActivityPhraseManager();
         this.activityManager = settingsDependencyContainer.getActivityManager();
         this.missionManager = settingsDependencyContainer.getMissionManager();
+        this.cardManager = settingsDependencyContainer.getCardManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -210,7 +217,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.userProgress.setCurrentActivity(this.currentActivity.name());
 
-        if (this.finishedMissions.contains(this.currentMission.name()) && this.statePhase != MISSION_OUTRO) {
+        if (this.finishedMissions.contains(this.currentMission.name()) && (this.statePhase != MISSION_OUTRO && this.statePhase != WIN)) {
+            logger.warn("User has finished current mission");
             return handleAlreadyFinishedMission(builder);
         }
 
@@ -254,15 +262,17 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         addSessionEntities(builder);
 
-        return builder.build();
+
+        return builder.withAplDocument(aplManager.getContainer()).build();
     }
 
     private DialogItem.Builder handleReturnToGameState(DialogItem.Builder builder) {
         String ingredient = this.activityProgress.getPreviousIngredient();
         if (ingredient == null || ingredient.isEmpty()) {
-            ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
+            ingredient = nextIngredient(ingredient);
         }
-        builder.addResponse(getDialogTranslator().translate(ingredient));
+        builder.addResponse(getSoundLine(ingredient, false))
+                .addBackgroundImageUrl(getBackgroundImageUrl(ingredient));
         this.statePhase = GAME_PHASE_1;
         return builder;
     }
@@ -284,7 +294,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         getSessionAttributes().put(INTENT, IntentType.RESET);
         getSessionAttributes().put(CURRENT_MISSION, this.userProgress.getMission());
 
-        return builder.withSlotName(NAVIGATION)
+        return builder
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(MISSION_ALREADY_COMPLETE_PHRASE)))
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)))
                 .build();
@@ -301,6 +311,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         List<BasePhraseContainer> dialog = missionPhraseManager.getMissionIntro(currentMission);
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
+
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-selection-" + currentMission.key));
 
         if (iterationPointer >= dialog.size()) {
             builder = handleStripeIntroState(builder, currentMission, this.userProgress.getStripeCount());
@@ -352,6 +364,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.statePhase = ACTIVITY_INTRO;
 
         List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number));
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, SUBMISSION_INTRO);
 
@@ -371,6 +384,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         savePersistentAttributes();
 
         SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, number, this.currentMission);
+
+        builder.addBackgroundImageUrl(speechSettings.getInstructionImageUrl());
 
         for (BasePhraseContainer partOfSpeech : speechSettings.getIntro()) {
             builder.addResponse(getDialogTranslator().translate(partOfSpeech));
@@ -422,6 +437,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             }
         }
 
+        SpeechSettings settings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+        builder.addBackgroundImageUrl(settings.getInstructionImageUrl());
+
         return builder;
     }
 
@@ -433,7 +451,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             this.getSessionAttributes().remove(ACTIVITY_PROGRESS);
             this.getSessionAttributes().remove(CURRENT_MISSION);
 
-            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                    .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
         }
         else {
             String speechText = nextIngredient(this.activityProgress.getPreviousIngredient());
@@ -442,7 +461,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             this.statePhase = GAME_PHASE_1;
 
-            builder.addResponse(getDialogTranslator().translate(speechText));
+            builder.addResponse(getSoundLine(speechText, false))
+                    .addBackgroundImageUrl(getBackgroundImageUrl(speechText));
         }
         return builder;
     }
@@ -489,8 +509,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         this.statePhase = SUBMISSION_OUTRO;
 
-        calculateStripeProgress();
-
         List<BasePhraseContainer> dialog = missionPhraseManager.getStripeOutroByMission(currentMission, number);
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, WIN);
@@ -530,6 +548,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder handleStripeOutroState(DialogItem.Builder builder, UserMission currentMission) {
 
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-outro-" + currentMission.key + "-" + (userProgress.getStripeCount() - 1)));  // get previous stripe outro
+
         calculateStripeProgress();
 
         if (this.userProgress.getMistakesInStripe() == 0 && !this.userProgress.isPerfectStripe()) {
@@ -548,9 +568,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 builder = appendEarnPerfectMissionByLevel(builder);
             }
 
-            List<BasePhraseContainer> missionOutro = missionPhraseManager.getMissionOutro(currentMission);
-
-            wrapAnyUserResponse(missionOutro, builder, SUBMISSION_OUTRO);
+            builder = handleMissionOutroState(builder);
 
             return builder;
         }
@@ -586,7 +604,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
 
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
-                builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+                builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
+
             }
 
             this.userProgress.setMissionFinished(true);
@@ -641,15 +661,15 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         updateUserMistakeStory();
 
         builder.removeLastResponse();
+        builder.removeAllBackgroundImageUrls();
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-selection-" + currentMission.key));
 
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             WordReaction randomIngredient = getRandomIngredient(this.activityProgress.getPreviousIngredient());
 
-            String wrongReplyOnIngredient = getWrongReplyOnIngredient(randomIngredient.getIngredient());
-
             builder
-                    .replaceResponse(getDialogTranslator().translate(randomIngredient.getIngredient()))
-                    .addResponse(getDialogTranslator().translate(wrongReplyOnIngredient, this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
+                    .replaceResponse(getSoundLine(randomIngredient.getIngredient(), false))
+                    .addResponse(getSoundLine(getWrongReplyOnIngredient(randomIngredient.getIngredient()), true))
                     .withReprompt(getDialogTranslator().translate(regularPhraseManager.getValueByKey(WON_RE_PROMPT_PHRASE)));
         }
 
@@ -725,7 +745,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     DialogItem.Builder getRePromptSuccessDialog(DialogItem.Builder builder) {
         return builder
-                .addResponse(getDialogTranslator().translate(this.activityProgress.getPreviousIngredient()))
+                .addResponse(getSoundLine(this.activityProgress.getPreviousIngredient(), false))
+                .addBackgroundImageUrl(getBackgroundImageUrl(this.activityProgress.getPreviousIngredient()))
                 .turnOffReprompt();
     }
 
@@ -733,7 +754,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         String ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
 
-        builder.addResponse(getDialogTranslator().translate(ingredient));
+        builder.addResponse(getSoundLine(ingredient, false))
+                .addBackgroundImageUrl(getBackgroundImageUrl(ingredient));
 
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             return appendMockCompetitionAnswer(builder);
@@ -748,21 +770,35 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         WordReaction randomIngredient = getRandomIngredient(speech.getContent());
 
-        builder.addResponse(getDialogTranslator().translate(randomIngredient.getIngredient()))
-                .addResponse(getDialogTranslator().translate(BasePhraseContainer.pause(1000)))
-                .addResponse(getDialogTranslator().translate(randomIngredient.getUserReply(), this.activityManager.getCompetitionPartnerRole(this.currentActivity)))
-                .addResponse(getDialogTranslator().translate(BasePhraseContainer.pause(1500)))
+        builder.addResponse(getSoundLine(randomIngredient.getIngredient(), false))
+                .addResponse(getSoundLine(randomIngredient.getUserReply(), true))
                 .addResponse(speech);
 
         return builder;
+    }
+
+    private Speech getSoundLine(String source, boolean isReaction) {
+        if (isReaction) {
+            source = "reaction_" + source;
+        }
+        if (stripe.isUseVocabulary()) {
+            String path = "https://s3.amazonaws.com/samurai-audio/words/" + source + ".mp3";
+            logger.info("Try to get sound by url " + path);
+            return new Speech(SpeechType.AUDIO, path, 0);
+        }
+        else {
+            Speech sound = getDialogTranslator().getSound(source);
+            logger.info("Try to get sound by url " + sound.getContent());
+            return sound;
+        }
     }
 
     DialogItem.Builder getFailureDialog(DialogItem.Builder builder, List<PhraseContainer> speechText) {
         String ingredient = nextIngredient(this.activityProgress.getPreviousIngredient());
         return builder
                 .addResponse(getDialogTranslator().translate(speechText))
-                .addResponse(getDialogTranslator().translate(ingredient))
-
+                .addResponse(getSoundLine(ingredient, false))
+                .addBackgroundImageUrl(getBackgroundImageUrl(ingredient))
                 .turnOffReprompt();
     }
 
@@ -782,6 +818,19 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
     private String getWrongReplyOnIngredient(String ingredient) {
         WordReaction nextIngredient = activityManager.getNextWord(this.stripe, ingredient);
         return nextIngredient.getUserReply();
+    }
+
+    private String getBackgroundImageUrl(String ingredient) {
+        String url;
+        if (activityManager.isActivityUseVocabulary(this.currentActivity)) {
+            SpeechSettings settings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+            url = settings.getInstructionImageUrl();
+        }
+        else {
+            url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient.replace(" ", "-") + ".jpg";
+        }
+        logger.info("Going to load image by url: " + url);
+        return url;
     }
 
     private String nextIngredient(String ingredient) {

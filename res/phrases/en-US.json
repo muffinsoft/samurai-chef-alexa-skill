@@ -27,41 +27,25 @@
   "justEarnCorrectQuestionPhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
-    },
-    {
-      "content": "Wow, you got some Secret Sauce! When you use it, Sensei will accept any answer as correct!",
-      "role": "Ben"
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsJustEarnCorrectQuestionPhrase0.mp3"
     }
   ],
   "justUseCorrectQuestionPhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
-    },
-    {
-      "content": "Sweet! With the Secret Sauce your answer was considered right, no matter what you said!",
-      "role": "Ben"
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsJustUseCorrectQuestionPhrase0.mp3"
     }
   ],
   "justEarnSecondChancePhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
-    },
-    {
-      "content": "Nice, you earned a Super Spatula! With it you'll get a second chance the first time you give a wrong answer.",
-      "role": "Ben"
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsJustEarnSecondChancePhrase0.mp3"
     }
   ],
   "justUseSecondChancePhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/powerup.mp3"
-    },
-    {
-      "content": "Good idea using the Super Spatula to get a second chance at responding!",
-      "role": "Ben"
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsJustUseSecondChancePhrase0.mp3"
     }
   ],
   "twoMistakesLeftPhrase": [
@@ -71,12 +55,8 @@
   ],
   "oneMistakeLeftPhrase": [
     {
-      "content": "Hmm! That was your second mistake! Since you first to give two wrong responses, Ben wins challenge!",
-      "role": "Sensei"
-    },
-    {
-      "content": "Oh yeah! Better luck next time!",
-      "role": "Ben"
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsOneMistakeLeftPhrase0.mp3"
     }
   ],
   "lastMistakePhrase": [
@@ -101,26 +81,26 @@
   ],
   "oneMistakeLeftCompetitionPhrase": [
     {
-      "content": "Ben wins round! One more and he will be the victor!",
-      "role": "Sensei"
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsOneMistakeLeftCompetitionPhrase0.mp3",
+      "role": "Audio"
     }
   ],
   "lastMistakeCompetitionPhrase": [
     {
-      "content": "Ben wins again! Ben is the winner!",
-      "role": "Ben "
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsLastMistakeCompetitionPhrase0.mp3",
+      "role": "Audio"
     }
   ],
   "oneMistakeLeftCompetitionTooLongPhrase": [
     {
-      "content": "Too late! Ben wins round! One more and he will be the victor!",
-      "role": "Sensei"
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsOneMistakeLeftCompetitionTooLongPhrase0.mp3",
+      "role": "Audio"
     }
   ],
   "lastMistakeCompetitionTooLongPhrase": [
     {
-      "content": "That answer was too late! Ben wins again! Ben is the winner!",
-      "role": "Sensei "
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsLastMistakeCompetitionTooLongPhrase0.mp3",
+      "role": "Audio"
     }
   ],
   "selectMissionPhrase": [
@@ -245,27 +225,15 @@
   ],
   "gameOutroPhrase": [
     {
-      "content": "I don't believe it! You have become the Ultimate Samurai Chef! It is an honor being your friend!",
-      "role": "Sensei",
-      "audio": null
-    },
-    {
-      "content": "You're amazing! Now that's an incredible nickname that's well earned! How do you feel about becoming the Ultimate Sushi Samurai?",
-      "role": "Ben",
-      "audio": null
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsGameOutroPhrase0.mp3"
     },
     {
       "userResponse": true
     },
     {
-      "content": "It's been a pleasure teaching you. Perhaps there will be greater challenges someday for you to master!",
-      "role": "Sensei",
-      "audio": null
-    },
-    {
-      "content": "Thanks Sensei. Well, one thing you can do is reset your progress. Would you like to start Samurai Chef all over?",
-      "role": "Ben",
-      "audio": null
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/en-US/enUsGameOutroPhrase1.mp3"
     }
   ]
 }
