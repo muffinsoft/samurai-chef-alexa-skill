@@ -119,17 +119,11 @@ public class SelectLevelStateManager extends BaseStateManager {
         else if (compare(getUserReply(SlotName.CONFIRMATION), YES) ||
                 compare(getUserReply(SlotName.CONFIRMATION), NO)) {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
-                    .withCardTitle("Mission Selection")
                     .withAplDocument(aplManager.getContainer())
                     .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
         }
         else {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
-        }
-
-        if (this.getSessionAttributes().containsKey(CURRENT_MISSION)) {
-            String cardTitle = aliasManager.getValueByKey(String.valueOf(this.getSessionAttributes().get(CURRENT_MISSION)));
-            builder.withCardTitle(cardTitle);
         }
 
         return builder.build();
@@ -200,8 +194,7 @@ public class SelectLevelStateManager extends BaseStateManager {
         this.statePhase = ACTIVITY_INTRO;
         int number = userProgress.getStripeCount();
         List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
-        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number + "_" + 1));
-        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number + "_" + 2));
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number));
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, SUBMISSION_INTRO);
 
@@ -223,6 +216,9 @@ public class SelectLevelStateManager extends BaseStateManager {
         }
 
         SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, userProgress.getStripeCount(), currentMission);
+
+        builder.withAplDocument(aplManager.getContainer());
+        builder.addBackgroundImageUrl(speechSettings.getInstructionImageUrl());
 
         for (BasePhraseContainer partOfSpeech : speechSettings.getIntro()) {
             builder.addResponse(getDialogTranslator().translate(partOfSpeech));

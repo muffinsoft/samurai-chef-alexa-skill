@@ -96,7 +96,6 @@ public class SamuraiIntentFactory implements IntentFactory {
                         attributesManager.getSessionAttributes().put(INTENT, IntentType.GAME);
                         return DialogItem.builder()
                                 .addResponse(getDialogTranslator().translate(phraseDependencyContainer.getRegularPhraseManager().getValueByKey(SELECT_MISSION_PHRASE)))
-                                .withCardTitle("Mission Selection")
                                 .withAplDocument(aplManager.getContainer())
                                 .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"))
                                 .build();

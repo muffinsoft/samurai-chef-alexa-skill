@@ -365,8 +365,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.statePhase = ACTIVITY_INTRO;
 
         List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
-        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number + "_" + 1));
-        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number + "_" + 2));
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number));
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, SUBMISSION_INTRO);
 
@@ -388,6 +387,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         savePersistentAttributes();
 
         SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, number, this.currentMission);
+
+        builder.withAplDocument(aplManager.getContainer());
+        builder.addBackgroundImageUrl(speechSettings.getInstructionImageUrl());
 
         for (BasePhraseContainer partOfSpeech : speechSettings.getIntro()) {
             builder.addResponse(getDialogTranslator().translate(partOfSpeech));
@@ -451,7 +453,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             this.getSessionAttributes().remove(CURRENT_MISSION);
 
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
-                    .withCardTitle("Mission Selection")
                     .withAplDocument(aplManager.getContainer())
                     .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
         }
@@ -551,6 +552,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder handleStripeOutroState(DialogItem.Builder builder, UserMission currentMission) {
 
+        builder.withAplDocument(aplManager.getContainer());
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-outro-" + currentMission.key + "-" + userProgress.getStripeCount()));
+
         calculateStripeProgress();
 
         if (this.userProgress.getMistakesInStripe() == 0 && !this.userProgress.isPerfectStripe()) {
@@ -608,7 +612,6 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
-                        .withCardTitle("Mission Selection")
                         .withAplDocument(aplManager.getContainer())
                         .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
 
@@ -826,9 +829,16 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return nextIngredient.getUserReply();
     }
 
-    String getBackgroundImageUrl(String ingredient) {
-        String url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient + ".jpg";
-        logger.info("Going to load icon by url: " + url);
+    private String getBackgroundImageUrl(String ingredient) {
+        String url;
+        if (activityManager.isActivityUseVocabulary(this.currentActivity)) {
+            SpeechSettings settings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+            url = settings.getInstructionImageUrl();
+        }
+        else {
+            url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient + ".jpg";
+        }
+        logger.info("Going to load image by url: " + url);
         return url;
     }
 

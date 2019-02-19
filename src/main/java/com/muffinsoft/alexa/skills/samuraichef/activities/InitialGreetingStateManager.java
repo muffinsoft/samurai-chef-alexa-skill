@@ -75,7 +75,6 @@ public class InitialGreetingStateManager extends BaseStateManager {
         if (index >= dialog.size()) {
             builder
                     .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)))
-                    .withCardTitle("Mission Selection")
                     .withAplDocument(aplManager.getContainer())
                     .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
         }

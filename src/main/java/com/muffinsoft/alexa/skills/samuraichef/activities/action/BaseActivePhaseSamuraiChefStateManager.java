@@ -163,12 +163,12 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         else {
             if (this.activityProgress.getMistakesCount() == 2) {
                 builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_TOO_LONG_PHRASE);
             }
             else if (this.activityProgress.getMistakesCount() == 1) {
                 builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, TWO_MISTAKES_LEFT_TOO_LONG_PHRASE);
             }
             else {
@@ -196,12 +196,12 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
         else {
             if (this.activityProgress.getMistakesCount() == 2) {
                 builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
                 return this.getMistakeDialog(builder, ONE_MISTAKE_LEFT_PHRASE);
             }
             else if (this.activityProgress.getMistakesCount() == 1) {
                 builder.withAplDocument(aplManager.getContainer())
-                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-2"));
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));
                 return this.getMistakeDialog(builder, TWO_MISTAKES_LEFT_PHRASE);
             }
             else {

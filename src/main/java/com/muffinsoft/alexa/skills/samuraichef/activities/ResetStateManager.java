@@ -162,7 +162,6 @@ public class ResetStateManager extends BaseStateManager {
 
         if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.NEW_MISSION)) {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
-                    .withCardTitle("Mission Selection")
                     .withAplDocument(aplManager.getContainer())
                     .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
             getSessionAttributes().remove(CURRENT_MISSION);

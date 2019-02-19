@@ -140,6 +140,11 @@ public class ActivityManager {
         return activitiesSettings.isCompetition();
     }
 
+    public boolean isActivityUseVocabulary(Activities currentActivity) {
+        ActivitiesSettings activitiesSettings = containerByActivity.get(currentActivity);
+        return activitiesSettings.isUseVocabulary();
+    }
+
     public String getCompetitionPartnerRole(Activities currentActivity) {
         ActivitiesSettings activitiesSettings = containerByActivity.get(currentActivity);
         return activitiesSettings.getCompetitionPartnerRole();

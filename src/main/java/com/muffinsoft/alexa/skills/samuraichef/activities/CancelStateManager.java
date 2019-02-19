@@ -111,7 +111,6 @@ public class CancelStateManager extends BaseStateManager {
         if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
             savePersistentAttributes();
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
-                    .withCardTitle("Mission Selection")
                     .withAplDocument(aplManager.getContainer())
                     .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
             getSessionAttributes().remove(CURRENT_MISSION);
