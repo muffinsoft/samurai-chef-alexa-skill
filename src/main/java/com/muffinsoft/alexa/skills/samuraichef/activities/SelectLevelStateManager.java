@@ -14,6 +14,8 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseMan
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.MissionPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AliasManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.MissionManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -62,10 +64,12 @@ public class SelectLevelStateManager extends BaseStateManager {
     private static final Logger logger = LogManager.getLogger(SelectLevelStateManager.class);
 
     private final AliasManager aliasManager;
+    private final AplManager aplManager;
     private final MissionManager missionManager;
     private final RegularPhraseManager regularPhraseManager;
     private final ActivityPhraseManager activityPhraseManager;
     private final MissionPhraseManager missionPhraseManager;
+    private final CardManager cardManager;
     private StateType statePhase;
     private Set<String> finishedMissions;
     private Integer userReplyBreakpointPosition;
@@ -77,6 +81,8 @@ public class SelectLevelStateManager extends BaseStateManager {
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.missionPhraseManager = phraseDependencyContainer.getMissionPhraseManager();
         this.activityPhraseManager = phraseDependencyContainer.getActivityPhraseManager();
+        this.cardManager = settingsDependencyContainer.getCardManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -112,15 +118,12 @@ public class SelectLevelStateManager extends BaseStateManager {
         }
         else if (compare(getUserReply(SlotName.CONFIRMATION), YES) ||
                 compare(getUserReply(SlotName.CONFIRMATION), NO)) {
-            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                    .withAplDocument(aplManager.getContainer())
+                    .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
         }
         else {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REPEAT_LAST_PHRASE)));
-        }
-
-        if (this.getSessionAttributes().containsKey(CURRENT_MISSION)) {
-            String cardTitle = aliasManager.getValueByKey(String.valueOf(this.getSessionAttributes().get(CURRENT_MISSION)));
-            builder.withCardTitle(cardTitle);
         }
 
         return builder.build();
@@ -175,9 +178,13 @@ public class SelectLevelStateManager extends BaseStateManager {
 
         List<BasePhraseContainer> dialog = missionPhraseManager.getMissionIntro(currentMission);
 
+        builder.withAplDocument(aplManager.getContainer());
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-selection-" + currentMission.key));
+
         int iterationPointer = wrapAnyUserResponse(dialog, builder, MISSION_INTRO);
 
         if (iterationPointer >= dialog.size()) {
+            builder.withAplDocument(aplManager.getContainer());
             handleStripeIntroState(builder, currentMission, userProgress);
         }
     }
@@ -185,8 +192,9 @@ public class SelectLevelStateManager extends BaseStateManager {
     private void handleStripeIntroState(DialogItem.Builder builder, UserMission currentMission, UserProgress userProgress) {
 
         this.statePhase = ACTIVITY_INTRO;
-
-        List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, userProgress.getStripeCount());
+        int number = userProgress.getStripeCount();
+        List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number));
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, SUBMISSION_INTRO);
 
@@ -208,6 +216,9 @@ public class SelectLevelStateManager extends BaseStateManager {
         }
 
         SpeechSettings speechSettings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(activity, userProgress.getStripeCount(), currentMission);
+
+        builder.withAplDocument(aplManager.getContainer());
+        builder.addBackgroundImageUrl(speechSettings.getInstructionImageUrl());
 
         for (BasePhraseContainer partOfSpeech : speechSettings.getIntro()) {
             builder.addResponse(getDialogTranslator().translate(partOfSpeech));

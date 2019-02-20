@@ -9,8 +9,10 @@ import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.PhraseContainer;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.components.BeltColorDefiner;
+import com.muffinsoft.alexa.skills.samuraichef.content.phrases.ActivityPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.HelpPhraseManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
 import com.muffinsoft.alexa.skills.samuraichef.enums.HelpStates;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
@@ -18,6 +20,7 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
+import com.muffinsoft.alexa.skills.samuraichef.models.SpeechSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.UserProgress;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,6 +56,8 @@ public class HelpStateManager extends BaseStateManager {
 
     private final RegularPhraseManager regularPhraseManager;
     private final HelpPhraseManager helpPhraseManager;
+    private final ActivityPhraseManager activityPhraseManager;
+    private final AplManager aplManager;
 
     private ActivityProgress activityProgress;
 
@@ -65,6 +70,8 @@ public class HelpStateManager extends BaseStateManager {
         super(slots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.helpPhraseManager = phraseDependencyContainer.getHelpPhraseManager();
+        this.activityPhraseManager = phraseDependencyContainer.getActivityPhraseManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -112,7 +119,7 @@ public class HelpStateManager extends BaseStateManager {
 
             case REPEAT_ACTIVITY_HELP:
                 if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.YES)) {
-                    hanleActivityHelp(builder);
+                    handleActivityHelp(builder);
                 }
                 else {
                     getSessionAttributes().put(HELP_STATE, LEARN_MORE_HELP);
@@ -170,12 +177,15 @@ public class HelpStateManager extends BaseStateManager {
         return builder.build();
     }
 
-    private void hanleActivityHelp(DialogItem.Builder builder) {
+    private void handleActivityHelp(DialogItem.Builder builder) {
         getSessionAttributes().put(HELP_STATE, REPEAT_ACTIVITY_HELP);
         String key = "help" + this.currentMission.key + "Stripe" + userProgress.getStripeCount() + this.currentActivity.key;
         List<PhraseContainer> activityHelp = helpPhraseManager.getValueByKey(key);
         builder.addResponse(getDialogTranslator().translate(activityHelp));
         builder.addResponse(getDialogTranslator().translate(helpPhraseManager.getValueByKey(HELP_REPEAT_PHRASE)));
+        builder.withAplDocument(aplManager.getContainer());
+        SpeechSettings settings = activityPhraseManager.getSpeechForActivityByStripeNumberAtMission(this.currentActivity, this.userProgress.getStripeCount(), this.currentMission);
+        builder.addBackgroundImageUrl(settings.getInstructionImageUrl());
     }
 
     private String getColorByStripe(int stripe) {
@@ -187,7 +197,7 @@ public class HelpStateManager extends BaseStateManager {
         DialogItem.Builder builder = DialogItem.builder();
 
         if (this.currentActivity != null && this.currentMission != null) {
-            hanleActivityHelp(builder);
+            handleActivityHelp(builder);
         }
         else {
             getSessionAttributes().put(HELP_STATE, PROCEED_GAME);
@@ -205,12 +215,21 @@ public class HelpStateManager extends BaseStateManager {
         getSessionAttributes().remove(HELP_STATE);
         builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
         if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {
-            builder.addResponse(getDialogTranslator().translate(activityProgress.getPreviousIngredient()));
+            String ingredient = activityProgress.getPreviousIngredient();
+            builder.addResponse(getDialogTranslator().translate(ingredient));
+            builder.withAplDocument(aplManager.getContainer());
+            builder.addBackgroundImageUrl(getBackgroundImageUrl(ingredient));
         }
         else {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
         }
         getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         getSessionAttributes().remove(HELP_STATE);
+    }
+
+    String getBackgroundImageUrl(String ingredient) {
+        String url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient.replace(" ", "-") + ".jpg";
+        logger.info("Going to load icon by url: " + url);
+        return url;
     }
 }

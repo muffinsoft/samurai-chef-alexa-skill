@@ -8,6 +8,8 @@ import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
+import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivityProgress;
@@ -47,6 +49,8 @@ public class ResetStateManager extends BaseStateManager {
     private static final Logger logger = LogManager.getLogger(CancelStateManager.class);
 
     private final RegularPhraseManager regularPhraseManager;
+    private final CardManager cardManager;
+    private final AplManager aplManager;
 
     private ActivityProgress activityProgress;
 
@@ -57,6 +61,8 @@ public class ResetStateManager extends BaseStateManager {
     public ResetStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(slots, attributesManager, settingsDependencyContainer.getDialogTranslator());
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
+        this.cardManager = settingsDependencyContainer.getCardManager();
+        this.aplManager = settingsDependencyContainer.getAplManager();
     }
 
     @Override
@@ -155,7 +161,9 @@ public class ResetStateManager extends BaseStateManager {
         DialogItem.Builder builder = DialogItem.builder();
 
         if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.NEW_MISSION)) {
-            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)));
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                    .withAplDocument(aplManager.getContainer())
+                    .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
             getSessionAttributes().remove(CURRENT_MISSION);
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().put(INTENT, IntentType.GAME);
@@ -176,7 +184,10 @@ public class ResetStateManager extends BaseStateManager {
             getSessionAttributes().put(STATE_PHASE, StateType.SUBMISSION_INTRO);
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             if (activityProgress != null && activityProgress.getPreviousIngredient() != null) {
-                builder.addResponse(getDialogTranslator().translate(activityProgress.getPreviousIngredient()));
+                String previousIngredient = activityProgress.getPreviousIngredient();
+                builder.addResponse(getDialogTranslator().translate(previousIngredient));
+                builder.withAplDocument(aplManager.getContainer());
+                builder.addBackgroundImageUrl(getBackgroundImageUrl(previousIngredient));
             }
             else {
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
@@ -188,5 +199,11 @@ public class ResetStateManager extends BaseStateManager {
         }
 
         return builder.build();
+    }
+
+    private String getBackgroundImageUrl(String ingredient) {
+        String url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient.replace(" ", "-") + ".jpg";
+        logger.info("Going to load icon by url: " + url);
+        return url;
     }
 }

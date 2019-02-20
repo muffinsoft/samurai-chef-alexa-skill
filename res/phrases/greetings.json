@@ -1,60 +1,35 @@
 {
   "firstTimeGreeting": [
     {
-      "content": "Hey! Welcome to Samurai Chef! I'm super excited that you called! Can you guess what we're doing today?",
-      "role": "Ben",
-      "audio": null
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsFirstTimeGreeting0.mp3"
     },
     {
       "userResponse": true
     },
     {
-      "content": "Today we're visiting Sensei Sushi and his right-hand cook, Chef Arthur! They run a Japanese restaurant and make food, samurai style! I heard they need some new apprentices. Let's go find out more!",
-      "role": "Ben",
-      "audio": null
-    },
-    {
-      "content": "[sound of entering a restaurant]",
-      "role": "Sound",
-      "audio": null
-    },
-    {
-      "content": "Greetings, Chef Arthur! This is my friend. We're here to learn Sensei's ways!",
-      "role": "Ben",
-      "audio": null
-    },
-    {
-      "content": "Hello! Is that so? It's the reason I moved here from Britain years ago! First, I have one question: do you like... sushi",
-      "role": "Arthur",
-      "audio": null
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsFirstTimeGreeting1.mp3"
     },
     {
       "userResponse": true
     },
     {
-      "content": "I love it!",
-      "role": "Ben",
-      "audio": null
-    },
-    {
-      "content": "Excellent! As you know, Sensei is the wisest, most skilled sushi samurai in the world! But his passion is also to teach others. Do you have what it takes to learn from a master?",
-      "role": "Arthur",
-      "audio": null
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsFirstTimeGreeting2.mp3"
     },
     {
       "userResponse": true
     },
     {
-      "content": "Oh yeah! Let's prove to Chef Arthur and Sensei Sushi that we can become Sushi Masters!  Alexa, tell us the available paths!",
-      "role": "Ben",
-      "audio": null
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsFirstTimeGreeting3.mp3"
     }
   ],
   "playerWithAwardsGreeting": [
     {
-      "content": "Welcome back to Samurai Chef! I'm so happy to see you again....Alexa, please give our friend a royal greeting!",
-      "role": "Ben",
-      "audio": null
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsPlayerWithAwardsGreeting0.mp3"
     },
     {
       "content": "%titles%. You have %low_color% belt Chef, %mid_color% belt Sumo, %high_color% belt Guru.",
@@ -64,9 +39,8 @@
   ],
   "exitPhrase": [
     {
-      "content": "I had lots of fun with you! Let's do this again soon!",
-      "role": "Ben",
-      "audio": null
+      "role": "Audio",
+      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsExitPhrase0.mp3"
     },
     {
       "content": "Goodbye.",

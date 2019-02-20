@@ -58,6 +58,6 @@ class InitialGreetingStateManagerTest extends BaseStateManagerTest {
         initialGreetingStateManager.nextResponse();
 
         Map<String, Object> sessionAttributes = initialGreetingStateManager.getSessionAttributes();
-        Assertions.assertEquals(sessionAttributes.get(INTENT), IntentType.INITIAL_GREETING);
+        Assertions.assertEquals(sessionAttributes.get(INTENT), IntentType.GAME);
     }
 }

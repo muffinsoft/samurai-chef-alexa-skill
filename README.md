@@ -11,4 +11,7 @@ Skill game for Amazon Alexa like fruit ninja
 #### with tests
 mvn clean assembly:assembly -DdescriptorId=jar-with-dependencies package
 #### without tests
-mvn clean assembly:assembly -DdescriptorId=jar-with-dependencies -DskipTests package 
+mvn clean assembly:assembly -DdescriptorId=jar-with-dependencies -DskipTests package
+
+#### 
+Time to time needs `export MAVEN_OPTS=-Xss32m`
