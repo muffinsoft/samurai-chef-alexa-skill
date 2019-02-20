@@ -131,7 +131,7 @@
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/3_2_1.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/3_2_1.jpg"
     }
   }
 }
