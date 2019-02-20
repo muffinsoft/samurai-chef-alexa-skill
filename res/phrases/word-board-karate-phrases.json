@@ -3,40 +3,14 @@
     "0": {
       "outro": [
         {
-          "content": "Pretty good for a beginner!",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesLowMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
-        },
-        {
-          "content": "Hungry customers are arriving! Now's your chance to learn. First, only rice and fish!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "To boil rice, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'boil!'",
-          "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "To slice the fish, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'slice!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesLowMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -44,152 +18,44 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Ben closely!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Rice!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[rice pouring into bowl]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Boil!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "[boiling water sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Fish!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[bloop or fishy/flapping sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Slice!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "[sword sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Now it’s your turn, Ben’s friend.",
-          "role": "Arthur",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesLowMission0Demo0.mp3"
         }
       ],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/1_1_1.jpg"
     },
     "1": {
       "outro": [
         {
-          "content": "Good hustle.",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesLowMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/chefTransition.mp3"
-        },
-        {
-          "content": "Lunch hour is over so now I'll train your sense of taste! Very important for cooking! First, you'll taste soup, sushi and tea!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "To slurp up soup, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'slurp!'",
-          "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "To gulp up sushi, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'gulp!'",
-          "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "To sip tea, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'sip!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesLowMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/1_2_1.jpg"
     }
   },
   "MEDIUM_MISSION": {
     "0": {
       "outro": [
         {
-          "content": "Not bad for novice.",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesMediumMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
-        },
-        {
-          "content": "The sooner you become a sumo to represent Sensei's restaurant proudly, the better! First, chicken and sushi!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "To chomp on the chicken, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'chomp!'",
-          "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "To gulp up the sushi, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'gulp!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesMediumMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -197,132 +63,44 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Ben closely!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Chicken!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Chomp!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Sushi!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "[samurai sword sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Gulp!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "[gulping sound]",
-          "role": "Sound",
-          "audio": null
-        },
-        {
-          "content": "Now it’s your turn, Ben’s friend!",
-          "role": "Arthur",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesMediumMission0Demo0.mp3"
         }
       ],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/2_1_1.jpg"
     },
     "1": {
       "outro": [
         {
-          "content": "You're a natural.",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesMediumMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sumoTransition.mp3"
-        },
-        {
-          "content": "A good sumo must learn the difference between good and bad food. Beef and tofu, good! Soda, bad!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "If Arthur gives you beef or tofu, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'yum!'",
-          "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "but if it's soda, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'gross!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesMediumMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/2_2_1.jpg"
     }
   },
   "HIGH_MISSION": {
     "0": {
       "outro": [
         {
-          "content": "Good... for a trainee.",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesHighMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
-        },
-        {
-          "content": "Customers from the gym across the street are arriving! We'll need lots of juice! First, only milk and carrots!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "To splash some milk, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'splash a dash!'",
-          "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "To slice some carrots, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'slice and dice!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesHighMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -330,92 +108,30 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [
         {
-          "content": "Watch Ben closely!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Carrot!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Slice and dice!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Milk!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "Splash a dash!",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "Good! Now your turn, Ben's friend.",
-          "role": "Arthur",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesHighMission0Demo0.mp3"
         }
       ],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/3_1_1.jpg"
     },
     "1": {
       "outro": [
         {
-          "content": "I see talent.",
-          "role": "Sensei",
-          "audio": null
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesHighMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/guruTransition.mp3"
-        },
-        {
-          "content": "A wise guru also knows the importance of exercise! Traditional karate time!",
-          "role": "Arthur",
-          "audio": null
-        },
-        {
-          "content": "if Arthur punches, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'block!'",
-          "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "If Arthur kicks, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'dodge!'",
-          "role": "BenLoud",
-          "audio": null
-        },
-        {
-          "content": "If Arthur leg sweeps, say.",
-          "role": "Ben",
-          "audio": null
-        },
-        {
-          "content": "'jump!'",
-          "role": "BenLoud",
-          "audio": null
+          "audio": "https://s3.amazonaws.com/samurai-audio/word-board-karate/wordBoardKaratePhrasesHighMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "moveToPhaseTwo": "Uh oh, more customers are arriving, which means we've got to go faster! I'll just toss you the ingredient without saying the name and you prepare it based on the sound. Let's do this!"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/3_2_1.jpg"
     }
   }
 }
