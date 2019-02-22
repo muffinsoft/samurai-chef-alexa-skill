@@ -22,7 +22,7 @@
               "position": "absolute",
               "width": "100vw",
               "height": "100vh",
-              "scale": "best-fill"
+              "scale": "fill"
             },
             {
               "type": "Text",
@@ -69,7 +69,7 @@
                   "position": "absolute",
                   "width": "100vw",
                   "height": "100vh",
-                  "scale": "best-fill"
+                  "scale": "fill"
                 },
                 {
                   "type": "Text",
@@ -87,7 +87,7 @@
               "position": "absolute",
               "width": "100vw",
               "height": "100vh",
-              "scale": "best-fill"
+              "scale": "fill"
             }
           ]
         }
@@ -114,29 +114,12 @@
           "navigation": "none",
           "items": [
             {
-              "type": "Container",
-              "width": "100%",
-              "height": "100%",
-              "alignItems": "center",
-              "justifyContent": "center",
-              "items": [
-                {
-                  "type": "Image",
-                  "source": "${payload.templateData.backgroundImage}",
-                  "position": "absolute",
-                  "width": "100vw",
-                  "height": "100vh",
-                  "scale": "best-fill"
-                },
-                {
-                  "type": "Text",
-                  "color": "#FFFFFF",
-                  "text": "${payload.templateData.title}",
-                  "position": "absolute",
-                  "bottom": "5",
-                  "fontSize": "32dp"
-                }
-              ]
+              "type": "Image",
+              "source": "${payload.templateData.backgroundImage}",
+              "position": "absolute",
+              "width": "100vw",
+              "height": "100vh",
+              "scale": "fill"
             },
             {
               "type": "Image",
@@ -144,7 +127,7 @@
               "position": "absolute",
               "width": "100vw",
               "height": "100vh",
-              "scale": "best-fill"
+              "scale": "fill"
             },
             {
               "type": "Image",
@@ -152,80 +135,7 @@
               "position": "absolute",
               "width": "100vw",
               "height": "100vh",
-              "scale": "best-fill"
-            }
-          ]
-        }
-      ]
-    }
-  },
-  "4": {
-    "type": "Alexa.Presentation.APL.RenderDocument",
-    "version": "1.0",
-    "theme": "dark",
-    "mainTemplate": {
-      "description": "Samurai Chef GUI",
-      "parameters": [
-        "payload"
-      ],
-      "items": [
-        {
-          "type": "Pager",
-          "id": "picCarousel",
-          "width": "100%",
-          "height": "100%",
-          "alignItems": "center",
-          "justifyContent": "center",
-          "navigation": "none",
-          "items": [
-            {
-              "type": "Container",
-              "width": "100%",
-              "height": "100%",
-              "alignItems": "center",
-              "justifyContent": "center",
-              "items": [
-                {
-                  "type": "Image",
-                  "source": "${payload.templateData.backgroundImage}",
-                  "position": "absolute",
-                  "width": "100vw",
-                  "height": "100vh",
-                  "scale": "best-fill"
-                },
-                {
-                  "type": "Text",
-                  "color": "#FFFFFF",
-                  "text": "${payload.templateData.title}",
-                  "position": "absolute",
-                  "bottom": "5",
-                  "fontSize": "32dp"
-                }
-              ]
-            },
-            {
-              "type": "Image",
-              "source": "${payload.templateData.backgroundImage1}",
-              "position": "absolute",
-              "width": "100vw",
-              "height": "100vh",
-              "scale": "best-fill"
-            },
-            {
-              "type": "Image",
-              "source": "${payload.templateData.backgroundImage2}",
-              "position": "absolute",
-              "width": "100vw",
-              "height": "100vh",
-              "scale": "best-fill"
-            },
-            {
-              "type": "Image",
-              "source": "${payload.templateData.backgroundImage3}",
-              "position": "absolute",
-              "width": "100vw",
-              "height": "100vh",
-              "scale": "best-fill"
+              "scale": "fill"
             }
           ]
         }

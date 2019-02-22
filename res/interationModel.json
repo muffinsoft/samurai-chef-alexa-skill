@@ -16,9 +16,20 @@
             }
           ],
           "samples": [
-            "{Action}",
             "what about {Action}",
             "it's {ActionAlternative}"
+          ]
+        },
+        {
+          "name": "ActionOnlyIntent",
+          "slots": [
+            {
+              "name": "Action",
+              "type": "ACTION"
+            }
+          ],
+          "samples": [
+            "{Action}"
           ]
         },
         {
@@ -30,7 +41,6 @@
             }
           ],
           "samples": [
-            "{Mission}",
             "{Mission} please",
             "I'd like {Mission}",
             "I'm feeling {Mission}",
@@ -38,6 +48,18 @@
             "start {Mission}",
             "let's play {Mission}",
             "I'd like to play {Mission}"
+          ]
+        },
+        {
+          "name": "SelectPathOnlyIntent",
+          "slots": [
+            {
+              "name": "Mission",
+              "type": "MISSION"
+            }
+          ],
+          "samples": [
+            "{Mission}"
           ]
         },
         {
@@ -49,9 +71,20 @@
             }
           ],
           "samples": [
-            "{Navigation}",
             "I wan't to {Navigation}",
             "{Navigation} please"
+          ]
+        },
+        {
+          "name": "MissionNavigationOnlyIntent",
+          "slots": [
+            {
+              "name": "Navigation",
+              "type": "NAVIGATION"
+            }
+          ],
+          "samples": [
+            "{Navigation}"
           ]
         },
         {
@@ -62,7 +95,8 @@
           ]
         },
         {
-          "name": "AMAZON.CancelIntent",
+          "name": "MenuIntent",
+          "slots": [],
           "samples": [
             "new game",
             "return to the main menu",
@@ -70,11 +104,19 @@
           ]
         },
         {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
           "name": "AMAZON.FallbackIntent",
           "samples": []
         },
         {
           "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
           "samples": []
         },
         {
