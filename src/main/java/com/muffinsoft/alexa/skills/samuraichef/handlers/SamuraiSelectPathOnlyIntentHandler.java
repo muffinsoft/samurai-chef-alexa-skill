@@ -10,6 +10,6 @@ public class SamuraiSelectPathOnlyIntentHandler extends SamuraiGameIntentHandler
 
     @Override
     protected String getIntentName() {
-        return "SelectPathIntent";
+        return "SelectPathOnlyIntent";
     }
 }

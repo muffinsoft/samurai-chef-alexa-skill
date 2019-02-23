@@ -10,6 +10,6 @@ public class SamuraiMissionNavigationOnlyIntentHandler extends SamuraiGameIntent
 
     @Override
     protected String getIntentName() {
-        return "MissionNavigationIntent";
+        return "MissionNavigationOnlyIntent";
     }
 }

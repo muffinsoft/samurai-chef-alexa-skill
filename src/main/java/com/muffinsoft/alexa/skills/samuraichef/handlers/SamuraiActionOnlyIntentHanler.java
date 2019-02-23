@@ -10,6 +10,6 @@ public class SamuraiActionOnlyIntentHanler extends SamuraiGameIntentHandler {
 
     @Override
     protected String getIntentName() {
-        return "ActionIntent";
+        return "ActionOnlyIntent";
     }
 }
