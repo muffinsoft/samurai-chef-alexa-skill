@@ -787,7 +787,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             return new Speech(SpeechType.AUDIO, path, 0);
         }
         else {
-            Speech sound = getDialogTranslator().getSound(source);
+            Speech sound = getDialogTranslator().getSound(source, true);
             logger.info("Try to get sound by url " + sound.getContent());
             return sound;
         }
