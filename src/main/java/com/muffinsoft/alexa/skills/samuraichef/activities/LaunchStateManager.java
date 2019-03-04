@@ -107,15 +107,10 @@ public class LaunchStateManager extends BaseStateManager {
 
         buildRoyalGreetingWithAwards(builder, lowUserProgress, midUserProgress, highUserProgress);
 
-        String tilesWithComas = getTitles(lowUserProgress, midUserProgress, highUserProgress).toString();
-        if (!tilesWithComas.isEmpty()) {
-            tilesWithComas = tilesWithComas.replaceAll(",", " ");
-        }
-
         return builder
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)))
                 .withAplDocument(aplManager.getContainer())
-                .withCardTitle(tilesWithComas)
+                .withCardTitle(getTitles(lowUserProgress, midUserProgress, highUserProgress).toString())
                 .addBackgroundImageUrl(cardManager.getValueByKey("welcome-back"))
                 .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
     }
