@@ -202,7 +202,7 @@ public class ResetStateManager extends BaseStateManager {
     }
 
     private String getBackgroundImageUrl(String ingredient) {
-        String url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient.replace(" ", "-") + ".jpg";
+        String url = "https://s3.amazonaws.com/samurai-chef-store/images/{size}/icons/" + ingredient.replace(" ", "-") + ".jpg";
         logger.info("Going to load icon by url: " + url);
         return url;
     }

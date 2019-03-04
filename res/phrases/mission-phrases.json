@@ -3,33 +3,33 @@
     "missionIntro": [
       {
         "role": "Audio",
-        "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesLowMissionMissionIntro0.mp3"
+        "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesLowMissionMissionIntro0.mp3"
       },
       {
         "userResponse": true
       },
       {
         "role": "Audio",
-        "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesLowMissionMissionIntro1.mp3"
+        "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesLowMissionMissionIntro1.mp3"
       }
     ],
     "missionOutro": [
       {
         "role": "Audio",
-        "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesLowMissionMissionOutro0.mp3"
+        "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesLowMissionMissionOutro0.mp3"
       }
     ],
     "stripeIntrosByNumber": {
       "0": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesLowMissionStripeIntrosByNumber00.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesLowMissionStripeIntrosByNumber00.mp3"
         }
       ],
       "1": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesLowMissionStripeIntrosByNumber10.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesLowMissionStripeIntrosByNumber10.mp3"
         }
       ]
     },
@@ -37,27 +37,27 @@
       "0": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesLowMissionStripeOutrosByNumber00.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesLowMissionStripeOutrosByNumber00.mp3"
         },
         {
           "userResponse": true
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesLowMissionStripeOutrosByNumber01.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesLowMissionStripeOutrosByNumber01.mp3"
         }
       ],
       "1": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesLowMissionStripeOutrosByNumber10.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesLowMissionStripeOutrosByNumber10.mp3"
         },
         {
           "userResponse": true
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesLowMissionStripeOutrosByNumber11.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesLowMissionStripeOutrosByNumber11.mp3"
         }
       ]
     }
@@ -66,40 +66,40 @@
     "missionIntro": [
       {
         "role": "Audio",
-        "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesMediumMissionMissionIntro0.mp3"
+        "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesMediumMissionMissionIntro0.mp3"
       },
       {
         "userResponse": true
       },
       {
         "role": "Audio",
-        "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesMediumMissionMissionIntro1.mp3"
+        "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesMediumMissionMissionIntro1.mp3"
       },
       {
         "userResponse": true
       },
       {
         "role": "Audio",
-        "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesMediumMissionMissionIntro2.mp3"
+        "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesMediumMissionMissionIntro2.mp3"
       }
     ],
     "missionOutro": [
       {
         "role": "Audio",
-        "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesMediumMissionMissionOutro0.mp3"
+        "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesMediumMissionMissionOutro0.mp3"
       }
     ],
     "stripeIntrosByNumber": {
       "0": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesMediumMissionStripeIntrosByNumber00.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesMediumMissionStripeIntrosByNumber00.mp3"
         }
       ],
       "1": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesMediumMissionStripeIntrosByNumber10.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesMediumMissionStripeIntrosByNumber10.mp3"
         }
       ]
     },
@@ -107,27 +107,27 @@
       "0": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesMediumMissionStripeOutrosByNumber00.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesMediumMissionStripeOutrosByNumber00.mp3"
         },
         {
           "userResponse": true
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesMediumMissionStripeOutrosByNumber01.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesMediumMissionStripeOutrosByNumber01.mp3"
         }
       ],
       "1": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesMediumMissionStripeOutrosByNumber10.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesMediumMissionStripeOutrosByNumber10.mp3"
         },
         {
           "userResponse": true
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesMediumMissionStripeOutrosByNumber11.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesMediumMissionStripeOutrosByNumber11.mp3"
         }
       ]
     }
@@ -136,40 +136,40 @@
     "missionIntro": [
       {
         "role": "Audio",
-        "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesHighMissionMissionIntro0.mp3"
+        "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesHighMissionMissionIntro0.mp3"
       },
       {
         "userResponse": true
       },
       {
         "role": "Audio",
-        "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesHighMissionMissionIntro1.mp3"
+        "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesHighMissionMissionIntro1.mp3"
       },
       {
         "userResponse": true
       },
       {
         "role": "Audio",
-        "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesHighMissionMissionIntro2.mp3"
+        "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesHighMissionMissionIntro2.mp3"
       }
     ],
     "missionOutro": [
       {
         "role": "Audio",
-        "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesHighMissionMissionOutro0.mp3"
+        "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesHighMissionMissionOutro0.mp3"
       }
     ],
     "stripeIntrosByNumber": {
       "0": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesHighMissionStripeIntrosByNumber00.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesHighMissionStripeIntrosByNumber00.mp3"
         }
       ],
       "1": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesHighMissionStripeIntrosByNumber10.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesHighMissionStripeIntrosByNumber10.mp3"
         }
       ]
     },
@@ -177,27 +177,27 @@
       "0": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesHighMissionStripeOutrosByNumber00.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesHighMissionStripeOutrosByNumber00.mp3"
         },
         {
           "userResponse": true
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesHighMissionStripeOutrosByNumber01.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesHighMissionStripeOutrosByNumber01.mp3"
         }
       ],
       "1": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesHighMissionStripeOutrosByNumber10.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesHighMissionStripeOutrosByNumber10.mp3"
         },
         {
           "userResponse": true
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/missions/missionPhrasesHighMissionStripeOutrosByNumber11.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/missions/missionPhrasesHighMissionStripeOutrosByNumber11.mp3"
         }
       ]
     }
