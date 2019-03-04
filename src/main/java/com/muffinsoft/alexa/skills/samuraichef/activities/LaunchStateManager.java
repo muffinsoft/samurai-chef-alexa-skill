@@ -24,7 +24,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -100,15 +99,23 @@ public class LaunchStateManager extends BaseStateManager {
     private DialogItem.Builder buildRoyalGreeting(DialogItem.Builder builder) {
 
         UserProgress lowUserProgress = getUserProgress(USER_LOW_PROGRESS_DB);
+        logger.info(lowUserProgress);
         UserProgress midUserProgress = getUserProgress(USER_MID_PROGRESS_DB);
+        logger.info(midUserProgress);
         UserProgress highUserProgress = getUserProgress(USER_HIGH_PROGRESS_DB);
+        logger.info(highUserProgress);
 
         buildRoyalGreetingWithAwards(builder, lowUserProgress, midUserProgress, highUserProgress);
+
+        String tilesWithComas = getTitles(lowUserProgress, midUserProgress, highUserProgress).toString();
+        if (!tilesWithComas.isEmpty()) {
+            tilesWithComas = tilesWithComas.replaceAll(",", " ");
+        }
 
         return builder
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)))
                 .withAplDocument(aplManager.getContainer())
-                .withCardTitle(getTitles(lowUserProgress, midUserProgress, highUserProgress).toString().replace(",", " "))
+                .withCardTitle(tilesWithComas)
                 .addBackgroundImageUrl(cardManager.getValueByKey("welcome-back"))
                 .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
     }
@@ -150,6 +157,7 @@ public class LaunchStateManager extends BaseStateManager {
     }
 
     private UserProgress getUserProgress(String dbType) {
+        logger.info("Try to check user progress from source: " + dbType);
         if (!getPersistentAttributes().containsKey(dbType)) {
             return null;
         }
@@ -166,10 +174,26 @@ public class LaunchStateManager extends BaseStateManager {
     }
 
     private CharSequence getTitles(UserProgress lowUserProgress, UserProgress midUserProgress, UserProgress highUserProgress) {
+        List<String> titles = new ArrayList<>();
         String lowTitle = getHighestTitleOfMission(lowUserProgress);
+        if (lowTitle != null && !lowTitle.isEmpty()) {
+            titles.add(lowTitle);
+        }
         String midTitle = getHighestTitleOfMission(midUserProgress);
+        if (midTitle != null && !midTitle.isEmpty()) {
+            titles.add(midTitle);
+        }
         String highTitle = getHighestTitleOfMission(highUserProgress);
-        return join(Arrays.asList(lowTitle, midTitle, highTitle), ", ");
+        if (highTitle != null && !highTitle.isEmpty()) {
+            titles.add(highTitle);
+        }
+
+        if (titles.size() > 0) {
+            return join(titles, ", ");
+        }
+        else {
+            return "";
+        }
     }
 
     private String join(List<String> str, String separator) {
@@ -182,7 +206,7 @@ public class LaunchStateManager extends BaseStateManager {
 
     private String getHighestTitleOfMission(UserProgress userProgress) {
         if (userProgress == null) {
-            return "";
+            return null;
         }
         if (userProgress.isPerfectMission()) {
             if (userProgress.getMission().equals(UserMission.LOW_MISSION.name())) {

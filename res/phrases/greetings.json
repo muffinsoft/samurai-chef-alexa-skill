@@ -32,7 +32,7 @@
       "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsPlayerWithAwardsGreeting0.mp3"
     },
     {
-      "content": "%titles%. You have %low_color% belt Chef, %mid_color% belt Sumo, %high_color% belt Guru.",
+      "content": "%titles% You have %low_color% belt Chef, %mid_color% belt Sumo, %high_color% belt Guru.",
       "role": "Alexa",
       "audio": null
     }

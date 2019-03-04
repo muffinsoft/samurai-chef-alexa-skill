@@ -26,11 +26,11 @@
             },
             {
               "type": "Text",
-              "color": "#FFFFFF",
+              "color": "${viewport.shape == 'rectangle' ? '#FFFFFF' : 'transparent'}",
               "text": "${payload.templateData.title}",
               "position": "absolute",
-              "bottom": "5",
-              "fontSize": "32dp"
+              "bottom": "${viewport.shape == 'rectangle' ? '8%' : '35%'}",
+              "fontSize": "${viewport.height > 601 ? '28dp' : '24dp'}"
             }
           ]
         }
@@ -73,11 +73,11 @@
                 },
                 {
                   "type": "Text",
-                  "color": "#FFFFFF",
+                  "color": "${viewport.shape == 'rectangle' ? '#FFFFFF' : 'transparent'}",
                   "text": "${payload.templateData.title}",
                   "position": "absolute",
-                  "bottom": "5",
-                  "fontSize": "32dp"
+                  "bottom": "${viewport.shape == 'rectangle' ? '8%' : '35%'}",
+                  "fontSize": "${viewport.height > 601 ? '28dp' : '24dp'}"
                 }
               ]
             },
