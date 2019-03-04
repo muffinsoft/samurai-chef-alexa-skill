@@ -782,7 +782,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             source = "reaction_" + source;
         }
         if (stripe.isUseVocabulary()) {
-            String path = "https://s3.amazonaws.com/samurai-audio/words/" + source + ".mp3";
+            String path = "https://s3.amazonaws.com/samurai-chef-store/words/" + source + ".mp3";
             logger.info("Try to get sound by url " + path);
             return new Speech(SpeechType.AUDIO, path, 0);
         }
@@ -827,7 +827,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             url = settings.getInstructionImageUrl();
         }
         else {
-            url = "https://s3.amazonaws.com/samurai-audio/images/{size}/icons/" + ingredient.replace(" ", "-") + ".jpg";
+            url = "https://s3.amazonaws.com/samurai-chef-store/images/{size}/icons/" + ingredient.replace(" ", "-") + ".jpg";
         }
         logger.info("Going to load image by url: " + url);
         return url;

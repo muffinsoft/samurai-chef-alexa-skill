@@ -4,39 +4,39 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesLowMission0Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesLowMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesLowMission0Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesLowMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/1_1_2.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M1/1_1_2.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesLowMission1Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesLowMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesLowMission1Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesLowMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/1_2_2.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M2/1_2_2.jpg"
     }
   },
   "MEDIUM_MISSION": {
@@ -44,39 +44,39 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesMediumMission0Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesMediumMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesMediumMission0Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesMediumMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/2_1_2.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M1/2_1_2.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesMediumMission1Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesMediumMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesMediumMission1Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesMediumMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/2_2_2.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M2/2_2_2.jpg"
     }
   },
   "HIGH_MISSION": {
@@ -84,39 +84,39 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesHighMission0Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesHighMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesHighMission0Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesHighMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/3_1_2.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M1/3_1_2.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesHighMission1Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesHighMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/juice-warrior/juiceWarriorPhrasesHighMission1Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/juice-warrior/juiceWarriorPhrasesHighMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/3_2_2.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M2/3_2_2.jpg"
     }
   }
 }

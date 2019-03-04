@@ -1,5 +1,5 @@
 {
-  "welcome": "https://s3.amazonaws.com/samurai-audio/images/{size}/Welcome.jpg",
+  "welcome": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/Welcome.jpg",
   "welcome-back": "https://s3.amazonaws.com/samurai-audio/images/{size}/Welcome-back.jpg",
   "mission-selection": "https://s3.amazonaws.com/samurai-audio/images/{size}/Mission-selection.jpg",
   "mission-selection-LowMission": "https://s3.amazonaws.com/samurai-audio/images/{size}/Mission-intro_1.jpg",

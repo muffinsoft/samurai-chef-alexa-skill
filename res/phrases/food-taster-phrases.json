@@ -4,13 +4,13 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesLowMission0Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesLowMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesLowMission0Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesLowMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -19,29 +19,29 @@
       "demo": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesLowMission0Demo0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesLowMission0Demo0.mp3"
         }
       ],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/1_1_4.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M1/1_1_4.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesLowMission1Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesLowMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesLowMission1Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesLowMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/1_2_4.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M2/1_2_4.jpg"
     }
   },
   "MEDIUM_MISSION": {
@@ -49,13 +49,13 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesMediumMission0Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesMediumMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesMediumMission0Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesMediumMission0Intro0.mp3"
         }
       ],
 
@@ -65,29 +65,29 @@
       "demo": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesMediumMission0Demo0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesMediumMission0Demo0.mp3"
         }
       ],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/2_1_4.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M1/2_1_4.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesMediumMission1Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesMediumMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesMediumMission1Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesMediumMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/2_2_4.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M2/2_2_4.jpg"
     }
   },
   "HIGH_MISSION": {
@@ -95,13 +95,13 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesHighMission0Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesHighMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesHighMission0Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesHighMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -110,29 +110,29 @@
       "demo": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesHighMission0Demo0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesHighMission0Demo0.mp3"
         }
       ],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/3_1_4.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M1/3_1_4.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesHighMission1Outro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesHighMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/food-taster/foodTasterPhrasesHighMission1Intro0.mp3"
+          "audio": "https://s3.amazonaws.com/samurai-chef-store/food-taster/foodTasterPhrasesHighMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/3_2_4.jpg"
+      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M2/3_2_4.jpg"
     }
   }
 }

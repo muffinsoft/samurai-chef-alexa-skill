@@ -2,21 +2,21 @@
   "firstTimeGreeting": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsFirstTimeGreeting0.mp3"
+      "audio": "https://s3.amazonaws.com/samurai-chef-store/greetings/greetingsFirstTimeGreeting0.mp3"
     },
     {
       "userResponse": true
     },
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsFirstTimeGreeting1.mp3"
+      "audio": "https://s3.amazonaws.com/samurai-chef-store/greetings/greetingsFirstTimeGreeting1.mp3"
     },
     {
       "userResponse": true
     },
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-audio/greetings/greetingsFirstTimeGreeting2.mp3"
+      "audio": "https://s3.amazonaws.com/samurai-chef-store/greetings/greetingsFirstTimeGreeting2.mp3"
     },
     {
       "userResponse": true
