@@ -2,281 +2,281 @@
   "reaction_boil": {
     "content": "Boil",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsBoil.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsBoil.mp3"
   },
   "reaction_crack": {
     "content": "Crack",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsCrack.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsCrack.mp3"
   },
   "reaction_slice": {
     "content": "Slice",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsSlice.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSlice.mp3"
   },
   "reaction_roll": {
     "content": "Roll",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsRoll.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsRoll.mp3"
   },
   "reaction_slurp": {
     "content": "Slurp",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsSlurp.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSlurp.mp3"
   },
   "reaction_haa": {
     "content": "Haa",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsHaa.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsHaa.mp3"
   },
   "reaction_pow": {
     "content": "Pow",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsPow.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsPow.mp3"
   },
   "reaction_zonk": {
     "content": "Zonk",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsZonk.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsZonk.mp3"
   },
   "reaction_fuah": {
     "content": "Fuah",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsFuah.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsFuah.mp3"
   },
   "reaction_woosh": {
     "content": "Woosh",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsWoosh.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsWoosh.mp3"
   },
   "reaction_zaam": {
     "content": "Zaam",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsZaam.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsZaam.mp3"
   },
   "reaction_wham": {
     "content": "Wham",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsWham.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsWham.mp3"
   },
   "reaction_thwap": {
     "content": "Thwap",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsThwap.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsThwap.mp3"
   },
   "reaction_gulp": {
     "content": "Gulp",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsGulp.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsGulp.mp3"
   },
   "reaction_sip": {
     "content": "Sip",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsSip.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSip.mp3"
   },
   "reaction_lick": {
     "content": "Lick",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsLick.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsLick.mp3"
   },
   "reaction_chomp": {
     "content": "Chomp",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsChomp.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsChomp.mp3"
   },
   "reaction_yum": {
     "content": "Yum",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsYum.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsYum.mp3"
   },
   "reaction_gross": {
     "content": "Gross",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsGross.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsGross.mp3"
   },
   "reaction_splash a dash": {
     "content": "Splash a dash",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsSplashADash.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSplashADash.mp3"
   },
   "reaction_slice and dice": {
     "content": "Slice and dice",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsSliceAndDice.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSliceAndDice.mp3"
   },
   "reaction_punch and crunch": {
     "content": "Punch and crunch",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsPunchAndCrunch.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsPunchAndCrunch.mp3"
   },
   "reaction_stop don't drop": {
     "content": "Stop don't drop",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsStopDon'tDrop.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsStopDon'tDrop.mp3"
   },
   "reaction_block": {
     "content": "Block",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsBlock.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsBlock.mp3"
   },
   "reaction_dodge": {
     "content": "Dodge",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsDodge.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsDodge.mp3"
   },
   "reaction_jump": {
     "content": "Jump",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsJump.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsJump.mp3"
   },
   "reaction_bow": {
     "content": "Bow",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsBow.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsBow.mp3"
   },
   "reaction_crunch": {
     "content": "Crunch",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsCrunch.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsCrunch.mp3"
   },
   "reaction_stew": {
     "content": "Stew",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsStew.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsStew.mp3"
   },
   "reaction_munch": {
     "content": "Munch",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsMunch.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsMunch.mp3"
   },
   "reaction_break": {
     "content": "Break",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/reactions/reactionsBreak.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsBreak.mp3"
   },
   "rice": {
     "content": "Rice",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesRice.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesRice.mp3"
   },
   "fish": {
     "content": "Fish",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesFish.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesFish.mp3"
   },
   "seaweed": {
     "content": "Seaweed",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesSeaweed.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesSeaweed.mp3"
   },
   "egg": {
     "content": "Egg",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesEgg.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesEgg.mp3"
   },
   "soup": {
     "content": "Soup",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesSoup.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesSoup.mp3"
   },
   "sushi": {
     "content": "Sushi",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesSushi.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesSushi.mp3"
   },
   "tea": {
     "content": "Tea",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesTea.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesTea.mp3"
   },
   "mochi": {
     "content": "Mochi",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesMochi.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesMochi.mp3"
   },
   "wasabe peas": {
     "content": "Wasabe peas",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesWasabePeas.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesWasabePeas.mp3"
   },
   "chicken": {
     "content": "Chicken",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesChicken.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesChicken.mp3"
   },
   "stew": {
     "content": "Stew",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesStew.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesStew.mp3"
   },
   "fried fish": {
     "content": "Fried fish",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesFriedFish.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesFriedFish.mp3"
   },
   "beef": {
     "content": "Beef",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesBeef.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesBeef.mp3"
   },
   "soda": {
     "content": "Soda",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesSoda.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesSoda.mp3"
   },
   "tofu": {
     "content": "Tofu",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesTofu.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesTofu.mp3"
   },
   "candy": {
     "content": "Candy",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesCandy.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesCandy.mp3"
   },
   "milk": {
     "content": "Milk",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesMilk.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesMilk.mp3"
   },
   "carrot": {
     "content": "Carrot",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesCarrot.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesCarrot.mp3"
   },
   "ice": {
     "content": "Ice",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesIce.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesIce.mp3"
   },
   "chopsticks": {
     "content": "Chopsticks",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesChopsticks.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesChopsticks.mp3"
   },
   "punch": {
     "content": "Punch",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesPunch.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesPunch.mp3"
   },
   "kick": {
     "content": "Kick",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesKick.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesKick.mp3"
   },
   "sweep": {
     "content": "Sweep",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesSweep.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesSweep.mp3"
   },
   "bow": {
     "content": "Bow",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesBow.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesBow.mp3"
   },
   "grab": {
     "content": "Grab",
     "role": "Sound",
-    "audio": "https://s3.amazonaws.com/samurai-chef-store/obstacles/obstaclesGrab.mp3"
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesGrab.mp3"
   }
 }

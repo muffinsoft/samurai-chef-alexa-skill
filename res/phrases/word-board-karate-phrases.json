@@ -4,13 +4,13 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesLowMission0Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesLowMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesLowMission0Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesLowMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -19,29 +19,29 @@
       "demo": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesLowMission0Demo0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesLowMission0Demo0.mp3"
         }
       ],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M1/1_1_1.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M1/1_1_1.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesLowMission1Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesLowMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesLowMission1Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesLowMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M2/1_2_1.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
     }
   },
   "MEDIUM_MISSION": {
@@ -49,13 +49,13 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesMediumMission0Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesMediumMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesMediumMission0Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesMediumMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -64,29 +64,29 @@
       "demo": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesMediumMission0Demo0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesMediumMission0Demo0.mp3"
         }
       ],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M1/2_1_1.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M1/2_1_1.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesMediumMission1Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesMediumMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesMediumMission1Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesMediumMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M2/2_2_1.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/2_2_1.jpg"
     }
   },
   "HIGH_MISSION": {
@@ -94,13 +94,13 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesHighMission0Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesHighMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesHighMission0Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesHighMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -109,29 +109,29 @@
       "demo": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesHighMission0Demo0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesHighMission0Demo0.mp3"
         }
       ],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M1/3_1_1.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M1/3_1_1.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesHighMission1Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesHighMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/word-board-karate/wordBoardKaratePhrasesHighMission1Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesHighMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M2/3_2_1.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/3_2_1.jpg"
     }
   }
 }

@@ -27,25 +27,25 @@
   "justEarnCorrectQuestionPhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/en-US/enUsJustEarnCorrectQuestionPhrase0.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsJustEarnCorrectQuestionPhrase0.mp3"
     }
   ],
   "justUseCorrectQuestionPhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/en-US/enUsJustUseCorrectQuestionPhrase0.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsJustUseCorrectQuestionPhrase0.mp3"
     }
   ],
   "justEarnSecondChancePhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/en-US/enUsJustEarnSecondChancePhrase0.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsJustEarnSecondChancePhrase0.mp3"
     }
   ],
   "justUseSecondChancePhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/en-US/enUsJustUseSecondChancePhrase0.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsJustUseSecondChancePhrase0.mp3"
     }
   ],
   "twoMistakesLeftPhrase": [
@@ -56,7 +56,7 @@
   "oneMistakeLeftPhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/en-US/enUsOneMistakeLeftPhrase0.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsOneMistakeLeftPhrase0.mp3"
     }
   ],
   "lastMistakePhrase": [
@@ -81,25 +81,25 @@
   ],
   "oneMistakeLeftCompetitionPhrase": [
     {
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/en-US/enUsOneMistakeLeftCompetitionPhrase0.mp3",
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsOneMistakeLeftCompetitionPhrase0.mp3",
       "role": "Audio"
     }
   ],
   "lastMistakeCompetitionPhrase": [
     {
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/en-US/enUsLastMistakeCompetitionPhrase0.mp3",
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsLastMistakeCompetitionPhrase0.mp3",
       "role": "Audio"
     }
   ],
   "oneMistakeLeftCompetitionTooLongPhrase": [
     {
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/en-US/enUsOneMistakeLeftCompetitionTooLongPhrase0.mp3",
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsOneMistakeLeftCompetitionTooLongPhrase0.mp3",
       "role": "Audio"
     }
   ],
   "lastMistakeCompetitionTooLongPhrase": [
     {
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/en-US/enUsLastMistakeCompetitionTooLongPhrase0.mp3",
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsLastMistakeCompetitionTooLongPhrase0.mp3",
       "role": "Audio"
     }
   ],
@@ -226,14 +226,14 @@
   "gameOutroPhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/en-US/enUsGameOutroPhrase0.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsGameOutroPhrase0.mp3"
     },
     {
       "userResponse": true
     },
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/en-US/enUsGameOutroPhrase1.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsGameOutroPhrase1.mp3"
     }
   ]
 }

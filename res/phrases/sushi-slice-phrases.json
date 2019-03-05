@@ -4,13 +4,13 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/sushi-slice/sushiSlicePhrasesLowMission0Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/sushi-slice/sushiSlicePhrasesLowMission0Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -19,7 +19,7 @@
       "demo": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/sushi-slice/sushiSlicePhrasesLowMission0Demo0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission0Demo0.mp3"
         },
         {
           "content": "Slice!",
@@ -27,7 +27,7 @@
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/sushi-slice/sushiSlicePhrasesLowMission0Demo1.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission0Demo1.mp3"
         },
         {
           "content": "Boil!",
@@ -35,33 +35,33 @@
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/sushi-slice/sushiSlicePhrasesLowMission0Demo2.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission0Demo2.mp3"
         },
         {
           "content": "Hah! I won!",
           "role": "Alexa"
         }
       ],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M1/1_1_3.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M1/1_1_3.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/sushi-slice/sushiSlicePhrasesLowMission1Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/sushi-slice/sushiSlicePhrasesLowMission1Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-chef-store/images/{size}/instructions/M2/1_2_3.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_3.jpg"
     }
   },
   "MEDIUM_MISSION": {
@@ -69,7 +69,7 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-chef-store/sushi-slice/sushiSlicePhrasesMediumMission0Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission0Outro0.mp3"
         }
       ],
       "intro": [

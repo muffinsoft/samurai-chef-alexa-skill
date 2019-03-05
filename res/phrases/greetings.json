@@ -2,34 +2,34 @@
   "firstTimeGreeting": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/greetings/greetingsFirstTimeGreeting0.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/greetings/greetingsFirstTimeGreeting0.mp3"
     },
     {
       "userResponse": true
     },
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/greetings/greetingsFirstTimeGreeting1.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/greetings/greetingsFirstTimeGreeting1.mp3"
     },
     {
       "userResponse": true
     },
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/greetings/greetingsFirstTimeGreeting2.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/greetings/greetingsFirstTimeGreeting2.mp3"
     },
     {
       "userResponse": true
     },
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/greetings/greetingsFirstTimeGreeting3.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/greetings/greetingsFirstTimeGreeting3.mp3"
     }
   ],
   "playerWithAwardsGreeting": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/greetings/greetingsPlayerWithAwardsGreeting0.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/greetings/greetingsPlayerWithAwardsGreeting0.mp3"
     },
     {
       "content": "%titles% You have %low_color% belt Chef, %mid_color% belt Sumo, %high_color% belt Guru.",
@@ -40,7 +40,7 @@
   "exitPhrase": [
     {
       "role": "Audio",
-      "audio": "https://s3.amazonaws.com/samurai-chef-store/greetings/greetingsExitPhrase0.mp3"
+      "audio": "https://d3ih6nf6077n17.cloudfront.net/greetings/greetingsExitPhrase0.mp3"
     },
     {
       "content": "Goodbye.",
