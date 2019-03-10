@@ -5,6 +5,7 @@
     "LOW_MISSION": {
       "0": {
         "wonSuccessCount": 5,
+        "withTimer": true,
         "timeLimitPhaseOneInMillis": 15000,
         "maxMistakeCount": 3,
         "ingredients": {
@@ -15,6 +16,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
+        "withTimer": true,
         "timeLimitPhaseOneInMillis": 12000,
         "maxMistakeCount": 3,
         "ingredients": {
@@ -28,6 +30,7 @@
     "MEDIUM_MISSION": {
       "0": {
         "wonSuccessCount": 5,
+        "withTimer": true,
         "timeLimitPhaseOneInMillis": 15000,
         "maxMistakeCount": 3,
         "ingredients": {
@@ -38,6 +41,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
+        "withTimer": true,
         "timeLimitPhaseOneInMillis": 12000,
         "maxMistakeCount": 3,
         "ingredients": {
@@ -51,6 +55,7 @@
     "HIGH_MISSION": {
       "0": {
         "wonSuccessCount": 5,
+        "withTimer": true,
         "timeLimitPhaseOneInMillis": 15000,
         "maxMistakeCount": 3,
         "ingredients": {
@@ -61,6 +66,7 @@
       },
       "1": {
         "wonSuccessCount": 7,
+        "withTimer": true,
         "timeLimitPhaseOneInMillis": 12000,
         "maxMistakeCount": 3,
         "ingredients": {
