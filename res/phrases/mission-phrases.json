@@ -31,6 +31,36 @@
           "role": "Audio",
           "audio": "https://d3ih6nf6077n17.cloudfront.net/missions/missionPhrasesLowMissionStripeIntrosByNumber10.mp3"
         }
+      ],
+      "2": [
+        {
+          "role": "Arthur",
+          "content": "Your path to becoming a master chef continues! Show improved cooking speed to earn a GREEN BELT."
+        },
+        {
+          "role": "Ben",
+          "content": "For this challenge Sensei wants nine correct responses!"
+        }
+      ],
+      "3": [
+        {
+          "role": "Arthur",
+          "content": "While cooking and tasting is important, a sushi chef must also know how to keep their kitchen clean! To earn a PURPLE BELT you must leave this place spotless."
+        },
+        {
+          "role": "Ben",
+          "content": "For this challenge Sensei wants eleven correct responses!"
+        }
+      ],
+      "4": [
+        {
+          "role": "Arthur",
+          "content": "The time has come for your final chef challenge! Impress Sensei himself with your sushi to earn a BLACK BELT!"
+        },
+        {
+          "role": "Ben",
+          "content": "For this challenge Sensei wants thirteen correct responses!"
+        }
       ]
     },
     "stripeOutrosByNumber": {
@@ -58,6 +88,65 @@
         {
           "role": "Audio",
           "audio": "https://d3ih6nf6077n17.cloudfront.net/missions/missionPhrasesLowMissionStripeOutrosByNumber11.mp3"
+        }
+      ],
+      "2": [
+        {
+          "role": "Arthur",
+          "content": "Extraordinary! You have earned a green chef belt for proving your enhanced cooking speed!"
+        },
+        {
+          "role": "Ben",
+          "content": "Sweet! Hey sushi buddy, what's your favorite fast food to eat outside your house?"
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "role": "Ben",
+          "content": "I like cheeseburgers!"
+        },
+        {
+          "role": "Sensei",
+          "content": "Time for next challenge!"
+        }
+      ],
+      "3": [
+        {
+          "role": "Arthur",
+          "content": "Astounding! Sensei says he hasn't seen this place so clean in a long time. You've clearly earned this purple chef belt."
+        },
+        {
+          "role": "Ben",
+          "content": "Way to go! Hey sushi buddy, do any of your chores involve cleaning?"
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "role": "Ben",
+          "content": "Cool. I always have to keep my room and backyard nice and tidy."
+        },
+        {
+          "role": "Sensei",
+          "content": "Time for next challenge!"
+        }
+      ],
+      "4": [
+        {
+          "role": "Arthur",
+          "content": "I can't believe it! I've never seen Sensei.. smile! He's clearly satisfied with your sushi, which means you've earned a black chef belt!"
+        },
+        {
+          "role": "Ben",
+          "content": "Wow, congrats! Hey sushi buddy, what's something that makes you smile?"
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "role": "Ben",
+          "content": "For me it's puppies! Oh, and ice cream!"
         }
       ]
     }
@@ -101,6 +190,36 @@
           "role": "Audio",
           "audio": "https://d3ih6nf6077n17.cloudfront.net/missions/missionPhrasesMediumMissionStripeIntrosByNumber10.mp3"
         }
+      ],
+      "2": [
+        {
+          "role": "Arthur",
+          "content": "You're still not a sumo master just yet! Your next step is to eat more than before and earn a GREEN BELT."
+        },
+        {
+          "role": "Ben",
+          "content": "For this challenge Sensei wants nine correct responses!"
+        }
+      ],
+      "3": [
+        {
+          "role": "Arthur",
+          "content": "To earn this PURPLE BELT you must finish training your ability to tell the difference between healthy food and junk food!"
+        },
+        {
+          "role": "Ben",
+          "content": "For this challenge Sensei wants eleven correct responses"
+        }
+      ],
+      "4": [
+        {
+          "role": "Arthur",
+          "content": "Your last sumo challenge has arrived! Inspire Sensei himself with your eating abilities to earn a BLACK BELT!"
+        },
+        {
+          "role": "Ben",
+          "content": "For this challenge Sensei wants thirteen correct responses!\n"
+        }
       ]
     },
     "stripeOutrosByNumber": {
@@ -128,6 +247,65 @@
         {
           "role": "Audio",
           "audio": "https://d3ih6nf6077n17.cloudfront.net/missions/missionPhrasesMediumMissionStripeOutrosByNumber11.mp3"
+        }
+      ],
+      "2": [
+        {
+          "role": "Arthur",
+          "content": "Phenomenal! The veteran sumo said you show great potential in becoming the next great sumo! You've earned the green sumo belt."
+        },
+        {
+          "role": "Ben",
+          "content": "Very cool! Hey sushi buddy, do you have any heroes you look up to?"
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "role": "Ben",
+          "content": "I look up to my parents! They're awesome!"
+        },
+        {
+          "role": "Sensei",
+          "content": "Time for next challenge!"
+        }
+      ],
+      "3": [
+        {
+          "role": "Arthur",
+          "content": "Incredible! Now no one can deny your ability to pick healthy food over junk food! The purple sumo belt is yours."
+        },
+        {
+          "role": "Ben",
+          "content": "Cool! Hey, future sumo! What's your favorite healthy food?"
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "role": "Ben",
+          "content": "Nice! Believe it or not, I actually like broccoli!"
+        },
+        {
+          "role": "Sensei",
+          "content": "Time for next challenge!"
+        }
+      ],
+      "4": [
+        {
+          "role": "Arthur",
+          "content": "Mind-blowing! You fulfilled your sumo destiny by eating like you've never eaten before! Sensei is very proud to present you with a black sumo belt."
+        },
+        {
+          "role": "Ben",
+          "content": "Wow, congrats! Hey sushi buddy, who do you like to make proud of you?"
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "role": "Ben",
+          "content": "For me it's my parents! They like when I get good grades."
         }
       ]
     }
@@ -171,6 +349,36 @@
           "role": "Audio",
           "audio": "https://d3ih6nf6077n17.cloudfront.net/missions/missionPhrasesHighMissionStripeIntrosByNumber10.mp3"
         }
+      ],
+      "2": [
+        {
+          "role": "Arthur",
+          "content": "Few get this far on their road to becoming a master guru! But to reach that title you'll need to earn a GREEN BELT.\n"
+        },
+        {
+          "role": "Ben",
+          "content": "For this challenge Sensei wants nine correct responses!"
+        }
+      ],
+      "3": [
+        {
+          "role": "Arthur",
+          "content": "Your traditional karate skills looked good last time, but there's room for improvement. To earn this PURPLE BELT you'll need to further your training.\n"
+        },
+        {
+          "role": "Ben",
+          "content": "Ben: For this challenge Sensei wants eleven correct responses!"
+        }
+      ],
+      "4": [
+        {
+          "role": "Arthur",
+          "content": "This is it! The ultimate guru challenge! Show Sensei himself your juicing skills to earn a BLACK BELT!"
+        },
+        {
+          "role": "Ben",
+          "content": "For this challenge Sensei wants thirteen correct responses!"
+        }
       ]
     },
     "stripeOutrosByNumber": {
@@ -198,6 +406,65 @@
         {
           "role": "Audio",
           "audio": "https://d3ih6nf6077n17.cloudfront.net/missions/missionPhrasesHighMissionStripeOutrosByNumber11.mp3"
+        }
+      ],
+      "2": [
+        {
+          "role": "Arthur",
+          "content": "Remarkable! Your improved juicing skills impressed Sensei's friends and earned you a green guru belt!"
+        },
+        {
+          "role": "Ben",
+          "content": "Congrats! Hey sushi buddy, what makes your friends fun to be around?"
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "role": "Ben",
+          "content": "Friends are a great thing to have!"
+        },
+        {
+          "role": "Sensei",
+          "content": "Time for the next challenge!"
+        }
+      ],
+      "3": [
+        {
+          "role": "Arthur",
+          "content": "Superb! Thanks to you, the children have discovered that physical exercise is not only healthy but it can be fun too. The purple guru belt is yours!"
+        },
+        {
+          "role": "Ben",
+          "content": "Awesome! Hey sushi buddy, do you know any cool exercises for staying in shape?"
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "role": "Ben",
+          "content": "I like jumping jacks! I can do a ton of them!"
+        },
+        {
+          "role": "Sensei",
+          "content": "Time for the next challenge!"
+        }
+      ],
+      "4": [
+        {
+          "role": "Arthur",
+          "content": "Breathtaking! The company boss can't believe you made those juices so fast and so delicious! Sensei is also quite impressed. You have clearly earned this black guru belt."
+        },
+        {
+          "role": "Ben",
+          "content": "Wow, congrats! Hey sushi buddy, if you could own any company in the world, which one would it be?"
+        },
+        {
+          "userResponse": true
+        },
+        {
+          "role": "Ben",
+          "content": "One day I'll own a chocolate factory and eat all the chocolate bars I want!"
         }
       ]
     }
