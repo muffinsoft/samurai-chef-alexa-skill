@@ -7,7 +7,7 @@
         "wonSuccessCount": 5,
         "maxMistakeCount": 2,
         "withTimer": true,
-        "timeLimitPhaseOneInMillis": 210000,
+        "timeLimitPhaseOneInMillis": 21000,
         "ingredients": {
           "rice": "boil",
           "fish": "slice",
@@ -19,7 +19,7 @@
         "wonSuccessCount": 7,
         "maxMistakeCount": 2,
         "withTimer": true,
-        "timeLimitPhaseOneInMillis": 160000,
+        "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "soup": "slurp",
           "sushi": "gulp",
@@ -34,7 +34,7 @@
         "wonSuccessCount": 5,
         "maxMistakeCount": 2,
         "withTimer": true,
-        "timeLimitPhaseOneInMillis": 210000,
+        "timeLimitPhaseOneInMillis": 21000,
         "ingredients": {
           "chicken": "chomp",
           "sushi": "gulp",
@@ -46,7 +46,7 @@
         "wonSuccessCount": 7,
         "maxMistakeCount": 2,
         "withTimer": true,
-        "timeLimitPhaseOneInMillis": 160000,
+        "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "beef": "yum",
           "soda": "gross",
@@ -61,7 +61,7 @@
         "wonSuccessCount": 5,
         "maxMistakeCount": 2,
         "withTimer": true,
-        "timeLimitPhaseOneInMillis": 210000,
+        "timeLimitPhaseOneInMillis": 21000,
         "ingredients": {
           "milk": "splash a dash",
           "carrot": "slice and dice",
@@ -73,7 +73,7 @@
         "wonSuccessCount": 7,
         "maxMistakeCount": 2,
         "withTimer": true,
-        "timeLimitPhaseOneInMillis": 160000,
+        "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "punch": "block",
           "kick": "dodge",

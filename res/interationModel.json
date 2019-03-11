@@ -141,8 +141,8 @@
                 "value": "low",
                 "synonyms": [
                   "chef",
-                  "Path of the chef",
-                  "Path of chef"
+                  "path of the chef",
+                  "path of chef"
                 ]
               }
             },
@@ -151,8 +151,8 @@
                 "value": "mid",
                 "synonyms": [
                   "sumo",
-                  "Path of the sumo",
-                  "Path of sumo",
+                  "path of the sumo",
+                  "path of sumo",
                   "simo"
                 ]
               }
@@ -162,8 +162,8 @@
                 "value": "high",
                 "synonyms": [
                   "guru",
-                  "Path of the guru",
-                  "Path of guru"
+                  "path of the guru",
+                  "path of guru"
                 ]
               }
             }
@@ -304,7 +304,11 @@
             },
             {
               "name": {
-                "value": "chomp"
+                "value": "chomp",
+                "synonyms": [
+                  "jump",
+                  "chump"
+                ]
               }
             },
             {

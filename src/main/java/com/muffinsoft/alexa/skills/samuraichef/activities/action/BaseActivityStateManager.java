@@ -22,7 +22,12 @@ public class BaseActivityStateManager extends BaseActivePhaseSamuraiChefStateMan
     protected DialogItem.Builder handleSuccess(DialogItem.Builder builder) {
 
         if (isWithTimer()) {
-            if (questionTime == null || ((System.currentTimeMillis() - questionTime) < stripe.getTimeLimitPhaseOneInMillis())) {
+            if (questionTime == null) {
+                logger.warn("Round should be with timer, but there is empty question time value");
+                return super.handleSuccess(builder);
+            }
+            else if ((System.currentTimeMillis() - questionTime) < stripe.getTimeLimitPhaseOneInMillis()) {
+                logger.debug("It takes user " + (System.currentTimeMillis() - questionTime) / 1000 + " seconds to answer the question. Limit was " + (stripe.getTimeLimitPhaseOneInMillis() / 1000));
                 return super.handleSuccess(builder);
             }
             else {
@@ -49,14 +54,15 @@ public class BaseActivityStateManager extends BaseActivePhaseSamuraiChefStateMan
     @Override
     protected void updateSessionAttributes() {
         super.updateSessionAttributes();
-        if (isWithTimer() && getSessionAttributes().containsKey(QUESTION_TIME)) {
-            if ((Long) getSessionAttributes().get(QUESTION_TIME) < System.currentTimeMillis()) {
-                getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
-            }
+        if (!getSessionAttributes().containsKey(QUESTION_TIME) || ((Long) getSessionAttributes().get(QUESTION_TIME) < System.currentTimeMillis())) {
+            getSessionAttributes().put(QUESTION_TIME, System.currentTimeMillis());
         }
+
     }
 
     private boolean isWithTimer() {
-        return stripe != null && stripe.isWithTimer() && stripe.getTimeLimitPhaseOneInMillis() != null && stripe.getTimeLimitPhaseOneInMillis() > 0;
+        boolean timer = stripe.isWithTimer() && stripe.getTimeLimitPhaseOneInMillis() != null && stripe.getTimeLimitPhaseOneInMillis() > 0;
+        logger.info("Round with timer: " + timer);
+        return timer;
     }
 }
