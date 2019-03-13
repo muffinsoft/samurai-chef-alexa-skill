@@ -10,7 +10,6 @@ public class ActivitiesSettings {
     private boolean competition;
     private boolean useVocabulary;
     private String vocabularySource;
-    private String competitionPartnerRole;
     private Map<String, Map<String, Stripe>> activitySettingsByStripeNumber;
 
     public String getName() {
@@ -47,14 +46,6 @@ public class ActivitiesSettings {
 
     public Stripe getSettingsByStripeNumberAtMission(int stripeNumber, UserMission mission) {
         return this.activitySettingsByStripeNumber.get(mission.name()).get(String.valueOf(stripeNumber));
-    }
-
-    public String getCompetitionPartnerRole() {
-        return competitionPartnerRole;
-    }
-
-    public void setCompetitionPartnerRole(String competitionPartnerRole) {
-        this.competitionPartnerRole = competitionPartnerRole;
     }
 
     public String getVocabularySource() {

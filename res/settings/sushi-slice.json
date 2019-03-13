@@ -1,13 +1,13 @@
 {
   "name": "SUSHI_SLICE",
   "competition": true,
-  "competitionPartnerRole": "Ben",
   "activitySettingsByStripeNumber": {
     "LOW_MISSION": {
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 210000,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 21000,
         "ingredients": {
           "rice": "boil",
           "fish": "slice",
@@ -18,7 +18,8 @@
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 160000,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "soup": "slurp",
           "sushi": "gulp",
@@ -32,7 +33,8 @@
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 210000,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 21000,
         "ingredients": {
           "chicken": "chomp",
           "sushi": "gulp",
@@ -43,7 +45,8 @@
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 160000,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "beef": "yum",
           "soda": "gross",
@@ -57,7 +60,8 @@
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 210000,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 21000,
         "ingredients": {
           "milk": "splash a dash",
           "carrot": "slice and dice",
@@ -68,7 +72,8 @@
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 2,
-        "timeLimitPhaseOneInMillis": 160000,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 16000,
         "ingredients": {
           "punch": "block",
           "kick": "dodge",

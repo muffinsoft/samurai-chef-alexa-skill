@@ -9,7 +9,7 @@ import java.util.Map;
 
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.FOOD_TASTER;
 
-public class FoodTasterStateManager extends BaseActivePhaseSamuraiChefStateManager {
+public class FoodTasterStateManager extends BaseActivityStateManager {
 
     public FoodTasterStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);

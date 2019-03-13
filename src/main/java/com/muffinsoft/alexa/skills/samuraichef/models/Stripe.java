@@ -11,6 +11,7 @@ public class Stripe {
     private Integer maxMistakeCount;
     private Map<String, String> ingredients;
     private boolean useVocabulary;
+    private boolean withTimer;
     private String vocabularySource;
 
     public Integer getWonSuccessCount() {
@@ -67,6 +68,14 @@ public class Stripe {
 
     public void setUseVocabulary(boolean useVocabulary) {
         this.useVocabulary = useVocabulary;
+    }
+
+    public boolean isWithTimer() {
+        return withTimer;
+    }
+
+    public void setWithTimer(boolean withTimer) {
+        this.withTimer = withTimer;
     }
 
     public String getVocabularySource() {

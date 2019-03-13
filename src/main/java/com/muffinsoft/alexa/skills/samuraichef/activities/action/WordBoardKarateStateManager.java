@@ -9,7 +9,7 @@ import java.util.Map;
 
 import static com.muffinsoft.alexa.skills.samuraichef.enums.Activities.WORD_BOARD_KARATE;
 
-public class WordBoardKarateStateManager extends BaseActivePhaseSamuraiChefStateManager {
+public class WordBoardKarateStateManager extends BaseActivityStateManager {
 
     public WordBoardKarateStateManager(Map<String, Slot> slots, AttributesManager attributesManager, SettingsDependencyContainer settingsDependencyContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
