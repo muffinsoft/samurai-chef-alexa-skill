@@ -364,7 +364,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.statePhase = ACTIVITY_INTRO;
 
         List<BasePhraseContainer> dialog = missionPhraseManager.getStripeIntroByMission(currentMission, number);
-        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number));
+        if (number > 0) {
+            builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-intro-" + currentMission.key + "-" + number));
+        }
 
         int iterationPointer = wrapAnyUserResponse(dialog, builder, SUBMISSION_INTRO);
 

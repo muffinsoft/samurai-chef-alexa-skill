@@ -18,6 +18,7 @@ import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiNoIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiResetIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiSelectPathIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiSelectPathOnlyIntentHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiStartOverIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiStopIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiYesIntentHandler;
 
@@ -41,6 +42,7 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
                         new SamuraiSelectPathOnlyIntentHandler(IoC.provideIntentFactory()),
                         new SamuraiYesIntentHandler(IoC.provideIntentFactory()),
                         new SamuraiNoIntentHandler(IoC.provideIntentFactory()),
+                        new SamuraiStartOverIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiNavigateHomeIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiMenuIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiCancelIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),

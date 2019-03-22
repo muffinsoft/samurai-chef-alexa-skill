@@ -5,7 +5,7 @@ import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.components.DialogTranslator;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
-import com.muffinsoft.alexa.sdk.handlers.CustomResetIntentHandler;
+import com.muffinsoft.alexa.sdk.handlers.StartOverIntentHandler;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.PhraseContainer;
 import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseManager;
@@ -17,12 +17,12 @@ import java.util.List;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_RESET_PROGRESS_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 
-public class SamuraiResetIntentHandler extends CustomResetIntentHandler {
+public class SamuraiStartOverIntentHandler extends StartOverIntentHandler {
 
     private final RegularPhraseManager regularPhraseManager;
     private final DialogTranslator dialogTranslator;
 
-    public SamuraiResetIntentHandler(SettingsDependencyContainer configurationContainer, PhraseDependencyContainer phraseDependencyContainer) {
+    public SamuraiStartOverIntentHandler(SettingsDependencyContainer configurationContainer, PhraseDependencyContainer phraseDependencyContainer) {
         super();
         this.regularPhraseManager = phraseDependencyContainer.getRegularPhraseManager();
         this.dialogTranslator = configurationContainer.getDialogTranslator();

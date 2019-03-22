@@ -16,6 +16,34 @@
             }
           ],
           "samples": [
+            "maybe it's {ActionAlternative}",
+            "maybe it's {Action}",
+            "say {ActionAlternative}",
+            "say {Action}",
+            "try {ActionAlternative} now",
+            "try {Action} now",
+            "now try {ActionAlternative}",
+            "now try {Action}",
+            "let's do {ActionAlternative}",
+            "let's do {Action}",
+            "I bet it's {ActionAlternative}",
+            "I bet it's {Action}",
+            "{ActionAlternative}  it ",
+            "{Action} it",
+            "{ActionAlternative} the food",
+            "{Action} the food",
+            "use {ActionAlternative}",
+            "use {Action}",
+            "do {ActionAlternative}",
+            "do {Action}",
+            "try {ActionAlternative}",
+            "try {Action}",
+            "maybe it is {ActionAlternative}",
+            "maybe it is {Action}",
+            "maybe {ActionAlternative}",
+            "maybe {Action}",
+            "what about {ActionAlternative}",
+            "it's {Action}",
             "what about {Action}",
             "it's {ActionAlternative}"
           ]
@@ -41,10 +69,28 @@
             }
           ],
           "samples": [
+            "I want to play {Mission} now",
+            "now let's try {Mission}",
+            "let's try {Mission}",
+            "let's try {Mission} now",
+            "let me play {Mission}",
+            "now {Mission}",
+            "{Mission} now",
+            "I'd like to play {Mission} now",
+            "I want to play {Mission}",
+            "I'll play {Mission}",
+            "let me try {Mission}",
+            "I want to try {Mission}",
+            "now let's do {Mission}",
+            "now let's play {Mission}",
+            "let's play {Mission} now",
+            "play {Mission}",
+            "open {Mission}",
+            "path of the {Mission}",
+            "path of {Mission}",
             "{Mission} please",
             "I'd like {Mission}",
             "I'm feeling {Mission}",
-            "restart {Mission}",
             "start {Mission}",
             "let's play {Mission}",
             "I'd like to play {Mission}"
@@ -71,6 +117,17 @@
             }
           ],
           "samples": [
+            "{Navigation} one",
+            "play {Navigation} one more time",
+            "try {Navigation} mission {Navigation}",
+            "try {Navigation}",
+            "play {Navigation} mission ",
+            "{Navigation} mission ",
+            "return {Navigation}",
+            "once {Navigation}",
+            "go {Navigation}",
+            "play {Navigation}",
+            "take me {Navigation}",
             "I wan't to {Navigation}",
             "{Navigation} please"
           ]
@@ -129,6 +186,10 @@
         },
         {
           "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StartOverIntent",
           "samples": []
         }
       ],
@@ -221,6 +282,7 @@
               "name": {
                 "value": "haa",
                 "synonyms": [
+                  "hug",
                   "haaaa",
                   "haaa",
                   "ha"
@@ -229,77 +291,150 @@
             },
             {
               "name": {
-                "value": "pow"
+                "value": "pow",
+                "synonyms": [
+                  "pau-",
+                  "how",
+                  "cow",
+                  "ow"
+                ]
               }
             },
             {
               "name": {
-                "value": "zonk"
+                "value": "zonk",
+                "synonyms": [
+                  "song",
+                  "zinc",
+                  "onk",
+                  "honk"
+                ]
               }
             },
             {
               "name": {
-                "value": "fuah"
+                "value": "fuah",
+                "synonyms": [
+                  "who are",
+                  "what",
+                  "four"
+                ]
               }
             },
             {
               "name": {
-                "value": "woosh"
+                "value": "woosh",
+                "synonyms": [
+                  "moose",
+                  "who's",
+                  "wash",
+                  "wish"
+                ]
               }
             },
             {
               "name": {
-                "value": "zaam"
+                "value": "zaam",
+                "synonyms": [
+                  "damn",
+                  "m.",
+                  "zam",
+                  "zoom",
+                  "sand",
+                  "ham"
+                ]
               }
             },
             {
               "name": {
-                "value": "wham"
+                "value": "wham",
+                "synonyms": [
+                  "where am"
+                ]
               }
             },
             {
               "name": {
-                "value": "thwap"
+                "value": "thwap",
+                "synonyms": [
+                  "swamp",
+                  "swap"
+                ]
               }
             },
             {
               "name": {
-                "value": "boil"
+                "value": "boil",
+                "synonyms": [
+                  "buy",
+                  "laurel",
+                  "born"
+                ]
               }
             },
             {
               "name": {
-                "value": "crack"
+                "value": "crack",
+                "synonyms": [
+                  "crap"
+                ]
               }
             },
             {
               "name": {
-                "value": "slice"
+                "value": "slice",
+                "synonyms": [
+                  "change",
+                  "sliced",
+                  "forest",
+                  "starz"
+                ]
               }
             },
             {
               "name": {
-                "value": "roll"
+                "value": "roll",
+                "synonyms": [
+                  "road"
+                ]
               }
             },
             {
               "name": {
-                "value": "slurp"
+                "value": "slurp",
+                "synonyms": [
+                  "sleep",
+                  "lower",
+                  "sure",
+                  "shut up"
+                ]
               }
             },
             {
               "name": {
-                "value": "gulp"
+                "value": "gulp",
+                "synonyms": [
+                  "go",
+                  "gold",
+                  "golf"
+                ]
               }
             },
             {
               "name": {
-                "value": "sip"
+                "value": "sip",
+                "synonyms": [
+                  "skip",
+                  "set"
+                ]
               }
             },
             {
               "name": {
-                "value": "lick"
+                "value": "lick",
+                "synonyms": [
+                  "link"
+                ]
               }
             },
             {
@@ -313,7 +448,11 @@
             },
             {
               "name": {
-                "value": "yum"
+                "value": "yum",
+                "synonyms": [
+                  "yeah",
+                  "young"
+                ]
               }
             },
             {
@@ -323,42 +462,73 @@
             },
             {
               "name": {
-                "value": "splash a dash"
+                "value": "splash a dash",
+                "synonyms": [
+                  "special dash",
+                  "press oh dash",
+                  "splash and dad"
+                ]
               }
             },
             {
               "name": {
-                "value": "slice and dice"
+                "value": "slice and dice",
+                "synonyms": [
+                  "chance and ice"
+                ]
               }
             },
             {
               "name": {
-                "value": "punch and crunch"
+                "value": "punch and crunch",
+                "synonyms": [
+                  "lunch and crunch",
+                  "punch crunch",
+                  "punching crunch"
+                ]
               }
             },
             {
               "name": {
-                "value": "stop don't drop"
+                "value": "stop don't drop",
+                "synonyms": [
+                  "stop don't drive"
+                ]
               }
             },
             {
               "name": {
-                "value": "block"
+                "value": "block",
+                "synonyms": [
+                  "black"
+                ]
               }
             },
             {
               "name": {
-                "value": "dodge"
+                "value": "dodge",
+                "synonyms": [
+                  "dodgers",
+                  "dodger",
+                  "don't"
+                ]
               }
             },
             {
               "name": {
-                "value": "jump"
+                "value": "jump",
+                "synonyms": [
+                  "John"
+                ]
               }
             },
             {
               "name": {
-                "value": "bow"
+                "value": "bow",
+                "synonyms": [
+                  "power",
+                  "bow wow"
+                ]
               }
             },
             {
@@ -368,7 +538,10 @@
             },
             {
               "name": {
-                "value": "stew"
+                "value": "stew",
+                "synonyms": [
+                  "stand"
+                ]
               }
             },
             {
@@ -378,7 +551,10 @@
             },
             {
               "name": {
-                "value": "break"
+                "value": "break",
+                "synonyms": [
+                  "bright"
+                ]
               }
             }
           ]
