@@ -42,6 +42,83 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
       "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_4.jpg"
+    },
+    "2": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Good word board karate!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "You put our other cooks to shame! They're finally here, which means you can finish the session with word board karate!"
+        },
+        {
+          "role": "Ben",
+          "content": "I'll hold the boards up. If the word on the board starts with the \"W\" sound, like whale, say \"Wham!\" If the word starts with the \"H\" sound, like hat, say Haa!\" If the word starts the \"P\", like pepper, say \"Pow!\" If the starts with \"B\" like bongo, say \"Bam!\""
+        },
+        {
+          "role": "Arthur",
+          "content": "Wham, Haa, Pow and Bam! Ready, go!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "3": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Good karate and spotless kitchen! Yes!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Sensei will now make a close inspection! Let's wait for him in the dojo with some word board karate."
+        },
+        {
+          "role": "Ben",
+          "content": "If the word on the board starts with the W sound, like whale, say Wham! If the word starts with the H sound, like hat, say Haa! If the word starts the P, like pepper, say Pow! If the starts with B like bongo, say Bam! If the word starts with S like soup, say SLAM!"
+        },
+        {
+          "role": "Arthur",
+          "content": "Wham, Haa, Pow, Bam and Slam! Ready, go!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "4": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "The best sushi I've eaten in years!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "This is it! To truly astound Sensei, we'll need to give him sushi that not only tastes good but looks good too. Let's garnish with some ginger. Five seconds to answer in this competition round."
+        },
+        {
+          "role": "Ben",
+          "content": "Watch me become Sensei's greatest pupil! To garnish with ginger, say \"garnish!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
     }
   },
   "MEDIUM_MISSION": {
@@ -88,6 +165,83 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
       "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/2_2_4.jpg"
+    },
+    "2": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Getting better at word board karate!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "The veteran sumo was quite impressed! You reminded him of his younger self. Let's celebrate with some word board karate!"
+        },
+        {
+          "role": "Ben",
+          "content": "If the word starts with Z like zebra, say Zonk! If the word starts with F like finger, say Fuah! If the word starts with W like water, say Woosh! If the word starts with K like kite, say Kapow!"
+        },
+        {
+          "role": "Arthur",
+          "content": "Zonk, Fuah, Woosh, and Kapow! Ready, go!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "3": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Good! You chop boards with ease!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Although it's okay to eat a little junk food from time to time, always remember that healthy food can also be yummy! Let's burn off those calories with some word board karate."
+        },
+        {
+          "role": "Ben",
+          "content": "If the word starts with the Z sound, like zoo, say Zonk! If the word starts with the F sound, like foosball, say Fuah!\" If the word starts with \"W\" sound like wood, say \"woosh!\" f the word starts with a \"K\" sound like kite, say Kapow! If the word starts with an S sound like snake, say Snap!"
+        },
+        {
+          "role": "Arthur",
+          "content": "Zonk, Fuah, Woosh, Kapow and Snap! Ready, go!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "4": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "The heart of sumo, no doubt!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "The moment of truth has arrived! The entire town is watching, so let's show them what you've got by also gobbling up goat cheese! Five seconds to answer in this competition round."
+        },
+        {
+          "role": "Ben",
+          "content": "Let's do this! To gobble up goat cheese, say \"gobble!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
     }
   },
   "HIGH_MISSION": {
@@ -133,6 +287,83 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
       "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/3_2_4.jpg"
+    },
+    "2": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "You a word board karate pro!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "The juices have arrived and Sensei's friends are quite pleased! Good work, guru-in-training. Let's enjoy a fresh juice ourselves... after word board karate!"
+        },
+        {
+          "role": "Ben",
+          "content": "If the word starts with the \"Z\" sound, like zoo, say \"Zaam!\" If the word starts with the \"W\" sound, like walk, say \"Whammo!\" If the word starts with the \"TH\", like thorn, say \"Thwap!\" If the word starts with the \"Y\" sound like yak, say \"Yaaa!\""
+        },
+        {
+          "role": "Arthur",
+          "content": "Zaam, Whammo, Thwap, and Yaa! Ready, go!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "3": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Getting better and better. Good!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Very good! Let's make them fall in love with our awesome martial art with some word board karate!"
+        },
+        {
+          "role": "Ben",
+          "content": "If the word starts with the \"Z\" sound, like zoo, say \"Zaam!\" If the word starts with the \"W\" sound, like walk, say \"Whammo!\" If the word starts with the \"TH\", like thorn, say \"Thwap!\" If the word starts with the \"Y\" sound like yak, say \"Yaaa!\" If the word starts with a C sound, like cookie, say \"Crack!\""
+        },
+        {
+          "role": "Arthur",
+          "content": "Zaam, Whammo, Thwap, Yaa, and Crack! Ready, go!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "4": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Yes! What a juicing machine!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "The time has come for Sensei and his guest to taste your juices themselves! It's all or nothing so let's add Sensei's favorite -- fresh orange! Five seconds to answer in this competition round."
+        },
+        {
+          "role": "Ben",
+          "content": "I'm ready! ! To squeeze an orange, say \"squeeze with ease!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
     }
   }
 }

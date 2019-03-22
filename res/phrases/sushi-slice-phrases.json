@@ -62,6 +62,75 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
       "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_3.jpg"
+    },
+    "2": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Excellent work!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "It's lunch hour and our cooks aren't here yet, so it's all on you two in a competition round! We'll also start adding sesame seeds for a nutty flavor!"
+        },
+        {
+          "role": "Ben",
+          "content": "I'll be the best this time! To sprinkle some sesame seeds, say \"sprinkle\"!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "3": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "That's some good cleaning!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Sensei will soon take a closer look! Let's start drying by using towels. This will be a competition round to see who cleans best!"
+        },
+        {
+          "role": "Ben",
+          "content": "I'm so ready! If Arthur shouts towel, say \"swipe and wipe\"!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "4": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Very delicious sushi so far!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "You're doing good! In fact, some of Sensei's sushi master friends are here to see his latest pupils in action!! Let's hit Sensei with his favorite —  shrimp! This will be another competition round; still five seconds!"
+        },
+        {
+          "role": "Ben",
+          "content": "To peel shrimp for the sushi, say \"peel!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
     }
   },
   "MEDIUM_MISSION": {
@@ -123,6 +192,75 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
       "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/2_2_3.jpg"
+    },
+    "2": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Very inspiring!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "The veteran sumo has arrived! Let's wow him by eating all we've got, including juicy sausage! This will be a competition round for you and Ben! "
+        },
+        {
+          "role": "Ben",
+          "content": "No holding back this time! To scarf down a sausage, say \"scarf\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "3": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Yes! Very good!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Donuts, though mouth-watering, are very unhealthy! This will be a competition round to see who can resist junk food the best! "
+        },
+        {
+          "role": "Ben",
+          "content": "Prepare yourself! If Arthur shows us a donut, say yuck!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "4": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Now that's an appetite! "
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Alright, you've got Sensei's attention. In fact, even the local news station has arrived to see who will become this famed restaurant's next sumo pro! Let's bulk up more with some oysters! This will be a competition round with only five seconds to answer!"
+        },
+        {
+          "role": "Ben",
+          "content": "I'll be the best this time! To eat up an oyster, say \"om nom nom!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
     }
   },
   "HIGH_MISSION": {
@@ -184,6 +322,75 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
       "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/3_2_3.jpg"
+    },
+    "2": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Honorable performance!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Let's give them a boost of flavor and nutrition with some banana! We need the rest of these orders fast so let's make this a competition round."
+        },
+        {
+          "role": "Ben",
+          "content": "Let's see what you got, sushi buddy! To add some banana, say \"dunk a chunk!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "3": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Now that's karate!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Hey, the kids are starting to show an interest in karate. Let's wow them by adding some uppercut moves! This will be a competition round to see who's karate is best!"
+        },
+        {
+          "role": "Ben",
+          "content": "Hyaa! Get ready! If I do an uppercut, say whoa to LEAN BACK!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "4": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Ah, such savory juices!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Sensei and his guest like the positive reception they're seeing from customers so far. Time to dump in lumps of watermelon -- low calories with lots of nutrients! This will be a competition round with only five seconds to answer!"
+        },
+        {
+          "role": "Ben",
+          "content": "I'll win this time! To dump a lump of Watermelon, say \"dump a lump!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
     }
   }
 }

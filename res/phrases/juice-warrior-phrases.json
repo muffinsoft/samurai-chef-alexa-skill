@@ -37,6 +37,75 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
       "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_2.jpg"
+    },
+    "2": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "I like what I saw."
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "So far so good! Our customers are enjoying your sushi. We should give them a citrus surprise with squeezed lemon juice. Let's speed up; still only three errors allowed!"
+        },
+        {
+          "role": "Ben",
+          "content": "To squeeze a lemon, say \"squeeze!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "3": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Getting cleaner. I like that."
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "I'm seeing plenty of dishes in need of cleaning. That faucet hose does the trick! "
+        },
+        {
+          "role": "Ben",
+          "content": "If Arthur shouts hose, say \"spray away\"!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "4": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Commendable effort! Good sushi."
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Time to cook! I say you start off by adding a dash of Sensei's delicious special sauce! This will be a competition round with only five seconds to answer!"
+        },
+        {
+          "role": "Ben",
+          "content": "Remember; to boil rice, say \"boil!\" To slice the fish, say \"slice.\" To roll seaweed, say \"roll!\" To boil eggs, say \"boil!\" To chop veggies, say \"chop!\" To squeeze a lemon, say \"squeeze!\" To sprinkle some sesame seeds, say \"sprinkle\"! To dash some sauce, say \"dash!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
     }
   },
   "MEDIUM_MISSION": {
@@ -77,6 +146,75 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
       "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/2_2_2.jpg"
+    },
+    "2": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Good discipline."
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Now we'll add even more protein to your diet with some delicious beef! Let's go faster; still only three errors allowed!"
+        },
+        {
+          "role": "Ben",
+          "content": "To bite some beef, say \"bite!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "3": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Not bad, not bad."
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "I hope you like eggs because they're chock full of protein."
+        },
+        {
+          "role": "Ben",
+          "content": "If arthur gives you eggs, say yum!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "4": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Good eating! Keep going!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Time to eat! Let's make sure that food goes down smoothly by glugging some grape juice! This will be a competition round with only five seconds to answer!"
+        },
+        {
+          "role": "Ben",
+          "content": "I'm ready to eat! Remember; to chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say \"slurp!\" To munch on fried fish, say \"munch!\" to chew on pork chops, say \"chew\"! To bite some beef, say \"bite!\" To scarf down a sausage, say \"scarf\" To glug down grape juice, say \"glug!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
     }
   },
   "HIGH_MISSION": {
@@ -117,6 +255,75 @@
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
       "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/3_2_2.jpg"
+    },
+    "2": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Fine work so far."
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Since the senseis want their students to have lots of energy, we should add some honey to their juices! Let's quicken the pace; still only three errors allowed!"
+        },
+        {
+          "role": "Ben",
+          "content": "To add some honey, say \"Add a tad!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "3": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Ah, very encouraging."
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Some of the kids like what they see so far. Prepare to block my karate chops."
+        },
+        {
+          "role": "Ben",
+          "content": "Those sound deadly! If Arthur tries a chop, say block to BLOCK it!"
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
+    },
+    "4": {
+      "outro": [
+        {
+          "role": "Sensei",
+          "content": "Great juices! Let's see more!"
+        }
+      ],
+      "intro": [
+        {
+          "role": "Arthur",
+          "content": "Sensei is ready. We also have a visitor--the owner of a big juice company! Impress both and maybe they'll strike a deal! Let's start by adding some healthy yams. This will be a competition round with only five seconds to answer!"
+        },
+        {
+          "role": "Ben",
+          "content": "Juicing time! Remember; to splash some milk, say \"splash a dash\"! To slice some carrots, say \"slice and dice\"! To crunch up ice, say \"punch and crunch! If Arthur throws you chopsticks, say \"stop, don't drop!\" to add mint, say \"a hint of mint!\" To add some honey, say \"Add a tad!\" To add some banana, say \"dunk a chunk!\" To add some yam, say \"10 grams of yam!\""
+        }
+      ],
+      "shouldRunDemo": false,
+      "shouldRunDemoPhrase": "Do you need a Demo round?",
+      "readyToStartPhrase": "Ready to start?",
+      "demo": [],
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/1_2_1.jpg"
     }
   }
 }
