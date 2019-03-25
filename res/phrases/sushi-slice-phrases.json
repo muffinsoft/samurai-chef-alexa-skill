@@ -77,7 +77,7 @@
         },
         {
           "role": "Ben",
-          "content": "I'll be the best this time! To sprinkle some sesame seeds, say \"sprinkle\"!"
+          "content": "I'll be the best this time! To sprinkle some sesame seeds, say 'sprinkle'!"
         }
       ],
       "shouldRunDemo": false,
@@ -100,7 +100,7 @@
         },
         {
           "role": "Ben",
-          "content": "I'm so ready! If Arthur shouts towel, say \"swipe and wipe\"!"
+          "content": "I'm so ready! If Arthur shouts towel, say 'swipe and wipe'!"
         }
       ],
       "shouldRunDemo": false,
@@ -123,7 +123,7 @@
         },
         {
           "role": "Ben",
-          "content": "To peel shrimp for the sushi, say \"peel!\""
+          "content": "To peel shrimp for the sushi, say 'peel!'"
         }
       ],
       "shouldRunDemo": false,
@@ -207,7 +207,7 @@
         },
         {
           "role": "Ben",
-          "content": "No holding back this time! To scarf down a sausage, say \"scarf\""
+          "content": "No holding back this time! To scarf down a sausage, say 'scarf'"
         }
       ],
       "shouldRunDemo": false,
@@ -253,7 +253,7 @@
         },
         {
           "role": "Ben",
-          "content": "I'll be the best this time! To eat up an oyster, say \"om nom nom!\""
+          "content": "I'll be the best this time! To eat up an oyster, say 'om nom nom!'"
         }
       ],
       "shouldRunDemo": false,
@@ -337,7 +337,7 @@
         },
         {
           "role": "Ben",
-          "content": "Let's see what you got, sushi buddy! To add some banana, say \"dunk a chunk!\""
+          "content": "Let's see what you got, sushi buddy! To add some banana, say 'dunk a chunk!'"
         }
       ],
       "shouldRunDemo": false,
@@ -383,7 +383,7 @@
         },
         {
           "role": "Ben",
-          "content": "I'll win this time! To dump a lump of Watermelon, say \"dump a lump!\""
+          "content": "I'll win this time! To dump a lump of Watermelon, say 'dump a lump!'"
         }
       ],
       "shouldRunDemo": false,

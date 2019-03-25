@@ -57,7 +57,7 @@
         },
         {
           "role": "Ben",
-          "content": "To boil rice, say \"boil!\" To slice the fish, say \"slice.\" To roll seaweed, say \"roll!\" To boil eggs, say \"boil!\" To chop veggies, say \"chop!\""
+          "content": "To boil rice, say 'boil!' To slice the fish, say 'slice.' To roll seaweed, say 'roll!' To boil eggs, say 'boil!' To chop veggies, say 'chop!'"
         }
       ],
       "shouldRunDemo": false,
@@ -80,7 +80,7 @@
         },
         {
           "role": "Ben",
-          "content": " If Arthur tosses a broom, say \"leap and sweep\"! If he tosses a sponge, say \"scrub a dub dub!\""
+          "content": " If Arthur tosses a broom, say 'leap and sweep'! If he tosses a sponge, say 'scrub a dub dub!'"
         }
       ],
       "shouldRunDemo": false,
@@ -103,7 +103,7 @@
         },
         {
           "role": "Ben",
-          "content": "Remember; If the word on the board starts with the W sound, like whale, say Wham! If the word starts with the H sound, like hat, say Haa! If the word starts the P, like pepper, say Pow! If the starts with B like bongo, say Bam! If the word starts with S like soup, say Slam! If the word starts with A like ant, say \"Ayaa\"!"
+          "content": "Remember; If the word on the board starts with the W sound, like whale, say Wham! If the word starts with the H sound, like hat, say Haa! If the word starts the P, like pepper, say Pow! If the starts with B like bongo, say Bam! If the word starts with S like soup, say Slam! If the word starts with A like ant, say 'Ayaa'!"
         },
         {
           "role": "Arthur",
@@ -175,7 +175,7 @@
         },
         {
           "role": "Ben",
-          "content": "To chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say \"slurp!\" To munch on fried fish, say \"munch!\" to chew on pork chops, say \"chew\"!"
+          "content": "To chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say 'slurp!' To munch on fried fish, say 'munch!' to chew on pork chops, say 'chew'!"
         }
       ],
       "shouldRunDemo": false,
@@ -221,7 +221,7 @@
         },
         {
           "role": "Ben",
-          "content": "Remember; If the word starts with the \"Z\" sound, like zoo, say \"Zonk!\" If the word starts with the \"F\" sound, like foosball, say \"Fuah!\" If the word starts with \"W\" sound like wood, say \"woosh!\" f the word starts with \"K\" like kite, say \"Kapow!\" If the word starts with an \"S\" sound like snake, say \"Snap!\" If the word starts with \"H\" like hot, say \"Haaa!\""
+          "content": "Remember; If the word starts with the 'Z' sound, like zoo, say 'Zonk!' If the word starts with the 'F' sound, like foosball, say 'Fuah!' If the word starts with 'W' sound like wood, say 'woosh!' f the word starts with 'K' like kite, say 'Kapow!' If the word starts with an 'S' sound like snake, say 'Snap!' If the word starts with 'H' like hot, say 'Haaa!'"
         },
         {
           "role": "Arthur",
@@ -293,7 +293,7 @@
         },
         {
           "role": "Ben",
-          "content": "To splash some milk, say \"splash a dash\"! To slice some carrots, say \"slice and dice\"! To crunch up ice, say \"punch and crunch! If Arthur throws you chopsticks, say \"stop, don't drop!\" To add mint, say \"a hint of mint!\""
+          "content": "To splash some milk, say 'splash a dash'! To slice some carrots, say 'slice and dice'! To crunch up ice, say 'punch and crunch! If Arthur throws you chopsticks, say 'stop, don't drop!' To add mint, say 'a hint of mint!'"
         }
       ],
       "shouldRunDemo": false,
@@ -339,7 +339,7 @@
         },
         {
           "role": "Ben",
-          "content": "Remember; If the word starts with the \"Z\" sound, like zoo, say \"Zaam!\" If the word starts with the \"W\" sound, like walk, say \"Whammo!\" If the word starts with the \"TH\", like thorn, say \"Thwap!\" If the word starts with the \"Y\" sound like yak, say \"Yaaa!\" If the word starts with a C sound, like cookie, say \"Crack!\" If the word starts with a B sound, like bark, say \"Bonk!\"\n"
+          "content": "Remember; If the word starts with the 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with the 'TH', like thorn, say 'Thwap!' If the word starts with the 'Y' sound like yak, say 'Yaaa!' If the word starts with a C sound, like cookie, say 'Crack!' If the word starts with a B sound, like bark, say 'Bonk!'\n"
         },
         {
           "role": "Arthur",
