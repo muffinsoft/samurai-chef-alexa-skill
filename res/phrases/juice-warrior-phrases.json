@@ -52,7 +52,7 @@
         },
         {
           "role": "Ben",
-          "content": "To squeeze a lemon, say \"squeeze!\""
+          "content": "To squeeze a lemon, say 'squeeze!'"
         }
       ],
       "shouldRunDemo": false,
@@ -75,7 +75,7 @@
         },
         {
           "role": "Ben",
-          "content": "If Arthur shouts hose, say \"spray away\"!"
+          "content": "If Arthur shouts hose, say 'spray away'!"
         }
       ],
       "shouldRunDemo": false,
@@ -98,7 +98,7 @@
         },
         {
           "role": "Ben",
-          "content": "Remember; to boil rice, say \"boil!\" To slice the fish, say \"slice.\" To roll seaweed, say \"roll!\" To boil eggs, say \"boil!\" To chop veggies, say \"chop!\" To squeeze a lemon, say \"squeeze!\" To sprinkle some sesame seeds, say \"sprinkle\"! To dash some sauce, say \"dash!\""
+          "content": "Remember; to boil rice, say 'boil!' To slice the fish, say 'slice.' To roll seaweed, say 'roll!' To boil eggs, say 'boil!' To chop veggies, say 'chop!' To squeeze a lemon, say 'squeeze!' To sprinkle some sesame seeds, say 'sprinkle'! To dash some sauce, say 'dash!'"
         }
       ],
       "shouldRunDemo": false,
@@ -161,7 +161,7 @@
         },
         {
           "role": "Ben",
-          "content": "To bite some beef, say \"bite!\""
+          "content": "To bite some beef, say 'bite!'"
         }
       ],
       "shouldRunDemo": false,
@@ -207,7 +207,7 @@
         },
         {
           "role": "Ben",
-          "content": "I'm ready to eat! Remember; to chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say \"slurp!\" To munch on fried fish, say \"munch!\" to chew on pork chops, say \"chew\"! To bite some beef, say \"bite!\" To scarf down a sausage, say \"scarf\" To glug down grape juice, say \"glug!\""
+          "content": "I'm ready to eat! Remember; to chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say 'slurp!' To munch on fried fish, say 'munch!' to chew on pork chops, say 'chew'! To bite some beef, say 'bite!' To scarf down a sausage, say 'scarf' To glug down grape juice, say 'glug!'"
         }
       ],
       "shouldRunDemo": false,
@@ -270,7 +270,7 @@
         },
         {
           "role": "Ben",
-          "content": "To add some honey, say \"Add a tad!\""
+          "content": "To add some honey, say 'Add a tad!'"
         }
       ],
       "shouldRunDemo": false,
@@ -316,7 +316,7 @@
         },
         {
           "role": "Ben",
-          "content": "Juicing time! Remember; to splash some milk, say \"splash a dash\"! To slice some carrots, say \"slice and dice\"! To crunch up ice, say \"punch and crunch! If Arthur throws you chopsticks, say \"stop, don't drop!\" to add mint, say \"a hint of mint!\" To add some honey, say \"Add a tad!\" To add some banana, say \"dunk a chunk!\" To add some yam, say \"10 grams of yam!\""
+          "content": "Juicing time! Remember; to splash some milk, say 'splash a dash'! To slice some carrots, say 'slice and dice'! To crunch up ice, say 'punch and crunch! If Arthur throws you chopsticks, say 'stop, don't drop!' to add mint, say 'a hint of mint!' To add some honey, say 'Add a tad!' To add some banana, say 'dunk a chunk!' To add some yam, say '10 grams of yam!'"
         }
       ],
       "shouldRunDemo": false,

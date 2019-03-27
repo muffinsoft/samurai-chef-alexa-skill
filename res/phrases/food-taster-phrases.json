@@ -57,7 +57,7 @@
         },
         {
           "role": "Ben",
-          "content": "I'll hold the boards up. If the word on the board starts with the 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say Haa!' If the word starts the 'P', like pepper, say 'Pow!' If the starts with \"B\" like bongo, say \"Bam!\""
+          "content": "I'll hold the boards up. If the word on the board starts with the 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say Haa!' If the word starts the 'P', like pepper, say 'Pow!' If the starts with 'B' like bongo, say 'Bam!'"
         },
         {
           "role": "Arthur",
@@ -111,7 +111,7 @@
         },
         {
           "role": "Ben",
-          "content": "Watch me become Sensei's greatest pupil! To garnish with ginger, say \"garnish!\""
+          "content": "Watch me become Sensei's greatest pupil! To garnish with ginger, say 'garnish!'"
         }
       ],
       "shouldRunDemo": false,
@@ -207,7 +207,7 @@
         },
         {
           "role": "Ben",
-          "content": "If the word starts with the Z sound, like zoo, say Zonk! If the word starts with the F sound, like foosball, say Fuah!\" If the word starts with \"W\" sound like wood, say \"woosh!\" f the word starts with a \"K\" sound like kite, say Kapow! If the word starts with an S sound like snake, say Snap!"
+          "content": "If the word starts with the Z sound, like zoo, say Zonk! If the word starts with the F sound, like foosball, say Fuah!' If the word starts with 'W' sound like wood, say 'woosh!' f the word starts with a 'K' sound like kite, say Kapow! If the word starts with an S sound like snake, say Snap!"
         },
         {
           "role": "Arthur",
@@ -234,7 +234,7 @@
         },
         {
           "role": "Ben",
-          "content": "Let's do this! To gobble up goat cheese, say \"gobble!\""
+          "content": "Let's do this! To gobble up goat cheese, say 'gobble!'"
         }
       ],
       "shouldRunDemo": false,
@@ -302,7 +302,7 @@
         },
         {
           "role": "Ben",
-          "content": "If the word starts with the \"Z\" sound, like zoo, say \"Zaam!\" If the word starts with the \"W\" sound, like walk, say \"Whammo!\" If the word starts with the \"TH\", like thorn, say \"Thwap!\" If the word starts with the \"Y\" sound like yak, say \"Yaaa!\""
+          "content": "If the word starts with the 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with the 'TH', like thorn, say 'Thwap!' If the word starts with the 'Y' sound like yak, say 'Yaaa!'"
         },
         {
           "role": "Arthur",
@@ -329,7 +329,7 @@
         },
         {
           "role": "Ben",
-          "content": "If the word starts with the \"Z\" sound, like zoo, say \"Zaam!\" If the word starts with the \"W\" sound, like walk, say \"Whammo!\" If the word starts with the \"TH\", like thorn, say \"Thwap!\" If the word starts with the \"Y\" sound like yak, say \"Yaaa!\" If the word starts with a C sound, like cookie, say \"Crack!\""
+          "content": "If the word starts with the 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with the 'TH', like thorn, say 'Thwap!' If the word starts with the 'Y' sound like yak, say 'Yaaa!' If the word starts with a C sound, like cookie, say 'Crack!'"
         },
         {
           "role": "Arthur",
@@ -356,7 +356,7 @@
         },
         {
           "role": "Ben",
-          "content": "I'm ready! ! To squeeze an orange, say \"squeeze with ease!\""
+          "content": "I'm ready! ! To squeeze an orange, say 'squeeze with ease!'"
         }
       ],
       "shouldRunDemo": false,
