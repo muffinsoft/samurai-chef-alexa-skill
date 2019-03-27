@@ -1,6 +1,6 @@
 {
   "welcome": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/Welcome.jpg",
-  "welcome-back": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/Welcome-back.jpg",
+  "welcome-back": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/Welcome.jpg",
   "mission-selection": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/Mission-selection.jpg",
   "mission-selection-LowMission": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/Mission-intro_3.jpg",
   "mission-selection-MidMission": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/Mission-intro_2.jpg",

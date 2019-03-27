@@ -110,7 +110,7 @@ public class LaunchStateManager extends BaseStateManager {
         return builder
                 .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RegularPhraseConstants.SELECT_MISSION_PHRASE)))
                 .withAplDocument(aplManager.getContainer())
-                .withCardTitle(getTitles(lowUserProgress, midUserProgress, highUserProgress).toString())
+//                .withCardTitle(getTitles(lowUserProgress, midUserProgress, highUserProgress).toString())
                 .addBackgroundImageUrl(cardManager.getValueByKey("welcome-back"))
                 .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
     }

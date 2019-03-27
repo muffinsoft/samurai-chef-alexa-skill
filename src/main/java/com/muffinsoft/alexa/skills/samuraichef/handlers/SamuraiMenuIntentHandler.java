@@ -59,6 +59,6 @@ public class SamuraiMenuIntentHandler extends BaseRedirectionIntentHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.MenuIntent"));
+        return input.matches(intentName("MenuIntent"));
     }
 }
