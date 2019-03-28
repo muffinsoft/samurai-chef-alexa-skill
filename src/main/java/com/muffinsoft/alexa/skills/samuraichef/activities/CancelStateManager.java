@@ -74,18 +74,20 @@ public class CancelStateManager extends BaseStateManager {
 
     @Override
     protected void updatePersistentAttributes() {
-        switch (this.currentMission) {
-            case LOW_MISSION:
-                saveUserProgressForMission(USER_LOW_PROGRESS_DB);
-                break;
-            case MEDIUM_MISSION:
-                saveUserProgressForMission(USER_MID_PROGRESS_DB);
-                break;
-            case HIGH_MISSION:
-                saveUserProgressForMission(USER_HIGH_PROGRESS_DB);
-                break;
+        if (this.currentMission != null) {
+            switch (this.currentMission) {
+                case LOW_MISSION:
+                    saveUserProgressForMission(USER_LOW_PROGRESS_DB);
+                    break;
+                case MEDIUM_MISSION:
+                    saveUserProgressForMission(USER_MID_PROGRESS_DB);
+                    break;
+                case HIGH_MISSION:
+                    saveUserProgressForMission(USER_HIGH_PROGRESS_DB);
+                    break;
+            }
+            logger.debug("Persistent attributes on the end of handling: " + this.getPersistentAttributes().toString());
         }
-        logger.debug("Persistent attributes on the end of handling: " + this.getPersistentAttributes().toString());
     }
 
     private void saveUserProgressForMission(String value) {

@@ -278,22 +278,24 @@ public class SelectLevelStateManager extends BaseStateManager {
 
     private UserProgress getProgressInMission(UserMission mission) throws IOException {
         String jsonInString = null;
-        switch (mission) {
-            case LOW_MISSION:
-                if (this.getPersistentAttributes().containsKey(USER_LOW_PROGRESS_DB)) {
-                    jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_LOW_PROGRESS_DB));
-                }
-                break;
-            case MEDIUM_MISSION:
-                if (this.getPersistentAttributes().containsKey(USER_MID_PROGRESS_DB)) {
-                    jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_MID_PROGRESS_DB));
-                }
-                break;
-            case HIGH_MISSION:
-                if (this.getPersistentAttributes().containsKey(USER_HIGH_PROGRESS_DB)) {
-                    jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_HIGH_PROGRESS_DB));
-                }
-                break;
+        if(mission != null) {
+            switch (mission) {
+                case LOW_MISSION:
+                    if (this.getPersistentAttributes().containsKey(USER_LOW_PROGRESS_DB)) {
+                        jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_LOW_PROGRESS_DB));
+                    }
+                    break;
+                case MEDIUM_MISSION:
+                    if (this.getPersistentAttributes().containsKey(USER_MID_PROGRESS_DB)) {
+                        jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_MID_PROGRESS_DB));
+                    }
+                    break;
+                case HIGH_MISSION:
+                    if (this.getPersistentAttributes().containsKey(USER_HIGH_PROGRESS_DB)) {
+                        jsonInString = String.valueOf(this.getPersistentAttributes().get(USER_HIGH_PROGRESS_DB));
+                    }
+                    break;
+            }
         }
         if (jsonInString != null) {
             LinkedHashMap linkedHashMap = mapper.readValue(jsonInString, LinkedHashMap.class);
