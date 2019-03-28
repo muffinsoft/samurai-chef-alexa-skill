@@ -51,6 +51,7 @@ public class SamuraiCancelIntentHandler extends CancelIntentHandler {
                         break;
                     }
                     builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));
+                    builder.shouldEnd();
                     userReplyBreakpointPosition++;
                 }
             }

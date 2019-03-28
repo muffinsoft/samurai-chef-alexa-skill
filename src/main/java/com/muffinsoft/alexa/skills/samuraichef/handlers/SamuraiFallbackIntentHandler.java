@@ -14,6 +14,8 @@ import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContaine
 import java.util.List;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.FALLBACK_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FALLBACK_EVOKED;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
 
 public class SamuraiFallbackIntentHandler extends FallbackIntentHandler {
 
@@ -34,7 +36,12 @@ public class SamuraiFallbackIntentHandler extends FallbackIntentHandler {
     @Override
     public StateManager nextTurn(HandlerInput handlerInput) {
         return new BaseStateManager(getSlotsFromInput(handlerInput), handlerInput.getAttributesManager(), dialogTranslator) {
-            // TODO: промежуточный интент где если да - хелп, если нет - выход
+
+            @Override
+            protected void updateSessionAttributes() {
+                getSessionAttributes().put(FALLBACK_EVOKED, true);
+            }
+
             @Override
             public DialogItem nextResponse() {
                 return DialogItem.builder()

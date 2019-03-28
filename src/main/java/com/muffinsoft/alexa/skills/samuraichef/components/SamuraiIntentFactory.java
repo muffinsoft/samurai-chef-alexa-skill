@@ -39,6 +39,7 @@ import java.util.Objects;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FALLBACK_EVOKED;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.HELP_STATE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.PREVIOUS_INTENT;
@@ -107,6 +108,20 @@ public class SamuraiIntentFactory implements IntentFactory {
     }
 
     private IntentType interceptIntent(IntentType intent, Map<String, Slot> slots, AttributesManager attributesManager) {
+
+        if(attributesManager.getSessionAttributes().containsKey(FALLBACK_EVOKED)) {
+            attributesManager.getSessionAttributes().remove(FALLBACK_EVOKED);
+            if (slots.containsKey(SlotName.CONFIRMATION.text)) {
+                Slot slot = slots.get(SlotName.CONFIRMATION.text);
+                if (Objects.equals(slot.getValue(), "yes")) {
+                    return IntentType.HELP;
+                }
+                if (Objects.equals(slot.getValue(), "no")) {
+                    return IntentType.CANCEL;
+                }
+            }
+        }
+
         if (intent == IntentType.HELP) {
             if (attributesManager.getSessionAttributes().containsKey(HELP_STATE)) {
                 HelpStates helpState = HelpStates.valueOf(String.valueOf(attributesManager.getSessionAttributes().get(HELP_STATE)));
@@ -117,7 +132,7 @@ public class SamuraiIntentFactory implements IntentFactory {
                             return getPreviousOrDefaultIntentType(attributesManager);
                         }
                         if (Objects.equals(slot.getValue(), "no")) {
-                            return IntentType.EXIT;
+                            return IntentType.CANCEL;
                         }
                     }
                 }

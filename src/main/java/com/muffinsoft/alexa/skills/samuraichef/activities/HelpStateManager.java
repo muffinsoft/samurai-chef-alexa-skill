@@ -156,6 +156,7 @@ public class HelpStateManager extends BaseStateManager {
                             break;
                         }
                         builder.addResponse(getDialogTranslator().translate(basePhraseContainer));
+                        builder.shouldEnd();
                         userReplyBreakpointPosition++;
                     }
                     this.getSessionAttributes().put(INTENT, IntentType.EXIT_CONFIRMATION);

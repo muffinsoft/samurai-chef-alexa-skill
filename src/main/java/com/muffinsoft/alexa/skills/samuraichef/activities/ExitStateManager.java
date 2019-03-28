@@ -82,6 +82,7 @@ public class ExitStateManager extends BaseStateManager {
                 userReplyBreakpointPosition++;
             }
             this.getSessionAttributes().put(INTENT, IntentType.EXIT_CONFIRMATION);
+            builder.shouldEnd();
         }
         else if (compare(getUserReply(SlotName.CONFIRMATION), UserReplies.NO)) {
             getSessionAttributes().put(INTENT, IntentType.GAME);

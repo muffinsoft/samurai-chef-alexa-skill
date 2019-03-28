@@ -29,4 +29,6 @@ public class SessionConstants {
     public static final String USER_HIGH_PROGRESS_DB = "userHighProgressDB";
 
     public static final String ACTIVITY_PROGRESS = "activityProgress";
+
+    public static final String FALLBACK_EVOKED = "fallbackEvoked";
 }
