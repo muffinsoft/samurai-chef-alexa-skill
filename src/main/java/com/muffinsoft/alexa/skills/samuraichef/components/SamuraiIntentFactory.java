@@ -117,7 +117,7 @@ public class SamuraiIntentFactory implements IntentFactory {
                             return getPreviousOrDefaultIntentType(attributesManager);
                         }
                         if (Objects.equals(slot.getValue(), "no")) {
-                            return getSelectMissionIntentType(attributesManager);
+                            return IntentType.EXIT;
                         }
                     }
                 }

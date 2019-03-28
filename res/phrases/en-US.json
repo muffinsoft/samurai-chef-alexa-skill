@@ -135,7 +135,7 @@
   ],
   "repeatLastPhrase": [
     {
-      "content": "I don't understand you. Please, repeat last command."
+      "content": "I dont understand you, what would you like to do?"
     }
   ],
   "tryAgainPhrase": [

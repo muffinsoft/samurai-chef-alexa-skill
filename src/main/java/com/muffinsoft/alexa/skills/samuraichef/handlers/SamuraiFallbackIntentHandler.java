@@ -34,6 +34,7 @@ public class SamuraiFallbackIntentHandler extends FallbackIntentHandler {
     @Override
     public StateManager nextTurn(HandlerInput handlerInput) {
         return new BaseStateManager(getSlotsFromInput(handlerInput), handlerInput.getAttributesManager(), dialogTranslator) {
+            // TODO: промежуточный интент где если да - хелп, если нет - выход
             @Override
             public DialogItem nextResponse() {
                 return DialogItem.builder()

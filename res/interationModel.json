@@ -119,7 +119,6 @@
           "samples": [
             "{Navigation} one",
             "play {Navigation} one more time",
-            "try {Navigation} mission {Navigation}",
             "try {Navigation}",
             "play {Navigation} mission ",
             "{Navigation} mission ",
@@ -128,7 +127,7 @@
             "go {Navigation}",
             "play {Navigation}",
             "take me {Navigation}",
-            "I wan't to {Navigation}",
+            "I want to {Navigation}",
             "{Navigation} please"
           ]
         },
@@ -148,16 +147,23 @@
           "name": "ResetIntent",
           "slots": [],
           "samples": [
-            "reset"
+            "restart path",
+            "start path over",
+            "reset path"
           ]
         },
         {
           "name": "MenuIntent",
           "slots": [],
           "samples": [
-            "new game",
-            "return to the main menu",
-            "different game"
+            "select mission",
+            "choose path",
+            "main menu",
+            "select path",
+            "Tell samurai chef to choose a path ",
+            "choose a path",
+            "select a path",
+            "select a mission "
           ]
         },
         {
