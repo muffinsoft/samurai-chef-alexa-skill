@@ -57,6 +57,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_REPLY_BREAKPOINT;
 
+@SuppressWarnings("Duplicates")
 public class ResetStateManager extends BaseStateManager {
 
     private static final Logger logger = LogManager.getLogger(CancelStateManager.class);
@@ -100,7 +101,7 @@ public class ResetStateManager extends BaseStateManager {
 
         LinkedHashMap rawUserProgress = (LinkedHashMap) getSessionAttributes().get(USER_PROGRESS);
         this.userProgress = rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(this.currentMission, true);
-        this.currentActivity = Activities.valueOf(userProgress.getCurrentActivity());
+        this.currentActivity = this.userProgress.getCurrentActivity() != null ? Activities.valueOf(this.userProgress.getCurrentActivity()) : null;
 
         this.userReplyBreakpointPosition = (Integer) this.getSessionAttributes().getOrDefault(USER_REPLY_BREAKPOINT, null);
 
@@ -212,13 +213,15 @@ public class ResetStateManager extends BaseStateManager {
             getSessionAttributes().put(INTENT, IntentType.GAME);
             getSessionAttributes().put(STATE_PHASE, StateType.SUBMISSION_INTRO);
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
+            logger.warn("Current activity: " + this.currentActivity);
+            logger.warn("Current mission: " + this.currentMission);
             if (activityProgress != null && activityProgress.getPreviousIngredient() != null && !activityProgress.getPreviousIngredient().isEmpty()) {
                 String previousIngredient = activityProgress.getPreviousIngredient();
                 builder.addResponse(getDialogTranslator().translate(previousIngredient));
                 builder.withAplDocument(aplManager.getContainer());
                 builder.addBackgroundImageUrl(getBackgroundImageUrl(previousIngredient));
             }
-            else if(this.userProgress != null && this.currentActivity != null) {
+            else if(this.userProgress != null && this.currentActivity != null && this.statePhase != null) {
                 switch (this.statePhase) {
                     case MISSION_INTRO:
                         builder = handleMissionIntroState(builder, this.currentMission);
@@ -227,10 +230,10 @@ public class ResetStateManager extends BaseStateManager {
                         builder = handleStripeIntroState(builder, this.currentMission, this.userProgress.getStripeCount());
                         break;
                     case ACTIVITY_INTRO:
-                        builder = handleActivityIntroState(builder, this.currentActivity, this.userProgress.getStripeCount());
+                        handleActivityIntroState(builder, this.currentActivity, this.userProgress.getStripeCount());
                         break;
                     case DEMO:
-                        builder = handleDemoState(builder);
+                        handleDemoState(builder);
                         break;
                     default:
                         builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
@@ -238,6 +241,14 @@ public class ResetStateManager extends BaseStateManager {
                 }
                 this.getSessionAttributes().put(ACTIVITY_PROGRESS, this.activityProgress);
                 this.getSessionAttributes().put(STATE_PHASE, this.statePhase);
+            }
+            else if (this.currentActivity == null && this.currentMission == null) {
+                builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                        .withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
+                getSessionAttributes().remove(CURRENT_MISSION);
+                getSessionAttributes().remove(ACTIVITY_PROGRESS);
+                getSessionAttributes().put(INTENT, IntentType.GAME);
             }
             else {
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
@@ -335,7 +346,7 @@ public class ResetStateManager extends BaseStateManager {
         return builder;
     }
 
-    void resetActivityProgress() {
+    private void resetActivityProgress() {
         this.activityProgress.reset();
     }
 
