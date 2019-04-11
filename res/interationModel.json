@@ -301,7 +301,14 @@
                 "value": "back",
                 "synonyms": [
                   "return back",
-                  "return to game"
+                  "return to game",
+                  "menu",
+                  "main menu",
+                  "return to the menu",
+                  "return to the main menu",
+                  "return",
+                  "to the menu",
+                  "to the main menu"
                 ]
               }
             },
@@ -327,10 +334,13 @@
               "name": {
                 "value": "this",
                 "synonyms": [
-                  "this mission",
-                  "this one",
-                  "this",
-                  "start this mission"
+                  "play this mission",
+                  "from the beginning",
+                  "play from the beginning",
+                  "play this mission from the beginning",
+                  "play",
+                  "beginning",
+                  "this mission"
                 ]
               }
             }

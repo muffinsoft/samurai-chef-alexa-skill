@@ -155,7 +155,7 @@
   ],
   "wantResetProgressPhrase": [
     {
-      "content": "If you restart now, you’ll lose your progress on this mission. You can start this mission over, or start a new mission. Which would you like?"
+      "content": "If you restart now, you’ll lose your progress on this mission. You can play this mission from the beginning, or return to the main menu. Which would you like?"
     }
   ],
   "wantMissionFromBeginningPhrase": [
