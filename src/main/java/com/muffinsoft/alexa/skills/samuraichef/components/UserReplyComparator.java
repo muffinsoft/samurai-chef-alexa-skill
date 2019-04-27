@@ -13,22 +13,24 @@ public class UserReplyComparator {
     private static final Logger logger = LogManager.getLogger(UserReplyComparator.class);
 
     public static boolean compare(List<String> userReplies, UserReplies expectedValue) {
-        logger.info("Going to compare " + expectedValue + " with user replies " + userReplies);
         for (String reply : userReplies) {
             if (compareSingleValue(reply, expectedValue)) {
+                logger.info(">>>> compare " + expectedValue + " with user replies " + userReplies + " - true");
                 return true;
             }
         }
+        logger.info(">>>> compare " + expectedValue + " with user replies " + userReplies + " - false");
         return false;
     }
 
     public static boolean compare(List<String> userReplies, String expectedValue) {
-        logger.info("Going to compare " + expectedValue + " with user replies " + userReplies);
         for (String reply : userReplies) {
             if (compareSingleValue(reply, Collections.singletonList(expectedValue))) {
+                logger.info(">>>> compare " + expectedValue + " with user replies " + userReplies + " - true");
                 return true;
             }
         }
+        logger.info(">>>> compare " + expectedValue + " with user replies " + userReplies + " - false");
         return false;
     }
 

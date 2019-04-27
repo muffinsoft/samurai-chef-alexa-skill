@@ -23,7 +23,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 
 public class ResetMissionSelectionStateManager extends BaseStateManager {
 
-    private static final Logger logger = LogManager.getLogger(CancelStateManager.class);
+    private static final Logger logger = LogManager.getLogger(ResetMissionSelectionStateManager.class);
 
     private final RegularPhraseManager regularPhraseManager;
 

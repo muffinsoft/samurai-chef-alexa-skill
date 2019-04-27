@@ -60,7 +60,7 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants
 @SuppressWarnings("Duplicates")
 public class ResetStateManager extends BaseStateManager {
 
-    private static final Logger logger = LogManager.getLogger(CancelStateManager.class);
+    private static final Logger logger = LogManager.getLogger(ResetStateManager.class);
 
     private final RegularPhraseManager regularPhraseManager;
     private final MissionPhraseManager missionPhraseManager;
@@ -188,15 +188,7 @@ public class ResetStateManager extends BaseStateManager {
 
         DialogItem.Builder builder = DialogItem.builder();
 
-        if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.NEW_MISSION)) {
-            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
-                    .withAplDocument(aplManager.getContainer())
-                    .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
-            getSessionAttributes().remove(CURRENT_MISSION);
-            getSessionAttributes().remove(ACTIVITY_PROGRESS);
-            getSessionAttributes().put(INTENT, IntentType.GAME);
-        }
-        else if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.THIS_MISSION)) {
+        if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.THIS_MISSION)) {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
@@ -205,6 +197,14 @@ public class ResetStateManager extends BaseStateManager {
             getSessionAttributes().put(INTENT, IntentType.GAME);
             getSessionAttributes().put(STATE_PHASE, MISSION_INTRO);
             savePersistentAttributes();
+        }
+        else if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.NEW_MISSION)) {
+            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                    .withAplDocument(aplManager.getContainer())
+                    .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
+            getSessionAttributes().remove(CURRENT_MISSION);
+            getSessionAttributes().remove(ACTIVITY_PROGRESS);
+            getSessionAttributes().put(INTENT, IntentType.GAME);
         }
         else if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.BACK) ||
                 compare(getUserReply(SlotName.CONFIRMATION), UserReplies.NO) ||

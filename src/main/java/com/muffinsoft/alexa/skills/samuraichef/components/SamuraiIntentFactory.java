@@ -67,9 +67,11 @@ public class SamuraiIntentFactory implements IntentFactory {
     @Override
     public StateManager getNextState(IntentType intent, Map<String, Slot> slots, AttributesManager attributesManager) {
 
-        logger.info("Selecting State manager for " + intent);
+        logger.info(">>>> selecting State before interceptor manager for " + intent);
 
         IntentType interceptedIntent = interceptIntent(intent, slots, attributesManager);
+
+        logger.info(">>>> selecting State after interceptor manager for " + interceptedIntent);
 
         switch (interceptedIntent) {
             case INITIAL_GREETING:
@@ -109,7 +111,7 @@ public class SamuraiIntentFactory implements IntentFactory {
 
     private IntentType interceptIntent(IntentType intent, Map<String, Slot> slots, AttributesManager attributesManager) {
 
-        if(attributesManager.getSessionAttributes().containsKey(FALLBACK_EVOKED)) {
+        if (attributesManager.getSessionAttributes().containsKey(FALLBACK_EVOKED)) {
             attributesManager.getSessionAttributes().remove(FALLBACK_EVOKED);
             if (slots.containsKey(SlotName.CONFIRMATION.text)) {
                 Slot slot = slots.get(SlotName.CONFIRMATION.text);
