@@ -300,15 +300,9 @@
               "name": {
                 "value": "back",
                 "synonyms": [
-                  "return back",
-                  "return to game",
-                  "menu",
-                  "main menu",
-                  "return to the menu",
-                  "return to the main menu",
                   "return",
-                  "to the menu",
-                  "to the main menu"
+                  "return back",
+                  "return to game"
                 ]
               }
             },
@@ -325,7 +319,14 @@
                 "value": "new",
                 "synonyms": [
                   "new",
-                  "new one"
+                  "new one",
+                  "new mission",
+                  "menu",
+                  "main menu",
+                  "return to the menu",
+                  "return to the main menu",
+                  "to the menu",
+                  "to the main menu"
                 ]
               }
             },
