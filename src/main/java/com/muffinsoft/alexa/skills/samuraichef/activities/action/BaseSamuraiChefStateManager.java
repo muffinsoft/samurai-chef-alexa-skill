@@ -603,6 +603,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             }
             else {
 
+                this.statePhase = MISSION_INTRO;
+
                 logger.debug("Handling " + this.statePhase + ". Moving to " + MISSION_INTRO);
 
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));

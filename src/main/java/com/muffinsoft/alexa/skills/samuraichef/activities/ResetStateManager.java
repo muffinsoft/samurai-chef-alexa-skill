@@ -215,13 +215,21 @@ public class ResetStateManager extends BaseStateManager {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             logger.warn("Current activity: " + this.currentActivity);
             logger.warn("Current mission: " + this.currentMission);
-            if (activityProgress != null && activityProgress.getPreviousIngredient() != null && !activityProgress.getPreviousIngredient().isEmpty()) {
+            if (this.currentMission != null && this.finishedMissions.contains(this.currentMission.name())) {
+                builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                        .withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
+                getSessionAttributes().remove(CURRENT_MISSION);
+                getSessionAttributes().remove(ACTIVITY_PROGRESS);
+                getSessionAttributes().put(INTENT, IntentType.GAME);
+            }
+            else if (activityProgress != null && activityProgress.getPreviousIngredient() != null && !activityProgress.getPreviousIngredient().isEmpty()) {
                 String previousIngredient = activityProgress.getPreviousIngredient();
                 builder.addResponse(getDialogTranslator().translate(previousIngredient));
                 builder.withAplDocument(aplManager.getContainer());
                 builder.addBackgroundImageUrl(getBackgroundImageUrl(previousIngredient));
             }
-            else if(this.userProgress != null && this.currentActivity != null && this.statePhase != null) {
+            else if (this.userProgress != null && this.currentActivity != null && this.statePhase != null) {
                 switch (this.statePhase) {
                     case MISSION_INTRO:
                         builder = handleMissionIntroState(builder, this.currentMission);
@@ -242,7 +250,7 @@ public class ResetStateManager extends BaseStateManager {
                 this.getSessionAttributes().put(ACTIVITY_PROGRESS, this.activityProgress);
                 this.getSessionAttributes().put(STATE_PHASE, this.statePhase);
             }
-            else if (this.currentActivity == null && this.currentMission == null) {
+            else if (this.currentActivity == null || this.currentMission == null) {
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                         .withAplDocument(aplManager.getContainer())
                         .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
