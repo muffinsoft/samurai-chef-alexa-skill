@@ -673,8 +673,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             builder
                     .replaceResponse(getSoundLine(randomIngredient.getIngredient(), false))
-                    .addResponse(getSoundLine(getWrongReplyOnIngredient(randomIngredient.getIngredient()), true))
-                    .withReprompt(getDialogTranslator().translate(regularPhraseManager.getValueByKey(WON_RE_PROMPT_PHRASE)));
+                    .addResponse(getSoundLine(getWrongReplyOnIngredient(randomIngredient.getIngredient()), true));
         }
 
         SpeechSettings speechForActivityByStripeNumberAtMission;
