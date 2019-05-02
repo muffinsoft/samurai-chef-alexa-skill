@@ -70,7 +70,6 @@ import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseCon
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.REDIRECT_TO_SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_RESET_PROGRESS_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WON_RE_PROMPT_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
@@ -773,8 +772,12 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         WordReaction randomIngredient = getRandomIngredient(speech.getContent());
 
-        builder.addResponse(getSoundLine(randomIngredient.getIngredient(), false))
+        builder
+                .addBackgroundImageUrl(cardManager.getValueByKey("competition"))
+                .addResponse(getDialogTranslator().translate("Ben's turn!"))
+                .addResponse(getSoundLine(randomIngredient.getIngredient(), false))
                 .addResponse(getSoundLine(randomIngredient.getUserReply(), true))
+                .addResponse(getDialogTranslator().translate("Your turn!"))
                 .addResponse(speech);
 
         return builder;

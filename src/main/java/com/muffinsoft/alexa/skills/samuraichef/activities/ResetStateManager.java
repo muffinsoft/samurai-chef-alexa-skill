@@ -119,30 +119,47 @@ public class ResetStateManager extends BaseStateManager {
     protected void updatePersistentAttributes() {
 
         if (this.currentMission == null) {
-            throw new IllegalStateException("Try remove mission progress without Current mission value");
-        }
-
-        if (this.finishedMissions.contains(this.currentMission.name())) {
-
             if (this.finishedMissions.size() > 1) {
-                this.finishedMissions.remove(this.currentMission.name());
-                getPersistentAttributes().put(FINISHED_MISSIONS, this.finishedMissions);
-            }
-            else {
                 getPersistentAttributes().remove(FINISHED_MISSIONS);
             }
+            for(String mission : this.finishedMissions) {
+                switch (UserMission.valueOf(mission)) {
+                    case LOW_MISSION:
+                        removeMissionProgress(USER_LOW_PROGRESS_DB);
+                        break;
+                    case MEDIUM_MISSION:
+                        removeMissionProgress(USER_MID_PROGRESS_DB);
+                        break;
+                    case HIGH_MISSION:
+                        removeMissionProgress(USER_HIGH_PROGRESS_DB);
+                        break;
+                }
+            }
         }
+        else {
 
-        switch (this.currentMission) {
-            case LOW_MISSION:
-                removeMissionProgress(USER_LOW_PROGRESS_DB);
-                break;
-            case MEDIUM_MISSION:
-                removeMissionProgress(USER_MID_PROGRESS_DB);
-                break;
-            case HIGH_MISSION:
-                removeMissionProgress(USER_HIGH_PROGRESS_DB);
-                break;
+            if (this.finishedMissions.contains(this.currentMission.name())) {
+
+                if (this.finishedMissions.size() > 1) {
+                    this.finishedMissions.remove(this.currentMission.name());
+                    getPersistentAttributes().put(FINISHED_MISSIONS, this.finishedMissions);
+                }
+                else {
+                    getPersistentAttributes().remove(FINISHED_MISSIONS);
+                }
+            }
+
+            switch (this.currentMission) {
+                case LOW_MISSION:
+                    removeMissionProgress(USER_LOW_PROGRESS_DB);
+                    break;
+                case MEDIUM_MISSION:
+                    removeMissionProgress(USER_MID_PROGRESS_DB);
+                    break;
+                case HIGH_MISSION:
+                    removeMissionProgress(USER_HIGH_PROGRESS_DB);
+                    break;
+            }
         }
 
         logger.debug("Persistent attributes on the end of handling: " + this.getPersistentAttributes().toString());
