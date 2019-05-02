@@ -772,6 +772,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         WordReaction randomIngredient = getRandomIngredient(speech.getContent());
 
+        String previousUrl = builder.popLastBackgroundImage();
+
+
         builder
                 .addBackgroundImageUrl(cardManager.getValueByKey("competition"))
                 .addResponse(getDialogTranslator().translate("Ben's turn!"))
@@ -779,6 +782,10 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 .addResponse(getSoundLine(randomIngredient.getUserReply(), true))
                 .addResponse(getDialogTranslator().translate("Your turn!"))
                 .addResponse(speech);
+
+        if(previousUrl != null) {
+            builder.addBackgroundImageUrl(previousUrl);
+        }
 
         return builder;
     }
