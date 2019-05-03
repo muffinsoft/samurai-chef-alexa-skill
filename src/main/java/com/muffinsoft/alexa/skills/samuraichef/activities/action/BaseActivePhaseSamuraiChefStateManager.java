@@ -172,6 +172,8 @@ public abstract class BaseActivePhaseSamuraiChefStateManager extends BaseSamurai
 
     @SuppressWarnings("Duplicates")
     private DialogItem.Builder getMistakeDialog(DialogItem.Builder builder) {
+        this.activityProgress.setCurrentIngredientReaction("");
+        this.activityProgress.setPreviousIngredient("");
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             if (this.activityProgress.getMistakesCount() == 1) {
                 builder.addBackgroundImageUrl(cardManager.getValueByKey("mistake-1"));

@@ -267,6 +267,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private DialogItem.Builder handleReturnToGameState(DialogItem.Builder builder) {
         String ingredient = this.activityProgress.getPreviousIngredient();
+        if (this.activityManager.isActivityCompetition(this.currentActivity)) {
+            builder.addResponse(getDialogTranslator().translate("You go first!"));
+        }
         if (ingredient == null || ingredient.isEmpty()) {
             ingredient = nextIngredient(ingredient);
         }
@@ -456,6 +459,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                     .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
         }
         else {
+
+            if (this.activityManager.isActivityCompetition(this.currentActivity)) {
+                builder.addResponse(getDialogTranslator().translate("You go first!"));
+            }
+
             String speechText = nextIngredient(this.activityProgress.getPreviousIngredient());
 
             logger.debug("Handling " + this.statePhase + ". Moving to " + GAME_PHASE_1);
@@ -647,6 +655,8 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             logger.info("Stripe has been just compete");
             this.activityProgress.setStripeComplete(true);
         }
+        this.activityProgress.setCurrentIngredientReaction("");
+        this.activityProgress.setPreviousIngredient("");
         savePersistentAttributes();
     }
 
@@ -665,15 +675,18 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
         builder.removeLastResponse();
         builder.removeAllBackgroundImageUrls();
-        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-selection-" + currentMission.key));
 
         if (this.activityManager.isActivityCompetition(this.currentActivity)) {
             WordReaction randomIngredient = getRandomIngredient(this.activityProgress.getPreviousIngredient());
 
             builder
+                    .addBackgroundImageUrl(cardManager.getValueByKey("competition")) //TODO: картинка которую нужно будет убрать
+                    .addResponse(getDialogTranslator().translate("Ben's turn!"))
                     .replaceResponse(getSoundLine(randomIngredient.getIngredient(), false))
                     .addResponse(getSoundLine(getWrongReplyOnIngredient(randomIngredient.getIngredient()), true));
         }
+
+        builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-selection-" + currentMission.key));
 
         SpeechSettings speechForActivityByStripeNumberAtMission;
 
@@ -783,7 +796,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
                 .addResponse(getDialogTranslator().translate("Your turn!"))
                 .addResponse(speech);
 
-        if(previousUrl != null) {
+        if (previousUrl != null) {
             builder.addBackgroundImageUrl(previousUrl);
         }
 

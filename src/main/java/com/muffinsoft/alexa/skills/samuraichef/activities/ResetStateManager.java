@@ -206,13 +206,20 @@ public class ResetStateManager extends BaseStateManager {
         DialogItem.Builder builder = DialogItem.builder();
 
         if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.THIS_MISSION)) {
-            builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(READY_TO_PLAY_PHRASE)));
+            logger.warn("Current mission: " + this.currentMission);
+            if(this.currentMission != null) {
+                handleMissionIntroState(builder, this.currentMission);
+            }
+            else {
+                builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                        .withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
+            }
             getSessionAttributes().remove(ACTIVITY_PROGRESS);
             getSessionAttributes().remove(STATE_PHASE);
             getSessionAttributes().remove(STAR_COUNT);
             getSessionAttributes().remove(FINISHED_MISSIONS);
             getSessionAttributes().put(INTENT, IntentType.GAME);
-            getSessionAttributes().put(STATE_PHASE, MISSION_INTRO);
             savePersistentAttributes();
         }
         else if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.NEW_MISSION)) {
