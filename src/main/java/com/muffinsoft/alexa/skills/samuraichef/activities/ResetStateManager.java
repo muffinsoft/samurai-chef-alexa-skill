@@ -119,22 +119,7 @@ public class ResetStateManager extends BaseStateManager {
     protected void updatePersistentAttributes() {
 
         if (this.currentMission == null) {
-            if (this.finishedMissions.size() > 1) {
-                getPersistentAttributes().remove(FINISHED_MISSIONS);
-            }
-            for(String mission : this.finishedMissions) {
-                switch (UserMission.valueOf(mission)) {
-                    case LOW_MISSION:
-                        removeMissionProgress(USER_LOW_PROGRESS_DB);
-                        break;
-                    case MEDIUM_MISSION:
-                        removeMissionProgress(USER_MID_PROGRESS_DB);
-                        break;
-                    case HIGH_MISSION:
-                        removeMissionProgress(USER_HIGH_PROGRESS_DB);
-                        break;
-                }
-            }
+                getPersistentAttributes().clear();
         }
         else {
 
@@ -432,6 +417,7 @@ public class ResetStateManager extends BaseStateManager {
             if (phraseContainer.isUserResponse()) {
                 this.userReplyBreakpointPosition = index;
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
+                this.getSessionAttributes().put("ANY_RESPONSE", true);
                 this.statePhase = statePhase;
                 break;
             }

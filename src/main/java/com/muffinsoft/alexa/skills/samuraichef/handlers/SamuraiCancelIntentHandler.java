@@ -47,6 +47,7 @@ public class SamuraiCancelIntentHandler extends CancelIntentHandler {
 
                     if (BasePhraseContainer.isUserResponse()) {
                         this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, userReplyBreakpointPosition + 1);
+                        this.getSessionAttributes().put("ANY_RESPONSE", true);
                         this.getSessionAttributes().put(SessionConstants.INTENT, IntentType.EXIT_CONFIRMATION);
                         break;
                     }

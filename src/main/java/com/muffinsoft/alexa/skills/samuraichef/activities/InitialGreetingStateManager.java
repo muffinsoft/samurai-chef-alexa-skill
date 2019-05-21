@@ -67,6 +67,7 @@ public class InitialGreetingStateManager extends BaseStateManager {
             if (phraseContainer.isUserResponse()) {
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
                 this.getSessionAttributes().put(INTENT, INITIAL_GREETING);
+                this.getSessionAttributes().put("ANY_RESPONSE", true);
                 break;
             }
             builder.addResponse(getDialogTranslator().translate(phraseContainer));
@@ -78,6 +79,8 @@ public class InitialGreetingStateManager extends BaseStateManager {
                     .withAplDocument(aplManager.getContainer())
                     .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
         }
+
+        this.getSessionAttributes().put("ANY_RESPONSE", true);
 
         return builder
                 .turnOffReprompt()

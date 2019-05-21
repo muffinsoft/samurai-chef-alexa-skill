@@ -52,6 +52,7 @@ public class ExitConfirmationStateManager extends BaseStateManager {
 
             if (BasePhraseContainer.isUserResponse()) {
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
+                this.getSessionAttributes().put("ANY_RESPONSE", true);
                 break;
             }
             builder.addResponse(getDialogTranslator().translate(BasePhraseContainer));

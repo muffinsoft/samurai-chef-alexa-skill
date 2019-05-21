@@ -4,6 +4,7 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
 import com.muffinsoft.alexa.sdk.handlers.ResponseExceptionHandler;
+import com.muffinsoft.alexa.skills.samuraichef.handlers.AlternativeFallbackIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiActionIntentHandler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiActionOnlyIntentHanler;
 import com.muffinsoft.alexa.skills.samuraichef.handlers.SamuraiCancelIntentHandler;
@@ -46,7 +47,7 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
                         new SamuraiNavigateHomeIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiMenuIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiCancelIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
-                        new SamuraiFallbackIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
+                        new AlternativeFallbackIntentHandler(IoC.provideIntentFactory(), IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiHelpIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiLaunchRequestHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiStopIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),

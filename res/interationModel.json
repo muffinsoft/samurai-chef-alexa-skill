@@ -182,9 +182,12 @@
           "name": "MenuIntent",
           "slots": [],
           "samples": [
+            "go to menu",
+            "go to main menu",
+            "go to the main menu",
             "I would like to choose a new mission",
             "I would like to choose a new path ",
-            "i would like to go to the main menu",
+            "I would like to go to the main menu",
             "I would like to play something else ",
             "I'd like to go to the mission selection ",
             "I'd like to go to the path selection ",
@@ -233,11 +236,24 @@
         },
         {
           "name": "AMAZON.YesIntent",
-          "samples": []
+          "samples": [
+            "play",
+            "start",
+            "I'm ready to start",
+            "ready to start",
+            "I am ready to play",
+            "I am ready",
+            "I'm ready to play",
+            "ready to play",
+            "ready",
+            "I'm ready"
+          ]
         },
         {
           "name": "AMAZON.NavigateHomeIntent",
-          "samples": []
+          "samples": [
+            "main menu"
+          ]
         },
         {
           "name": "AMAZON.NoIntent",
@@ -375,6 +391,7 @@
               "name": {
                 "value": "zonk",
                 "synonyms": [
+                  "zombie",
                   "song",
                   "zinc",
                   "onk",
@@ -420,6 +437,8 @@
               "name": {
                 "value": "wham",
                 "synonyms": [
+                  "wamo",
+                  "huayno",
                   "where am"
                 ]
               }
@@ -428,6 +447,7 @@
               "name": {
                 "value": "thwap",
                 "synonyms": [
+                  "the",
                   "swamp",
                   "swap"
                 ]

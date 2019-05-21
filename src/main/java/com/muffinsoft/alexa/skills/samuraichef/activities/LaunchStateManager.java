@@ -250,6 +250,7 @@ public class LaunchStateManager extends BaseStateManager {
         for (BasePhraseContainer BasePhraseContainer : dialog) {
 
             if (BasePhraseContainer.isUserResponse()) {
+                this.getSessionAttributes().put("ANY_RESPONSE", true);
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, userReplyBreakpointPosition + 1);
                 break;
             }

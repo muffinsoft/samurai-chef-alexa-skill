@@ -281,7 +281,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
     private void addSessionEntities(DialogItem.Builder builder) {
         String reaction = this.activityProgress.getCurrentIngredientReaction();
-        if (reaction != null && !reaction.isEmpty()) {
+        if (reaction != null && !reaction.isEmpty() && !reaction.equals("gulp") && !reaction.equals("chomp")) {
             Set<String> entities = new HashSet<>();
             entities.add(reaction);
             builder.withDynamicEntities(entities);
@@ -344,6 +344,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             if (phraseContainer.isUserResponse()) {
                 this.userReplyBreakpointPosition = index;
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
+                this.getSessionAttributes().put("ANY_RESPONSE", true);
                 this.statePhase = statePhase;
                 break;
             }
@@ -604,9 +605,12 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
                 logger.debug("Handling " + this.statePhase + ". Moving to " + GAME_OUTRO);
 
-                this.statePhase = GAME_OUTRO;
+                this.statePhase = MISSION_INTRO;
 
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(GAME_FINISHED_PHRASE)));
+                builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
+                builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
             }
             else {
 
@@ -680,10 +684,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             WordReaction randomIngredient = getRandomIngredient(this.activityProgress.getPreviousIngredient());
 
             builder
-                    .addBackgroundImageUrl(cardManager.getValueByKey("competition")) //TODO: картинка которую нужно будет убрать
-                    .addResponse(getDialogTranslator().translate("Ben's turn!"))
-                    .replaceResponse(getSoundLine(randomIngredient.getIngredient(), false))
-                    .addResponse(getSoundLine(getWrongReplyOnIngredient(randomIngredient.getIngredient()), true));
+                    .replaceResponse(getDialogTranslator().translate("Ben's turn!"))
+                    .addResponse(getSoundLine(randomIngredient.getIngredient(), false))
+                    .addResponse(getSoundLine(getWrongReplyOnIngredient(randomIngredient), true));
         }
 
         builder.addBackgroundImageUrl(cardManager.getValueByKey("mission-selection-" + currentMission.key));
@@ -841,8 +844,11 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         return activityManager.getNextWord(this.stripe, ingredient);
     }
 
-    private String getWrongReplyOnIngredient(String ingredient) {
-        WordReaction nextIngredient = activityManager.getNextWord(this.stripe, ingredient);
+    private String getWrongReplyOnIngredient(WordReaction ingredient) {
+        WordReaction nextIngredient;
+        do {
+            nextIngredient = activityManager.getNextWord(this.stripe, ingredient.getIngredient());
+        } while (nextIngredient.getUserReply().equals(ingredient.getUserReply()));
         return nextIngredient.getUserReply();
     }
 

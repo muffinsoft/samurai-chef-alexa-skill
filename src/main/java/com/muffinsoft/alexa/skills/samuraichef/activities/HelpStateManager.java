@@ -441,6 +441,7 @@ public class HelpStateManager extends BaseStateManager {
             if (phraseContainer.isUserResponse()) {
                 this.userReplyBreakpointPosition = index;
                 this.getSessionAttributes().put(SessionConstants.USER_REPLY_BREAKPOINT, index);
+                this.getSessionAttributes().put("ANY_RESPONSE", true);
                 this.statePhase = statePhase;
                 break;
             }
