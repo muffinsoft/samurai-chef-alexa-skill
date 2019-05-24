@@ -12,9 +12,12 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseMana
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.WANT_RESET_PROGRESS_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 
 public class SamuraiResetIntentHandler extends CustomResetIntentHandler {
@@ -44,6 +47,23 @@ public class SamuraiResetIntentHandler extends CustomResetIntentHandler {
 
                 List<PhraseContainer> dialog = regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE);
                 getSessionAttributes().put(INTENT, IntentType.RESET);
+
+                if (getPersistentAttributes().containsKey(FINISHED_MISSIONS)) {
+                    LinkedHashSet finishedMission = (LinkedHashSet) getPersistentAttributes().getOrDefault(FINISHED_MISSIONS, new LinkedHashSet<>());
+                    List<String> result = new ArrayList<>();
+                    for (Object o : finishedMission) {
+                        result.add(String.valueOf(o));
+                    }
+                    getSessionAttributes().put(FINISHED_MISSIONS, result);
+                }
+                if (!getSessionAttributes().containsKey(FINISHED_MISSIONS)) {
+                    LinkedHashSet finishedMission = (LinkedHashSet) getPersistentAttributes().getOrDefault(FINISHED_MISSIONS, new LinkedHashSet<>());
+                    List<String> result = new ArrayList<>();
+                    for (Object o : finishedMission) {
+                        result.add(String.valueOf(o));
+                    }
+                    getSessionAttributes().put(FINISHED_MISSIONS, result);
+                }
 
                 DialogItem.Builder builder = DialogItem.builder().addResponse(getDialogTranslator().translate(dialog));
 

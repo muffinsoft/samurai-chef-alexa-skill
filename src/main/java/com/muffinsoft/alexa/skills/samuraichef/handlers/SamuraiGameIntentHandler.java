@@ -40,11 +40,23 @@ abstract class SamuraiGameIntentHandler extends GameIntentHandler {
         Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
         logger.info("Persistent Attributes: " + persistentAttributes);
 
-        if (!attributesManager.getSessionAttributes().containsKey(STAR_COUNT)) {
+        if (attributesManager.getPersistentAttributes().containsKey(STAR_COUNT)) {
+            int starCount = ((BigDecimal) persistentAttributes.getOrDefault(STAR_COUNT, BigDecimal.ZERO)).intValue();
+            attributesManager.getSessionAttributes().put(STAR_COUNT, starCount);
+        }
+        else if (!attributesManager.getSessionAttributes().containsKey(STAR_COUNT)) {
             int starCount = ((BigDecimal) persistentAttributes.getOrDefault(STAR_COUNT, BigDecimal.ZERO)).intValue();
             attributesManager.getSessionAttributes().put(STAR_COUNT, starCount);
         }
 
+        if (attributesManager.getPersistentAttributes().containsKey(FINISHED_MISSIONS)) {
+            LinkedHashSet finishedMission = (LinkedHashSet) attributesManager.getPersistentAttributes().getOrDefault(FINISHED_MISSIONS, new LinkedHashSet<>());
+            List<String> result = new ArrayList<>();
+            for (Object o : finishedMission) {
+                result.add(String.valueOf(o));
+            }
+            attributesManager.getSessionAttributes().put(FINISHED_MISSIONS, result);
+        }
         if (!attributesManager.getSessionAttributes().containsKey(FINISHED_MISSIONS)) {
             LinkedHashSet finishedMission = (LinkedHashSet) attributesManager.getPersistentAttributes().getOrDefault(FINISHED_MISSIONS, new LinkedHashSet<>());
             List<String> result = new ArrayList<>();

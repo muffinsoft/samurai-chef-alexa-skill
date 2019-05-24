@@ -279,7 +279,7 @@ public class SelectLevelStateManager extends BaseStateManager {
 
     private UserProgress getProgressInMission(UserMission mission) throws IOException {
         String jsonInString = null;
-        if(mission != null) {
+        if (mission != null) {
             switch (mission) {
                 case LOW_MISSION:
                     if (this.getPersistentAttributes().containsKey(USER_LOW_PROGRESS_DB)) {

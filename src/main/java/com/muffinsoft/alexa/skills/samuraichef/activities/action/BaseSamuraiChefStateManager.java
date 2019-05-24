@@ -3,6 +3,7 @@ package com.muffinsoft.alexa.skills.samuraichef.activities.action;
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.enums.SpeechType;
@@ -33,7 +34,9 @@ import com.muffinsoft.alexa.skills.samuraichef.models.WordReaction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -167,6 +170,61 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
         this.userProgress.addMistakeCount(mistakesCount);
     }
 
+    private void finishGame() {
+        try {
+            getPersistentAttributes().put(FINISHED_MISSIONS, new HashSet<>(Arrays.asList(UserMission.HIGH_MISSION.name(), UserMission.MEDIUM_MISSION.name(), UserMission.LOW_MISSION.name())));
+            if (this.currentMission == UserMission.LOW_MISSION) {
+                UserProgress mid = getUserProgressForMission(USER_MID_PROGRESS_DB, UserMission.MEDIUM_MISSION);
+                mid.setGameFinished(true);
+                getPersistentAttributes().put(USER_MID_PROGRESS_DB, mapper.writeValueAsString(mid));
+                logger.debug("Was update User Progress at medium mission");
+
+                UserProgress high = getUserProgressForMission(USER_HIGH_PROGRESS_DB, UserMission.HIGH_MISSION);
+                high.setGameFinished(true);
+                getPersistentAttributes().put(USER_HIGH_PROGRESS_DB, mapper.writeValueAsString(high));
+                logger.debug("Was update User Progress at high mission");
+            }
+            else if (this.currentMission == UserMission.MEDIUM_MISSION) {
+                UserProgress low = getUserProgressForMission(USER_LOW_PROGRESS_DB, UserMission.LOW_MISSION);
+                low.setGameFinished(true);
+                getPersistentAttributes().put(USER_LOW_PROGRESS_DB, mapper.writeValueAsString(low));
+                logger.debug("Was update User Progress at low mission");
+
+                UserProgress high = getUserProgressForMission(USER_HIGH_PROGRESS_DB, UserMission.HIGH_MISSION);
+                high.setGameFinished(true);
+                getPersistentAttributes().put(USER_HIGH_PROGRESS_DB, mapper.writeValueAsString(high));
+                logger.debug("Was update User Progress at high mission");
+            }
+            else {
+                UserProgress low = getUserProgressForMission(USER_LOW_PROGRESS_DB, UserMission.LOW_MISSION);
+                low.setGameFinished(true);
+                getPersistentAttributes().put(USER_LOW_PROGRESS_DB, mapper.writeValueAsString(low));
+                logger.debug("Was update User Progress at low mission");
+
+                UserProgress mid = getUserProgressForMission(USER_MID_PROGRESS_DB, UserMission.MEDIUM_MISSION);
+                mid.setGameFinished(true);
+                getPersistentAttributes().put(USER_MID_PROGRESS_DB, mapper.writeValueAsString(mid));
+                logger.debug("Was update User Progress at medium mission");
+            }
+        }
+        catch (JsonProcessingException e) {
+            throw new IllegalArgumentException("Caught exception while updating user progress: " + e.getMessage(), e);
+        }
+    }
+
+    private UserProgress getUserProgressForMission(String value, UserMission mission) {
+
+        String jsonInString = String.valueOf(getPersistentAttributes().get(value));
+
+        try {
+            LinkedHashMap rawUserProgress = new ObjectMapper().readValue(jsonInString, LinkedHashMap.class);
+            return rawUserProgress != null ? mapper.convertValue(rawUserProgress, UserProgress.class) : new UserProgress(mission, true);
+        }
+        catch (IOException e) {
+            throw new IllegalStateException(e.getMessage(), e);
+        }
+    }
+
     private void updateMissionUserProgress() {
 
         try {
@@ -254,6 +312,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             case MISSION_OUTRO:
                 builder = handleMissionOutroState(builder);
                 break;
+            case GAME_OUTRO:
+                builder = handleGameOutroState(builder);
+                break;
             default:
                 builder = handleActivePhaseState(builder);
                 break;
@@ -286,6 +347,18 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
             entities.add(reaction);
             builder.withDynamicEntities(entities);
         }
+    }
+
+    private DialogItem.Builder handleGameOutroState(DialogItem.Builder builder) {
+
+        this.isLeaveMission = true;
+        this.isMoveToReset = true;
+
+        getSessionAttributes().put(INTENT, IntentType.RESET);
+        getSessionAttributes().put(CURRENT_MISSION, this.userProgress.getMission());
+
+        return builder
+                .addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(WANT_RESET_PROGRESS_PHRASE)));
     }
 
     private DialogItem handleAlreadyFinishedMission(DialogItem.Builder builder) {
@@ -605,7 +678,9 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
                 logger.debug("Handling " + this.statePhase + ". Moving to " + GAME_OUTRO);
 
-                this.statePhase = MISSION_INTRO;
+                this.statePhase = GAME_OUTRO;
+
+                finishGame();
 
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(GAME_FINISHED_PHRASE)));
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(REDIRECT_TO_SELECT_MISSION_PHRASE)));
@@ -624,6 +699,7 @@ abstract class BaseSamuraiChefStateManager extends BaseStateManager {
 
             }
 
+            this.activityProgress.setMissionFinished(true);
             this.userProgress.setMissionFinished(true);
             savePersistentAttributes();
         }

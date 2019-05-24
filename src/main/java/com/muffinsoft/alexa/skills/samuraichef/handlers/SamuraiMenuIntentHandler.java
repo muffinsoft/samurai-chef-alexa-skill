@@ -12,10 +12,13 @@ import com.muffinsoft.alexa.skills.samuraichef.content.phrases.RegularPhraseMana
 import com.muffinsoft.alexa.skills.samuraichef.models.PhraseDependencyContainer;
 import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContainer;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import static com.amazon.ask.request.Predicates.intentName;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.MISSION_SELECTION_PHRASE;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.FINISHED_MISSIONS;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
 
 public class SamuraiMenuIntentHandler extends BaseRedirectionIntentHandler {
@@ -35,6 +38,23 @@ public class SamuraiMenuIntentHandler extends BaseRedirectionIntentHandler {
 
             @Override
             public DialogItem nextResponse() {
+
+                if (getPersistentAttributes().containsKey(FINISHED_MISSIONS)) {
+                    LinkedHashSet finishedMission = (LinkedHashSet) getPersistentAttributes().getOrDefault(FINISHED_MISSIONS, new LinkedHashSet<>());
+                    List<String> result = new ArrayList<>();
+                    for (Object o : finishedMission) {
+                        result.add(String.valueOf(o));
+                    }
+                    getSessionAttributes().put(FINISHED_MISSIONS, result);
+                }
+                if (!getSessionAttributes().containsKey(FINISHED_MISSIONS)) {
+                    LinkedHashSet finishedMission = (LinkedHashSet) getPersistentAttributes().getOrDefault(FINISHED_MISSIONS, new LinkedHashSet<>());
+                    List<String> result = new ArrayList<>();
+                    for (Object o : finishedMission) {
+                        result.add(String.valueOf(o));
+                    }
+                    getSessionAttributes().put(FINISHED_MISSIONS, result);
+                }
 
                 List<PhraseContainer> dialog = regularPhraseManager.getValueByKey(MISSION_SELECTION_PHRASE);
                 getSessionAttributes().put(INTENT, IntentType.CANCEL);

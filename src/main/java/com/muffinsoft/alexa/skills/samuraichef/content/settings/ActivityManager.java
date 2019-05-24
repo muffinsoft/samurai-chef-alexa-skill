@@ -127,7 +127,7 @@ public class ActivityManager {
 
         Stripe settingsByStripeNumberAtMission = activitiesSettings.getSettingsByStripeNumberAtMission(number, mission);
 
-        if(settingsByStripeNumberAtMission == null) {
+        if (settingsByStripeNumberAtMission == null) {
             return null;
         }
 

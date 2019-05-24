@@ -119,7 +119,7 @@ public class ResetStateManager extends BaseStateManager {
     protected void updatePersistentAttributes() {
 
         if (this.currentMission == null) {
-                getPersistentAttributes().clear();
+            getPersistentAttributes().clear();
         }
         else {
 
@@ -192,7 +192,13 @@ public class ResetStateManager extends BaseStateManager {
 
         if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.THIS_MISSION)) {
             logger.warn("Current mission: " + this.currentMission);
-            if(this.currentMission != null) {
+            getSessionAttributes().remove(ACTIVITY_PROGRESS);
+            getSessionAttributes().remove(STATE_PHASE);
+            getSessionAttributes().remove(STAR_COUNT);
+            getSessionAttributes().remove(FINISHED_MISSIONS);
+            getSessionAttributes().put(INTENT, IntentType.GAME);
+
+            if (this.currentMission != null) {
                 handleMissionIntroState(builder, this.currentMission);
             }
             else {
@@ -200,11 +206,6 @@ public class ResetStateManager extends BaseStateManager {
                         .withAplDocument(aplManager.getContainer())
                         .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
             }
-            getSessionAttributes().remove(ACTIVITY_PROGRESS);
-            getSessionAttributes().remove(STATE_PHASE);
-            getSessionAttributes().remove(STAR_COUNT);
-            getSessionAttributes().remove(FINISHED_MISSIONS);
-            getSessionAttributes().put(INTENT, IntentType.GAME);
             savePersistentAttributes();
         }
         else if (compare(getUserReply(SlotName.NAVIGATION), UserReplies.NEW_MISSION)) {
@@ -224,7 +225,19 @@ public class ResetStateManager extends BaseStateManager {
             builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(RETURN_TO_GAME_PHRASE)));
             logger.warn("Current activity: " + this.currentActivity);
             logger.warn("Current mission: " + this.currentMission);
-            if (this.currentMission != null && this.finishedMissions.contains(this.currentMission.name())) {
+            if (this.userProgress.isGameFinished() || this.finishedMissions.size() == 3) {
+                builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
+                        .withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));
+                getSessionAttributes().remove(ACTIVITY_PROGRESS);
+                getSessionAttributes().remove(CURRENT_MISSION);
+                getSessionAttributes().remove(STATE_PHASE);
+                getSessionAttributes().remove(STAR_COUNT);
+                getSessionAttributes().remove(FINISHED_MISSIONS);
+                getSessionAttributes().put(INTENT, IntentType.GAME);
+                savePersistentAttributes();
+            }
+            else if (this.currentMission != null && this.finishedMissions.contains(this.currentMission.name())) {
                 builder.addResponse(getDialogTranslator().translate(regularPhraseManager.getValueByKey(SELECT_MISSION_PHRASE)))
                         .withAplDocument(aplManager.getContainer())
                         .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"));

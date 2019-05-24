@@ -267,7 +267,7 @@ public class HelpStateManager extends BaseStateManager {
             builder.withAplDocument(aplManager.getContainer());
             builder.addBackgroundImageUrl(getBackgroundImageUrl(previousIngredient));
         }
-        else if(this.userProgress != null && this.currentActivity != null) {
+        else if (this.userProgress != null && this.currentActivity != null) {
             switch (this.statePhase) {
                 case MISSION_INTRO:
                     handleMissionIntroState(builder, this.currentMission);
