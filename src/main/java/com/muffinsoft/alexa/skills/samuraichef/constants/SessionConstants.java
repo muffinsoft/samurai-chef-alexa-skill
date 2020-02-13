@@ -29,4 +29,8 @@ public class SessionConstants {
     public static final String USER_HIGH_PROGRESS_DB = "userHighProgressDB";
 
     public static final String ACTIVITY_PROGRESS = "activityProgress";
+
+    public static final String LAST_PURCHASE_ATTEMPT_ON = "lastPurchaseAttemptOn";
+
+    public static final String PURCHASE_STATE = "purchaseState";
 }

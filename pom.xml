@@ -29,12 +29,7 @@
         <dependency>
             <groupId>com.muffinsoft</groupId>
             <artifactId>inner-skills-sdk</artifactId>
-            <version>0.3.4-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.amazon.alexa</groupId>
-            <artifactId>ask-sdk</artifactId>
-            <version>2.0.0</version>
+            <version>0.4.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.amazonaws</groupId>

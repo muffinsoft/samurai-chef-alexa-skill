@@ -235,5 +235,10 @@
       "role": "Audio",
       "audio": "https://d3ih6nf6077n17.cloudfront.net/en-US/enUsGameOutroPhrase1.mp3"
     }
+  ],
+  "purchaseUnavailable": [
+    {
+      "content": "That is not available, do you want to continue with one of the available activities?"
+    }
   ]
 }
