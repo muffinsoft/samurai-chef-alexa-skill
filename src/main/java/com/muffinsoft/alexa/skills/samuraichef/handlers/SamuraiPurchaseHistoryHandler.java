@@ -6,7 +6,6 @@ import com.amazon.ask.model.services.monetization.InSkillProduct;
 import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
 import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.components.DialogTranslator;
-import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.enums.PurchaseState;
 import com.muffinsoft.alexa.sdk.handlers.PurchaseHistoryHandler;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
@@ -20,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.muffinsoft.alexa.sdk.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.sdk.enums.IntentType.*;
 
 public class SamuraiPurchaseHistoryHandler extends PurchaseHistoryHandler {
 
@@ -43,19 +43,18 @@ public class SamuraiPurchaseHistoryHandler extends PurchaseHistoryHandler {
                 if(PurchaseManager.isEntitled(product)) {
                     String key = product.getEntitlementReason() == EntitlementReason.AUTO_ENTITLED ? "unknownRequest" : "purchaseHistory";
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey(key);
-                    getSessionAttributes().put(MENU_OR_CONTINUE, "true");
+                    getSessionAttributes().put(INTENT, MENU_OR_CONTINUE);
                 } else if (!arePurchasesEnabled) {
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("unrecognized");
                 } else if (PurchaseManager.isPending(product, previousState)) {
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("purchasePending");
-                    getSessionAttributes().put(EXIT_FROM_ONE_POSSIBLE_ACTIVITY, "true");
+                    getSessionAttributes().put(INTENT, GAME);
                 } else if (PurchaseManager.isAvailable(product)) {
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("purchaseHistoryNothing");
-                    getSessionAttributes().put(CONTINUE_OR_MENU, "true");
+                    getSessionAttributes().put(INTENT, CONTINUE_OR_MENU);
                 } else {
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("purchaseNothing");
                 }
-                getSessionAttributes().put(INTENT, IntentType.GAME);
                 return DialogItem.builder()
                         .addResponse(dialogTranslator.translate(response, true))
                         .withReprompt(dialogTranslator.translate(response, true))

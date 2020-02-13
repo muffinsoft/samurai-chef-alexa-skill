@@ -16,6 +16,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContaine
 import java.util.List;
 
 import static com.muffinsoft.alexa.sdk.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.sdk.enums.IntentType.MENU_OR_CONTINUE;
 
 public class SamuraiWhatCanIBuyHandler extends WhatCanIBuyIntentHandler {
 
@@ -38,7 +39,7 @@ public class SamuraiWhatCanIBuyHandler extends WhatCanIBuyIntentHandler {
                 getSessionAttributes().put(INTENT, IntentType.GAME);
                 if (PurchaseManager.isEntitled(product)) {
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("alreadyHave");
-                    getSessionAttributes().put(MENU_OR_CONTINUE, "true");
+                    getSessionAttributes().put(INTENT, MENU_OR_CONTINUE);
                 } else if (!arePurchasesEnabled) {
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("unrecognized");
                 } else if(PurchaseManager.isAvailable(product)) {
@@ -46,7 +47,7 @@ public class SamuraiWhatCanIBuyHandler extends WhatCanIBuyIntentHandler {
                     getSessionAttributes().put(INTENT, IntentType.BUY_INTENT);
                 } else {
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("purchaseNothing");
-                    getSessionAttributes().put(MENU_OR_CONTINUE, "true");
+                    getSessionAttributes().put(INTENT, MENU_OR_CONTINUE);
                 }
                 return DialogItem.builder()
                         .addResponse(dialogTranslator.translate(response, true))

@@ -17,6 +17,7 @@ import com.muffinsoft.alexa.skills.samuraichef.models.SettingsDependencyContaine
 import java.util.List;
 
 import static com.muffinsoft.alexa.sdk.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.sdk.enums.IntentType.CONTINUE_OR_MENU;
 
 public class SamuraiRefundIntentHandler extends RefundIntentHandler {
 
@@ -36,13 +37,13 @@ public class SamuraiRefundIntentHandler extends RefundIntentHandler {
                 boolean arePurchasesEnabled = (boolean) getSessionAttributes().get("arePurchasesEnabled");
                 List<PhraseContainer> response;
                 InSkillProduct product = PurchaseManager.getInSkillProduct(input);
+                getSessionAttributes().put(INTENT, IntentType.GAME);
                 if (PurchaseManager.isEntitled(product) && product.getEntitlementReason() == EntitlementReason.AUTO_ENTITLED || !arePurchasesEnabled) {
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("unrecognized");
                 } else {
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("purchaseNothingToRefund");
-                    getSessionAttributes().put(CONTINUE_OR_MENU, "true");
+                    getSessionAttributes().put(INTENT, CONTINUE_OR_MENU);
                 }
-                getSessionAttributes().put(INTENT, IntentType.GAME);
                 return DialogItem.builder()
                         .addResponse(dialogTranslator.translate(response, true))
                         .withReprompt(dialogTranslator.translate(response, true))
