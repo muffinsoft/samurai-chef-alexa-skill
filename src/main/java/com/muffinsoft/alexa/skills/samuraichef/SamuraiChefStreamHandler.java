@@ -35,7 +35,12 @@ public class SamuraiChefStreamHandler extends SkillStreamHandler {
                         new SamuraiLaunchRequestHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiStopIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
                         new SamuraiResetIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
-                        new SamuraiBuyIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies())
+                        new SamuraiBuyIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
+                        new SamuraiConnectionsResponseHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
+                        new SamuraiPurchaseHistoryHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
+                        new SamuraiRefundConnectionsResponseHandler(),
+                        new SamuraiRefundIntentHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies()),
+                        new SamuraiWhatCanIBuyHandler(IoC.provideSettingsDependencies(), IoC.providePhraseDependencies())
                 )
                 .addExceptionHandler(new ResponseExceptionHandler())
                 .withSkillId(amazonSkillId)
