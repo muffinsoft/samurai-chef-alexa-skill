@@ -1,5 +1,8 @@
 package com.muffinsoft.alexa.skills.samuraichef.components;
 
+import com.amazon.ask.model.Slot;
+import com.muffinsoft.alexa.sdk.activities.BaseStateManager;
+import com.muffinsoft.alexa.sdk.model.SlotName;
 import com.muffinsoft.alexa.skills.samuraichef.IoC;
 import com.muffinsoft.alexa.skills.samuraichef.enums.UserReplies;
 import org.apache.logging.log4j.LogManager;
@@ -7,6 +10,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
+import static com.muffinsoft.alexa.sdk.util.SlotComputer.compute;
 
 public class UserReplyComparator {
 
@@ -30,6 +36,18 @@ public class UserReplyComparator {
             }
         }
         return false;
+    }
+
+    public static boolean isYes(Map<String, Slot> inputSlots) {
+        Map<SlotName, List<String>> slotValues = compute(inputSlots);
+        List<String> values = slotValues.getOrDefault(SlotName.CONFIRMATION, Collections.emptyList());
+        return compare(values, UserReplies.YES);
+    }
+
+    public static boolean isNo(Map<String, Slot> inputSlots) {
+        Map<SlotName, List<String>> slotValues = compute(inputSlots);
+        List<String> values = slotValues.getOrDefault(SlotName.CONFIRMATION, Collections.emptyList());
+        return compare(values, UserReplies.NO);
     }
 
     private static boolean compareSingleValue(String userReply, UserReplies expectedValue) {

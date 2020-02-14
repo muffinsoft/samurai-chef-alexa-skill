@@ -90,20 +90,36 @@ public class SamuraiIntentFactory implements IntentFactory {
             case RESET_MISSION_SELECTION:
                 return new ResetMissionSelectionStateManager(slots, attributesManager, settingsDependencyContainer, phraseDependencyContainer);
             case SELECT_MISSION:
-                return new BaseStateManager(slots, attributesManager, settingsDependencyContainer.getDialogTranslator()) {
-                    @Override
-                    public DialogItem nextResponse() {
-                        attributesManager.getSessionAttributes().put(INTENT, IntentType.GAME);
-                        return DialogItem.builder()
-                                .addResponse(getDialogTranslator().translate(phraseDependencyContainer.getRegularPhraseManager().getValueByKey(SELECT_MISSION_PHRASE)))
-                                .withAplDocument(aplManager.getContainer())
-                                .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"))
-                                .build();
-                    }
-                };
+                return selectMission(slots, attributesManager);
+            case MENU_OR_CONTINUE:
+                if (UserReplyComparator.isYes(slots)) {
+                    return selectMission(slots, attributesManager);
+                } else {
+                    return handleGameActivity(slots, attributesManager);
+                }
+            case CONTINUE_OR_MENU:
+                if (UserReplyComparator.isYes(slots)) {
+                    return handleGameActivity(slots, attributesManager);
+                } else {
+                    return selectMission(slots, attributesManager);
+                }
             default:
                 throw new IllegalArgumentException("Unknown intent type " + intent);
         }
+    }
+
+    private StateManager selectMission(Map<String, Slot> slots, AttributesManager attributesManager) {
+        return new BaseStateManager(slots, attributesManager, settingsDependencyContainer.getDialogTranslator()) {
+            @Override
+            public DialogItem nextResponse() {
+                attributesManager.getSessionAttributes().put(INTENT, IntentType.GAME);
+                return DialogItem.builder()
+                        .addResponse(getDialogTranslator().translate(phraseDependencyContainer.getRegularPhraseManager().getValueByKey(SELECT_MISSION_PHRASE)))
+                        .withAplDocument(aplManager.getContainer())
+                        .addBackgroundImageUrl(cardManager.getValueByKey("mission-selection"))
+                        .build();
+            }
+        };
     }
 
     private IntentType interceptIntent(IntentType intent, Map<String, Slot> slots, AttributesManager attributesManager) {
