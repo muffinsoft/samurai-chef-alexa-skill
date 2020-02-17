@@ -225,7 +225,12 @@ public class SamuraiIntentFactory implements IntentFactory {
             }
 
             if (getPurchaseState(attributesManager) != PurchaseState.ENTITLED && currentUserProgress.getStripeCount() > 2) {
-                return upsell(slots, attributesManager);
+                boolean isPurchasable = (boolean) attributesManager.getSessionAttributes().getOrDefault("isPurchasable", false);
+                if (isPurchasable) {
+                    return upsell(slots, attributesManager);
+                } else {
+                    return selectMission(slots, attributesManager);
+                }
             }
 
             PowerUps currentEquipment = PowerUps.EMPTY_SLOT;
