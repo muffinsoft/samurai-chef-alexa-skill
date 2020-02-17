@@ -31,6 +31,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.muffinsoft.alexa.sdk.constants.SessionConstants.INTENT;
+import static com.muffinsoft.alexa.sdk.constants.SessionConstants.STATE_TYPE;
+import static com.muffinsoft.alexa.sdk.enums.IntentType.GAME;
+import static com.muffinsoft.alexa.sdk.enums.StateType.RETURN_TO_GAME;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
 import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.*;
 
@@ -84,6 +88,8 @@ public class SamuraiIntentFactory implements IntentFactory {
                 return continueOrMenu(slots, attributesManager, !UserReplyComparator.isYes(slots));
             case CONTINUE_OR_MENU:
                 return continueOrMenu(slots, attributesManager, UserReplyComparator.isYes(slots));
+            case BUY_INTENT:
+                return buy(slots, attributesManager);
             default:
                 throw new IllegalArgumentException("Unknown intent type " + intent);
         }
@@ -120,6 +126,24 @@ public class SamuraiIntentFactory implements IntentFactory {
                 return BuyManager.getBuyResponse(attributesManager, phraseDependencyContainer, getDialogTranslator(), PaywallConstants.UPSELL);
             }
         };
+    }
+
+    private StateManager buy(Map<String, Slot> slots, AttributesManager attributesManager) {
+        if (UserReplyComparator.isYes(slots)) {
+            return new BaseStateManager(slots, attributesManager, null) {
+                @Override
+                public DialogItem nextResponse() {
+                    getPersistentAttributes().put(PaywallConstants.UPSELL, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
+                    savePersistentAttributes();
+                    return DialogItem.builder().withDirective(PaywallConstants.BUY).build();
+                }
+            };
+        }
+        else {
+            attributesManager.getSessionAttributes().put(INTENT, GAME);
+            attributesManager.getSessionAttributes().put(STATE_TYPE, RETURN_TO_GAME);
+            return handleGameActivity(slots, attributesManager);
+        }
     }
 
     private IntentType interceptIntent(IntentType intent, Map<String, Slot> slots, AttributesManager attributesManager) {
