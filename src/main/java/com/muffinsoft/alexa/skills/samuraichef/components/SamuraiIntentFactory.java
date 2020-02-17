@@ -8,6 +8,7 @@ import com.muffinsoft.alexa.sdk.activities.StateManager;
 import com.muffinsoft.alexa.sdk.components.IntentFactory;
 import com.muffinsoft.alexa.sdk.constants.PaywallConstants;
 import com.muffinsoft.alexa.sdk.enums.IntentType;
+import com.muffinsoft.alexa.sdk.enums.PurchaseState;
 import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
@@ -223,7 +224,7 @@ public class SamuraiIntentFactory implements IntentFactory {
                 currentActivity = getActivityFromUserProgress(currentUserProgress);
             }
 
-            if (currentUserProgress.getStripeCount() > 2) {
+            if (getPurchaseState(attributesManager) != PurchaseState.ENTITLED && currentUserProgress.getStripeCount() > 2) {
                 return upsell(slots, attributesManager);
             }
 
@@ -269,5 +270,10 @@ public class SamuraiIntentFactory implements IntentFactory {
         UserMission userMission = UserMission.valueOf(String.valueOf(attributesManager.getSessionAttributes().get(CURRENT_MISSION)));
 
         return settingsDependencyContainer.getMissionManager().getFirstActivityForMission(userMission);
+    }
+
+    private PurchaseState getPurchaseState(AttributesManager attributesManager) {
+        String state = String.valueOf(attributesManager.getPersistentAttributes().getOrDefault(PURCHASE_STATE, PurchaseState.NOT_ENTITLED));
+        return PurchaseState.valueOf(state);
     }
 }
