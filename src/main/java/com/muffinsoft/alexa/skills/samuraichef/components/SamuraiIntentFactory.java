@@ -10,15 +10,7 @@ import com.muffinsoft.alexa.sdk.enums.IntentType;
 import com.muffinsoft.alexa.sdk.enums.StateType;
 import com.muffinsoft.alexa.sdk.model.DialogItem;
 import com.muffinsoft.alexa.sdk.model.SlotName;
-import com.muffinsoft.alexa.skills.samuraichef.activities.CancelStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.ExitConfirmationStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.ExitStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.HelpStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.InitialGreetingStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.ResetConfirmationStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.ResetMissionSelectionStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.ResetStateManager;
-import com.muffinsoft.alexa.skills.samuraichef.activities.SelectLevelStateManager;
+import com.muffinsoft.alexa.skills.samuraichef.activities.*;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.AplManager;
 import com.muffinsoft.alexa.skills.samuraichef.content.settings.CardManager;
 import com.muffinsoft.alexa.skills.samuraichef.enums.Activities;
@@ -37,13 +29,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.muffinsoft.alexa.skills.samuraichef.constants.RegularPhraseConstants.SELECT_MISSION_PHRASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.ACTIVITY_PROGRESS;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.CURRENT_MISSION;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.HELP_STATE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.INTENT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.PREVIOUS_INTENT;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.STATE_PHASE;
-import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.USER_PROGRESS;
+import static com.muffinsoft.alexa.skills.samuraichef.constants.SessionConstants.*;
 
 public class SamuraiIntentFactory implements IntentFactory {
 
@@ -92,15 +78,15 @@ public class SamuraiIntentFactory implements IntentFactory {
             case SELECT_MISSION:
                 return selectMission(slots, attributesManager);
             case MENU_OR_CONTINUE:
-                return getMenuOrGame(slots, attributesManager, !UserReplyComparator.isYes(slots));
+                return continueOrMenu(slots, attributesManager, !UserReplyComparator.isYes(slots));
             case CONTINUE_OR_MENU:
-                return getMenuOrGame(slots, attributesManager, UserReplyComparator.isYes(slots));
+                return continueOrMenu(slots, attributesManager, UserReplyComparator.isYes(slots));
             default:
                 throw new IllegalArgumentException("Unknown intent type " + intent);
         }
     }
 
-    private StateManager getMenuOrGame(Map<String, Slot> slots, AttributesManager attributesManager, boolean game) {
+    private StateManager continueOrMenu(Map<String, Slot> slots, AttributesManager attributesManager, boolean game) {
         if (game) {
             return handleGameActivity(slots, attributesManager);
         } else {
