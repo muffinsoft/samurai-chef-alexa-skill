@@ -240,5 +240,120 @@
     {
       "content": "That is not available, do you want to continue with one of the available activities?"
     }
+  ],
+  "purchaseWhat" : [
+    {
+      "content": "You can purchase the expansion pack and get access to 3 more belts for each of the 3 paths. Would you like to learn more?"
+    }
+  ],
+  "purchaseUpSell": [
+    {
+      "content": "If you want to see what's next in your adventures with Ben, you can buy the expansion pack, with three more belts in each of the 3 paths! Want to learn more?"
+    }
+  ],
+  "purchaseCancel": [
+    {
+      "content": "In the future you can purchase the expansion pack by saying “what can I buy”. For now, do you want to try one of the available belts again?"
+    }
+  ],
+  "purchaseUnsuccessful": [
+    {
+      "content": "We couldn't complete the purchase. You can always ask me how to get more levels later. Want to try one of the available belts again?"
+    }
+  ],
+  "playAgainRePrompt": [
+    {
+      "content": "Want to try one of the available belts again?"
+    }
+  ],
+  "purchaseError": [
+    {
+      "content": "Sorry, looks like the store is closed for now. Want to try one of the available belts again?"
+    }
+  ],
+  "purchaseDeclined": [
+    {
+      "content": "Sorry, your purchase was declined.  Do you want to try again later or do you want to reset this belt's progress and start from the beginning?"
+    }
+  ],
+  "purchaseWait": [
+    {
+      "content": "While you wait, would you like to take another crack at one of the available belts again?"
+    }
+  ],
+  "purchaseComplete": [
+    {
+      "content": "Congrats, your purchase was completed! Would you like to continue your adventure with the new available belt?"
+    }
+  ],
+  "purchaseCompleteRePrompt": [
+    {
+      "content": "Would you like to continue your adventure with the new available belt?"
+    }
+  ],
+  "purchaseHistory": [
+    {
+      "content": "Thanks for buying the expansion pack. Would you like to try one of the new belts out?"
+    }
+  ],
+  "purchaseHistoryRePrompt": [
+    {
+      "content": "You asked me for what you've bought. It was the expansion pack with new belts. Would you like to try out the new belt challenges?"
+    }
+  ],
+  "purchaseHistoryNothing": [
+    {
+      "content": "You haven't purchased the expansion pack with exciting new belts yet.  To do so, say: Buy expansion pack.  Otherwise, say yes to return to the adventure."
+    }
+  ],
+  "purchaseHistoryNothingRePrompt": [
+    {
+      "content": "You asked about what you bought, but you haven't purchased anything yet. You can say - what can I buy, or say yes to return to the adventure."
+    }
+  ],
+  "unrecognized": [
+    {
+      "content": "I didn't catch that. What can I help you with?"
+    }
+  ],
+  "purchaseNothing": [
+    {
+      "content": "There are no products available for purchase right now. Sorry about that. Would you like to return to the main menu?"
+    }
+  ],
+  "purchaseNoRefund": [
+    {
+      "content": "You haven't purchased the expansion pack yet. You can say - what can I buy, or say yes to return to the adventure."
+    }
+  ],
+  "purchaseRefundNotPurchasable": [
+    {
+      "content": "There are no purchases to refund. Now, let's get back to the adventure."
+    }
+  ],
+  "purchaseAlreadyOwn": [
+    {
+      "content": "You already own the expansion pack. Would you like to pick out a path to follow?"
+    }
+  ],
+  "purchasePending": [
+    {
+      "content": "I've asked for permission to purchase the expansion pack. In the meantime, would you like to choose a different path, or to reset this path?"
+    }
+  ],
+  "purchaseHistoryPending": [
+    {
+      "content": "I've asked for permission to purchase the expansion pack. In the meantime, would you like to select a new path to follow?"
+    }
+  ],
+  "purchaseWhatPending": [
+    {
+      "content": "I've asked for permission to purchase the expansion pack. In the meantime, would you like to select a new path to follow?"
+    }
+  ],
+  "unknownRequest": [
+    {
+      "content": "Sorry, I am not sure. What can I help you with?"
+    }
   ]
 }
