@@ -18,4 +18,9 @@ public class MockPersistenceAdapter implements PersistenceAdapter {
     public void saveAttributes(RequestEnvelope envelope, Map<String, Object> attributes) throws PersistenceException {
 
     }
+
+    @Override
+    public void deleteAttributes(RequestEnvelope requestEnvelope) throws PersistenceException {
+
+    }
 }

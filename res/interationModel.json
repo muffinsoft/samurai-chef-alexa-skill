@@ -16,6 +16,22 @@
             }
           ],
           "samples": [
+            "I will use {ActionAlternative}",
+            "I will use {Action}",
+            "I'll use {ActionAlternative}",
+            "I'll use {Action}",
+            "let's use {ActionAlternative}",
+            "let's use {Action}",
+            "let's go with {ActionAlternative}",
+            "Let's go with {Action}",
+            "I will go with {ActionAlternative}",
+            "I will go with {Action}",
+            "I'll go with {ActionAlternative}",
+            "I'll go with {Action}",
+            "I would say {ActionAlternative}",
+            "I would say {Action}",
+            "I'd say {ActionAlternative}",
+            "I'd say {Action}",
             "maybe it's {ActionAlternative}",
             "maybe it's {Action}",
             "say {ActionAlternative}",
@@ -119,7 +135,6 @@
           "samples": [
             "{Navigation} one",
             "play {Navigation} one more time",
-            "try {Navigation} mission {Navigation}",
             "try {Navigation}",
             "play {Navigation} mission ",
             "{Navigation} mission ",
@@ -128,7 +143,7 @@
             "go {Navigation}",
             "play {Navigation}",
             "take me {Navigation}",
-            "I wan't to {Navigation}",
+            "I want to {Navigation}",
             "{Navigation} please"
           ]
         },
@@ -148,16 +163,67 @@
           "name": "ResetIntent",
           "slots": [],
           "samples": [
-            "reset"
+            "start this mission over",
+            "please restart the mission",
+            "please restart the path",
+            "start this path over",
+            "restart this path",
+            "restart this mission",
+            "restart mission",
+            "reset this path",
+            "reset this mission",
+            "reset mission ",
+            "restart path",
+            "start path over",
+            "reset path"
           ]
         },
         {
           "name": "MenuIntent",
           "slots": [],
           "samples": [
-            "new game",
-            "return to the main menu",
-            "different game"
+            "go to menu",
+            "go to main menu",
+            "go to the main menu",
+            "I would like to choose a new mission",
+            "I would like to choose a new path ",
+            "I would like to go to the main menu",
+            "I would like to play something else ",
+            "I'd like to go to the mission selection ",
+            "I'd like to go to the path selection ",
+            "I'd like to go to the main menu",
+            "please take me back to the mission menu ",
+            "take me back to the mission menu ",
+            "please take me back to the path menu ",
+            "take me back to the path menu",
+            "mission menu",
+            "path menu",
+            "path selection ",
+            "mission select ",
+            "mission selection",
+            "back to the menu",
+            "menu ",
+            "new mission ",
+            "new path",
+            "play new mission  ",
+            "play new path",
+            "play  a diffrent mission ",
+            "play a diffrent path ",
+            "play somthing else ",
+            "I'd like to play somthing else ",
+            "choose a mission please",
+            "choose a path please",
+            "please choose a mission ",
+            "please choose a path",
+            "please take me back to the main menu",
+            "take me to the main menu ",
+            "select mission",
+            "choose path",
+            "main menu",
+            "select path",
+            "choose a path",
+            "select a path",
+            "select a mission "
           ]
         },
         {
@@ -170,11 +236,24 @@
         },
         {
           "name": "AMAZON.YesIntent",
-          "samples": []
+          "samples": [
+            "play",
+            "start",
+            "I'm ready to start",
+            "ready to start",
+            "I am ready to play",
+            "I am ready",
+            "I'm ready to play",
+            "ready to play",
+            "ready",
+            "I'm ready"
+          ]
         },
         {
           "name": "AMAZON.NavigateHomeIntent",
-          "samples": []
+          "samples": [
+            "main menu"
+          ]
         },
         {
           "name": "AMAZON.NoIntent",
@@ -191,6 +270,46 @@
         {
           "name": "AMAZON.StartOverIntent",
           "samples": []
+        },
+        {
+          "name": "BuyIntent",
+          "slots": [],
+          "samples": [
+            "Purchase expansion pack",
+            "Purchase further missions",
+            "Give me more missions",
+            "Give me more adventures",
+            "Get expansion pack",
+            "Buy expansion pack"
+          ]
+        },
+        {
+          "name": "WhatCanIBuyIntent",
+          "slots": [],
+          "samples": [
+            "what is available for purchase",
+            "what can I purchase",
+            "what can I buy"
+          ]
+        },
+        {
+          "name": "PurchaseHistoryIntent",
+          "slots": [],
+          "samples": [
+            "What have we purchased",
+            "What have I bought",
+            "What did I buy"
+          ]
+        },
+        {
+          "name": "RefundIntent",
+          "slots": [],
+          "samples": [
+            "would like to return expansion pack",
+            "want a refund for expansion pack",
+            "return expansion pack",
+            "refund for expansion pack"
+          ]
         }
       ],
       "types": [
@@ -237,6 +356,7 @@
               "name": {
                 "value": "back",
                 "synonyms": [
+                  "return",
                   "return back",
                   "return to game"
                 ]
@@ -256,7 +376,13 @@
                 "synonyms": [
                   "new",
                   "new one",
-                  "new mission"
+                  "new mission",
+                  "menu",
+                  "main menu",
+                  "return to the menu",
+                  "return to the main menu",
+                  "to the menu",
+                  "to the main menu"
                 ]
               }
             },
@@ -264,12 +390,13 @@
               "name": {
                 "value": "this",
                 "synonyms": [
-                  "mission over",
-                  "this mission",
-                  "this one",
-                  "this",
-                  "start this mission",
-                  "start this mission over"
+                  "play this mission",
+                  "from the beginning",
+                  "play from the beginning",
+                  "play this mission from the beginning",
+                  "play",
+                  "beginning",
+                  "this mission"
                 ]
               }
             }
@@ -304,6 +431,7 @@
               "name": {
                 "value": "zonk",
                 "synonyms": [
+                  "zombie",
                   "song",
                   "zinc",
                   "onk",
@@ -349,6 +477,8 @@
               "name": {
                 "value": "wham",
                 "synonyms": [
+                  "wamo",
+                  "huayno",
                   "where am"
                 ]
               }
@@ -357,6 +487,7 @@
               "name": {
                 "value": "thwap",
                 "synonyms": [
+                  "the",
                   "swamp",
                   "swap"
                 ]
