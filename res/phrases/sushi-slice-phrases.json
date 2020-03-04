@@ -66,18 +66,14 @@
     "2": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Excellent work!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission2Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "It's lunch hour and our cooks aren't here yet, so it's all on you two in a competition round! We'll also start adding sesame seeds for a nutty flavor!"
-        },
-        {
-          "role": "Ben",
-          "content": "I'll be the best this time! To sprinkle some sesame seeds, say 'sprinkle'!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission2Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -89,18 +85,14 @@
     "3": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "That's some good cleaning!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission3Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "Sensei will soon take a closer look! Let's start drying by using towels. This will be a competition round to see who cleans best!"
-        },
-        {
-          "role": "Ben",
-          "content": "I'm so ready! If Arthur shouts towel, say 'swipe and wipe'!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission3Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -112,18 +104,14 @@
     "4": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Very delicious sushi so far!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission4Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "You're doing good! In fact, some of Sensei's sushi master friends are here to see his latest pupils in action!! Let's hit Sensei with his favorite —  shrimp! This will be another competition round; still five seconds!"
-        },
-        {
-          "role": "Ben",
-          "content": "To peel shrimp for the sushi, say 'peel!'"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesLowMission4Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -196,18 +184,14 @@
     "2": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Very inspiring!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission2Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "The veteran sumo has arrived! Let's wow him by eating all we've got, including juicy sausage! This will be a competition round for you and Ben! "
-        },
-        {
-          "role": "Ben",
-          "content": "No holding back this time! To scarf down a sausage, say 'scarf'"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission2Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -219,18 +203,14 @@
     "3": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Yes! Very good!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission3Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "Donuts, though mouth-watering, are very unhealthy! This will be a competition round to see who can resist junk food the best! "
-        },
-        {
-          "role": "Ben",
-          "content": "Prepare yourself! If Arthur shows us a donut, say yuck!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission3Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -242,18 +222,14 @@
     "4": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Now that's an appetite! "
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission4Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "Alright, you've got Sensei's attention. In fact, even the local news station has arrived to see who will become this famed restaurant's next sumo pro! Let's bulk up more with some oysters! This will be a competition round with only five seconds to answer!"
-        },
-        {
-          "role": "Ben",
-          "content": "I'll be the best this time! To eat up an oyster, say 'om nom nom!'"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission4Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -326,18 +302,14 @@
     "2": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Honorable performance!"
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission2Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "Let's give them a boost of flavor and nutrition with some banana! We need the rest of these orders fast so let's make this a competition round."
-        },
-        {
-          "role": "Ben",
-          "content": "Let's see what you got, sushi buddy! To add some banana, say 'dunk a chunk!'"
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission2Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -349,18 +321,14 @@
     "3": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Now that's karate!"
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission3Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "Hey, the kids are starting to show an interest in karate. Let's wow them by adding some uppercut moves! This will be a competition round to see who's karate is best!"
-        },
-        {
-          "role": "Ben",
-          "content": "Hyaa! Get ready! If I do an uppercut, say whoa to LEAN BACK!"
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission3Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -372,18 +340,14 @@
     "4": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Ah, such savory juices!"
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission4Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "Sensei and his guest like the positive reception they're seeing from customers so far. Time to dump in lumps of watermelon -- low calories with lots of nutrients! This will be a competition round with only five seconds to answer!"
-        },
-        {
-          "role": "Ben",
-          "content": "I'll win this time! To dump a lump of Watermelon, say 'dump a lump!'"
+          "role": "Audio",
+          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission4Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,

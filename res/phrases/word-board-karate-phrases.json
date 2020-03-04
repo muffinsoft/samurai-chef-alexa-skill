@@ -46,18 +46,14 @@
     "2": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "So far, so good."
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesLowMission2Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "I just learned that our carpooling cooks are stuck in traffic! Sensei is counting on us, so now's your chance to prove yourself! Let's start preparing veggies. Only 3 mistakes allowed!"
-        },
-        {
-          "role": "Ben",
-          "content": "To boil rice, say 'boil!' To slice the fish, say 'slice.' To roll seaweed, say 'roll!' To boil eggs, say 'boil!' To chop veggies, say 'chop!'"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesLowMission2Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -69,18 +65,14 @@
     "3": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Nice hustle."
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesLowMission3Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "As you can see, the kitchen could use some work. Start off by sweeping the floor and scrubbing your sushi station."
-        },
-        {
-          "role": "Ben",
-          "content": " If Arthur tosses a broom, say 'leap and sweep'! If he tosses a sponge, say 'scrub a dub dub!'"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesLowMission3Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -92,22 +84,14 @@
     "4": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Excellent."
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesLowMission4Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "Sensei is getting ready to judge your sushi. In the meantime, we'll mix things up by starting with word board karate! "
-        },
-        {
-          "role": "Ben",
-          "content": "Remember; If the word on the board starts with the W sound, like whale, say Wham! If the word starts with the H sound, like hat, say Haa! If the word starts the P, like pepper, say Pow! If the starts with B like bongo, say Bam! If the word starts with S like soup, say Slam! If the word starts with A like ant, say 'Ayaa'!"
-        },
-        {
-          "role": "Arthur",
-          "content": "Wham, Haa, Pow, Bam, Slam and Ayaa! Ready, go!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesLowMission4Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -164,19 +148,15 @@
     "2": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Acceptable effort."
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesMediumMission2Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "Exciting news! A veteran sumo is visiting us today. Impress him by showing your super eating abilities! Prepare to start eating some pork chops! Only 3 mistakes allowed!"
-        },
-        {
-          "role": "Ben",
-          "content": "To chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say 'slurp!' To munch on fried fish, say 'munch!' to chew on pork chops, say 'chew'!"
-        }
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesMediumMission2Intro0.mp3"
+         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
@@ -187,18 +167,14 @@
     "3": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Okay so far."
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesMediumMission3Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "For this session I'll be tempting you with some tasty junk food, but you must resist! Let's start by adding cookies. "
-        },
-        {
-          "role": "Ben",
-          "content": "Remember; if Arthur gives you beef, tofu, or milk, say yum! But if it's soda, candy or cookies, say yuck!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesMediumMission3Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -210,22 +186,14 @@
     "4": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Admirable."
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesMediumMission4Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "We'll need to work up an appetite first if we want to impress Sensei. Let's begin with word board karate!"
-        },
-        {
-          "role": "Ben",
-          "content": "Remember; If the word starts with the 'Z' sound, like zoo, say 'Zonk!' If the word starts with the 'F' sound, like foosball, say 'Fuah!' If the word starts with 'W' sound like wood, say 'woosh!' f the word starts with 'K' like kite, say 'Kapow!' If the word starts with an 'S' sound like snake, say 'Snap!' If the word starts with 'H' like hot, say 'Haaa!'"
-        },
-        {
-          "role": "Arthur",
-          "content": "Zonk, Fuah, Woosh, Kapow, Snap and Haa! Ready, go!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesMediumMission4Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -282,18 +250,14 @@
     "2": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Hmm. Good energy."
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesHighMission2Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "Your last juices were so good that Sensei's friends are making orders for their entire dojos. Now's your chance to shine! Let's add mint, a very nutritious herb. Only 3 mistakes allowed!"
-        },
-        {
-          "role": "Ben",
-          "content": "To splash some milk, say 'splash a dash'! To slice some carrots, say 'slice and dice'! To crunch up ice, say 'punch and crunch! If Arthur throws you chopsticks, say 'stop, don't drop!' To add mint, say 'a hint of mint!'"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesHighMission2Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -305,18 +269,14 @@
     "3": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Hmm, I see potential."
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesHighMission3Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "Physical health is important, which is why Sensei has invited students from a nearby school to watch our karate. No pressure! Let's begin with a headbutt, which you must duck."
-        },
-        {
-          "role": "Ben",
-          "content": "Remember; if Arthur throws a punch, say block to BLOCK! If he tries a kick, say dodge to DODGE! If he tries a sweep, say jump to JUMP! If he bows, say bow to BOW back! If he tries a grab, say break to BREAK his grab! And if he tries a headbutt, say duck to DUCK!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesHighMission3Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -328,22 +288,14 @@
     "4": {
       "outro": [
         {
-          "role": "Sensei",
-          "content": "Good, good."
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesHighMission4Outro0.mp3"
         }
       ],
       "intro": [
         {
-          "role": "Arthur",
-          "content": "While Sensei prepares, let's warm up those juicing hands with some more word board karate!"
-        },
-        {
-          "role": "Ben",
-          "content": "Remember; If the word starts with the 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with the 'TH', like thorn, say 'Thwap!' If the word starts with the 'Y' sound like yak, say 'Yaaa!' If the word starts with a C sound, like cookie, say 'Crack!' If the word starts with a B sound, like bark, say 'Bonk!'\n"
-        },
-        {
-          "role": "Arthur",
-          "content": "Zaam, Whammo, Thwap, Yaa, Crack and Bonk! Ready, go!"
+          "role": "Audio",
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/word-board-karate/wordBoardKaratePhrasesHighMission4Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
