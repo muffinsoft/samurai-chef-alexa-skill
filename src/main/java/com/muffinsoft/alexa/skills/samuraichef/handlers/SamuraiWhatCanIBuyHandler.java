@@ -38,7 +38,7 @@ public class SamuraiWhatCanIBuyHandler extends WhatCanIBuyIntentHandler {
                 boolean arePurchasesEnabled = (boolean) getSessionAttributes().get("arePurchasesEnabled");
                 getSessionAttributes().put(INTENT, IntentType.GAME);
                 if (PurchaseManager.isEntitled(product)) {
-                    response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("alreadyHave");
+                    response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("purchaseAlreadyOwn");
                     getSessionAttributes().put(INTENT, MENU_OR_CONTINUE);
                 } else if (!arePurchasesEnabled) {
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("unrecognized");
