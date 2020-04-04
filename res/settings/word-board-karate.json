@@ -19,6 +19,36 @@
           "sushi": "gulp",
           "tea": "sip"
         }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "rice": "boil",
+          "fish": "slice",
+          "seaweed": "roll",
+          "egg": "crack",
+          "veggies": "chop"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "broom": "leap and sweep",
+          "sponge": "scrub a dub dub"
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "W": "wham",
+          "H": "haa",
+          "P": "pow",
+          "B": "bam",
+          "A": "ayaa"
+        }
       }
     },
     "MEDIUM_MISSION": {
@@ -38,6 +68,41 @@
           "soda": "gross",
           "tofu": "yum"
         }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "chicken": "chomp",
+          "sushi": "gulp",
+          "stew": "slurp",
+          "fried fish": "munch",
+          "pork chop": "chew"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "beef": "yum",
+          "milk": "yum",
+          "tofu": "yum",
+          "cookies": "yuck",
+          "candy": "yuck",
+          "soda": "yuck"
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "Z": "zonk",
+          "F": "fuah",
+          "W": "woosh",
+          "K": "kapow",
+          "S": "snap",
+          "H": "haa"
+        }
       }
     },
     "HIGH_MISSION": {
@@ -56,6 +121,41 @@
           "punch": "block",
           "kick": "dodge",
           "sweep": "jump"
+        }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "milk": "splash a dash",
+          "carrot": "slice and dice",
+          "ice": "punch and crunch",
+          "chopsticks": "stop don't drop",
+          "mint": "a hint of mint"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "punch": "block",
+          "kick": "dodge",
+          "sweep": "jump",
+          "bow": "bow",
+          "grab": "break",
+          "headbutt": "duck"
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "Z": "zaam",
+          "W": "whamo",
+          "TH": "thwap",
+          "Y": "yaaah",
+          "C": "crack",
+          "B": "bonk"
         }
       }
     }

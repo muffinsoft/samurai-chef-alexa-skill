@@ -21,6 +21,43 @@
           "H": "haa",
           "P": "pow"
         }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "W": "wham",
+          "H": "haa",
+          "P": "pow",
+          "B": "bam"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "W": "wham",
+          "H": "haa",
+          "P": "pow",
+          "B": "bam",
+          "S": "slam"
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "rice": "boil",
+          "fish": "slice",
+          "seaweed": "roll",
+          "egg": "crack",
+          "veggies": "chop",
+          "lemon": "squeeze",
+          "sesame seeds": "sprinkle",
+          "sauce": "dash",
+          "shrimp": "peel",
+          "ginger": "garnish"
+        }
       }
     },
     "MEDIUM_MISSION": {
@@ -38,7 +75,44 @@
         "ingredients": {
           "Z": "zonk",
           "F": "fuah",
-          "Woo": "woosh"
+          "W": "woosh"
+        }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "Z": "zonk",
+          "F": "fuah",
+          "W": "woosh",
+          "K": "kapow"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "Z": "zonk",
+          "F": "fuah",
+          "W": "woosh",
+          "K": "kapow",
+          "S": "snap"
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "chicken": "chomp",
+          "sushi": "gulp",
+          "stew": "slurp",
+          "fried fish": "munch",
+          "pork chops": "chew",
+          "beef": "bite",
+          "sausage": "scarf",
+          "grape juice": "glug",
+          "oyster": "om nom nom",
+          "cheese": "gobble"
         }
       }
     },
@@ -58,6 +132,43 @@
           "Z": "zaam",
           "W": "whammo",
           "Th": "thwap"
+        }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "Z": "zaam",
+          "W": "whammo",
+          "Th": "thwap",
+          "Y": "yaaah"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "Z": "zaam",
+          "W": "whammo",
+          "Th": "thwap",
+          "Y": "yaaah",
+          "C": "crack"
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "milk": "splash a dash",
+          "carrot": "slice and dice",
+          "ice": "punch and crunch",
+          "chopsticks": "stop don't drop",
+          "mint": "a hint of mint",
+          "honey": "add a tad",
+          "banana": "dunk a chunk",
+          "yam": "10 grams of yam",
+          "watermelon": "dump a lump",
+          "orange": "squeeze with ease"
         }
       }
     }

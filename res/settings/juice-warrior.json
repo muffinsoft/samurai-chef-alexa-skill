@@ -25,6 +25,47 @@
           "tea": "sip",
           "mochi": "lick"
         }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 15000,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "rice": "boil",
+          "fish": "slice",
+          "seaweed": "roll",
+          "egg": "crack",
+          "veggies": "chop",
+          "lemon": "squeeze"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 12000,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "broom": "leap and sweep",
+          "sponge": "scrub a dub dub",
+          "hose": "spray away"
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 15000,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "rice": "boil",
+          "fish": "slice",
+          "seaweed": "roll",
+          "egg": "crack",
+          "veggies": "chop",
+          "lemon": "squeeze",
+          "sesame seeds": "sprinkle",
+          "sauce": "dash"
+        }
       }
     },
     "MEDIUM_MISSION": {
@@ -50,6 +91,51 @@
           "candy": "gross",
           "tofu": "yum"
         }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 15000,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "chicken": "chomp",
+          "sushi": "gulp",
+          "stew": "slurp",
+          "fried fish": "munch",
+          "pork chops": "chew",
+          "beef": "bite"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 12000,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "beef": "yum",
+          "soda": "yuck",
+          "tofu": "yum",
+          "candy": "yuck",
+          "milk": "yum",
+          "cookies": "yuck",
+          "egg": "yum"
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 15000,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "chicken": "chomp",
+          "sushi": "gulp",
+          "stew": "slurp",
+          "fried fish": "munch",
+          "pork chops": "chew",
+          "beef": "bite",
+          "sausage": "scarf",
+          "grape juice": "glug"
+        }
       }
     },
     "HIGH_MISSION": {
@@ -74,6 +160,51 @@
           "kick": "dodge",
           "sweep": "jump",
           "bow": "bow"
+        }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 15000,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "milk": "splash a dash",
+          "carrot": "slice and dice",
+          "ice": "punch and crunch",
+          "chopsticks": "stop don't drop",
+          "mint": "a hint of mint",
+          "honey": "add a tad"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 12000,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "punch": "block",
+          "kick": "dodge",
+          "sweep": "jump",
+          "bow": "bow",
+          "grab": "break",
+          "headbutt": "duck",
+          "chop": "block"
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 15000,
+        "maxMistakeCount": 3,
+        "ingredients": {
+          "milk": "splash a dash",
+          "carrot": "slice and dice",
+          "ice": "punch and crunch",
+          "chopsticks": "stop don't drop",
+          "mint": "a hint of mint",
+          "honey": "add a tad",
+          "banana": "dunk a chunk",
+          "yam": "10 grams of yam"
         }
       }
     }

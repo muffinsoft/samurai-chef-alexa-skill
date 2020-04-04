@@ -27,6 +27,50 @@
           "mochi": "lick",
           "wasabe peas": "crunch"
         }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "maxMistakeCount": 2,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 16000,
+        "ingredients": {
+          "rice": "boil",
+          "fish": "slice",
+          "seaweed": "roll",
+          "egg": "crack",
+          "veggies": "chop",
+          "lemon": "squeeze",
+          "sesame seeds": "sprinkle"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "maxMistakeCount": 2,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 16000,
+        "ingredients": {
+          "broom": "leap and sweep",
+          "sponge": "scrub a dub dub",
+          "hose": "spray away",
+          "towel": "swipe and wipe"
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "maxMistakeCount": 2,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 16000,
+        "ingredients": {
+          "rice": "boil",
+          "fish": "slice",
+          "seaweed": "roll",
+          "egg": "crack",
+          "veggies": "chop",
+          "lemon": "squeeze",
+          "sesame seeds": "sprinkle",
+          "sauce": "dash",
+          "shrimp": "peel"
+        }
       }
     },
     "MEDIUM_MISSION": {
@@ -54,6 +98,55 @@
           "candy": "gross",
           "milk": "yum"
         }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "maxMistakeCount": 2,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 16000,
+        "ingredients": {
+          "chicken": "chomp",
+          "sushi": "gulp",
+          "stew": "slurp",
+          "fried fish": "munch",
+          "pork chops": "chew",
+          "beef": "bite",
+          "sausage": "scarf"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "maxMistakeCount": 2,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 16000,
+        "ingredients": {
+          "beef": "yum",
+          "soda": "yuck",
+          "tofu": "yum",
+          "candy": "yuck",
+          "milk": "yum",
+          "cookies": "yuck",
+          "egg": "yum",
+          "donut": "yuck"
+
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "maxMistakeCount": 2,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 16000,
+        "ingredients": {
+          "chicken": "chomp",
+          "sushi": "gulp",
+          "stew": "slurp",
+          "fried fish": "munch",
+          "pork chops": "chew",
+          "beef": "bite",
+          "sausage": "scarf",
+          "grape juice": "glug",
+          "oyster": "om nom nom"
+        }
       }
     },
     "HIGH_MISSION": {
@@ -80,6 +173,54 @@
           "sweep": "jump",
           "bow": "bow",
           "grab": "break"
+        }
+      },
+      "2": {
+        "wonSuccessCount": 9,
+        "maxMistakeCount": 2,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 21000,
+        "ingredients": {
+          "milk": "splash a dash",
+          "carrot": "slice and dice",
+          "ice": "punch and crunch",
+          "chopsticks": "stop don't drop",
+          "mint": "a hint of mint",
+          "honey": "add a tad",
+          "banana": "dunk a chunk"
+        }
+      },
+      "3": {
+        "wonSuccessCount": 11,
+        "maxMistakeCount": 2,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 16000,
+        "ingredients": {
+          "punch": "block",
+          "kick": "dodge",
+          "sweep": "jump",
+          "bow": "bow",
+          "grab": "break",
+          "chop": "block",
+          "headbutt": "duck",
+          "uppercut": "dodge"
+        }
+      },
+      "4": {
+        "wonSuccessCount": 13,
+        "maxMistakeCount": 2,
+        "withTimer": true,
+        "timeLimitPhaseOneInMillis": 21000,
+        "ingredients": {
+          "milk": "splash a dash",
+          "carrot": "slice and dice",
+          "ice": "punch and crunch",
+          "chopsticks": "stop don't drop",
+          "mint": "a hint of mint",
+          "honey": "add a tad",
+          "banana": "dunk a chunk",
+          "yam": "10 grams of yam",
+          "watermelon": "dump a lump"
         }
       }
     }
