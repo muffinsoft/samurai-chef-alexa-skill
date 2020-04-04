@@ -109,6 +109,66 @@
       "content": "If the word on the board starts with 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say 'Haa!' If the word starts with 'P', like pepper, say 'Pow!'"
     }
   ],
+  "helpLowMissionStripe2WordBoardKarate": [
+    {
+      "content": "To boil rice, say 'boil!' To slice the fish, say 'slice.' To roll seaweed, say 'roll!' To crack an egg, say 'crack!' To chop veggies, say 'chop!'"
+    }
+  ],
+  "helpLowMissionStripe2JuiceWarrior": [
+    {
+      "content": "To boil rice, say 'boil!' To slice the fish, say 'slice.' To roll seaweed, say 'roll!' To crack an egg, say 'crack!' To chop veggies, say 'chop!' To squeeze a lemon, say 'squeeze!'"
+    }
+  ],
+  "helpLowMissionStripe2SushiSlice": [
+    {
+      "content": "To boil rice, say 'boil!' To slice the fish, say 'slice.' To roll seaweed, say 'roll!' To crack an egg, say 'crack!' To chop veggies, say 'chop!' To squeeze a lemon, say 'squeeze!' To sprinkle some sesame seeds, say 'sprinkle'!"
+    }
+  ],
+  "helpLowMissionStripe2FoodTaster": [
+    {
+      "content": "If the word on the board starts with the 'W' sound, like whale, say 'Wham!' If the word starts with the 'H' sound, like hat, say Haa!' If the word starts the 'P', like pepper, say 'Pow!' If the starts with 'B' like bongo, say 'Bam!'"
+    }
+  ],
+  "helpLowMissionStripe3WordBoardKarate": [
+    {
+      "content": "If Arthur tosses a broom, say 'leap and sweep'! If he tosses a sponge, say 'scrub a dub dub!'"
+    }
+  ],
+  "helpLowMissionStripe3JuiceWarrior": [
+    {
+      "content": "If Arthur tosses a broom, say 'leap and sweep'! If he tosses a sponge, say 'scrub a dub dub!' If Arthur shouts hose, say 'spray away'!"
+    }
+  ],
+  "helpLowMissionStripe3SushiSlice": [
+    {
+      "content": "If Arthur tosses a broom, say 'leap and sweep'! If he tosses a sponge, say 'scrub a dub dub!' If Arthur shouts hose, say 'spray away'! If Arthur shouts towel, say 'swipe and wipe'!"
+    }
+  ],
+  "helpLowMissionStripe3FoodTaster": [
+    {
+      "content": "If the word on the board starts with the W sound, like whale, say Wham! If the word starts with the H sound, like hat, say Haa! If the word starts the P, like pepper, say Pow! If the starts with B like bongo, say Bam! If the word starts with S like soup, say SLAM!"
+    }
+  ],
+  "helpLowMissionStripe4WordBoardKarate": [
+    {
+      "content": "If the word on the board starts with the W sound, like whale, say Wham! If the word starts with the H sound, like hat, say Haa! If the word starts the P, like pepper, say Pow! If the starts with B like bongo, say Bam! If the word starts with S like soup, say Slam! If the word starts with A like ant, say 'Ayaa'!"
+    }
+  ],
+  "helpLowMissionStripe4JuiceWarrior": [
+    {
+      "content": "To boil rice, say 'boil!' To slice the fish, say 'slice.' To roll seaweed, say 'roll!' To crack an egg, say 'crack!' To chop veggies, say 'chop!' To squeeze a lemon, say 'squeeze!' To sprinkle some sesame seeds, say 'sprinkle'! To dash some sauce, say 'dash!'"
+    }
+  ],
+  "helpLowMissionStripe4SushiSlice": [
+    {
+      "content": "To boil rice, say 'boil!' To slice the fish, say 'slice.' To roll seaweed, say 'roll!' To crack an egg, say 'crack!' To chop veggies, say 'chop!' To squeeze a lemon, say 'squeeze!' To sprinkle some sesame seeds, say 'sprinkle'! To dash some sauce, say 'dash!' To peel shrimp for the sushi, say 'peel!'"
+    }
+  ],
+  "helpLowMissionStripe4FoodTaster": [
+    {
+      "content": "To boil rice, say 'boil!' To slice the fish, say 'slice.' To roll seaweed, say 'roll!' To crack an egg, say 'crack!' To chop veggies, say 'chop!' To squeeze a lemon, say 'squeeze!' To sprinkle some sesame seeds, say 'sprinkle'! To dash some sauce, say 'dash!' To peel shrimp for the sushi, say 'peel!' To garnish with ginger, say 'garnish!'"
+    }
+  ],
   "helpMidMissionStripe0WordBoardKarate": [
     {
       "content": "To eat chicken, say 'chomp!' To eat sushi, say 'gulp'!"
@@ -149,6 +209,66 @@
       "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zonk!' If the word starts with the 'F' sound, like foosball, say 'Fuah!' IF the word starts with 'Woo' sound like wood, say 'woosh!'"
     }
   ],
+  "helpMidMissionStripe2WordBoardKarate": [
+    {
+      "content": "To chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say 'slurp!' To munch on fried fish, say 'munch!' to chew on pork chops, say 'chew'!"
+    }
+  ],
+  "helpMidMissionStripe2JuiceWarrior": [
+    {
+      "content": "To chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say 'slurp!' To munch on fried fish, say 'munch!' to chew on pork chops, say 'chew'! To bite some beef, say 'bite!'"
+    }
+  ],
+  "helpMidMissionStripe2SushiSlice": [
+    {
+      "content": "To chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say 'slurp!' To munch on fried fish, say 'munch!' to chew on pork chops, say 'chew'! To bite some beef, say 'bite!' To scarf down a sausage, say 'scarf'"
+    }
+  ],
+  "helpMidMissionStripe2FoodTaster": [
+    {
+      "content": "If the word starts with Z like zebra, say Zonk! If the word starts with F like finger, say Fuah! If the word starts with W like water, say Woosh! If the word starts with K like kite, say Kapow!"
+    }
+  ],
+  "helpMidMissionStripe3WordBoardKarate": [
+    {
+      "content": "If Arthur gives you beef, tofu, or milk, say yum! But if it's soda, candy or cookies, say yuck!"
+    }
+  ],
+  "helpMidMissionStripe3JuiceWarrior": [
+    {
+      "content": "If Arthur gives you beef, tofu, or milk, say yum! But if it's soda, candy or cookies, say yuck! If arthur gives you eggs, say yum!"
+    }
+  ],
+  "helpMidMissionStripe3SushiSlice": [
+    {
+      "content": "If Arthur gives you beef, tofu, or milk, say yum! But if it's soda, candy or cookies, say yuck! If arthur gives you eggs, say yum! If Arthur shows us a donut, say yuck!"
+    }
+  ],
+  "helpMidMissionStripe3FoodTaster": [
+    {
+      "content": "If the word starts with the Z sound, like zoo, say Zonk! If the word starts with the F sound, like foosball, say 'Fuah!' If the word starts with 'W' sound like wood, say 'woosh!' f the word starts with a 'K' sound like kite, say Kapow! If the word starts with an S sound like snake, say Snap!"
+    }
+  ],
+  "helpMidMissionStripe4WordBoardKarate": [
+    {
+      "content": "If the word starts with the 'Z' sound, like zoo, say 'Zonk!' If the word starts with the 'F' sound, like foosball, say 'Fuah!' If the word starts with 'W' sound like wood, say 'woosh!' f the word starts with 'K' like kite, say 'Kapow!' If the word starts with an 'S' sound like snake, say 'Snap!' If the word starts with 'H' like hot, say 'Haaa!'"
+    }
+  ],
+  "helpMidMissionStripe4JuiceWarrior": [
+    {
+      "content": "To chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say 'slurp!' To munch on fried fish, say 'munch!' to chew on pork chops, say 'chew'! To bite some beef, say 'bite!' To scarf down a sausage, say 'scarf'. To glug down grape juice, say 'glug!'"
+    }
+  ],
+  "helpMidMissionStripe4SushiSlice": [
+    {
+      "content": "To chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say 'slurp!' To munch on fried fish, say 'munch!' to chew on pork chops, say 'chew'! To bite some beef, say 'bite!' To scarf down a sausage, say 'scarf'. To glug down grape juice, say 'glug!' To eat up an oyster, say 'om nom nom!'"
+    }
+  ],
+  "helpMidMissionStripe4FoodTaster": [
+    {
+      "content": "To chomp the chicken, say 'chomp!' To gulp up the sushi, say 'gulp'! To slurp up stew, say 'slurp!' To munch on fried fish, say 'munch!' to chew on pork chops, say 'chew'! To bite some beef, say 'bite!' To scarf down a sausage, say 'scarf'. To glug down grape juice, say 'glug!' To eat up an oyster, say 'om nom nom!' To gobble up goat cheese, say 'gobble!'"
+    }
+  ],
   "helpHighMissionStripe0WordBoardKarate": [
     {
       "content": "To prepare milk, say 'splash a dash'! For carrots, say 'slice and dice'!"
@@ -187,6 +307,66 @@
   "helpHighMissionStripe1FoodTaster": [
     {
       "content": "If the word on the board starts with 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with 'TH', like thorn, say 'Thwap!'"
+    }
+  ],
+  "helpHighMissionStripe2WordBoardKarate": [
+    {
+      "content": "To splash some milk, say 'splash a dash'! To slice some carrots, say 'slice and dice'! To crunch up ice, say 'punch and crunch! If Arthur throws you chopsticks, say 'stop, don't drop!' To add mint, say 'a hint of mint!'"
+    }
+  ],
+  "helpHighMissionStripe2JuiceWarrior": [
+    {
+      "content": "To splash some milk, say 'splash a dash'! To slice some carrots, say 'slice and dice'! To crunch up ice, say 'punch and crunch! If Arthur throws you chopsticks, say 'stop, don't drop!' To add mint, say 'a hint of mint!' To add some honey, say 'Add a tad!'"
+    }
+  ],
+  "helpHighMissionStripe2SushiSlice": [
+    {
+      "content": "To splash some milk, say 'splash a dash'! To slice some carrots, say 'slice and dice'! To crunch up ice, say 'punch and crunch! If Arthur throws you chopsticks, say 'stop, don't drop!' To add mint, say 'a hint of mint!' To add some honey, say 'Add a tad!' To add some banana, say 'dunk a chunk!'"
+    }
+  ],
+  "helpHighMissionStripe2FoodTaster": [
+    {
+      "content": "If the word starts with the 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with the 'TH', like thorn, say 'Thwap!' If the word starts with the 'Y' sound like yak, say 'Yaaa!'"
+    }
+  ],
+  "helpHighMissionStripe3WordBoardKarate": [
+    {
+      "content": "If Arthur throws a punch, say block to BLOCK! If he tries a kick, say dodge to DODGE! If he tries a sweep, say jump to JUMP! If he bows, say bow to BOW back! If he tries a grab, say break to BREAK his grab! And if he tries a headbutt, say duck to DUCK!"
+    }
+  ],
+  "helpHighMissionStripe3JuiceWarrior": [
+    {
+      "content": "If Arthur throws a punch, say block to BLOCK! If he tries a kick, say dodge to DODGE! If he tries a sweep, say jump to JUMP! If he bows, say bow to BOW back! If he tries a grab, say break to BREAK his grab! And if he tries a headbutt, say duck to DUCK! If Arthur tries a chop, say block to BLOCK it!"
+    }
+  ],
+  "helpHighMissionStripe3SushiSlice": [
+    {
+      "content": "If Arthur throws a punch, say block to BLOCK! If he tries a kick, say dodge to DODGE! If he tries a sweep, say jump to JUMP! If he bows, say bow to BOW back! If he tries a grab, say break to BREAK his grab! And if he tries a headbutt, say duck to DUCK! If Arthur tries a chop, say block to BLOCK it! If Arthur does an uppercut, say whoa to LEAN BACK!"
+    }
+  ],
+  "helpHighMissionStripe3FoodTaster": [
+    {
+      "content": "If the word starts with the 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with the 'TH', like thorn, say 'Thwap!' If the word starts with the 'Y' sound like yak, say 'Yaaa!' If the word starts with a C sound, like cookie, say 'Crack!'"
+    }
+  ],
+  "helpHighMissionStripe4WordBoardKarate": [
+    {
+      "content": "If the word starts with the 'Z' sound, like zoo, say 'Zaam!' If the word starts with the 'W' sound, like walk, say 'Whammo!' If the word starts with the 'TH', like thorn, say 'Thwap!' If the word starts with the 'Y' sound like yak, say 'Yaaa!' If the word starts with a C sound, like cookie, say 'Crack!' If the word starts with a B sound, like bark, say 'Bonk!'"
+    }
+  ],
+  "helpHighMissionStripe4JuiceWarrior": [
+    {
+      "content": "To splash some milk, say 'splash a dash'! To slice some carrots, say 'slice and dice'! To crunch up ice, say 'punch and crunch!' If Arthur throws you chopsticks, say 'stop, don't drop!' to add mint, say 'a hint of mint!' To add some honey, say 'Add a tad!' To add some banana, say 'dunk a chunk!' To add some yam, say '10 grams of yam!'"
+    }
+  ],
+  "helpHighMissionStripe4SushiSlice": [
+    {
+      "content": "To splash some milk, say 'splash a dash'! To slice some carrots, say 'slice and dice'! To crunch up ice, say 'punch and crunch!' If Arthur throws you chopsticks, say 'stop, don't drop!' to add mint, say 'a hint of mint!' To add some honey, say 'Add a tad!' To add some banana, say 'dunk a chunk!' To add some yam, say '10 grams of yam!' To dump a lump of Watermelon, say 'dump a lump!'"
+    }
+  ],
+  "helpHighMissionStripe4FoodTaster": [
+    {
+      "content": "To splash some milk, say 'splash a dash'! To slice some carrots, say 'slice and dice'! To crunch up ice, say 'punch and crunch!' If Arthur throws you chopsticks, say 'stop, don't drop!' to add mint, say 'a hint of mint!' To add some honey, say 'Add a tad!' To add some banana, say 'dunk a chunk!' To add some yam, say '10 grams of yam!' To dump a lump of Watermelon, say 'dump a lump!' To squeeze an orange, say 'squeeze with ease!'"
     }
   ]
 }
