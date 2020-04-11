@@ -154,6 +154,146 @@
     "role": "Sound",
     "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsBreak.mp3"
   },
+  "reaction_chop": {
+    "content": "Chop",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsChop.mp3"
+  },
+  "reaction_squeeze": {
+    "content": "Squeeze",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSqueeze.mp3"
+  },
+  "reaction_sprinkle": {
+    "content": "Sprinkle",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSprinkle.mp3"
+  },
+  "reaction_dash": {
+    "content": "Dash",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsDash.mp3"
+  },
+  "reaction_peel": {
+    "content": "Peel",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsPeel.mp3"
+  },
+  "reaction_garnish": {
+    "content": "Garnish",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsGarnish.mp3"
+  },
+  "reaction_chew": {
+    "content": "Chew",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsChew.mp3"
+  },
+  "reaction_scarf": {
+    "content": "Scarf",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsScarf.mp3"
+  },
+  "reaction_glug": {
+    "content": "Glug",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsGlug.mp3"
+  },
+  "reaction_om nom nom": {
+    "content": "Om nom nom",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsOmNomNom.mp3"
+  },
+  "reaction_gobble": {
+    "content": "Gobble",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsGobble.mp3"
+  },
+  "reaction_a hint of mint": {
+    "content": "A hint of mint",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsAHintOfMint.mp3"
+  },
+  "reaction_add a tad": {
+    "content": "Add a tad",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsAddATad.mp3"
+  },
+  "reaction_dunk a chunk": {
+    "content": "Dunk a chunk",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsDunkAChunk.mp3"
+  },
+  "reaction_10 grams of yam": {
+    "content": "10 grams of yam",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactions10GramsOfYam.mp3"
+  },
+  "reaction_dump a lump": {
+    "content": "Dump a lump",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsDumpALump.mp3"
+  },
+  "reaction_squeeze with ease": {
+    "content": "Squeeze with ease",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSqueezeWithEase.mp3"
+  },
+  "reaction_duck": {
+    "content": "Duck",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsDuck.mp3"
+  },
+  "reaction_leap and sweep": {
+    "content": "Leap and sweep",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsLeapAndSweep.mp3"
+  },
+  "reaction_scrub a dub dub": {
+    "content": "Scrub a dub dub",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsScrubADubDub.mp3"
+  },
+  "reaction_spray away": {
+    "content": "Spray away",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSprayAway.mp3"
+  },
+  "reaction_swipe and wipe": {
+    "content": "Swipe and wipe",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSwipeAndWipe.mp3"
+  },
+  "reaction_bam": {
+    "content": "Bam",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsBam.mp3"
+  },
+  "reaction_slam": {
+    "content": "Slam",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSlam.mp3"
+  },
+  "reaction_kapow": {
+    "content": "Kapow",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsKapow.mp3"
+  },
+  "reaction_snap": {
+    "content": "Snap",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsSnap.mp3"
+  },
+  "reaction_yaaah": {
+    "content": "Yaaah",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsYaaah.mp3"
+  },
+  "reaction_bonk": {
+    "content": "Bonk",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsBonk.mp3"
+  },
   "rice": {
     "content": "Rice",
     "role": "Sound",
@@ -278,5 +418,135 @@
     "content": "Grab",
     "role": "Sound",
     "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesGrab.mp3"
+  },
+  "veggies": {
+    "content": "Veggies",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesVeggies.mp3"
+  },
+  "lemon": {
+    "content": "Lemon",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesLemon.mp3"
+  },
+  "sesame seeds": {
+    "content": "Sesame seeds",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesSesameSeeds.mp3"
+  },
+  "sauce": {
+    "content": "Sauce",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesSauce.mp3"
+  },
+  "shrimp": {
+    "content": "Shrimp",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesShrimp.mp3"
+  },
+  "ginger": {
+    "content": "Ginger",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesGinger.mp3"
+  },
+  "pork chops": {
+    "content": "Pork chops",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesPorkChops.mp3"
+  },
+  "sausage": {
+    "content": "Sausage",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesSausage.mp3"
+  },
+  "grape juice": {
+    "content": "Grape juice",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesGrapeJuice.mp3"
+  },
+  "oyster": {
+    "content": "Oyster",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesOyster.mp3"
+  },
+  "cheese": {
+    "content": "Cheese",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesCheese.mp3"
+  },
+  "mint": {
+    "content": "Mint",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesMint.mp3"
+  },
+  "honey": {
+    "content": "Honey",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesHoney.mp3"
+  },
+  "banana": {
+    "content": "Banana",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesBanana.mp3"
+  },
+  "yam": {
+    "content": "Yam",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesYam.mp3"
+  },
+  "watermelon": {
+    "content": "Watermelon",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesWatermelon.mp3"
+  },
+  "orange": {
+    "content": "Orange",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesOrange.mp3"
+  },
+  "cookies": {
+    "content": "Cookies",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesCookies.mp3"
+  },
+  "donut": {
+    "content": "Donut",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesDonut.mp3"
+  },
+  "chop": {
+    "content": "Chop",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesChop.mp3"
+  },
+  "headbutt": {
+    "content": "Headbutt",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesHeadbutt.mp3"
+  },
+  "uppercut": {
+    "content": "Uppercut",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesUppercut.mp3"
+  },
+  "broom": {
+    "content": "Broom",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesBroom.mp3"
+  },
+  "sponge": {
+    "content": "Sponge",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesSponge.mp3"
+  },
+  "hose": {
+    "content": "hose",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesHose.mp3"
+  },
+  "towel": {
+    "content": "Towel",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/obstacles/obstaclesTowel.mp3"
   }
 }

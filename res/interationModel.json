@@ -2,6 +2,11 @@
   "interactionModel": {
     "languageModel": {
       "invocationName": "samurai chef",
+      "modelConfiguration": {
+        "fallbackIntentSensitivity": {
+          "level": "LOW"
+        }
+      },
       "intents": [
         {
           "name": "ActionIntent",
@@ -163,7 +168,6 @@
           "name": "ResetIntent",
           "slots": [],
           "samples": [
-            "start this mission over",
             "please restart the mission",
             "please restart the path",
             "start this path over",
@@ -275,6 +279,7 @@
           "name": "BuyIntent",
           "slots": [],
           "samples": [
+            "buy expansion",
             "Purchase expansion pack",
             "Purchase further missions",
             "Give me more missions",
@@ -390,6 +395,7 @@
               "name": {
                 "value": "this",
                 "synonyms": [
+                  "start this mission over",
                   "play this mission",
                   "from the beginning",
                   "play from the beginning",
@@ -405,6 +411,271 @@
         {
           "name": "ACTION",
           "values": [
+            {
+              "name": {
+                "value": "towel"
+              }
+            },
+            {
+              "name": {
+                "value": "hose"
+              }
+            },
+            {
+              "name": {
+                "value": "sponge"
+              }
+            },
+            {
+              "name": {
+                "value": "broom"
+              }
+            },
+            {
+              "name": {
+                "value": "uppercut"
+              }
+            },
+            {
+              "name": {
+                "value": "headbutt"
+              }
+            },
+            {
+              "name": {
+                "value": "donut"
+              }
+            },
+            {
+              "name": {
+                "value": "cookies"
+              }
+            },
+            {
+              "name": {
+                "value": "orange"
+              }
+            },
+            {
+              "name": {
+                "value": "watermelon"
+              }
+            },
+            {
+              "name": {
+                "value": "yam"
+              }
+            },
+            {
+              "name": {
+                "value": "banana"
+              }
+            },
+            {
+              "name": {
+                "value": "honey"
+              }
+            },
+            {
+              "name": {
+                "value": "mint"
+              }
+            },
+            {
+              "name": {
+                "value": "cheese"
+              }
+            },
+            {
+              "name": {
+                "value": "oyster"
+              }
+            },
+            {
+              "name": {
+                "value": "grape juice"
+              }
+            },
+            {
+              "name": {
+                "value": "sausage"
+              }
+            },
+            {
+              "name": {
+                "value": "pork chops"
+              }
+            },
+            {
+              "name": {
+                "value": "ginger"
+              }
+            },
+            {
+              "name": {
+                "value": "shrimp"
+              }
+            },
+            {
+              "name": {
+                "value": "sauce"
+              }
+            },
+            {
+              "name": {
+                "value": "sesame seeds"
+              }
+            },
+            {
+              "name": {
+                "value": "lemon"
+              }
+            },
+            {
+              "name": {
+                "value": "veggies"
+              }
+            },
+            {
+              "name": {
+                "value": "bonk"
+              }
+            },
+            {
+              "name": {
+                "value": "yaaah"
+              }
+            },
+            {
+              "name": {
+                "value": "snap"
+              }
+            },
+            {
+              "name": {
+                "value": "kapow"
+              }
+            },
+            {
+              "name": {
+                "value": "slam"
+              }
+            },
+            {
+              "name": {
+                "value": "bam"
+              }
+            },
+            {
+              "name": {
+                "value": "swipe and wipe"
+              }
+            },
+            {
+              "name": {
+                "value": "spray away"
+              }
+            },
+            {
+              "name": {
+                "value": "scrub a dub dub"
+              }
+            },
+            {
+              "name": {
+                "value": "leap and sweep"
+              }
+            },
+            {
+              "name": {
+                "value": "duck"
+              }
+            },
+            {
+              "name": {
+                "value": "squeeze with ease"
+              }
+            },
+            {
+              "name": {
+                "value": "dump a lump"
+              }
+            },
+            {
+              "name": {
+                "value": "10 grams of yam"
+              }
+            },
+            {
+              "name": {
+                "value": "dunk a chunk"
+              }
+            },
+            {
+              "name": {
+                "value": "add a tad"
+              }
+            },
+            {
+              "name": {
+                "value": "a hint of mint"
+              }
+            },
+            {
+              "name": {
+                "value": "gobble"
+              }
+            },
+            {
+              "name": {
+                "value": "om nom nom"
+              }
+            },
+            {
+              "name": {
+                "value": "glug"
+              }
+            },
+            {
+              "name": {
+                "value": "scarf"
+              }
+            },
+            {
+              "name": {
+                "value": "chew"
+              }
+            },
+            {
+              "name": {
+                "value": "garnish"
+              }
+            },
+            {
+              "name": {
+                "value": "peel"
+              }
+            },
+            {
+              "name": {
+                "value": "dash"
+              }
+            },
+            {
+              "name": {
+                "value": "sprinkle"
+              }
+            },
+            {
+              "name": {
+                "value": "squeeze"
+              }
+            },
+            {
+              "name": {
+                "value": "chop"
+              }
+            },
             {
               "name": {
                 "value": "haa",
@@ -477,6 +748,8 @@
               "name": {
                 "value": "wham",
                 "synonyms": [
+                  "wam",
+                  "wammo",
                   "wamo",
                   "huayno",
                   "where am"
@@ -497,6 +770,7 @@
               "name": {
                 "value": "boil",
                 "synonyms": [
+                  "boll",
                   "buy",
                   "laurel",
                   "born"
