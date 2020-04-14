@@ -9,18 +9,17 @@ import com.muffinsoft.alexa.skills.samuraichef.enums.UserMission;
 import com.muffinsoft.alexa.skills.samuraichef.models.ActivitiesSettings;
 import com.muffinsoft.alexa.skills.samuraichef.models.Stripe;
 import com.muffinsoft.alexa.skills.samuraichef.models.WordReaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class ActivityManager {
+
+    private static final Logger logger = LoggerFactory.getLogger(ActivityManager.class);
 
     private static final String SUSHI_SLICE = "settings/sushi-slice.json";
     private static final String JUICE_WARRIOR = "settings/juice-warrior.json";
@@ -87,6 +86,8 @@ public class ActivityManager {
             Map<String, List<String>> vocabulary = getVocabulary(stripe);
 
             List<String> iterationList = new ArrayList<>(vocabulary.get(nextSound.toLowerCase()));
+
+            logger.debug("Next word: {}, vocabulary keys: {}, iteration list: {}", nextSound, vocabulary.keySet().size(), iterationList.size());
 
             if (previousWord != null) {
                 iterationList.remove(previousWord);
