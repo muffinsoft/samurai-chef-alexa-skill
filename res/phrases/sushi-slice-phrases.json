@@ -132,7 +132,7 @@
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission0Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -141,7 +141,7 @@
       "demo": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission0Demo0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission0Demo0.mp3"
         },
         {
           "content": "Gulp!",
@@ -149,7 +149,7 @@
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission0Demo1.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission0Demo1.mp3"
         },
         {
           "content": "Gulp?",
@@ -157,29 +157,29 @@
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission0Demo2.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission0Demo2.mp3"
         }
       ],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/2_1_3.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M1/2_1_3.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission1Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesMediumMission1Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesMediumMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/2_2_3.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/2_2_3.jpg"
     },
     "2": {
       "outro": [
@@ -244,13 +244,13 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission0Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission0Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission0Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission0Intro0.mp3"
         }
       ],
       "shouldRunDemo": true,
@@ -259,7 +259,7 @@
       "demo": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission0Demo0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission0Demo0.mp3"
         },
         {
           "content": "Splash a dash!",
@@ -267,7 +267,7 @@
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission0Demo1.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission0Demo1.mp3"
         },
         {
           "content": "Slice and dice?",
@@ -275,41 +275,41 @@
         },
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission0Demo2.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission0Demo2.mp3"
         }
       ],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M1/3_1_3.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M1/3_1_3.jpg"
     },
     "1": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission1Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission1Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission1Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission1Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
       "shouldRunDemoPhrase": "Do you need a Demo round?",
       "readyToStartPhrase": "Ready to start?",
       "demo": [],
-      "instructionImageUrl": "https://s3.amazonaws.com/samurai-audio/images/{size}/instructions/M2/3_2_3.jpg"
+      "instructionImageUrl": "https://d3ih6nf6077n17.cloudfront.net/images/{size}/instructions/M2/3_2_3.jpg"
     },
     "2": {
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission2Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission2Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission2Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission2Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -322,13 +322,13 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission3Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission3Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission3Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission3Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
@@ -341,13 +341,13 @@
       "outro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission4Outro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission4Outro0.mp3"
         }
       ],
       "intro": [
         {
           "role": "Audio",
-          "audio": "https://s3.amazonaws.com/samurai-audio/sushi-slice/sushiSlicePhrasesHighMission4Intro0.mp3"
+          "audio": "https://d3ih6nf6077n17.cloudfront.net/sushi-slice/sushiSlicePhrasesHighMission4Intro0.mp3"
         }
       ],
       "shouldRunDemo": false,
