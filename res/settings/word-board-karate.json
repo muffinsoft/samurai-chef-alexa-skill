@@ -1,11 +1,14 @@
 {
   "name": "WORD_BOARD_KARATE",
   "competition": false,
+  "useVocabulary": true,
+  "vocabularySource": "WORD_BOARD_KARATE",
   "activitySettingsByStripeNumber": {
     "LOW_MISSION": {
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "rice": "boil",
           "fish": "slice"
@@ -14,6 +17,7 @@
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "soup": "slurp",
           "sushi": "gulp",
@@ -23,6 +27,7 @@
       "2": {
         "wonSuccessCount": 9,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "rice": "boil",
           "fish": "slice",
@@ -34,6 +39,7 @@
       "3": {
         "wonSuccessCount": 11,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "broom": "leap and sweep",
           "sponge": "scrub a dub dub"
@@ -55,6 +61,7 @@
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "chicken": "chomp",
           "sushi": "gulp"
@@ -63,6 +70,7 @@
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "beef": "yum",
           "soda": "gross",
@@ -72,6 +80,7 @@
       "2": {
         "wonSuccessCount": 9,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "chicken": "chomp",
           "sushi": "gulp",
@@ -83,6 +92,7 @@
       "3": {
         "wonSuccessCount": 11,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "beef": "yum",
           "milk": "yum",
@@ -109,6 +119,7 @@
       "0": {
         "wonSuccessCount": 5,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "milk": "splash a dash",
           "carrot": "slice and dice"
@@ -117,6 +128,7 @@
       "1": {
         "wonSuccessCount": 7,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "punch": "block",
           "kick": "dodge",
@@ -126,6 +138,7 @@
       "2": {
         "wonSuccessCount": 9,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "milk": "splash a dash",
           "carrot": "slice and dice",
@@ -137,6 +150,7 @@
       "3": {
         "wonSuccessCount": 11,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "punch": "block",
           "kick": "dodge",

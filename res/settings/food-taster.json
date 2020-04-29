@@ -46,6 +46,7 @@
       "4": {
         "wonSuccessCount": 13,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "rice": "boil",
           "fish": "slice",
@@ -102,6 +103,7 @@
       "4": {
         "wonSuccessCount": 13,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "chicken": "chomp",
           "sushi": "gulp",
@@ -158,6 +160,7 @@
       "4": {
         "wonSuccessCount": 13,
         "maxMistakeCount": 3,
+        "useVocabulary": false,
         "ingredients": {
           "milk": "splash a dash",
           "carrot": "slice and dice",
