@@ -48,12 +48,15 @@ public class ActivityManager {
         try {
             for (ActivitiesSettings activitiesSettings : containerByActivity.values()) {
                 if (activitiesSettings.isUseVocabulary()) {
+                    logger.debug("Adding activity {}", activitiesSettings.getName());
                     String vocabularySource = activitiesSettings.getVocabularySource();
                     Set<String> letters = activitiesSettings.getActivitySettingsByStripeNumber().values().stream()
                             .flatMap(stringStripeMap -> stringStripeMap.values().stream())
+                            .filter(Stripe::isUseVocabulary)
                             .flatMap(stripe -> stripe.getIngredients().keySet().stream())
                             .map(String::toLowerCase)
                             .collect(Collectors.toSet());
+                    logger.debug("Collected letters: {}", letters);
                     Map<String, List<String>> upload = dictionaryFileLoader.upload(WORDS, letters);
 
                     vocabularies.put(vocabularySource, upload);
@@ -133,7 +136,6 @@ public class ActivityManager {
         }
 
         if (activitiesSettings.isUseVocabulary()) {
-            settingsByStripeNumberAtMission.setUseVocabulary(true);
             settingsByStripeNumberAtMission.setVocabularySource(activitiesSettings.getVocabularySource());
         }
 

@@ -48,6 +48,7 @@
       "4": {
         "wonSuccessCount": 13,
         "maxMistakeCount": 3,
+        "useVocabulary": true,
         "ingredients": {
           "W": "wham",
           "H": "haa",
@@ -105,6 +106,7 @@
       "4": {
         "wonSuccessCount": 13,
         "maxMistakeCount": 3,
+        "useVocabulary": true,
         "ingredients": {
           "Z": "zonk",
           "F": "fuah",
@@ -163,6 +165,7 @@
       "4": {
         "wonSuccessCount": 13,
         "maxMistakeCount": 3,
+        "useVocabulary": true,
         "ingredients": {
           "Z": "zaam",
           "W": "whamo",
