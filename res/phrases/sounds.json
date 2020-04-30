@@ -294,6 +294,11 @@
     "role": "Sound",
     "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsBonk.mp3"
   },
+  "reaction_bite": {
+    "content": "Bite",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsBite.mp3"
+  },
   "rice": {
     "content": "Rice",
     "role": "Sound",
