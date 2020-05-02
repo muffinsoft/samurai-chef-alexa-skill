@@ -89,6 +89,11 @@
     "role": "Sound",
     "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsYum.mp3"
   },
+  "reaction_yuck": {
+    "content": "Yuck",
+    "role": "Sound",
+    "audio": "https://d3ih6nf6077n17.cloudfront.net/reactions/reactionsYuck.mp3"
+  },
   "reaction_gross": {
     "content": "Gross",
     "role": "Sound",
