@@ -323,7 +323,7 @@
   ],
   "purchaseNoRefund": [
     {
-      "content": "You haven't purchased the expansion pack yet. You can say - what can I buy, or say yes to return to the adventure."
+      "content": "You have not made any purchases, there is nothing to refund. Would you like to continue?"
     }
   ],
   "purchaseRefundNotPurchasable": [

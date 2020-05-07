@@ -39,9 +39,11 @@ public class SamuraiRefundIntentHandler extends RefundIntentHandler {
                 InSkillProduct product = PurchaseManager.getInSkillProduct(input);
                 getSessionAttributes().put(INTENT, IntentType.GAME);
                 if (PurchaseManager.isEntitled(product) && product.getEntitlementReason() == EntitlementReason.AUTO_ENTITLED || !arePurchasesEnabled) {
+                    logger.debug("Refund request, entitlement reason: {}, purchases enabled: {}", product.getEntitlementReason(), arePurchasesEnabled);
                     response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("unrecognized");
                 } else {
-                    response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("purchaseNothingToRefund");
+                    logger.debug("Refund request, not entitled");
+                    response = phraseDependencyContainer.getRegularPhraseManager().getValueByKey("purchaseNoRefund");
                     getSessionAttributes().put(INTENT, CONTINUE_OR_MENU);
                 }
                 return DialogItem.builder()
