@@ -33,6 +33,7 @@ public class SamuraiRefundConnectionsResponseHandler implements com.amazon.ask.d
         Map<String, Object> sessionAttributes = token != null ? getSessionAttributes(token) :
                 verifyMap(attributesManager.getSessionAttributes());
         attributesManager.setSessionAttributes(sessionAttributes);
+        logger.debug("Session attributes: {}", sessionAttributes);
         return new SamuraiActionIntentHandler(IoC.provideIntentFactory()).handle(input);
     }
 
